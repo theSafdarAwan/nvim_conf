@@ -189,7 +189,7 @@ return packer.startup(function(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		config = function()
-			require("lsp/cmp")
+			-- require("lsp/cmp")
 		end,
 	})
 	use({ "hrsh7th/cmp-nvim-lua" })
