@@ -1,0 +1,14 @@
+local vim = vim
+require("neoclip").setup({
+	history = 100,
+	enable_persistant_history = true,
+	db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+	filter = nil,
+	preview = true,
+	default_register = '"',
+	content_spec_column = false,
+	on_paste = {
+		set_reg = false,
+	},
+	keys = require("core.plugins_mappings.neoclip_map").mapings()
+})
