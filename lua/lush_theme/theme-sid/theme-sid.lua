@@ -175,7 +175,7 @@ local theme = lush(function()
 		TSException({ fg = colors.color_20 }), -- For exception related keywords.
 		TSField({ fg = colors.color_21 }), -- For fields.
 		TSFloat({ fg = colors.color_20 }), -- For floats.
-		TSFunction({ fg = colors.color_14 }), -- For function (calls and definitions).
+		TSFunction({ fg = colors.color_14 ,gui = "bold"}), -- For function (calls and definitions).
 		TSFuncBuiltin({ fg = colors.color_22 }), -- For builtin functions: `table.insert` in Lua.
 		TSFuncMacro({ fg = colors.color_27 }), -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
 		TSInclude({ fg = colors.color_14 }), -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
@@ -187,7 +187,7 @@ local theme = lush(function()
 		TSMethod({ fg = colors.color_15 }), -- For method calls and definitions.
 		TSNamespace({ fg = colors.color_24 }), -- For identifiers referring to modules and namespaces.
 		TSNone({ fg = colors.fg }), -- TODO: docs
-		TSNumber({ fg = colors.color_20 }), -- For all numbers
+		TSNumber({ fg = colors.color_18 }), -- For all numbers
 		TSOperator({ fg = colors.color_27 }), -- For any operator: `+`, but also `->` and `*` in C.
 		TSParameter({ fg = colors.color_20 }), -- For parameters of a function.
 		TSParameterReference({ fg = colors.color_20 }), -- For references to parameters of a function.
