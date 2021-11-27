@@ -17,7 +17,7 @@ map("v", "<space>'", "<esc>`>a'<esc>`<i'<esc>", { noremap = true, silent = true 
 map("v", "<space>`", "<esc>`>a`<esc>`<i`<esc>", { noremap = true, silent = true })
 map("v", "<space>[", "<esc>`>a]<esc>`<i[<esc>", { noremap = true, silent = true })
 map("v", "<space>{", "<esc>`>a}<esc>`<i{<esc>", { noremap = true, silent = true })
-map("v", "<space>)", "<esc>`>a)<esc>`<i(<esc>", { noremap = true, silent = true })
+map("v", "<space>(", "<esc>`>a)<esc>`<i(<esc>", { noremap = true, silent = true })
 
 -- Remap of the century
 map("n", "cn", "*``cgn", { noremap = true, silent = true })
