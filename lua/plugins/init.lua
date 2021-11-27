@@ -105,12 +105,6 @@ return packer.startup(function(use)
 
 	--> Some Improvements over defaults
 	use({
-		"wfxr/minimap.vim",
-		config = function()
-			require("core.plugins_mappings.minimap_map")
-		end,
-	})
-	use({
 		"karb94/neoscroll.nvim",
 		config = function()
 			require("plugins/configs/neoscroll")
