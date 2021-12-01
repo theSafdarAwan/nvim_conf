@@ -33,7 +33,7 @@ null_ls.config({
 })
 require("lspconfig")["null-ls"].setup({ on_attach = on_attach, autostart = true })
 
-local helpers = require("null-ls.helpers")
+-- local helpers = require("null-ls.helpers")
 
 -- local htmlhint = helpers.make_builtin({
 -- 	method = null_ls.methods.DIAGNOSTICS,
