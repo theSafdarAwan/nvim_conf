@@ -53,6 +53,10 @@ map("n", "<A-h>", "zh", { noremap = true, silent = true })
 -- map("i", "<C-j>", "<c-o>j", {noremap = true, silent = true})
 -- map("n", "<C-k>", "<c-o>k", {noremap = true, silent = true})
 
+-- Add new line above and below
+map("n", "[<leader>", 'mzO<c-[>`z', { noremap = true, silent = true })
+map("n", "]<leader>", 'mzo<c-[>`z', { noremap = true, silent = true })
+
 -- Copy to the system clipboard
 map("v", "<leader>y", '"+y', { noremap = true, silent = true })
 map("n", "<leader>Y", 'mzgg"+yG zzz', { noremap = true, silent = true })
