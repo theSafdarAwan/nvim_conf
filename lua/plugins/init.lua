@@ -26,12 +26,13 @@ return packer.startup(function(use)
 		"lewis6991/impatient.nvim",
 		config = function()
 			require("impatient")
+			require("impatient").enable_profile()
 		end,
 	})
 	use({
 		"antoinemadec/FixCursorHold.nvim",
 		run = function()
-			vim.g.curshold_updatime = 1000
+			vim.g.curshold_updatime = 100
 		end,
 	})
 
@@ -44,8 +45,8 @@ return packer.startup(function(use)
 			require("plugins/configs/telescope")
 		end,
 	})
-	use({ "nvim-telescope/telescope-media-files.nvim" })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({ "nvim-telescope/telescope-media-files.nvim" })
 
 	-- color scheme
 	use({ "rktjmp/lush.nvim" })
@@ -144,7 +145,7 @@ return packer.startup(function(use)
 	use({
 		"mattn/emmet-vim",
 		config = function()
-            require("plugins.configs.emmet")
+			require("plugins.configs.emmet")
 		end,
 	})
 
@@ -188,20 +189,6 @@ return packer.startup(function(use)
 		"ray-x/lsp_signature.nvim",
 		config = function()
 			require("plugins/configs/signature")
-		end,
-	})
-	use({
-		"simrat39/symbols-outline.nvim",
-		config = function()
-			require("plugins/configs/symbol-outline")
-			require("core.plugins_mappings.symbols_outline_map")
-		end,
-	})
-	use({
-		"rmagatti/goto-preview",
-		config = function()
-			require("plugins/configs/goto-preview")
-			require("core.plugins_mappings.goto_preview_map")
 		end,
 	})
 	-- for lsp enhancement
@@ -300,9 +287,8 @@ return packer.startup(function(use)
 	use({
 		"ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
 		config = function()
-            require("plugins.configs.harpoon")
+			require("plugins.configs.harpoon")
 			require("core.plugins_mappings.harpoon_map")
-
 		end,
 	})
 
