@@ -5,3 +5,8 @@ map("n", "<leader>ah", ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { n
 map("n", "<leader>aj", ':lua require("harpoon.ui").nav_file(1)<cr>', { noremap = true, silent = true })
 map("n", "<leader>ak", ':lua require("harpoon.ui").nav_file(2)<cr>', { noremap = true, silent = true })
 map("n", "<leader>al", ':lua require("harpoon.ui").nav_file(3)<cr>', { noremap = true, silent = true })
+
+-- Terminal's
+map("n", "<leader>tj", ':lua require("harpoon.term").gotoTerminal(1)<cr>', { noremap = true, silent = true })
+map("n", "<leader>tk", ':lua require("harpoon.term").gotoTerminal(2)<cr>', { noremap = true, silent = true })
+map("n", "<leader>tl", ':lua require("harpoon.term").gotoTerminal(3)<cr>', { noremap = true, silent = true })

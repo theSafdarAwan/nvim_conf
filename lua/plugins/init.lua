@@ -139,12 +139,6 @@ return packer.startup(function(use)
 			require("plugins/configs/.feline")
 		end,
 	})
-	use({
-		"akinsho/toggleterm.nvim",
-		config = function()
-			require("plugins/configs/toggle-term")
-		end,
-	}) -- floating terminal
 
 	-- for linting files that null_ls does not support
 	use({
@@ -319,10 +313,9 @@ return packer.startup(function(use)
 	use({
 		"ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
 		config = function()
-			require("harpoon").setup({
-				nav_first_in_list = true,
-			})
+            require("plugins.configs.harpoon")
 			require("core.plugins_mappings.harpoon_map")
+
 		end,
 	})
 
