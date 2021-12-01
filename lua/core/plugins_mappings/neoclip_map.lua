@@ -2,10 +2,9 @@ local vim = vim
 local map = require("core.utils").map
 local M = {}
 
-map("i", "<C-n>", "<c-o>:Telescope neoclip<CR>", { noremap = true, silent = true })
-map("n", "<C-n>", ":Telescope neoclip<CR>", { noremap = true, silent = true })
-map("v", "<C-n>", ":Telescope neoclip<CR>", { noremap = true, silent = true })
--- TODO: add the gv it's not working because the telescope prompt appears
+map("i", "<C-t>", "<c-o>:Telescope neoclip<CR>", { noremap = true, silent = true })
+map("n", "<C-t>", ":Telescope neoclip<CR>", { noremap = true, silent = true })
+map("v", "<C-t>", ":Telescope neoclip<CR>", { noremap = true, silent = true })
 
 M.mapings = function()
 	return {
