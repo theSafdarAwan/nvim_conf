@@ -74,13 +74,6 @@ return packer.startup(function(use)
 		end,
 	})
 	use({
-		"sindrets/diffview.nvim",
-		config = function()
-			require("plugins/configs/.diffview")
-			require("core.plugins_mappings.diff_view_map")
-		end,
-	})
-	use({
 		"tanvirtin/vgit.nvim",
 		event = "BufWinEnter",
 		config = function()
@@ -256,12 +249,6 @@ return packer.startup(function(use)
 			require("plugins.configs.neoclip")
 		end,
 	})
-	use({
-		"mbbill/undotree",
-		config = function()
-			require("core.plugins_mappings.undotree_map")
-		end,
-	}) -- Undo tree
 	use({ "tpope/vim-repeat" })
 	use({
 		"windwp/nvim-autopairs",
