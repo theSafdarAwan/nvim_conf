@@ -50,7 +50,6 @@ return packer.startup(function(use)
 
 	-- color scheme
 	use({ "rktjmp/lush.nvim" })
-	use({ "gruvbox-community/gruvbox" })
 	use({
 		"NvChad/nvim-base16.lua",
 		config = function()
