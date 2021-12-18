@@ -81,7 +81,7 @@ g.netrw_winsize = 25
 g.netrw_localrmdir = "rm -r"
 
 vim.cmd[[
-autocmd BufEnter *.norg set spell
+autocmd BufEnter *.norg set spell shiftwidth=2 tabstop=2 softtabstop=2
 ]]
 
 vim.cmd([[
