@@ -80,6 +80,10 @@ g.netrw_banner = 0
 g.netrw_winsize = 25
 g.netrw_localrmdir = "rm -r"
 
+vim.cmd[[
+autocmd BufEnter *.norg set spell
+]]
+
 vim.cmd([[
 "=====================================================
 "                  custom manipluations
