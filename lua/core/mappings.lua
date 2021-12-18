@@ -109,12 +109,14 @@ map("n", "<leader>so", ":so %<cr>", { noremap = true, silent = true })
 -- Spell checking
 -- Pressing ,ss will toggle and untoggle spell checking
 map("n", "<leader>ss", ":set spell!<cr>", { noremap = true, silent = true })
+--[[
 map("n", "<leader>sn", "]s", { noremap = true, silent = true })
 map("n", "<leader>sp", "[s", { noremap = true, silent = true })
 map("n", "<leader>sa", "zg", { noremap = true, silent = true })
 map("n", "<leader>sr", "zug", { noremap = true, silent = true })
 map("n", "<leader>sd", "zw", { noremap = true, silent = true })
 map("n", "<leader>s?", "z=", { noremap = true, silent = true })
+]]
 
 -- Netrw
 -- map("n", "<leader>vex", ":Vexplore<cr><c-w>L :vertical resize 30<cr>", { noremap = true, silent = true })
