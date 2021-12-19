@@ -251,12 +251,12 @@ return packer.startup(function(use)
 	-- })
 	use({ "tpope/vim-surround" }) -- surround plugin from the king of plugins/configs/ tpope
 
-	-- use({
-	-- 	"numToStr/Comment.nvim",
-	-- 	config = function()
-	-- 		require("Comment").setup({})
-	-- 	end,
-	-- }) -- comment out the blocks of text
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({})
+		end,
+	}) -- comment out the blocks of text
 	use({
 		"andymass/vim-matchup",
 		config = function()

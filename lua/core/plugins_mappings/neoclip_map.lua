@@ -7,13 +7,26 @@ map("n", "<C-t>", ":Telescope neoclip<CR>", { noremap = true, silent = true })
 map("v", "<C-t>", ":Telescope neoclip<CR>", { noremap = true, silent = true })
 
 M.mapings = function()
-	return {
-		i = {
-			select = "<cr>",
-			paste = "<c-k>",
-			paste_behind = "<c-j>",
-			custom = {},
-		},
-	}
+    return {
+        telescope = {
+            i = {
+                select = '<cr>',
+                paste = '<c-j>',
+                paste_behind = '<c-k>',
+                custom = {},
+            },
+            n = {
+                select = '<cr>',
+                paste = 'p',
+                paste_behind = 'P',
+                custom = {},
+            },
+        },
+        fzf = {
+            select = 'default',
+            paste_behind = 'ctrl-k',
+            custom = {},
+        },
+    }
 end
 return M
