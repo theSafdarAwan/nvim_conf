@@ -27,11 +27,12 @@ local sources = {
 
 	builtins.code_actions.gitsigns,
 }
-null_ls.config({
+null_ls.setup({
 	debug = true,
 	sources = sources,
+	on_attach = on_attach,
 })
-require("lspconfig")["null-ls"].setup({ on_attach = on_attach, autostart = true })
+-- require("lspconfig")["null-ls"].setup({ on_attach = on_attach, autostart = true })
 
 -- local helpers = require("null-ls.helpers")
 
