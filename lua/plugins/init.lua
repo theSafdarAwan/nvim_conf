@@ -51,6 +51,8 @@ return packer.startup(function(use)
 	-- color scheme
 	use({ "rktjmp/lush.nvim" })
     use({ "morhetz/gruvbox" })
+    use({"rebelot/kanagawa.nvim"})
+
 	use({
 		"NvChad/nvim-base16.lua",
 		config = function()
