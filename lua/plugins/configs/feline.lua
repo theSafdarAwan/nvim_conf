@@ -263,7 +263,7 @@ components.active[2][1] = {
 		return "%b-0x%B"
 	end,
 	enabled = enable_only_in_full_buf,
-	hl = { fg = colors.fl_color_1 },
+	hl = { fg = colors.fl_color_1 , bg = colors.fl_color_8},
 }
 
 --=====================================================
