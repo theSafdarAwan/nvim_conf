@@ -11,6 +11,8 @@ local vim = vim
 -- local colors = require("lush_theme.onedark-pallete")
 local colors = require("lush_theme.dracula-pallete")
 local lsp = require("feline.providers.lsp")
+local lsp_severity = vim.diagnostic.severity
+
 
 local icon_styles = {
 	default = {
@@ -271,10 +273,10 @@ components.active[2][1] = {
 components.active[3][1] = {
 	provider = icon_styles.slant.left,
 	enabled = function()
-		return lsp.diagnostics_exist("Error")
-			or lsp.diagnostics_exist("Warning")
-			or lsp.diagnostics_exist("Hint")
-			or lsp.diagnostics_exist("Information")
+		return lsp.diagnostics_exist(lsp_severity.ERROR)
+			or lsp.diagnostics_exist(lsp_severity.WARN)
+			or lsp.diagnostics_exist(lsp_severity.HINT)
+			or lsp.diagnostics_exist(lsp_severity.INFO)
 	end,
 	hl = {
 		fg = colors.fl_color_8,
@@ -285,7 +287,7 @@ components.active[3][1] = {
 components.active[3][2] = {
 	provider = "diagnostic_errors",
 	enabled = function()
-		return lsp.diagnostics_exist("Error")
+		return lsp.diagnostics_exist(lsp_severity.ERROR)
 	end,
 	hl = { fg = colors.vc_remove, bg = colors.fl_color_8 },
 	icon = "  ",
@@ -294,7 +296,7 @@ components.active[3][2] = {
 components.active[3][3] = {
 	provider = "diagnostic_warnings",
 	enabled = function()
-		return lsp.diagnostics_exist("Warning")
+		return lsp.diagnostics_exist(lsp_severity.WARN)
 	end,
 	hl = { fg = colors.fl_color_4, bg = colors.fl_color_8 },
 	icon = "  ",
@@ -303,7 +305,7 @@ components.active[3][3] = {
 components.active[3][4] = {
 	provider = "diagnostic_hints",
 	enabled = function()
-		return lsp.diagnostics_exist("Hint")
+		return lsp.diagnostics_exist(lsp_severity.HINT)
 	end,
 	hl = { fg = colors.fl_color_6, bg = colors.fl_color_8 },
 	icon = "  ",
@@ -312,7 +314,7 @@ components.active[3][4] = {
 components.active[3][5] = {
 	provider = "diagnostic_info",
 	enabled = function()
-		return lsp.diagnostics_exist("Information")
+		return lsp.diagnostics_exist(lsp_severity.INFO)
 	end,
 	hl = { fg = colors.fl_color_1, bg = colors.fl_color_8 },
 	icon = "  ",
@@ -322,10 +324,10 @@ components.active[3][5] = {
 components.active[3][6] = {
 	provider = " ",
 	enabled = function()
-		return lsp.diagnostics_exist("Error")
-			or lsp.diagnostics_exist("Warning")
-			or lsp.diagnostics_exist("Hint")
-			or lsp.diagnostics_exist("Information")
+		return lsp.diagnostics_exist(lsp_severity.ERROR)
+			or lsp.diagnostics_exist(lsp_severity.WARN)
+			or lsp.diagnostics_exist(lsp_severity.HINT)
+			or lsp.diagnostics_exist(lsp_severity.INFO)
 	end,
 	hl = {
 		fg = colors.fl_color_8,
@@ -333,14 +335,14 @@ components.active[3][6] = {
 	},
 }
 
--- components.active[3][7] = {
--- 	provider = icon_styles.default.left,
--- 	enabled = enable_only_in_full_buf,
--- 	hl = {
--- 		fg = colors.fl_color_16,
--- 		bg = colors.fl_color_8,
--- 	},
--- }
+components.active[3][7] = {
+	provider = icon_styles.default.left,
+	enabled = enable_only_in_full_buf,
+	hl = {
+        fg = colors.fl_color_16,
+        bg = colors.fl_color_8,
+	},
+}
 
 components.active[3][7] = {
 	provider = function()
