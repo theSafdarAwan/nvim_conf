@@ -11,8 +11,8 @@
 --                  ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆
 --                   ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃
 
- require("init")
- require("_packer.packer_compiled")
- vim.cmd[[
- autocmd BufEnter * ALEDisable
- ]]
+require("init")
+require("_packer.packer_compiled")
+vim.cmd[[
+autocmd BufEnter * ALEDisable
+]]
