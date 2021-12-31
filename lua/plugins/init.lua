@@ -91,7 +91,7 @@ return packer.startup(function(use)
 			require("nvim-web-devicons").setup()
 		end,
 	}) -- icons for the nvim
-	use({ "onsails/lspkind-nvim" }) -- better icons for the lsp
+	-- use({ "onsails/lspkind-nvim" }) -- better icons for the lsp
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -136,79 +136,79 @@ return packer.startup(function(use)
 		end,
 	})
 
-	-- for linting files that null_ls does not support
-	use({
-		"dense-analysis/ale",
-		config = function()
-			require("plugins.configs.ale")
-			require("core.plugins_mappings.ale_map")
-		end,
-	})
-	use({
-		"mattn/emmet-vim",
-		config = function()
-			require("plugins.configs.emmet")
-		end,
-	})
-
-	-- load luasnips + cmp related in insert mode only
-	use({
-		"neovim/nvim-lspconfig", -- quckstart lsp conifgs
-		config = function()
-			require("lsp/lsp")
-		end,
-		requires = {
-			{
-				"jose-elias-alvarez/null-ls.nvim",
-				config = function()
-					require("lsp.null_ls")
-					require("core.plugins_mappings.null_ls_map")
-				end,
-			},
-		},
-	})
-	use({ "b0o/schemastore.nvim" })
-
-	-- completion stuff and snippets
-	use({
-		"hrsh7th/nvim-cmp",
-		config = function()
-			require("lsp/cmp")
-		end,
-	})
-	use({ "hrsh7th/cmp-nvim-lua" })
-	use({ "hrsh7th/cmp-nvim-lsp" })
-	use({ "hrsh7th/cmp-buffer" })
-	use({ "hrsh7th/cmp-emoji" })
-	use({ "saadparwaiz1/cmp_luasnip" })
-	use({ "L3MON4D3/LuaSnip" })
-	use({ "rafamadriz/friendly-snippets" })
-
-	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
-
-	-- Lsp utils
-	use({
-		"ray-x/lsp_signature.nvim",
-		config = function()
-			require("plugins/configs/signature")
-		end,
-	})
-	-- for lsp enhancement
-	use({
-		"folke/trouble.nvim",
-		config = function()
-			require("plugins/configs/trouble")
-			require("core.plugins_mappings.lsp_trouble_map")
-		end,
-	})
-	-- TODO work on this plugin config
-	use({
-		"glepnir/lspsaga.nvim",
-		config = function()
-			require("plugins/configs/saga")
-			require("core.plugins_mappings.lsp_saga_map")
-		end,
-	})
+	-- -- for linting files that null_ls does not support
+	-- use({
+	-- 	"dense-analysis/ale",
+	-- 	config = function()
+	-- 		require("plugins.configs.ale")
+	-- 		require("core.plugins_mappings.ale_map")
+	-- 	end,
+	-- })
+	-- use({
+	-- 	"mattn/emmet-vim",
+	-- 	config = function()
+	-- 		require("plugins.configs.emmet")
+	-- 	end,
+	-- })
+	--
+	-- -- load luasnips + cmp related in insert mode only
+	-- use({
+	-- 	"neovim/nvim-lspconfig", -- quckstart lsp conifgs
+	-- 	config = function()
+	-- 		require("lsp/lsp")
+	-- 	end,
+	-- 	requires = {
+	-- 		{
+	-- 			"jose-elias-alvarez/null-ls.nvim",
+	-- 			config = function()
+	-- 				require("lsp.null_ls")
+	-- 				require("core.plugins_mappings.null_ls_map")
+	-- 			end,
+	-- 		},
+	-- 	},
+	-- })
+	-- use({ "b0o/schemastore.nvim" })
+	--
+	-- -- completion stuff and snippets
+	-- use({
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	config = function()
+	-- 		require("lsp/cmp")
+	-- 	end,
+	-- })
+	-- use({ "hrsh7th/cmp-nvim-lua" })
+	-- use({ "hrsh7th/cmp-nvim-lsp" })
+	-- use({ "hrsh7th/cmp-buffer" })
+	-- use({ "hrsh7th/cmp-emoji" })
+	-- use({ "saadparwaiz1/cmp_luasnip" })
+	-- use({ "L3MON4D3/LuaSnip" })
+	-- use({ "rafamadriz/friendly-snippets" })
+	--
+	-- use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
+	--
+	-- -- Lsp utils
+	-- use({
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	config = function()
+	-- 		require("plugins/configs/signature")
+	-- 	end,
+	-- })
+	-- -- for lsp enhancement
+	-- use({
+	-- 	"folke/trouble.nvim",
+	-- 	config = function()
+	-- 		require("plugins/configs/trouble")
+	-- 		require("core.plugins_mappings.lsp_trouble_map")
+	-- 	end,
+	-- })
+	-- -- TODO work on this plugin config
+	-- use({
+	-- 	"glepnir/lspsaga.nvim",
+	-- 	config = function()
+	-- 		require("plugins/configs/saga")
+	-- 		require("core.plugins_mappings.lsp_saga_map")
+	-- 	end,
+	-- })
 
 	-- syntax Highlighting
 	use({
@@ -220,12 +220,12 @@ return packer.startup(function(use)
 		end,
 	})
 	use({ "nvim-treesitter/playground" })
-	use({
-		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end,
-	})
+	-- use({
+	-- 	"windwp/nvim-ts-autotag",
+	-- 	config = function()
+	-- 		require("nvim-ts-autotag").setup()
+	-- 	end,
+	-- })
 	use({
 		"p00f/nvim-ts-rainbow",
 	})
@@ -239,26 +239,26 @@ return packer.startup(function(use)
 		end,
 	})
 	use({ "tpope/vim-repeat" })
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({
-				check_ts = true,
-				map_c_w = true,
-			})
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			local cmp = require("cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-		end,
-	})
+	-- use({
+	-- 	"windwp/nvim-autopairs",
+	-- 	config = function()
+	-- 		require("nvim-autopairs").setup({
+	-- 			check_ts = true,
+	-- 			map_c_w = true,
+	-- 		})
+	-- 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+	-- 		local cmp = require("cmp")
+	-- 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+	-- 	end,
+	-- })
 	use({ "tpope/vim-surround" }) -- surround plugin from the king of plugins/configs/ tpope
 
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup({})
-		end,
-	}) -- comment out the blocks of text
+	-- use({
+	-- 	"numToStr/Comment.nvim",
+	-- 	config = function()
+	-- 		require("Comment").setup({})
+	-- 	end,
+	-- }) -- comment out the blocks of text
 	use({
 		"andymass/vim-matchup",
 		config = function()
@@ -279,13 +279,13 @@ return packer.startup(function(use)
 			require("core.plugins_mappings.vim-be-good_map")
 		end,
 	})
-	use({
-		"ThePrimeagen/refactoring.nvim",
-		config = function()
-			require("plugins/configs/refactoring")
-			require("core.plugins_mappings.refactoring_map")
-		end,
-	})
+	-- use({
+	-- 	"ThePrimeagen/refactoring.nvim",
+	-- 	config = function()
+	-- 		require("plugins/configs/refactoring")
+	-- 		require("core.plugins_mappings.refactoring_map")
+	-- 	end,
+	-- })
 	use({
 		"ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
 		config = function()
