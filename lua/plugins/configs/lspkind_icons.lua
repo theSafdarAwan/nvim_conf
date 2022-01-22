@@ -1,6 +1,4 @@
-local M = {}
-
-default = {
+local icons = {
 --M.icons = {
 --  Class = "   ",
 --  Color = "   ",
@@ -82,4 +80,4 @@ default = {
     TypeParameter = "",
 }
 
-return M
+return icons
