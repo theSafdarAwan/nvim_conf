@@ -78,7 +78,7 @@ return packer.startup(function(use)
 	})
 	use({
 		"tanvirtin/vgit.nvim",
-		event = "BufWinEnter",
+		-- event = "BufWinEnter",
 		config = function()
 			require("plugins.configs.vgit")
 		end,
