@@ -22,7 +22,7 @@ return packer.startup(function(use)
 	-- Packer can manage itself
 	use({ "wbthomason/packer.nvim" })
 
-    use({
+	use({
 		"lewis6991/impatient.nvim",
 		config = function()
 			require("impatient")
@@ -50,8 +50,8 @@ return packer.startup(function(use)
 
 	-- color scheme
 	use({ "rktjmp/lush.nvim" })
-    use({ "morhetz/gruvbox" })
-    use({"rebelot/kanagawa.nvim"})
+	use({ "morhetz/gruvbox" })
+	use({ "rebelot/kanagawa.nvim" })
 
 	use({
 		"NvChad/nvim-base16.lua",
@@ -328,7 +328,6 @@ return packer.startup(function(use)
 			require("plugins/configs/neorg")
 		end,
 	})
-
 end)
 
 -- =========================================================================

@@ -140,4 +140,5 @@ map("n", "<leader>ki", ":e ~/.config/nvim/lua/plugins/init.lua<cr>", { noremap =
 map("n", "<leader>kk", ":e ~/.config/nvim/lua/core/mappings.lua<cr>", { noremap = true, silent = true })
 map("n", "<leader>ks", ":e ~/.config/nvim/lua/core/options.lua<cr>", { noremap = true, silent = true })
 map("n", "<leader>kn", ":e ~/NOTES/TODO/notes.norg<cr>", { noremap = true, silent = true })
+map("n", "<leader>sf", ":e ~/NOTES/TODO/self_development.norg<cr>", { noremap = true, silent = true })
 map("n", "<leader>kt", ":e ~/NOTES/TIME_TABLE/time_table.norg<cr>", { noremap = true, silent = true })
