@@ -22,7 +22,7 @@ local servers = {
 	-- "emmet_ls",
 
 	-- crush
-	"clangd",
+	-- "clangd",
 	"sumneko_lua",
 	"vimls",
 
@@ -49,6 +49,7 @@ end
 require("lsp.langs.sumneko_lua")
 require("lsp.langs.jsonls")
 require("lsp.langs.c")
+require("lspconfig").clangd.setup({ capabilities = capabilities })
 
 --=======================================================
 --                      testing

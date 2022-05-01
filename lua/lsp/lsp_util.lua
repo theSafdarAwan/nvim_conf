@@ -5,6 +5,7 @@ M.nvim_lsp = require("lspconfig")
 -- Add additional capabilities supported by nvim-cmp
 local capabilities_l = vim.lsp.protocol.make_client_capabilities()
 capabilities_l = require("cmp_nvim_lsp").update_capabilities(capabilities_l)
+capabilities_l.offsetEncoding = { "utf-16" }
 --Enable (broadcasting) snippet capability for completion
 capabilities_l.textDocument.completion.completionItem.snippetSupport = true
 capabilities_l.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
@@ -21,6 +22,8 @@ capabilities_l.textDocument.completion.completionItem.resolveSupport = {
 		"additionalTextEdits",
 	},
 }
+capabilities_l.offsetEncoding = { "utf-16" }
+require("lspconfig").clangd.setup({ capabilities = capabilities_l })
 
 M.capabilities = capabilities_l
 
