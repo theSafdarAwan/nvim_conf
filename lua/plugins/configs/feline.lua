@@ -58,9 +58,9 @@ local icon_styles = {
 --=====================================================
 --               defining custom functions
 --=====================================================
-local enable_only_in_full_buf = function(winid)
-	return vim.api.nvim_win_get_width(winid) > 50
-end
+-- local enable_only_in_full_buf = function(winid)
+-- 	return vim.api.nvim_win_get_width(winid) > 50
+-- end
 
 -- function()
 --     if vim.lsp.buf_get_clients() == true then

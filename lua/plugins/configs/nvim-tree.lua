@@ -2,7 +2,6 @@ local vim = vim
 local g = vim.g
 
 g.nvim_tree_add_trailing = 0 -- append a trailing slash to folder names
-g.nvim_tree_indent_markers = 1
 g.nvim_tree_git_hl = 0
 g.nvim_tree_group_empty = 1
 g.nvim_tree_create_in_closed_folder = 0
@@ -45,10 +44,23 @@ require("nvim-tree").setup({
 		enable = true,
 		auto_open = true,
 	},
+	renderer = {
+		indent_markers = {
+			enable = false,
+			icons = {
+				corner = "└ ",
+				edge = "│ ",
+				none = "  ",
+			},
+		},
+		icons = {
+			webdev_colors = true,
+		},
+	},
 	auto_reload_on_write = true,
 	ignore_ft_on_setup = { "dashboard" },
 	ignore_buffer_on_setup = false,
-	auto_close = false,
+	-- auto_close = false,
 	open_on_tab = false,
 	sort_by = "name",
 	hijack_cursor = true,
@@ -89,7 +101,7 @@ require("nvim-tree").setup({
 			custom_only = false,
 			list = {},
 		},
-		auto_resize = true,
+		-- auto_resize = true,
 	},
 	actions = {
 		change_dir = {

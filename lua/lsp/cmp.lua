@@ -9,14 +9,16 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
-	documentation = {
-		border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+	window = {
+		documentation = {
+			border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+		},
 	},
 	formatting = {
 		format = function(entry, vim_item)
 			-- load lspkind icons
-            local icons = require "plugins.configs.lspkind_icons"
-            vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+			local icons = require("plugins.configs.lspkind_icons")
+			vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
 
 			vim_item.menu = ({
 				nvim_lsp = "(LSP)",
