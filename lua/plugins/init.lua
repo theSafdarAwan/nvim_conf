@@ -194,10 +194,6 @@ return packer.startup(function(use)
 		end,
 	})
 
-    use({
-        "j-hui/fidget.nvim",
-        require"fidget".setup{}
-    })
 	-- for lsp enhancement
 	use({
 		"folke/trouble.nvim",
@@ -220,8 +216,8 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 		config = function()
-		require("plugins/configs/treesitter")
-		require("core.plugins_mappings.treesitter_map")
+			require("plugins/configs/treesitter")
+			require("core.plugins_mappings.treesitter_map")
 		end,
 	})
 	use({ "nvim-treesitter/playground" })
