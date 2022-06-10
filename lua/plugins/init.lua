@@ -321,14 +321,6 @@ return packer.startup(function(use)
 			require("core.plugins_mappings.glow_map")
 		end,
 	})
-
-	-- neorg
-	use({
-		"nvim-neorg/neorg",
-		config = function()
-			require("plugins/configs/neorg")
-		end,
-	})
 end)
 
 -- =========================================================================
