@@ -310,6 +310,7 @@ return packer.startup(function(use)
 		end,
 	})
 
+    -- TODO: have a look at the documentation of this plugin
 	use({ "Furkanzmc/firvish.nvim" })
 
 	--> Languages utils
