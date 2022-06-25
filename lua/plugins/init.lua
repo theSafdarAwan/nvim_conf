@@ -45,8 +45,8 @@ return packer.startup(function(use)
 			require("plugins/configs/telescope")
 		end,
 	})
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({ "nvim-telescope/telescope-media-files.nvim" })
+    use ({'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' })
+    use({ "nvim-telescope/telescope-media-files.nvim" })
 
 	-- color scheme
 	use({ "rktjmp/lush.nvim" })

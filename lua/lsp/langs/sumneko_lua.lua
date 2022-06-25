@@ -5,8 +5,8 @@ local on_attach = require("core.plugins_mappings.lsp_map").on_attach
 --=======================================================
 --                      lua server config
 --=======================================================
-local sumneko_root_path = "/home/safdar/safdar-local/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
+local sumneko_root_path = "/home/safdarawan/safdar-local/lua-language-server"
+local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
