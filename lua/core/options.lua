@@ -2,9 +2,9 @@ local vim = vim
 local opt = vim.opt
 local g = vim.g
 g.mapleader = " "
-vim.cmd[[
+vim.cmd([[
     colorscheme dracula-sid
-]]
+]])
 -- FIX:
 -- g.colors_name = "dracula-sid"
 -- g.ayucolor = "light"
@@ -72,7 +72,7 @@ opt.expandtab = true
 opt.cursorline = true
 
 -- sets the column on the left side (or before) of the line numbers
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Netrw Settings
 g.netrw_browse_split = 0
@@ -80,9 +80,9 @@ g.netrw_banner = 0
 g.netrw_winsize = 25
 g.netrw_localrmdir = "rm -r"
 
-vim.cmd[[
+vim.cmd([[
 autocmd BufEnter *.norg set spell shiftwidth=2 tabstop=2 softtabstop=2
-]]
+]])
 
 vim.cmd([[
 "=====================================================
@@ -135,6 +135,10 @@ autocmd VimEnter * ColorizerAttachToBuffer
 autocmd InsertLeave * ColorizerAttachToBuffer
 ]])
 
+vim.cmd([[
+au CmdLineEnter * set norelativenumber | redraw
+au CmdlineLeave * set relativenumber
+]])
 -- =====================================================
 --                   Remove Built Plugins
 -- =====================================================
