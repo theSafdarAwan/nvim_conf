@@ -106,12 +106,6 @@ return packer.startup(function(use)
 			require("plugins/configs/neoscroll")
 		end,
 	}) -- smooth scrolling
-	use({
-		"glepnir/dashboard-nvim",
-		config = function()
-			require("plugins.configs.dashboard")
-		end,
-	})
 
 	--> Something more useful outside of nvim
 	use({
