@@ -139,6 +139,14 @@ vim.cmd([[
 au CmdLineEnter * set norelativenumber | redraw
 au CmdlineLeave * set relativenumber
 ]])
+
+vim.cmd([[
+augroup vim help
+    autocmd!
+    autocmd FileType help setlocal number
+    autocmd FileType help setlocal relativenumber
+augroup END
+]])
 -- =====================================================
 --                   Remove Built Plugins
 -- =====================================================
