@@ -79,6 +79,7 @@ g.netrw_browse_split = 0
 g.netrw_banner = 0
 g.netrw_winsize = 25
 g.netrw_localrmdir = "rm -r"
+g.netrw_winsize = 20
 
 vim.cmd([[
 autocmd BufEnter *.norg set spell shiftwidth=2 tabstop=2 softtabstop=2
@@ -135,18 +136,11 @@ autocmd VimEnter * ColorizerAttachToBuffer
 autocmd InsertLeave * ColorizerAttachToBuffer
 ]])
 
-vim.cmd([[
-au CmdLineEnter * set norelativenumber | redraw
-au CmdlineLeave * set relativenumber
-]])
+-- vim.cmd([[
+-- au CmdLineEnter * set norelativenumber | redraw
+-- au CmdlineLeave * set relativenumber
+-- ]])
 
-vim.cmd([[
-augroup vim help
-    autocmd!
-    autocmd FileType help setlocal number
-    autocmd FileType help setlocal relativenumber
-augroup END
-]])
 -- =====================================================
 --                   Remove Built Plugins
 -- =====================================================
