@@ -50,16 +50,6 @@ return packer.startup(function(use)
 
 	-- color scheme
 	use({ "rktjmp/lush.nvim" })
-	use({ "morhetz/gruvbox" })
-	use({ "rebelot/kanagawa.nvim" })
-
-	use({
-		"NvChad/nvim-base16.lua",
-		config = function()
-			-- local base16 = require("base16")
-			-- base16(base16.themes("onedark"), true)
-		end,
-	})
 
 	use({
 		"folke/todo-comments.nvim",
@@ -106,14 +96,6 @@ return packer.startup(function(use)
 			require("plugins/configs/neoscroll")
 		end,
 	}) -- smooth scrolling
-
-	--> Something more useful outside of nvim
-	use({
-		"glacambre/firenvim",
-		run = function()
-			vim.fn["firenvim#install"](0)
-		end,
-	})
 
 	--> more productive
 	use({
@@ -246,7 +228,8 @@ return packer.startup(function(use)
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	})
-	use({ "tpope/vim-surround" }) -- surround plugin from the king of plugins/configs/ tpope
+    -- "Hello"
+	use({ "tpope/vim-surround" })
 
 	use({
 		"numToStr/Comment.nvim",
@@ -301,19 +284,6 @@ return packer.startup(function(use)
 				autopush = false, -- default: false,
 			})
 			require("core.plugins_mappings.git_worktree_map")
-		end,
-	})
-
-    -- TODO: have a look at the documentation of this plugin
-	use({ "Furkanzmc/firvish.nvim" })
-
-	--> Languages utils
-
-	-- Markdown
-	use({
-		"ellisonleao/glow.nvim",
-		config = function()
-			require("core.plugins_mappings.glow_map")
 		end,
 	})
 end)
