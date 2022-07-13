@@ -300,6 +300,7 @@ return packer.startup(function(use)
             require("lua.plugins.configs.markdown-preview")
             require("lua.core.plugins_mappings.markdown-preview_map")
         end,
+        ft = { "markdown" },
     })
 end)
 
