@@ -136,10 +136,10 @@ autocmd VimEnter * ColorizerAttachToBuffer
 autocmd InsertLeave * ColorizerAttachToBuffer
 ]])
 
--- vim.cmd([[
--- au CmdLineEnter * set norelativenumber | redraw
--- au CmdlineLeave * set relativenumber
--- ]])
+vim.cmd([[
+au CmdLineEnter * set norelativenumber | redraw
+au CmdlineLeave * set relativenumber
+]])
 
 -- =====================================================
 --                   Remove Built Plugins
