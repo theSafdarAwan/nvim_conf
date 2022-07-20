@@ -29,7 +29,7 @@ opt.wrap = false
 opt.scrolloff = 2
 opt.showmode = false
 opt.wrap = false
-opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
+-- opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
 -- Hide the tilde singn in the blank line
 opt.fillchars = { eob = " " }
@@ -139,6 +139,26 @@ autocmd InsertLeave * ColorizerAttachToBuffer
 vim.cmd([[
 au CmdLineEnter * set norelativenumber | redraw
 au CmdlineLeave * set relativenumber
+]])
+
+-- Cursor shape setting
+vim.cmd([[
+let &t_SI = "\<esc>[5 q"
+let &t_SR = "\<esc>[1 q"
+let &t_EI = "\<esc>[1 q"
+set ttimeout
+set ttimeoutlen=1
+set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
+set ttyfast
+set number
+
+" Optionally reset the cursor on start:
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[1 q"
+autocmd VimEnter * redraw!
+autocmd VimEnter * execute "normal \<C-G>"
+augroup END
 ]])
 
 -- =====================================================
