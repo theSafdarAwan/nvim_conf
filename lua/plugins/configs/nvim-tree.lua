@@ -117,8 +117,8 @@ require("nvim-tree").setup({
 		exclude = {},
 	},
 	filesystem_watchers = {
-		enable = false,
-		interval = 100,
+		enable = true,
+		debounce_delay = 100,
 	},
 	git = {
 		enable = true,
