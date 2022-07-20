@@ -95,7 +95,7 @@ map("n", "<TAB>", ":bnext<cr>", { noremap = true, silent = true })
 map("n", "<S-TAB>", ":bprevious<cr>", { noremap = true, silent = true })
 map("n", "<leader>x", ":bdelete<cr>", { noremap = true, silent = true })
 map("n", "<leader>X", ":bdelete!<cr>", { noremap = true, silent = true })
-map("n", "<leader>c", ":close<cr>", { noremap = true, silent = true })
+map("n", "<leader>C", ":close<cr>", { noremap = true, silent = true })
 
 -- =========================================================================
 --                            Remove Mappings                            "
