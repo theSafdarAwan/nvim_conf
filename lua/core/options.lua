@@ -153,12 +153,12 @@ set ttyfast
 set number
 
 " Optionally reset the cursor on start:
-augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[1 q"
-autocmd VimEnter * redraw!
-autocmd VimEnter * execute "normal \<C-G>"
-augroup END
+" augroup myCmds
+" au!
+" autocmd VimEnter * silent !echo -ne "\e[1 q"
+" autocmd VimEnter * redraw!
+" autocmd VimEnter * execute "normal \<C-G>"
+" augroup END
 ]])
 
 -- =====================================================
