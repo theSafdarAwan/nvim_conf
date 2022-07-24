@@ -5,9 +5,7 @@ g.mapleader = " "
 vim.cmd([[
     colorscheme dracula-sid
 ]])
-vim.cmd([[
-    autocmd VimEnter * Obsession
-]])
+
 -- FIX:
 -- g.colors_name = "dracula-sid"
 -- g.ayucolor = "light"

@@ -234,6 +234,9 @@ return packer.startup(function(use)
     use({ "tpope/vim-surround" })
     use({
         "tpope/vim-obsession",
+        config = function ()
+            require("core.plugins_mappings.obsession_map")
+        end
     })
 
     use({
