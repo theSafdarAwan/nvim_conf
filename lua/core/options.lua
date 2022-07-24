@@ -137,11 +137,6 @@ autocmd VimEnter * ColorizerAttachToBuffer
 autocmd InsertLeave * ColorizerAttachToBuffer
 ]])
 
-vim.cmd([[
-au CmdLineEnter * set norelativenumber | redraw
-au CmdlineLeave * set relativenumber
-]])
-
 -- Cursor shape setting
 vim.cmd([[
 let &t_SI = "\<esc>[5 q"

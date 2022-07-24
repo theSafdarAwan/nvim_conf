@@ -42,6 +42,8 @@ map("n", "j", [[(v:count > 5 ? "m'" . v:count: "") . 'j']], { noremap = true, si
 map("v", "<C-j>", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
 map("v", "<C-k>", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
 
+map("n", "<leader>R", ":set relativenumber! | redraw<cr>", { noremap = true, silent = true })
+
 -- " moving the the logng lines containing files in left and right
 map("n", "<A-l>", "zl", { noremap = true, silent = true })
 map("n", "<A-h>", "zh", { noremap = true, silent = true })
