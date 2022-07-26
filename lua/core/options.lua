@@ -17,7 +17,8 @@ vim.cmd([[
 -- autocmd VimEnter * so ~/.config/nvim/colors/bg_transparent.vim
 -- ]]
 
-opt.mouse = "a"
+-- set mouse select
+-- opt.mouse = "a"
 
 -- Spell Checking lang
 opt.spelllang = "en,cjk"
