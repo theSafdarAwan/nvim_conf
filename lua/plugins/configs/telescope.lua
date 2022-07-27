@@ -53,40 +53,9 @@ telescope.setup({
 		},
 		-- path_display = { "shorten", shorten = 3 },
 		-- path_display = { "smart" },
-		preview = {
-			filetype_hook = function(filepath, bufnr, opts)
-				-- you could analogously check opts.ft for filetypes
-				local putils = require("telescope.previewers.utils")
-				local excluded = vim.tbl_filter(function(ending)
-					return filepath:match(ending)
-				end, {
-					".*%.png",
-					".*%.jpg",
-					".*%.webp",
-					-- TODO: show the svg files in telescope_media files that's the prob the the upstream
-					".*%.svg",
-				})
-				if not vim.tbl_isempty(excluded) then
-					putils.set_preview_message(
-						bufnr,
-						opts.winid,
-						string.format(
-							"Preview this %s files using Telescope media_files | <leader>fm",
-							excluded[1]:sub(5, -1)
-						)
-					)
-					return false
-				end
-				return true
-			end,
-		},
 		file_ignore_patterns = { "^.git/" },
 	},
 	extensions = {
-		media_files = {
-			filetypes = { "png", "webm", "webp", "jpg", "jpeg", "pdf", "mp4" },
-			find_cmd = "rg", -- find command (defaults to `fd`)
-		},
 		fzf = {
 			fuzzy = true, -- false will only do exact matching
 			override_generic_sorter = false, -- override the generic sorter
@@ -97,7 +66,6 @@ telescope.setup({
 	},
 })
 telescope.load_extension("fzf")
-telescope.load_extension("media_files")
 telescope.load_extension("git_worktree")
 telescope.load_extension("neoclip")
 

@@ -49,7 +49,6 @@ return packer.startup(function(use)
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     })
-    use({ "nvim-telescope/telescope-media-files.nvim" })
 
     -- color scheme
     use({ "rktjmp/lush.nvim" })
@@ -234,9 +233,9 @@ return packer.startup(function(use)
     use({ "tpope/vim-surround" })
     use({
         "tpope/vim-obsession",
-        config = function ()
+        config = function()
             require("core.plugins_mappings.obsession_map")
-        end
+        end,
     })
 
     use({
