@@ -52,6 +52,10 @@ return packer.startup(function(use)
 
     -- color scheme
     use({ "rktjmp/lush.nvim" })
+    use({
+        "ellisonleao/gruvbox.nvim",
+    })
+    use({ "folke/tokyonight.nvim" })
 
     use({
         "folke/todo-comments.nvim",

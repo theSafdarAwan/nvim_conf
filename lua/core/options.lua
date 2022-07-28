@@ -2,20 +2,11 @@ local vim = vim
 local opt = vim.opt
 local g = vim.g
 g.mapleader = " "
+
+-- g.tokyonight_style = "night"
 vim.cmd([[
     colorscheme dracula-sid
 ]])
-
--- FIX:
--- g.colors_name = "dracula-sid"
--- g.ayucolor = "light"
--- g.ayucolor = "mirage"
--- g.ayucolor = "dark"
-
--- g.colors_name = "gruvbox"
--- vim.cmd[[
--- autocmd VimEnter * so ~/.config/nvim/colors/bg_transparent.vim
--- ]]
 
 -- set mouse select
 -- opt.mouse = "a"
