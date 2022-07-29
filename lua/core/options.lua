@@ -3,11 +3,6 @@ local opt = vim.opt
 local g = vim.g
 g.mapleader = " "
 
--- g.tokyonight_style = "night"
-vim.cmd([[
-    colorscheme dracula-sid
-]])
-
 -- set mouse select
 -- opt.mouse = "a"
 
