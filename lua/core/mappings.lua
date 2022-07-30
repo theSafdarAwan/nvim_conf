@@ -126,7 +126,6 @@ map("n", "<leader>s?", "z=", { noremap = true, silent = true })
 ]]
 
 -- Netrw
-map("n", "<leader>vex", ":Explore<cr>", { noremap = true, silent = true })
 -- map("n", "<leader>vex", ":Vexplore<cr><c-w>L :vertical resize 30<cr>", { noremap = true, silent = true })
 map("n", "<leader>sex", ":Sexplore<cr><c-w>K", { noremap = true, silent = true })
 

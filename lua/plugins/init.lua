@@ -101,6 +101,14 @@ return packer.startup(function(use)
 
     --> more productive
     use({
+        "kyazdani42/nvim-tree.lua",
+        config = function()
+            require("plugins.configs.nvim-tree")
+            require("core.plugins_mappings.nvim-tree_map")
+        end,
+    })
+
+    use({
         "feline-nvim/feline.nvim",
         config = function()
             require("plugins/configs/.feline")
