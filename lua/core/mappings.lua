@@ -97,7 +97,6 @@ map("n", "<TAB>", ":bnext<cr>", { noremap = true, silent = true })
 map("n", "<S-TAB>", ":bprevious<cr>", { noremap = true, silent = true })
 map("n", "<leader>x", ":bdelete<cr>", { noremap = true, silent = true })
 map("n", "<leader>X", ":bdelete!<cr>", { noremap = true, silent = true })
-map("n", "<leader>C", ":close<cr>", { noremap = true, silent = true })
 
 -- I use Obsession plugin and i need to restore the whole (n)vim session without losing
 -- a single pane so i replicated the ZZ command functionality and replace it with this one

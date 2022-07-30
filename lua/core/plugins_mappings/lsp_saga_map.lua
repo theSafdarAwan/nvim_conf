@@ -7,3 +7,4 @@ map("n", "<leader>sl", ":Lspsaga show_line_diagnostics<CR>", { noremap = true, s
 map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", { noremap = true, silent = true })
 -- rename
 map("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<CR>", { noremap = true, silent = true })
+map("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<CR>", { noremap = true, silent = true })
