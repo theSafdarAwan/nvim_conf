@@ -115,7 +115,7 @@ autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype termi
 
 -- Damian Conway
 vim.cmd([[
-" call matchadd('ColorColumn', '\%81v', 100) " for a moment be quite because now i am using linters
+    call matchadd('ColorColumn', '\%80v') " for a moment be quite because now i am using linters
 ]])
 
 -- Colorizer plugin attach

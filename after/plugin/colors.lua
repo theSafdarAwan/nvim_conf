@@ -23,12 +23,24 @@ function ColorMyPencils()
         bg = "#555555",
     })
 
-    hl("Normal", {
-        bg = "None",
+    hl("guibg", {
+        bg = "None"
     })
 
+    hl("Normal", {
+        bg = "none"
+    })
+
+    -- hl("LineNr", {
+    --     fg = "#5eacd3"
+    -- })
+
+    -- hl("CursorLineNR", {
+    --     bg = "None"
+    -- })
+
     hl("netrwDir", {
-        fg = "#5eacd3",
+        fg = "#5eacd3"
     })
 end
 
