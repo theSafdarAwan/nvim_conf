@@ -22,14 +22,14 @@ opt.wrap = false
 -- Hide the tilde singn in the blank line
 opt.fillchars = { eob = " " }
 
--- check the :h undofile option its descreption is very long
 opt.undofile = true
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
--- no swap file
+-- no swap file i use undofile
 opt.swapfile = false
 
--- trick to solve the vim compatible functionality
--- opt.backspace=
+-- trick to solve the vim compatible functionality to not let backspace the file content othe then just inserted one
+opt.backspace = nil
 
 opt.ignorecase = true
 opt.splitright = true
@@ -38,7 +38,7 @@ opt.splitbelow = true
 opt.cursorline = true
 
 opt.cmdheight = 1
--- opt.timeoutlen = 800
+opt.timeoutlen = 500
 -- line numbers
 opt.number = true
 opt.relativenumber = true
@@ -53,7 +53,8 @@ opt.softtabstop = 4
 opt.smartindent = true
 opt.expandtab = true
 
--- opt.shortmess = "I"
+-- opt.shortmess:append("c")
+-- opt.isfname:append("@-@")
 
 -- opt.whichwrap="<>hl"
 -- opt.autochdir = true
@@ -61,30 +62,6 @@ opt.cursorline = true
 
 -- sets the column on the left side (or before) of the line numbers
 vim.wo.signcolumn = "yes"
-
--- Netrw Settings
-g.netrw_browse_split = 0
-g.netrw_banner = 0
-g.netrw_winsize = 25
-g.netrw_localrmdir = "rm -r"
-g.netrw_winsize = 20
-
-vim.cmd([[
-autocmd BufEnter *.norg set spell shiftwidth=2 tabstop=2 softtabstop=2
-]])
-
-vim.cmd([[
-"=====================================================
-"                  custom manipluations
-"=====================================================
-" " cursor settings
-" highlight Cursor guifg=white guibg=yellow
-" highlight iCursor guifg=white guibg=#b8bb26
-" set guicursor=n-v-c:block-Cursor
-" set guicursor+=i:ver100-iCursor
-" set guicursor+=n-v-c:blinkon0
-" set guicursor+=i:blinkwait10
-]])
 
 vim.cmd([[
 " Highlight The yanked text
@@ -104,7 +81,7 @@ autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype termi
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-" command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 " File extension specific tabbing
 " autocmd Filetype css setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -122,26 +99,6 @@ vim.cmd([[
 vim.cmd([[
 autocmd VimEnter * ColorizerAttachToBuffer
 autocmd InsertLeave * ColorizerAttachToBuffer
-]])
-
--- Cursor shape setting
-vim.cmd([[
-let &t_SI = "\<esc>[5 q"
-let &t_SR = "\<esc>[1 q"
-let &t_EI = "\<esc>[1 q"
-set ttimeout
-set ttimeoutlen=1
-set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
-set ttyfast
-set number
-
-" Optionally reset the cursor on start:
-" augroup myCmds
-" au!
-" autocmd VimEnter * silent !echo -ne "\e[1 q"
-" autocmd VimEnter * redraw!
-" autocmd VimEnter * execute "normal \<C-G>"
-" augroup END
 ]])
 
 -- =====================================================

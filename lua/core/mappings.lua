@@ -1,143 +1,145 @@
 local map = require("core.utils").map
+local opts = { noremap = true, silent = true }
+local expr = { noremap = true, silent = true, expr = true }
 -- =========================================================================
 --                            Mappings
 -- =========================================================================
 
 -- Center the next searched item
-map("n", "n", "nzz", { noremap = true, silent = true })
-map("n", "N", "Nzz", { noremap = true, silent = true })
+map("n", "n", "nzz", opts)
+map("n", "N", "Nzz", opts)
 
 -- copy the whole line after the cursor
-map("n", "Y", "y$", { noremap = true, silent = true })
-map("v", "Y", "$y", { noremap = true, silent = true })
+map("n", "Y", "y$", opts)
+map("v", "Y", "$y", opts)
 
 -- Wrap around the selection
-map("v", '<space>"', '<esc>`>a"<esc>`<i"<esc>', { noremap = true, silent = true })
-map("v", "<space>'", "<esc>`>a'<esc>`<i'<esc>", { noremap = true, silent = true })
-map("v", "<space>`", "<esc>`>a`<esc>`<i`<esc>", { noremap = true, silent = true })
-map("v", "<space>[", "<esc>`>a]<esc>`<i[<esc>", { noremap = true, silent = true })
-map("v", "<space>{", "<esc>`>a}<esc>`<i{<esc>", { noremap = true, silent = true })
-map("v", "<space>(", "<esc>`>a)<esc>`<i(<esc>", { noremap = true, silent = true })
-map("v", "<space>*", "<esc>`>a*<esc>`<i*<esc>", { noremap = true, silent = true })
+map("v", '<space>"', '<esc>`>a"<esc>`<i"<esc>', opts)
+map("v", "<space>'", "<esc>`>a'<esc>`<i'<esc>", opts)
+map("v", "<space>`", "<esc>`>a`<esc>`<i`<esc>", opts)
+map("v", "<space>[", "<esc>`>a]<esc>`<i[<esc>", opts)
+map("v", "<space>{", "<esc>`>a}<esc>`<i{<esc>", opts)
+map("v", "<space>(", "<esc>`>a)<esc>`<i(<esc>", opts)
+map("v", "<space>*", "<esc>`>a*<esc>`<i*<esc>", opts)
 
 -- Remap of the century
-map("n", "cn", "*``cgn", { noremap = true, silent = true })
-map("n", "cN", "*``cgN", { noremap = true, silent = true })
+map("n", "cn", "*``cgn", opts)
+map("n", "cN", "*``cgN", opts)
 
 -- Paste onto the selection and don't copy the selection to the reg
--- map("v", "p", '"_dP', { noremap = true, silent = true })
+-- map("v", "p", '"_dP', opts)
 
 -- undo break start new change points NOTE: it works only with ! , ` . =
-map("i", "!", "!<c-g>u", { noremap = true, silent = true })
-map("i", "`", "`<c-g>u", { noremap = true, silent = true })
-map("i", ".", ".<c-g>u", { noremap = true, silent = true })
-map("i", ",", ",<c-g>u", { noremap = true, silent = true })
-map("i", "=", "=<c-g>u", { noremap = true, silent = true })
+map("i", "!", "!<c-g>u", opts)
+map("i", "`", "`<c-g>u", opts)
+map("i", ".", ".<c-g>u", opts)
+map("i", ",", ",<c-g>u", opts)
+map("i", "=", "=<c-g>u", opts)
 
 -- Adding jump after 5 lines
-map("n", "k", [[(v:count > 5 ? "m'" . v:count: "") . 'k']], { noremap = true, silent = true, expr = true })
-map("n", "j", [[(v:count > 5 ? "m'" . v:count: "") . 'j']], { noremap = true, silent = true, expr = true })
+map("n", "k", [[(v:count > 5 ? "m'" . v:count: "") . 'k']], expr)
+map("n", "j", [[(v:count > 5 ? "m'" . v:count: "") . 'j']], expr)
 
 --  Move Lines up and down
-map("v", "<C-j>", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
-map("v", "<C-k>", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
+map("v", "<C-j>", ":m '>+1<cr>gv=gv", opts)
+map("v", "<C-k>", ":m '<-2<cr>gv=gv", opts)
 
-map("n", "<leader>R", ":set relativenumber! | redraw<cr>", { noremap = true, silent = true })
+map("n", "<leader>R", ":set relativenumber! | redraw<cr>", opts)
 
 -- " moving the the logng lines containing files in left and right
-map("n", "<A-l>", "zl", { noremap = true, silent = true })
-map("n", "<A-h>", "zh", { noremap = true, silent = true })
+map("n", "<A-l>", "zl", opts)
+map("n", "<A-h>", "zh", opts)
 
 -- Don't need them not so productive
 -- Move to the left and right, up and down in insert mode
--- map("i", "<C-l>", "<c-o>a", {noremap = true, silent = true})
--- map("n", "<C-h>", "<c-o>h", {noremap = true, silent = true})
-
--- map("i", "<C-j>", "<c-o>j", {noremap = true, silent = true})
--- map("n", "<C-k>", "<c-o>k", {noremap = true, silent = true})
+-- map("i", "<C-l>", "<c-o>a", opts)
+-- map("n", "<C-h>", "<c-o>h", opts)
+--
+-- map("i", "<C-j>", "<c-o>j", opts)
+-- map("n", "<C-k>", "<c-o>k", opts)
 
 -- Add new line above and below
-map("n", "[<leader>", 'mzO<c-[>`z', { noremap = true, silent = true })
-map("n", "]<leader>", 'mzo<c-[>`z', { noremap = true, silent = true })
+map("n", "[<leader>", "mzO<c-[>`z", opts)
+map("n", "]<leader>", "mzo<c-[>`z", opts)
 
 -- Copy to the system clipboard
-map("v", "<leader>y", '"+y', { noremap = true, silent = true })
-map("n", "<leader>Y", 'mzgg"+yG zzz', { noremap = true, silent = true })
+map("v", "<leader>y", '"+y', opts)
+map("n", "<leader>Y", 'mzgg"+yG zzz', opts)
 
 -- Paster From the system clipboard
-map("n", "<leader>p", '"+p', { noremap = true, silent = true })
+map("n", "<leader>p", '"+p', opts)
 --
 -- Paste onto the selection and don't copy the selection to the reg
-map("v", "<leader>p", "_dP", { noremap = true, silent = true })
+map("v", "<leader>p", "_dP", opts)
 
 -- Yank the whole line after the cursor
-map("n", "Y", "y$", { noremap = true, silent = true })
+map("n", "Y", "y$", opts)
 
 -- use ESC to turn off search highlighting
-map("n", "<ESC>", ":noh<cr><c-l>", { noremap = true, silent = true })
+map("n", "<ESC>", ":noh<cr><c-l>", opts)
 
 -- Indentation
-map("v", "<", "<gv", { noremap = true, silent = true })
-map("v", ">", ">gv", { noremap = true, silent = true })
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
 
 -- Resize the buffer window
-map("n", "<leader>=", ":vertical resize +5<cr>", { noremap = true, silent = true })
-map("n", "<leader>-", ":vertical resize -5<cr>", { noremap = true, silent = true })
-map("n", "<leader>rp", ":resize 100<cr><c-l>", { noremap = true, silent = true })
+map("n", "<leader>=", ":vertical resize +5<cr>", opts)
+map("n", "<leader>-", ":vertical resize -5<cr>", opts)
+map("n", "<leader>rp", ":resize 100<cr><c-l>", opts)
 
 -- indent the whole document
-map("n", "<leader>I", "mzggVG=`z<c-l>", { noremap = true, silent = true })
+map("n", "<leader>I", "mzggVG=`z<c-l>", opts)
 --
 -- toggle the relativenumber Helpful when substituting"
-map("n", "<leader>tr", ":set rnu!<cr>", { noremap = true, silent = true })
-map("n", "<leader>tn", ":set nu!<cr>", { noremap = true, silent = true })
+map("n", "<leader>tr", ":set rnu!<cr>", opts)
+map("n", "<leader>tn", ":set nu!<cr>", opts)
 
 -- buffers mappings
-map("n", "<TAB>", ":bnext<cr>", { noremap = true, silent = true })
-map("n", "<S-TAB>", ":bprevious<cr>", { noremap = true, silent = true })
-map("n", "<leader>x", ":bdelete<cr>", { noremap = true, silent = true })
-map("n", "<leader>X", ":bdelete!<cr>", { noremap = true, silent = true })
+map("n", "<TAB>", ":bnext<cr>", opts)
+map("n", "<S-TAB>", ":bprevious<cr>", opts)
+map("n", "<leader>x", ":bdelete<cr>", opts)
+map("n", "<leader>X", ":bdelete!<cr>", opts)
 
 -- I use Obsession plugin and i need to restore the whole (n)vim session without losing
 -- a single pane so i replicated the ZZ command functionality and replace it with this one
-map("n", "<leader>ZZ", ":wa | qa <cr>", { noremap = true, silent = true })
+map("n", "<leader>ZZ", ":wa | qa <cr>", opts)
 
 -- =========================================================================
 --                            Remove Mappings                            "
 -- =========================================================================
 --  remove the ctrl+c causes some problem's with lsp
-map("n", "<C-c>", "<Nop>", { noremap = true, silent = true })
+map("n", "<C-c>", "<Nop>", opts)
 
 -- ==========================================================================
 --                         built_in_plugins configs
 -- ==========================================================================
-map("n", "<leader>so", ":so %<cr>", { noremap = true, silent = true })
+map("n", "<leader>so", ":so %<cr>", opts)
 
 -- Spell checking
 -- Pressing ,ss will toggle and untoggle spell checking
-map("n", "<leader>ss", ":set spell!<cr>", { noremap = true, silent = true })
+map("n", "<leader>ss", ":set spell!<cr>", opts)
 --[[
-map("n", "<leader>sn", "]s", { noremap = true, silent = true })
-map("n", "<leader>sp", "[s", { noremap = true, silent = true })
-map("n", "<leader>sa", "zg", { noremap = true, silent = true })
-map("n", "<leader>sr", "zug", { noremap = true, silent = true })
-map("n", "<leader>sd", "zw", { noremap = true, silent = true })
-map("n", "<leader>s?", "z=", { noremap = true, silent = true })
+map("n", "<leader>sn", "]s", opts)
+map("n", "<leader>sp", "[s", opts)
+map("n", "<leader>sa", "zg", opts)
+map("n", "<leader>sr", "zug", opts)
+map("n", "<leader>sd", "zw", opts)
+map("n", "<leader>s?", "z=", opts)
 ]]
 
 -- To get out of the insert mode
-map("i", "<c-[>", "<c-\\><c-n>", { noremap = true, silent = true })
+map("i", "<c-[>", "<c-\\><c-n>", opts)
 
 -- Terminal"
-map("t", "<c-[>", "<c-\\><c-n>", { noremap = true, silent = true })
--- map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", {noremap = true, silent = true})
--- map("n", "<c-s><c-l>",":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>", {noremap = true, silent = true})
--- map("n", "<c-s><c-t>", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>", {noremap = true, silent = true})
+-- map("t", "<c-[>", "<c-\\><c-n>", opts)
+-- map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", opts)
+-- map("n", "<c-s><c-l>",":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>", opts)
+-- map("n", "<c-s><c-t>", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>", opts)
 
 -- ==========================================================================
 --                        custom manipluations
 --                        hey don't worry :)
 -- ==========================================================================
-map("n", "<leader>ki", ":e ~/.config/nvim/lua/plugins/init.lua<cr>", { noremap = true, silent = true })
-map("n", "<leader>kk", ":e ~/.config/nvim/lua/core/mappings.lua<cr>", { noremap = true, silent = true })
-map("n", "<leader>ks", ":e ~/.config/nvim/lua/core/options.lua<cr>", { noremap = true, silent = true })
+map("n", "<leader>ki", ":e ~/.config/nvim/lua/plugins/init.lua<cr>", opts)
+map("n", "<leader>kk", ":e ~/.config/nvim/lua/core/mappings.lua<cr>", opts)
+map("n", "<leader>ks", ":e ~/.config/nvim/lua/core/options.lua<cr>", opts)
