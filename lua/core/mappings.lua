@@ -58,10 +58,6 @@ map("n", "<A-h>", "zh", opts)
 -- map("i", "<C-j>", "<c-o>j", opts)
 -- map("n", "<C-k>", "<c-o>k", opts)
 
--- Add new line above and below
-map("n", "[<leader>", "mzO<c-[>`z", opts)
-map("n", "]<leader>", "mzo<c-[>`z", opts)
-
 -- Copy to the system clipboard
 map("v", "<leader>y", '"+y', opts)
 map("n", "<leader>Y", 'mzgg"+yG zzz', opts)

@@ -1,6 +1,7 @@
 local vim = vim
 local opt = vim.opt
 local g = vim.g
+
 g.mapleader = " "
 
 -- set mouse select
