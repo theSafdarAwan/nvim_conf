@@ -19,47 +19,52 @@ packer.startup({
     },
 })
 return packer.startup(function(use)
-    -- Packer can manage itself
-    use({ "wbthomason/packer.nvim" })
+	-- Packer can manage itself
+	use({ "wbthomason/packer.nvim" })
 
-    use({
-        "lewis6991/impatient.nvim",
-        config = function()
-            require("impatient")
-            require("impatient").enable_profile()
-        end,
-    })
-    use({
-        "antoinemadec/FixCursorHold.nvim",
-        run = function()
-            vim.g.curshold_updatime = 100
-        end,
-    })
+	use({
+		"lewis6991/impatient.nvim",
+		config = function()
+			require("impatient")
+			require("impatient").enable_profile()
+		end,
+	})
+	use({
+		"antoinemadec/FixCursorHold.nvim",
+		run = function()
+			vim.g.curshold_updatime = 100
+		end,
+	})
 
-    use({ "nvim-lua/plenary.nvim" })
-    use({ "nvim-lua/popup.nvim" })
+	use({ "nvim-lua/plenary.nvim" })
+	use({ "nvim-lua/popup.nvim" })
 
-    use({
-        "nvim-telescope/telescope.nvim",
-        config = function()
-            require("plugins/configs/telescope")
-        end,
-    })
-    use({
-        "nvim-telescope/telescope-fzf-native.nvim",
-        run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-    })
+	use({
+		"nvim-telescope/telescope.nvim",
+		config = function()
+			require("plugins/configs/telescope")
+		end,
+	})
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+	})
 
-    -- color scheme
-    use({ "rktjmp/lush.nvim" })
+	-- color scheme
+	use({ "rktjmp/lush.nvim" })
+	use({ "folke/tokyonight.nvim" })
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+	})
 
-    use({
-        "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("plugins.configs.todo")
-        end,
-    })
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("plugins.configs.todo")
+		end,
+	})
 
     --> Git stuff
     use({
