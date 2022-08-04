@@ -198,7 +198,7 @@ return packer.startup(function(use)
 		"AckslD/nvim-FeMaco.lua",
 		config = function()
 			require("femaco").setup()
-			require("core.plugins_mappings.femco_map").setup()
+			require("core.plugins_mappings.FeMaco_map")
 		end,
 	})
 
