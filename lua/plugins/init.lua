@@ -320,10 +320,8 @@ return packer.startup(function(use)
 		run = function()
 			vim.fn["mkdp#util#install"]()
 		end,
-		config = function()
-			require("lua.plugins.configs.markdown-preview")
-			require("lua.core.plugins_mappings.markdown-preview_map")
-		end,
-		ft = { "markdown" },
+        -- config = function()
+        -- end,
+        ft = { "markdown" }
 	})
 end)

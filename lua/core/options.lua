@@ -30,7 +30,7 @@ opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.swapfile = false
 
 -- trick to solve the vim compatible functionality to not let backspace the file content othe then just inserted one
-opt.backspace = nil
+-- opt.backspace = nil
 
 opt.ignorecase = true
 opt.splitright = true
