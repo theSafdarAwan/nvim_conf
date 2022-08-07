@@ -2,7 +2,8 @@
 --                      lsp general
 --=======================================================
 local vim = vim
-local nvim_lsp = require("lsp.lsp_util").nvim_lsp
+local lsp =  require("genearl").lsp_loc()
+local nvim_lsp = require(lsp .. ".lsp_util").nvim_lsp
 local on_attach = require("core.plugins_mappings.lsp_map").on_attach
 local capabilities = require("lsp.lsp_util").capabilities
 
