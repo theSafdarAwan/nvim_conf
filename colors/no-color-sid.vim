@@ -14,7 +14,7 @@ let g:colors_name="onedark-sid"
 "
 " The performance impact of this call can be measured in the hundreds of
 " *nanoseconds* and such could be considered "production safe".
-lua package.loaded['lush_theme.theme-sid.theme-sid'] = nil
+lua package.loaded['safdar.lush_theme.theme-sid.theme-sid'] = nil
 
 " include our theme file and pass it to lush to apply
-lua require('lush')(require('lush_theme.theme-sid.theme-sid'))
+lua require('lush')(require('safdar.lush_theme.theme-sid.theme-sid'))

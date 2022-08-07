@@ -1,5 +1,5 @@
 local vgit = require("vgit")
-local colors = require("lush_theme.dracula-pallete")
+local colors = require(require("genearl").lush_theme_loc() .. ".dracula-pallete")
 
 vgit.setup({
 	keymaps = require(require("genearl").core_loc() .. ".plugins_mappings.vgit_map").mappings(),

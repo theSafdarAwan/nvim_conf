@@ -1,5 +1,4 @@
-local colors = require("lush_theme.dracula-pallete")
--- local colors = require("lush_theme.onedark-pallete")
+local colors = require(require("genearl").lush_theme_loc() .. ".dracula-pallete")
 local lush = require("lush")
 -- local hsl = lush.hsl
 

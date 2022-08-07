@@ -6,11 +6,9 @@
 --=====================================================
 --                  general
 --=====================================================
--- local colors = require("lush_theme.gruv-sid.gruv-pallete")
 local vim = vim
 local enable_only_in_full_buf
--- local colors = require("lush_theme.onedark-pallete")
-local colors = require("lush_theme.dracula-pallete")
+local colors = require(require("genearl").lush_theme_loc() .. ".dracula-pallete")
 local lsp = require("feline.providers.lsp")
 local lsp_severity = vim.diagnostic.severity
 
