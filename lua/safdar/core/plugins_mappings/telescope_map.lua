@@ -12,39 +12,39 @@ map("n", "<leader>tb", ":Telescope file_browser previewer=false<cr>", { noremap 
 map(
 	"n",
 	"<leader>en",
-	":lua require('plugins.configs.telescope').search_nvim_dotfiles()<cr>",
+	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').search_nvim_dotfiles()<cr>",
 	{ noremap = true, silent = true }
 )
 
 map(
 	"n",
 	"<leader>f;",
-	":lua require('plugins.configs.telescope').ivy_find_files_with_preview()<cr>",
+	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').ivy_find_files_with_preview()<cr>",
 	{ noremap = true, silent = true }
 )
 map("n", "<leader>fb",
-	":lua require('plugins.configs.telescope').center_list_buffers_find()<cr>",
+	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').center_list_buffers_find()<cr>",
     { noremap = true, silent = true })
 map("n", "<leader>tc",
-	":lua require('plugins.configs.telescope').ivy_colorscheme_preview()<cr>",
+	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').ivy_colorscheme_preview()<cr>",
     { noremap = true, silent = true })
 map(
 	"n",
 	"<leader>ff",
 	-- ":Telescope find_files theme=get_cursor previewer=false find_command=rg,--hidden,--files<CR>",
-	":lua require('plugins.configs.telescope').center_list_find_files()<cr>",
+	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').center_list_find_files()<cr>",
 	{ noremap = true, silent = true }
 )
 map(
 	"n",
 	"<C-_>",
-	":lua require('plugins.configs.telescope').current_buffer_fuzzy_find()<cr>",
+	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').current_buffer_fuzzy_find()<cr>",
 	{ noremap = true, silent = true }
 )
 map(
 	"n",
 	"<leader>ds",
-	":lua require('plugins.configs.telescope').center_list_document_symbols_find()<cr>",
+	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').center_list_document_symbols_find()<cr>",
 	{ noremap = true, silent = true }
 )
 
