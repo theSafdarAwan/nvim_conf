@@ -1,4 +1,4 @@
-local map = require("core.utils").map
+local map = require(require("genearl").core_loc() .. ".utils").map
 --> Lspsaga
 -- hover diagnostic
 map("n", "<leader>sk", ":Lspsaga show_cursor_diagnostics<CR>", { noremap = true, silent = true })

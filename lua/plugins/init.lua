@@ -1,6 +1,6 @@
 local vim = vim
 local packer = require("packer")
-require("core.plugins_mappings.packer_map")
+require(require("genearl").core_loc() .. ".plugins_mappings.packer_map")
 packer.startup({
     function(use)
         -- Packer can manage itself
@@ -26,7 +26,7 @@ packer.startup({
         use({
             "nvim-telescope/telescope.nvim",
             config = function()
-                require("lua.plugins.configs.telescope")
+                require(require("genearl").plugins_loc() .. ".configs.telescope")
             end,
         })
         use({
@@ -46,7 +46,7 @@ packer.startup({
             "folke/todo-comments.nvim",
             requires = "nvim-lua/plenary.nvim",
             config = function()
-                require("plugins.configs.todo")
+                require(require("genearl").plugins_loc() .. ".configs.todo")
             end,
         })
 
@@ -54,14 +54,14 @@ packer.startup({
         use({
             "lewis6991/gitsigns.nvim",
             config = function()
-                require("plugins/configs/gitsigns") -- should be called after other _plugins_configs
+                require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
             end,
         })
         use({
             "tanvirtin/vgit.nvim",
             -- event = "BufWinEnter",
             config = function()
-                require("plugins.configs.vgit")
+                require(require("genearl").plugins_loc() .. ".configs.vgit")
             end,
         })
 
@@ -76,7 +76,7 @@ packer.startup({
         use({
             "lukas-reineke/indent-blankline.nvim",
             config = function()
-                require("plugins/configs/indentline")
+                require(require("genearl").plugins_loc() .. ".configs.indentline")
             end,
         }) -- indent guides
 
@@ -84,7 +84,7 @@ packer.startup({
         use({
             "karb94/neoscroll.nvim",
             config = function()
-                require("plugins/configs/neoscroll")
+                require(require("genearl").plugins_loc() .. ".configs.neoscroll")
             end,
         }) -- smooth scrolling
 
@@ -92,15 +92,15 @@ packer.startup({
         use({
             "kyazdani42/nvim-tree.lua",
             config = function()
-                require("plugins.configs.nvim-tree")
-                require("core.plugins_mappings.nvim-tree_map")
+                require(require("genearl").plugins_loc() .. ".configs.nvim-tree")
+                require(require("genearl").core_loc() .. ".plugins_mappings.nvim-tree_map")
             end,
         })
 
         use({
             "feline-nvim/feline.nvim",
             config = function()
-                require("plugins/configs/.feline")
+                require(require("genearl").plugins_loc() .. ".configs.feline")
             end,
         })
 
@@ -108,15 +108,15 @@ packer.startup({
         use({
             "dense-analysis/ale",
             config = function()
-                require("plugins.configs.ale")
-                require("core.plugins_mappings.ale_map")
+                require(require("genearl").plugins_loc() .. ".configs.ale")
+                require(require("genearl").core_loc() .. ".plugins_mappings.ale_map")
             end,
             ft = { "html" },
         })
         use({
             "mattn/emmet-vim",
             config = function()
-                require("plugins.configs.emmet")
+                require(require("genearl").plugins_loc() .. ".configs.emmet")
             end,
             ft = { "html" },
         })
@@ -125,14 +125,14 @@ packer.startup({
         use({
             "neovim/nvim-lspconfig", -- quckstart lsp conifgs
             config = function()
-                require("lsp/lsp")
+                require(require("genearl").lsp_loc() .. ".lsp")
             end,
             requires = {
                 {
                     "jose-elias-alvarez/null-ls.nvim",
                     config = function()
-                        require("lsp.null_ls")
-                        require("core.plugins_mappings.null_ls_map")
+                        require(require("genearl").lsp_loc() .. ".null_ls")
+                        require(require("genearl").core_loc() .. ".plugins_mappings.null_ls_map")
                     end,
                 },
             },
@@ -143,7 +143,7 @@ packer.startup({
         use({
             "hrsh7th/nvim-cmp",
             config = function()
-                require("lsp/cmp")
+                require(require("genearl").lsp_loc() .. ".cmp")
             end,
         })
         use({ "hrsh7th/cmp-nvim-lua" })
@@ -160,7 +160,7 @@ packer.startup({
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
-                require("plugins/configs/signature")
+                require(require("genearl").plugins_loc() .. ".configs.signature")
             end,
         })
 
@@ -168,23 +168,23 @@ packer.startup({
         use({
             "folke/trouble.nvim",
             config = function()
-                require("plugins/configs/trouble")
-                require("core.plugins_mappings.lsp_trouble_map")
+                require(require("genearl").plugins_loc() .. ".configs.trouble")
+                require(require("genearl").core_loc() .. ".plugins_mappings.lsp_trouble_map")
             end,
         })
         -- TODO work on this plugin config
         use({
             "glepnir/lspsaga.nvim",
             config = function()
-                require("plugins/configs/saga")
-                require("core.plugins_mappings.lsp_saga_map")
+                require(require("genearl").plugins_loc() .. ".configs.saga")
+                require(require("genearl").core_loc() .. ".plugins_mappings.lsp_saga_map")
             end,
         })
         use({
             "AckslD/nvim-FeMaco.lua",
             config = function()
                 require("femaco").setup()
-                require("core.plugins_mappings.FeMaco_map")
+                require(require("genearl").core_loc() .. ".plugins_mappings.FeMaco_map")
             end,
             ft = { "markdown" },
         })
@@ -194,8 +194,8 @@ packer.startup({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
             config = function()
-                require("plugins/configs/treesitter")
-                require("core.plugins_mappings.treesitter_map")
+                require(require("genearl").plugins_loc() .. ".configs.treesitter")
+                require(require("genearl").core_loc() .. ".plugins_mappings.treesitter_map")
             end,
         })
         use({ "nvim-treesitter/playground" })
@@ -214,7 +214,7 @@ packer.startup({
             "AckslD/nvim-neoclip.lua",
             requires = { "tami5/sqlite.lua", module = "sqlite" },
             config = function()
-                require("plugins.configs.neoclip")
+                require(require("genearl").plugins_loc() .. ".configs.neoclip")
             end,
         })
         use({ "tpope/vim-repeat" })
@@ -235,7 +235,7 @@ packer.startup({
         use({
             "tpope/vim-obsession",
             config = function()
-                require("core.plugins_mappings.obsession_map")
+                require(require("genearl").core_loc() .. ".plugins_mappings.obsession_map")
             end,
         })
 
@@ -248,19 +248,19 @@ packer.startup({
         use({
             "andymass/vim-matchup",
             config = function()
-                require("plugins/configs/vim-matchup")
+                require(require("genearl").plugins_loc() .. ".configs.vim-matchup")
             end,
         })
         use({
             "norcalli/nvim-colorizer.lua",
             config = function()
-                require("plugins/configs/colorizer")
+                require(require("genearl").plugins_loc() .. ".configs.colorizer")
             end,
         }) -- shows the colors
         use({
             "mbbill/undotree",
             config = function()
-                require("core.plugins_mappings.undotree_map")
+                require(require("genearl").core_loc() .. ".plugins_mappings.undotree_map")
             end,
         })
 
@@ -268,21 +268,21 @@ packer.startup({
         use({
             "ThePrimeagen/vim-be-good",
             config = function()
-                require("core.plugins_mappings.vim-be-good_map")
+                require(require("genearl").core_loc() .. ".plugins_mappings.vim-be-good_map")
             end,
         })
         use({
             "ThePrimeagen/refactoring.nvim",
             config = function()
-                require("plugins/configs/refactoring")
-                require("core.plugins_mappings.refactoring_map")
+                require(require("genearl").plugins_loc() .. ".configs.refactoring")
+                require(require("genearl").core_loc() .. ".plugins_mappings.refactoring_map")
             end,
         })
         use({
             "ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
             config = function()
-                require("plugins.configs.harpoon")
-                require("core.plugins_mappings.harpoon_map")
+                require(require("genearl").plugins_loc() .. ".configs.harpoon")
+                require(require("genearl").core_loc() .. ".plugins_mappings.harpoon_map")
             end,
         })
 
@@ -297,7 +297,7 @@ packer.startup({
                     clearjumps_on_change = true, -- default: true,
                     autopush = false, -- default: false,
                 })
-                require("core.plugins_mappings.git_worktree_map")
+                require(require("genearl").core_loc() .. ".plugins_mappings.git_worktree_map")
             end,
         })
 
@@ -308,8 +308,8 @@ packer.startup({
                 vim.fn["mkdp#util#install"]()
             end,
             config = function()
-                require("plugins.configs.markdown-preview")
-                require("core.plugins_mappings.markdown-preview_map")
+                require(require("genearl").plugins_loc() .. ".configs.markdown-preview")
+                require(require("genearl").core_loc() .. ".plugins_mappings.markdown-preview_map")
             end,
             ft = { "markdown" },
         })

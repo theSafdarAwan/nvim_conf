@@ -10,5 +10,5 @@ require("neoclip").setup({
 	on_paste = {
 		set_reg = false,
 	},
-	keys = require("core.plugins_mappings.neoclip_map").mapings()
+	keys = require(require("genearl").core_loc() .. ".plugins_mappings.neoclip_map").mapings()
 })

@@ -1,4 +1,4 @@
-local map = require("core.utils").map
+local map = require(require("genearl").core_loc() .. ".utils").map
 local opts = { noremap = true, silent = true }
 local expr = { noremap = true, silent = true, expr = true }
 -- =========================================================================

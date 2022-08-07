@@ -4,8 +4,8 @@
 local vim = vim
 local lsp =  require("genearl").lsp_loc()
 local nvim_lsp = require(lsp .. ".lsp_util").nvim_lsp
-local on_attach = require("core.plugins_mappings.lsp_map").on_attach
-local capabilities = require("lsp.lsp_util").capabilities
+local on_attach = require(require("genearl").core_loc() .. ".plugins_mappings.lsp_map").on_attach
+local capabilities = require(require("genearl").lsp_loc() .. ".lsp_util").capabilities
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -47,7 +47,8 @@ end
 --=======================================================
 --     require lang modules with additional configs
 --=======================================================
-require("lsp.langs.sumneko_lua")
-require("lsp.langs.jsonls")
-require("lsp.langs.c")
+local lsp_loc = require("genearl").lsp_loc()
+require(lsp_loc .. ".langs.sumneko_lua")
+require(lsp_loc .. ".langs.jsonls")
+require(lsp_loc .. ".langs.c")
 require("lspconfig").clangd.setup({ capabilities = capabilities })

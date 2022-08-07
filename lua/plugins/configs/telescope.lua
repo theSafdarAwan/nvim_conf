@@ -24,7 +24,7 @@ local borderchars = {
 
 telescope.setup({
 	defaults = {
-		mappings = require("core.plugins_mappings.telescope_map").mappings(),
+		mappings = require(require("genearl").core_loc() .. ".plugins_mappings.telescope_map").mappings(),
 		prompt_prefix = "   ",
 		selection_caret = "  ",
 		entry_prefix = "  ",

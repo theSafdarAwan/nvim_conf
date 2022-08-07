@@ -1,5 +1,5 @@
 local vim = vim
-local map = require("core.utils").map
+local map = require(require("genearl").core_loc() .. ".utils").map
 
 map("n", "<leader>lr", ":LspRestart<cr>", { noremap = true, silent = true })
 map("n", "<leader>li", ":LspInfo<cr>", { noremap = true, silent = true })

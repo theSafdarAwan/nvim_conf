@@ -1,4 +1,4 @@
-local map = require("core.utils").map
+local map = require(require("genearl").core_loc() .. ".utils").map
 --> Telescope
 map("n", "<leader>vc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
 map("n", "<leader>b", ":Telescope git_bcommits<CR>", { noremap = true, silent = true })

@@ -1,5 +1,5 @@
 local vim = vim
-local map = require("core.utils").map
+local map = require(require("genearl").core_loc() .. ".utils").map
 local M = {}
 
 map("i", "<C-t>", "<c-o>:Telescope neoclip<CR>", { noremap = true, silent = true })

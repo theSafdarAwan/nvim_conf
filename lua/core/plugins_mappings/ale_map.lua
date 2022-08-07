@@ -1,4 +1,4 @@
-local map = require("core.utils").map
+local map = require(require("genearl").core_loc() .. ".utils").map
 
 map("n", "<leader>ee", ":ALEToggle<cr>", {silent = true, noremap = true})
 

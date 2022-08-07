@@ -1,4 +1,4 @@
-local map = require("core.utils").map
+local map = require(require("genearl").core_loc() .. ".utils").map
 -- Harpoon
 map("n", "<leader>aa", ':lua require("harpoon.mark").add_file()<CR>', { noremap = true, silent = true })
 map("n", "<leader>ah", ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { noremap = true, silent = true })

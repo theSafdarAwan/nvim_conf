@@ -1,5 +1,5 @@
 local vim = vim
-local on_attach = require("lsp.lsp_util").on_attach
+local on_attach = require(require("genearl").lsp_loc() .. ".lsp_util").on_attach
 --=======================================================
 --                      null-ls
 --=======================================================

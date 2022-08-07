@@ -1,6 +1,6 @@
 local vim = vim
-local nvim_lsp = require("lsp.lsp_util").nvim_lsp
-local on_attach = require("core.plugins_mappings.lsp_map").on_attach
+local nvim_lsp = require(require("genearl").lsp_loc() .. ".lsp_util").nvim_lsp
+local on_attach = require(require("genearl").core_loc() .. ".plugins_mappings.lsp_map").on_attach
 
 --=======================================================
 --                      lua server config

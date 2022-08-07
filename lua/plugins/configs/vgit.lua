@@ -2,7 +2,7 @@ local vgit = require("vgit")
 local colors = require("lush_theme.dracula-pallete")
 
 vgit.setup({
-	keymaps = require("core.plugins_mappings.vgit_map").mappings(),
+	keymaps = require(require("genearl").core_loc() .. ".plugins_mappings.vgit_map").mappings(),
 	settings = {
 		hls = {
 			GitBackgroundPrimary = "NormalFloat",
