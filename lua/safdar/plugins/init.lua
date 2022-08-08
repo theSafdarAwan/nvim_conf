@@ -132,7 +132,7 @@ packer.startup({
                     "jose-elias-alvarez/null-ls.nvim",
                     config = function()
                         require(require("genearl").lsp_loc() .. ".null_ls")
-                        require(require("genearl").core_loc() .. ".plugins_mappings.null_ls_map")
+                        require(require("genearl").core_loc() .. ".plugins_mappings.null-ls_map")
                     end,
                 },
             },
@@ -169,7 +169,7 @@ packer.startup({
             "folke/trouble.nvim",
             config = function()
                 require(require("genearl").plugins_loc() .. ".configs.trouble")
-                require(require("genearl").core_loc() .. ".plugins_mappings.lsp_trouble_map")
+                require(require("genearl").core_loc() .. ".plugins_mappings.lsp-trouble_map")
             end,
         })
         -- TODO work on this plugin config
@@ -177,7 +177,7 @@ packer.startup({
             "glepnir/lspsaga.nvim",
             config = function()
                 require(require("genearl").plugins_loc() .. ".configs.saga")
-                require(require("genearl").core_loc() .. ".plugins_mappings.lsp_saga_map")
+                require(require("genearl").core_loc() .. ".plugins_mappings.lsp-saga_map")
             end,
         })
         use({
