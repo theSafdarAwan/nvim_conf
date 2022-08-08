@@ -1,2 +1,2 @@
-require("init")
-require("_packer.packer_compiled")
+require("safdar")
+require("_packer")

@@ -136,6 +136,6 @@ map("i", "<c-[>", "<c-\\><c-n>", opts)
 --                        custom manipluations
 --                        hey don't worry :)
 -- ==========================================================================
-map("n", "<leader>ki", ":e ~/.config/nvim/lua/plugins/init.lua<cr>", opts)
-map("n", "<leader>kk", ":e ~/.config/nvim/lua/core/mappings.lua<cr>", opts)
-map("n", "<leader>ks", ":e ~/.config/nvim/lua/core/options.lua<cr>", opts)
+map("n", "<leader>ki", ":e ~/.config/nvim/lua/safdar/plugins/init.lua<cr>", opts)
+map("n", "<leader>kk", ":e ~/.config/nvim/lua/safdar/core/mappings.lua<cr>", opts)
+map("n", "<leader>ks", ":e ~/.config/nvim/lua/safdar/core/options.lua<cr>", opts)
