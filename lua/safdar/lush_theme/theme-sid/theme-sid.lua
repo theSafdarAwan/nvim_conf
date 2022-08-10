@@ -279,8 +279,6 @@ local theme = lush(function()
 		-- NvimTreeFileNew
 		-- NvimTreeFileDeleted
 
-		NvimTreeWindowPicker({ fg = colors.fg, bg = colors.color_4 }),
-
 		-- TODO:
 		-- TroubleCount
 		-- TroubleError
