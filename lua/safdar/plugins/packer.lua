@@ -42,6 +42,14 @@ packer.startup({
             as = "catppuccin",
         })
 
+        use({
+            "folke/todo-comments.nvim",
+            requires = "nvim-lua/plenary.nvim",
+            config = function()
+                require(require("genearl").plugins_loc() .. ".configs.todo")
+            end,
+        })
+
         --> Git stuff
         use({
             "tanvirtin/vgit.nvim",
@@ -65,6 +73,22 @@ packer.startup({
                 require(require("genearl").plugins_loc() .. ".configs.indentline")
             end,
         }) -- indent guides
+
+        --> more productive
+        use({
+            "kyazdani42/nvim-tree.lua",
+            config = function()
+                require(require("genearl").plugins_loc() .. ".configs.nvim-tree")
+                require(require("genearl").core_loc() .. ".plugins_mappings.nvim-tree_map")
+            end,
+        })
+
+        use({
+            "feline-nvim/feline.nvim",
+            config = function()
+                require(require("genearl").plugins_loc() .. ".configs.feline")
+            end,
+        })
 
         -- for linting files that null_ls does not support
         use({
@@ -119,7 +143,12 @@ packer.startup({
         use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 
         -- Lsp utils
-        use({ "simrat39/symbols-outline.nvim" })
+        use({
+            "simrat39/symbols-outline.nvim",
+            config = function()
+                require(require("genearl").plugins_loc() .. ".configs.symbols-outline")
+            end,
+        })
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
@@ -234,13 +263,13 @@ packer.startup({
                 require(require("genearl").core_loc() .. ".plugins_mappings.vim-be-good_map")
             end,
         })
-        -- use({
-        --     "ThePrimeagen/refactoring.nvim",
-        --     config = function()
-        --         require(require("genearl").plugins_loc() .. ".configs.refactoring")
-        --         require(require("genearl").core_loc() .. ".plugins_mappings.refactoring_map")
-        --     end,
-        -- })
+        use({
+            "ThePrimeagen/refactoring.nvim",
+            config = function()
+                require(require("genearl").plugins_loc() .. ".configs.refactoring")
+                require(require("genearl").core_loc() .. ".plugins_mappings.refactoring_map")
+            end,
+        })
         use({
             "ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
             config = function()
