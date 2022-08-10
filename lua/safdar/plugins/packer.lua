@@ -52,13 +52,6 @@ packer.startup({
 
         --> Git stuff
         use({
-            "tanvirtin/vgit.nvim",
-            -- event = "BufWinEnter",
-            config = function()
-                require(require("genearl").plugins_loc() .. ".configs.vgit")
-            end,
-        })
-        use({
             "lewis6991/gitsigns.nvim",
             config = function()
                 require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
