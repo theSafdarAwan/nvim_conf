@@ -24,8 +24,6 @@ local sources = {
 		-- filetypes = { "html", "json", "css", "scss", "less", "yaml", "markdown" },
 		filetypes = { "html", "json", "yaml", "markdown" },
 	}),
-
-	builtins.code_actions.gitsigns,
 }
 null_ls.setup({
 	debug = true,
