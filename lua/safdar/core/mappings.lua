@@ -114,28 +114,21 @@ map("n", "<leader>so", ":so %<cr>", opts)
 -- Spell checking
 -- Pressing ,ss will toggle and untoggle spell checking
 map("n", "<leader>ss", ":set spell!<cr>", opts)
---[[
 map("n", "<leader>sn", "]s", opts)
 map("n", "<leader>sp", "[s", opts)
 map("n", "<leader>sa", "zg", opts)
 map("n", "<leader>sr", "zug", opts)
 map("n", "<leader>sd", "zw", opts)
 map("n", "<leader>s?", "z=", opts)
-]]
 
 -- To get out of the insert mode
 map("i", "<c-[>", "<c-\\><c-n>", opts)
+
+-- Netrw
+map("n", "vex", ":Explore<CR>", opts)
 
 -- Terminal"
 -- map("t", "<c-[>", "<c-\\><c-n>", opts)
 -- map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", opts)
 -- map("n", "<c-s><c-l>",":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>", opts)
 -- map("n", "<c-s><c-t>", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>", opts)
-
--- ==========================================================================
---                        custom manipluations
---                        hey don't worry :)
--- ==========================================================================
-map("n", "<leader>ki", ":e ~/.config/nvim/lua/safdar/plugins/init.lua<cr>", opts)
-map("n", "<leader>kk", ":e ~/.config/nvim/lua/safdar/core/mappings.lua<cr>", opts)
-map("n", "<leader>ks", ":e ~/.config/nvim/lua/safdar/core/options.lua<cr>", opts)

@@ -52,12 +52,6 @@ packer.startup({
 
         --> Git stuff
         use({
-            "lewis6991/gitsigns.nvim",
-            config = function()
-                require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
-            end,
-        })
-        use({
             "tanvirtin/vgit.nvim",
             -- event = "BufWinEnter",
             config = function()
@@ -79,22 +73,6 @@ packer.startup({
                 require(require("genearl").plugins_loc() .. ".configs.indentline")
             end,
         }) -- indent guides
-
-        --> more productive
-        use({
-            "kyazdani42/nvim-tree.lua",
-            config = function()
-                require(require("genearl").plugins_loc() .. ".configs.nvim-tree")
-                require(require("genearl").core_loc() .. ".plugins_mappings.nvim-tree_map")
-            end,
-        })
-
-        use({
-            "feline-nvim/feline.nvim",
-            config = function()
-                require(require("genearl").plugins_loc() .. ".configs.feline")
-            end,
-        })
 
         -- for linting files that null_ls does not support
         use({
@@ -263,13 +241,13 @@ packer.startup({
                 require(require("genearl").core_loc() .. ".plugins_mappings.vim-be-good_map")
             end,
         })
-        use({
-            "ThePrimeagen/refactoring.nvim",
-            config = function()
-                require(require("genearl").plugins_loc() .. ".configs.refactoring")
-                require(require("genearl").core_loc() .. ".plugins_mappings.refactoring_map")
-            end,
-        })
+        -- use({
+        --     "ThePrimeagen/refactoring.nvim",
+        --     config = function()
+        --         require(require("genearl").plugins_loc() .. ".configs.refactoring")
+        --         require(require("genearl").core_loc() .. ".plugins_mappings.refactoring_map")
+        --     end,
+        -- })
         use({
             "ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
             config = function()
