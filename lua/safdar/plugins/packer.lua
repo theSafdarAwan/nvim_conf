@@ -58,6 +58,12 @@ packer.startup({
                 require(require("genearl").plugins_loc() .. ".configs.vgit")
             end,
         })
+        use({
+            "lewis6991/gitsigns.nvim",
+            config = function()
+                require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
+            end,
+        })
 
         --> ui related stuff
         use({
@@ -164,7 +170,7 @@ packer.startup({
                 require(require("genearl").core_loc() .. ".plugins_mappings.lsp-trouble_map")
             end,
         })
-        -- TODO work on this plugin config
+        -- TODO: work on this plugin config
         use({
             "glepnir/lspsaga.nvim",
             config = function()

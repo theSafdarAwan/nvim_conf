@@ -1,1 +1,1 @@
-require("lua.safdar.plugins.packer")
+require(require("genearl").plugins_loc() .. ".packer")
