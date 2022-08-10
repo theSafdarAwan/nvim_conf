@@ -80,14 +80,6 @@ packer.startup({
             end,
         }) -- indent guides
 
-        --> Some Improvements over defaults
-        use({
-            "karb94/neoscroll.nvim",
-            config = function()
-                require(require("genearl").plugins_loc() .. ".configs.neoscroll")
-            end,
-        }) -- smooth scrolling
-
         --> more productive
         use({
             "kyazdani42/nvim-tree.lua",
