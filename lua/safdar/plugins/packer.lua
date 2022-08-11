@@ -146,6 +146,7 @@ packer.startup({
             "simrat39/symbols-outline.nvim",
             config = function()
                 require(require("genearl").plugins_loc() .. ".configs.symbols-outline")
+                require(require("genearl").core_loc() .. ".plugins_mappings.symbols-outline_map")
             end,
         })
         use({

@@ -124,9 +124,6 @@ map("n", "<leader>s?", "z=", opts)
 -- To get out of the insert mode
 map("i", "<c-[>", "<c-\\><c-n>", opts)
 
--- Netrw
-map("n", "vex", ":Explore<CR>", opts)
-
 -- Terminal"
 -- map("t", "<c-[>", "<c-\\><c-n>", opts)
 -- map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", opts)
