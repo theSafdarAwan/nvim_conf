@@ -56,7 +56,7 @@ local icons = {
     Text = "",
     Method = "",
     Function = "",
-    Constructor = "",
+    Constructor = "",
     Field = "",
     Variable = "",
     Class = "ﴯ",
@@ -77,7 +77,7 @@ local icons = {
     Struct = "פּ",
     Event = "",
     Operator = "",
-    TypeParameter = "",
+    TypeParameter = "𝙏",
 }
 
 return icons
