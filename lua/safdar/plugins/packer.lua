@@ -57,6 +57,7 @@ packer.startup({
                 require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
             end,
         })
+        use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
         --> ui related stuff
         use({

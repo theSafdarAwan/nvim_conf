@@ -25,7 +25,6 @@ cmp.setup({
                 emoji = "(Emoji)",
                 path = "(Path)",
                 calc = "(Calc)",
-                -- cmp_tabnine = "",
                 cmp_tabnine = "(Tabnine)",
                 vsnip = "(Snippet)",
                 luasnip = "(Snippet)",
@@ -66,13 +65,13 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = "cmp_tabnine" },
         { name = "nvim_lsp" },
         { name = "neorg" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "emoji" },
+        { name = "cmp_tabnine" },
     },
 })
 
