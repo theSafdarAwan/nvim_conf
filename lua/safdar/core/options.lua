@@ -24,7 +24,7 @@ opt.wrap = false
 opt.fillchars = { eob = " " }
 
 opt.undofile = true
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
 
 -- no swap file i use undofile
 opt.swapfile = false
