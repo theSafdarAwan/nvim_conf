@@ -3,7 +3,7 @@ local packer = require("packer")
 require(require("genearl").core_loc() .. ".plugins_mappings.packer_map")
 packer.startup({
     function(use)
-        -- Packer can manage itself
+        --> Packer can manage itself
         use({ "wbthomason/packer.nvim" })
 
         use({
@@ -34,7 +34,7 @@ packer.startup({
             run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         })
 
-        -- color scheme
+        --> color scheme
         use({ "rktjmp/lush.nvim" })
         use({ "folke/tokyonight.nvim" })
         use({
@@ -57,7 +57,7 @@ packer.startup({
                 require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
             end,
         })
-        use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+        use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 
         --> ui related stuff
         use({
@@ -142,7 +142,7 @@ packer.startup({
 
         use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 
-        -- Lsp utils
+        --> Lsp utils
         use({
             "simrat39/symbols-outline.nvim",
             config = function()
@@ -157,7 +157,7 @@ packer.startup({
             end,
         })
 
-        -- for lsp enhancement
+        --> for lsp enhancement
         use({
             "folke/trouble.nvim",
             config = function()
@@ -200,6 +200,12 @@ packer.startup({
         })
         use({
             "p00f/nvim-ts-rainbow",
+        })
+        use({
+            "axelvc/template-string.nvim",
+            config = function()
+                require(require("genearl").plugins_loc() .. ".configs.template-string")
+            end,
         })
 
         --> utils
