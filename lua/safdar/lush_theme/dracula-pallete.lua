@@ -1,10 +1,10 @@
 local colors = {
 	none = "NONE",
-	bg = "#282A36",
+	bg = "#1C1D26",
 	fg = "#d3f1f0",
 
 	color_1 = "#232531",
-	color_2 = "#303341",
+	color_2 = "#282A36",
 	color_3 = "#373844",
 	color_4 = "#44475a",
 	color_5 = "#565761",
