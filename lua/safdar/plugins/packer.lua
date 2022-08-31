@@ -50,20 +50,17 @@ packer.startup({
             end,
         })
 
-		--> Git stuff
-		use({
-			"lewis6991/gitsigns.nvim",
-			config = function()
-				require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
-			end,
-		})
-		use({
-			"TimUntersberger/neogit",
-			requires = "nvim-lua/plenary.nvim",
-			config = function()
-				require(require("genearl").core_loc() .. ".plugins_mappings.neogit_map")
-			end,
-		})
+        --> Git stuff
+        use({
+            "lewis6991/gitsigns.nvim",
+            config = function()
+                require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
+            end,
+        })
+        use({
+            "TimUntersberger/neogit",
+            requires = "nvim-lua/plenary.nvim",
+        })
 
         --> ui related stuff
         use({
@@ -332,3 +329,6 @@ packer.startup({
         },
     },
 })
+
+--> Reuire plugins that do not require a config
+require(require("genearl").core_loc() .. ".plugins_mappings.neogit_map")
