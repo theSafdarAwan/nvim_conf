@@ -50,14 +50,20 @@ packer.startup({
             end,
         })
 
-        --> Git stuff
-        use({
-            "lewis6991/gitsigns.nvim",
-            config = function()
-                require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
-            end,
-        })
-        use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+		--> Git stuff
+		use({
+			"lewis6991/gitsigns.nvim",
+			config = function()
+				require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
+			end,
+		})
+		use({
+			"TimUntersberger/neogit",
+			requires = "nvim-lua/plenary.nvim",
+			config = function()
+				require("safdar.core.plugins_mappings.neogit_map")
+			end,
+		})
 
         --> ui related stuff
         use({
