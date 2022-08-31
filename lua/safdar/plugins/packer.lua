@@ -61,7 +61,7 @@ packer.startup({
 			"TimUntersberger/neogit",
 			requires = "nvim-lua/plenary.nvim",
 			config = function()
-				require("safdar.core.plugins_mappings.neogit_map")
+				require(require("genearl").core_loc() .. ".plugins_mappings.neogit_map")
 			end,
 		})
 
