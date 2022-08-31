@@ -17,9 +17,9 @@ map("v", "Y", "$y", opts)
 map("v", '<space>"', '<esc>`>a"<esc>`<i"<esc>', opts)
 map("v", "<space>'", "<esc>`>a'<esc>`<i'<esc>", opts)
 map("v", "<space>`", "<esc>`>a`<esc>`<i`<esc>", opts)
-map("v", "<space>[", "<esc>`>a]<esc>`<i[<esc>", opts)
-map("v", "<space>{", "<esc>`>a}<esc>`<i{<esc>", opts)
-map("v", "<space>(", "<esc>`>a)<esc>`<i(<esc>", opts)
+map("v", "<space>[", "<esc>`>a ]<esc>`<i[ <esc>", opts)
+map("v", "<space>{", "<esc>`>a }<esc>`<i{ <esc>", opts)
+map("v", "<space>(", "<esc>`>a )<esc>`<i( <esc>", opts)
 map("v", "<space>*", "<esc>`>a*<esc>`<i*<esc>", opts)
 
 -- Remap of the century

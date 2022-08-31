@@ -4,7 +4,7 @@ local g = vim.g
 
 g.mapleader = " "
 
--- set mouse select
+-- enable mouse
 -- opt.mouse = "a"
 
 -- Spell Checking lang
@@ -32,7 +32,7 @@ opt.swapfile = false
 -- trick to solve the vim compatible functionality to not let backspace the file content othe then just inserted one
 -- opt.backspace = nil
 
-opt.ignorecase = true
+-- opt.ignorecase = true
 opt.smartcase = true
 opt.splitright = true
 opt.splitbelow = true
