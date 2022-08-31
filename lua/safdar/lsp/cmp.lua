@@ -37,10 +37,10 @@ cmp.setup({
     mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-u>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-x>"] = cmp.mapping.close(),
+        ["<C-[>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
