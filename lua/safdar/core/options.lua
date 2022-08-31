@@ -33,6 +33,7 @@ opt.swapfile = false
 -- opt.backspace = nil
 
 opt.ignorecase = true
+opt.smartcase = true
 opt.splitright = true
 opt.splitbelow = true
 
