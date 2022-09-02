@@ -49,7 +49,7 @@ telescope.setup({
 			},
 			width = 0.87,
 			height = 0.90,
-			preview_cutoff = 110,
+			preview_cutoff = 80,
 		},
 		-- path_display = { "shorten", shorten = 3 },
 		-- path_display = { "smart" },
