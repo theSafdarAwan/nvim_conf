@@ -46,6 +46,7 @@ opt.number = true
 opt.relativenumber = true
 
 opt.pumheight = 26
+opt.pumblend= 20
 
 -- Indenline
 opt.smartindent = true
