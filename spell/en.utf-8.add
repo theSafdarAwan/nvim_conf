@@ -34,3 +34,7 @@ resourses
 #ap
 tmux
 config
+pwd
+cli
+zshrc
+bashrc
