@@ -55,7 +55,7 @@ local theme = lush(function()
         SpellLocal({ fg = colors.color_23, gui = "underline" }), -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
         SpellRare({ fg = colors.color_16, gui = "underline" }), -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
         StatusLine({ bg = colors.bg }), -- status line of current window
-        StatusLineNC({ bg = colors.bg }), -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+        StatusLineNC({ bg = colors.color_2 }), -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
         TabLine({ fg = colors.color_8, bg = colors.color_1 }), -- tab pages line, not active tab page label
         TabLineFill({ fg = colors.fg, bg = colors.color_4 }), -- tab pages line, where there are no labels
         TabLineSel({ fg = colors.fg, bg = colors.color_4 }), -- tab pages line, active tab page label
