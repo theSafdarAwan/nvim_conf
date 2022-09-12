@@ -20,6 +20,9 @@ opt.showmode = false
 opt.wrap = false
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
+-- finding files - search down into subfolders
+opt.path:append { '**' }
+
 -- Hide the tilde singn in the blank line
 opt.fillchars = { eob = " " }
 
@@ -47,7 +50,7 @@ opt.relativenumber = true
 
 opt.wildoptions = 'pum'
 opt.winblend = 0
-opt.pumblend = 10
+opt.pumblend = 0
 opt.pumheight = 26
 
 -- Indenline
