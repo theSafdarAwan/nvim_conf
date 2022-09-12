@@ -45,8 +45,10 @@ opt.timeoutlen = 500
 opt.number = true
 opt.relativenumber = true
 
+opt.wildoptions = 'pum'
+opt.winblend = 0
+opt.pumblend = 10
 opt.pumheight = 26
-opt.pumblend= 20
 
 -- Indenline
 opt.smartindent = true
