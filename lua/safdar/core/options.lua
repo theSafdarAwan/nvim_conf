@@ -21,7 +21,7 @@ opt.wrap = false
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
 -- finding files - search down into subfolders
-opt.path:append { '**' }
+opt.path:append({ "**" })
 
 -- Hide the tilde singn in the blank line
 opt.fillchars = { eob = " " }
@@ -48,7 +48,7 @@ opt.timeoutlen = 500
 opt.number = true
 opt.relativenumber = true
 
-opt.wildoptions = 'pum'
+opt.wildoptions = "pum"
 opt.winblend = 0
 opt.pumblend = 0
 opt.pumheight = 26
