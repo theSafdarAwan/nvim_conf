@@ -35,6 +35,7 @@ map("i", "`", "`<c-g>u", opts)
 map("i", ".", ".<c-g>u", opts)
 map("i", ",", ",<c-g>u", opts)
 map("i", "=", "=<c-g>u", opts)
+map("n", "ds<space>", "mzF xf x`z", opts)
 
 -- Adding jump after 5 lines
 map("n", "k", [[(v:count > 5 ? "m'" . v:count: "") . 'k']], expr)
