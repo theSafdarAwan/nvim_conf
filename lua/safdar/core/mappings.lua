@@ -21,6 +21,7 @@ map("v", "<space>[", "<esc>`>a ]<esc>`<i[ <esc>", opts)
 map("v", "<space>{", "<esc>`>a }<esc>`<i{ <esc>", opts)
 map("v", "<space>(", "<esc>`>a )<esc>`<i( <esc>", opts)
 map("v", "<space>*", "<esc>`>a*<esc>`<i*<esc>", opts)
+map("v", "<space>2*", "<esc>`>a**<esc>`<i**<esc>", opts)
 
 -- Remap of the century
 map("n", "cn", "*``cgn", opts)

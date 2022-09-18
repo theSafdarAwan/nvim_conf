@@ -53,7 +53,7 @@ telescope.setup({
 		},
 		-- path_display = { "shorten", shorten = 3 },
 		-- path_display = { "smart" },
-		file_ignore_patterns = { "^.git/" },
+        file_ignore_patterns = { "^.git/", "^.obsidian/" },
 	},
 	extensions = {
 		fzf = {

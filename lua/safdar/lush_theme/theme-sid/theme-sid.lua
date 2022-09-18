@@ -40,7 +40,7 @@ local theme = lush(function()
         MoreMsg({ fg = colors.fg, bg = colors.bg }), -- |more-prompt|
         NonText({ fg = colors.color_9 }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
         Normal({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- normal text
-        NormalFloat({ bg = colors.color_3 }), -- Normal text in floating windows.
+        NormalFloat({ bg = colors.bg }), -- Normal text in floating windows.
         -- NormalNC({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- normal text in non-current windows
         Pmenu({ fg = colors.color_25, bg = colors.color_2 }), -- Popup menu: normal item.
         PmenuSel({ fg = colors.color_1, bg = colors.color_17 }), -- Popup menu: selected item.
