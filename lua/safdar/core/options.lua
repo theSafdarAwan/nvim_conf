@@ -6,6 +6,8 @@ g.mapleader = " "
 
 -- enable mouse
 -- opt.mouse = "a"
+-- disable mouse
+opt.mouse = ""
 
 -- Spell Checking lang
 opt.spelllang = "en,cjk"
