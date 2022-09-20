@@ -93,8 +93,8 @@ map("n", "<leader>tr", ":set rnu!<cr>", opts)
 map("n", "<leader>tn", ":set nu!<cr>", opts)
 
 -- buffers mappings
-map("n", "<leader>>", ":bnext<cr>", opts)
-map("n", "<leader><", ":bprevious<cr>", opts)
+map("n", "<leader>]", ":bnext<cr>", opts)
+map("n", "<leader>[", ":bprevious<cr>", opts)
 map("n", "<leader>x", ":bdelete<cr>", opts)
 map("n", "<leader>X", ":bdelete!<cr>", opts)
 
