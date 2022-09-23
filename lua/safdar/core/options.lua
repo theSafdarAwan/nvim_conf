@@ -108,7 +108,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 -- Damian Conway
 vim.cmd([[
     call matchadd('ColorColumn', '\%80v') 
-    " his will use the Color defined in you theme for the ColorColumn
+    " this will use the Color defined in you theme for the ColorColumn
 ]])
 
 -- Colorizer plugin attach
