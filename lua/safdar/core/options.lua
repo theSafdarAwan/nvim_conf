@@ -22,6 +22,10 @@ opt.showmode = false
 opt.wrap = false
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
+-- folding
+opt.foldmethod="marker"
+opt.foldmarker=">>>,<<<"
+
 -- finding files - search down into subfolders
 opt.path:append({ "**" })
 
