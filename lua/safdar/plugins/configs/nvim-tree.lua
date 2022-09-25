@@ -2,7 +2,7 @@ local vim = vim
 local g = vim.g
 
 require("nvim-tree").setup({
-	auto_reload_on_write = true,
+	-- auto_reload_on_write = true,
 	create_in_closed_folder = false,
 	disable_netrw = false,
 	hijack_cursor = true,

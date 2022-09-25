@@ -51,3 +51,5 @@ Globbing
 txt
 stdout
 Cpu
+#nfo
+fzf
