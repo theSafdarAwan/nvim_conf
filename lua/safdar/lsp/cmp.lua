@@ -13,6 +13,7 @@ cmp.setup({
         documentation = {
             border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
         },
+        completion = cmp.config.window.bordered(),
     },
     formatting = {
         format = function(entry, vim_item)

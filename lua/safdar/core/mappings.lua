@@ -128,7 +128,7 @@ map("n", "<leader>s?", "z=", opts)
 map("i", "<c-[>", "<c-\\><c-n>", opts)
 
 -- Terminal"
-map("t", "<c-[><leader>", "<c-\\><c-n>", opts)
+map("t", "<c-[>", "<c-\\><c-n>", opts)
 -- map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", opts)
 -- map("n", "<c-s><c-l>",":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>", opts)
 -- map("n", "<c-s><c-t>", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>", opts)

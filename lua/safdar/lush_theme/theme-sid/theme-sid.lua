@@ -303,6 +303,10 @@ local theme = lush(function()
         -- TroubleHint
         -- TroubleTextHint
         -- TroubleText
+
+        CmpItemKindMethod({ fg = colors.color_14 }),
+        CmpItemKindFunction({ fg = colors.color_14 }),
+        CmpItemKindVariable({ fg = colors.color_26 }),
     }
 end)
 
