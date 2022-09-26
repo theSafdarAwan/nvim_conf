@@ -1,6 +1,6 @@
 -- luasnip setup
 local luasnip = require("luasnip")
-
+local border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 -- nvim-cmp setup
 local cmp = require("cmp")
 cmp.setup({
@@ -11,9 +11,16 @@ cmp.setup({
     },
     window = {
         documentation = {
-            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+            border = border,
+            max_width = 80,
+            max_hight = 30,
         },
-        completion = cmp.config.window.bordered(),
+        completion = {
+            border = border,
+            col_offset = 30,
+            side_padding = 0,
+            cmp.config.window.bordered(),
+        },
     },
     formatting = {
         format = function(entry, vim_item)
