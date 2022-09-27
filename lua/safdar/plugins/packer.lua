@@ -145,13 +145,6 @@ packer.startup({
 
         --> Lsp utils
         use({
-            "simrat39/symbols-outline.nvim",
-            config = function()
-                require("safdar.plugins.configs.symbols-outline")
-                require("safdar.core.plugins_mappings.symbols-outline_map")
-            end,
-        })
-        use({
             "ray-x/lsp_signature.nvim",
             config = function()
                 require("safdar.plugins.configs.signature")

@@ -8,7 +8,7 @@ map("n", "<leader>ch", ":Telescope keymaps<CR>", { noremap = true, silent = true
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
 map("n", "<leader>fh", ":Telescope help_tags<cr>", { noremap = true, silent = true })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { noremap = true, silent = true })
-map("n", "<leader>tb", ":Telescope file_browser previewer=false<cr>", { noremap = true, silent = true })
+map("n", "<leader>tb", ":Telescope builtin<cr>", { noremap = true, silent = true })
 map(
 	"n",
 	"<leader>en",

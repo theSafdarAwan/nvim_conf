@@ -1,4 +1,4 @@
-local colors = require(require("genearl").lush_theme_loc() .. ".dracula-pallete")
+local colors = require("safdar.lush_theme.dracula-pallete")
 local lush = require("lush")
 -- local hsl = lush.hsl
 
@@ -40,7 +40,7 @@ local theme = lush(function()
 		MoreMsg({ fg = colors.fg, bg = colors.bg }), -- |more-prompt|
 		NonText({ fg = colors.color_9 }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
 		Normal({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- normal text
-		NormalFloat({ bg = colors.bg }), -- Normal text in floating windows.
+		NormalFloat({ fg = colors.string, bg = colors.bg }), -- Normal text in floating windows.
 		-- NormalNC({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- normal text in non-current windows
 		Pmenu({ fg = colors.color_25, bg = colors.color_2 }), -- Popup menu: normal item.
 		PmenuSel({ fg = colors.color_1, bg = colors.color_17 }), -- Popup menu: selected item.
@@ -175,7 +175,7 @@ local theme = lush(function()
 		TSField({ fg = colors.color_21 }), -- For fields.
 		TSFloat({ fg = colors.color_20 }), -- For floats.
 		TSFunction({ fg = colors.color_20, gui = "bold" }), -- For function (calls and definitions).
-		TSFuncBuiltin({ fg = colors.color_14 , gui = "bold" }), -- For builtin functions: `table.insert` in Lua.
+		TSFuncBuiltin({ fg = colors.color_14, gui = "bold" }), -- For builtin functions: `table.insert` in Lua.
 		TSFuncMacro({ fg = colors.color_27 }), -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
 		TSInclude({ fg = colors.color_14 }), -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
 		TSKeyword({ fg = colors.color_24 }), -- For keywords that don't fall in previous categories.
@@ -215,6 +215,14 @@ local theme = lush(function()
 		TSLiteral({ fg = colors.color_26 }), -- Literal text.
 		TSURI({ fg = colors.color_28, gui = "underline" }), -- Any URI like a link or email.
 
+		--> CSS
+		--{{{
+		cssTsProperty({ fg = colors.color_27 }),
+		cssTsOperator({ fg = colors.color_14 }),
+		-- }}}
+
+		--> (Telescope)
+		--{{{
 		TelescopeSelection({ bg = colors.color_4, fg = colors.color_26, gui = "bold" }),
 		TelescopeSelectionCaret({ fg = colors.color_20 }),
 		TelescopeMultiSelection({ fg = colors.color_8 }),
@@ -228,20 +236,16 @@ local theme = lush(function()
 		TelescopePromptTitle({ fg = colors.color_18, gui = "bold" }),
 		TelescopeResultsTitle({ fg = colors.color_15, gui = "bold" }),
 		TelescopePreviewTitle({ fg = colors.color_23, gui = "bold" }),
-
-		-- CSS
-		cssTsProperty({ fg = colors.color_27 }),
-		cssTsOperator({ fg = colors.color_14 }),
+		-- }}}
 
 		-- (NvimTree)
+		-- {{{
 		NvimTreeGitDirty({ fg = colors.fl_color_13 }),
 		NvimTreeGitStaged({ fg = colors.fl_color_1 }),
 		NvimTreeGitNew({ fg = colors.fl_color_13 }),
 		NvimTreeGitDeleted({ fg = colors.fl_color_13 }),
-
 		NvimTreeRootFolder({ fg = colors.fl_color_7 }),
 		NvimTreeIndentMarker({ fg = colors.fl_color_10 }),
-
 		-- NvimTreeSymlink
 		-- NvimTreeFolderName
 		-- NvimTreeFolderIcon
@@ -252,13 +256,11 @@ local theme = lush(function()
 		-- NvimTreeSpecialFile
 		-- NvimTreeImageFile
 		-- NvimTreeMarkdownFile
-
 		-- NvimTreeLicenseIcon
 		-- NvimTreeYamlIcon
 		-- NvimTreeTomlIcon
 		-- NvimTreeGitignoreIcon
 		-- NvimTreeJsonIcon
-
 		-- NvimTreeLuaIcon
 		-- NvimTreePythonIcon
 		-- NvimTreeShellIcon
@@ -269,7 +271,6 @@ local theme = lush(function()
 		-- NvimTreeRustIcon
 		-- NvimTreeVimIcon
 		-- NvimTreeTypescriptIcon
-
 		-- NvimTreeGitMerge
 		-- NvimTreeGitRenamed
 		-- NvimTreeFileDirty
@@ -278,8 +279,10 @@ local theme = lush(function()
 		-- NvimTreeFileRenamed
 		-- NvimTreeFileNew
 		-- NvimTreeFileDeleted
+		--}}}
 
-		-- TODO:
+		--> TODO:(Trouble)
+		-- {{{
 		-- TroubleCount
 		-- TroubleError
 		-- TroubleNormal
@@ -303,9 +306,11 @@ local theme = lush(function()
 		-- TroubleHint
 		-- TroubleTextHint
 		-- TroubleText
+		--}}}
 
+		--> (cmp)
 		-- {{{
-        -- TODO: CmpItemKind%
+		-- TODO: CmpItemKind%
 		--> Cmp
 		CmpItemAbbr({ fg = colors.color_25 }),
 		CmpItemAbbrDeprecated({ fg = colors.color_9 }),
