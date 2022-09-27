@@ -75,15 +75,6 @@ packer.startup({
             end,
         }) -- indent guides
 
-        --> more productive
-        use({
-            "kyazdani42/nvim-tree.lua",
-            config = function()
-                require("safdar.plugins.configs.nvim-tree")
-                require("safdar.core.plugins_mappings.nvim-tree_map")
-            end,
-        })
-
         use({
             "feline-nvim/feline.nvim",
             config = function()
