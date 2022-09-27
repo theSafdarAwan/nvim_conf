@@ -202,18 +202,18 @@ packer.startup({
             end,
         })
         use({ "tpope/vim-repeat" })
-        -- use({
-        --     "windwp/nvim-autopairs",
-        --     config = function()
-        --         require("nvim-autopairs").setup({
-        --             check_ts = true,
-        --             map_c_w = true,
-        --         })
-        --         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        --         local cmp = require("cmp")
-        --         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        --     end,
-        -- })
+        use({
+            "windwp/nvim-autopairs",
+            config = function()
+                require("nvim-autopairs").setup({
+                    check_ts = true,
+                    map_c_w = true,
+                })
+                local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+                local cmp = require("cmp")
+                cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+            end,
+        })
         use({ "tpope/vim-surround" })
 
         --> Save nvim state
