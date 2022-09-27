@@ -1,6 +1,6 @@
 local vim = vim
 local packer = require("packer")
-require(require("genearl").core_loc() .. ".plugins_mappings.packer_map")
+require("safdar.core.plugins_mappings.packer_map")
 packer.startup({
     function(use)
         --> Packer can manage itself
@@ -26,7 +26,7 @@ packer.startup({
         use({
             "nvim-telescope/telescope.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.telescope")
+                require("safdar.plugins.configs.telescope")
             end,
         })
         use({
@@ -44,9 +44,8 @@ packer.startup({
 
         use({
             "folke/todo-comments.nvim",
-            requires = "nvim-lua/plenary.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.todo")
+                require("safdar.plugins.configs.todo")
             end,
         })
 
@@ -54,12 +53,11 @@ packer.startup({
         use({
             "lewis6991/gitsigns.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.gitsigns") -- should be called after other _plugins_configs
+                require("safdar.plugins.configs.gitsigns") -- should be called after other _plugins_configs
             end,
         })
         use({
             "TimUntersberger/neogit",
-            requires = "nvim-lua/plenary.nvim",
         })
 
         --> ui related stuff
@@ -73,7 +71,7 @@ packer.startup({
         use({
             "lukas-reineke/indent-blankline.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.indentline")
+                require("safdar.plugins.configs.indentline")
             end,
         }) -- indent guides
 
@@ -81,15 +79,15 @@ packer.startup({
         use({
             "kyazdani42/nvim-tree.lua",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.nvim-tree")
-                require(require("genearl").core_loc() .. ".plugins_mappings.nvim-tree_map")
+                require("safdar.plugins.configs.nvim-tree")
+                require("safdar.core.plugins_mappings.nvim-tree_map")
             end,
         })
 
         use({
             "feline-nvim/feline.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.feline")
+                require("safdar.plugins.configs.feline")
             end,
         })
 
@@ -97,15 +95,15 @@ packer.startup({
         use({
             "dense-analysis/ale",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.ale")
-                require(require("genearl").core_loc() .. ".plugins_mappings.ale_map")
+                require("safdar.plugins.configs.ale")
+                require("safdar.core.plugins_mappings.ale_map")
             end,
             ft = { "html" },
         })
         use({
             "mattn/emmet-vim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.emmet")
+                require("safdar.plugins.configs.emmet")
             end,
             ft = { "html" },
         })
@@ -114,14 +112,14 @@ packer.startup({
         use({
             "neovim/nvim-lspconfig", -- quckstart lsp conifgs
             config = function()
-                require(require("genearl").lsp_loc() .. ".lsp")
+                require("safdar.lsp.lsp")
             end,
             requires = {
                 {
                     "jose-elias-alvarez/null-ls.nvim",
                     config = function()
-                        require(require("genearl").lsp_loc() .. ".null_ls")
-                        require(require("genearl").core_loc() .. ".plugins_mappings.null-ls_map")
+                        require("safdar.lsp.null_ls")
+                        require("safdar.core.plugins_mappings.null-ls_map")
                     end,
                 },
             },
@@ -132,7 +130,7 @@ packer.startup({
         use({
             "hrsh7th/nvim-cmp",
             config = function()
-                require(require("genearl").lsp_loc() .. ".cmp")
+                require("safdar.lsp.cmp")
             end,
         })
         use({ "hrsh7th/cmp-nvim-lua" })
@@ -143,20 +141,20 @@ packer.startup({
         use({ "L3MON4D3/LuaSnip" })
         use({ "rafamadriz/friendly-snippets" })
 
-        use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
+        use({ "tzachar/cmp-tabnine", run = "./install.sh" })
 
         --> Lsp utils
         use({
             "simrat39/symbols-outline.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.symbols-outline")
-                require(require("genearl").core_loc() .. ".plugins_mappings.symbols-outline_map")
+                require("safdar.plugins.configs.symbols-outline")
+                require("safdar.core.plugins_mappings.symbols-outline_map")
             end,
         })
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.signature")
+                require("safdar.plugins.configs.signature")
             end,
         })
 
@@ -164,23 +162,23 @@ packer.startup({
         use({
             "folke/trouble.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.trouble")
-                require(require("genearl").core_loc() .. ".plugins_mappings.lsp-trouble_map")
+                require("safdar.plugins.configs.trouble")
+                require("safdar.core.plugins_mappings.lsp-trouble_map")
             end,
         })
         -- TODO: work on this plugin config
         use({
             "glepnir/lspsaga.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.saga")
-                require(require("genearl").core_loc() .. ".plugins_mappings.lsp-saga_map")
+                require("safdar.plugins.configs.saga")
+                require("safdar.core.plugins_mappings.lsp-saga_map")
             end,
         })
         use({
             "AckslD/nvim-FeMaco.lua",
             config = function()
                 require("femaco").setup()
-                require(require("genearl").core_loc() .. ".plugins_mappings.FeMaco_map")
+                require("safdar.core.plugins_mappings.FeMaco_map")
             end,
             ft = { "markdown" },
         })
@@ -190,8 +188,8 @@ packer.startup({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.treesitter")
-                require(require("genearl").core_loc() .. ".plugins_mappings.treesitter_map")
+                require("safdar.plugins.configs.treesitter")
+                require("safdar.core.plugins_mappings.treesitter_map")
             end,
         })
         use({ "nvim-treesitter/playground" })
@@ -207,7 +205,7 @@ packer.startup({
         use({
             "axelvc/template-string.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.template-string")
+                require("safdar.plugins.configs.template-string")
             end,
         })
 
@@ -216,7 +214,7 @@ packer.startup({
             "AckslD/nvim-neoclip.lua",
             requires = { "tami5/sqlite.lua", module = "sqlite" },
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.neoclip")
+                require("safdar.plugins.configs.neoclip")
             end,
         })
         use({ "tpope/vim-repeat" })
@@ -233,11 +231,12 @@ packer.startup({
         --     end,
         -- })
         use({ "tpope/vim-surround" })
-        --> Tmux for nvim
+
+        --> Save nvim state
         use({
             "tpope/vim-obsession",
             config = function()
-                require(require("genearl").core_loc() .. ".plugins_mappings.obsession_map")
+                require("safdar.core.plugins_mappings.obsession_map")
             end,
         })
 
@@ -250,19 +249,19 @@ packer.startup({
         use({
             "andymass/vim-matchup",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.vim-matchup")
+                require("safdar.plugins.configs.vim-matchup")
             end,
         })
         use({
             "norcalli/nvim-colorizer.lua",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.colorizer")
+                require("safdar.plugins.configs.colorizer")
             end,
         }) -- shows the colors
         use({
             "mbbill/undotree",
             config = function()
-                require(require("genearl").core_loc() .. ".plugins_mappings.undotree_map")
+                require("safdar.core.plugins_mappings.undotree_map")
             end,
         })
 
@@ -270,21 +269,21 @@ packer.startup({
         use({
             "ThePrimeagen/vim-be-good",
             config = function()
-                require(require("genearl").core_loc() .. ".plugins_mappings.vim-be-good_map")
+                require("safdar.core.plugins_mappings.vim-be-good_map")
             end,
         })
         use({
             "ThePrimeagen/refactoring.nvim",
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.refactoring")
-                require(require("genearl").core_loc() .. ".plugins_mappings.refactoring_map")
+                require("safdar.plugins.configs.refactoring")
+                require("safdar.core.plugins_mappings.refactoring_map")
             end,
         })
         use({
             "ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.harpoon")
-                require(require("genearl").core_loc() .. ".plugins_mappings.harpoon_map")
+                require("safdar.plugins.configs.harpoon")
+                require("safdar.core.plugins_mappings.harpoon_map")
             end,
         })
 
@@ -299,7 +298,7 @@ packer.startup({
                     clearjumps_on_change = true, -- default: true,
                     autopush = false, -- default: false,
                 })
-                require(require("genearl").core_loc() .. ".plugins_mappings.git_worktree_map")
+                require("safdar.core.plugins_mappings.git_worktree_map")
             end,
         })
 
@@ -310,8 +309,8 @@ packer.startup({
                 vim.fn["mkdp#util#install"]()
             end,
             config = function()
-                require(require("genearl").plugins_loc() .. ".configs.markdown-preview")
-                require(require("genearl").core_loc() .. ".plugins_mappings.markdown-preview_map")
+                require("safdar.plugins.configs.markdown-preview")
+                require("safdar.core.plugins_mappings.markdown-preview_map")
             end,
             ft = { "markdown" },
         })
@@ -331,4 +330,4 @@ packer.startup({
 })
 
 --> Reuire plugins that do not require a config|setup
-require(require("genearl").core_loc() .. ".plugins_mappings.neogit_map")
+require("safdar.core.plugins_mappings.neogit_map")

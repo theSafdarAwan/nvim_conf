@@ -73,7 +73,7 @@ local theme = lush(function()
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
 		Constant({ fg = colors.color_17 }), -- (preferred) any constant
-		String({ fg = colors.color_25 }), --   a string constant: "this is a string"
+		String({ fg = colors.string }), --   a string constant: "this is a string"
 		Character({ fg = colors.color_14 }), --  a character constant: 'c', '\n'
 		Number({ fg = colors.color_20 }), --   a number constant: 234, 0xff
 		Boolean({ fg = colors.color_20 }), --  a boolean constant: TRUE, false
@@ -174,12 +174,12 @@ local theme = lush(function()
 		TSException({ fg = colors.color_20 }), -- For exception related keywords.
 		TSField({ fg = colors.color_21 }), -- For fields.
 		TSFloat({ fg = colors.color_20 }), -- For floats.
-		TSFunction({ fg = colors.color_14, gui = "bold" }), -- For function (calls and definitions).
-		TSFuncBuiltin({ fg = colors.color_22 }), -- For builtin functions: `table.insert` in Lua.
+		TSFunction({ fg = colors.color_20, gui = "bold" }), -- For function (calls and definitions).
+		TSFuncBuiltin({ fg = colors.color_14 , gui = "bold" }), -- For builtin functions: `table.insert` in Lua.
 		TSFuncMacro({ fg = colors.color_27 }), -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
 		TSInclude({ fg = colors.color_14 }), -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
 		TSKeyword({ fg = colors.color_24 }), -- For keywords that don't fall in previous categories.
-		TSKeywordFunction({ fg = colors.color_24 }), -- For keywords used to define a fuction.
+		TSKeywordFunction({ fg = colors.color_22 }), -- For keywords used to define a fuction.
 		TSKeywordOperator({ fg = colors.color_24 }), -- For keywords used to define a fuction.
 		TSKeywordReturn({ fg = colors.color_22 }), -- For keywords used to define a fuction.
 		TSLabel({ fg = colors.color_22 }), -- For labels: `label:` in C and `:label:` in Lua.
@@ -195,7 +195,7 @@ local theme = lush(function()
 		TSPunctBracket({ fg = colors.fg }), -- For brackets and parens.
 		TSPunctSpecial({ fg = colors.color_23 }), -- For special punctutation that does not fall in the catagories before.
 		TSRepeat({ fg = colors.color_23 }), -- For keywords related to loops.
-		TSString({ fg = colors.color_25 }), -- For strings.
+		TSString({ fg = colors.string }), -- For strings.
 		TSStringRegex({ fg = colors.color_14 }), -- For regexes.
 		TSStringEscape({ fg = colors.color_22 }), -- For escape characters within a string.
 		TSSymbol({ fg = colors.color_21 }), -- For identifiers referring to symbols or atoms.
@@ -307,14 +307,17 @@ local theme = lush(function()
 		-- {{{
         -- TODO: CmpItemKind%
 		--> Cmp
-		CmpItemAbbr({ fg = colors.color_9 }),
-		CmpItemAbbrDeprecated({ fg = colors.color_3 }),
+		CmpItemAbbr({ fg = colors.color_25 }),
+		CmpItemAbbrDeprecated({ fg = colors.color_9 }),
 		CmpItemAbbrMatch({ fg = colors.color_20 }),
 		CmpItemAbbrMatchFuzzy({ fg = colors.color_14 }),
 		CmpItemMenu({ fg = colors.color_8 }),
 		CmpItemKindMethod({ fg = colors.color_14 }),
-		CmpItemKindFunction({ fg = colors.color_14 }),
+		CmpItemKindFunction({ fg = colors.color_20 }),
 		CmpItemKindVariable({ fg = colors.color_26 }),
+		CmpItemKindSnippet({ fg = colors.color_22 }),
+		CmpItemKindText({ fg = colors.color_23 }),
+		-- CmpItemKind({ fg = colors.color_22 }),
 		-- }}}
 	}
 end)

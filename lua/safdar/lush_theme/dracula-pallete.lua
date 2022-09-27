@@ -3,6 +3,8 @@ local colors = {
 	bg = "#1C1D26",
 	fg = "#d3f1f0",
 
+	string = "#8991ba",
+
 	color_1 = "#232531",
 	color_2 = "#282A36",
 	color_3 = "#373844",
