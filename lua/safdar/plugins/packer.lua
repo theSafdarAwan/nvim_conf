@@ -49,6 +49,14 @@ packer.startup({
             end,
         })
 
+        --> more productive
+        use({
+            "kyazdani42/nvim-tree.lua",
+            config = function()
+                require("safdar.plugins.configs.nvim-tree")
+                require("safdar.core.plugins_mappings.nvim-tree_map")
+            end,
+        })
         --> Git stuff
         use({
             "lewis6991/gitsigns.nvim",
