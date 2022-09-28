@@ -7,6 +7,8 @@ local lush = require("lush")
 ---@diagnostic disable: undefined-global
 local theme = lush(function()
 	return {
+        -- nvim looks
+        --{{{
 		Comment({ fg = colors.color_9 }), -- any comment
 		ColorColumn({ bg = colors.dark_blue }), -- used for the columns set with 'colorcolumn'
 		Conceal({ fg = colors.color_22 }), -- placeholder characters substituted for concealed text (see 'conceallevel')
@@ -65,23 +67,24 @@ local theme = lush(function()
 		WarningMsg({ fg = colors.error_red, bg = colors.color_5 }), -- warning messages
 		Whitespace({ fg = colors.color_3 }), -- "nbsp", "space", "tab" and "trail" in 'listchars'
 		WildMenu({ fg = colors.color_7, bg = colors.color_16 }), -- current match in 'wildmenu' completion
+        --}}}
 
 		-- These groups are not listed as default vim groups,
 		-- but they are defacto standard group names for syntax highlighting.
 		-- commented out groups should chain up to their "preferred" group by
 		-- default,
 		-- Uncomment and edit if you want more specific syntax highlighting.
-
+        --{{{
 		Constant({ fg = colors.color_17 }), -- (preferred) any constant
 		String({ fg = colors.string }), --   a string constant: "this is a string"
 		Character({ fg = colors.color_14 }), --  a character constant: 'c', '\n'
 		Number({ fg = colors.color_20 }), --   a number constant: 234, 0xff
 		Boolean({ fg = colors.color_20 }), --  a boolean constant: TRUE, false
 		Float({ fg = colors.color_20 }), --    a floating point constant: 2.3e10
-
+        --
 		Identifier({ fg = colors.color_21 }), -- (preferred) any variable name
 		Function({ fg = colors.color_14 }), -- function name (also: methods for classes)
-
+        --
 		Statement({ fg = colors.color_23 }), -- (preferred) any statement
 		Conditional({ fg = colors.color_23 }), --  if, then, else, endif, switch, etc.
 		Repeat({ fg = colors.color_23 }), --   for, do, while, etc.
@@ -89,28 +92,29 @@ local theme = lush(function()
 		Operator({ fg = colors.color_27 }), -- "sizeof", "+", "*", etc.
 		Keyword({ fg = colors.color_24 }), --  any other keyword
 		Exception({ fg = colors.color_23 }), --  try, catch, throw
-
+        --
 		PreProc({ fg = colors.color_27 }), -- (preferred) generic Preprocessor
 		Include({ fg = colors.color_23 }), --  preprocessor #include
 		Define({ fg = colors.color_23 }), --   preprocessor #define
 		Macro({ fg = colors.color_23 }), --    same as Define
 		PreCondit({ fg = colors.color_23 }), --  preprocessor #if, #else, #endif, etc.
-
+        --
 		Type({ fg = colors.color_18 }), -- (preferred) int, long, char, etc.
 		StorageClass({ fg = colors.color_21 }), -- static, register, volatile, etc.
 		Structure({ fg = colors.color_23 }), --  struct, union, enum, etc.
 		Typedef({ fg = colors.color_23 }), --  A typedef
-
+        --
 		Special({ fg = colors.color_23 }), -- (preferred) any special symbol
 		SpecialChar({ fg = colors.color_15 }), --  special character in a constant
 		Tag({ fg = colors.color_22 }), --    you can use CTRL-] on this
 		Delimiter({ fg = colors.color_16 }), --  character that needs attention
 		SpecialComment({ fg = colors.color_5 }), -- special things inside a comment
 		Debug({ fg = colors.color_22 }), --    debugging statements
-
+        --
 		Underlined({ gui = "underline" }), -- (preferred) text that stands out, HTML links
 		Bold({ gui = "bold" }),
 		Italic({ gui = "italic" }),
+        --}}}
 
 		-- ("Ignore", below, may be invisible...)
 		-- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
@@ -122,44 +126,44 @@ local theme = lush(function()
 		-- These groups are for the native LSP client. Some other LSP clients may
 		-- use these groups, or use their own. Consult your LSP client's
 		-- documentation.
-
+        --{{{
 		LspReferenceText({ bg = colors.color_7, gui = "bold" }), -- used for highlighting "text" references
 		LspReferenceRead({ bg = colors.color_7, gui = "bold" }), -- used for highlighting "read" references
 		LspReferenceWrite({ bg = colors.color_7, gui = "bold" }), -- used for highlighting "write" references
-
+        --
 		LspDiagnosticsDefaultError({ fg = colors.error_red }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 		LspDiagnosticsDefaultWarning({ fg = colors.color_20 }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 		LspDiagnosticsDefaultInformation({ fg = colors.color_21 }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 		LspDiagnosticsDefaultHint({ fg = colors.color_14 }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-
+        --
 		LspDiagnosticsVirtualTextError({ fg = colors.error_red }), -- Used for "Error" diagnostic virtual text
 		LspDiagnosticsVirtualTextWarning({ fg = colors.color_20 }), -- Used for "Warning" diagnostic virtual text
 		LspDiagnosticsVirtualTextInformation({ fg = colors.color_21 }), -- Used for "Information" diagnostic virtual text
 		LspDiagnosticsVirtualTextHint({ fg = colors.color_14 }), -- Used for "Hint" diagnostic virtual text
-
+        --
 		LspDiagnosticsUnderlineError({ gui = "underline" }), -- Used to underline "Error" diagnostics
 		LspDiagnosticsUnderlineWarning({ gui = "underline" }), -- Used to underline "Warning" diagnostics
 		LspDiagnosticsUnderlineInformation({ gui = "underline" }), -- Used to underline "Information" diagnostics
 		LspDiagnosticsUnderlineHint({ gui = "underline" }), -- Used to underline "Hint" diagnostics
-
+        --
 		LspDiagnosticsFloatingError({ fg = colors.error_red }), -- Used to color "Error" diagnostic messages in diagnostics float
 		LspDiagnosticsFloatingWarning({ fg = colors.color_20 }), -- Used to color "Warning" diagnostic messages in diagnostics float
 		LspDiagnosticsFloatingInformation({ fg = colors.color_21 }), -- Used to color "Information" diagnostic messages in diagnostics float
 		LspDiagnosticsFloatingHint({ fg = colors.color_14 }), -- Used to color "Hint" diagnostic messages in diagnostics float
-
+        --
 		LspDiagnosticsSignError({ fg = colors.error_red }), -- Used for "Error" signs in sign column
 		LspDiagnosticsSignWarning({ fg = colors.color_20 }), -- Used for "Warning" signs in sign column
 		LspDiagnosticsSignInformation({ fg = colors.color_21 }), -- Used for "Information" signs in sign column
 		LspDiagnosticsSignHint({ fg = colors.color_14 }), -- Used for "Hint" signs in sign column
-
+        --
 		-- LspCodeLens                          { }, -- Used to color the virtual text of the codelens
-
+        --
 		-- These groups are for the neovim tree-sitter highlights.
 		-- As of writing, tree-sitter support is a WIP, group names may change.
 		-- By default, most of these groups link to an appropriate Vim group,
 		-- TSError -> Error for example, so you do not have to define these unless
 		-- you explicitly want to support Treesitter's improved syntax awareness.
-
+        --
 		TSAnnotation({ fg = colors.color_15 }), -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
 		TSAttribute({ fg = colors.color_21 }), -- (unstable) TODO: docs
 		TSBoolean({ fg = colors.color_20 }), -- For booleans.
@@ -174,12 +178,12 @@ local theme = lush(function()
 		TSException({ fg = colors.color_20 }), -- For exception related keywords.
 		TSField({ fg = colors.color_21 }), -- For fields.
 		TSFloat({ fg = colors.color_20 }), -- For floats.
-		TSFunction({ fg = colors.color_20, gui = "bold" }), -- For function (calls and definitions).
-		TSFuncBuiltin({ fg = colors.color_14, gui = "bold" }), -- For builtin functions: `table.insert` in Lua.
+		TSFunction({ fg = colors.color_16 }), -- For function (calls and definitions).
+		TSFuncBuiltin({ fg = colors.color_14 }), -- For builtin functions: `table.insert` in Lua.
 		TSFuncMacro({ fg = colors.color_27 }), -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
 		TSInclude({ fg = colors.color_14 }), -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
 		TSKeyword({ fg = colors.color_24 }), -- For keywords that don't fall in previous categories.
-		TSKeywordFunction({ fg = colors.color_22 }), -- For keywords used to define a fuction.
+		TSKeywordFunction({ fg = colors.color_22, gui = "bold" }), -- For keywords used to define a fuction.
 		TSKeywordOperator({ fg = colors.color_24 }), -- For keywords used to define a fuction.
 		TSKeywordReturn({ fg = colors.color_22 }), -- For keywords used to define a fuction.
 		TSLabel({ fg = colors.color_22 }), -- For labels: `label:` in C and `:label:` in Lua.
@@ -203,7 +207,7 @@ local theme = lush(function()
 		TSTypeBuiltin({ fg = colors.color_17 }), -- For builtin types.
 		TSVariable({ fg = colors.fg }), -- Any variable name that does not have another highlight.
 		TSVariableBuiltin({ fg = colors.color_23 }), -- Variable names that are defined by the languages, like `this` or `self`.
-
+        --
 		TSTag({ fg = colors.color_22 }), -- Tags like html tag names.
 		TSTagAttribute({ fg = colors.color_20 }), -- Tags like html tag names.
 		TSTagDelimiter({ fg = colors.color_9 }), -- Tag delimiter like `<` `>` `/`
@@ -214,6 +218,7 @@ local theme = lush(function()
 		TSTitle({ fg = colors.color_14, gui = "bold" }), -- Text that is part of a title.
 		TSLiteral({ fg = colors.color_26 }), -- Literal text.
 		TSURI({ fg = colors.color_28, gui = "underline" }), -- Any URI like a link or email.
+-- }}}
 
 		--> CSS
 		--{{{
@@ -315,15 +320,13 @@ local theme = lush(function()
 		CmpItemAbbr({ fg = colors.color_25 }),
 		CmpItemAbbrDeprecated({ fg = colors.color_9 }),
 		CmpItemAbbrMatch({ fg = colors.color_20 }),
-		CmpItemAbbrMatchFuzzy({ fg = colors.color_14 }),
+		CmpItemAbbrMatchFuzzy({ fg = colors.color_22 }),
 		CmpItemMenu({ fg = colors.color_8 }),
-		CmpItemKindMethod({ fg = colors.color_14 }),
-		CmpItemKindFunction({ fg = colors.color_20 }),
-		CmpItemKindVariable({ fg = colors.color_26 }),
-		CmpItemKindSnippet({ fg = colors.color_22 }),
+		CmpItemKindSnippet({ fg = colors.vc_add }),
 		CmpItemKindText({ fg = colors.color_23 }),
 		-- CmpItemKind({ fg = colors.color_22 }),
 		-- }}}
+
 	}
 end)
 
