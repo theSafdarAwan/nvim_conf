@@ -90,10 +90,10 @@ vim.cmd([[
 function! HelpHelper()
     setlocal relativenumber
     setlocal number
-    hi link HelpBar Normal
-    hi link HelpStar Normal
     " :h conceal|conceal
     setlocal conceallevel=0
+    hi link HelpBar Normal
+    hi link HelpStar Normal
 endfunction
 ]])
 
@@ -145,10 +145,10 @@ local disabled_built_ins = {
     "getscriptPlugin",
     "gzip",
     "logipat",
-    -- "netrw",
-    -- "netrwPlugin",
-    -- "netrwSettings",
-    -- "netrwFileHandlers",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
     "matchit",
     "tar",
     "tarPlugin",
