@@ -1,4 +1,5 @@
-local colors = require("lua.safdar.lush_theme.dracula-pallete")
+local colors = require("safdar.lush_theme.dracula-pallete")
+local treesitter_maps = require("safdar.core.plugins_mappings.treesitter_map").treesitter_maps
 -- vim.cmd [[packadd nvim-treesitter]]
 
 require("nvim-treesitter.configs").setup({
@@ -30,12 +31,7 @@ require("nvim-treesitter.configs").setup({
 	},
     incremental_selection = {
       enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
-      },
+      keymaps = treesitter_maps,
     },
 	rainbow = {
 		enable = true,
