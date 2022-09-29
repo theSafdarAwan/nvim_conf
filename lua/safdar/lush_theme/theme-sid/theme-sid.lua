@@ -9,7 +9,7 @@ local theme = lush(function()
 	return {
 
         -- nvim looks
-        -->>>
+        --{{{
 		Comment({ fg = colors.color_9 }), -- any comment
 		ColorColumn({ bg = colors.dark_blue }), -- used for the columns set with 'colorcolumn'
 		Conceal({ fg = colors.color_22 }), -- placeholder characters substituted for concealed text (see 'conceallevel')
@@ -68,14 +68,14 @@ local theme = lush(function()
 		WarningMsg({ fg = colors.error_red, bg = colors.color_5 }), -- warning messages
 		Whitespace({ fg = colors.color_3 }), -- "nbsp", "space", "tab" and "trail" in 'listchars'
 		WildMenu({ fg = colors.color_7, bg = colors.color_16 }), -- current match in 'wildmenu' completion
-        --<<<
+        --}}}
 
 		-- These groups are not listed as default vim groups,
 		-- but they are defacto standard group names for syntax highlighting.
 		-- commented out groups should chain up to their "preferred" group by
 		-- default,
 		-- Uncomment and edit if you want more specific syntax highlighting.
-        -->>>
+        --{{{
 		Constant({ fg = colors.color_17 }), -- (preferred) any constant
 		String({ fg = colors.string }), --   a string constant: "this is a string"
 		Character({ fg = colors.color_14 }), --  a character constant: 'c', '\n'
@@ -115,7 +115,7 @@ local theme = lush(function()
 		Underlined({ gui = "underline" }), -- (preferred) text that stands out, HTML links
 		Bold({ gui = "bold" }),
 		Italic({ gui = "italic" }),
-        --<<<
+        --}}}
 
 		-- ("Ignore", below, may be invisible...)
 		-- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
@@ -127,7 +127,7 @@ local theme = lush(function()
 		-- These groups are for the native LSP client. Some other LSP clients may
 		-- use these groups, or use their own. Consult your LSP client's
 		-- documentation.
-        -->>>
+        --{{{
 		LspReferenceText({ bg = colors.color_7, gui = "bold" }), -- used for highlighting "text" references
 		LspReferenceRead({ bg = colors.color_7, gui = "bold" }), -- used for highlighting "read" references
 		LspReferenceWrite({ bg = colors.color_7, gui = "bold" }), -- used for highlighting "write" references
@@ -219,16 +219,16 @@ local theme = lush(function()
 		TSTitle({ fg = colors.color_14, gui = "bold" }), -- Text that is part of a title.
 		TSLiteral({ fg = colors.color_26 }), -- Literal text.
 		TSURI({ fg = colors.color_28, gui = "underline" }), -- Any URI like a link or email.
--- <<<
+-- }}}
 
 		--> CSS
-		-->>>
+		--{{{
 		cssTsProperty({ fg = colors.color_27 }),
 		cssTsOperator({ fg = colors.color_14 }),
-		-- <<<
+		-- }}}
 
 		--> (Telescope)
-		-->>>
+		--{{{
 		TelescopeSelection({ bg = colors.color_4, fg = colors.color_26, gui = "bold" }),
 		TelescopeSelectionCaret({ fg = colors.color_20 }),
 		TelescopeMultiSelection({ fg = colors.color_8 }),
@@ -242,10 +242,10 @@ local theme = lush(function()
 		TelescopePromptTitle({ fg = colors.color_18, gui = "bold" }),
 		TelescopeResultsTitle({ fg = colors.color_15, gui = "bold" }),
 		TelescopePreviewTitle({ fg = colors.color_23, gui = "bold" }),
-		-- <<<
+		-- }}}
 
 		-- (NvimTree)
-		-- >>>
+		-- {{{
 		NvimTreeGitDirty({ fg = colors.fl_color_13 }),
 		NvimTreeGitStaged({ fg = colors.fl_color_1 }),
 		NvimTreeGitNew({ fg = colors.fl_color_13 }),
@@ -285,10 +285,10 @@ local theme = lush(function()
 		-- NvimTreeFileRenamed
 		-- NvimTreeFileNew
 		-- NvimTreeFileDeleted
-		--<<<
+		--}}}
 
 		--> TODO:(Trouble)
-		-- >>>
+		-- {{{
 		-- TroubleCount
 		-- TroubleError
 		-- TroubleNormal
@@ -312,10 +312,10 @@ local theme = lush(function()
 		-- TroubleHint
 		-- TroubleTextHint
 		-- TroubleText
-		--<<<
+		--}}}
 
 		--> (cmp)
-		-- >>>
+		-- {{{
 		-- TODO: CmpItemKind%
 		--> Cmp
 		CmpItemAbbr({ fg = colors.color_25 }),
@@ -326,7 +326,7 @@ local theme = lush(function()
 		CmpItemKindSnippet({ fg = colors.vc_add }),
 		CmpItemKindText({ fg = colors.color_23 }),
 		-- CmpItemKind({ fg = colors.color_22 }),
-		-- <<<
+		-- }}}
 
 	}
 end)
