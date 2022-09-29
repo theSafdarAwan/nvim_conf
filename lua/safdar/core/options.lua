@@ -97,9 +97,10 @@ function! HelpHelper()
 endfunction
 ]])
 
--- set spell for the gitcommit message's
+-- set spell for the gitcommit message's and other filetypes
 vim.cmd([[
 autocmd FileType gitcommit setlocal spell
+autocmd FileType NeogitCommitMessage setlocal spell
 autocmd FileType markdown setlocal spell
 autocmd FileType help call HelpHelper()
 ]])
