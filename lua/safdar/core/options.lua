@@ -102,6 +102,7 @@ vim.cmd([[
 autocmd FileType gitcommit setlocal spell
 autocmd FileType NeogitCommitMessage setlocal spell
 autocmd FileType markdown setlocal spell
+autocmd FileType tex setlocal spell
 autocmd FileType help call HelpHelper()
 ]])
 

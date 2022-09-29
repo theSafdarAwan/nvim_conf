@@ -12,10 +12,10 @@ local theme = lush(function()
         --{{{
 		Comment({ fg = colors.color_9 }), -- any comment
 		ColorColumn({ bg = colors.dark_blue }), -- used for the columns set with 'colorcolumn'
-		Conceal({ fg = colors.color_22 }), -- placeholder characters substituted for concealed text (see 'conceallevel')
+		Conceal({ fg = colors.color_22_one }), -- placeholder characters substituted for concealed text (see 'conceallevel')
 		-- TODO:	 play with cursor colors
 		Cursor({ fg = colors.color_1, bg = colors.bg }), -- character under the cursor
-		lCursor({ fg = colors.color_14, bg = colors.color_5 }), -- the character under the cursor when |language-mapping| is used (see 'guicursor')
+		lCursor({ fg = colors.color_14_drac, bg = colors.color_5 }), -- the character under the cursor when |language-mapping| is used (see 'guicursor')
 		CursorIM({ fg = colors.color_1, bg = colors.bg }), -- like Cursor, but used when in IME mode |CursorIM|
 		CursorColumn({ bg = colors.color_2 }), -- Screen-column at the cursor, when 'cursorcolumn' is set.
 		CursorLine({ bg = colors.color_2 }), -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
@@ -33,10 +33,10 @@ local theme = lush(function()
 		FoldColumn({ fg = colors.color_8, bg = colors.color_1 }), -- 'foldcolumn'
 		SignColumn({ bg = colors.bg }), -- column where |signs| are displayed
 		IncSearch({ bg = colors.color_4 }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-		-- Substitute({ fg = colors.light_gray, bg = colors.search_orange }), -- |:substitute| replacement text highlighting
+		Substitute({ fg = colors.error_red, bg = colors.color_2, gui = "underline" }), -- |:substitute| replacement text highlighting
 		LineNr({ fg = colors.color_8 }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		CursorLineNr({ fg = colors.color_20, gui = "bold" }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-		MatchParen({ fg = colors.color_14, bg = colors.color_6, gui = "bold, underline" }), -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+		MatchParen({ bg = colors.color_2, gui = "bold, underline" }), -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		ModeMsg({ fg = colors.fg, bg = colors.bg }), -- 'showmode' message (e.g., "-- INSERT -- ")
 		MsgArea({ fg = colors.color_5, bg = Config.transparent_background and "NONE" or colors.bg }), -- Area for messages and cmdline
 		MsgSeparator({ fg = colors.fg, bg = colors.bg }), -- Separator for scrolled messages, `msgsep` flag of 'display'
@@ -63,8 +63,8 @@ local theme = lush(function()
 		TabLineFill({ fg = colors.fg, bg = colors.color_4 }), -- tab pages line, where there are no labels
 		TabLineSel({ fg = colors.fg, bg = colors.color_4 }), -- tab pages line, active tab page label
 		Title({ fg = colors.color_21, style = "bold" }), -- titles for output from ":set all", ":autocmd" etc.
-		Visual({ bg = colors.color_6 }), -- Visual mode selection
-		VisualNOS({ bg = colors.color_3 }), -- Visual mode selection when vim is "Not Owning the Selection".
+		Visual({ bg = colors.color_2 }), -- Visual mode selection
+		VisualNOS({ bg = colors.error_red }), -- Visual mode selection when vim is "Not Owning the Selection".
 		WarningMsg({ fg = colors.error_red, bg = colors.color_5 }), -- warning messages
 		Whitespace({ fg = colors.color_3 }), -- "nbsp", "space", "tab" and "trail" in 'listchars'
 		WildMenu({ fg = colors.color_7, bg = colors.color_16 }), -- current match in 'wildmenu' completion
@@ -77,14 +77,14 @@ local theme = lush(function()
 		-- Uncomment and edit if you want more specific syntax highlighting.
         --{{{
 		Constant({ fg = colors.color_17 }), -- (preferred) any constant
-		String({ fg = colors.string }), --   a string constant: "this is a string"
-		Character({ fg = colors.color_14 }), --  a character constant: 'c', '\n'
+		String({ fg = colors.string_color }), --   a string constant: "this is a string"
+		Character({ fg = colors.color_14_drac }), --  a character constant: 'c', '\n'
 		Number({ fg = colors.color_20 }), --   a number constant: 234, 0xff
 		Boolean({ fg = colors.color_20 }), --  a boolean constant: TRUE, false
 		Float({ fg = colors.color_20 }), --    a floating point constant: 2.3e10
         --
 		Identifier({ fg = colors.color_21 }), -- (preferred) any variable name
-		Function({ fg = colors.color_14 }), -- function name (also: methods for classes)
+		Function({ fg = colors.color_14_drac }), -- function name (also: methods for classes)
         --
 		Statement({ fg = colors.color_23 }), -- (preferred) any statement
 		Conditional({ fg = colors.color_23 }), --  if, then, else, endif, switch, etc.
@@ -107,10 +107,10 @@ local theme = lush(function()
         --
 		Special({ fg = colors.color_23 }), -- (preferred) any special symbol
 		SpecialChar({ fg = colors.color_15 }), --  special character in a constant
-		Tag({ fg = colors.color_22 }), --    you can use CTRL-] on this
+		Tag({ fg = colors.color_22_one }), --    you can use CTRL-] on this
 		Delimiter({ fg = colors.color_16 }), --  character that needs attention
 		SpecialComment({ fg = colors.color_5 }), -- special things inside a comment
-		Debug({ fg = colors.color_22 }), --    debugging statements
+		Debug({ fg = colors.color_22_one }), --    debugging statements
         --
 		Underlined({ gui = "underline" }), -- (preferred) text that stands out, HTML links
 		Bold({ gui = "bold" }),
@@ -135,12 +135,12 @@ local theme = lush(function()
 		LspDiagnosticsDefaultError({ fg = colors.error_red }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 		LspDiagnosticsDefaultWarning({ fg = colors.color_20 }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 		LspDiagnosticsDefaultInformation({ fg = colors.color_21 }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-		LspDiagnosticsDefaultHint({ fg = colors.color_14 }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+		LspDiagnosticsDefaultHint({ fg = colors.color_14_drac }), -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
         --
 		LspDiagnosticsVirtualTextError({ fg = colors.error_red }), -- Used for "Error" diagnostic virtual text
 		LspDiagnosticsVirtualTextWarning({ fg = colors.color_20 }), -- Used for "Warning" diagnostic virtual text
 		LspDiagnosticsVirtualTextInformation({ fg = colors.color_21 }), -- Used for "Information" diagnostic virtual text
-		LspDiagnosticsVirtualTextHint({ fg = colors.color_14 }), -- Used for "Hint" diagnostic virtual text
+		LspDiagnosticsVirtualTextHint({ fg = colors.color_14_drac }), -- Used for "Hint" diagnostic virtual text
         --
 		LspDiagnosticsUnderlineError({ gui = "underline" }), -- Used to underline "Error" diagnostics
 		LspDiagnosticsUnderlineWarning({ gui = "underline" }), -- Used to underline "Warning" diagnostics
@@ -150,12 +150,12 @@ local theme = lush(function()
 		LspDiagnosticsFloatingError({ fg = colors.error_red }), -- Used to color "Error" diagnostic messages in diagnostics float
 		LspDiagnosticsFloatingWarning({ fg = colors.color_20 }), -- Used to color "Warning" diagnostic messages in diagnostics float
 		LspDiagnosticsFloatingInformation({ fg = colors.color_21 }), -- Used to color "Information" diagnostic messages in diagnostics float
-		LspDiagnosticsFloatingHint({ fg = colors.color_14 }), -- Used to color "Hint" diagnostic messages in diagnostics float
+		LspDiagnosticsFloatingHint({ fg = colors.color_14_drac }), -- Used to color "Hint" diagnostic messages in diagnostics float
         --
 		LspDiagnosticsSignError({ fg = colors.error_red }), -- Used for "Error" signs in sign column
 		LspDiagnosticsSignWarning({ fg = colors.color_20 }), -- Used for "Warning" signs in sign column
 		LspDiagnosticsSignInformation({ fg = colors.color_21 }), -- Used for "Information" signs in sign column
-		LspDiagnosticsSignHint({ fg = colors.color_14 }), -- Used for "Hint" signs in sign column
+		LspDiagnosticsSignHint({ fg = colors.color_14_drac }), -- Used for "Hint" signs in sign column
         --
 		-- LspCodeLens                          { }, -- Used to color the virtual text of the codelens
         --
@@ -180,14 +180,14 @@ local theme = lush(function()
 		TSField({ fg = colors.color_21 }), -- For fields.
 		TSFloat({ fg = colors.color_20 }), -- For floats.
 		TSFunction({ fg = colors.color_16 }), -- For function (calls and definitions).
-		TSFuncBuiltin({ fg = colors.color_14 }), -- For builtin functions: `table.insert` in Lua.
+		TSFuncBuiltin({ fg = colors.color_14_one }), -- For builtin functions: `table.insert` in Lua.
 		TSFuncMacro({ fg = colors.color_27 }), -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-		TSInclude({ fg = colors.color_14 }), -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+		TSInclude({ fg = colors.color_14_drac }), -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
 		TSKeyword({ fg = colors.color_24 }), -- For keywords that don't fall in previous categories.
-		TSKeywordFunction({ fg = colors.color_22, gui = "bold" }), -- For keywords used to define a fuction.
+		TSKeywordFunction({ fg = colors.color_22_one, gui = "bold" }), -- For keywords used to define a fuction.
 		TSKeywordOperator({ fg = colors.color_24 }), -- For keywords used to define a fuction.
-		TSKeywordReturn({ fg = colors.color_22 }), -- For keywords used to define a fuction.
-		TSLabel({ fg = colors.color_22 }), -- For labels: `label:` in C and `:label:` in Lua.
+		TSKeywordReturn({ fg = colors.color_22_drac, gui = "bold" }), -- For keywords used to define a fuction.
+		TSLabel({ fg = colors.color_22_one }), -- For labels: `label:` in C and `:label:` in Lua.
 		TSMethod({ fg = colors.color_15 }), -- For method calls and definitions.
 		TSNamespace({ fg = colors.color_24 }), -- For identifiers referring to modules and namespaces.
 		TSNone({ fg = colors.fg }), -- TODO: docs
@@ -200,23 +200,23 @@ local theme = lush(function()
 		TSPunctBracket({ fg = colors.fg }), -- For brackets and parens.
 		TSPunctSpecial({ fg = colors.color_23 }), -- For special punctutation that does not fall in the catagories before.
 		TSRepeat({ fg = colors.color_23 }), -- For keywords related to loops.
-		TSString({ fg = colors.string }), -- For strings.
-		TSStringRegex({ fg = colors.color_14 }), -- For regexes.
-		TSStringEscape({ fg = colors.color_22 }), -- For escape characters within a string.
+		TSString({ fg = colors.string_color }), -- For strings.
+		TSStringRegex({ fg = colors.color_14_drac }), -- For regexes.
+		TSStringEscape({ fg = colors.color_22_one }), -- For escape characters within a string.
 		TSSymbol({ fg = colors.color_21 }), -- For identifiers referring to symbols or atoms.
 		TSType({ fg = colors.color_17 }), -- For types.
 		TSTypeBuiltin({ fg = colors.color_17 }), -- For builtin types.
 		TSVariable({ fg = colors.fg }), -- Any variable name that does not have another highlight.
 		TSVariableBuiltin({ fg = colors.color_23 }), -- Variable names that are defined by the languages, like `this` or `self`.
         --
-		TSTag({ fg = colors.color_22 }), -- Tags like html tag names.
+		TSTag({ fg = colors.color_22_one }), -- Tags like html tag names.
 		TSTagAttribute({ fg = colors.color_20 }), -- Tags like html tag names.
 		TSTagDelimiter({ fg = colors.color_9 }), -- Tag delimiter like `<` `>` `/`
 		TSText({ fg = colors.fg }), -- For strings considered text in a markup language.
 		TSEmphasis({ gui = "italic" }), -- For text to be represented with emphasis.
 		TSUnderline({ gui = "underline" }), -- For text to be represented with an underline.
 		-- TSStrike             {};    -- For strikethrough text.
-		TSTitle({ fg = colors.color_14, gui = "bold" }), -- Text that is part of a title.
+		TSTitle({ fg = colors.color_14_drac, gui = "bold" }), -- Text that is part of a title.
 		TSLiteral({ fg = colors.color_26 }), -- Literal text.
 		TSURI({ fg = colors.color_28, gui = "underline" }), -- Any URI like a link or email.
 -- }}}
@@ -224,7 +224,7 @@ local theme = lush(function()
 		--> CSS
 		--{{{
 		cssTsProperty({ fg = colors.color_27 }),
-		cssTsOperator({ fg = colors.color_14 }),
+		cssTsOperator({ fg = colors.color_14_drac }),
 		-- }}}
 
 		--> (Telescope)
@@ -232,7 +232,7 @@ local theme = lush(function()
 		TelescopeSelection({ bg = colors.color_4, fg = colors.color_26, gui = "bold" }),
 		TelescopeSelectionCaret({ fg = colors.color_20 }),
 		TelescopeMultiSelection({ fg = colors.color_8 }),
-		TelescopeMatching({ fg = colors.color_14 }),
+		TelescopeMatching({ fg = colors.color_14_drac }),
 		TelescopePromptPrefix({ fg = colors.color_18 }),
 		TelescopeBorder({ fg = colors.color_3 }),
 		TelescopePromptBorder({ fg = colors.color_3 }),
@@ -320,7 +320,7 @@ local theme = lush(function()
 		--> Cmp
 		CmpItemAbbr({ fg = colors.color_25 }),
 		CmpItemAbbrDeprecated({ fg = colors.color_9 }),
-		CmpItemAbbrMatch({ fg = colors.color_14 }),
+		CmpItemAbbrMatch({ fg = colors.color_14_drac }),
 		CmpItemAbbrMatchFuzzy({ fg = colors.color_20 }),
 		CmpItemMenu({ fg = colors.color_8 }),
 		CmpItemKindSnippet({ fg = colors.vc_add }),

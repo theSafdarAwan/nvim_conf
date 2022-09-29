@@ -17,7 +17,8 @@ local colors = {
 	color_11 = "#343642",
 	color_12 = "#2f313d",
 	color_13 = "#373844",
-	color_14 = "#71f094",
+	color_14_one = "#98C379",
+	color_14_drac = "#71f094",
 	color_15 = "#b389ef",
 	color_16 = "#BD93F9",
 	color_17 = "#D19A66",
@@ -25,7 +26,8 @@ local colors = {
 	color_19 = "#0088cc",
 	color_20 = "#Fccf6C",
 	color_21 = "#0fcfff",
-	color_22 = "#ff5370",
+	color_22_one = "#E06C75",
+	color_22_drac = "#ff5370",
 	color_23 = "#DE8C92",
 	color_24 = "#FF79C6",
 	color_25 = "#abb2bf",
@@ -59,10 +61,13 @@ local colors = {
 	vc_text_bg = "#2f313d",
 
 	rts_1 = "#ff75a0",
-	rts_2 = "#ec6b64",
-	rts_3 = "#89b482",
+	rts_2 = "#DE8C92",
+	-- rts_2 = "#ec6b64",
+	rts_3 = "#71f094",
+	-- rts_3 = "#89b482",
 	rts_4 = "#e78a4e",
-	rts_5 = "#a9b665",
+	-- rts_5 = "#a9b665",
+	rts_5 = "#8BE9FD",
 }
 
 return colors
