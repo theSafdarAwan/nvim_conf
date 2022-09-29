@@ -85,9 +85,23 @@ autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40}
 augroup END
 ]])
 
+-- Help Helper Function
+vim.cmd([[
+function! HelpHelper()
+    set relativenumber
+    set number
+    hi link HelpBar Normal
+    hi link HelpStar Normal
+    " :h conceal|conceal
+    set conceallevel=0
+endfunction
+]])
+
 -- set spell for the gitcommit message's
 vim.cmd([[
 autocmd FileType gitcommit set spell
+autocmd FileType markdown set spell
+autocmd FileType help call HelpHelper()
 ]])
 
 vim.cmd([[
