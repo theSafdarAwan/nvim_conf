@@ -2,10 +2,9 @@
 --                      lsp general
 --=======================================================
 local vim = vim
-local lsp =  require("genearl").lsp_loc()
-local nvim_lsp = require(lsp .. ".lsp_util").nvim_lsp
-local on_attach = require(require("genearl").core_loc() .. ".plugins_mappings.lsp_map").on_attach
-local capabilities = require(require("genearl").lsp_loc() .. ".lsp_util").capabilities
+local nvim_lsp = require("safdar.lsp.lsp_util").nvim_lsp
+local on_attach = require("safdar.core.plugins_mappings.lsp_map").on_attach
+local capabilities = require("safdar.lsp.lsp_util").capabilities
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -47,9 +46,8 @@ end
 --=======================================================
 --     require lang modules with additional configs
 --=======================================================
-local lsp_loc = require("genearl").lsp_loc()
-require(lsp_loc .. ".langs.sumneko_lua")
-require(lsp_loc .. ".langs.jsonls")
-require(lsp_loc .. ".langs.c")
-require(lsp_loc .. ".langs.ltex")
+require("safdar.lsp.langs.sumneko_lua")
+require("safdar.lsp.langs.jsonls")
+require("safdar.lsp.langs.c")
+require("safdar.lsp.langs.ltex")
 require("lspconfig").clangd.setup({ capabilities = capabilities })

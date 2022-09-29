@@ -7,6 +7,7 @@ local lush = require("lush")
 ---@diagnostic disable: undefined-global
 local theme = lush(function()
 	return {
+
         -- nvim looks
         --{{{
 		Comment({ fg = colors.color_9 }), -- any comment
@@ -44,8 +45,8 @@ local theme = lush(function()
 		Normal({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- normal text
 		NormalFloat({ fg = colors.string, bg = colors.bg }), -- Normal text in floating windows.
 		-- NormalNC({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- normal text in non-current windows
-		Pmenu({ fg = colors.color_25, bg = colors.color_2 }), -- Popup menu: normal item.
-		PmenuSel({ fg = colors.color_1, bg = colors.color_17 }), -- Popup menu: selected item.
+		Pmenu({ fg = colors.color_25, bg = colors.bg }), -- Popup menu: normal item.
+		PmenuSel({ bg = colors.color_2 }), -- Popup menu: selected item.
 		PmenuSbar({ bg = colors.color_8 }), -- Popup menu: scrollbar.
 		PmenuThumb({ bg = colors.color_21 }), -- Popup menu: Thumb of the scrollbar.
 		Question({ fg = colors.color_20 }), -- |hit-enter| prompt and yes/no questions

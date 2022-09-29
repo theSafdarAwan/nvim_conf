@@ -1,4 +1,4 @@
-local colors = require(require("genearl").lush_theme_loc() .. ".dracula-pallete")
+local colors = require("lua.safdar.lush_theme.dracula-pallete")
 -- vim.cmd [[packadd nvim-treesitter]]
 
 require("nvim-treesitter.configs").setup({
