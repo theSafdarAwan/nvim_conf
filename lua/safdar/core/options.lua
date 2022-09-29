@@ -24,7 +24,10 @@ opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
 -- folding
 opt.foldmethod="marker"
-opt.foldmarker="{{{,}}}"
+-- NOTE: i don't use the default {{{,}}} characters because some people dont like
+-- folds and vim(nvim) by default will fold the folds without user setting so
+-- to avoid that kind of behaviour i changed the folding symbols.
+opt.foldmarker=">>>,<<<"
 
 -- finding files - search down into subfolders
 opt.path:append({ "**" })
