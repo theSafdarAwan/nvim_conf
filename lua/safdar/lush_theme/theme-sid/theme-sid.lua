@@ -32,7 +32,7 @@ local theme = lush(function()
 		Folded({ fg = colors.color_8, bg = colors.color_1 }), -- line used for closed folds
 		FoldColumn({ fg = colors.color_8, bg = colors.color_1 }), -- 'foldcolumn'
 		SignColumn({ bg = colors.bg }), -- column where |signs| are displayed
-		IncSearch({ fg = colors.color_14, bg = colors.color_4 }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+		IncSearch({ bg = colors.color_4 }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		-- Substitute({ fg = colors.light_gray, bg = colors.search_orange }), -- |:substitute| replacement text highlighting
 		LineNr({ fg = colors.color_8 }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		CursorLineNr({ fg = colors.color_20, gui = "bold" }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
@@ -51,7 +51,7 @@ local theme = lush(function()
 		PmenuThumb({ bg = colors.color_21 }), -- Popup menu: Thumb of the scrollbar.
 		Question({ fg = colors.color_20 }), -- |hit-enter| prompt and yes/no questions
 		QuickFixLine({ bg = colors.color_5 }), -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-		Search({ fg = colors.color_18, bg = colors.color_5 }), -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+		Search({ bg = colors.color_5 }), -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
 		SpecialKey({ fg = color.color_23, gui = "bold" }), -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
 		SpellBad({ fg = colors.error_red, gui = "underline" }), -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
 		SpellCap({ fg = colors.color_18, gui = "underline" }), -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -320,8 +320,8 @@ local theme = lush(function()
 		--> Cmp
 		CmpItemAbbr({ fg = colors.color_25 }),
 		CmpItemAbbrDeprecated({ fg = colors.color_9 }),
-		CmpItemAbbrMatch({ fg = colors.color_20 }),
-		CmpItemAbbrMatchFuzzy({ fg = colors.color_22 }),
+		CmpItemAbbrMatch({ fg = colors.color_14 }),
+		CmpItemAbbrMatchFuzzy({ fg = colors.color_20 }),
 		CmpItemMenu({ fg = colors.color_8 }),
 		CmpItemKindSnippet({ fg = colors.vc_add }),
 		CmpItemKindText({ fg = colors.color_23 }),
