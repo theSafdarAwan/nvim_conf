@@ -41,8 +41,8 @@ opt.swapfile = false
 -- trick to solve the vim compatible functionality to not let backspace the file content othe then just inserted one
 -- opt.backspace = nil
 
-opt.ignorecase = true
--- opt.smartcase = true
+-- opt.ignorecase = true
+opt.smartcase = true
 opt.splitright = true
 opt.splitbelow = true
 
@@ -88,19 +88,19 @@ augroup END
 -- Help Helper Function
 vim.cmd([[
 function! HelpHelper()
-    set relativenumber
-    set number
+    setlocal relativenumber
+    setlocal number
     hi link HelpBar Normal
     hi link HelpStar Normal
     " :h conceal|conceal
-    set conceallevel=0
+    setlocal conceallevel=0
 endfunction
 ]])
 
 -- set spell for the gitcommit message's
 vim.cmd([[
-autocmd FileType gitcommit set spell
-autocmd FileType markdown set spell
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
 autocmd FileType help call HelpHelper()
 ]])
 
@@ -125,7 +125,7 @@ autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype termi
 
 -- Damian Conway
 vim.cmd([[
-    call matchadd('ColorColumn', '\%80v') 
+    autocmd BufEnter * call matchadd('ColorColumn', '\%80v') 
     " this will use the Color defined in you theme for the ColorColumn
 ]])
 
