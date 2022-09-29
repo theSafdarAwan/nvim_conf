@@ -9,7 +9,7 @@ local capabilities = require(require("genearl").lsp_loc() .. ".lsp_util").capabi
 nvim_lsp.ltex.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { "ltex-ls" },
+	cmd = { "latex" },
 	filetypes = {
 		"tex",
 	},
