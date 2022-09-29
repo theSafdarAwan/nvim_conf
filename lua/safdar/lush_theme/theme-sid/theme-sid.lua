@@ -24,7 +24,7 @@ local theme = lush(function()
 		DiffChange({ fg = colors.vc_change, bg = colors.vc_text_bg, gui = "underline" }), -- diff mode: Changed line |diff.txt|
 		DiffDelete({ fg = colors.vc_remove, bg = colors.vc_text_bg }), -- diff mode: Deleted line |diff.txt|
 		-- DiffText     { }, -- diff mode: Changed text within a changed line |diff.txt|
-		EndOfBuffer({ fg = colors.color8 }), -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
+		EndOfBuffer({ fg = colors.color_3 }), -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
 		TermCursor({ fg = colors.fg, bg = colors.fg }), -- cursor in a focused terminal
 		TermCursorNC({ fg = colors.fg, bg = colors.fg }), -- cursor in an unfocused terminal
 		ErrorMsg({ fg = colors.error_red, bg = colors.bg, gui = "bold" }), -- error messages on the command line
@@ -38,7 +38,7 @@ local theme = lush(function()
 		CursorLineNr({ fg = colors.color_20, gui = "bold" }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		MatchParen({ fg = colors.color_14, bg = colors.color_6, gui = "bold, underline" }), -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		ModeMsg({ fg = colors.fg, bg = colors.bg }), -- 'showmode' message (e.g., "-- INSERT -- ")
-		MsgArea({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- Area for messages and cmdline
+		MsgArea({ fg = colors.color_5, bg = Config.transparent_background and "NONE" or colors.bg }), -- Area for messages and cmdline
 		MsgSeparator({ fg = colors.fg, bg = colors.bg }), -- Separator for scrolled messages, `msgsep` flag of 'display'
 		MoreMsg({ fg = colors.fg, bg = colors.bg }), -- |more-prompt|
 		NonText({ fg = colors.color_9 }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.

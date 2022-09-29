@@ -41,8 +41,8 @@ opt.swapfile = false
 -- trick to solve the vim compatible functionality to not let backspace the file content othe then just inserted one
 -- opt.backspace = nil
 
--- opt.ignorecase = true
-opt.smartcase = true
+opt.ignorecase = true
+-- opt.smartcase = true
 opt.splitright = true
 opt.splitbelow = true
 
@@ -114,7 +114,7 @@ autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype termi
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+" command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 " File extension specific tabbing
 " autocmd Filetype css setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
