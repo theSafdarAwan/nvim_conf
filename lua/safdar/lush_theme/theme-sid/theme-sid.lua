@@ -48,7 +48,7 @@ local theme = lush(function()
 		Pmenu({ fg = colors.color_25, bg = colors.bg }), -- Popup menu: normal item.
 		PmenuSel({ bg = colors.color_2 }), -- Popup menu: selected item.
 		PmenuSbar({ bg = colors.color_8 }), -- Popup menu: scrollbar.
-		PmenuThumb({ bg = colors.color_21 }), -- Popup menu: Thumb of the scrollbar.
+		PmenuThumb({ bg = colors.color_20 }), -- Popup menu: Thumb of the scrollbar.
 		Question({ fg = colors.color_20 }), -- |hit-enter| prompt and yes/no questions
 		QuickFixLine({ bg = colors.color_5 }), -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
 		Search({ bg = colors.color_4 }), -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
