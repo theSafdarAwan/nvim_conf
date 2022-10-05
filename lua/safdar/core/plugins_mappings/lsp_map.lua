@@ -1,6 +1,5 @@
 local vim = vim
 local map = require(require("genearl").core_loc() .. ".utils").map
-local navic = require("nvim-navic")
 
 map("n", "<leader>lr", ":LspRestart<cr>", { noremap = true, silent = true })
 map("n", "<leader>li", ":LspInfo<cr>", { noremap = true, silent = true })
@@ -9,7 +8,6 @@ local M = {}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 M.on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end

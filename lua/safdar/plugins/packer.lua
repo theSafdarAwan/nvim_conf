@@ -187,16 +187,6 @@ packer.startup({
                 require("safdar.core.plugins_mappings.lsp-saga_map")
             end,
         })
-        use {
-            "utilyre/barbecue.nvim",
-            requires = {
-                "neovim/nvim-lspconfig",
-                "smiteshp/nvim-navic",
-            },
-            config = function ()
-                require("safdar.plugins.configs.barbecue")
-            end
-        }
         use({
             "AckslD/nvim-FeMaco.lua",
             config = function()
