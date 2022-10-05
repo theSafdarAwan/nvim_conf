@@ -57,7 +57,7 @@ opt.relativenumber = true
 opt.wildoptions = "pum"
 opt.winblend = 0
 opt.pumblend = 0
-opt.pumheight = 26
+opt.pumheight = 16
 
 -- Indenline
 opt.smartindent = true
