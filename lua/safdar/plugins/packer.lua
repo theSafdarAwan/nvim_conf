@@ -96,10 +96,7 @@ packer.startup({
         })
         use({
             "mattn/emmet-vim",
-            config = function()
-                require("safdar.plugins.configs.emmet")
-            end,
-            ft = { "html" },
+            ft = { "html", "css" },
         })
 
         -- load luasnips + cmp related in insert mode only
@@ -301,6 +298,3 @@ packer.startup({
         },
     },
 })
-
---> Reuire plugins that do not require a config|setup
-require("safdar.core.plugins_mappings.neogit_map")

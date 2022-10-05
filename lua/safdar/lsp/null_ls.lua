@@ -19,13 +19,13 @@ local sources = {
 	builtins.formatting.stylelint,
 	builtins.formatting.clang_format,
 	builtins.diagnostics.stylelint,
-	-- builtins.diagnostics.htmlhint,
+    builtins.diagnostics.chktex,
 	builtins.formatting.prettier_d_slim.with({
 		-- filetypes = { "html", "json", "css", "scss", "less", "yaml", "markdown" },
 		filetypes = { "html", "json", "yaml", "markdown" },
 	}),
 
-	builtins.code_actions.gitsigns,
+	-- builtins.code_actions.gitsigns,
 }
 null_ls.setup({
 	debug = true,
