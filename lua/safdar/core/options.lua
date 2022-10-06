@@ -23,8 +23,10 @@ opt.wrap = false
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
 -- folding
-opt.foldmethod="marker"
-opt.foldmarker="{{{,}}}"
+-- opt.foldmethod="marker"
+-- opt.foldmarker="{{{,}}}"
+vim.cmd('set foldmethod=expr')
+vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
 
 -- finding files - search down into subfolders
 opt.path:append({ "**" })
@@ -41,7 +43,7 @@ opt.swapfile = false
 -- trick to solve the vim compatible functionality to not let backspace the file content othe then just inserted one
 -- opt.backspace = nil
 
--- opt.ignorecase = true
+opt.ignorecase = true
 opt.smartcase = true
 opt.splitright = true
 opt.splitbelow = true
@@ -116,7 +118,8 @@ autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype termi
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-" command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+" command W execute 'w !sudo tee % > /dev/null ' <bar> edit!
+" cmap w!! w !sudo -S tee > /dev/null %
 
 " File extension specific tabbing
 " autocmd Filetype css setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
