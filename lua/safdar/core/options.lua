@@ -34,6 +34,7 @@ opt.path:append({ "**" })
 -- Hide the tilde singn in the blank line
 opt.fillchars = { eob = " " }
 
+opt.updatetime = 500
 opt.undofile = true
 opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
 

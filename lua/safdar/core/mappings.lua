@@ -88,10 +88,6 @@ map("n", "<leader>rp", ":resize 100<cr><c-l>", opts)
 
 -- indent the whole document
 map("n", "<leader>I", "mzggVG=`z<c-l>", opts)
---
--- toggle the relativenumber Helpful when substituting"
-map("n", "<leader>tr", ":set rnu!<cr>", opts)
-map("n", "<leader>tn", ":set nu!<cr>", opts)
 
 -- buffers mappings
 map("n", "<leader>]", ":bnext<cr>", opts)
