@@ -117,11 +117,6 @@ vim.cmd([[
 " Don't show the line numbers in terminal mode
 autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal
 
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
-" command W execute 'w !sudo tee % > /dev/null ' <bar> edit!
-" cmap w!! w !sudo -S tee > /dev/null %
-
 " File extension specific tabbing
 " autocmd Filetype css setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
