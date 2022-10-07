@@ -23,10 +23,12 @@ opt.wrap = false
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
 -- folding
--- opt.foldmethod="marker"
--- opt.foldmarker="{{{,}}}"
-vim.cmd('set foldmethod=expr')
-vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
+opt.foldmethod="marker"
+opt.foldmarker="-->,<--"
+-- vim.cmd([[
+-- set foldmethod=expr
+-- set foldexpr=nvim_treesitter#foldexpr()
+-- ]])
 
 -- finding files - search down into subfolders
 opt.path:append({ "**" })
@@ -34,8 +36,8 @@ opt.path:append({ "**" })
 -- Hide the tilde singn in the blank line
 opt.fillchars = { eob = " " }
 
-opt.updatetime = 500
 opt.undofile = true
+opt.updatetime = 500
 opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
 
 -- no swap file i use undofile
@@ -132,7 +134,7 @@ vim.cmd([[
 
 -- Colorizer plugin attach
 vim.cmd([[
-autocmd VimEnter * ColorizerAttachToBuffer
+autocmd BufEnter * ColorizerAttachToBuffer
 autocmd InsertLeave * ColorizerAttachToBuffer
 ]])
 
