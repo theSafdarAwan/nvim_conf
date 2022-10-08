@@ -68,6 +68,8 @@ local theme = lush(function()
 		WarningMsg({ fg = colors.error_red, bg = colors.color_5 }), -- warning messages
 		Whitespace({ fg = colors.color_3 }), -- "nbsp", "space", "tab" and "trail" in 'listchars'
 		WildMenu({ fg = colors.color_7, bg = colors.color_16 }), -- current match in 'wildmenu' completion
+        -- custom
+		DamianConway({ bg = colors.color_2 }), -- this is a custom highlight group
         --}}}
 
 		-- These groups are not listed as default vim groups,

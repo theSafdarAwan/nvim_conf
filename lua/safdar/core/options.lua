@@ -51,7 +51,7 @@ opt.smartcase = true
 opt.splitright = true
 opt.splitbelow = true
 
-opt.cursorline = true
+opt.cursorline = false
 
 opt.cmdheight = 1
 opt.timeoutlen = 500
@@ -77,7 +77,6 @@ opt.expandtab = true
 
 -- opt.whichwrap="<>hl"
 -- opt.autochdir = true
-opt.cursorline = true
 
 -- sets the column on the left side (or before) of the line numbers
 vim.wo.signcolumn = "yes"
@@ -126,7 +125,7 @@ autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype termi
 -- Damian Conway
 vim.cmd([[
     " this will use the Color defined in you theme for the ColorColumn
-    autocmd BufEnter * call matchadd('ColorColumn', '\%80v') 
+    autocmd BufEnter * call matchadd('DamianConway', '\%80v') 
 ]])
 
 -- Colorizer plugin attach autocmd's

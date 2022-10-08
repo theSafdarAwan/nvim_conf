@@ -7,7 +7,7 @@ packer.startup({
         use({ "wbthomason/packer.nvim" })
         -- <--
 
-        -- -->
+        -- --> Performance
         use({
             "lewis6991/impatient.nvim",
             config = function()
@@ -23,12 +23,12 @@ packer.startup({
         })
         -- <--
 
-        -- -->
+        -- --> Essential
         use({ "nvim-lua/plenary.nvim" })
         use({ "nvim-lua/popup.nvim" })
         -- <--
 
-        -- -->
+        -- --> Telescope
         use({
             "nvim-telescope/telescope.nvim",
             config = function()
@@ -43,15 +43,6 @@ packer.startup({
 
         -- --> color scheme
         use({ "rktjmp/lush.nvim" })
-        -- <--
-
-        -- -->
-        use({
-            "folke/todo-comments.nvim",
-            config = function()
-                require("safdar.plugins.configs.todo")
-            end,
-        })
         -- <--
 
         -- --> more productive
@@ -88,9 +79,6 @@ packer.startup({
                 require("safdar.plugins.configs.indentline")
             end,
         }) -- indent guides
-        -- <--
-
-        -- -->
         use({
             "feline-nvim/feline.nvim",
             config = function()
@@ -131,9 +119,6 @@ packer.startup({
             },
         })
         use({ "b0o/schemastore.nvim" })
-        -- <--
-
-        -- --> completion stuff and snippets
         use({
             "hrsh7th/nvim-cmp",
             config = function()
@@ -147,22 +132,16 @@ packer.startup({
         use({ "saadparwaiz1/cmp_luasnip" })
         use({ "L3MON4D3/LuaSnip" })
         use({ "rafamadriz/friendly-snippets" })
-        -- <--
-
-        -- -->
         use({ "tzachar/cmp-tabnine", run = "./install.sh" })
         -- <--
 
-        -- --> Lsp utils
+        -- --> Lsp utils & enhancements
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
                 require("safdar.plugins.configs.signature")
             end,
         })
-        -- <--
-
-        -- --> for lsp enhancement
         use({
             "folke/trouble.nvim",
             config = function()
@@ -211,6 +190,12 @@ packer.startup({
 
         -- --> utils
         use({
+            "folke/todo-comments.nvim",
+            config = function()
+                require("safdar.plugins.configs.todo")
+            end,
+        })
+        use({
             "windwp/nvim-autopairs",
             config = function()
                 require("nvim-autopairs").setup({
@@ -231,9 +216,6 @@ packer.startup({
         })
         use({ "tpope/vim-repeat" })
         use({ "tpope/vim-surround" })
-        -- <--
-
-        -- -->
         use({
             "numToStr/Comment.nvim",
             config = function()
@@ -281,9 +263,6 @@ packer.startup({
                 require("safdar.core.plugins_mappings.harpoon_map")
             end,
         })
-        -- <--
-
-        -- -->
         -- TODO: work on this plugin as you explore more about git
         use({
             "ThePrimeagen/git-worktree.nvim",
@@ -312,6 +291,7 @@ packer.startup({
             end,
             ft = { "markdown" },
         })
+        -- <--
     end,
     config = {
         compile_path = vim.fn.stdpath("config") .. "/lua/_packer/init.lua",

@@ -1,5 +1,5 @@
 local map = require(require("genearl").core_loc() .. ".utils").map
---> Telescope
+-- --> Telescope
 map("n", "<leader>vc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
 map("n", "<leader>tr", ":Telescope resume<CR>", { noremap = true, silent = true })
 map("n", "<leader>b", ":Telescope git_bcommits<CR>", { noremap = true, silent = true })
@@ -48,9 +48,10 @@ map(
 	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').center_list_document_symbols_find()<cr>",
 	{ noremap = true, silent = true }
 )
+-- <--
 
 
---> Telescope core mappings
+-- --> Telescope core mappings
 local M = {}
 M.mappings = function()
 	return {
@@ -66,3 +67,4 @@ M.mappings = function()
 	}
 end
 return M
+-- <--
