@@ -1,3 +1,6 @@
+-- TODO: add some autocmd or mapping so whenever you move between two files then
+-- it should add the previous file to a harpoon nav_file(4) and add the mapping
+-- of <leader>ap.
 local map = require(require("genearl").core_loc() .. ".utils").map
 -- Harpoon
 map("n", "<leader>aa", ':lua require("harpoon.mark").add_file()<CR>', { noremap = true, silent = true })
