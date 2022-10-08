@@ -5,7 +5,9 @@ packer.startup({
     function(use)
         --> Packer can manage itself
         use({ "wbthomason/packer.nvim" })
+        -- <--
 
+        -- -->
         use({
             "lewis6991/impatient.nvim",
             config = function()
@@ -19,10 +21,14 @@ packer.startup({
                 vim.g.curshold_updatime = 100
             end,
         })
+        -- <--
 
+        -- -->
         use({ "nvim-lua/plenary.nvim" })
         use({ "nvim-lua/popup.nvim" })
+        -- <--
 
+        -- -->
         use({
             "nvim-telescope/telescope.nvim",
             config = function()
@@ -33,18 +39,22 @@ packer.startup({
             "nvim-telescope/telescope-fzf-native.nvim",
             run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         })
+        -- <--
 
-        --> color scheme
+        -- --> color scheme
         use({ "rktjmp/lush.nvim" })
+        -- <--
 
+        -- -->
         use({
             "folke/todo-comments.nvim",
             config = function()
                 require("safdar.plugins.configs.todo")
             end,
         })
+        -- <--
 
-        --> more productive
+        -- --> more productive
         use({
             "kyazdani42/nvim-tree.lua",
             config = function()
@@ -52,7 +62,7 @@ packer.startup({
                 require("safdar.core.plugins_mappings.nvim-tree_map")
             end,
         })
-        --> Git stuff
+        -- Git stuff
         use({
             "lewis6991/gitsigns.nvim",
             config = function()
@@ -62,8 +72,9 @@ packer.startup({
         use({
             "TimUntersberger/neogit",
         })
+        -- <--
 
-        --> ui related stuff
+        -- --> ui related stuff
         use({
             "kyazdani42/nvim-web-devicons",
             config = function()
@@ -77,15 +88,18 @@ packer.startup({
                 require("safdar.plugins.configs.indentline")
             end,
         }) -- indent guides
+        -- <--
 
+        -- -->
         use({
             "feline-nvim/feline.nvim",
             config = function()
                 require("safdar.plugins.configs.feline")
             end,
         })
+        -- <--
 
-        -- for linting files that null_ls does not support
+        -- --> for linting files that null_ls does not support
         use({
             "dense-analysis/ale",
             config = function()
@@ -98,8 +112,9 @@ packer.startup({
             "mattn/emmet-vim",
             ft = { "html", "css" },
         })
+        -- <--
 
-        -- load luasnips + cmp related in insert mode only
+        -- --> load luasnips + cmp related in insert mode only
         use({
             "neovim/nvim-lspconfig", -- quckstart lsp conifgs
             config = function()
@@ -116,8 +131,9 @@ packer.startup({
             },
         })
         use({ "b0o/schemastore.nvim" })
+        -- <--
 
-        -- completion stuff and snippets
+        -- --> completion stuff and snippets
         use({
             "hrsh7th/nvim-cmp",
             config = function()
@@ -131,18 +147,22 @@ packer.startup({
         use({ "saadparwaiz1/cmp_luasnip" })
         use({ "L3MON4D3/LuaSnip" })
         use({ "rafamadriz/friendly-snippets" })
+        -- <--
 
+        -- -->
         use({ "tzachar/cmp-tabnine", run = "./install.sh" })
+        -- <--
 
-        --> Lsp utils
+        -- --> Lsp utils
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
                 require("safdar.plugins.configs.signature")
             end,
         })
+        -- <--
 
-        --> for lsp enhancement
+        -- --> for lsp enhancement
         use({
             "folke/trouble.nvim",
             config = function()
@@ -166,8 +186,9 @@ packer.startup({
             end,
             ft = { "markdown" },
         })
+        -- <--
 
-        -- syntax Highlighting
+        -- --> syntax Highlighting
         use({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
@@ -186,8 +207,9 @@ packer.startup({
         use({
             "p00f/nvim-ts-rainbow",
         })
+        -- <--
 
-        --> utils
+        -- --> utils
         use({
             "windwp/nvim-autopairs",
             config = function()
@@ -209,7 +231,9 @@ packer.startup({
         })
         use({ "tpope/vim-repeat" })
         use({ "tpope/vim-surround" })
+        -- <--
 
+        -- -->
         use({
             "numToStr/Comment.nvim",
             config = function()
@@ -234,8 +258,9 @@ packer.startup({
                 require("safdar.core.plugins_mappings.undotree_map")
             end,
         })
+        -- <--
 
-        --> ThePrimeagen coconut oil
+        -- --> ThePrimeagen coconut oil
         use({
             "ThePrimeagen/vim-be-good",
             config = function()
@@ -256,7 +281,9 @@ packer.startup({
                 require("safdar.core.plugins_mappings.harpoon_map")
             end,
         })
+        -- <--
 
+        -- -->
         -- TODO: work on this plugin as you explore more about git
         use({
             "ThePrimeagen/git-worktree.nvim",
@@ -271,8 +298,9 @@ packer.startup({
                 require("safdar.core.plugins_mappings.git_worktree_map")
             end,
         })
+        -- <--
 
-        -- Markdwon Plugin
+        -- --> Markdwon Plugin
         use({
             "iamcco/markdown-preview.nvim",
             run = function()

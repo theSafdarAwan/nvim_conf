@@ -112,18 +112,15 @@ autocmd FileType help call HelpHelper()
 ]])
 
 vim.cmd([[
-"=====================================================
-"                  autocmd
-"=====================================================
-
-" Don't show the line numbers in terminal mode
-autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal
-
 " File extension specific tabbing
 " autocmd Filetype css setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " Open a file from its last left off position
 " au BufReadPost * if expand('%:p') !~# 'm/.git/' && line("'"") > 1 && line("'"") <= line("$") | exe "normal! g'"" | endif 
+]])
+vim.cmd([[
+" Don't show the line numbers in terminal mode
+autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal
 ]])
 
 -- Damian Conway
@@ -132,10 +129,12 @@ vim.cmd([[
     " this will use the Color defined in you theme for the ColorColumn
 ]])
 
--- Colorizer plugin attach
+-- Colorizer plugin attach autocmd's
 vim.cmd([[
+autocmd TextChanged * ColorizerAttachToBuffer
+autocmd CursorMoved * ColorizerAttachToBuffer
 autocmd BufEnter * ColorizerAttachToBuffer
-autocmd InsertLeave * ColorizerAttachToBuffer
+autocmd InsertChange * ColorizerAttachToBuffer
 ]])
 
 -- =====================================================
