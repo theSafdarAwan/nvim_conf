@@ -125,16 +125,15 @@ autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype termi
 
 -- Damian Conway
 vim.cmd([[
-    autocmd BufEnter * call matchadd('ColorColumn', '\%80v') 
     " this will use the Color defined in you theme for the ColorColumn
+    autocmd BufEnter * call matchadd('ColorColumn', '\%80v') 
 ]])
 
 -- Colorizer plugin attach autocmd's
 vim.cmd([[
-autocmd TextChanged * ColorizerAttachToBuffer
-autocmd CursorMoved * ColorizerAttachToBuffer
 autocmd BufEnter * ColorizerAttachToBuffer
-autocmd InsertChange * ColorizerAttachToBuffer
+autocmd InsertLeave * ColorizerAttachToBuffer
+autocmd CursorMoved * ColorizerAttachToBuffer
 ]])
 
 -- =====================================================
