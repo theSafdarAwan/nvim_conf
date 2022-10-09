@@ -3,11 +3,11 @@ local packer = require("packer")
 require("safdar.core.plugins_mappings.packer_map")
 packer.startup({
     function(use)
-        --> Packer can manage itself
+        --  ++> Packer can manage itself
         use({ "wbthomason/packer.nvim" })
-        -- <--
+        -- <++
 
-        -- --> Performance
+        -- ++> Performance
         use({
             "lewis6991/impatient.nvim",
             config = function()
@@ -21,14 +21,14 @@ packer.startup({
                 vim.g.curshold_updatime = 100
             end,
         })
-        -- <--
+        -- <++
 
-        -- --> Essential
+        -- ++> Essential
         use({ "nvim-lua/plenary.nvim" })
         use({ "nvim-lua/popup.nvim" })
-        -- <--
+        -- <++
 
-        -- --> Telescope
+        -- ++> Telescope
         use({
             "nvim-telescope/telescope.nvim",
             config = function()
@@ -39,13 +39,13 @@ packer.startup({
             "nvim-telescope/telescope-fzf-native.nvim",
             run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         })
-        -- <--
+        -- <++
 
-        -- --> color scheme
+        -- ++> color scheme
         use({ "rktjmp/lush.nvim" })
-        -- <--
+        -- <++
 
-        -- --> more productive
+        -- ++> more productive
         use({
             "kyazdani42/nvim-tree.lua",
             config = function()
@@ -63,9 +63,9 @@ packer.startup({
         use({
             "TimUntersberger/neogit",
         })
-        -- <--
+        -- <++
 
-        -- --> ui related stuff
+        -- ++> ui related stuff
         use({
             "kyazdani42/nvim-web-devicons",
             config = function()
@@ -85,9 +85,9 @@ packer.startup({
                 require("safdar.plugins.configs.feline")
             end,
         })
-        -- <--
+        -- <++
 
-        -- --> for linting files that null_ls does not support
+        -- ++> for linting files that null_ls does not support
         use({
             "dense-analysis/ale",
             config = function()
@@ -100,9 +100,9 @@ packer.startup({
             "mattn/emmet-vim",
             ft = { "html", "css" },
         })
-        -- <--
+        -- <++
 
-        -- --> load luasnips + cmp related in insert mode only
+        -- ++> load luasnips + cmp related in insert mode only
         use({
             "neovim/nvim-lspconfig", -- quckstart lsp conifgs
             config = function()
@@ -133,9 +133,9 @@ packer.startup({
         use({ "L3MON4D3/LuaSnip" })
         use({ "rafamadriz/friendly-snippets" })
         use({ "tzachar/cmp-tabnine", run = "./install.sh" })
-        -- <--
+        -- <++
 
-        -- --> Lsp utils & enhancements
+        -- ++> Lsp utils & enhancements
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
@@ -165,9 +165,9 @@ packer.startup({
             end,
             ft = { "markdown" },
         })
-        -- <--
+        -- <++
 
-        -- --> syntax Highlighting
+        -- ++> syntax Highlighting
         use({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
@@ -186,9 +186,9 @@ packer.startup({
         use({
             "p00f/nvim-ts-rainbow",
         })
-        -- <--
+        -- <++
 
-        -- --> utils
+        -- ++> utils
         use({
             "folke/todo-comments.nvim",
             config = function()
@@ -240,9 +240,9 @@ packer.startup({
                 require("safdar.core.plugins_mappings.undotree_map")
             end,
         })
-        -- <--
+        -- <++
 
-        -- --> ThePrimeagen coconut oil
+        -- ++> ThePrimeagen coconut oil
         use({
             "ThePrimeagen/vim-be-good",
             config = function()
@@ -277,9 +277,9 @@ packer.startup({
                 require("safdar.core.plugins_mappings.git_worktree_map")
             end,
         })
-        -- <--
+        -- <++
 
-        -- --> Markdwon Plugin
+        -- ++> Markdwon Plugin
         use({
             "iamcco/markdown-preview.nvim",
             run = function()
@@ -291,7 +291,7 @@ packer.startup({
             end,
             ft = { "markdown" },
         })
-        -- <--
+        -- <++
     end,
     config = {
         compile_path = vim.fn.stdpath("config") .. "/lua/_packer/init.lua",
