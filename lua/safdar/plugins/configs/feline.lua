@@ -155,7 +155,16 @@ components.active[1][2] = {
 
 components.active[1][3] = {
 	provider = function()
-		local filename = vim.fn.expand("%:t")
+		local origFilename = vim.fn.expand("%:t")
+        local function splitLongString(originalNameString, maxLineLength)
+            local length = #originalNameString
+            if length > maxLineLength then
+                return ""
+            else
+                return originalNameString
+            end
+        end
+        local filename = splitLongString(origFilename, 15)
 		local extension = vim.fn.expand("%:e")
 		local icon = require("nvim-web-devicons").get_icon(filename, extension)
 		if icon == nil then
