@@ -7,4 +7,4 @@ map("n", "<leader>sl", ":Lspsaga show_line_diagnostics<CR>", opts)
 -- cursor word definition and reference
 map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
 -- rename
-map("n", "rn", ":Lspsaga rename<CR>", opts)
+map("n", "<leader>rn", ":Lspsaga rename<CR>", opts)
