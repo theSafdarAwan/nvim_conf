@@ -279,7 +279,29 @@ packer.startup({
         })
         -- <++
 
-        -- ++> Markdwon Plugin
+        -- ++> Note Takign Stuff Stuff
+        -- norg
+        use {
+            "nvim-neorg/neorg",
+            run = ":Neorg sync-parsers", -- This is the important bit!
+            ft = "norg",
+            config = function()
+                require("neorg").setup {
+                    load = {
+                        ["core.defaults"] = {},
+                        -- ["core.gtd.base"] = {},
+                        -- ["core.norg.completion"] = {},
+                        -- ["core.norg.concealer"] = {},
+                        -- ["core.norg.dirname"] = {},
+                        -- ["core.norg.journal"] = {},
+                        -- ["core.norg.qol.toc"] = {},
+                        -- ["core.presenter"] = {},
+                        ["core.integrations.nvim-cmp"] = {},
+                    }
+                }
+            end,
+        }
+        -- Markdwon Plugin
         use({
             "iamcco/markdown-preview.nvim",
             run = function()
