@@ -279,7 +279,17 @@ packer.startup({
         })
         -- <++
 
-        -- ++> Markdwon Plugin
+        -- ++> Note Takign Stuff Stuff
+        -- norg
+        use {
+            "nvim-neorg/neorg",
+            run = ":Neorg sync-parsers", -- This is the important bit!
+            ft = "norg",
+            config = function()
+                require("safdar.plugins.configs.neorg")
+            end,
+        }
+        -- Markdwon Plugin
         use({
             "iamcco/markdown-preview.nvim",
             run = function()
