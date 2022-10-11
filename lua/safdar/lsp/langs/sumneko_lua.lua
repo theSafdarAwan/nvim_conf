@@ -5,7 +5,7 @@ local on_attach = require(require("genearl").core_loc() .. ".plugins_mappings.ls
 --=======================================================
 --                      lua server config
 --=======================================================
-local sumneko_root_path = "/home/safdarawan/safdar-local/lua-language-server"
+local sumneko_root_path = "/home/safdar/safdar-local/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
 local runtime_path = vim.split(package.path, ";")

@@ -1,13 +1,11 @@
 require("neorg").setup({
-	load = {
-		["core.defaults"] = {},
-		-- ["core.gtd.base"] = {},
-		-- ["core.norg.completion"] = {},
-		-- ["core.norg.concealer"] = {},
-		-- ["core.norg.dirname"] = {},
-		-- ["core.norg.journal"] = {},
-		-- ["core.norg.qol.toc"] = {},
-		-- ["core.presenter"] = {},
-		["core.integrations.nvim-cmp"] = {},
-	},
+    load = {
+        ["core.defaults"] = {},
+        ["core.norg.esupports.metagen"] = {
+            config = {
+                type = "auto",
+            },
+        },
+        ["core.integrations.nvim-cmp"] = {},
+    },
 })
