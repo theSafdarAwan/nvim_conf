@@ -42,7 +42,6 @@ packer.startup({
         -- <++
 
         -- ++> color scheme
-        use({ "rktjmp/lush.nvim" })
         -- <++
 
         -- ++> more productive
