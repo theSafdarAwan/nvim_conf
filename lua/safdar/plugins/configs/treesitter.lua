@@ -1,4 +1,4 @@
-local colors = require("after.plugin.dracula-refined.dracula-pallete")
+local colors = require("safdar.plugins.personal.fused-nvim.pallete")
 local treesitter_maps = require("safdar.core.plugins_mappings.treesitter_map").treesitter_maps
 -- vim.cmd [[packadd nvim-treesitter]]
 

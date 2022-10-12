@@ -5,6 +5,14 @@ local expr = { noremap = true, silent = true, expr = true }
 --                            Mappings
 -- =========================================================================
 
+-- ++> Remove mappings
+-- Remove the help mappings
+map("n", "<F1>", "<Nop>", opts)
+map("t", "<F1>", "", opts)
+map("i", "<F1>", "", opts)
+map("v", "<F1>", "<Nop>", opts)
+-- <++
+
 -- Center the next searched item
 map("n", "n", "nzz", opts)
 map("n", "N", "Nzz", opts)
