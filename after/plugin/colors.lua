@@ -1,5 +1,6 @@
 local vim = vim
 vim.g.safdar_colorscheme = "dracula-sid"
+local colors = require("safdar.lush_theme.dracula-pallete")
 
 function ColorMyPencils()
     vim.g.gruvbox_contrast_dark = "hard"
@@ -20,7 +21,7 @@ function ColorMyPencils()
 
     hl("ColorColumn", {
         ctermbg = 0,
-        bg = "#555555",
+        bg = colors.color_5,
     })
 
     hl("guibg", {
@@ -29,6 +30,10 @@ function ColorMyPencils()
 
     hl("Normal", {
         bg = "none"
+    })
+
+    hl("FloatBorder", {
+        fg = colors.color_2
     })
 
     -- hl("LineNr", {

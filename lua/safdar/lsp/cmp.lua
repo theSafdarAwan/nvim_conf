@@ -1,6 +1,7 @@
 -- luasnip setup
 local luasnip = require("luasnip")
 local border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+-- local border = { " ", " ", " ", " ", " ", " ", " ", " " }
 -- nvim-cmp setup
 local cmp = require("cmp")
 cmp.setup({
@@ -14,11 +15,13 @@ cmp.setup({
             border = border,
             max_width = 80,
             max_hight = 30,
+            winhighlight = "Normal:Pmenu,FloatBorder:TelescopeBorder,CursorLine:PmenuSel,Search:None",
         },
         completion = {
             border = border,
             col_offset = 30,
             side_padding = 0,
+            winhighlight = 'FloatBorder:TelescopeBorder',
             cmp.config.window.bordered(),
         },
     },
@@ -45,8 +48,8 @@ cmp.setup({
     mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-2),
+        ["<C-d>"] = cmp.mapping.scroll_docs(2),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-x>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({

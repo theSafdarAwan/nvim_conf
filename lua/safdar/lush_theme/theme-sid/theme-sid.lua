@@ -44,6 +44,7 @@ local theme = lush(function()
         NonText({ fg = colors.color_9 }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
         Normal({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- normal text
         NormalFloat({ fg = colors.string, bg = colors.bg }), -- Normal text in floating windows.
+        NormalBorder({ fg = colors.string, bg = colors.bg }), -- Normal text in floating windows.
         -- NormalNC({ fg = colors.fg, bg = Config.transparent_background and "NONE" or colors.bg }), -- normal text in non-current windows
         Pmenu({ fg = colors.color_25, bg = colors.bg }), -- Popup menu: normal item.
         PmenuSel({ bg = colors.color_2 }), -- Popup menu: selected item.
@@ -327,6 +328,7 @@ local theme = lush(function()
         CmpItemMenu({ fg = colors.color_8 }),
         CmpItemKindSnippet({ fg = colors.vc_add }),
         CmpItemKindText({ fg = colors.color_23 }),
+        FloatBorder({ fg = colors.error_red }),
         -- CmpItemKind({ fg = colors.color_22 }),
         -- <++
     }

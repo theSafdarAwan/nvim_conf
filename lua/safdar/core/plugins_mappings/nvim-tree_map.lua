@@ -1,5 +1,5 @@
 local map = require(require("genearl").core_loc() .. ".utils").map
-map("n", "<leader>vet", ":NvimTreeToggle<cr>", { noremap = true, silent = true })
+map("n", "\\t", ":NvimTreeToggle<cr>", { noremap = true, silent = true })
 
 local M = {}
 M.nvim_tree_core_maps = {
