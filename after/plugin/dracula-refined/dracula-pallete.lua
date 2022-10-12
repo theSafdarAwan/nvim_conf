@@ -3,6 +3,8 @@ local colors = {
 	bg = "#1C1D26",
 	fg = "#d3f1f0",
 
+    transparent = false,
+
 	string_color = "#8991ba",
 
 	color_1 = "#232531",

@@ -1,8 +1,6 @@
 -- luasnip setup
 local luasnip = require("luasnip")
 local border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
--- local border = { " ", " ", " ", " ", " ", " ", " ", " " }
--- nvim-cmp setup
 local cmp = require("cmp")
 cmp.setup({
     snippet = {
@@ -15,14 +13,13 @@ cmp.setup({
             border = border,
             max_width = 80,
             max_hight = 30,
-            winhighlight = "Normal:Pmenu,FloatBorder:TelescopeBorder,CursorLine:PmenuSel,Search:None",
+            winhighlight = "FloatBorder:TelescopeBorder",
         },
         completion = {
             border = border,
             col_offset = 30,
             side_padding = 0,
             winhighlight = 'FloatBorder:TelescopeBorder',
-            cmp.config.window.bordered(),
         },
     },
     formatting = {
