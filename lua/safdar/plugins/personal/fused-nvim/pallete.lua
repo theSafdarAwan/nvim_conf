@@ -19,6 +19,7 @@ local colors = {
 	color_11 = "#343642",
 	color_12 = "#2f313d",
 	color_13 = "#373844",
+    color_14 = "#bf68d9",
 	color_14_one = "#98C379",
 	color_14_drac = "#71f094",
 	color_15 = "#b389ef",
