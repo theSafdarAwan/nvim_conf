@@ -168,18 +168,20 @@ function FusedNvim()
     hl("LspDiagnosticsSignHint", { link = "LspDiagnosticsDefaultHint" }) -- Used for "Hint" signs in sign column
     --
     -- LspCodeLens                          { }, -- Used to color the virtual text of the codelens
-    --
+    -- <++
+
     -- These groups are for the neovim tree-sitter highlights.
     -- As of writing, tree-sitter support is a WIP, group names may change.
     -- By default, most of these groups link to an appropriate Vim group,
     -- TSError -> Error for example, so you do not have to define these unless
     -- you explicitly want to support Treesitter's improved syntax awareness.
-    --
+    -- (TreeSitter)
+    -- ++>
     hl("TSAnnotation", { fg = Colors.color_15 }) -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
     hl("TSAttribute", { fg = Colors.color_21 }) -- (unstable) TODO: docs
     hl("TSBoolean", { fg = Colors.color_20 }) -- For booleans.
     hl("TSCharacter", { fg = Colors.color_15 }) -- For characters.
-    hl("TSComment", { fg = Colors.color_5 }) -- For comment blocks.
+    hl("TSComment", { fg = Colors.color_5, italic = true }) -- For comment blocks.
     hl("TSConstructor", { fg = Colors.color_18 }) -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
     hl("TSConditional", { fg = Colors.color_20 }) -- For keywords related to conditionnals.
     hl("TSConstant", { fg = Colors.color_17 }) -- For constants
@@ -239,7 +241,7 @@ function FusedNvim()
 
     --> (Telescope)
     -- ++>
-    hl("TelescopeSelection", { bg = Colors.color_2, bold = true })
+    hl("TelescopeSelection", { bg = Colors.color_2 })
     hl("TelescopeSelectionCaret", { fg = Colors.color_20 })
     hl("TelescopeMultiSelection", { fg = Colors.color_8 })
     hl("TelescopeMatching", { fg = Colors.color_14_drac })
@@ -352,6 +354,12 @@ function FusedNvim()
     hl("IndentBlanklineContextChar", { fg = Colors.color_5 })
     hl("IndentBlanklineContextSpaceChar", { fg = Colors.error_red })
     hl("IndentBlanklineContextStart", { fg = Colors.error_red })
+    -- <++
+
+    --> (Neorg)
+    -- ++>
+    hl("@neorg.markup.spoiler", { link = "TSError" })
+    hl("@neorg.quotes.1.content", { bg = Colors.color_1, italic = true })
     -- <++
 end
 

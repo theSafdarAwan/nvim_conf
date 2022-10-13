@@ -162,7 +162,7 @@ packer.startup({
                 require("femaco").setup()
                 require("safdar.core.plugins_mappings.FeMaco_map")
             end,
-            ft = { "markdown" },
+            ft = { "markdown", "norg" },
         })
         -- <++
 
