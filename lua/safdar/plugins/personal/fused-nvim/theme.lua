@@ -359,7 +359,14 @@ function FusedNvim()
     --> (Neorg)
     -- ++>
     hl("@neorg.markup.spoiler", { link = "TSError" })
-    hl("@neorg.quotes.1.content", { bg = Colors.color_1, italic = true })
+    local neorg_quotes = { bg = Colors.color_1, italic = true }
+    hl("@neorg.quotes.1.content", neorg_quotes)
+    hl("@neorg.quotes.2.content", neorg_quotes)
+    hl("@neorg.quotes.3.content", neorg_quotes)
+    hl("@neorg.quotes.4.content", neorg_quotes)
+    hl("@neorg.quotes.5.content", neorg_quotes)
+    hl("@neorg.quotes.6.content", neorg_quotes)
+    hl("@neorg.quotes.7.content", neorg_quotes)
     -- <++
 end
 

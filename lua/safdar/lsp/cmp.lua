@@ -19,9 +19,10 @@ cmp.setup({
             border = border,
             col_offset = 30,
             side_padding = 0,
-            winhighlight = 'FloatBorder:TelescopeBorder',
+            winhighlight = "FloatBorder:TelescopeBorder",
         },
     },
+    experimental = { ghost_text = true },
     formatting = {
         format = function(entry, vim_item)
             -- load lspkind icons
