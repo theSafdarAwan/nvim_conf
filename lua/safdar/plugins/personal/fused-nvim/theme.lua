@@ -190,7 +190,7 @@ function FusedNvim()
     hl("TSField", { fg = Colors.color_21 }) -- For fields.
     hl("TSFloat", { fg = Colors.color_20 }) -- For floats.
     hl("TSFunction", { fg = Colors.color_16 }) -- For function (calls and definitions).
-    hl("TSFuncBuiltin", { fg = Colors.color_14_one }) -- For builtin functions: `table.insert` in Lua.
+    hl("TSFuncBuiltin", { fg = Colors.color_14 }) -- For builtin functions: `table.insert` in Lua.
     hl("TSFuncMacro", { fg = Colors.color_27 }) -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
     hl("TSInclude", { fg = Colors.color_14_drac }) -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
     hl("TSKeyword", { fg = Colors.color_24 }) -- For keywords that don't fall in previous categories.
