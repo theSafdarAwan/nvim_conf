@@ -6,7 +6,9 @@ local on_attach = require(require("genearl").lsp_loc() .. ".lsp_util").on_attach
 local null_ls = require("null-ls")
 local builtins = null_ls.builtins
 local sources = {
-	builtins.formatting.stylua,
+	builtins.formatting.stylua.with({
+		extra_args = { "--config-path", vim.fn.expand("~/.config/stylua.toml") },
+	}),
 	builtins.diagnostics.luacheck,
 	builtins.formatting.black.with({ extra_args = { "--fast" } }),
 	builtins.diagnostics.flake8,
@@ -19,7 +21,7 @@ local sources = {
 	builtins.formatting.stylelint,
 	builtins.formatting.clang_format,
 	builtins.diagnostics.stylelint,
-    builtins.diagnostics.chktex,
+	builtins.diagnostics.chktex,
 	builtins.formatting.prettier_d_slim.with({
 		-- filetypes = { "html", "json", "css", "scss", "less", "yaml", "markdown" },
 		filetypes = { "html", "json", "yaml", "markdown" },

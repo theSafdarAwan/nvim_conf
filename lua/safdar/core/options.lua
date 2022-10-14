@@ -4,6 +4,9 @@ local g = vim.g
 
 g.mapleader = " "
 
+-- disable the default filetype detenction
+g.did_load_filetypes = 1
+
 -- enable mouse
 -- opt.mouse = "a"
 -- disable mouse
@@ -42,9 +45,9 @@ opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
 
 -- no swap file i use undofile
 opt.swapfile = false
-
--- trick to solve the vim compatible functionality to not let backspace the file content othe then just inserted one
--- opt.backspace = nil
+-- trick to solve the vim compatible functionality to not let backspace the file
+-- content othe then just inserted one
+opt.backspace = nil
 
 opt.ignorecase = true
 opt.smartcase = true
@@ -111,10 +114,8 @@ autocmd FileType help call HelpHelper()
 ]])
 
 vim.cmd([[
-" File extension specific tabbing
-" autocmd Filetype css setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-
-" Open a file from its last left off position
+" Open a file from its last left off positions
+" TODO: what is wrong with this line of code
 " au BufReadPost * if expand('%:p') !~# 'm/.git/' && line("'"") > 1 && line("'"") <= line("$") | exe "normal! g'"" | endif 
 ]])
 vim.cmd([[

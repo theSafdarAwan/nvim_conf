@@ -155,7 +155,7 @@ components.active[1][2] = {
 
 components.active[1][3] = {
 	provider = function()
-		local origFilename = vim.fn.expand("%:t")
+		local origFilename = vim.fn.expand("%:p:t:r")
         local function splitLongString(originalNameString, maxLineLength)
             local length = #originalNameString
             if length > maxLineLength then

@@ -194,7 +194,7 @@ function FusedNvim()
     hl("TSFunction", { fg = Colors.color_16 }) -- For function (calls and definitions).
     hl("TSFuncBuiltin", { fg = Colors.color_14_one }) -- For builtin functions: `table.insert` in Lua.
     hl("TSFuncMacro", { fg = Colors.color_27 }) -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-    hl("TSInclude", { fg = Colors.color_14_drac }) -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+    hl("TSInclude", { fg = Colors.color_14_drac, italic = true }) -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
     hl("TSKeyword", { fg = Colors.color_24 }) -- For keywords that don't fall in previous categories.
     hl("TSKeywordFunction", { fg = Colors.color_22_one, bold = true }) -- For keywords used to define a fuction.
     hl("TSKeywordOperator", { fg = Colors.color_24 }) -- For keywords used to define a fuction.
@@ -233,7 +233,7 @@ function FusedNvim()
     hl("TSURI", { fg = Colors.color_28, underline = true }) -- Any URI like a link or email.
     -- <++
 
-    --> CSS
+    --> (CSS)
     -- ++>
     hl("cssTsProperty", { fg = Colors.color_27 })
     hl("cssTsOperator", { fg = Colors.color_14_drac })

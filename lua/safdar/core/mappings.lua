@@ -55,7 +55,7 @@ map("n", "j", [[(v:count > 5 ? "m'" . v:count: "") . 'j']], expr)
 map("v", "<C-j>", ":m '>+1<cr>gv=gv", opts)
 map("v", "<C-k>", ":m '<-2<cr>gv=gv", opts)
 
-map("n", "<leader>R", ":set relativenumber! | redraw<cr>", opts)
+map("n", "<leader>R", ":set modifiable|set readonly!<cr>", opts)
 
 -- " moving the the logng lines containing files in left and right
 map("n", "<A-l>", "zl", opts)
@@ -129,7 +129,9 @@ map("n", "<leader>sd", "zw", opts)
 map("n", "<leader>s?", "z=", opts)
 
 -- To get out of the insert mode
-map("i", "<c-[>", "<c-\\><c-n>", opts)
+map("i", "<C-[>", "<c-\\><c-n>", opts)
+-- Create a new line with no indentation
+map("i", "<C-j>", "<Enter><ESC>i", opts)
 
 -- Terminal"
 map("t", "<c-[>", "<c-\\><c-n>", opts)

@@ -21,6 +21,11 @@ packer.startup({
                 vim.g.curshold_updatime = 100
             end,
         })
+        use({
+            "nathom/filetype.nvim",
+            config = function()
+                require("safdar.plugins.configs.filetype")
+            end})
         -- <++
 
         -- ++> Essential
@@ -280,14 +285,14 @@ packer.startup({
 
         -- ++> Note Takign Stuff Stuff
         -- norg
-        use {
+        use({
             "nvim-neorg/neorg",
             run = ":Neorg sync-parsers", -- This is the important bit!
             ft = "norg",
             config = function()
                 require("safdar.plugins.configs.neorg")
             end,
-        }
+        })
         -- Markdwon Plugin
         use({
             "iamcco/markdown-preview.nvim",
