@@ -4,6 +4,3 @@ require("harpoon").setup({
 vim.cmd([[
     autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
 ]])
-
--- Don't show any numbers inside terminals
-vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]

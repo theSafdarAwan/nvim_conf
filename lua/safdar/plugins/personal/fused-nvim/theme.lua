@@ -368,6 +368,8 @@ function FusedNvim()
     hl("@neorg.quotes.6.content", neorg_quotes)
     hl("@neorg.quotes.7.content", neorg_quotes)
     -- <++
+
+    hl("HarpoonBorder", { link = "TelescopeBorder" } )
 end
 
 FusedNvim()
