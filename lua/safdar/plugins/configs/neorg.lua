@@ -44,7 +44,7 @@ require("neorg").setup({
         },
         ["core.norg.journal"] = {
             config = {
-                workspace = "Journal", -- TODO: add your journal workspace
+                workspace = "Journal",
                 journal_folder = "Personal-Journal",
                 strategy = "nested", -- flat or nested
             },
@@ -65,10 +65,33 @@ require("neorg").setup({
             config = {
                 workspaces = {
                     Journal = "~/safdar-local/NOTES/Journal/",
+                    todo = "~/safdar-local/NOTES/Journal/TODO/",
                 },
                 autochdir = true, -- Automatically change the directory to the current workspace's root every time
                 index = "index.norg", -- The name of the main (root) .norg file
             },
         },
+        ["core.gtd.base"] = {
+            config = {
+                workspace = "todo",
+                default_lists = {
+                    inbox = "inbox.norg",
+                    asp = "asp.norg",
+                    IT = "todo-IT.norg",
+                    Health = "todo-Health.norg",
+                    Reading = "todo-Reading.norg",
+                    others = "todo-others.norg",
+                },
+                syntax = {
+                    context = "#contexts",
+                    start = "#time.start",
+                    due = "#time.due",
+                    waiting = "#waiting.for",
+                },
+                custom_tag_completion =  true,
+
+            }
+        },
+        ["core.norg.manoeuvre"] = {}
     },
 })
