@@ -349,11 +349,11 @@ function FusedNvim()
     --> (IndentBlankline)
     -- ++>
     hl("IndentBlanklineChar", { fg = Colors.color_2 })
-    hl("IndentBlanklineSpaceChar", { fg = Colors.error_red })
-    hl("IndentBlanklineSpaceCharBlankline", { fg = Colors.error_red })
+    hl("IndentBlanklineSpaceChar", { fg = Colors.color_2 })
+    hl("IndentBlanklineSpaceCharBlankline", { fg = Colors.color_2 })
     hl("IndentBlanklineContextChar", { fg = Colors.color_5 })
-    hl("IndentBlanklineContextSpaceChar", { fg = Colors.error_red })
-    hl("IndentBlanklineContextStart", { fg = Colors.error_red })
+    hl("IndentBlanklineContextSpaceChar", { fg = Colors.color_2 })
+    hl("IndentBlanklineContextStart", { fg = Colors.color_2 })
     -- <++
 
     --> (Neorg)
@@ -367,9 +367,13 @@ function FusedNvim()
     hl("@neorg.quotes.5.content", neorg_quotes)
     hl("@neorg.quotes.6.content", neorg_quotes)
     hl("@neorg.quotes.7.content", neorg_quotes)
+    hl("@neorg.codke", neorg_quotes)
     -- <++
 
+    --> (Harpoon)
+    -- ++>
     hl("HarpoonBorder", { link = "TelescopeBorder" } )
+    -- <++
 end
 
 FusedNvim()

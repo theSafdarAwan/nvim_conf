@@ -23,9 +23,9 @@ require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
         ---@diagnostic disable-next-line: unused-local
-		disable = function(filetype, bufnr)
-			return vim.api.nvim_buf_line_count(bufnr) > 1500
-		end,
+		-- disable = function(filetype, bufnr)
+		-- 	return vim.api.nvim_buf_line_count(bufnr) > 1500
+		-- end,
 	},
 	indent = {
 		enable = true,
