@@ -76,7 +76,7 @@ require("neorg").setup({
                 workspace = "todo",
                 default_lists = {
                     inbox = "inbox.norg",
-                    asp = "asp.norg",
+                    asap = "asap.norg",
                     IT = "todo-IT.norg",
                     Health = "todo-Health.norg",
                     Reading = "todo-Reading.norg",
