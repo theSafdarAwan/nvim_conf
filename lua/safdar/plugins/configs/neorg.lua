@@ -60,7 +60,6 @@ require("neorg").setup({
                 close_split_on_jump = true,
                 toc_split_placement = "right",
             }
-        }
-
+        },
     },
 })

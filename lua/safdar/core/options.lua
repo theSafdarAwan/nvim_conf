@@ -1,6 +1,8 @@
 local vim = vim
 local opt = vim.opt
+local optl = vim.opt_local
 local g = vim.g
+local api = vim.api
 
 g.mapleader = " "
 
@@ -14,6 +16,7 @@ opt.mouse = ""
 
 -- Spell Checking lang
 opt.spelllang = "en,cjk"
+optl.spelloptions:append("noplainbuffer,camel")
 
 -- set the terminal
 opt.shell = "/bin/zsh"
@@ -26,8 +29,8 @@ opt.wrap = false
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
 -- folding
-opt.foldmethod="marker"
-opt.foldmarker="++>,<++"
+opt.foldmethod = "marker"
+opt.foldmarker = "++>,<++"
 -- vim.cmd([[
 -- set foldmethod=expr
 -- set foldexpr=nvim_treesitter#foldexpr()
@@ -84,82 +87,88 @@ opt.expandtab = true
 -- sets the column on the left side (or before) of the line numbers
 vim.wo.signcolumn = "yes"
 
-vim.cmd([[
-" Highlight The yanked text
-augroup highlight_yank
-autocmd!
-autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
-augroup END
-]])
+-- Highlight The yanked text
+function HighlightOnYank()
+	require("vim.highlight").on_yank({ timeout = 40 })
+end
+api.nvim_create_autocmd({ "TextYankPost" }, {
+	command = "lua HighlightOnYank()",
+})
 
 -- Help Helper Function
-vim.cmd([[
-function! HelpHelper()
-    setlocal relativenumber
-    setlocal number
-    " :h conceal|conceal
-    setlocal conceallevel=0
-    hi link HelpBar Normal
-    hi link HelpStar Normal
-endfunction
-]])
+function HelpHelper()
+	optl.relativenumber = true
+	optl.number = true
+	optl.conceallevel = 0
 
--- set spell for the gitcommit message's and other filetypes
-vim.cmd([[
-autocmd FileType gitcommit setlocal spell
-autocmd FileType NeogitCommitMessage setlocal spell
-autocmd FileType markdown setlocal spell
-autocmd FileType tex setlocal spell
-autocmd FileType help call HelpHelper()
-]])
+	local hl = function(highlightGroup, opts)
+		api.nvim_set_hl(0, highlightGroup, opts)
+	end
+	hl("HelpBar", { link = "Normal" })
+	hl("HelpStar", { link = "Normal" })
+end
+
+-- set spell forthe gitcommit messages and other filetypes
+api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex" },
+	command = "setlocal spell",
+})
+api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "help" },
+	command = "lua HelpHelper()",
+})
 
 vim.cmd([[
 " Open a file from its last left off positions
 " TODO: what is wrong with this line of code
 " au BufReadPost * if expand('%:p') !~# 'm/.git/' && line("'"") > 1 && line("'"") <= line("$") | exe "normal! g'"" | endif 
 ]])
-vim.cmd([[
-" Don't show the line numbers in terminal mode
-autocmd TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal
-]])
+
+-- Don't show the line numbers in terminal mode
+function TerminalMode()
+	optl.number = false
+	optl.relativenumber = false
+	opt.filetype = "terminal"
+end
+
+api.nvim_create_autocmd({ "TermOpen" }, {
+	command = "lua TerminalMode()",
+})
 
 -- Damian Conway
-vim.cmd([[
-    " this will use the Color defined in you theme for the ColorColumn
-    autocmd BufEnter * call matchadd('DamianConway', '\%80v') 
-]])
+api.nvim_create_autocmd({ "BufEnter" }, {
+	command = "call matchadd('DamianConway', '\\%80v')",
+})
 
 -- Colorizer plugin attach autocmd's
-vim.cmd([[
-autocmd BufEnter * ColorizerAttachToBuffer
-autocmd InsertLeave * ColorizerAttachToBuffer
-autocmd CursorMoved * ColorizerAttachToBuffer
-]])
+api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved" }, {
+	command = "ColorizerAttachToBuffer",
+})
 
 -- =====================================================
 --                   Remove Built Plugins
 -- =====================================================
 local disabled_built_ins = {
-    "2html_plugin",
-    "getscript",
-    "getscriptPlugin",
-    "gzip",
-    "logipat",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "matchit",
-    "tar",
-    "tarPlugin",
-    "rrhelper",
-    "spellfile_plugin",
-    "vimball",
-    "vimballPlugin",
-    "zip",
-    "zipPlugin",
+	"2html_plugin",
+	"getscript",
+	"getscriptPlugin",
+	"gzip",
+	"logipat",
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+	"matchit",
+	"tar",
+	"tarPlugin",
+	"rrhelper",
+	"spellfile_plugin",
+	"vimball",
+	"vimballPlugin",
+	"zip",
+	"zipPlugin",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-    g["loaded_" .. plugin] = 1
+	g["loaded_" .. plugin] = 1
 end

@@ -25,7 +25,8 @@ packer.startup({
             "nathom/filetype.nvim",
             config = function()
                 require("safdar.plugins.configs.filetype")
-            end})
+            end
+        })
         -- <++
 
         -- ++> Essential
