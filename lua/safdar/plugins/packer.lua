@@ -289,9 +289,13 @@ packer.startup({
         use({
             "nvim-neorg/neorg",
             run = ":Neorg sync-parsers", -- This is the important bit!
-            ft = "norg",
+            -- ft = "norg",
+            requires = {
+                "nvim-neorg/neorg-telescope",
+            },
             config = function()
                 require("safdar.plugins.configs.neorg")
+                require("safdar.core.plugins_mappings.neorg_map")
             end,
         })
         -- Markdwon Plugin

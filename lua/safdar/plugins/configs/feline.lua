@@ -422,6 +422,8 @@ require("feline").setup({
 			"^terminal$",
 		},
 		bufnames = {
+            "neorg://norg/Projects.norg",
+            "neorg://norg/Neorg Toc.norg",
         },
 	},
 })

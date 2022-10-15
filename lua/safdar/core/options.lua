@@ -16,7 +16,7 @@ opt.mouse = ""
 
 -- Spell Checking lang
 opt.spelllang = "en,cjk"
-optl.spelloptions:append("noplainbuffer,camel")
+opt.spelloptions:append("noplainbuffer,camel")
 
 -- set the terminal
 opt.shell = "/bin/zsh"
@@ -50,7 +50,7 @@ opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
 opt.swapfile = false
 -- trick to solve the vim compatible functionality to not let backspace the file
 -- content othe then just inserted one
-opt.backspace = nil
+-- opt.backspace = nil
 
 opt.ignorecase = true
 opt.smartcase = true
@@ -88,34 +88,33 @@ opt.expandtab = true
 vim.wo.signcolumn = "yes"
 
 -- Highlight The yanked text
-function HighlightOnYank()
-	require("vim.highlight").on_yank({ timeout = 40 })
+local function highlightOnYank()
+    require("vim.highlight").on_yank({ timeout = 40 })
 end
 api.nvim_create_autocmd({ "TextYankPost" }, {
-	command = "lua HighlightOnYank()",
+    callback = highlightOnYank,
 })
 
 -- Help Helper Function
-function HelpHelper()
-	optl.relativenumber = true
-	optl.number = true
-	optl.conceallevel = 0
-
-	local hl = function(highlightGroup, opts)
-		api.nvim_set_hl(0, highlightGroup, opts)
-	end
-	hl("HelpBar", { link = "Normal" })
-	hl("HelpStar", { link = "Normal" })
+local function helpHelper()
+    optl.relativenumber = true
+    optl.number = true
+    optl.conceallevel = 0
+    local hl = function(highlightGroup, opts)
+        api.nvim_set_hl(0, highlightGroup, opts)
+    end
+    hl("HelpBar", { link = "Normal" })
+    hl("HelpStar", { link = "Normal" })
 end
 
 -- set spell forthe gitcommit messages and other filetypes
 api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
-	command = "setlocal spell",
+    pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
+    command = "setlocal spell",
 })
 api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "help" },
-	command = "lua HelpHelper()",
+    pattern = { "help" },
+    callback = helpHelper,
 })
 
 vim.cmd([[
@@ -125,50 +124,58 @@ vim.cmd([[
 ]])
 
 -- Don't show the line numbers in terminal mode
-function TerminalMode()
-	optl.number = false
-	optl.relativenumber = false
-	opt.filetype = "terminal"
+local function terminalMode()
+    optl.number = false
+    optl.relativenumber = false
+    opt.filetype = "terminal"
 end
-
 api.nvim_create_autocmd({ "TermOpen" }, {
-	command = "lua TerminalMode()",
+    callback = terminalMode,
 })
 
 -- Damian Conway
 api.nvim_create_autocmd({ "BufEnter" }, {
-	command = "call matchadd('DamianConway', '\\%80v')",
+    command = "call matchadd('DamianConway', '\\%80v')",
 })
 
 -- Colorizer plugin attach autocmd's
 api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved" }, {
-	command = "ColorizerAttachToBuffer",
+    command = "ColorizerAttachToBuffer",
+})
+
+-- Resize the Neorg Toc Split Buffer
+local function neorgSplitTocResizer()
+    api.nvim_win_set_width(0, 100)
+end
+api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = "neorg://norg/Neorg Toc.norg",
+    callback = neorgSplitTocResizer,
 })
 
 -- =====================================================
 --                   Remove Built Plugins
 -- =====================================================
 local disabled_built_ins = {
-	"2html_plugin",
-	"getscript",
-	"getscriptPlugin",
-	"gzip",
-	"logipat",
-	"netrw",
-	"netrwPlugin",
-	"netrwSettings",
-	"netrwFileHandlers",
-	"matchit",
-	"tar",
-	"tarPlugin",
-	"rrhelper",
-	"spellfile_plugin",
-	"vimball",
-	"vimballPlugin",
-	"zip",
-	"zipPlugin",
+    "2html_plugin",
+    "getscript",
+    "getscriptPlugin",
+    "gzip",
+    "logipat",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "matchit",
+    "tar",
+    "tarPlugin",
+    "rrhelper",
+    "spellfile_plugin",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-	g["loaded_" .. plugin] = 1
+    g["loaded_" .. plugin] = 1
 end

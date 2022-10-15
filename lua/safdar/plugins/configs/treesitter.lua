@@ -22,9 +22,10 @@ require("nvim-treesitter.configs").setup({
 	},
 	highlight = {
 		enable = true,
-		-- disable = function(lang, bufnr)
-		-- 	return lang == "lua" and vim.api.nvim_buf_line_count(bufnr) > 100
-		-- end,
+        ---@diagnostic disable-next-line: unused-local
+		disable = function(filetype, bufnr)
+			return vim.api.nvim_buf_line_count(bufnr) > 1500
+		end,
 	},
 	indent = {
 		enable = true,

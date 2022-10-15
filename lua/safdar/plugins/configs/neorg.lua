@@ -3,7 +3,7 @@ require("neorg").setup({
         ["core.defaults"] = {},
         ["core.norg.esupports.metagen"] = {
             config = {
-                type = "empty", -- "none", "auto" or "empty"
+                type = "none", -- "none", "auto" or "empty"
                 update_date = true,
             },
         },
@@ -42,13 +42,6 @@ require("neorg").setup({
                 },
             },
         },
-        ["core.norg.journal"] = {
-            config = {
-                workspace = "Journal",
-                journal_folder = "Personal-Journal",
-                strategy = "nested", -- flat or nested
-            },
-        },
         ["core.integrations.nvim-cmp"] = {},
         ["core.keybinds"] = {
             config = {
@@ -61,11 +54,18 @@ require("neorg").setup({
                 toc_split_placement = "right",
             },
         },
+        ["core.norg.journal"] = {
+            config = {
+                workspace = "PM",
+                journal_folder = "Personal-Journal",
+                strategy = "nested", -- flat or nested
+            },
+        },
         ["core.norg.dirman"] = {
             config = {
                 workspaces = {
-                    Journal = "~/safdar-local/NOTES/Journal/",
-                    todo = "~/safdar-local/NOTES/Journal/TODO/",
+                    PM = "~/safdar-local/NOTES/Personal\\-Management/",
+                    todo = "~/safdar-local/NOTES/Personal\\-Management/TODO/",
                 },
                 autochdir = true, -- Automatically change the directory to the current workspace's root every time
                 index = "index.norg", -- The name of the main (root) .norg file
@@ -74,14 +74,6 @@ require("neorg").setup({
         ["core.gtd.base"] = {
             config = {
                 workspace = "todo",
-                default_lists = {
-                    inbox = "inbox.norg",
-                    asap = "asap.norg",
-                    IT = "todo-IT.norg",
-                    Health = "todo-Health.norg",
-                    Reading = "todo-Reading.norg",
-                    others = "todo-others.norg",
-                },
                 syntax = {
                     context = "#contexts",
                     start = "#time.start",
@@ -92,6 +84,7 @@ require("neorg").setup({
 
             }
         },
-        ["core.norg.manoeuvre"] = {}
+        ["core.norg.manoeuvre"] = {},
+        ["core.integrations.telescope"] = {},
     },
 })

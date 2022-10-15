@@ -87,7 +87,7 @@ cmp.setup({
         { name = "neorg" },
         {
             name = "luasnip",
-            keyword_length = 2
+            keyword_length = 2,
         },
         {
             name = "buffer",
