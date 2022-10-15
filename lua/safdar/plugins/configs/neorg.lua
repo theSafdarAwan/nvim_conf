@@ -44,9 +44,9 @@ require("neorg").setup({
         },
         ["core.norg.journal"] = {
             config = {
-                workspace = nil, -- TODO: add your journal workspace
+                workspace = "Journal", -- TODO: add your journal workspace
                 journal_folder = "Personal-Journal",
-                strategy = "flat", -- flat or nested
+                strategy = "nested", -- flat or nested
             },
         },
         ["core.integrations.nvim-cmp"] = {},
@@ -59,7 +59,16 @@ require("neorg").setup({
             config = {
                 close_split_on_jump = true,
                 toc_split_placement = "right",
-            }
+            },
+        },
+        ["core.norg.dirman"] = {
+            config = {
+                workspaces = {
+                    Journal = "~/safdar-local/NOTES/Journal/",
+                },
+                autochdir = true, -- Automatically change the directory to the current workspace's root every time
+                index = "index.norg", -- The name of the main (root) .norg file
+            },
         },
     },
 })

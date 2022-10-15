@@ -24,7 +24,9 @@ local borderchars = {
 
 telescope.setup({
 	defaults = {
-		mappings = require(require("genearl").core_loc() .. ".plugins_mappings.telescope_map").mappings(),
+		mappings = require(
+			require("genearl").core_loc() .. ".plugins_mappings.telescope_map"
+		).mappings(),
 		prompt_prefix = "   ",
 		selection_caret = "  ",
 		entry_prefix = "  ",
@@ -53,7 +55,7 @@ telescope.setup({
 		},
 		-- path_display = { "shorten", shorten = 3 },
 		-- path_display = { "smart" },
-        file_ignore_patterns = { "^.git/", "^.obsidian/" },
+		file_ignore_patterns = { "^.git/", "^.obsidian/" },
 	},
 	extensions = {
 		fzf = {
@@ -75,6 +77,25 @@ telescope.load_extension("neoclip")
 local M = {}
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
+
+--> Search Neorg TODO files
+M.gtd_neorg_files = function()
+	local find_gtd_neorg_files = themes.get_dropdown({
+		prompt_title = "< GTD >",
+		cwd = "~/safdar-local/NOTES/Journal/TODO/",
+		borderchars = borderchars.dropdown,
+		previewer = false,
+		layout_config = {
+            height = 0.50,
+            width = 0.60,
+			cursor = {},
+		},
+	})
+
+	local opts = vim.deepcopy(find_gtd_neorg_files)
+	opts.prompt_prefix = " ❯ "
+	require("telescope.builtin").fd(opts)
+end
 
 --> search_nvim_dotfiles
 M.search_nvim_dotfiles = function()

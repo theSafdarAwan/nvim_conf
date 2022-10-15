@@ -13,39 +13,45 @@ map("n", "<leader>tb", ":Telescope builtin<cr>", { noremap = true, silent = true
 map(
 	"n",
 	"<leader>en",
-	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').search_nvim_dotfiles()<cr>",
+	":lua require('safdar.plugins.configs.telescope').search_nvim_dotfiles()<cr>",
+	{ noremap = true, silent = true }
+)
+map(
+	"n",
+	"<leader>td",
+	":lua require('safdar.plugins.configs.telescope').gtd_neorg_files()<cr>",
 	{ noremap = true, silent = true }
 )
 
 map(
 	"n",
 	"<leader>f;",
-	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').ivy_find_files_with_preview()<cr>",
+	":lua require('safdar.plugins.configs.telescope').ivy_find_files_with_preview()<cr>",
 	{ noremap = true, silent = true }
 )
 map("n", "<leader>fb",
-	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').center_list_buffers_find()<cr>",
+	":lua require('safdar.plugins.configs.telescope').center_list_buffers_find()<cr>",
     { noremap = true, silent = true })
 map("n", "<leader>tc",
-	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').ivy_colorscheme_preview()<cr>",
+	":lua require('safdar.plugins.configs.telescope').ivy_colorscheme_preview()<cr>",
     { noremap = true, silent = true })
 map(
 	"n",
 	"<leader>ff",
 	-- ":Telescope find_files theme=get_cursor previewer=false find_command=rg,--hidden,--files<CR>",
-	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').center_list_find_files()<cr>",
+	":lua require('safdar.plugins.configs.telescope').center_list_find_files()<cr>",
 	{ noremap = true, silent = true }
 )
 map(
 	"n",
 	"<C-_>",
-	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').current_buffer_fuzzy_find()<cr>",
+	":lua require('safdar.plugins.configs.telescope').current_buffer_fuzzy_find()<cr>",
 	{ noremap = true, silent = true }
 )
 map(
 	"n",
 	"<leader>ds",
-	":lua require(require(\"genearl\").plugins_loc()..'.configs.telescope').center_list_document_symbols_find()<cr>",
+	":lua require('safdar.plugins.configs.telescope').center_list_document_symbols_find()<cr>",
 	{ noremap = true, silent = true }
 )
 -- <--

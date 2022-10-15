@@ -8,6 +8,9 @@ cmp.setup({
             require("luasnip").lsp_expand(args.body)
         end,
     },
+    completion = {
+        keyword_length = 1,
+    },
     window = {
         documentation = {
             border = border,
@@ -26,8 +29,14 @@ cmp.setup({
     formatting = {
         format = function(entry, vim_item)
             -- load lspkind icons
-            local icons = require(require("genearl").plugins_loc() .. ".configs.lspkind_icons")
-            vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+            local icons = require(
+                require("genearl").plugins_loc() .. ".configs.lspkind_icons"
+            )
+            vim_item.kind = string.format(
+                "%s %s",
+                icons[vim_item.kind],
+                vim_item.kind
+            )
 
             vim_item.menu = ({
                 nvim_lsp = "(LSP)",
@@ -48,7 +57,7 @@ cmp.setup({
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-u>"] = cmp.mapping.scroll_docs(-2),
         ["<C-d>"] = cmp.mapping.scroll_docs(2),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-l>"] = cmp.mapping.complete(),
         ["<C-x>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
@@ -76,11 +85,20 @@ cmp.setup({
     sources = {
         { name = "nvim_lsp" },
         { name = "neorg" },
-        { name = "luasnip" },
-        { name = "buffer" },
+        {
+            name = "luasnip",
+            keyword_length = 2
+        },
+        {
+            name = "buffer",
+            keyword_length = 3,
+        },
         { name = "nvim_lua" },
         { name = "emoji" },
-        { name = "cmp_tabnine" },
+        {
+            name = "cmp_tabnine",
+            keyword_length = 4,
+        },
     },
 })
 
