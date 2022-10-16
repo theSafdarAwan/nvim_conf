@@ -18,7 +18,7 @@ map(
 )
 map(
 	"n",
-	"<leader>td",
+	"<leader>gtd",
 	":lua require('safdar.plugins.configs.telescope').gtd_neorg_files()<cr>",
 	{ noremap = true, silent = true }
 )

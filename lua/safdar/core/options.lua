@@ -112,6 +112,7 @@ api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
     command = "setlocal spell",
 })
+
 api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "help" },
     callback = helpHelper,
