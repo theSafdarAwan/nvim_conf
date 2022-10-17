@@ -1,9 +1,7 @@
-local vim = vim
-local g = vim.g
 local mappings_list = require("safdar.core.plugins_mappings.nvim-tree_map").nvim_tree_core_maps;
 
 require("nvim-tree").setup({
-    -- auto_reload_on_write = true,
+    auto_reload_on_write = true,
     create_in_closed_folder = false,
     disable_netrw = true,
     hijack_cursor = true,
@@ -19,7 +17,7 @@ require("nvim-tree").setup({
     respect_buf_cwd = false,
     view = {
         adaptive_size = false,
-        centralize_selection = true,
+        centralize_selection = false, -- dont turn this to true it gives error if you open file using other options rather then nvim-tree on startup like by using `nvim .` to open in the current directory
         width = 20,
         hide_root_folder = true,
         side = "right",

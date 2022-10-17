@@ -22,6 +22,9 @@ function ValidateNeorgTocStatus(command)
     end
 end
 
+-- TODO: add some logic to load Neorg plugin only when i press the gtc to capture
+-- or gtv to view the todo's
+
 ValidateNeorgTocStatus()
 
 map("n", "gtc", ":Neorg gtd capture<CR>", opts)

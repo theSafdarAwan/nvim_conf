@@ -89,31 +89,31 @@ function FusedNvim()
     -- Uncomment and edit if you want more specific syntax highlighting.
     -- Nvim Syntax Highlights
     -- ++>
-    hl("Constant", { link = "TSConstant" }) -- (preferred) any constant
-    hl("String", { link = "TSString" }) --   a string constant: "this is a string"
-    hl("Character", { link = "TSCharacter" }) --  a character constant: 'c', '\n'
-    hl("Number", { link = "TSNumber" }) --   a number constant: 234, 0xff
-    hl("Boolean", { link = "TSBoolean" }) --  a boolean constant: TRUE, false
-    hl("Float", { link = "TSFloat" }) --    a floating point constant: 2.3e10
+    hl("Constant", { link = "@constant" }) -- (preferred) any constant
+    hl("String", { link = "@string" }) --   a string constant: "this is a string"
+    hl("Character", { link = "@character" }) --  a character constant: 'c', '\n'
+    hl("Number", { link = "@number" }) --   a number constant: 234, 0xff
+    hl("Boolean", { link = "@boolean" }) --  a boolean constant: TRUE, false
+    hl("Float", { link = "@float" }) --    a floating point constant: 2.3e10
     --
     hl("Identifier", { fg = Colors.color_21 }) -- (preferred) any variable name
-    hl("Function", { link = "TSFunction" }) -- function name (also: methods for classes)
+    hl("Function", { link = "@function" }) -- function name (also: methods for classes)
     --
     hl("Statement", { fg = Colors.color_23 }) -- (preferred) any statement
     hl("Conditional", { fg = Colors.color_23 }) --  if, then, else, endif, switch, etc.
     hl("Repeat", { fg = Colors.color_23 }) --   for, do, while, etc.
-    hl("Label", { link = "TSLabel" }) --    case, default, etc.
-    hl("Operator", { link = "TSOperator" }) -- "sizeof", "+", "*", etc.
-    hl("Keyword", { link = "TSKeyword" }) --  any other keyword
-    hl("Exception", { link = "TSException" }) --  try, catch, throw
+    hl("Label", { link = "@label" }) --    case, default, etc.
+    hl("Operator", { link = "@operator" }) -- "sizeof", "+", "*", etc.
+    hl("Keyword", { link = "@keyword" }) --  any other keyword
+    hl("Exception", { link = "@exception" }) --  try, catch, throw
     --
     hl("PreProc", { fg = Colors.color_27 }) -- (preferred) generic Preprocessor
     hl("Include", { fg = Colors.color_23 }) --  preprocessor #include
     hl("Define", { fg = Colors.color_23 }) --   preprocessor #define
     hl("Macro", { fg = Colors.color_23 }) --    same as Define
-    hl("PreCondit", { link = "TSConditional" }) --  preprocessor #if, #else, #endif, etc.
+    hl("PreCondit", { link = "@conditional" }) --  preprocessor #if, #else, #endif, etc.
     --
-    hl("Type", { link = "TSType" }) -- (preferred) int, long, char, etc.
+    hl("Type", { link = "@type" }) -- (preferred) int, long, char, etc.
     hl("StorageClass", { fg = Colors.color_21 }) -- static, register, volatile, etc.
     hl("Structure", { fg = Colors.color_23 }) --  struct, union, enum, etc.
     hl("Typedef", { fg = Colors.color_23 }) --  A typedef
@@ -142,13 +142,13 @@ function FusedNvim()
     hl("LspReferenceRead", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "read" references
     hl("LspReferenceWrite", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "write" references
     --
-    hl("LspDiagnosticsDefaultError", { link = "TSError" }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    hl("LspDiagnosticsDefaultWarning", { link = "TSWarning" }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    hl("LspDiagnosticsDefaultError", { link = "@error" }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    hl("LspDiagnosticsDefaultWarning", { link = "@warning" }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     hl("LspDiagnosticsDefaultInformation", { fg = Colors.color_21 }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     hl("LspDiagnosticsDefaultHint", { fg = Colors.color_14_drac }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     --
-    hl("LspDiagnosticsVirtualTextError", { link = "TSError" }) -- Used for "Error" diagnostic virtual text
-    hl("LspDiagnosticsVirtualTextWarning", { link = "TSWarning" }) -- Used for "Warning" diagnostic virtual text
+    hl("LspDiagnosticsVirtualTextError", { link = "@error" }) -- Used for "Error" diagnostic virtual text
+    hl("LspDiagnosticsVirtualTextWarning", { link = "@warning" }) -- Used for "Warning" diagnostic virtual text
     hl("LspDiagnosticsVirtualTextInformation", { link = "LspDiagnosticsDefaultInformation" }) -- Used for "Information" diagnostic virtual text
     hl("LspDiagnosticsVirtualTextHint", { link = "LspDiagnosticsDefaultHint" }) -- Used for "Hint" diagnostic virtual text
     --
@@ -157,13 +157,13 @@ function FusedNvim()
     hl("LspDiagnosticsUnderlineInformation", { underline = true }) -- Used to underline "Information" diagnostics
     hl("LspDiagnosticsUnderlineHint", { underline = true }) -- Used to underline "Hint" diagnostics
     --
-    hl("LspDiagnosticsFloatingError", { link = "TSError" }) -- Used to color "Error" diagnostic messages in diagnostics float
-    hl("LspDiagnosticsFloatingWarning", { link = "TSWarning" }) -- Used to color "Warning" diagnostic messages in diagnostics float
+    hl("LspDiagnosticsFloatingError", { link = "@error" }) -- Used to color "Error" diagnostic messages in diagnostics float
+    hl("LspDiagnosticsFloatingWarning", { link = "@warning" }) -- Used to color "Warning" diagnostic messages in diagnostics float
     hl("LspDiagnosticsFloatingInformation", { link = "LspDiagnosticsDefaultInformation" }) -- Used to color "Information" diagnostic messages in diagnostics float
     hl("LspDiagnosticsFloatingHint", { link = "LspDiagnosticsDefaultHint" }) -- Used to color "Hint" diagnostic messages in diagnostics float
     --
-    hl("LspDiagnosticsSignError", { link = "TSError" }) -- Used for "Error" signs in sign column
-    hl("LspDiagnosticsSignWarning", { link = "TSWarning" }) -- Used for "Warning" signs in sign column
+    hl("LspDiagnosticsSignError", { link = "@error" }) -- Used for "Error" signs in sign column
+    hl("LspDiagnosticsSignWarning", { link = "@warning" }) -- Used for "Warning" signs in sign column
     hl("LspDiagnosticsSignInformation", { link = "LspDiagnosticsDefaultInformation" }) -- Used for "Information" signs in sign column
     hl("LspDiagnosticsSignHint", { link = "LspDiagnosticsDefaultHint" }) -- Used for "Hint" signs in sign column
     --
@@ -177,60 +177,59 @@ function FusedNvim()
     -- you explicitly want to support Treesitter's improved syntax awareness.
     -- (TreeSitter)
     -- ++>
-    hl("TSAnnotation", { fg = Colors.color_15 }) -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
-    hl("TSAttribute", { fg = Colors.color_21 }) -- (unstable) TODO: docs
-    hl("TSBoolean", { fg = Colors.color_20 }) -- For booleans.
-    hl("TSCharacter", { fg = Colors.color_15 }) -- For characters.
-    hl("TSComment", { fg = Colors.color_5, italic = true }) -- For comment blocks.
-    hl("TSConstructor", { fg = Colors.color_18 }) -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
-    hl("TSConditional", { fg = Colors.color_20 }) -- For keywords related to conditionnals.
-    hl("TSConstant", { fg = Colors.color_17 }) -- For constants
-    hl("TSConstBuiltin", { fg = Colors.color_18 }) -- For constant that are built in the language: `nil` in Lua.
-    hl("TSConstMacro", { fg = Colors.color_21 }) -- For constants that are defined by macros: `NULL` in C.
-    hl("TSError", { fg = Colors.error_red }) -- For syntax/parser errors.
-    hl("TSException", { fg = Colors.color_20 }) -- For exception related keywords.
-    hl("TSField", { fg = Colors.color_21 }) -- For fields.
-    hl("TSFloat", { fg = Colors.color_20 }) -- For floats.
-    hl("TSFunction", { fg = Colors.color_16 }) -- For function (calls and definitions).
-    hl("TSFuncBuiltin", { fg = Colors.color_14_one }) -- For builtin functions: `table.insert` in Lua.
-    hl("TSFuncMacro", { fg = Colors.color_27 }) -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-    hl("TSInclude", { fg = Colors.color_14_drac, italic = true }) -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-    hl("TSKeyword", { fg = Colors.color_24 }) -- For keywords that don't fall in previous categories.
-    hl("TSKeywordFunction", { fg = Colors.color_22_one, bold = true }) -- For keywords used to define a fuction.
-    hl("TSKeywordOperator", { fg = Colors.color_24 }) -- For keywords used to define a fuction.
-    hl("TSKeywordReturn", { fg = Colors.color_22_drac, bold = true }) -- For keywords used to define a fuction.
-    hl("TSLabel", { fg = Colors.color_22_one }) -- For labels: `label:` in C and `:label:` in Lua.
-    hl("TSMethod", { fg = Colors.color_15 }) -- For method calls and definitions.
-    hl("TSNamespace", { fg = Colors.color_24 }) -- For identifiers referring to modules and namespaces.
-    hl("TSNone", { fg = Colors.fg }) -- TODO: docs
-    hl("TSNumber", { fg = Colors.color_18 }) -- For all numbers
-    hl("TSOperator", { fg = Colors.color_27 }) -- For any operator: `+`, but also `->` and `*` in C.
-    hl("TSParameter", { fg = Colors.color_20 }) -- For parameters of a function.
-    hl("TSParameterReference", { fg = Colors.color_20 }) -- For references to parameters of a function.
-    hl("TSProperty", { fg = Colors.color_29 }) -- Same as `TSField`.
-    hl("TSPunctDelimiter", { fg = Colors.fg }) -- For delimiters ie: `.`
-    hl("TSPunctBracket", { fg = Colors.fg }) -- For brackets and parens.
-    hl("TSPunctSpecial", { fg = Colors.color_23 }) -- For special punctutation that does not fall in the catagories before.
-    hl("TSRepeat", { fg = Colors.color_23 }) -- For keywords related to loops.
-    hl("TSString", { fg = Colors.string_color }) -- For strings.
-    hl("TSStringRegex", { fg = Colors.color_14_drac }) -- For regexes.
-    hl("TSStringEscape", { fg = Colors.color_22_one }) -- For escape characters within a string.
-    hl("TSSymbol", { fg = Colors.color_21 }) -- For identifiers referring to symbols or atoms.
-    hl("TSType", { fg = Colors.color_17 }) -- For types.
-    hl("TSTypeBuiltin", { fg = Colors.color_17 }) -- For builtin types.
-    hl("TSVariable", { fg = Colors.fg }) -- Any variable name that does not have another highlight.
-    hl("TSVariableBuiltin", { fg = Colors.color_23 }) -- Variable names that are defined by the languages, like `this` or `self`.
+    hl("@annotation", { fg = Colors.color_15 }) -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
+    hl("@attribute", { fg = Colors.color_21 }) -- (unstable) TODO: docs
+    hl("@boolean", { fg = Colors.color_20 }) -- For booleans.
+    hl("@character", { fg = Colors.color_15 }) -- For characters.
+    hl("@comment", { fg = Colors.color_5, italic = true }) -- For comment blocks.
+    hl("@constructor", { fg = Colors.color_18 }) -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
+    hl("@conditional", { fg = Colors.color_20 }) -- For keywords related to conditionnals.
+    hl("@constant", { fg = Colors.color_17 }) -- For constants
+    hl("@const.builtin", { fg = Colors.color_18 }) -- For constant that are built in the language: `nil` in Lua.
+    hl("@const.macro", { fg = Colors.color_21 }) -- For constants that are defined by macros: `NULL` in C.
+    hl("@error", { fg = Colors.error_red }) -- For syntax/parser errors.
+    hl("@exception", { fg = Colors.color_20 }) -- For exception related keywords.
+    hl("@field", { fg = Colors.color_21 }) -- For fields.
+    hl("@float", { fg = Colors.color_20 }) -- For floats.
+    hl("@function", { fg = Colors.color_16 }) -- For function (calls and definitions).
+    hl("@function.builtin", { fg = Colors.color_14_one }) -- For builtin functions: `table.insert` in Lua.
+    hl("@funcMacro", { fg = Colors.color_27 }) -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
+    hl("@include", { fg = Colors.color_14_drac, italic = true }) -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+    hl("@keyword", { fg = Colors.color_24 }) -- For keywords that don't fall in previous categories.
+    hl("@keywordFunction", { fg = Colors.color_22_one, bold = true }) -- For keywords used to define a fuction.
+    hl("@keywordOperator", { fg = Colors.color_24 }) -- For keywords used to define a fuction.
+    hl("@keywordReturn", { fg = Colors.color_22_drac, bold = true }) -- For keywords used to define a fuction.
+    hl("@label", { fg = Colors.color_22_one }) -- For labels: `label:` in C and `:label:` in Lua.
+    hl("@method", { fg = Colors.color_15 }) -- For method calls and definitions.
+    hl("@namespace", { fg = Colors.color_24 }) -- For identifiers referring to modules and namespaces.
+    hl("@number", { fg = Colors.color_18 }) -- For all numbers
+    hl("@operator", { fg = Colors.color_27 }) -- For any operator: `+`, but also `->` and `*` in C.
+    hl("@parameter", { fg = Colors.color_20 }) -- For parameters of a function.
+    hl("@parameterReference", { fg = Colors.color_20 }) -- For references to parameters of a function.
+    hl("@property", { fg = Colors.color_29 }) -- Same as `TSField`.
+    hl("@punctuation.delimiter", { fg = Colors.fg }) -- For delimiters ie: `.`
+    hl("@punctuation.bracket", { fg = Colors.fg }) -- For brackets and parens.
+    hl("@punctuation.special", { fg = Colors.color_23 }) -- For special punctutation that does not fall in the catagories before.
+    hl("@repeat", { fg = Colors.color_23 }) -- For keywords related to loops.
+    hl("@string", { fg = Colors.string_color }) -- For strings.
+    hl("@string.regex", { fg = Colors.color_14_drac }) -- For regexes.
+    hl("@string.escape", { fg = Colors.color_22_one }) -- For escape characters within a string.
+    hl("@symbol", { fg = Colors.color_21 }) -- For identifiers referring to symbols or atoms.
+    hl("@type", { fg = Colors.color_17 }) -- For types.
+    hl("@type.builtin", { fg = Colors.color_17 }) -- For builtin types.
+    hl("@variable", { fg = Colors.fg }) -- Any variable name that does not have another highlight.
+    hl("@variable.builtin", { fg = Colors.color_23 }) -- Variable names that are defined by the languages, like `this` or `self`.
     --
-    hl("TSTag", { fg = Colors.color_22_one }) -- Tags like html tag names.
-    hl("TSTagAttribute", { fg = Colors.color_20 }) -- Tags like html tag names.
-    hl("TSTagDelimiter", { fg = Colors.color_9 }) -- Tag delimiter like `<` `>` `/`
-    hl("TSText", { fg = Colors.fg }) -- For strings considered text in a markup language.
-    hl("TSEmphasis", { italic = true }) -- For text to be represented with emphasis.
-    hl("TSUnderline", { underline = true }) -- For text to be represented with an underline.
+    hl("@tag", { fg = Colors.color_22_one }) -- Tags like html tag names.
+    hl("@tag.attribute", { fg = Colors.color_20 }) -- Tags like html tag names.
+    hl("@tag.delimiter", { fg = Colors.color_9 }) -- Tag delimiter like `<` `>` `/`
+    hl("@text", { fg = Colors.fg }) -- For strings considered text in a markup language.
+    hl("@emphasis", { italic = true }) -- For text to be represented with emphasis.
+    hl("@underline", { underline = true }) -- For text to be represented with an underline.
     -- TSStrike             {};    -- For strikethrough text.
-    hl("TSTitle", { fg = Colors.color_14_drac, bold = true }) -- Text that is part of a title.
-    hl("TSLiteral", { fg = Colors.color_26 }) -- Literal text.
-    hl("TSURI", { fg = Colors.color_28, underline = true }) -- Any URI like a link or email.
+    hl("@title", { fg = Colors.color_14_drac, bold = true }) -- Text that is part of a title.
+    hl("@literal", { fg = Colors.color_26 }) -- Literal text.
+    hl("@uRI", { fg = Colors.color_28, underline = true }) -- Any URI like a link or email.
     -- <++
 
     --> (CSS)
@@ -338,11 +337,11 @@ function FusedNvim()
     hl("CmpItemMenu", { fg = Colors.color_8 })
     hl("CmpItemKindSnippet", { fg = Colors.vc_add })
     -- Item kind
-    hl("CmpItemKindText", { link = "TSText" })
-    hl("CmpItemKindFunction", { link = "TSFunction" })
-    hl("CmpItemKindKeyword", { link = "TSKeyword" })
-    hl("CmpItemKindField", { link = "TSField" })
-    hl("CmpItemKindVariable", { link = "TSVariable" })
+    hl("CmpItemKindText", { link = "@text" })
+    hl("CmpItemKindFunction", { link = "@function" })
+    hl("CmpItemKindKeyword", { link = "@keyword" })
+    hl("CmpItemKindField", { link = "@field" })
+    hl("CmpItemKindVariable", { link = "@variable" })
     hl("CmpItemKindEnum", { link = "CmpItemKindText" })
     -- <++
 
@@ -358,7 +357,7 @@ function FusedNvim()
 
     --> (Neorg)
     -- ++>
-    hl("@neorg.markup.spoiler", { link = "TSError" })
+    hl("@neorg.markup.spoiler", { link = "@error" })
     local neorg_quotes = { bg = Colors.color_1, italic = true }
     hl("@neorg.quotes.1.content", neorg_quotes)
     hl("@neorg.quotes.2.content", neorg_quotes)
