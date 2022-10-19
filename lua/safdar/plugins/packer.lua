@@ -25,7 +25,7 @@ packer.startup({
             "nathom/filetype.nvim",
             config = function()
                 require("safdar.plugins.configs.filetype")
-            end
+            end,
         })
         -- <++
 
@@ -133,7 +133,17 @@ packer.startup({
         use({ "hrsh7th/cmp-nvim-lua" })
         use({ "hrsh7th/cmp-nvim-lsp" })
         use({ "hrsh7th/cmp-buffer" })
-        use({ "hrsh7th/cmp-emoji", ft = { "html", "css" } })
+        use({
+            "uga-rosa/cmp-dictionary",
+            ft = { "markdown", "norg" },
+            config = function ()
+                require("safdar.plugins.configs.cmp-dictionary")
+            end
+        })
+        use({
+            "hrsh7th/cmp-emoji",
+            ft = { "html", "css", "markdown", "norg" },
+        })
         use({ "saadparwaiz1/cmp_luasnip" })
         use({ "L3MON4D3/LuaSnip" })
         use({ "rafamadriz/friendly-snippets" })

@@ -94,6 +94,7 @@ cmp.setup({
             keyword_length = 3,
         },
         { name = "nvim_lua" },
+        { name = "dictionary" },
         { name = "emoji" },
         {
             name = "cmp_tabnine",

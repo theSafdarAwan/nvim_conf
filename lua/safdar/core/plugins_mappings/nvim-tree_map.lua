@@ -41,7 +41,7 @@ M.nvim_tree_core_maps = {
 	{ key = "s", action = "live_filter" },
 	{ key = "S", action = "clear_live_filter" },
 	{ key = "q", action = "close" },
-	{ key = "<C-c>", action = "collapse_all" },
+	{ key = "E", action = "collapse_all" },
 	{ key = "e", action = "expand_all" },
 	{ key = "f", action = "search_node" },
 	{ key = "!", action = "run_file_command" },

@@ -100,7 +100,7 @@ end
 --> search_nvim_dotfiles
 M.search_nvim_dotfiles = function()
 	builtin.find_files({
-		prompt_title = "< Nvim Conf >",
+		prompt_title = "Nvim Conf",
 		cwd = "~/.config/nvim",
 		borderchars = borderchars.default,
 	})

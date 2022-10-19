@@ -193,19 +193,19 @@ function FusedNvim()
     hl("@float", { fg = Colors.color_20 }) -- For floats.
     hl("@function", { fg = Colors.color_16 }) -- For function (calls and definitions).
     hl("@function.builtin", { fg = Colors.color_14_one }) -- For builtin functions: `table.insert` in Lua.
-    hl("@funcMacro", { fg = Colors.color_27 }) -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
+    hl("@function.macro", { fg = Colors.color_27 }) -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
     hl("@include", { fg = Colors.color_14_drac, italic = true }) -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
     hl("@keyword", { fg = Colors.color_24 }) -- For keywords that don't fall in previous categories.
-    hl("@keywordFunction", { fg = Colors.color_22_one, bold = true }) -- For keywords used to define a fuction.
-    hl("@keywordOperator", { fg = Colors.color_24 }) -- For keywords used to define a fuction.
-    hl("@keywordReturn", { fg = Colors.color_22_drac, bold = true }) -- For keywords used to define a fuction.
+    hl("@keyword.function", { fg = Colors.color_22_one, bold = true }) -- For keywords used to define a fuction.
+    hl("@keyword.operator", { fg = Colors.color_24 }) -- For keywords used to define a fuction.
+    hl("@keyword.return", { fg = Colors.color_22_drac, bold = true }) -- For keywords used to define a fuction.
     hl("@label", { fg = Colors.color_22_one }) -- For labels: `label:` in C and `:label:` in Lua.
     hl("@method", { fg = Colors.color_15 }) -- For method calls and definitions.
     hl("@namespace", { fg = Colors.color_24 }) -- For identifiers referring to modules and namespaces.
     hl("@number", { fg = Colors.color_18 }) -- For all numbers
     hl("@operator", { fg = Colors.color_27 }) -- For any operator: `+`, but also `->` and `*` in C.
     hl("@parameter", { fg = Colors.color_20 }) -- For parameters of a function.
-    hl("@parameterReference", { fg = Colors.color_20 }) -- For references to parameters of a function.
+    hl("@parameter.reference", { fg = Colors.color_20 }) -- For references to parameters of a function.
     hl("@property", { fg = Colors.color_29 }) -- Same as `TSField`.
     hl("@punctuation.delimiter", { fg = Colors.fg }) -- For delimiters ie: `.`
     hl("@punctuation.bracket", { fg = Colors.fg }) -- For brackets and parens.
@@ -357,8 +357,30 @@ function FusedNvim()
 
     --> (Neorg)
     -- ++>
+    hl("@neorg.headings.2.title", { fg = Colors.color_27 })
+    hl("@neorg.headings.2.prefix", { link = "@neorg.headings.2.title" })
+    hl("@neorg.markup.italic", { italic = true })
+    -- neorg unordered and ordered lists
+    hl("@neorg.lists.unordered.1.content", { link = "Normal" })
+    local neorg_ulp = "@neorg.lists.unordered.1.content"
+    hl("@neorg.lists.unordered.2.content", { link = neorg_ulp})
+    hl("@neorg.lists.unordered.3.content", { link = neorg_ulp})
+    hl("@neorg.lists.unordered.4.content", { link = neorg_ulp})
+    hl("@neorg.lists.unordered.5.content", { link = neorg_ulp})
+    hl("@neorg.lists.unordered.6.content", { link = neorg_ulp})
+    hl("@neorg.lists.ordered.1.content", { link = neorg_ulp })
+    hl("@neorg.lists.ordered.2.content", { link = neorg_ulp })
+    hl("@neorg.lists.ordered.3.content", { link = neorg_ulp })
+    hl("@neorg.lists.ordered.4.content", { link = neorg_ulp })
+    hl("@neorg.lists.ordered.5.content", { link = neorg_ulp })
+    hl("@neorg.lists.ordered.6.content", { link = neorg_ulp })
+    -- neorge markup
     hl("@neorg.markup.spoiler", { link = "@error" })
-    local neorg_quotes = { bg = Colors.color_1, italic = true }
+    hl("@neorg.markup.superscript", { fg = Colors.color_17 })
+    hl("@neorg.links.location.generic", { fg = Colors.color_27 })
+    hl("@neorg.links.location.generic.prefix", { link = "@neorg.links.location.generic"})
+    -- neorg quotes
+    local neorg_quotes = { fg = Colors.color_9, bg = "NONE", italic = true }
     hl("@neorg.quotes.1.content", neorg_quotes)
     hl("@neorg.quotes.2.content", neorg_quotes)
     hl("@neorg.quotes.3.content", neorg_quotes)
@@ -367,12 +389,170 @@ function FusedNvim()
     hl("@neorg.quotes.6.content", neorg_quotes)
     hl("@neorg.quotes.7.content", neorg_quotes)
     hl("@neorg.codke", neorg_quotes)
+    -- neorg todo-done
+    hl("@neorg.todo_items.done.1", { fg = Colors.color_21 })
+    local ntid = "@neorg.todo_items.done.1"
+    hl("@neorg.todo_items.done.2", { link = ntid })
+    hl("@neorg.todo_items.done.3", { link = ntid })
+    hl("@neorg.todo_items.done.4", { link = ntid })
+    hl("@neorg.todo_items.done.5", { link = ntid })
+    hl("@neorg.todo_items.done.6", { link = ntid })
+    -- neorg todo-done
+    hl("@neorg.todo_items.undone.1", { fg = Colors.color_17 })
+    local ntiu = "@neorg.todo_items.undone.1"
+    hl("@neorg.todo_items.undone.2", { link = ntiu })
+    hl("@neorg.todo_items.undone.3", { link = ntiu })
+    hl("@neorg.todo_items.undone.4", { link = ntiu })
+    hl("@neorg.todo_items.undone.5", { link = ntiu })
+    hl("@neorg.todo_items.undone.6", { link = ntiu })
+    -- neorg uncertain
+    hl("@neorg.todo_items.uncertain.1", { fg = Colors.color_18 })
+    local ntiuc = "@neorg.todo_items.uncertain.1"
+    hl("@neorg.todo_items.uncertain.2", { link = ntiuc })
+    hl("@neorg.todo_items.uncertain.3", { link = ntiuc })
+    hl("@neorg.todo_items.uncertain.4", { link = ntiuc })
+    hl("@neorg.todo_items.uncertain.5", { link = ntiuc })
+    hl("@neorg.todo_items.uncertain.6", { link = ntiuc })
+    -- neorg pending
+    hl("@neorg.todo_items.pending.1", { fg = Colors.color_14_drac })
+    local ntip = "@neorg.todo_items.pending.1"
+    hl("@neorg.todo_items.pending.2", { link = ntip })
+    hl("@neorg.todo_items.pending.3", { link = ntip })
+    hl("@neorg.todo_items.pending.4", { link = ntip })
+    hl("@neorg.todo_items.pending.5", { link = ntip })
+    hl("@neorg.todo_items.pending.6", { link = ntip })
+    -- neorg urgent
+    hl("@neorg.todo_items.urgent.1", { fg = Colors.error_red })
+    local ntiur = "@neorg.todo_items.urgent.1"
+    hl("@neorg.todo_items.urgent.2", { link = ntiur })
+    hl("@neorg.todo_items.urgent.3", { link = ntiur })
+    hl("@neorg.todo_items.urgent.4", { link = ntiur })
+    hl("@neorg.todo_items.urgent.5", { link = ntiur })
+    hl("@neorg.todo_items.urgent.6", { link = ntiur })
+    -- neorg on_hold
+    hl("@neorg.todo_items.on_hold.1", { fg = Colors.color_15 })
+    local ntio = "@neorg.todo_items.on_hold.1"
+    hl("@neorg.todo_items.on_hold.2", { link = ntio })
+    hl("@neorg.todo_items.on_hold.3", { link = ntio })
+    hl("@neorg.todo_items.on_hold.4", { link = ntio })
+    hl("@neorg.todo_items.on_hold.5", { link = ntio })
+    hl("@neorg.todo_items.on_hold.6", { link = ntio })
     -- <++
 
     --> (Harpoon)
     -- ++>
     hl("HarpoonBorder", { link = "TelescopeBorder" } )
+    hl("HarpoonWindow", { link = "@string" } )
     -- <++
 end
 
 FusedNvim()
+
+-- TODO: you know what to do
+
+ --
+ -- ["annotation"] = "TSAnnotation",
+ --
+ --  ["attribute"] = "TSAttribute",
+ --
+ --  ["boolean"] = "TSBoolean",
+ --
+ --  ["character"] = "TSCharacter",
+ --  ["character.special"] = "TSCharacterSpecial",
+ --
+ --  ["comment"] = "TSComment",
+ --
+ --  ["conditional"] = "TSConditional",
+ --
+ --  ["constant"] = "TSConstant",
+ --  ["constant.builtin"] = "TSConstBuiltin",
+ --  ["constant.macro"] = "TSConstMacro",
+ --
+ --  ["constructor"] = "TSConstructor",
+ --
+ --  ["debug"] = "TSDebug",
+ --  ["define"] = "TSDefine",
+ --
+ --  ["error"] = "TSError",
+ --  ["exception"] = "TSException",
+ --
+ --  ["field"] = "TSField",
+ --
+ --  ["float"] = "TSFloat",
+ --
+ --  ["function"] = "TSFunction",
+ --  ["function.call"] = "TSFunctionCall",
+ --  ["function.builtin"] = "TSFuncBuiltin",
+ --  ["function.macro"] = "TSFuncMacro",
+ --
+ --  ["include"] = "TSInclude",
+ --
+ --  ["keyword"] = "TSKeyword",
+ --  ["keyword.function"] = "TSKeywordFunction",
+ --  ["keyword.operator"] = "TSKeywordOperator",
+ --  ["keyword.return"] = "TSKeywordReturn",
+ --
+ --  ["label"] = "TSLabel",
+ --
+ --  ["method"] = "TSMethod",
+ --  ["method.call"] = "TSMethodCall",
+ --
+ --  ["namespace"] = "TSNamespace",
+ --
+ --  ["none"] = "TSNone",
+ --  ["number"] = "TSNumber",
+ --
+ --  ["operator"] = "TSOperator",
+ --
+ --  ["parameter"] = "TSParameter",
+ --  ["parameter.reference"] = "TSParameterReference",
+ --
+ --  ["preproc"] = "TSPreProc",
+ --
+ --  ["property"] = "TSProperty",
+ --
+ --  ["punctuation.delimiter"] = "TSPunctDelimiter",
+ --  ["punctuation.bracket"] = "TSPunctBracket",
+ --  ["punctuation.special"] = "TSPunctSpecial",
+ --
+ --  ["repeat"] = "TSRepeat",
+ --
+ --  ["storageclass"] = "TSStorageClass",
+ --
+ --  ["string"] = "TSString",
+ --  ["string.regex"] = "TSStringRegex",
+ --  ["string.escape"] = "TSStringEscape",
+ --  ["string.special"] = "TSStringSpecial",
+ --
+ --  ["symbol"] = "TSSymbol",
+ --
+ --  ["tag"] = "TSTag",
+ --  ["tag.attribute"] = "TSTagAttribute",
+ --  ["tag.delimiter"] = "TSTagDelimiter",
+ --
+ --  ["text"] = "TSText",
+ --  ["text.strong"] = "TSStrong",
+ --  ["text.emphasis"] = "TSEmphasis",
+ --  ["text.underline"] = "TSUnderline",
+ --  ["text.strike"] = "TSStrike",
+ --  ["text.title"] = "TSTitle",
+ --  ["text.literal"] = "TSLiteral",
+ --  ["text.uri"] = "TSURI",
+ --  ["text.math"] = "TSMath",
+ --  ["text.reference"] = "TSTextReference",
+ --  ["text.environment"] = "TSEnvironment",
+ --  ["text.environment.name"] = "TSEnvironmentName",
+ --
+ --  ["text.note"] = "TSNote",
+ --  ["text.warning"] = "TSWarning",
+ --  ["text.danger"] = "TSDanger",
+ --
+ --  ["todo"] = "TSTodo",
+ --
+ --  ["type"] = "TSType",
+ --  ["type.builtin"] = "TSTypeBuiltin",
+ --  ["type.qualifier"] = "TSTypeQualifier",
+ --  ["type.definition"] = "TSTypeDefinition",
+ --
+ --  ["variable"] = "TSVariable",
+ --  ["variable.builtin"] = "TSVariableBuiltin",
