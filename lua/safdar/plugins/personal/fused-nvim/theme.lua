@@ -177,6 +177,7 @@ function FusedNvim()
     -- you explicitly want to support Treesitter's improved syntax awareness.
     -- (TreeSitter)
     -- ++>
+    hl("@spell", { bold = false })
     hl("@annotation", { fg = Colors.color_15 }) -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
     hl("@attribute", { fg = Colors.color_21 }) -- (unstable) TODO: docs
     hl("@boolean", { fg = Colors.color_20 }) -- For booleans.
@@ -359,6 +360,8 @@ function FusedNvim()
     -- ++>
     hl("@neorg.headings.2.title", { fg = Colors.color_27 })
     hl("@neorg.headings.2.prefix", { link = "@neorg.headings.2.title" })
+    hl("@neorg.headings.3.title", { fg = Colors.color_15 })
+    hl("@neorg.headings.3.prefix", { link = "@neorg.headings.3.title" })
     hl("@neorg.markup.italic", { italic = true })
     -- neorg unordered and ordered lists
     hl("@neorg.lists.unordered.1.content", { link = "Normal" })

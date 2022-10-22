@@ -5,6 +5,7 @@ local g = vim.g
 local api = vim.api
 
 g.mapleader = " "
+g.localleader = ","
 
 -- disable the default filetype detenction
 g.did_load_filetypes = 1
@@ -145,14 +146,31 @@ api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved" }, {
     command = "ColorizerAttachToBuffer",
 })
 
--- Resize the Neorg Toc Split Buffer
-local function neorgSplitTocResizer()
-    api.nvim_win_set_width(0, 100)
+-- Neorg todo list popup
+function CreateNeorgTodoPop()
+    vim.cmd [[highlight PopupColor1 ctermbg=lightblue guibg=lightblue]]
+vim.cmd [[highlight PopupColor2 ctermbg=lightcyan guibg=lightcyan]]
+
+    local popup = require('popup')
+    popup.create(
+        {""},
+        {
+            line = 1,
+            col = 3,
+            border = {3, 3, 3, 3},
+            minheight = 30,
+            minwidth = 80,
+        })
 end
-api.nvim_create_autocmd({ "BufEnter" }, {
-    pattern = "neorg://norg/Neorg Toc.norg",
-    callback = neorgSplitTocResizer,
-})
+
+-- -- Resize the Neorg Toc Split Buffer
+-- local function neorgSplitTocResizer()
+--     api.nvim_win_set_width(0, 20)
+-- end
+-- api.nvim_create_autocmd({ "BufEnter" }, {
+--     pattern = "neorg://norg/Neorg Toc.norg",
+--     callback = neorgSplitTocResizer,
+-- })
 
 -- =====================================================
 --                   Remove Built Plugins
