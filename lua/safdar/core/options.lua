@@ -18,6 +18,7 @@ opt.mouse = ""
 -- Spell Checking lang
 opt.spelllang = "en,cjk"
 opt.spelloptions:append("noplainbuffer,camel")
+opt.spell = true
 
 -- set the terminal
 opt.shell = "/bin/zsh"
@@ -40,7 +41,7 @@ opt.foldmarker = "++>,<++"
 -- finding files - search down into subfolders
 opt.path:append({ "**" })
 
--- Hide the tilde singn in the blank line
+-- Hide the tilde sign in the blank line
 opt.fillchars = { eob = " " }
 
 opt.undofile = true
@@ -109,11 +110,11 @@ local function helpHelper()
     hl("HelpStar", { link = "Normal" })
 end
 
--- set spell forthe gitcommit messages and other filetypes
-api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
-    command = "setlocal spell",
-})
+-- -- set spell forthe gitcommit messages and other filetypes
+-- api.nvim_create_autocmd({ "FileType" }, {
+--     pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
+--     command = "setlocal spell",
+-- })
 
 api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "help" },
@@ -131,6 +132,7 @@ local function terminalMode()
     optl.number = false
     optl.relativenumber = false
     opt.filetype = "terminal"
+    optl.spell = false
 end
 api.nvim_create_autocmd({ "TermOpen" }, {
     callback = terminalMode,
