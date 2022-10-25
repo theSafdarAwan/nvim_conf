@@ -8,7 +8,7 @@ g.mapleader = " "
 g.localleader = ","
 
 -- disable the default filetype detenction
-g.did_load_filetypes = 1
+-- g.did_load_filetypes = 1
 
 -- enable mouse
 -- opt.mouse = "a"
@@ -18,7 +18,7 @@ opt.mouse = ""
 -- Spell Checking lang
 opt.spelllang = "en,cjk"
 opt.spelloptions:append("noplainbuffer,camel")
-opt.spell = true
+opt.spell = false
 
 -- set the terminal
 opt.shell = "/bin/zsh"
@@ -110,11 +110,11 @@ local function helpHelper()
     hl("HelpStar", { link = "Normal" })
 end
 
--- -- set spell forthe gitcommit messages and other filetypes
--- api.nvim_create_autocmd({ "FileType" }, {
---     pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
---     command = "setlocal spell",
--- })
+-- set spell forthe gitcommit messages and other filetypes
+api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
+    command = "setlocal spell",
+})
 
 api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "help" },

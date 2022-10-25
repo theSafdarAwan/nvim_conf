@@ -21,12 +21,12 @@ packer.startup({
                 vim.g.curshold_updatime = 100
             end,
         })
-        use({
-            "nathom/filetype.nvim",
-            config = function()
-                require("safdar.plugins.configs.filetype")
-            end,
-        })
+        -- use({
+        --     "nathom/filetype.nvim",
+        --     config = function()
+        --         require("safdar.plugins.configs.filetype")
+        --     end,
+        -- })
         -- <++
 
         -- ++> Essential
@@ -208,6 +208,7 @@ packer.startup({
             "folke/todo-comments.nvim",
             config = function()
                 require("safdar.plugins.configs.todo")
+                require("safdar.core.plugins_mappings.todo_map")
             end,
         })
         use({
