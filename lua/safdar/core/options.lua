@@ -8,7 +8,7 @@ g.mapleader = " "
 g.localleader = ","
 
 -- disable the default filetype detenction
--- g.did_load_filetypes = 1
+g.did_load_filetypes = 1
 
 -- enable mouse
 -- opt.mouse = "a"
@@ -148,11 +148,10 @@ api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved" }, {
     command = "ColorizerAttachToBuffer",
 })
 
--- Neorg todo list popup
+-- Neorg todo list popup :TODO: figure this out
 function CreateNeorgTodoPop()
     vim.cmd [[highlight PopupColor1 ctermbg=lightblue guibg=lightblue]]
 vim.cmd [[highlight PopupColor2 ctermbg=lightcyan guibg=lightcyan]]
-
     local popup = require('popup')
     popup.create(
         {""},

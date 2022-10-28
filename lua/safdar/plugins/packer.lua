@@ -21,12 +21,12 @@ packer.startup({
                 vim.g.curshold_updatime = 100
             end,
         })
-        -- use({
-        --     "nathom/filetype.nvim",
-        --     config = function()
-        --         require("safdar.plugins.configs.filetype")
-        --     end,
-        -- })
+        use({
+            "nathom/filetype.nvim",
+            config = function()
+                require("safdar.plugins.configs.filetype")
+            end,
+        })
         -- <++
 
         -- ++> Essential

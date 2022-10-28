@@ -1,8 +1,8 @@
 local vim = vim
-Colors = require("safdar.plugins.personal.fused-nvim.pallete")
+local Colors = require("safdar.plugins.personal.fused-nvim.pallete")
 -- TODO: lsp utilities borders
 
-function FusedNvim()
+local function FusedNvim()
     vim.opt.background = "dark"
 
     local hl = function(highlightGroup, opts)
@@ -189,6 +189,7 @@ function FusedNvim()
     hl("@const.builtin", { fg = Colors.color_18 }) -- For constant that are built in the language: `nil` in Lua.
     hl("@const.macro", { fg = Colors.color_21 }) -- For constants that are defined by macros: `NULL` in C.
     hl("@error", { fg = Colors.error_red }) -- For syntax/parser errors.
+    hl("@warning", { fg = Colors.color_20 }) -- For syntax/parser errors.
     hl("@exception", { fg = Colors.color_20 }) -- For exception related keywords.
     hl("@field", { fg = Colors.color_21 }) -- For fields.
     hl("@float", { fg = Colors.color_20 }) -- For floats.
@@ -363,6 +364,13 @@ function FusedNvim()
     hl("@neorg.headings.3.title", { fg = Colors.color_15 })
     hl("@neorg.headings.3.prefix", { link = "@neorg.headings.3.title" })
     hl("@neorg.markup.italic", { italic = true })
+    -- Links
+    hl("@neorg.links.location.heading.1", {  underline = true, fg = Colors.color_21 })
+    hl("@neorg.links.location.heading.2", {  underline = true, fg = Colors.color_27 })
+    hl("@neorg.links.location.heading.3", {  underline = true, fg = Colors.color_15 })
+    hl("@neorg.links.location.heading.4", {  underline = true, fg = Colors.string })
+    hl("@neorg.links.location.heading.5", {  underline = true, fg = Colors.color_22_one })
+    hl("@neorg.links.location.heading.6", {  underline = true, fg = Colors.color_25 })
     -- neorg unordered and ordered lists
     hl("@neorg.lists.unordered.1.content", { link = "Normal" })
     local neorg_ulp = "@neorg.lists.unordered.1.content"
@@ -444,8 +452,8 @@ function FusedNvim()
 
     --> (Harpoon)
     -- ++>
-    hl("HarpoonBorder", { link = "TelescopeBorder" } )
-    hl("HarpoonWindow", { link = "@string" } )
+    hl("HarpoonBorder", { link = "TelescopeBorder" })
+    hl("HarpoonWindow", { link = "@string" })
     -- <++
 end
 
