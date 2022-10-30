@@ -1,4 +1,4 @@
-local map = require(require("genearl").core_loc() .. ".utils").map
+local map = require("safdar.core.utils").map
 local opts = { noremap = true, silent = true }
 local expr = { noremap = true, silent = true, expr = true }
 -- =========================================================================
@@ -14,8 +14,8 @@ map("v", "<F1>", "<Nop>", opts)
 -- <++
 
 -- Center the next searched item
-map("n", "n", "nzz", opts)
-map("n", "N", "Nzz", opts)
+-- map("n", "n", "nzz", opts)
+-- map("n", "N", "Nzz", opts)
 
 -- copy the whole line after the cursor
 map("n", "Y", "y$", opts)

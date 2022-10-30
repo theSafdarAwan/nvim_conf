@@ -68,6 +68,12 @@ packer.startup({
         use({
             "TimUntersberger/neogit",
         })
+        use({
+            'echasnovski/mini.nvim',
+            config = function ()
+                require("safdar.plugins.configs.mini")
+            end
+        })
         -- <++
 
         -- ++> ui related stuff
