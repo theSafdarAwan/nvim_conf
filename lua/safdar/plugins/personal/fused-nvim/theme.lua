@@ -28,9 +28,9 @@ local function FusedNvim()
     hl("CursorColumn", { bg = Colors.color_2 }) -- Screen-column at the cursor, when 'cursorcolumn' is set.
     hl("CursorLine", { bg = Colors.color_2 }) -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     hl("Directory", { fg = Colors.color_15 }) -- directory names (and other special names in listings)
-    hl("DiffAdd", { fg = Colors.vc_add, bg = Colors.vc_text_bg }) -- diff mode: Added line |diff.txt|
-    hl("DiffChange", { fg = Colors.vc_change, bg = Colors.vc_text_bg, underline = true }) -- diff mode: Changed line |diff.txt|
-    hl("DiffDelete", { fg = Colors.vc_remove, bg = Colors.vc_text_bg }) -- diff mode: Deleted line |diff.txt|
+    hl("DiffAdd", { fg = Colors.vc_add }) -- diff mode: Added line |diff.txt|
+    hl("DiffChange", { fg = Colors.vc_change }) -- diff mode: Changed line |diff.txt|
+    hl("DiffDelete", { fg = Colors.vc_remove }) -- diff mode: Deleted line |diff.txt|
     -- DiffText     { }, -- diff mode: Changed text within a changed line |diff.txt|
     hl("EndOfBuffer", { fg = Colors.color_3 }) -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     hl("TermCursor", { fg = Colors.fg, bg = Colors.fg }) -- cursor in a focused terminal
@@ -368,7 +368,7 @@ local function FusedNvim()
     hl("@neorg.links.location.heading.1", {  underline = true, fg = Colors.color_21 })
     hl("@neorg.links.location.heading.2", {  underline = true, fg = Colors.color_27 })
     hl("@neorg.links.location.heading.3", {  underline = true, fg = Colors.color_15 })
-    hl("@neorg.links.location.heading.4", {  underline = true, fg = Colors.string })
+    hl("@neorg.links.location.heading.4", {  underline = true, fg = Colors.string_color })
     hl("@neorg.links.location.heading.5", {  underline = true, fg = Colors.color_22_one })
     hl("@neorg.links.location.heading.6", {  underline = true, fg = Colors.color_25 })
     -- neorg unordered and ordered lists

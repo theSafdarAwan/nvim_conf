@@ -21,12 +21,12 @@ packer.startup({
                 vim.g.curshold_updatime = 100
             end,
         })
-        use({
-            "nathom/filetype.nvim",
-            config = function()
-                require("safdar.plugins.configs.filetype")
-            end,
-        })
+        -- use({
+        --     "nathom/filetype.nvim",
+        --     config = function()
+        --         require("safdar.plugins.configs.filetype")
+        --     end,
+        -- })
         -- <++
 
         -- ++> Essential
@@ -236,8 +236,6 @@ packer.startup({
                 require("safdar.plugins.configs.neoclip")
             end,
         })
-        use({ "tpope/vim-repeat" })
-        use({ "tpope/vim-surround" })
         use({
             "numToStr/Comment.nvim",
             config = function()
@@ -331,11 +329,19 @@ packer.startup({
     end,
     config = {
         compile_path = vim.fn.stdpath("config") .. "/lua/_packer/init.lua",
+        auto_clean = true,
+        compile_on_sync = true,
+        git = { clone_timeout = 6000 },
         profile = {
             enable = true,
             threshold = 1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
         },
         display = {
+            working_sym = "ﲊ",
+            error_sym = "✗ ",
+            done_sym = " ",
+            removed_sym = " ",
+            moved_sym = "",
             open_fn = function()
                 return require("packer.util").float({ border = "single" })
             end,

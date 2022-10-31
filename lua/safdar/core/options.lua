@@ -8,7 +8,7 @@ g.mapleader = " "
 g.localleader = ","
 
 -- disable the default filetype detenction
-g.did_load_filetypes = 1
+-- g.did_load_filetypes = 1
 
 -- enable mouse
 -- opt.mouse = "a"
@@ -116,6 +116,7 @@ api.nvim_create_autocmd({ "FileType" }, {
     command = "setlocal spell",
 })
 
+-- set a bunch of options for the help filetype
 api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "help" },
     callback = helpHelper,

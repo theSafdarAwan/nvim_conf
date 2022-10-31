@@ -21,15 +21,15 @@ map("v", "<F1>", "<Nop>", opts)
 map("n", "Y", "y$", opts)
 map("v", "Y", "$y", opts)
 
--- Wrap around the selection
-map("v", '<space>"', '<esc>`>a"<esc>`<i"<esc>', opts)
-map("v", "<space>'", "<esc>`>a'<esc>`<i'<esc>", opts)
-map("v", "<space>`", "<esc>`>a`<esc>`<i`<esc>", opts)
-map("v", "<space>[", "<esc>`>a ]<esc>`<i[ <esc>", opts)
-map("v", "<space>{", "<esc>`>a }<esc>`<i{ <esc>", opts)
-map("v", "<space>(", "<esc>`>a )<esc>`<i( <esc>", opts)
-map("v", "<space>*", "<esc>`>a*<esc>`<i*<esc>", opts)
-map("v", "<space>2*", "<esc>`>a**<esc>`<i**<esc>", opts)
+-- Wrap around the selection NOTE: this is now available in the mini.surround
+-- map("v", '<space>"', '<esc>`>a"<esc>`<i"<esc>', opts)
+-- map("v", "<space>'", "<esc>`>a'<esc>`<i'<esc>", opts)
+-- map("v", "<space>`", "<esc>`>a`<esc>`<i`<esc>", opts)
+-- map("v", "<space>[", "<esc>`>a ]<esc>`<i[ <esc>", opts)
+-- map("v", "<space>{", "<esc>`>a }<esc>`<i{ <esc>", opts)
+-- map("v", "<space>(", "<esc>`>a )<esc>`<i( <esc>", opts)
+-- map("v", "<space>*", "<esc>`>a*<esc>`<i*<esc>", opts)
+-- map("v", "<space>2*", "<esc>`>a**<esc>`<i**<esc>", opts)
 
 -- Remap of the century
 map("n", "cn", "*``cgn", opts)
@@ -44,8 +44,10 @@ map("i", "`", "`<c-g>u", opts)
 map("i", ".", ".<c-g>u", opts)
 map("i", ",", ",<c-g>u", opts)
 map("i", "=", "=<c-g>u", opts)
-map("n", "ds<space>", "mzF xf x`z", opts)
-map("v", "<leader>a<space>", "o<ESC>i <ESC>gvoll<ESC>i <ESC>", opts)
+
+-- mark before format paragraph mapping
+map("n", "=ap", "mm=ap`m", opts)
+map("n", "=ip", "mm=ip`m", opts)
 
 -- Adding jump after 5 lines
 map("n", "k", [[(v:count > 5 ? "m'" . v:count: "") . 'k']], expr)
