@@ -14,6 +14,7 @@ g.localleader = ","
 -- opt.mouse = "a"
 -- disable mouse
 opt.mouse = ""
+opt.laststatus = 3 -- to have a global status line
 
 -- Spell Checking lang
 opt.spelllang = "en,cjk"

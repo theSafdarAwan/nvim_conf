@@ -21,16 +21,6 @@ map("v", "<F1>", "<Nop>", opts)
 map("n", "Y", "y$", opts)
 map("v", "Y", "$y", opts)
 
--- Wrap around the selection NOTE: this is now available in the mini.surround
--- map("v", '<space>"', '<esc>`>a"<esc>`<i"<esc>', opts)
--- map("v", "<space>'", "<esc>`>a'<esc>`<i'<esc>", opts)
--- map("v", "<space>`", "<esc>`>a`<esc>`<i`<esc>", opts)
--- map("v", "<space>[", "<esc>`>a ]<esc>`<i[ <esc>", opts)
--- map("v", "<space>{", "<esc>`>a }<esc>`<i{ <esc>", opts)
--- map("v", "<space>(", "<esc>`>a )<esc>`<i( <esc>", opts)
--- map("v", "<space>*", "<esc>`>a*<esc>`<i*<esc>", opts)
--- map("v", "<space>2*", "<esc>`>a**<esc>`<i**<esc>", opts)
-
 -- Remap of the century
 map("n", "cn", "*``cgn", opts)
 map("n", "cN", "*``cgN", opts)
@@ -38,7 +28,8 @@ map("n", "cN", "*``cgN", opts)
 -- Paste onto the selection and don't copy the selection to the reg
 -- map("v", "p", '"_dP', opts)
 
--- undo break start new change points NOTE: it works only with ! , ` . =
+-- undo break start new change points
+-- NOTE: it works only with ! , ` . =
 map("i", "!", "!<c-g>u", opts)
 map("i", "`", "`<c-g>u", opts)
 map("i", ".", ".<c-g>u", opts)

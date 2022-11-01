@@ -8,7 +8,7 @@ function NeorgMappingsHelper(command)
     end
 end
 
--- -- TODO: implement the same logic to the upstream neorg plugin
+-- TODO: implement the same logic to the upstream neorg plugin
 -- function ValidateNeorgTocStatus(command)
 --     local buffers = {}
 --     for buf = 1, vim.fn.bufnr("$") do
@@ -40,4 +40,4 @@ map(
 map("i", "<C-y>", "<ESC>:Telescope neorg insert_link<CR>", opts)
 map("n", "<leader>y", ":Telescope neorg insert_file_link<CR>", opts)
 map("n", "gtw", ":Telescope neorg switch_workspace<CR>", opts)
-map("n", "gtd", ":e ~/safdar-local/NOTES/Personal-Management/TODO/today-schedule.norg<CR>", opts)
+-- map("n", "gtd", ":e ~/safdar-local/NOTES/Personal-Management/TODO/today-schedule.norg<CR>", opts)

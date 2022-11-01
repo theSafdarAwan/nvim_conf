@@ -69,6 +69,13 @@ packer.startup({
             "TimUntersberger/neogit",
         })
         use({
+            "kylechui/nvim-surround",
+            tag = "main", -- Use for stability; omit to use `main` branch for the latest features
+            config = function()
+                require("safdar.plugins.configs.surround")
+            end
+        })
+        use({
             'echasnovski/mini.nvim',
             config = function ()
                 require("safdar.plugins.configs.mini")
@@ -95,6 +102,12 @@ packer.startup({
             config = function()
                 require("safdar.plugins.configs.feline")
             end,
+        }) -- status line
+        use({
+            "nvim-zh/colorful-winsep.nvim",
+            config = function ()
+                require("safdar.plugins.configs.winsep")
+            end
         })
         -- <++
 
