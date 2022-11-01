@@ -69,8 +69,8 @@ local colors = {
 	rts_3 = "#71f094",
 	-- rts_3 = "#89b482",
 	rts_4 = "#e78a4e",
-	-- rts_5 = "#a9b665",
 	rts_5 = "#8BE9FD",
+	rts_6 = "#a9b665",
 }
 
 return colors

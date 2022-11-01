@@ -1,6 +1,6 @@
 require("neoclip").setup({
-    history = 1000,
     enable_persistent_history = true,
+    history = 30,
     length_limit = 1048576,
     continuous_sync = false,
     db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
@@ -17,5 +17,5 @@ require("neoclip").setup({
     on_replay = {
         set_reg = false,
     },
-    keys = require("safdar.core.plugins_mappings.neoclip_map").mapings()
+    keys = require("safdar.core.plugins_mappings.neoclip_map").mapings(),
 })

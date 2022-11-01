@@ -45,6 +45,11 @@ opt.path:append({ "**" })
 -- Hide the tilde sign in the blank line
 opt.fillchars = { eob = " " }
 
+-- Line indenting
+opt.list = true
+opt.listchars:append "eol:↴"
+opt.listchars:append "space:⋅"
+
 opt.undofile = true
 opt.updatetime = 500
 opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
@@ -123,12 +128,6 @@ api.nvim_create_autocmd({ "FileType" }, {
     callback = helpHelper,
 })
 
-vim.cmd([[
-" Open a file from its last left off positions
-" TODO: what is wrong with this line of code
-" au BufReadPost * if expand('%:p') !~# 'm/.git/' && line("'"") > 1 && line("'"") <= line("$") | exe "normal! g'"" | endif 
-]])
-
 -- Don't show the line numbers in terminal mode
 local function terminalMode()
     optl.number = false
@@ -149,31 +148,6 @@ api.nvim_create_autocmd({ "BufEnter" }, {
 api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved" }, {
     command = "ColorizerAttachToBuffer",
 })
-
--- Neorg todo list popup :TODO: figure this out
-function CreateNeorgTodoPop()
-    vim.cmd [[highlight PopupColor1 ctermbg=lightblue guibg=lightblue]]
-vim.cmd [[highlight PopupColor2 ctermbg=lightcyan guibg=lightcyan]]
-    local popup = require('popup')
-    popup.create(
-        {""},
-        {
-            line = 1,
-            col = 3,
-            border = {3, 3, 3, 3},
-            minheight = 30,
-            minwidth = 80,
-        })
-end
-
--- -- Resize the Neorg Toc Split Buffer
--- local function neorgSplitTocResizer()
---     api.nvim_win_set_width(0, 20)
--- end
--- api.nvim_create_autocmd({ "BufEnter" }, {
---     pattern = "neorg://norg/Neorg Toc.norg",
---     callback = neorgSplitTocResizer,
--- })
 
 -- =====================================================
 --                   Remove Built Plugins

@@ -41,16 +41,25 @@ local function FusedNvim()
     hl("FoldColumn", { fg = Colors.color_8, bg = Colors.color_1 }) -- 'foldcolumn'
     hl("SignColumn", { bg = Colors.bg }) -- column where |signs| are displayed
     hl("IncSearch", { bg = Colors.color_4 }) -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    hl("Substitute", { fg = Colors.error_red, bg = Colors.color_2, underline = true }) -- |:substitute| replacement text highlighting
+    hl(
+        "Substitute",
+        { fg = Colors.error_red, bg = Colors.color_2, underline = true }
+    ) -- |:substitute| replacement text highlighting
     hl("LineNr", { fg = Colors.color_8 }) -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     hl("CursorLineNr", { fg = Colors.color_20, bold = true }) -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     hl("MatchParen", { bg = Colors.color_2, bold = true, underline = true }) -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     hl("ModeMsg", { fg = Colors.fg, bg = Colors.bg }) -- 'showmode' message (e.g., "-- INSERT -- ")
-    hl("MsgArea", { fg = Colors.color_5, bg = Colors.transparent and "NONE" or Colors.bg }) -- Area for messages and cmdline
+    hl(
+        "MsgArea",
+        { fg = Colors.color_5, bg = Colors.transparent and "NONE" or Colors.bg }
+    ) -- Area for messages and cmdline
     hl("MsgSeparator", { fg = Colors.fg, bg = Colors.bg }) -- Separator for scrolled messages, `msgsep` flag of 'display'
     hl("MoreMsg", { fg = Colors.fg, bg = Colors.bg }) -- |more-prompt|
-    hl("NonText", { fg = Colors.color_9 }) -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    hl("Normal", { fg = Colors.fg, bg = Colors.transparent and "NONE" or Colors.bg }) -- normal text
+    hl("NonText", { fg = Colors.color_4 }) -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    hl(
+        "Normal",
+        { fg = Colors.fg, bg = Colors.transparent and "NONE" or Colors.bg }
+    ) -- normal text
     hl("NormalFloat", { fg = Colors.string, bg = Colors.bg }) -- Normal text in floating windows.
     hl("FloatBorder", { fg = Colors.color_2 })
     hl("NormalBorder", { fg = Colors.string, bg = Colors.bg }) -- Normal text in floating windows.
@@ -149,7 +158,10 @@ local function FusedNvim()
     --
     hl("LspDiagnosticsVirtualTextError", { link = "@error" }) -- Used for "Error" diagnostic virtual text
     hl("LspDiagnosticsVirtualTextWarning", { link = "@warning" }) -- Used for "Warning" diagnostic virtual text
-    hl("LspDiagnosticsVirtualTextInformation", { link = "LspDiagnosticsDefaultInformation" }) -- Used for "Information" diagnostic virtual text
+    hl(
+        "LspDiagnosticsVirtualTextInformation",
+        { link = "LspDiagnosticsDefaultInformation" }
+    ) -- Used for "Information" diagnostic virtual text
     hl("LspDiagnosticsVirtualTextHint", { link = "LspDiagnosticsDefaultHint" }) -- Used for "Hint" diagnostic virtual text
     --
     hl("LspDiagnosticsUnderlineError", { underline = true }) -- Used to underline "Error" diagnostics
@@ -159,12 +171,18 @@ local function FusedNvim()
     --
     hl("LspDiagnosticsFloatingError", { link = "@error" }) -- Used to color "Error" diagnostic messages in diagnostics float
     hl("LspDiagnosticsFloatingWarning", { link = "@warning" }) -- Used to color "Warning" diagnostic messages in diagnostics float
-    hl("LspDiagnosticsFloatingInformation", { link = "LspDiagnosticsDefaultInformation" }) -- Used to color "Information" diagnostic messages in diagnostics float
+    hl(
+        "LspDiagnosticsFloatingInformation",
+        { link = "LspDiagnosticsDefaultInformation" }
+    ) -- Used to color "Information" diagnostic messages in diagnostics float
     hl("LspDiagnosticsFloatingHint", { link = "LspDiagnosticsDefaultHint" }) -- Used to color "Hint" diagnostic messages in diagnostics float
     --
     hl("LspDiagnosticsSignError", { link = "@error" }) -- Used for "Error" signs in sign column
     hl("LspDiagnosticsSignWarning", { link = "@warning" }) -- Used for "Warning" signs in sign column
-    hl("LspDiagnosticsSignInformation", { link = "LspDiagnosticsDefaultInformation" }) -- Used for "Information" signs in sign column
+    hl(
+        "LspDiagnosticsSignInformation",
+        { link = "LspDiagnosticsDefaultInformation" }
+    ) -- Used for "Information" signs in sign column
     hl("LspDiagnosticsSignHint", { link = "LspDiagnosticsDefaultHint" }) -- Used for "Hint" signs in sign column
     --
     -- LspCodeLens                          { }, -- Used to color the virtual text of the codelens
@@ -355,6 +373,12 @@ local function FusedNvim()
     hl("IndentBlanklineContextChar", { fg = Colors.color_5 })
     hl("IndentBlanklineContextSpaceChar", { fg = Colors.color_2 })
     hl("IndentBlanklineContextStart", { fg = Colors.color_2 })
+    hl("IndentBlanklineIndent1", { fg = Colors.rts_1 })
+    hl("IndentBlanklineIndent2", { fg = Colors.rts_2 })
+    hl("IndentBlanklineIndent3", { fg = Colors.rts_3 })
+    hl("IndentBlanklineIndent4", { fg = Colors.rts_4 })
+    hl("IndentBlanklineIndent5", { fg = Colors.rts_5 })
+    hl("IndentBlanklineIndent6", { fg = Colors.rts_6 })
     -- <++
 
     --> (Neorg)
@@ -365,20 +389,38 @@ local function FusedNvim()
     hl("@neorg.headings.3.prefix", { link = "@neorg.headings.3.title" })
     hl("@neorg.markup.italic", { italic = true })
     -- Links
-    hl("@neorg.links.location.heading.1", {  underline = true, fg = Colors.color_21 })
-    hl("@neorg.links.location.heading.2", {  underline = true, fg = Colors.color_27 })
-    hl("@neorg.links.location.heading.3", {  underline = true, fg = Colors.color_15 })
-    hl("@neorg.links.location.heading.4", {  underline = true, fg = Colors.string_color })
-    hl("@neorg.links.location.heading.5", {  underline = true, fg = Colors.color_22_one })
-    hl("@neorg.links.location.heading.6", {  underline = true, fg = Colors.color_25 })
+    hl(
+        "@neorg.links.location.heading.1",
+        { underline = true, fg = Colors.color_21 }
+    )
+    hl(
+        "@neorg.links.location.heading.2",
+        { underline = true, fg = Colors.color_27 }
+    )
+    hl(
+        "@neorg.links.location.heading.3",
+        { underline = true, fg = Colors.color_15 }
+    )
+    hl(
+        "@neorg.links.location.heading.4",
+        { underline = true, fg = Colors.string_color }
+    )
+    hl(
+        "@neorg.links.location.heading.5",
+        { underline = true, fg = Colors.color_22_one }
+    )
+    hl(
+        "@neorg.links.location.heading.6",
+        { underline = true, fg = Colors.color_25 }
+    )
     -- neorg unordered and ordered lists
     hl("@neorg.lists.unordered.1.content", { link = "Normal" })
     local neorg_ulp = "@neorg.lists.unordered.1.content"
-    hl("@neorg.lists.unordered.2.content", { link = neorg_ulp})
-    hl("@neorg.lists.unordered.3.content", { link = neorg_ulp})
-    hl("@neorg.lists.unordered.4.content", { link = neorg_ulp})
-    hl("@neorg.lists.unordered.5.content", { link = neorg_ulp})
-    hl("@neorg.lists.unordered.6.content", { link = neorg_ulp})
+    hl("@neorg.lists.unordered.2.content", { link = neorg_ulp })
+    hl("@neorg.lists.unordered.3.content", { link = neorg_ulp })
+    hl("@neorg.lists.unordered.4.content", { link = neorg_ulp })
+    hl("@neorg.lists.unordered.5.content", { link = neorg_ulp })
+    hl("@neorg.lists.unordered.6.content", { link = neorg_ulp })
     hl("@neorg.lists.ordered.1.content", { link = neorg_ulp })
     hl("@neorg.lists.ordered.2.content", { link = neorg_ulp })
     hl("@neorg.lists.ordered.3.content", { link = neorg_ulp })
@@ -389,7 +431,10 @@ local function FusedNvim()
     hl("@neorg.markup.spoiler", { link = "@error" })
     hl("@neorg.markup.superscript", { fg = Colors.color_17 })
     hl("@neorg.links.location.generic", { fg = Colors.color_27 })
-    hl("@neorg.links.location.generic.prefix", { link = "@neorg.links.location.generic"})
+    hl(
+        "@neorg.links.location.generic.prefix",
+        { link = "@neorg.links.location.generic" }
+    )
     -- neorg quotes
     local neorg_quotes = { fg = Colors.color_9, bg = "NONE", italic = true }
     hl("@neorg.quotes.1.content", neorg_quotes)
@@ -461,109 +506,109 @@ FusedNvim()
 
 -- TODO: you know what to do
 
- --
- -- ["annotation"] = "TSAnnotation",
- --
- --  ["attribute"] = "TSAttribute",
- --
- --  ["boolean"] = "TSBoolean",
- --
- --  ["character"] = "TSCharacter",
- --  ["character.special"] = "TSCharacterSpecial",
- --
- --  ["comment"] = "TSComment",
- --
- --  ["conditional"] = "TSConditional",
- --
- --  ["constant"] = "TSConstant",
- --  ["constant.builtin"] = "TSConstBuiltin",
- --  ["constant.macro"] = "TSConstMacro",
- --
- --  ["constructor"] = "TSConstructor",
- --
- --  ["debug"] = "TSDebug",
- --  ["define"] = "TSDefine",
- --
- --  ["error"] = "TSError",
- --  ["exception"] = "TSException",
- --
- --  ["field"] = "TSField",
- --
- --  ["float"] = "TSFloat",
- --
- --  ["function"] = "TSFunction",
- --  ["function.call"] = "TSFunctionCall",
- --  ["function.builtin"] = "TSFuncBuiltin",
- --  ["function.macro"] = "TSFuncMacro",
- --
- --  ["include"] = "TSInclude",
- --
- --  ["keyword"] = "TSKeyword",
- --  ["keyword.function"] = "TSKeywordFunction",
- --  ["keyword.operator"] = "TSKeywordOperator",
- --  ["keyword.return"] = "TSKeywordReturn",
- --
- --  ["label"] = "TSLabel",
- --
- --  ["method"] = "TSMethod",
- --  ["method.call"] = "TSMethodCall",
- --
- --  ["namespace"] = "TSNamespace",
- --
- --  ["none"] = "TSNone",
- --  ["number"] = "TSNumber",
- --
- --  ["operator"] = "TSOperator",
- --
- --  ["parameter"] = "TSParameter",
- --  ["parameter.reference"] = "TSParameterReference",
- --
- --  ["preproc"] = "TSPreProc",
- --
- --  ["property"] = "TSProperty",
- --
- --  ["punctuation.delimiter"] = "TSPunctDelimiter",
- --  ["punctuation.bracket"] = "TSPunctBracket",
- --  ["punctuation.special"] = "TSPunctSpecial",
- --
- --  ["repeat"] = "TSRepeat",
- --
- --  ["storageclass"] = "TSStorageClass",
- --
- --  ["string"] = "TSString",
- --  ["string.regex"] = "TSStringRegex",
- --  ["string.escape"] = "TSStringEscape",
- --  ["string.special"] = "TSStringSpecial",
- --
- --  ["symbol"] = "TSSymbol",
- --
- --  ["tag"] = "TSTag",
- --  ["tag.attribute"] = "TSTagAttribute",
- --  ["tag.delimiter"] = "TSTagDelimiter",
- --
- --  ["text"] = "TSText",
- --  ["text.strong"] = "TSStrong",
- --  ["text.emphasis"] = "TSEmphasis",
- --  ["text.underline"] = "TSUnderline",
- --  ["text.strike"] = "TSStrike",
- --  ["text.title"] = "TSTitle",
- --  ["text.literal"] = "TSLiteral",
- --  ["text.uri"] = "TSURI",
- --  ["text.math"] = "TSMath",
- --  ["text.reference"] = "TSTextReference",
- --  ["text.environment"] = "TSEnvironment",
- --  ["text.environment.name"] = "TSEnvironmentName",
- --
- --  ["text.note"] = "TSNote",
- --  ["text.warning"] = "TSWarning",
- --  ["text.danger"] = "TSDanger",
- --
- --  ["todo"] = "TSTodo",
- --
- --  ["type"] = "TSType",
- --  ["type.builtin"] = "TSTypeBuiltin",
- --  ["type.qualifier"] = "TSTypeQualifier",
- --  ["type.definition"] = "TSTypeDefinition",
- --
- --  ["variable"] = "TSVariable",
- --  ["variable.builtin"] = "TSVariableBuiltin",
+--
+-- ["annotation"] = "TSAnnotation",
+--
+--  ["attribute"] = "TSAttribute",
+--
+--  ["boolean"] = "TSBoolean",
+--
+--  ["character"] = "TSCharacter",
+--  ["character.special"] = "TSCharacterSpecial",
+--
+--  ["comment"] = "TSComment",
+--
+--  ["conditional"] = "TSConditional",
+--
+--  ["constant"] = "TSConstant",
+--  ["constant.builtin"] = "TSConstBuiltin",
+--  ["constant.macro"] = "TSConstMacro",
+--
+--  ["constructor"] = "TSConstructor",
+--
+--  ["debug"] = "TSDebug",
+--  ["define"] = "TSDefine",
+--
+--  ["error"] = "TSError",
+--  ["exception"] = "TSException",
+--
+--  ["field"] = "TSField",
+--
+--  ["float"] = "TSFloat",
+--
+--  ["function"] = "TSFunction",
+--  ["function.call"] = "TSFunctionCall",
+--  ["function.builtin"] = "TSFuncBuiltin",
+--  ["function.macro"] = "TSFuncMacro",
+--
+--  ["include"] = "TSInclude",
+--
+--  ["keyword"] = "TSKeyword",
+--  ["keyword.function"] = "TSKeywordFunction",
+--  ["keyword.operator"] = "TSKeywordOperator",
+--  ["keyword.return"] = "TSKeywordReturn",
+--
+--  ["label"] = "TSLabel",
+--
+--  ["method"] = "TSMethod",
+--  ["method.call"] = "TSMethodCall",
+--
+--  ["namespace"] = "TSNamespace",
+--
+--  ["none"] = "TSNone",
+--  ["number"] = "TSNumber",
+--
+--  ["operator"] = "TSOperator",
+--
+--  ["parameter"] = "TSParameter",
+--  ["parameter.reference"] = "TSParameterReference",
+--
+--  ["preproc"] = "TSPreProc",
+--
+--  ["property"] = "TSProperty",
+--
+--  ["punctuation.delimiter"] = "TSPunctDelimiter",
+--  ["punctuation.bracket"] = "TSPunctBracket",
+--  ["punctuation.special"] = "TSPunctSpecial",
+--
+--  ["repeat"] = "TSRepeat",
+--
+--  ["storageclass"] = "TSStorageClass",
+--
+--  ["string"] = "TSString",
+--  ["string.regex"] = "TSStringRegex",
+--  ["string.escape"] = "TSStringEscape",
+--  ["string.special"] = "TSStringSpecial",
+--
+--  ["symbol"] = "TSSymbol",
+--
+--  ["tag"] = "TSTag",
+--  ["tag.attribute"] = "TSTagAttribute",
+--  ["tag.delimiter"] = "TSTagDelimiter",
+--
+--  ["text"] = "TSText",
+--  ["text.strong"] = "TSStrong",
+--  ["text.emphasis"] = "TSEmphasis",
+--  ["text.underline"] = "TSUnderline",
+--  ["text.strike"] = "TSStrike",
+--  ["text.title"] = "TSTitle",
+--  ["text.literal"] = "TSLiteral",
+--  ["text.uri"] = "TSURI",
+--  ["text.math"] = "TSMath",
+--  ["text.reference"] = "TSTextReference",
+--  ["text.environment"] = "TSEnvironment",
+--  ["text.environment.name"] = "TSEnvironmentName",
+--
+--  ["text.note"] = "TSNote",
+--  ["text.warning"] = "TSWarning",
+--  ["text.danger"] = "TSDanger",
+--
+--  ["todo"] = "TSTodo",
+--
+--  ["type"] = "TSType",
+--  ["type.builtin"] = "TSTypeBuiltin",
+--  ["type.qualifier"] = "TSTypeQualifier",
+--  ["type.definition"] = "TSTypeDefinition",
+--
+--  ["variable"] = "TSVariable",
+--  ["variable.builtin"] = "TSVariableBuiltin",

@@ -11,36 +11,36 @@ vim.o.completeopt = "menuone,noselect"
 
 -- enable lang_servers with same configs alll in one
 local servers = {
-	--love
-	"html",
-	"cssls",
-	"tailwindcss",
-	"tsserver",
+    --love
+    "html",
+    "cssls",
+    "tailwindcss",
+    "tsserver",
 
-	-- BUG:
-	-- "stylelint_lsp",
-	-- "emmet_ls",
+    -- BUG:
+    -- "stylelint_lsp",
+    -- "emmet_ls",
 
-	-- crush
-	-- "clangd",
-	"sumneko_lua",
-	"vimls",
+    -- crush
+    -- "clangd",
+    "sumneko_lua",
+    "vimls",
 
-	-- fun
-	"rust_analyzer",
-	"gopls",
-	"bashls",
-	"pyright",
+    -- fun
+    "rust_analyzer",
+    "gopls",
+    "bashls",
+    "pyright",
 }
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		autostart = true,
-		flags = {
-			debounce_text_changes = 150,
-		},
-	})
+    nvim_lsp[lsp].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        autostart = true,
+        flags = {
+            debounce_text_changes = 150,
+        },
+    })
 end
 
 --=======================================================

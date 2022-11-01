@@ -73,13 +73,7 @@ packer.startup({
             tag = "main", -- Use for stability; omit to use `main` branch for the latest features
             config = function()
                 require("safdar.plugins.configs.surround")
-            end
-        })
-        use({
-            'echasnovski/mini.nvim',
-            config = function ()
-                require("safdar.plugins.configs.mini")
-            end
+            end,
         })
         -- <++
 
@@ -103,12 +97,6 @@ packer.startup({
                 require("safdar.plugins.configs.feline")
             end,
         }) -- status line
-        use({
-            "nvim-zh/colorful-winsep.nvim",
-            config = function ()
-                require("safdar.plugins.configs.winsep")
-            end
-        })
         -- <++
 
         -- ++> for linting files that null_ls does not support
@@ -155,9 +143,9 @@ packer.startup({
         use({
             "uga-rosa/cmp-dictionary",
             ft = { "markdown", "norg" },
-            config = function ()
+            config = function()
                 require("safdar.plugins.configs.cmp-dictionary")
-            end
+            end,
         })
         use({
             "hrsh7th/cmp-emoji",
@@ -237,9 +225,6 @@ packer.startup({
                     check_ts = true,
                     map_c_w = true,
                 })
-                local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-                local cmp = require("cmp")
-                cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
             end,
         })
         use({

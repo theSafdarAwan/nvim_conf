@@ -1,6 +1,7 @@
 -- luasnip setup
 local luasnip = require("luasnip")
 local border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+-- local border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" }
 local cmp = require("cmp")
 cmp.setup({
     snippet = {
@@ -32,11 +33,8 @@ cmp.setup({
             local icons = require(
                 require("genearl").plugins_loc() .. ".configs.lspkind_icons"
             )
-            vim_item.kind = string.format(
-                "%s %s",
-                icons[vim_item.kind],
-                vim_item.kind
-            )
+            vim_item.kind =
+            string.format("%s %s", icons[vim_item.kind], vim_item.kind)
 
             vim_item.menu = ({
                 nvim_lsp = "(LSP)",
@@ -82,7 +80,7 @@ cmp.setup({
             end
         end,
     },
-    sources = {
+    sources = { -- different source for the completion
         { name = "nvim_lsp" },
         { name = "neorg" },
         {
@@ -103,12 +101,14 @@ cmp.setup({
     },
 })
 
+-- require the vscode html tag completion
 luasnip.config.set_config({
     history = true,
     updateevents = "TextChanged,TextChangedI",
 })
 require("luasnip/loaders/from_vscode").lazy_load()
 
+-- tabnine
 local tabnine = require("cmp_tabnine.config")
 tabnine:setup({
     max_lines = 1000,
@@ -118,3 +118,7 @@ tabnine:setup({
     run_on_every_keystroke = true,
     snippet_placeholder = "..",
 })
+
+-- autopairs
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
