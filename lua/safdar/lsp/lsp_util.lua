@@ -23,6 +23,8 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 M.capabilities = capabilities
-M.on_attach = require("safdar.core.plugins_mappings.lsp_map").on_attch
+M.on_attach = function ()
+    -- code
+end
 
 return M
