@@ -39,7 +39,7 @@ local colors = {
 	color_28 = "#4FC1FF",
 	color_29 = "#8BE9FD",
 
-	error_red = "#F44747",
+	error_red = "#FF0000",
 
 	fl_color_1 = "#71f094",
 	fl_color_2 = "#BD93F9",

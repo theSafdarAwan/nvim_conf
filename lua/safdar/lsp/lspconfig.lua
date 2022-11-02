@@ -1,10 +1,23 @@
---=======================================================
---                      lsp general
---=======================================================
 local vim = vim
-local nvim_lsp = require("safdar.lsp.lsp_util").nvim_lsp
-local on_attach = require("safdar.core.plugins_mappings.lsp_map").on_attach
-local capabilities = require("safdar.lsp.lsp_util").capabilities
+local lsp_util = require("safdar.lsp.lsp_util")
+local on_attach = lsp_util.on_attach
+local capabilities = lsp_util.capabilities
+-- suppress error messages from lang servers
+vim.notify = function(msg, log_level, _opts)
+    if msg:match("exit code") then
+        return
+    end
+    if log_level == vim.log.levels.ERROR then
+        vim.api.nvim_err_writeln(msg)
+    else
+        vim.api.nvim_echo({ { msg } }, true, {})
+    end
+end
+
+--|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+--                      lsp general
+--|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+local nvim_lsp = require("lspconfig")
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -33,7 +46,7 @@ local servers = {
 }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup({
-        -- capabilities = capabilities,
+        capabilities = capabilities,
         on_attach = on_attach,
         autostart = true,
         flags = {
@@ -51,3 +64,6 @@ require("safdar.lsp.langs.c")
 require("safdar.lsp.langs.ltex")
 require("safdar.lsp.langs.html")
 require("lspconfig").clangd.setup({ capabilities = capabilities })
+
+-- to change the ui
+require("safdar.lsp.lsp-ui")

@@ -1,7 +1,7 @@
 local vim = vim
-local nvim_lsp = require(require("genearl").lsp_loc() .. ".lsp_util").nvim_lsp
-local on_attach = require(require("genearl").core_loc() .. ".plugins_mappings.lsp_map").on_attach
-
+local nvim_lsp = require("lspconfig")
+local lsp_util = require("safdar.lsp.lsp_util")
+local on_attach = lsp_util.on_attach
 --=======================================================
 --                      lua server config
 --=======================================================
@@ -19,7 +19,7 @@ nvim_lsp.sumneko_lua.setup({
 		-- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 		-- 	-- Disable virtual_text
 		-- 	virtual_text = false,
-		-- }),
+		-- }), -- this is handled in lsp-ui
 	},
 	settings = {
 		Lua = {

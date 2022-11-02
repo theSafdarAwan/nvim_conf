@@ -124,12 +124,12 @@ packer.startup({
         use({
             "neovim/nvim-lspconfig", -- quckstart lsp conifgs
             config = function()
-                require("safdar.lsp.lsp")
+                require("safdar.lsp.lspconfig")
             end,
             requires = {
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
-                    require("safdar.lsp.null_ls")
+                    require("safdar.lsp.null-ls")
                     require("safdar.core.plugins_mappings.null-ls_map")
                 end,
             },

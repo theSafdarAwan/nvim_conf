@@ -150,12 +150,17 @@ local function FusedNvim()
     hl("LspReferenceText", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "text" references
     hl("LspReferenceRead", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "read" references
     hl("LspReferenceWrite", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "write" references
-    --
+
+    hl("DiagnosticSignError", { link = "@error" })
+    hl("DiagnosticSignWarning", { link = "LspDiagnosticsDefaultWarning" })
+    hl("DiagnosticSignHint", { link = "LspDiagnosticsDefaultHint" })
+    hl("DiagnosticSignInfo", { link = "LspDiagnosticsDefaultInformation"})
+
     hl("LspDiagnosticsDefaultError", { link = "@error" }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     hl("LspDiagnosticsDefaultWarning", { link = "@warning" }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     hl("LspDiagnosticsDefaultInformation", { fg = Colors.color_21 }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     hl("LspDiagnosticsDefaultHint", { fg = Colors.color_14_drac }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    --
+
     hl("LspDiagnosticsVirtualTextError", { link = "@error" }) -- Used for "Error" diagnostic virtual text
     hl("LspDiagnosticsVirtualTextWarning", { link = "@warning" }) -- Used for "Warning" diagnostic virtual text
     hl(
@@ -163,12 +168,12 @@ local function FusedNvim()
         { link = "LspDiagnosticsDefaultInformation" }
     ) -- Used for "Information" diagnostic virtual text
     hl("LspDiagnosticsVirtualTextHint", { link = "LspDiagnosticsDefaultHint" }) -- Used for "Hint" diagnostic virtual text
-    --
+
     hl("LspDiagnosticsUnderlineError", { underline = true }) -- Used to underline "Error" diagnostics
     hl("LspDiagnosticsUnderlineWarning", { underline = true }) -- Used to underline "Warning" diagnostics
     hl("LspDiagnosticsUnderlineInformation", { underline = true }) -- Used to underline "Information" diagnostics
     hl("LspDiagnosticsUnderlineHint", { underline = true }) -- Used to underline "Hint" diagnostics
-    --
+
     hl("LspDiagnosticsFloatingError", { link = "@error" }) -- Used to color "Error" diagnostic messages in diagnostics float
     hl("LspDiagnosticsFloatingWarning", { link = "@warning" }) -- Used to color "Warning" diagnostic messages in diagnostics float
     hl(
@@ -176,7 +181,7 @@ local function FusedNvim()
         { link = "LspDiagnosticsDefaultInformation" }
     ) -- Used to color "Information" diagnostic messages in diagnostics float
     hl("LspDiagnosticsFloatingHint", { link = "LspDiagnosticsDefaultHint" }) -- Used to color "Hint" diagnostic messages in diagnostics float
-    --
+
     hl("LspDiagnosticsSignError", { link = "@error" }) -- Used for "Error" signs in sign column
     hl("LspDiagnosticsSignWarning", { link = "@warning" }) -- Used for "Warning" signs in sign column
     hl(
@@ -184,7 +189,6 @@ local function FusedNvim()
         { link = "LspDiagnosticsDefaultInformation" }
     ) -- Used for "Information" signs in sign column
     hl("LspDiagnosticsSignHint", { link = "LspDiagnosticsDefaultHint" }) -- Used for "Hint" signs in sign column
-    --
     -- LspCodeLens                          { }, -- Used to color the virtual text of the codelens
     -- <++
 
