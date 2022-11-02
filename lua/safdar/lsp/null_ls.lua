@@ -23,8 +23,8 @@ local sources = {
 	builtins.diagnostics.stylelint,
 	builtins.diagnostics.chktex,
     builtins.code_actions.gitsigns,
-	builtins.formatting.prettier_d_slim.with({
-		-- filetypes = { "html", "json", "css", "scss", "less", "yaml", "markdown" },
+	builtins.formatting.prettierd.with({
+        -- { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
 		filetypes = { "html", "json", "yaml", "markdown" },
 	}),
 

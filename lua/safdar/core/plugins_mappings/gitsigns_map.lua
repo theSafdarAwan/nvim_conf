@@ -29,8 +29,8 @@ M.mappings = function(bufnr)
     end, { expr = true })
 
     -- Actions
-    map({ "n", "v" }, "gcs", ":Gitsigns stage_hunk<CR>")
-    map({ "n", "v" }, "gcr", ":Gitsigns reset_hunk<CR>")
+    map("n", "gcs", ":Gitsigns stage_hunk<CR>")
+    map("n", "gcr", ":Gitsigns reset_hunk<CR>")
     map("n", "gbS", gs.stage_buffer)
     map("n", "gus", gs.undo_stage_hunk)
     map("n", "gbR", gs.reset_buffer)

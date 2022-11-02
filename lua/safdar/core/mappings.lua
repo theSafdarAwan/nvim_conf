@@ -96,6 +96,10 @@ map("n", "<leader>[", ":bprevious<cr>", opts)
 map("n", "<leader>x", ":bdelete<cr>", opts)
 map("n", "<leader>X", ":bdelete!<cr>", opts)
 
+-- window mappings
+map("n", "gx", ":close<cr>", opts)
+map("n", "gX", ":close!<cr>", opts)
+
 -- I use Obsession plugin and i need to restore the whole (n)vim session without losing
 -- a single pane so i replicated the ZZ command functionality and replace it with this one
 map("n", "<leader>ZZ", ":wa | qa <cr>", opts)

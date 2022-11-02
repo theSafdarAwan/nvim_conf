@@ -1,4 +1,4 @@
-local map = require(require("genearl").core_loc() .. ".utils").map
+local map = require("safdar.core.utils").map
 map(
 	"v",
 	"<Leader>re",

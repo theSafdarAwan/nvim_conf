@@ -12,7 +12,6 @@ vim.o.completeopt = "menuone,noselect"
 -- enable lang_servers with same configs alll in one
 local servers = {
     --love
-    "html",
     "cssls",
     "tailwindcss",
     "tsserver",
@@ -34,7 +33,7 @@ local servers = {
 }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup({
-        capabilities = capabilities,
+        -- capabilities = capabilities,
         on_attach = on_attach,
         autostart = true,
         flags = {
@@ -50,4 +49,5 @@ require("safdar.lsp.langs.sumneko_lua")
 require("safdar.lsp.langs.jsonls")
 require("safdar.lsp.langs.c")
 require("safdar.lsp.langs.ltex")
+require("safdar.lsp.langs.html")
 require("lspconfig").clangd.setup({ capabilities = capabilities })
