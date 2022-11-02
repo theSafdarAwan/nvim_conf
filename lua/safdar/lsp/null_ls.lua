@@ -22,6 +22,7 @@ local sources = {
 	builtins.formatting.clang_format,
 	builtins.diagnostics.stylelint,
 	builtins.diagnostics.chktex,
+    builtins.code_actions.gitsigns,
 	builtins.formatting.prettier_d_slim.with({
 		-- filetypes = { "html", "json", "css", "scss", "less", "yaml", "markdown" },
 		filetypes = { "html", "json", "yaml", "markdown" },

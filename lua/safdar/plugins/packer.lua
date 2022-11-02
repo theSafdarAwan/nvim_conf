@@ -75,6 +75,12 @@ packer.startup({
                 require("safdar.plugins.configs.surround")
             end,
         })
+        use({
+            "Pocco81/auto-save.nvim",
+            config = function()
+                require("safdar.plugins.configs.autosave")
+            end,
+        })
         -- <++
 
         -- ++> ui related stuff
@@ -121,13 +127,11 @@ packer.startup({
                 require("safdar.lsp.lsp")
             end,
             requires = {
-                {
-                    "jose-elias-alvarez/null-ls.nvim",
-                    config = function()
-                        require("safdar.lsp.null_ls")
-                        require("safdar.core.plugins_mappings.null-ls_map")
-                    end,
-                },
+                "jose-elias-alvarez/null-ls.nvim",
+                config = function()
+                    require("safdar.lsp.null_ls")
+                    require("safdar.core.plugins_mappings.null-ls_map")
+                end,
             },
         })
         use({ "b0o/schemastore.nvim" })
@@ -140,6 +144,7 @@ packer.startup({
         use({ "hrsh7th/cmp-nvim-lua" })
         use({ "hrsh7th/cmp-nvim-lsp" })
         use({ "hrsh7th/cmp-buffer" })
+        use({ "tzachar/cmp-tabnine", run = "./install.sh" })
         use({
             "uga-rosa/cmp-dictionary",
             ft = { "markdown", "norg" },
@@ -154,7 +159,6 @@ packer.startup({
         use({ "saadparwaiz1/cmp_luasnip" })
         use({ "L3MON4D3/LuaSnip" })
         use({ "rafamadriz/friendly-snippets" })
-        use({ "tzachar/cmp-tabnine", run = "./install.sh" })
         -- <++
 
         -- ++> Lsp utils & enhancements
@@ -175,7 +179,7 @@ packer.startup({
         use({
             "glepnir/lspsaga.nvim",
             config = function()
-                require("safdar.plugins.configs.saga")
+                require("safdar.plugins.configs.lsp-saga")
                 require("safdar.core.plugins_mappings.lsp-saga_map")
             end,
         })

@@ -258,6 +258,81 @@ local function FusedNvim()
     hl("cssTsOperator", { fg = Colors.color_14_drac })
     -- <++
 
+    --> (LSP saga)
+    -- ++>
+    -- code action
+    hl("LspSagaCodeActionTitle", { fg = Colors.color_17, bold = true })
+    hl("LspSagaCodeActionBorder", { link = "FloatBorder" })
+    hl("LspSagaCodeActionTrunCateLine", { link = "LspSagaCodeActionBorder" })
+    hl("LspSagaCodeActionContent", { fg = Colors.color_23, bold = true })
+    -- finder
+    hl("LspSagaLspFinderBorder", { link = "FloatBorder" })
+    hl("LspSagaAutoPreview", { link = "FloatBorder" })
+    hl("LspSagaFinderSelection", { fg = Colors.color_25, bold = true })
+    hl("TargetFileName", { fg = Colors.string_color })
+    hl("FinderParam", { fg = Colors.color_20, bold = true })
+    hl("FinderVirtText", { fg =  Colors.color_3 })
+    hl("DefinitionsIcon", { fg = Colors.color_23 })
+    hl("Definitions", { fg = Colors.color_25, bold = true })
+    hl("DefinitionCount", { link = "Title" })
+    hl("ReferencesIcon", { fg = Colors.color_23 })
+    hl("References", { fg = Colors.color_25, bold = true })
+    hl("ReferencesCount", { link = "Title" })
+    hl("ImplementsIcon", { fg = Colors.color_23 })
+    hl("Implements", { fg = Colors.color_25, bold = true })
+    hl("ImplementsCount", { link = "Title" })
+    -- --finder spinner
+    hl("FinderSpinnerBorder", { link = "FloatBorder" })
+    hl("FinderSpinnerTitle", { fg = Colors.color_20, bold = true })
+    hl("FinderSpinner", { fg = Colors.color_17, bold = true })
+    hl("FinderPreviewSearch", { link = "Search" })
+    -- definition
+    hl("DefinitionBorder", { link = "FloatBorder" })
+    hl("DefinitionArrow", { fg = "#ad475f" })
+    hl("DefinitionSearch", { link = "Search" })
+    hl("DefinitionFile", { bg = "#151838" })
+    -- hover
+    hl("LspSagaHoverBorder", { link = "FloatBorder" })
+    hl("LspSagaHoverTrunCateLine", { link = "LspSagaHoverBorder" })
+    -- rename
+    hl("LspSagaRenameBorder", { link = "FloatBorder" })
+    hl("LspSagaRenameMatch", { link = "Search" })
+    -- -- diagnostic
+    hl("LspSagaDiagnosticSource", { link = "Comment" })
+    hl("LspSagaDiagnosticError", { link = "DiagnosticError" })
+    hl("LspSagaDiagnosticWarn", { link = "DiagnosticWarn" })
+    hl("LspSagaDiagnosticInfo", { link = "DiagnosticInfo" })
+    hl("LspSagaDiagnosticHint", { link = "DiagnosticHint" })
+    hl("LspSagaErrorTrunCateLine", { link = "DiagnosticError" })
+    hl("LspSagaWarnTrunCateLine", { link = "DiagnosticWarn" })
+    hl("LspSagaInfoTrunCateLine", { link = "DiagnosticInfo" })
+    hl("LspSagaHintTrunCateLine", { link = "DiagnosticHint" })
+    hl("LspSagaDiagnosticBorder", { link = "FloatBorder" })
+    hl("LspSagaDiagnosticHeader", { fg = "#afd700" })
+    hl("DiagnosticQuickFix", { fg = "#4dd158", bold = true })
+    hl("DiagnosticMap", { fg = "#cf80ce" })
+    hl("DiagnosticLineCol", { fg = "#73797e" })
+    hl("LspSagaDiagnosticTruncateLine", { link = "LspSagaDiagnosticBorder" })
+    hl("ColInLineDiagnostic", { link = "Comment" })
+    -- signture help
+    hl("LspSagaSignatureHelpBorder", { link = "FloatBorder" })
+    hl("LspSagaShTrunCateLine", { link = "LspSagaSignatureHelpBorder" })
+    -- lightbulb
+    hl("LspSagaLightBulb", { link = "DiagnosticSignHint" })
+    -- shadow
+    hl("SagaShadow", { fg = "black" })
+    -- float
+    hl("LspSagaBorderTitle", { link = "FloatBorder" })
+    -- Outline
+    hl("LSOutlinePreviewBorder", { link = "FloatBorder" })
+    hl("OutlineIndentEvn", { fg = "#c955ae" })
+    hl("OutlineIndentOdd", { fg = "#b8733e" })
+    hl("OutlineFoldPrefix", { fg = "#bf4537" })
+    hl("OutlineDetail", { fg = "#73797e" })
+    -- all floatwindow of lspsaga
+    hl("LspFloatWinNormal", { link = "Normal" })
+    -- <++
+
     --> (Telescope)
     -- ++>
     hl("TelescopeSelection", { bg = Colors.color_2 })
@@ -373,12 +448,6 @@ local function FusedNvim()
     hl("IndentBlanklineContextChar", { fg = Colors.color_5 })
     hl("IndentBlanklineContextSpaceChar", { fg = Colors.color_2 })
     hl("IndentBlanklineContextStart", { fg = Colors.color_2 })
-    hl("IndentBlanklineIndent1", { fg = Colors.rts_1 })
-    hl("IndentBlanklineIndent2", { fg = Colors.rts_2 })
-    hl("IndentBlanklineIndent3", { fg = Colors.rts_3 })
-    hl("IndentBlanklineIndent4", { fg = Colors.rts_4 })
-    hl("IndentBlanklineIndent5", { fg = Colors.rts_5 })
-    hl("IndentBlanklineIndent6", { fg = Colors.rts_6 })
     -- <++
 
     --> (Neorg)
