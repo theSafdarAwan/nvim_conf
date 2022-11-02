@@ -66,4 +66,4 @@ require("safdar.lsp.langs.stylelint_lsp")
 require("safdar.lsp.lsp-ui")
 
 -- add the mappings
-require("safdar.core.plugins_mappings.lsp_map")
+require("safdar.plugins_mappings.lsp_map")

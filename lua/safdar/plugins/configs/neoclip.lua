@@ -17,5 +17,5 @@ require("neoclip").setup({
     on_replay = {
         set_reg = false,
     },
-    keys = require("safdar.core.plugins_mappings.neoclip_map").mapings(),
+    keys = require("safdar.plugins_mappings.neoclip_map").mapings(),
 })

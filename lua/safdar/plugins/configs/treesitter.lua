@@ -1,5 +1,5 @@
 local colors = require("safdar.plugins.personal.fused-nvim.pallete")
-local treesitter_maps = require("safdar.core.plugins_mappings.treesitter_map").treesitter_maps
+local treesitter_maps = require("safdar.plugins_mappings.treesitter_map").treesitter_maps
 -- vim.cmd [[packadd nvim-treesitter]]
 
 require("nvim-treesitter.configs").setup({

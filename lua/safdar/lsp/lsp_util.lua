@@ -25,7 +25,7 @@ require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 M.capabilities = capabilities
 M.on_attach = function (c, b)
-  require("safdar.core.plugins_mappings.lsp_map").on_attach(c, b)
+  require("safdar.plugins_mappings.lsp_map").on_attach(c, b)
 end
 
 return M
