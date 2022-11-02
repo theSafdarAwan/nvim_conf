@@ -5,7 +5,6 @@ local on_attach = require("safdar.lsp.lsp_util").on_attach
 --=======================================================
 local null_ls = require("null-ls")
 local builtins = null_ls.builtins
--- require("safdar.lsp.null-ls.emment_ls")
 local sources = {
     builtins.formatting.stylua.with({
         extra_args = { "--config-path", vim.fn.expand("~/.config/stylua.toml") },

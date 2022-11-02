@@ -2,8 +2,6 @@ local vim = vim
 local lsp_util = require("safdar.lsp.lsp_util")
 local on_attach = lsp_util.on_attach
 local capabilities = lsp_util.capabilities
-local map = require("safdar.core.utils").map
-local opts = { noremap = true, silent = true }
 -- suppress error messages from lang servers
 vim.notify = function(msg, log_level, _opts)
     if msg:match("exit code") then
@@ -30,6 +28,7 @@ local servers = {
     "cssls",
     "tailwindcss",
     "tsserver",
+    "emmet_ls",
 
     -- BUG:
     -- "stylelint_lsp",

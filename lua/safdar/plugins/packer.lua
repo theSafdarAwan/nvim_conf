@@ -114,10 +114,6 @@ packer.startup({
             end,
             ft = { "html" },
         })
-        use({
-            "mattn/emmet-vim",
-            ft = { "html", "css" },
-        })
         -- <++
 
         -- ++> load luasnips + cmp related in insert mode only
