@@ -1,4 +1,4 @@
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true, buffer = true }
 local map = require(require("genearl").core_loc() .. ".utils").map
 --> Lspsaga
 -- hover diagnostic

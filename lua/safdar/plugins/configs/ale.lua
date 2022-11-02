@@ -5,12 +5,12 @@ let b:ale_linters = ['htmlhint']
 ]])
 
 vim.cmd([[
-let g:ale_sign_error = ' ●'
+let g:ale_sign_error = ''
 let g:ale_sign_warning = ' '
 ]])
 
 -- Trick
-vim.cmd[[
+vim.cmd([[
 autocmd BufEnter * ALEDisable
 autocmd BufEnter *.html ALEEnable
-]]
+]])
