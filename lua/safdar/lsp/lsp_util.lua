@@ -2,6 +2,7 @@ local vim = vim
 local M = {}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
 capabilities.textDocument.completion.completionItem.documentationFormat =
     { "markdown", "plaintext" }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -23,8 +24,8 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 M.capabilities = capabilities
-M.on_attach = function ()
-    -- code
+M.on_attach = function (c, b)
+  require("safdar.core.plugins_mappings.lsp_map").on_attach(c, b)
 end
 
 return M

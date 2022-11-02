@@ -159,7 +159,7 @@ local function FusedNvim()
     hl("LspDiagnosticsDefaultError", { link = "@error" }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     hl("LspDiagnosticsDefaultWarning", { link = "@warning" }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     hl("LspDiagnosticsDefaultInformation", { fg = Colors.color_21 }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    hl("LspDiagnosticsDefaultHint", { fg = Colors.color_14_drac }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    hl("LspDiagnosticsDefaultHint", { fg = Colors.fl_color_6 }) -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
     hl("LspDiagnosticsVirtualTextError", { link = "@error" }) -- Used for "Error" diagnostic virtual text
     hl("LspDiagnosticsVirtualTextWarning", { link = "@warning" }) -- Used for "Warning" diagnostic virtual text

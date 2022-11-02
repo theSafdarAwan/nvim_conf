@@ -19,18 +19,17 @@ local sources = {
     }),
     builtins.formatting.eslint_d,
     builtins.formatting.stylelint,
+    -- builtins.diagnostics.stylelint, -- using stylelint-lsp server for diagnostics
     builtins.formatting.clang_format,
-    builtins.diagnostics.stylelint,
     builtins.diagnostics.chktex,
     builtins.code_actions.gitsigns,
     builtins.formatting.prettierd.with({
         -- { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
         filetypes = { "html", "json", "yaml", "markdown" },
     }),
-	-- builtins.completioeslint_dn.emmet_ls,
 }
 null_ls.setup({
-	debug = true,
-	sources = sources,
-	on_attach = on_attach,
+    debug = true,
+    sources = sources,
+    on_attach = on_attach,
 })

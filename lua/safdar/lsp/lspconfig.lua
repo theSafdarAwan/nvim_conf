@@ -30,10 +30,6 @@ local servers = {
     "tsserver",
     "emmet_ls",
 
-    -- BUG:
-    -- "stylelint_lsp",
-    -- "emmet_ls",
-
     -- crush
     -- "clangd",
     "sumneko_lua",
@@ -64,7 +60,7 @@ require("safdar.lsp.langs.jsonls")
 require("safdar.lsp.langs.c")
 require("safdar.lsp.langs.ltex")
 require("safdar.lsp.langs.html")
-require("lspconfig").clangd.setup({ capabilities = capabilities })
+require("safdar.lsp.langs.stylelint_lsp")
 
 -- to change the ui
 require("safdar.lsp.lsp-ui")

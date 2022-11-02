@@ -1,6 +1,4 @@
 local vim = vim
-local nvim_lsp = require("lspconfig")
---=======================================================
---                  c lang conf
---=======================================================
-nvim_lsp.clangd.setup({})
+local lsp_util = require("safdar.lsp.lsp_util")
+local capabilities = lsp_util.capabilities
+require("lspconfig").clangd.setup({ capabilities = capabilities })
