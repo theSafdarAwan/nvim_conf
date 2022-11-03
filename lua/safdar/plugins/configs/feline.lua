@@ -299,7 +299,7 @@ components.active[3][2] = {
 	enabled = function()
 		return lsp.diagnostics_exist(lsp_severity.ERROR)
 	end,
-	hl = { fg = colors.vc_remove, bg = colors.fl_color_8 },
+	hl = { fg = colors.error_red_deep, bg = colors.fl_color_8 },
 	icon = "  ",
 }
 
