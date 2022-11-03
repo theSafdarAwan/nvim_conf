@@ -145,7 +145,7 @@ local function FusedNvim()
     -- These groups are for the native LSP client. Some other LSP clients may
     -- use these groups, or use their own. Consult your LSP client's
     -- documentation.
-    -- Lsp Conf Diagnostic Colors
+    -- Lsp Conf
     -- ++>
     hl("LspReferenceText", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "text" references
     hl("LspReferenceRead", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "read" references
@@ -163,19 +163,23 @@ local function FusedNvim()
 
     hl(
         "DiagnosticUnderlineError",
-        { fg = Colors.error_red, bg = Colors.color_2, underline = true }
+        -- { fg = Colors.error_red, bg = Colors.color_2, underline = true }
+        { underline = true }
     )
     hl(
         "DiagnosticUnderlineWarn",
-        { fg = Colors.color_20, bg = Colors.color_2, underline = true }
+        -- { fg = Colors.color_20, bg = Colors.color_2, underline = true }
+        { underline = true }
     )
     hl(
         "DiagnosticUnderlineInfo",
-        { fg = Colors.color_21, bg = Colors.color_2, underline = true }
+        -- { fg = Colors.color_21, bg = Colors.color_2, underline = true }
+        { underline = true }
     )
     hl(
         "DiagnosticUnderlineHint",
-        { fg = Colors.fl_color_6, bg = Colors.color_2, underline = true }
+        -- { fg = Colors.fl_color_6, bg = Colors.color_2, underline = true }
+        { underline = true }
     )
     -- <++
 
