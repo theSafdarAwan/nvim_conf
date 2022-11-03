@@ -30,9 +30,7 @@ cmp.setup({
     formatting = {
         format = function(entry, vim_item)
             -- load lspkind icons
-            local icons = require(
-                require("genearl").plugins_loc() .. ".configs.lspkind_icons"
-            )
+            local icons = require( "safdar.plugins.configs.lspkind_icons")
             vim_item.kind =
             string.format("%s %s", icons[vim_item.kind], vim_item.kind)
 

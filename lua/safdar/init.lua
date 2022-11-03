@@ -1,2 +1,6 @@
-require(require("genearl").core_loc() .. "")
-require(require("genearl").plugins_loc() .. "")
+require("safdar.plugins.personal.fused-nvim.theme")
+require("safdar.core")
+require("safdar.plugins")
+require("safdar.options")
+require("safdar.mappings")
+require("safdar.autocmds")

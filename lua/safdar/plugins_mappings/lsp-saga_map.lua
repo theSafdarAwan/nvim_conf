@@ -9,6 +9,6 @@ map("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
 -- cursor word definition and reference
 map("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
 -- rename
-map("n", "ysr", ":Lspsaga rename<CR>", opts)
+map("n", "yr", ":Lspsaga rename<CR>", opts)
 map("n", "ysa", ":Lspsaga code_action<CR>", opts)
 map("n", "ysd", ":Lspsaga peek_definition<CR>", opts)

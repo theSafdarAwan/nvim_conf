@@ -1,4 +1,4 @@
-local map = require(require("genearl").core_loc() .. ".utils").map
+local map = require("safdar.core.utils").map
 -- --> Telescope
 map("n", "<leader>vc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
 map("n", "<leader>tr", ":Telescope resume<CR>", { noremap = true, silent = true })

@@ -1,4 +1,4 @@
-local map = require(require("genearl").core_loc() .. ".utils").map
+local map = require("safdar.core.utils").map
 
 map("n", "<leader>ee", ":ALEToggle<cr>", { silent = true, noremap = true })
 map("n", "<leader>ej", ":ALENext<cr>", { silent = true, noremap = true })

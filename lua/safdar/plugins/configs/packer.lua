@@ -1,6 +1,5 @@
 local vim = vim
 local packer = require("packer")
-require("safdar.plugins_mappings.packer_map")
 packer.startup({
     function(use)
         --  ++> Packer can manage itself
@@ -67,18 +66,15 @@ packer.startup({
         })
         use({
             "TimUntersberger/neogit",
+            config = function()
+                require("safdar.plugins.configs.neogit")
+            end,
         })
         use({
             "kylechui/nvim-surround",
             tag = "main", -- Use for stability; omit to use `main` branch for the latest features
             config = function()
                 require("safdar.plugins.configs.surround")
-            end,
-        })
-        use({
-            "Pocco81/auto-save.nvim",
-            config = function()
-                require("safdar.plugins.configs.autosave")
             end,
         })
         -- <++
@@ -230,9 +226,6 @@ packer.startup({
         use({
             "AckslD/nvim-neoclip.lua",
             requires = { "tami5/sqlite.lua", module = "sqlite" },
-            config = function()
-                require("safdar.plugins.configs.neoclip")
-            end,
         })
         use({
             "numToStr/Comment.nvim",

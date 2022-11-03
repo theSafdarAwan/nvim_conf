@@ -1,5 +1,5 @@
 local vim = vim
-local map = require(require("genearl").core_loc() .. ".utils").map
+local map = require("safdar.core.utils").map
 local M = {}
 
 map("i", "<C-s>", "<c-o>:Telescope neoclip<CR>", { noremap = true, silent = true })

@@ -1,4 +1,4 @@
-local map = require(require("genearl").core_loc() .. ".utils").map
+local map = require("safdar.core.utils").map
 local opts = { noremap = true, silent = true }
 
 map("n", "<C-t>", ":lua ToggleTerminal()<CR>", opts)

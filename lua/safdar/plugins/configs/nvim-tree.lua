@@ -153,7 +153,7 @@ require("nvim-tree").setup({
     },
     live_filter = {
         prefix = "  : ",
-        always_show_folders = true,
+        always_show_folders = false,
     },
     log = {
         enable = false,

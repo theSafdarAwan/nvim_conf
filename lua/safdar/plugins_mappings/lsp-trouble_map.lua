@@ -1,4 +1,4 @@
-local map = require(require("genearl").core_loc() .. ".utils").map
+local map = require("safdar.core.utils").map
 --> lsp trouble
 map("n", "\\t", ":TroubleToggle<cr>", { noremap = true, silent = true })
 map("n", "\\d", "<cmd>TroubleToggle document_diagnostics<cr>", { noremap = true, silent = true })
