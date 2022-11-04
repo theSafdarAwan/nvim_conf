@@ -1,7 +1,4 @@
---  FOR PEOPEL READING THIS
---  this config include some things or to be precise styles those
---  aren't visible at the time because i change the theme so i change the colors of
---  some components to the bg color
+--> TODO: rewrite some of the status line modules
 
 --=====================================================
 --                  general
@@ -433,6 +430,7 @@ require("feline").setup({
         filetypes = {
             "^NvimTree$",
             "^Outline$",
+            "DiffviewFileHistory"
         },
         buftypes = {
             "^terminal$",

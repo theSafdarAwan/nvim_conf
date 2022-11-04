@@ -22,12 +22,6 @@ packer.startup({
                 vim.g.curshold_updatime = 100
             end,
         })
-        -- use({
-        --     "nathom/filetype.nvim",
-        --     config = function()
-        --         require("safdar.plugins.configs.filetype")
-        --     end,
-        -- })
         -- <++
 
         -- ++> Essential
@@ -68,6 +62,7 @@ packer.startup({
         })
         use({
             "TimUntersberger/neogit",
+            requires = { "sindrets/diffview.nvim" },
             config = function()
                 require("safdar.plugins.configs.neogit")
             end,

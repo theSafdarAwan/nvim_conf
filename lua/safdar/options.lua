@@ -49,12 +49,14 @@ opt.list = true
 opt.listchars:append("eol:↴")
 opt.listchars:append("space:⋅")
 
-opt.undofile = true
+-- time to update undo file or swap file
 opt.updatetime = 1000
-opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
 
--- no swap file i use undofile
-opt.swapfile = false
+-- use either undo file or swap file
+opt.undofile = false
+-- opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
+-- swap file
+opt.swapfile = true
 -- trick to solve the vim compatible functionality to not let backspace the file
 -- content othe then just inserted one
 -- opt.backspace = nil
