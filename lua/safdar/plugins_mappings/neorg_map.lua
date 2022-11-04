@@ -1,15 +1,17 @@
-local map = require("safdar.core.utils").map
+local utils = require("safdar.core.utils")
+local map = utils.map
+local command = utils.command
+local b = utils.b
 local opts = { noremap = true, silent = true }
-local api = vim.api
 
-function NeorgMappingsHelper(command)
-    if vim.bo.filetype == "norg" then
-        api.nvim_command(command)
+function NeorgMappingsHelper(cmd)
+    if b.filetype == "norg" then
+        command(cmd)
     end
 end
 
 -- TODO: implement the same logic to the upstream neorg plugin
--- function ValidateNeorgTocStatus(command)
+-- function ValidateNeorgTocStatus(cmd)
 --     local buffers = {}
 --     for buf = 1, vim.fn.bufnr("$") do
 --         local buffer = vim.fn.bufname(buf)
@@ -17,7 +19,7 @@ end
 --     end
 --     for _, buf in pairs(buffers) do
 --         if buf == "neorg://norg/Neorg Toc.norg" then
---             api.nvim_command(command)
+--             command(cmd)
 --         end
 --     end
 -- end

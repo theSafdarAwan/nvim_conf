@@ -26,4 +26,8 @@ M.create_autocmd = function(events, opts)
     M.api.nvim_create_autocmd(events, opts)
 end
 
+M.command = function(cmd)
+    M.api.nvim_command(cmd)
+end
+
 return M

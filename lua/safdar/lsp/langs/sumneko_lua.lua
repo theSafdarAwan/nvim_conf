@@ -1,6 +1,7 @@
 local utils = require("safdar.core.utils")
 local vim = utils.vim
 local nvim_lsp = require("lspconfig")
+local util = require("lspconfig.util")
 local lsp_util = require("safdar.lsp.lsp_util")
 local on_attach = lsp_util.on_attach
 --=======================================================
@@ -16,6 +17,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 nvim_lsp.sumneko_lua.setup({
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
     on_attach = on_attach,
+    root_dir = util.root_pattern(".gitignore", ".git", "stylua.toml"),
     handlers = {
         -- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         -- 	-- Disable virtual_text

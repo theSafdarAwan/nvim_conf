@@ -228,6 +228,9 @@ packer.startup({
         use({
             "AckslD/nvim-neoclip.lua",
             requires = { "tami5/sqlite.lua", module = "sqlite" },
+            config = function()
+                require("safdar.plugins.configs.neoclip")
+            end,
         })
         use({
             "numToStr/Comment.nvim",

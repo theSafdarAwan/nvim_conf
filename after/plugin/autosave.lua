@@ -1,33 +1,45 @@
 local utils = require("safdar.core.utils")
 local vim = utils.vim
-local api = utils.api
+local new_autocmd = utils.create_autocmd
+local command = utils.command
 local b = utils.b
+local cmd = utils.cmd
 
-local function validateBuf()
-    local filetypeValidated = false
-    local exclude_ftype = { "TelescopePrompt", "harpoon" }
-
-    -- check if buf filetype is not included in the exclude_ftype
-    for _, filetype in ipairs(exclude_ftype) do
-        if b.filetype ~= filetype and filetypeValidated == false then
-            filetypeValidated = false
-        else
-            filetypeValidated = true
+-- validate excluded buftype's and filetype's from autosaving if
+-- included then will return true else will return false
+local function validater(opts)
+    local ok = false
+    local type
+    if opts.type == "buf" then
+        type = b.buftype
+    else
+        type = b.filetype
+    end
+    for _, value in ipairs(opts.data) do
+        if type == value and ok == false then
+            ok = true
         end
     end
+    return ok
+end
 
-    -- check if the buf is modifiable and does not have any of the exclude_ftype
-    if b.modifiable == false or filetypeValidated then
-        return
-    else
-        api.nvim_command("update")
+local function autoSave()
+    local excluded_ftype = { "TelescopePrompt", "harpoon" }
+    local excluded_buftype = { "prompt" }
+    local invalidBuf = validater({ type = "buf", data = excluded_buftype })
+    local invalidFt = validater({ type = "ft", data = excluded_ftype })
+    -- check if the buf is modifiable and then validate buf does not have any of
+    -- the excluded filetypes or buftypes
+    if b.modifiable == true and invalidFt == false and invalidBuf == false then
+        command("update")
         print("saved at " .. vim.fn.strftime("%H:%M:%S"))
         vim.fn.timer_start(1500, function()
-            vim.cmd("echon ''")
+            cmd("echon ''")
         end)
     end
 end
 
-api.nvim_create_autocmd({ "CursorHoldI", "InsertLeave", "TextChanged" }, {
-    callback = validateBuf,
+-- register autocmd to autosave on these events
+new_autocmd({ "InsertLeave", "CursorHoldI", "TextChanged" }, {
+    callback = autoSave,
 })

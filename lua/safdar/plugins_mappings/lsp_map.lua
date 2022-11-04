@@ -1,14 +1,14 @@
 local utils = require("safdar.core.utils")
-local api = utils.api
 local vim = utils.vim
-local map = require("safdar.core.utils").map
-local opts = { noremap = true, silent = true }
+local map = utils.map
+local command = utils.command
 local buf_set_option = utils.buf_set_option
 local buf_set_keymap = utils.buf_set_keymap
+local opts = { noremap = true, silent = true }
 
 vim.StopAndStartLspServer = function()
-    api.nvim_command(":LspStop<CR>")
-    api.nvim_command(":LspStart<CR>")
+    command(":LspStop<CR>")
+    command(":LspStart<CR>")
 end
 
 map("n", "<leader>nf", "", { noremap = true, silent = true })

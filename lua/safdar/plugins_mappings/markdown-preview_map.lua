@@ -1,2 +1,2 @@
-local map = require(require("genearl").core_loc() .. ".utils").map
+local map = require("safdar.core.utils").map
 map("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", {noremap = true, silent = true})

@@ -64,8 +64,6 @@ M.mappings = function()
 		i = {
 			["<C-l>"] = require("telescope.actions").cycle_history_next,
 			["<C-h>"] = require("telescope.actions").cycle_history_prev,
-			-- ["<C-j>"] = require("telescope.actions").move_selection_next,
-			-- ["<C-k>"] = require("telescope.actions").move_selection_previous,
 		},
 		n = {
 			["<C-[>"] = require("telescope.actions").close,
