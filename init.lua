@@ -1,6 +1,6 @@
 -- ++> Remov default plugins
-local vim = vim
-local g = vim.g
+local utils = require("safdar.core.utils")
+local g = utils.g
 local disabled_built_ins = {
     "2html_plugin",
     "getscript",

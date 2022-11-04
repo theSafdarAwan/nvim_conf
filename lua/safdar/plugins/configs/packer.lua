@@ -1,4 +1,6 @@
-local vim = vim
+local utils = require("safdar.core.utils")
+local vim = utils.vim
+
 local packer = require("packer")
 packer.startup({
     function(use)

@@ -1,15 +1,13 @@
 local M = {}
-M.mappings = function(bufnr)
+local utils = require("safdar.core.utils")
+local map = utils.map
+local vim = utils.vim
+
+M.mappings = function(_) -- gives a bufnr
     local gs = package.loaded.gitsigns
 
-    local function map(mode, l, r, opts)
-        opts = opts or {}
-        opts.buffer = bufnr
-        vim.keymap.set(mode, l, r, opts)
-    end
-
     -- Navigation
-    map("n", "]c", function()
+    map("n", "]g", function()
         if vim.wo.diff then
             return "]c"
         end
@@ -18,7 +16,7 @@ M.mappings = function(bufnr)
         end)
         return "<Ignore>"
     end, { expr = true })
-    map("n", "[c", function()
+    map("n", "[g", function()
         if vim.wo.diff then
             return "[c"
         end

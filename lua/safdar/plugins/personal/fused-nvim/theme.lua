@@ -1,4 +1,5 @@
-local vim = vim
+local utils = require("safdar.core.utils")
+local vim = utils.vim
 local Colors = require("safdar.plugins.personal.fused-nvim.pallete")
 -- TODO: lsp utilities borders
 

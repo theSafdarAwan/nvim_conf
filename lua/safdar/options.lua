@@ -1,8 +1,7 @@
-local vim = vim
-local opt = vim.opt
-local optl = vim.opt_local
-local g = vim.g
-local api = vim.api
+local utils = require("safdar.core.utils")
+local opt = utils.opt
+local wo = utils.wo
+local g = utils.g
 
 g.mapleader = " "
 g.localleader = ","
@@ -47,11 +46,11 @@ opt.fillchars = { eob = " " }
 
 -- Line indenting
 opt.list = true
-opt.listchars:append "eol:↴"
-opt.listchars:append "space:⋅"
+opt.listchars:append("eol:↴")
+opt.listchars:append("space:⋅")
 
 opt.undofile = true
-opt.updatetime = 500
+opt.updatetime = 1000
 opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
 
 -- no swap file i use undofile
@@ -94,4 +93,4 @@ opt.expandtab = true
 -- opt.autochdir = true
 
 -- sets the column on the left side (or before) of the line numbers
-vim.wo.signcolumn = "yes"
+wo.signcolumn = "yes"

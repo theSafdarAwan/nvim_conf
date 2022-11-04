@@ -1,7 +1,6 @@
 -----------------------
 --  git sigs plugin  --
 -----------------------
-local vim = vim
 local mappings = require("safdar.plugins_mappings.gitsigns_map")
 
 require("gitsigns").setup({

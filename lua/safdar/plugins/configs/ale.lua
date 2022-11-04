@@ -1,16 +1,17 @@
-local vim = vim
+local utils = require("safdar.core.utils")
+local cmd = utils.cmd
 
-vim.cmd([[
+cmd([[
 let b:ale_linters = ['htmlhint']
 ]])
 
-vim.cmd([[
+cmd([[
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ' '
 ]])
 
 -- Trick
-vim.cmd([[
+cmd([[
 autocmd BufEnter * ALEDisable
 autocmd BufEnter *.html ALEEnable
 ]])

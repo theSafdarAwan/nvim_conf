@@ -82,9 +82,9 @@ neogit.setup({
     },
 })
 
-local vim = vim
-local optl = vim.opt_local
-local api = vim.api
+local utils = require("safdar.core.utils")
+local optl = utils.optl
+local api = utils.api
 
 local function neogitUI()
     optl.statusline = " "

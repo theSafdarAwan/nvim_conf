@@ -1,9 +1,7 @@
-local map = require("safdar.core.utils").map
+local utils = require("safdar.core.utils")
+local map = utils.map
 local opts = { noremap = true, silent = true }
 local expr = { noremap = true, silent = true, expr = true }
--- =========================================================================
---                            Mappings
--- =========================================================================
 
 -- ++> Remove mappings
 -- Remove the help mappings

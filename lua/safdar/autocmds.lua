@@ -1,14 +1,15 @@
-local vim = vim
-local opt = vim.opt
-local optl = vim.opt_local
-local api = vim.api
+local utils = require("safdar.core.utils")
+local api = utils.api
+local opt = utils.opt
+local optl = utils.optl
+local create_autocmd = utils.create_autocmd
 
 -- Highlight The yanked text
 local function highlightOnYank()
     require("vim.highlight").on_yank({ timeout = 40 })
 end
 
-api.nvim_create_autocmd({ "TextYankPost" }, {
+create_autocmd({ "TextYankPost" }, {
     callback = highlightOnYank,
 })
 
@@ -26,13 +27,13 @@ local function helpHelper()
 end
 
 -- set spell forthe gitcommit messages and other filetypes
-api.nvim_create_autocmd({ "FileType" }, {
+create_autocmd({ "FileType" }, {
     pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
     command = "setlocal spell",
 })
 
 -- set a bunch of options for the help filetype
-api.nvim_create_autocmd({ "FileType" }, {
+create_autocmd({ "FileType" }, {
     pattern = { "help" },
     callback = helpHelper,
 })
@@ -45,16 +46,16 @@ local function terminalMode()
     optl.spell = false
 end
 
-api.nvim_create_autocmd({ "TermOpen" }, {
+create_autocmd({ "TermOpen" }, {
     callback = terminalMode,
 })
 
 -- Damian Conway
-api.nvim_create_autocmd({ "BufEnter" }, {
+create_autocmd({ "BufEnter" }, {
     command = "call matchadd('DamianConway', '\\%80v')",
 })
 
 -- Colorizer plugin attach autocmd's
-api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved" }, {
+create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved" }, {
     command = "ColorizerAttachToBuffer",
 })
