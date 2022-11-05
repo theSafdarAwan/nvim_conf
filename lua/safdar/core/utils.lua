@@ -9,6 +9,7 @@ M.api = vim.api
 M.g = vim.g
 M.b = vim.bo
 M.cmd = vim.cmd
+M.fn = vim.fn
 
 M.map = function(mode, mapping, command, opts)
     vim.keymap.set(mode, mapping, command, opts)
@@ -20,10 +21,6 @@ end
 
 M.buf_set_option = function(buffer, name, value)
     M.api.nvim_buf_set_option(buffer, name, value)
-end
-
-M.create_autocmd = function(events, opts)
-    M.api.nvim_create_autocmd(events, opts)
 end
 
 M.command = function(cmd)

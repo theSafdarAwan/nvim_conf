@@ -2,7 +2,7 @@ local utils = require("safdar.core.utils")
 local api = utils.api
 local opt = utils.opt
 local optl = utils.optl
-local create_autocmd = utils.create_autocmd
+local create_autocmd = api.nvim_create_autocmd
 
 -- Highlight The yanked text
 local function highlightOnYank()
