@@ -62,7 +62,12 @@ packer.startup({
         })
         use({
             "TimUntersberger/neogit",
-            requires = { "sindrets/diffview.nvim" },
+            requires = {
+                "sindrets/diffview.nvim",
+                config = function()
+                    require("safdar.plugins.configs.diffview")
+                end,
+            },
             config = function()
                 require("safdar.plugins.configs.neogit")
             end,
