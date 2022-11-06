@@ -88,7 +88,9 @@ packer.startup({
                 require("nvim-web-devicons").setup()
             end,
         }) -- icons for the nvim
-        use({ "onsails/lspkind-nvim" }) -- better icons for the lsp
+        -- use({
+        --     "onsails/lspkind-nvim",
+        -- }) -- better icons for the lsp
         use({
             "lukas-reineke/indent-blankline.nvim",
             config = function()

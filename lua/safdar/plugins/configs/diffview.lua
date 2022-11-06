@@ -3,7 +3,7 @@ local mappings = require("safdar.plugins_mappings.diffview_map")
 
 dv.setup({
     diff_binaries = false,
-    enhanced_diff_hl = false,
+    enhanced_diff_hl = true,
     git_cmd = { "git" },
     use_icons = true,
     watch_index = true,
@@ -21,7 +21,7 @@ dv.setup({
             layout = "diff2_horizontal",
         },
         merge_tool = {
-            layout = "diff3_horizontal",
+            layout = "diff4_mixed",
             disable_diagnostics = true,
         },
         file_history = {
@@ -29,14 +29,14 @@ dv.setup({
         },
     },
     file_panel = {
-        listing_style = "tree",
+        listing_style = "list",
         tree_options = {
             flatten_dirs = true,
             folder_statuses = "only_folded",
         },
         win_config = {
-            position = "left",
-            width = 35,
+            position = "bottom",
+            height = 12,
             win_opts = {},
         },
     },
@@ -51,12 +51,13 @@ dv.setup({
         },
         win_config = {
             position = "bottom",
-            height = 16,
+            height = 12,
             win_opts = {},
         },
     },
     commit_log_panel = {
         win_config = {
+            height = 16,
             win_opts = {},
         },
     },

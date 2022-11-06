@@ -101,6 +101,7 @@ map("n", "gX", ":close!<cr>", opts)
 -- tab mappings
 map("n", "<leader>t]", ":tabnext<cr>", opts)
 map("n", "<leader>t[", ":tabprev<cr>", opts)
+map("n", "<leader>tx", ":tabclose<cr>", opts)
 
 -- I use Obsession plugin and i need to restore the whole (n)vim session without losing
 -- a single pane so i replicated the ZZ command functionality and replace it with this one

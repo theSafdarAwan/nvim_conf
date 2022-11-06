@@ -430,10 +430,12 @@ require("feline").setup({
         filetypes = {
             "^NvimTree$",
             "^Outline$",
-            "DiffviewFileHistory"
+            "DiffviewFileHistory",
+            "DiffviewFiles"
         },
         buftypes = {
             "^terminal$",
+            "prompt",
         },
         bufnames = {
             "neorg://norg/Projects.norg",
