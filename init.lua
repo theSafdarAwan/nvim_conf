@@ -1,3 +1,4 @@
+-- TODO: diffview
 -- ++> Remov default plugins
 local utils = require("safdar.core.utils")
 local g = utils.g

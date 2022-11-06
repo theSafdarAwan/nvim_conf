@@ -24,7 +24,6 @@ api.nvim_create_autocmd("BufRead", {
 
 -- validate excluded buftype's and filetype's from autosaving if
 -- included then will return true else will return false
-
 local function validater(opts)
     local ok = false
     local type
