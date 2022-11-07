@@ -41,6 +41,7 @@ nvim_lsp.sumneko_lua.setup({
                 library = {
                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                    [vim.fn.expand("$/home/safdar/\\.config/nvim/lua/")] = true,
                 },
             },
             -- Do not send telemetry data containing a randomized but unique identifier

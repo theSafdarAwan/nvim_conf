@@ -7,8 +7,8 @@ map("n", "ysl", ":Lspsaga show_line_diagnostics<CR>", opts)
 map("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
 map("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
 -- cursor word definition and reference
-map("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
+map("n", "gd", ":Lspsaga lsp_finder<CR>", opts)
 -- rename
 map("n", "yr", ":Lspsaga rename<CR>", opts)
 map("n", "ysa", ":Lspsaga code_action<CR>", opts)
-map("n", "ysd", ":Lspsaga peek_definition<CR>", opts)
+map("n", "gh", ":Lspsaga peek_definition<CR>", opts)
