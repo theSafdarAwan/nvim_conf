@@ -149,9 +149,6 @@ packer.startup({
             end,
         })
         use({
-            "f3fora/cmp-spell",
-        })
-        use({
             "hrsh7th/cmp-emoji",
             ft = { "html", "css", "markdown", "norg" },
         })
