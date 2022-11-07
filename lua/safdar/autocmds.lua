@@ -56,6 +56,6 @@ create_autocmd({ "BufEnter" }, {
 })
 
 -- Colorizer plugin attach autocmd's
-create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved" }, {
+create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
     command = "ColorizerAttachToBuffer",
 })
