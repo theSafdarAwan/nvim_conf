@@ -1,4 +1,5 @@
 -- ++> Remov default plugins
+
 local utils = require("safdar.core.utils")
 local g = utils.g
 local disabled_built_ins = {

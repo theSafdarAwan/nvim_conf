@@ -152,12 +152,12 @@ local function FusedNvim()
     hl("LspReferenceRead", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "read" references
     hl("LspReferenceWrite", { bg = Colors.color_22_one, bold = true }) -- used for highlighting "write" references
 
-    hl("DiagnosticVirtualTextError", { fg = Colors.error_red_deep })
+    hl("DiagnosticVirtualTextError", { fg = Colors.error_red })
     hl("DiagnosticVirtualTextWarn", { link = "@warning" })
     hl("DiagnosticVirtualTextHint", { fg = Colors.fl_color_6 })
     hl("DiagnosticVirtualTextInfo", { fg = Colors.color_21 })
 
-    hl("DiagnosticSignError", { fg = Colors.error_red_deep })
+    hl("DiagnosticSignError", { fg = Colors.error_red })
     hl("DiagnosticSignWarn", { link = "@warning" })
     hl("DiagnosticSignInfo", { fg = Colors.color_21 })
     hl("DiagnosticSignHint", { fg = Colors.fl_color_6 })

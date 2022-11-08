@@ -137,9 +137,6 @@ packer.startup({
                 require("safdar.lsp.cmp")
             end,
         })
-        use({ "hrsh7th/cmp-nvim-lua" })
-        use({ "hrsh7th/cmp-nvim-lsp" })
-        use({ "hrsh7th/cmp-buffer" })
         use({ "tzachar/cmp-tabnine", run = "./install.sh" })
         use({
             "uga-rosa/cmp-dictionary",
@@ -152,8 +149,18 @@ packer.startup({
             "hrsh7th/cmp-emoji",
             ft = { "html", "css", "markdown", "norg" },
         })
-        use({ "saadparwaiz1/cmp_luasnip" })
-        use({ "L3MON4D3/LuaSnip" })
+        use({
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-lsp",
+            "saadparwaiz1/cmp_luasnip",
+        })
+        use({
+            "L3MON4D3/LuaSnip",
+            config = function()
+                require("safdar.plugins.configs.luasnip")
+            end,
+        })
         use({ "rafamadriz/friendly-snippets" })
         -- <++
 
