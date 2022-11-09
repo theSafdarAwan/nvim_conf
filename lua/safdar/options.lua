@@ -87,6 +87,7 @@ opt.textwidth = 81
 opt.softtabstop = 4
 opt.smartindent = true
 opt.expandtab = true
+opt.textwidth = 81
 
 -- opt.shortmess:append("c")
 -- opt.isfname:append("@-@")
