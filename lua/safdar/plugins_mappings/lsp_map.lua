@@ -30,7 +30,7 @@ M.on_attach = function(_, bufnr) -- will give client and bufnr
     --     "<cmd>lua vim.lsp.buf.definition()<CR>",
     --     opts
     -- )
-    buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
     buf_set_keymap(
         bufnr,
         "n",

@@ -116,7 +116,7 @@ map("n", "<C-c>", "<Nop>", opts)
 -- ==========================================================================
 --                         built_in_plugins configs
 -- ==========================================================================
-map("n", "<leader>so", ":so %<cr>", opts)
+-- map("n", "<leader>so", ":so %<cr>", opts) -- look into packer_map
 
 -- Spell checking
 -- Pressing ,ss will toggle and untoggle spell checking

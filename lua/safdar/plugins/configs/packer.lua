@@ -178,7 +178,6 @@ packer.startup({
                 require("safdar.plugins_mappings.lsp-trouble_map")
             end,
         })
-        -- TODO: work on this plugin config
         use({
             "glepnir/lspsaga.nvim",
             config = function()
@@ -193,6 +192,29 @@ packer.startup({
                 require("safdar.plugins_mappings.FeMaco_map")
             end,
             ft = { "markdown", "norg" },
+        })
+        -- <++
+
+        -- ++> Debugging
+        use({
+            "mfussenegger/nvim-dap",
+            requires = {
+                {
+                    "theHamsta/nvim-dap-virtual-text",
+                    config = function()
+                        require("safdar.plugins.configs.dap-virtual-text")
+                    end,
+                },
+                {
+                    "rcarriga/nvim-dap-ui",
+                    config = function()
+                        -- require("safdar.plugins.configs.dap-ui")
+                    end,
+                },
+            },
+            config = function()
+                require("safdar.dap")
+            end,
         })
         -- <++
 

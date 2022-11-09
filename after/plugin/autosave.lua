@@ -59,7 +59,7 @@ local function autoSaveFn(bufInfo)
             and invalidBuf == false
         then
             command("update")
-            print("saved at " .. vim.fn.strftime("%H:%M:%S"))
+            -- print("saved at " .. vim.fn.strftime("%H:%M:%S"))
             api.nvim_buf_set_var(bufInfo.buf, autoSaveQueued, true)
             fn.timer_start(1500, function()
                 cmd("echon ''")

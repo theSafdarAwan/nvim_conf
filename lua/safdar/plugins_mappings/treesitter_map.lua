@@ -2,7 +2,7 @@ local map = require("safdar.core.utils").map
 --> TreeSitter
 map(
     "n",
-    "<C-k>",
+    "gtk",
     ":TSHighlightCapturesUnderCursor<cr>",
     { noremap = true, silent = true }
 )

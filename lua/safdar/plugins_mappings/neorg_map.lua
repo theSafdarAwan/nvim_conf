@@ -10,22 +10,10 @@ function NeorgMappingsHelper(cmd)
     end
 end
 
--- TODO: implement the same logic to the upstream neorg plugin
--- function ValidateNeorgTocStatus(cmd)
---     local buffers = {}
---     for buf = 1, vim.fn.bufnr("$") do
---         local buffer = vim.fn.bufname(buf)
---         table.insert(buffers, buffer)
---     end
---     for _, buf in pairs(buffers) do
---         if buf == "neorg://norg/Neorg Toc.norg" then
---             command(cmd)
---         end
---     end
--- end
-
 -- TODO: add some logic to load Neorg plugin only when i press the gtc to capture
 -- or gtv to view the todo's
+-- so to do that first you have to check if the plugin is loaded and if not the
+-- load it and if loaded then don't do anything just capture the note
 
 map("n", "gtc", ":Neorg gtd capture<CR>", opts)
 map("n", "gtv", ":Neorg gtd views<CR>", opts)
