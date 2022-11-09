@@ -4,8 +4,8 @@ local map = require("safdar.core.utils").map
 -- hover diagnostic
 map("n", "ysk", ":Lspsaga show_cursor_diagnostics<CR>", opts)
 map("n", "ysl", ":Lspsaga show_line_diagnostics<CR>", opts)
-map("n", "[d", ":Lspsaga diagnostic_jump_prev<CR>", opts)
-map("n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
+map("n", "[s", ":Lspsaga diagnostic_jump_prev<CR>", opts)
+map("n", "]s", ":Lspsaga diagnostic_jump_next<CR>", opts)
 -- cursor word definition and reference
 map("n", "gd", ":Lspsaga lsp_finder<CR>", opts)
 -- rename

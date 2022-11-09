@@ -1,21 +1,38 @@
-local dap, dapui = require("dap"), require("dapui")
+local vim = vim
+local dap = require("dap")
+local dapui = require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()
-    -- dapui.open()
     print("Debugger Initialised")
+    dapui.open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
     print("Debugger Terminated")
-    -- dapui.close()
+    dapui.close()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
+    print("Debugger Exited")
     dapui.close()
 end
 
-require("safdar.plugins_mappings.dap_map")
-
 -- adapters
--- TODO: chorme debug adapters
-require("safdar.dap.adapters.js-node")
--- require("safdar.dap.adapters.js-chrome")
-require("safdar.plugins.configs.dap-ui")
-require("safdar.plugins.configs.dap-virtual-text")
+local dapAdapters = {
+    "js-dap",
+}
+for _, adapters in ipairs(dapAdapters) do
+    require("safdar.dap.adapters." .. adapters)
+end
+
+local fn = vim.fn
+fn.sign_define(
+    "DapBreakpoint",
+    { text = "ß", texthl = "@attribute", linehl = "", numhl = "" }
+)
+fn.sign_define(
+    "DapBreakpointCondition",
+    { text = "", texthl = "@warning", linehl = "", numhl = "" }
+)
+fn.sign_define("DapStopped", { text = "ඞ", texthl = "@error" })
+fn.sign_define(
+    "DapLogPoint",
+    { text = "", texthl = "@keyword", linehl = "", numhl = "" }
+)

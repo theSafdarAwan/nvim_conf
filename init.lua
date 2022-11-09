@@ -1,4 +1,3 @@
--- TODO: copy tj's amongus icons for dap
 -- ++> Remov default plugins
 local utils = require("safdar.core.utils")
 local g = utils.g

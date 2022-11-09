@@ -56,12 +56,16 @@ end
 --=======================================================
 --     require lang modules with additional configs
 --=======================================================
-require("safdar.lsp.langs.sumneko_lua")
-require("safdar.lsp.langs.jsonls")
-require("safdar.lsp.langs.c")
-require("safdar.lsp.langs.ltex")
-require("safdar.lsp.langs.html")
-require("safdar.lsp.langs.stylelint_lsp")
+local langsConfs = {
+    "sumneko_lua",
+    "jsonls",
+    "c",
+    "html",
+    "stylelint_lsp",
+}
+for _, file in ipairs(langsConfs) do
+    require("safdar.lsp.langs." .. file)
+end
 
 -- to change the ui
 require("safdar.lsp.lsp-ui")

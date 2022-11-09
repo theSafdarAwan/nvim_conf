@@ -198,22 +198,17 @@ packer.startup({
         -- ++> Debugging
         use({
             "mfussenegger/nvim-dap",
+            ft = { "javascript" },
             requires = {
-                {
-                    "theHamsta/nvim-dap-virtual-text",
-                    config = function()
-                        require("safdar.plugins.configs.dap-virtual-text")
-                    end,
-                },
-                {
-                    "rcarriga/nvim-dap-ui",
-                    config = function()
-                        -- require("safdar.plugins.configs.dap-ui")
-                    end,
-                },
+                { "theHamsta/nvim-dap-virtual-text", ft = { "javascript" } },
+                { "rcarriga/nvim-dap-ui", ft = { "javascript" } },
             },
             config = function()
                 require("safdar.dap")
+                require("safdar.plugins_mappings.dap_map")
+                --> plugins cfgs
+                require("safdar.plugins.configs.dap-ui")
+                require("safdar.plugins.configs.dap-virtual-text")
             end,
         })
         -- <++
