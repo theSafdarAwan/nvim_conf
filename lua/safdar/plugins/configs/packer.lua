@@ -154,12 +154,7 @@ packer.startup({
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp",
             "saadparwaiz1/cmp_luasnip",
-        })
-        use({
             "L3MON4D3/LuaSnip",
-            config = function()
-                require("safdar.plugins.configs.luasnip")
-            end,
         })
         use({ "rafamadriz/friendly-snippets" })
         -- <++
@@ -349,7 +344,7 @@ packer.startup({
         git = { clone_timeout = 6000 },
         profile = {
             enable = true,
-            threshold = 1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+            threshold = 100, -- the amount in ms that a plugins load time must be over for it to be included in the profile
         },
         display = {
             working_sym = "ﲊ",
