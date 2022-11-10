@@ -193,10 +193,9 @@ packer.startup({
         -- ++> Debugging
         use({
             "mfussenegger/nvim-dap",
-            ft = { "javascript" },
             requires = {
-                { "theHamsta/nvim-dap-virtual-text", ft = { "javascript" } },
-                { "rcarriga/nvim-dap-ui", ft = { "javascript" } },
+                { "theHamsta/nvim-dap-virtual-text" },
+                { "rcarriga/nvim-dap-ui" },
             },
             config = function()
                 require("safdar.dap")

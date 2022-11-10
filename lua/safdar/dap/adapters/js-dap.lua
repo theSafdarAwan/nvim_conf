@@ -1,6 +1,7 @@
 local vim = vim
 local dap = require("dap")
---[[ dap.adapters.firefox = {
+--[[
+dap.adapters.firefox = {
     type = "executable",
     command = "node",
     args = {
@@ -16,7 +17,8 @@ dap.adapters.chrome = {
         os.getenv("HOME")
             .. "/safdar-local/debuggers/vscode-chrome-debug/out/src/chromeDebug.js",
     },
-} ]]
+}
+--]]
 dap.adapters.node2 = {
     type = "executable",
     command = "node",
@@ -44,24 +46,25 @@ dap.configurations.javascript = {
         sourceMaps = true,
         protocol = "inspector",
     },
-    --[[ {
+    --[[
+    {
         type = "chrome",
         request = "attach",
         name = "chrome",
         program = "${file}",
         port = 9222,
         webRoot = "${workspaceFolder}",
-        sourceMapPathOverrides = {
-            -- Sourcemap override for nextjs
-            -- ["webpack://_N_E/./*"] = "${webRoot}/*",
-            -- ["webpack:///./*"] = "${webRoot}/*",
-            -- ["webpack:///./~/*"] = "${webRoot}/node_modules/*",
-            -- ["webpack:///*"] = "*",
-            -- ["webpack:///src/*"] = "${webRoot}/*",
-        },
+        -- sourceMapPathOverrides = {
+        -- Sourcemap override for nextjs
+        -- ["webpack://_N_E/./*"] = "${webRoot}/*",
+        -- ["webpack:///./*"] = "${webRoot}/*",
+        -- ["webpack:///./~/*"] = "${webRoot}/node_modules/*",
+        -- ["webpack:///*"] = "*",
+        -- ["webpack:///src/*"] = "${webRoot}/*",
+        -- },
         sourceMaps = true,
     },
-    {
+     {
         name = "Debug with Firefox",
         type = "firefox",
         request = "launch",
@@ -70,10 +73,12 @@ dap.configurations.javascript = {
         url = "http://localhost:3000",
         webRoot = "${workspaceFolder}",
         firefoxExecutable = "/usr/bin/firefox",
-    }, ]]
+    },
+    -- ]]
 }
 
---[[ dap.configurations.javascriptreact = {
+--[[
+dap.configurations.javascriptreact = {
     {
         type = "chrome",
         name = "chrome attach",
@@ -166,4 +171,5 @@ dap.configurations.typescriptreact = {
         sourceMaps = true,
         protocol = "inspector",
     },
-} ]]
+}
+--]]
