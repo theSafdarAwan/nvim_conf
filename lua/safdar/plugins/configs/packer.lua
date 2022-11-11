@@ -157,9 +157,9 @@ packer.startup({
         })
         use({
             "L3MON4D3/LuaSnip",
-            config = function ()
+            config = function()
                 require("safdar.plugins.configs.luasnip")
-            end
+            end,
         })
         -- <++
 

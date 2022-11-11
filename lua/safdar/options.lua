@@ -33,6 +33,7 @@ opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 -- folding
 opt.foldmethod = "marker"
 opt.foldmarker = "++>,<++"
+g.nofoldenable = true
 -- vim.cmd([[
 -- set foldmethod=expr
 -- set foldexpr=nvim_treesitter#foldexpr()
