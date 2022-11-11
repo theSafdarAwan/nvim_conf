@@ -57,11 +57,11 @@ end
 --     require lang modules with additional configs
 --=======================================================
 local langsConfs = {
-    "sumneko_lua",
-    "jsonls",
-    "c",
-    "html",
-    "stylelint_lsp",
+    "sumneko-lua_lsp",
+    "jsonls_lsp",
+    "c_lsp",
+    "html_lsp",
+    "stylelint-lsp_lsp",
 }
 for _, file in ipairs(langsConfs) do
     require("safdar.lsp.langs." .. file)

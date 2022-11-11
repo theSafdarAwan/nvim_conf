@@ -161,7 +161,6 @@ packer.startup({
                 require("safdar.plugins.configs.luasnip")
             end
         })
-        use({ "rafamadriz/friendly-snippets" })
         -- <++
 
         -- ++> Lsp utils & enhancements

@@ -1,13 +1,15 @@
-local luasnip = require("luasnip")
-local s = luasnip.snippet
--- local sn = luasnip.snippet_node
--- local isn = luasnip.indent_snippet_node
-local t = luasnip.text_node
-local i = luasnip.insert_node
--- local f = luasnip.function_node
--- local c = luasnip.choice_node
--- local d = luasnip.dynamic_node
--- local r = luasnip.restore_node
+local vim = vim
+
+local ls = require("luasnip")
+local s = ls.snippet
+-- local sn =ls.snippet_node
+-- local isn =ls.indent_snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+-- local c =ls.choice_node
+-- local d =ls.dynamic_node
+-- local r =ls.restore_node
 -- local events = require("luasnip.util.events")
 -- local ai = require("luasnip.nodes.absolute_indexer")
 -- local extras = require("luasnip.extras")
@@ -22,7 +24,8 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local conds = require("luasnip.extras.expand_conditions")
 -- local postfix = require("luasnip.extras.postfix").postfix
 -- local types = require("luasnip.util.types")
--- local parse = require("luasnip.util.parser").parse_snippet
+local parse = require("luasnip.util.parser").parse_snippet
+
 local luaSnips = {
     -- folds
     s(
@@ -43,11 +46,26 @@ local luaSnips = {
     s(
         "cb",
         fmt("--[[\n{comment}\n--]]", {
-            -- leftComment = t("--[["),
-            -- rightComment = t("--]]"),
             comment = i(1, "-- comment here"),
         })
     ),
+    -- local require
+    s(
+        "req",
+        fmt([[local {} = require("{}")]], {
+            f(function(import_name)
+                local parts = vim.split(import_name[1][1], ".", true)
+                return parts[#parts] or ""
+            end, { 1 }),
+            i(1),
+        })
+    ),
+    -- global function
+    parse("gfn", "function $1($2)\n\t$0\nend"),
+    -- local function
+    parse("lfn", "local function $1($2)\n\t$0\nend"),
+    -- global function
+    parse("gfn", "$1 = function($2)\n\t$0\nend"),
 }
 
-luasnip.add_snippets("lua", luaSnips)
+ls.add_snippets("lua", luaSnips)
