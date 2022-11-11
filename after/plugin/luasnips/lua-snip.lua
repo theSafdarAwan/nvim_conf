@@ -2,7 +2,7 @@ local luasnip = require("luasnip")
 local s = luasnip.snippet
 -- local sn = luasnip.snippet_node
 -- local isn = luasnip.indent_snippet_node
--- local t = luasnip.text_node
+local t = luasnip.text_node
 local i = luasnip.insert_node
 -- local f = luasnip.function_node
 -- local c = luasnip.choice_node
@@ -23,7 +23,8 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local postfix = require("luasnip.extras.postfix").postfix
 -- local types = require("luasnip.util.types")
 -- local parse = require("luasnip.util.parser").parse_snippet
-local luaFolds = {
+local luaSnips = {
+    -- folds
     s(
         "fd",
         fmt(
@@ -37,6 +38,16 @@ local luaFolds = {
             }
         )
     ),
+    -- comments
+    s("cl", t("-- ")),
+    s(
+        "cb",
+        fmt("--[[\n{comment}\n--]]", {
+            -- leftComment = t("--[["),
+            -- rightComment = t("--]]"),
+            comment = i(1, "-- comment here"),
+        })
+    ),
 }
 
-luasnip.add_snippets("lua", luaFolds)
+luasnip.add_snippets("lua", luaSnips)

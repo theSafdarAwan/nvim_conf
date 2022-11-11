@@ -154,7 +154,12 @@ packer.startup({
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp",
             "saadparwaiz1/cmp_luasnip",
+        })
+        use({
             "L3MON4D3/LuaSnip",
+            config = function ()
+                require("safdar.plugins.configs.luasnip")
+            end
         })
         use({ "rafamadriz/friendly-snippets" })
         -- <++
@@ -216,7 +221,12 @@ packer.startup({
                 require("safdar.plugins_mappings.treesitter_map")
             end,
         })
-        use({ "nvim-treesitter/playground" })
+        use({
+            "nvim-treesitter/playground",
+            config = function()
+                require("safdar.plugins.configs.playground")
+            end,
+        })
         use({
             "windwp/nvim-ts-autotag",
             config = function()
