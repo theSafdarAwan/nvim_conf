@@ -7,7 +7,7 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
--- local c =ls.choice_node
+local c = ls.choice_node
 -- local d =ls.dynamic_node
 -- local r =ls.restore_node
 -- local events = require("luasnip.util.events")
@@ -66,6 +66,16 @@ local luaSnips = {
     parse("lfn", "local function $1($2)\n\t$0\nend"),
     -- global function
     parse("gfn", "$1 = function($2)\n\t$0\nend"),
+    s(
+        "trig",
+        c(1, {
+            t("Ugh boring, a text node"),
+            i(1, "At least I can edit something now..."),
+            f(function(args)
+                return "Still only counts as text!!"
+            end, {}),
+        }, {})
+    ),
 }
 
 ls.add_snippets("lua", luaSnips)

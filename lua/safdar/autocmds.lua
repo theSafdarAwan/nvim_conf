@@ -2,6 +2,7 @@ local utils = require("safdar.core.utils")
 local api = utils.api
 local opt = utils.opt
 local optl = utils.optl
+local cmd = utils.cmd
 local create_autocmd = api.nvim_create_autocmd
 
 -- Highlight The yanked text
@@ -59,3 +60,8 @@ create_autocmd({ "BufEnter" }, {
 create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
     command = "ColorizerAttachToBuffer",
 })
+
+-- don't give exit code when exiting the terminal
+cmd([[
+    autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
+]])

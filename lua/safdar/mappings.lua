@@ -26,14 +26,6 @@ map("n", "cN", "*``cgN", opts)
 -- Paste onto the selection and don't copy the selection to the reg
 -- map("v", "p", '"_dP', opts)
 
--- undo break start new change points
--- NOTE: it works only with ! , ` . =
-map("i", "!", "!<c-g>u", opts)
-map("i", "`", "`<c-g>u", opts)
-map("i", ".", ".<c-g>u", opts)
-map("i", ",", ",<c-g>u", opts)
-map("i", "=", "=<c-g>u", opts)
-
 -- mark before format paragraph mapping
 map("n", "=ap", "mm=ap`m", opts)
 map("n", "=ip", "mm=ip`m", opts)

@@ -1,6 +1,9 @@
 require("harpoon").setup({
-	nav_first_in_list = true,
+    excluded_filetypes = { "harpoon" },
+    menu = {
+        width = vim.api.nvim_win_get_width(0) - 20,
+    },
 })
-vim.cmd([[
-    autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
-]])
+
+-- require general mappings
+require("safdar.plugins_mappings.harpoon_map").maps()

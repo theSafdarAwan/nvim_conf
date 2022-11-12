@@ -32,7 +32,7 @@ cmp.setup({
             -- load lspkind icons
             local icons = require("safdar.plugins.configs.lspkind").icons
             vim_item.kind =
-                string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+            string.format("%s %s", icons[vim_item.kind], vim_item.kind)
 
             vim_item.menu = ({
                 nvim_lsp = "(LSP)",
@@ -53,7 +53,7 @@ cmp.setup({
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-u>"] = cmp.mapping.scroll_docs(-2),
         ["<C-d>"] = cmp.mapping.scroll_docs(2),
-        ["<C-l>"] = cmp.mapping.complete(),
+        -- ["<C-l>"] = cmp.mapping.complete(),
         ["<C-x>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
@@ -62,9 +62,6 @@ cmp.setup({
         ["<Tab>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            -- elseif luasnip.expand_or_jumpable() then
-            elseif luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
             else
                 fallback()
             end
@@ -72,8 +69,6 @@ cmp.setup({
         ["<S-Tab>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
             else
                 fallback()
             end
