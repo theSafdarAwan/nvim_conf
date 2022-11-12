@@ -17,9 +17,9 @@ map("v", "<F1>", "<Nop>", opts)
 
 -- copy the whole line after the cursor
 map("n", "Y", "y$", opts)
-map("v", "Y", "$y", opts)
+map("v", "Y", "m`$y``", opts)
 
--- Remap of the century
+-- Best remap ever
 map("n", "cn", "*``cgn", opts)
 map("n", "cN", "*``cgN", opts)
 
@@ -94,6 +94,7 @@ map("n", "gX", ":close!<cr>", opts)
 map("n", "<leader>t]", ":tabnext<cr>", opts)
 map("n", "<leader>t[", ":tabprev<cr>", opts)
 map("n", "<leader>tx", ":tabclose<cr>", opts)
+map("n", "<leader>tn", ":tabnew<cr>", opts)
 
 -- I use Obsession plugin and i need to restore the whole (n)vim session without losing
 -- a single pane so i replicated the ZZ command functionality and replace it with this one

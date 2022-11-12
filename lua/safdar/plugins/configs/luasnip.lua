@@ -3,7 +3,7 @@ local vim = vim
 local types = require("luasnip.util.types")
 local ls = require("luasnip")
 
--- WARN: choice nodes are not wroking as expected
+-- TODO: add the cool snippets from the wiki
 ls.config.set_config({
     -- This tells LuaSnip to remember to keep around the last snippet.
     -- You can jump back into it even if you move outside of the selection
