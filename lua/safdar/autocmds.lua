@@ -5,12 +5,16 @@ local optl = utils.optl
 local cmd = utils.cmd
 local create_autocmd = api.nvim_create_autocmd
 
+local autocmds_augroup =
+api.nvim_create_augroup("autocmds.lua", { clear = true })
+
 -- Highlight The yanked text
 local function highlightOnYank()
     require("vim.highlight").on_yank({ timeout = 40 })
 end
 
 create_autocmd({ "TextYankPost" }, {
+    group = autocmds_augroup,
     callback = highlightOnYank,
 })
 
@@ -29,14 +33,28 @@ end
 
 -- set spell forthe gitcommit messages and other filetypes
 create_autocmd({ "FileType" }, {
+    group = autocmds_augroup,
     pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
     command = "setlocal spell",
 })
 
 -- set a bunch of options for the help filetype
 create_autocmd({ "FileType" }, {
+    group = autocmds_augroup,
     pattern = { "help" },
     callback = helpHelper,
+})
+
+-- Help Helper Function
+local function norgFtOpts()
+    optl.shiftwidth = 2
+end
+
+-- set spell forthe gitcommit messages and other filetypes
+create_autocmd({ "FileType" }, {
+    group = autocmds_augroup,
+    pattern = { "norg" },
+    callback = norgFtOpts,
 })
 
 -- Don't show the line numbers in terminal mode
@@ -48,16 +66,19 @@ local function terminalMode()
 end
 
 create_autocmd({ "TermOpen" }, {
+    group = autocmds_augroup,
     callback = terminalMode,
 })
 
 -- Damian Conway
 create_autocmd({ "BufEnter" }, {
+    group = autocmds_augroup,
     command = "call matchadd('DamianConway', '\\%80v')",
 })
 
 -- Colorizer plugin attach autocmd's
 create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
+    group = autocmds_augroup,
     command = "ColorizerAttachToBuffer",
 })
 

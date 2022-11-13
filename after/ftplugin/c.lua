@@ -9,8 +9,6 @@ local function harpoon(bufInfo)
     end
 end
 
--- TODO: clean this harpoon function it will be called every time you enter the
--- buffer from another buffer
 api.nvim_create_autocmd({ "BufEnter" }, {
     group = api.nvim_create_augroup("main.c compile", { clear = true }),
     pattern = { "main.c" },

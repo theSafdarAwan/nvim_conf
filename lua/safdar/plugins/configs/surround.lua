@@ -1,11 +1,11 @@
 require("nvim-surround").setup({
     keymaps = {
-        insert = "<C-g>s",
+        insert = "<C-g>s", -- to creae a pair of {},[],<>,<tag><\tag>
         insert_line = "<C-g>S",
-        normal = "S",
-        normal_cur = "Sl",
-        normal_line = "SL",
-        normal_cur_line = "Ss",
+        normal = "ys",
+        normal_cur = "yss",
+        normal_line = "ysS",
+        normal_cur_line = "ySS",
         visual = "S",
         visual_line = "SL",
         delete = "ds",
