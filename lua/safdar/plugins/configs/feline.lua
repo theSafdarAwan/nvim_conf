@@ -5,7 +5,7 @@
 --=====================================================
 local utils = require("safdar.core.utils")
 local vim = utils.vim
-local colors = require("safdar.plugins.personal.fused-nvim.pallete")
+local colors = require("fused.pallete")
 local lsp = require("feline.providers.lsp")
 local lsp_severity = vim.diagnostic.severity
 

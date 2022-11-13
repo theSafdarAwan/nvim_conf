@@ -43,6 +43,12 @@ packer.startup({
         -- <++
 
         -- ++> color scheme
+        use({
+            "fused.nvim",
+            config = function()
+                require("fused").setup()
+            end,
+        })
         -- <++
 
         -- ++> more productive

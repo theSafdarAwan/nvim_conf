@@ -1,4 +1,3 @@
-require("safdar.plugins.personal.fused-nvim.theme")
 require("safdar.core")
 require("safdar.plugins")
 require("safdar.options")
