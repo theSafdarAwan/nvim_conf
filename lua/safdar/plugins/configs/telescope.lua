@@ -197,6 +197,21 @@ M.center_list_buffers_find = function()
 end
 
 --> Search for colorschemes
+M.get_cursor_change_colorscheme = function()
+    local center_list = themes.get_cursor({
+        prompt_title = "Change Colorscheme",
+        results_title = "Available Colorschemes",
+        preview_title = "Colorscheme Highlights",
+        borderchars = borderchars.get_cursor,
+        enable_preview = true,
+    })
+
+    local opts = vim.deepcopy(center_list)
+    -- opts.cwd = vim.fn.stdpath("config")
+    require("telescope.builtin").colorscheme(opts)
+end
+
+--> Search for colorschemes
 M.ivy_colorscheme_preview = function()
     local center_list = themes.get_ivy({
         prompt_title = "Search Colorscheme",

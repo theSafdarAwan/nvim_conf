@@ -44,10 +44,15 @@ packer.startup({
 
         -- ++> color scheme
         use({
-            "fused.nvim",
+            "TheSafdarAwan/fused.nvim",
             config = function()
                 require("fused").setup()
             end,
+        })
+        use({
+            "folke/tokyonight.nvim",
+            "ellisonleao/gruvbox.nvim",
+            "catppuccin/nvim",
         })
         -- <++
 
