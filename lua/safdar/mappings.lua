@@ -113,7 +113,7 @@ map("n", "<C-c>", "<Nop>", opts)
 
 -- Spell checking
 -- Pressing ,ss will toggle and untoggle spell checking
-map("n", "<leader>ss", ":set spell!<cr>", opts)
+map("n", "<leader>ss", ":setlocal spell!<cr>", opts)
 map("n", "<leader>sn", "]s", opts)
 map("n", "<leader>sp", "[s", opts)
 map("n", "<leader>sa", "zg", opts)

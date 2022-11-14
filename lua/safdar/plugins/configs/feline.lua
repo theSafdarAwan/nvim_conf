@@ -53,17 +53,9 @@ local icon_styles = {
 --=====================================================
 --               defining custom functions
 --=====================================================
--- local enable_only_in_full_buf = function(winid)
--- 	return vim.api.nvim_win_get_width(winid) > 50
--- end
-
--- function()
---     if vim.lsp.buf_get_clients() == true then
---         return true
---     elseif vim.lsp.buf_get_clients() == nil then
---         return nil
---     end
--- end
+local enable_only_in_full_buf = function()
+    return vim.api.nvim_win_get_width(0) > 40
+end
 
 --=====================================================
 --                  defining compnents
@@ -108,17 +100,17 @@ local mode_colors = {
 }
 
 -- local sid_mode_hl = function()
--- 	return {
--- 		fg = mode_colors[vim.fn.mode()][2],
--- 		bg = colors.lightbg,
--- 	}
+--     return {
+--         fg = mode_colors[vim.fn.mode()][2],
+--         bg = colors.lightbg,
+--     }
 -- end
 
 -- components.active[1][1] = {
--- 	provider = function()
--- 		return " " .. mode_colors[vim.fn.mode()][1] .. " "
--- 	end,
--- 	hl = chad_mode_hl,
+--     provider = function()
+--         return " " .. mode_colors[vim.fn.mode()][1] .. " "
+--     end,
+--     hl = chad_mode_hl,
 -- }
 
 components.active[1][1] = {
@@ -162,14 +154,16 @@ components.active[1][3] = {
             end
         end
 
-        local filename = splitLongString(origFilename, 15)
+        local filename = splitLongString(origFilename, 15) .. " "
         local extension = vim.fn.expand("%:e")
-        local icon = require("nvim-web-devicons").get_icon(filename, extension)
-        if icon == nil then
+        local gIcon = require("nvim-web-devicons").get_icon(filename, extension)
+        local icon
+        if gIcon == nil then
             icon = "  "
-            return icon
+        else
+            icon = " " .. gIcon .. " "
         end
-        return " " .. icon .. " " .. filename .. " "
+        return icon .. filename
     end,
     enabled = enable_only_in_full_buf,
     hl = {
@@ -205,16 +199,16 @@ components.active[1][6] = {
 }
 
 -- components.active[1][7] = {
--- 	provider = icon_styles.slant.right,
--- 	-- TODO:
--- 	-- enabled = function()
--- 	--         local b = vim.b
--- 	--         local g = vim.k
--- 	-- 	return g.gitsigns_head or b.gitsigns_head or b.gitsigns_status_dict	end,
--- 	hl = {
--- 		fg = colors.fl_color_8,
--- 		bg = colors.fl_color_8,
--- 	},
+--     provider = icon_styles.slant.right,
+--     -- TODO:
+--     -- enabled = function()
+--     --         local b = vim.b
+--     --         local g = vim.k
+--     -- 	return g.gitsigns_head or b.gitsigns_head or b.gitsigns_status_dict	end,
+--     hl = {
+--         fg = colors.fl_color_8,
+--         bg = colors.fl_color_8,
+--     },
 -- }
 
 --=====================================================
@@ -366,15 +360,16 @@ components.active[3][7] = {
 
 components.active[3][7] = {
     provider = function()
-        local lsp_symbol_str = "  LSP"
+        local lsp_symbol_str = "   LSP "
+        local lsp_symbol_str_not_atcive = "   no LSP "
+
         if next(vim.lsp.buf_get_clients()) ~= nil then
-            local lsp_status_slant = " "
-                .. lsp_symbol_str
-                .. " "
-                .. icon_styles.default.left
+            local lsp_status_slant = lsp_symbol_str .. icon_styles.default.left
             return lsp_status_slant
         else
-            return ""
+            local lsp_status_slant = lsp_symbol_str_not_atcive
+                .. icon_styles.default.left
+            return lsp_status_slant
         end
     end,
     enabled = enable_only_in_full_buf,
@@ -431,7 +426,7 @@ require("feline").setup({
             "^NvimTree$",
             "^Outline$",
             "DiffviewFileHistory",
-            "DiffviewFiles"
+            "DiffviewFiles",
         },
         buftypes = {
             "^terminal$",
