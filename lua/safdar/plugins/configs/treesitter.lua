@@ -1,8 +1,15 @@
 local vim = vim
 
-local colors = require("fused.pallete")
+local cp = require("fused.palletes").dark_pallete
+local colors = {
+    pink = cp.pink,
+    red = cp.light_pink,
+    green = cp.green,
+    yellow = cp.dyellow,
+    sky = cp.sky,
+}
 local treesitter_maps =
-    require("safdar.plugins_mappings.treesitter_map").treesitter_maps
+require("safdar.plugins_mappings.treesitter_map").treesitter_maps
 -- vim.cmd [[packadd nvim-treesitter]]
 
 -- tj's config
@@ -56,7 +63,7 @@ require("nvim-treesitter.configs").setup({
         disable = function(lang, buf)
             local max_filesize = 100 * 1024 -- 100 KB
             local ok, stats =
-                pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then
                 return true
             end
@@ -80,11 +87,11 @@ require("nvim-treesitter.configs").setup({
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
         -- termcolors = {},-- table of colour name strings
         colors = {
-            colors.rts_1,
-            colors.rts_2,
-            colors.rts_3,
-            colors.rts_4,
-            colors.rts_5,
+            colors.pink,
+            colors.red,
+            colors.green,
+            colors.yellow,
+            colors.sky,
         }, -- table of hex strings
     },
     context_commentstring = {

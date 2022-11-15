@@ -5,9 +5,10 @@
 --=====================================================
 local utils = require("safdar.core.utils")
 local vim = utils.vim
-local colors = require("fused.pallete")
+local colors = require("fused.palletes").dark_pallete
 local lsp = require("feline.providers.lsp")
 local lsp_severity = vim.diagnostic.severity
+-- TODO: creae a local table of colors from the fused pallete and used that
 
 local icon_styles = {
     default = {
@@ -77,26 +78,26 @@ table.insert(components.active, {})
 --=====================================================
 
 local mode_colors = {
-    ["n"] = { "NORMAL", colors.fl_color_4 },
-    ["no"] = { "N-PENDING", colors.fl_color_4 },
-    ["i"] = { "INSERT", colors.fl_color_1 },
-    ["ic"] = { "INSERT", colors.fl_color_1 },
-    ["t"] = { "TERMINAL", colors.fl_color_7 },
-    ["v"] = { "VISUAL", colors.fl_color_2 },
-    ["V"] = { "V-LINE", colors.fl_color_2 },
-    [""] = { "V-BLOCK", colors.fl_color_2 },
-    ["R"] = { "REPLACE", colors.fl_color_13 },
-    ["Rv"] = { "V-REPLACE", colors.fl_color_13 },
-    ["s"] = { "SELECT", colors.fl_color_14 },
-    ["S"] = { "S-LINE", colors.fl_color_14 },
-    [""] = { "S-BLOCK", colors.fl_color_14 },
-    ["c"] = { "COMMAND", colors.fl_color_3 },
-    ["cv"] = { "COMMAND", colors.fl_color_3 },
-    ["ce"] = { "COMMAND", colors.fl_color_3 },
-    ["r"] = { "PROMPT", colors.fl_color_15 },
-    ["rm"] = { "MORE", colors.fl_color_15 },
-    ["r?"] = { "CONFIRM", colors.fl_color_15 },
-    ["!"] = { "SHELL", colors.fl_color_7 },
+    ["n"] = { "NORMAL", colors.yellow },
+    ["no"] = { "N-PENDING", colors.yellow },
+    ["i"] = { "INSERT", colors.green },
+    ["ic"] = { "INSERT", colors.green },
+    ["t"] = { "TERMINAL", colors.blue },
+    ["v"] = { "VISUAL", colors.pink },
+    ["V"] = { "V-LINE", colors.pink },
+    [""] = { "V-BLOCK", colors.pink },
+    ["R"] = { "REPLACE", colors.red },
+    ["Rv"] = { "V-REPLACE", colors.red },
+    ["s"] = { "SELECT", colors.red },
+    ["S"] = { "S-LINE", colors.red },
+    [""] = { "S-BLOCK", colors.red },
+    ["c"] = { "COMMAND", colors.magenta },
+    ["cv"] = { "COMMAND", colors.magenta },
+    ["ce"] = { "COMMAND", colors.magenta },
+    ["r"] = { "PROMPT", colors.wblue },
+    ["rm"] = { "MORE", colors.wblue },
+    ["r?"] = { "CONFIRM", colors.wblue },
+    ["!"] = { "SHELL", colors.blue },
 }
 
 -- local sid_mode_hl = function()
@@ -129,15 +130,15 @@ components.active[1][2] = {
     provider = "git_branch",
     enabled = enable_only_in_full_buf,
     hl = {
-        fg = colors.fl_color_16,
-        bg = colors.fl_color_9,
+        fg = colors.white,
+        bg = colors.dark,
     },
     icon = "  ",
     right_sep = {
         str = icon_styles.default2.right,
         hl = {
-            fg = colors.fl_color_9,
-            bg = colors.fl_color_16,
+            fg = colors.dark,
+            bg = colors.white,
         },
     },
 }
@@ -167,34 +168,34 @@ components.active[1][3] = {
     end,
     enabled = enable_only_in_full_buf,
     hl = {
-        fg = colors.fl_color_8,
-        bg = colors.fl_color_16,
+        fg = colors.dark,
+        bg = colors.white,
     },
 
     right_sep = {
         str = icon_styles.default2.right,
         hl = {
-            fg = colors.fl_color_16,
-            bg = colors.fl_color_8,
+            fg = colors.white,
+            bg = colors.dark,
         },
     },
 }
 
 components.active[1][4] = {
     provider = "git_diff_added",
-    hl = { fg = colors.fl_color_1, bg = colors.fl_color_8 },
+    hl = { fg = colors.green, bg = colors.dark },
     icon = "  ",
 }
 -- diffModfified
 components.active[1][5] = {
     provider = "git_diff_changed",
-    hl = { fg = colors.fl_color_7, bg = colors.fl_color_8 },
+    hl = { fg = colors.blue, bg = colors.dark },
     icon = " ⦿ ",
 }
 -- diffRemove
 components.active[1][6] = {
     provider = "git_diff_removed",
-    hl = { fg = colors.vc_remove, bg = colors.fl_color_8 },
+    hl = { fg = colors.wred, bg = colors.dark },
     icon = "  ",
 }
 
@@ -206,8 +207,8 @@ components.active[1][6] = {
 --     --         local g = vim.k
 --     -- 	return g.gitsigns_head or b.gitsigns_head or b.gitsigns_status_dict	end,
 --     hl = {
---         fg = colors.fl_color_8,
---         bg = colors.fl_color_8,
+--         fg = colors.dark,
+--         bg = colors.dark,
 --     },
 -- }
 
@@ -277,7 +278,7 @@ components.active[2][1] = {
         return "%b-0x%B"
     end,
     enabled = enable_only_in_full_buf,
-    hl = { fg = colors.fl_color_1, bg = colors.fl_color_8 },
+    hl = { fg = colors.green, bg = colors.dark },
 }
 
 --=====================================================
@@ -293,8 +294,8 @@ components.active[3][1] = {
             or lsp.diagnostics_exist(lsp_severity.INFO)
     end,
     hl = {
-        fg = colors.fl_color_8,
-        bg = colors.fl_color_8,
+        fg = colors.dark,
+        bg = colors.dark,
     },
 }
 
@@ -303,7 +304,7 @@ components.active[3][2] = {
     enabled = function()
         return lsp.diagnostics_exist(lsp_severity.ERROR)
     end,
-    hl = { fg = colors.error_red, bg = colors.fl_color_8 },
+    hl = { fg = colors.error_red, bg = colors.dark },
     icon = "  ",
 }
 
@@ -312,7 +313,7 @@ components.active[3][3] = {
     enabled = function()
         return lsp.diagnostics_exist(lsp_severity.WARN)
     end,
-    hl = { fg = colors.fl_color_4, bg = colors.fl_color_8 },
+    hl = { fg = colors.yellow, bg = colors.dark },
     icon = "  ",
 }
 
@@ -321,7 +322,7 @@ components.active[3][4] = {
     enabled = function()
         return lsp.diagnostics_exist(lsp_severity.HINT)
     end,
-    hl = { fg = colors.fl_color_6, bg = colors.fl_color_8 },
+    hl = { fg = colors.sky, bg = colors.dark },
     icon = "  ",
 }
 
@@ -330,7 +331,7 @@ components.active[3][5] = {
     enabled = function()
         return lsp.diagnostics_exist(lsp_severity.INFO)
     end,
-    hl = { fg = colors.fl_color_1, bg = colors.fl_color_8 },
+    hl = { fg = colors.green, bg = colors.dark },
     icon = "  ",
 }
 
@@ -344,8 +345,8 @@ components.active[3][6] = {
             or lsp.diagnostics_exist(lsp_severity.INFO)
     end,
     hl = {
-        fg = colors.fl_color_8,
-        bg = colors.fl_color_8,
+        fg = colors.dark,
+        bg = colors.dark,
     },
 }
 
@@ -353,8 +354,8 @@ components.active[3][7] = {
     provider = icon_styles.default.left,
     enabled = enable_only_in_full_buf,
     hl = {
-        fg = colors.fl_color_16,
-        bg = colors.fl_color_8,
+        fg = colors.white,
+        bg = colors.dark,
     },
 }
 
@@ -373,12 +374,12 @@ components.active[3][7] = {
         end
     end,
     enabled = enable_only_in_full_buf,
-    hl = { fg = colors.fl_color_9, bg = colors.fl_color_16 },
+    hl = { fg = colors.dark, bg = colors.white },
     left_sep = {
         str = icon_styles.default.left,
         hl = {
-            fg = colors.fl_color_16,
-            bg = colors.fl_color_8,
+            fg = colors.white,
+            bg = colors.dark,
         },
     },
 }
@@ -400,8 +401,8 @@ components.active[3][8] = {
     enabled = enable_only_in_full_buf,
 
     hl = {
-        fg = colors.fl_color_1,
-        bg = colors.fl_color_9,
+        fg = colors.green,
+        bg = colors.dark,
     },
 }
 
@@ -409,16 +410,16 @@ components.active[3][9] = {
     provider = "scroll_bar",
     enabled = enable_only_in_full_buf,
     hl = {
-        fg = colors.fl_color_15,
-        bg = colors.fl_color_9,
+        fg = colors.teal,
+        bg = colors.dark,
         style = "bold",
     },
 }
 
 require("feline").setup({
     colors = {
-        bg = colors.fl_color_8,
-        fg = colors.fl_color_16,
+        bg = colors.dark,
+        fg = colors.white,
     },
     components = components,
     force_inactive = {

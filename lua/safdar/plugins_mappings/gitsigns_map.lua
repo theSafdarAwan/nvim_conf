@@ -29,6 +29,7 @@ M.mappings = function(_) -- gives a bufnr
     -- Actions
     map("n", "gcs", ":Gitsigns stage_hunk<CR>")
     map("n", "gcr", ":Gitsigns reset_hunk<CR>")
+    map("n", "<C-g>k", ":Gitsigns blame_line<CR>")
     map("n", "gbS", gs.stage_buffer)
     map("n", "gsu", gs.undo_stage_hunk)
     map("n", "gbR", gs.reset_buffer)

@@ -46,7 +46,7 @@ packer.startup({
         use({
             "TheSafdarAwan/fused.nvim",
             config = function()
-                require("fused").setup()
+                require("fused").setup(true)
             end,
         })
         use({

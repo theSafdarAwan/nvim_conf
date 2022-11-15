@@ -24,7 +24,7 @@ local sources = {
     -- builtins.diagnostics.stylelint, -- using stylelint-lsp server for diagnostics
     builtins.formatting.clang_format,
     builtins.diagnostics.chktex,
-    builtins.code_actions.gitsigns,
+    -- builtins.code_actions.gitsigns,
     builtins.formatting.prettierd.with({
         -- { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
         filetypes = { "html", "json", "yaml", "markdown" },
