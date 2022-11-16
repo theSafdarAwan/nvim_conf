@@ -1,5 +1,4 @@
 local utils = require("safdar.core.utils")
-local vim = utils.vim
 local opt = utils.opt
 local wo = utils.wo
 local g = utils.g

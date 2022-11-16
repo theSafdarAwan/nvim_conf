@@ -54,7 +54,8 @@ local function autoSaveFn(bufInfo)
         local invalidFt = validater({ type = "ft", data = excluded_ftype })
         -- check if the buf is modifiable and then validate buf does not have any of
         -- the excluded filetypes or buftypes
-        if b.modifiable == true
+        if
+            b.modifiable == true
             and invalidFt == false
             and invalidBuf == false
         then

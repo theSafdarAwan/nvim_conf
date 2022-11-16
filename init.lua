@@ -33,6 +33,3 @@ require("_packer")
 -- TODO:
 -- create folder for each plugin and put their config and maps in it rather then
 -- having a config and plugins_mappings folder
-
--- TODO:
--- work on the fused.nvim new highlights

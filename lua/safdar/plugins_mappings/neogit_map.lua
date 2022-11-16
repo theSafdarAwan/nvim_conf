@@ -2,8 +2,8 @@ local M = {}
 
 M.mappings = function()
     local map = require("safdar.core.utils").map
-    map("n", "<C-g>c", ":Neogit commit<cr>", { noremap = true, silent = true })
-    map("n", "<C-g>o", ":Neogit<cr>", { noremap = true, silent = true })
+    map("n", "ygc", ":Neogit commit<cr>", { noremap = true, silent = true })
+    map("n", "ygo", ":Neogit<cr>", { noremap = true, silent = true })
 end
 
 M.status = { -- modify status buffer mappings

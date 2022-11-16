@@ -6,8 +6,12 @@
 local utils = require("safdar.core.utils")
 local vim = utils.vim
 local colors = require("fused.palletes").dark_pallete
+
 local lsp = require("feline.providers.lsp")
 local lsp_severity = vim.diagnostic.severity
+
+local git = require("feline.providers.git")
+
 -- TODO: creae a local table of colors from the fused pallete and used that
 
 local icon_styles = {
@@ -127,13 +131,19 @@ components.active[1][1] = {
 }
 
 components.active[1][2] = {
-    provider = "git_branch",
+    provider = function()
+        local branch = "  " .. git.git_branch()
+        local ft = tostring(vim.bo.filetype)
+        if ft == "" then
+            branch = "  " -- little tux
+        end
+        return branch
+    end,
     enabled = enable_only_in_full_buf,
     hl = {
         fg = colors.white,
         bg = colors.dark,
     },
-    icon = "  ",
     right_sep = {
         str = icon_styles.default2.right,
         hl = {
@@ -158,13 +168,19 @@ components.active[1][3] = {
         local filename = splitLongString(origFilename, 15) .. " "
         local extension = vim.fn.expand("%:e")
         local gIcon = require("nvim-web-devicons").get_icon(filename, extension)
-        local icon
+
+        local provider
         if gIcon == nil then
-            icon = "  "
+            -- icon = "  " -- dont like this at the moment probably new icon
+
+            -- Also include filename otherwise no filename when no icon
+            provider = " " .. filename
+        elseif tostring(filename) == "" then
+            provider = " "
         else
-            icon = " " .. gIcon .. " "
+            provider = " " .. gIcon .. " " .. filename .. " "
         end
-        return icon .. filename
+        return provider
     end,
     enabled = enable_only_in_full_buf,
     hl = {
@@ -224,34 +240,48 @@ components.active[2][1] = {
             local percentage = Lsp.percentage or 0
             local title = Lsp.title or ""
             local spinners = {
-                "⠋",
-                "⠇",
-                "⠦",
-                "⠙",
-                "⠹",
-                "⠼",
-                "⠴",
-                "⠸",
-                "⠦",
-                "⠧",
-                "⠇",
-                "⠏",
+                -- ◐ ◓ ◑ ◒
+                "◐",
+                "◓",
+                "◑",
+                "◒",
+                "◐",
+                "◓",
+                "◑",
+                "◒",
+                "◐",
+                "◓",
+                "◑",
+                "◒",
+
+                -- "⠋",
+                -- "⠇",
+                -- "⠦",
+                -- "⠙",
+                -- "⠹",
+                -- "⠼",
+                -- "⠴",
+                -- "⠸",
+                -- "⠦",
+                -- "⠧",
+                -- "⠇",
+                -- "⠏",
             }
 
             local success_icon = {
                 -- "",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
-                "﫠",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
             }
 
             local ms = vim.loop.hrtime() / 1000000
@@ -362,13 +392,15 @@ components.active[3][7] = {
 components.active[3][7] = {
     provider = function()
         local lsp_symbol_str = "   LSP "
-        local lsp_symbol_str_not_atcive = "   no LSP "
+        -- local lsp_symbol_str_not_atcive = "   no LSP "
+        local lsp_symbol_str_not_atcive = " "
 
         if next(vim.lsp.buf_get_clients()) ~= nil then
             local lsp_status_slant = lsp_symbol_str .. icon_styles.default.left
             return lsp_status_slant
         else
             local lsp_status_slant = lsp_symbol_str_not_atcive
+                .. "" -- just to keep up with style
                 .. icon_styles.default.left
             return lsp_status_slant
         end

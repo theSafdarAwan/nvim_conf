@@ -6,9 +6,9 @@ M.maps = function()
     local map = utils.map
     local opts = { noremap = true, silent = true }
 
-    map("n", "<C-g>d", "<cmd>DiffviewOpen<CR>", opts)
-    map("n", "<C-g>D", "<cmd>DiffviewFileHistory<CR>", opts)
-    map("n", "<C-g>x", "<cmd>DiffviewClose<CR>", opts)
+    map("n", "ygd", "<cmd>DiffviewOpen<CR>", opts)
+    map("n", "ygD", "<cmd>DiffviewFileHistory<CR>", opts)
+    map("n", "ygx", "<cmd>DiffviewClose<CR>", opts)
 end
 
 M.keymaps = {}

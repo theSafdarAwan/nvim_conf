@@ -31,13 +31,6 @@ local function helpHelper()
     hl("HelpStar", { link = "Normal" })
 end
 
--- set spell forthe gitcommit messages and other filetypes
-create_autocmd({ "FileType" }, {
-    group = autocmds_augroup,
-    pattern = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" },
-    command = "setlocal spell",
-})
-
 -- set a bunch of options for the help filetype
 create_autocmd({ "FileType" }, {
     group = autocmds_augroup,
