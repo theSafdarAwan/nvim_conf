@@ -3,13 +3,13 @@ local map = utils.map
 local opts = { noremap = true, silent = true }
 local expr = { noremap = true, silent = true, expr = true }
 
--- ++> Remove mappings
+-- ~> Remove mappings
 -- Remove the help mappings
 map("n", "<F1>", "<Nop>", opts)
 map("t", "<F1>", "", opts)
 map("i", "<F1>", "", opts)
 map("v", "<F1>", "<Nop>", opts)
--- <++
+-- <~
 
 -- Center the next searched item
 -- map("n", "n", "nzz", opts)

@@ -1,6 +1,6 @@
 local M = {}
 M.icons = {
-    -- ++> icons
+    -- ~> icons
     --M.icons = {
     --  Class = "   ",
     --  Color = "   ",
@@ -55,7 +55,7 @@ M.icons = {
     --  Value		= "  ",
     --  Variable	= "  ",
     -- Snippet = "",
-    --  <++
+    --  <~
 
     Boolean = "⊨",
     Class = "",

@@ -32,9 +32,9 @@ local luaSnips = {
         "fd",
         fmt(
             [[
-        -- ++> {foldBodyDesc}
+        -- ~> {foldBodyDesc}
         {code}
-        -- <++]],
+        -- <~]],
             {
                 foldBodyDesc = i(1, "fold body description"),
                 code = i(2, "-- code here"),

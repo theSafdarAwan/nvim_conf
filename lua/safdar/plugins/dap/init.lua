@@ -19,7 +19,7 @@ local dapAdapters = {
     "js-dap",
 }
 for _, adapters in ipairs(dapAdapters) do
-    require("safdar.dap.adapters." .. adapters)
+    require("safdar.plugins.dap.adapters." .. adapters)
 end
 
 local fn = vim.fn

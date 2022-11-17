@@ -4,11 +4,11 @@ local vim = utils.vim
 local packer = require("packer")
 packer.startup({
     function(use)
-        --  ++> Packer can manage itself
+        --  ~> Packer can manage itself
         use({ "wbthomason/packer.nvim" })
-        -- <++
+        -- <~
 
-        -- ++> Performance
+        -- ~> Performance
         use({
             "lewis6991/impatient.nvim",
             config = function()
@@ -28,14 +28,14 @@ packer.startup({
                 require("profiler")
             end,
         })
-        -- <++
+        -- <~
 
-        -- ++> Essential
+        -- ~> Essential
         use({ "nvim-lua/plenary.nvim" })
         use({ "nvim-lua/popup.nvim" })
-        -- <++
+        -- <~
 
-        -- ++> Telescope
+        -- ~> Telescope
         use({
             "nvim-telescope/telescope.nvim",
             config = function()
@@ -46,9 +46,9 @@ packer.startup({
             "nvim-telescope/telescope-fzf-native.nvim",
             run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         })
-        -- <++
+        -- <~
 
-        -- ++> color scheme
+        -- ~> color scheme
         use({
             "TheSafdarAwan/fused.nvim",
             config = function()
@@ -60,9 +60,9 @@ packer.startup({
             "ellisonleao/gruvbox.nvim",
             "catppuccin/nvim",
         })
-        -- <++
+        -- <~
 
-        -- ++> more productive
+        -- ~> more productive
         use({
             "kyazdani42/nvim-tree.lua",
             config = function()
@@ -96,9 +96,9 @@ packer.startup({
                 require("safdar.plugins.surround")
             end,
         })
-        -- <++
+        -- <~
 
-        -- ++> ui related stuff
+        -- ~> ui related stuff
         use({
             "kyazdani42/nvim-web-devicons",
             config = function()
@@ -120,9 +120,9 @@ packer.startup({
                 require("safdar.plugins.feline")
             end,
         }) -- status line
-        -- <++
+        -- <~
 
-        -- ++> for linting files that null_ls does not support
+        -- ~> for linting files that null_ls does not support
         use({
             "dense-analysis/ale",
             config = function()
@@ -137,9 +137,9 @@ packer.startup({
                 require("safdar.plugins.scroolbar")
             end,
         })
-        -- <++
+        -- <~
 
-        -- ++> load luasnips + cmp related in insert mode only
+        -- ~> load luasnips + cmp related in insert mode only
         use({
             "neovim/nvim-lspconfig", -- quckstart lsp conifgs
             config = function()
@@ -184,9 +184,9 @@ packer.startup({
                 require("safdar.plugins.luasnip")
             end,
         })
-        -- <++
+        -- <~
 
-        -- ++> Lsp utils & enhancements
+        -- ~> Lsp utils & enhancements
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
@@ -215,9 +215,9 @@ packer.startup({
             end,
             ft = { "markdown", "norg" },
         })
-        -- <++
+        -- <~
 
-        -- ++> Debugging
+        -- ~> Debugging
         use({
             "mfussenegger/nvim-dap",
             requires = {
@@ -225,16 +225,16 @@ packer.startup({
                 { "rcarriga/nvim-dap-ui" },
             },
             config = function()
-                require("safdar.dap")
+                require("safdar.plugins.dap")
                 require("safdar.plugins.dap.maps").dap_maps()
                 --> plugins cfgs
                 require("safdar.plugins.dap.dap-ui")
                 require("safdar.plugins.dap.dap-virtual-text")
             end,
         })
-        -- <++
+        -- <~
 
-        -- ++> syntax Highlighting
+        -- ~> syntax Highlighting
         use({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
@@ -258,9 +258,9 @@ packer.startup({
         use({
             "p00f/nvim-ts-rainbow",
         })
-        -- <++
+        -- <~
 
-        -- ++> utils
+        -- ~> utils
         use({
             "folke/todo-comments.nvim",
             config = function()
@@ -308,9 +308,9 @@ packer.startup({
                 require("safdar.plugins.undotree.maps")
             end,
         })
-        -- <++
+        -- <~
 
-        -- ++> ThePrimeagen coconut oil
+        -- ~> ThePrimeagen coconut oil
         use({
             "ThePrimeagen/vim-be-good",
             config = function()
@@ -345,9 +345,9 @@ packer.startup({
                 require("safdar.plugins.plugins_mappings.git_worktree_map")
             end,
         })
-        -- <++
+        -- <~
 
-        -- ++> Note Takign Stuff Stuff
+        -- ~> Note Takign Stuff Stuff
         -- norg
         use({
             "nvim-neorg/neorg",
@@ -373,7 +373,7 @@ packer.startup({
             end,
             ft = { "markdown" },
         })
-        -- <++
+        -- <~
     end,
     config = {
         compile_path = vim.fn.stdpath("config") .. "/lua/_packer/init.lua",

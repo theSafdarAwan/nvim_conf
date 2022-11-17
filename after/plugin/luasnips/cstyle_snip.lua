@@ -9,9 +9,9 @@ local cStyleFolds = {
         "fd",
         fmt(
             [[
-        // ++> {foldBodyDes}
+        // ~> {foldBodyDes}
         {code}
-        // <++]],
+        // <~]],
             {
                 foldBodyDes = i(1, "fold body description"),
                 code = i(2, "/* code here */"),
