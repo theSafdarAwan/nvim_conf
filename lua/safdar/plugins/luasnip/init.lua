@@ -29,4 +29,4 @@ ls.config.set_config({
     },
 })
 
-require("safdar.plugins.configs.luasnip.maps")
+require("safdar.plugins.luasnip.maps")

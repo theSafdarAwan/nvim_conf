@@ -39,7 +39,7 @@ packer.startup({
         use({
             "nvim-telescope/telescope.nvim",
             config = function()
-                require("safdar.plugins.configs.telescope")
+                require("safdar.plugins.telescope")
             end,
         })
         use({
@@ -66,15 +66,15 @@ packer.startup({
         use({
             "kyazdani42/nvim-tree.lua",
             config = function()
-                require("safdar.plugins.configs.nvim-tree")
-                require("safdar.plugins.configs.nvim-tree.maps")
+                require("safdar.plugins.nvim-tree")
+                require("safdar.plugins.nvim-tree.maps")
             end,
         })
         -- Git stuff
         use({
             "lewis6991/gitsigns.nvim",
             config = function()
-                require("safdar.plugins.configs.gitsigns") -- should be called after other _plugins_configs
+                require("safdar.plugins.gitsigns") -- should be called after other _plugins_configs
             end,
         })
         use({
@@ -82,18 +82,18 @@ packer.startup({
             requires = {
                 "sindrets/diffview.nvim",
                 config = function()
-                    require("safdar.plugins.configs.diffview")
+                    require("safdar.plugins.diffview")
                 end,
             },
             config = function()
-                require("safdar.plugins.configs.neogit")
+                require("safdar.plugins.neogit")
             end,
         })
         use({
             "kylechui/nvim-surround",
             tag = "main", -- Use for stability; omit to use `main` branch for the latest features
             config = function()
-                require("safdar.plugins.configs.surround")
+                require("safdar.plugins.surround")
             end,
         })
         -- <++
@@ -111,13 +111,13 @@ packer.startup({
         use({
             "lukas-reineke/indent-blankline.nvim",
             config = function()
-                require("safdar.plugins.configs.indent-blank-line")
+                require("safdar.plugins.indent-blank-line")
             end,
         }) -- indent guides
         use({
             "feline-nvim/feline.nvim",
             config = function()
-                require("safdar.plugins.configs.feline")
+                require("safdar.plugins.feline")
             end,
         }) -- status line
         -- <++
@@ -126,15 +126,15 @@ packer.startup({
         use({
             "dense-analysis/ale",
             config = function()
-                require("safdar.plugins.configs.ale")
-                require("safdar.plugins.configs.maps")
+                require("safdar.plugins.ale")
+                require("safdar.plugins.maps")
             end,
             ft = { "html" },
         })
         use({
             "petertriho/nvim-scrollbar",
             config = function()
-                require("safdar.plugins.configs.scroolbar")
+                require("safdar.plugins.scroolbar")
             end,
         })
         -- <++
@@ -149,7 +149,7 @@ packer.startup({
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
                     require("safdar.lsp.null-ls")
-                    require("safdar.plugins.configs.plugins_mappings.null-ls_map")
+                    require("safdar.plugins.plugins_mappings.null-ls_map")
                 end,
             },
         })
@@ -165,7 +165,7 @@ packer.startup({
             "uga-rosa/cmp-dictionary",
             ft = { "markdown", "norg" },
             config = function()
-                require("safdar.plugins.configs.cmp.cmp-dictionary")
+                require("safdar.plugins.cmp.cmp-dictionary")
             end,
         })
         use({
@@ -181,7 +181,7 @@ packer.startup({
         use({
             "L3MON4D3/LuaSnip",
             config = function()
-                require("safdar.plugins.configs.luasnip")
+                require("safdar.plugins.luasnip")
             end,
         })
         -- <++
@@ -190,28 +190,28 @@ packer.startup({
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
-                require("safdar.plugins.configs.lspsignature")
+                require("safdar.plugins.lspsignature")
             end,
         })
         use({
             "folke/trouble.nvim",
             config = function()
-                require("safdar.plugins.configs.lsp-trouble")
-                require("safdar.plugins.configs.lsp-trouble.maps")
+                require("safdar.plugins.lsp-trouble")
+                require("safdar.plugins.lsp-trouble.maps")
             end,
         })
         use({
             "glepnir/lspsaga.nvim",
             config = function()
-                require("safdar.plugins.configs.lspsaga")
-                require("safdar.plugins.configs.lspsaga.maps")
+                require("safdar.plugins.lspsaga")
+                require("safdar.plugins.lspsaga.maps")
             end,
         })
         use({
             "AckslD/nvim-FeMaco.lua",
             config = function()
                 require("femaco").setup()
-                require("safdar.plugins.configs.plugins_mappings.FeMaco_map")
+                require("safdar.plugins.plugins_mappings.FeMaco_map")
             end,
             ft = { "markdown", "norg" },
         })
@@ -226,10 +226,10 @@ packer.startup({
             },
             config = function()
                 require("safdar.dap")
-                require("safdar.plugins.configs.dap.maps").dap_maps()
+                require("safdar.plugins.dap.maps").dap_maps()
                 --> plugins cfgs
-                require("safdar.plugins.configs.dap.dap-ui")
-                require("safdar.plugins.configs.dap.dap-virtual-text")
+                require("safdar.plugins.dap.dap-ui")
+                require("safdar.plugins.dap.dap-virtual-text")
             end,
         })
         -- <++
@@ -239,14 +239,14 @@ packer.startup({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
             config = function()
-                require("safdar.plugins.configs.treesitter")
-                require("safdar.plugins.configs.treesitter.maps")
+                require("safdar.plugins.treesitter")
+                require("safdar.plugins.treesitter.maps")
             end,
         })
         use({
             "nvim-treesitter/tsplayground",
             config = function()
-                require("safdar.plugins.configs.tsplayground")
+                require("safdar.plugins.tsplayground")
             end,
         })
         use({
@@ -264,8 +264,8 @@ packer.startup({
         use({
             "folke/todo-comments.nvim",
             config = function()
-                require("safdar.plugins.configs.todo-comments")
-                require("safdar.plugins.configs.todo-comments.maps")
+                require("safdar.plugins.todo-comments")
+                require("safdar.plugins.todo-comments.maps")
             end,
         })
         use({
@@ -281,7 +281,7 @@ packer.startup({
         use({
             "folke/paint.nvim",
             config = function()
-                require("safdar.plugins.configs.paint")
+                require("safdar.plugins.paint")
             end,
         })
         use({
@@ -293,19 +293,19 @@ packer.startup({
         use({
             "andymass/vim-matchup",
             config = function()
-                require("safdar.plugins.configs.vim-matchup")
+                require("safdar.plugins.vim-matchup")
             end,
         })
         use({
             "norcalli/nvim-colorizer.lua",
             config = function()
-                require("safdar.plugins.configs.colorizer")
+                require("safdar.plugins.colorizer")
             end,
         }) -- shows the colors
         use({
             "mbbill/undotree",
             config = function()
-                require("safdar.plugins.configs.undotree.maps")
+                require("safdar.plugins.undotree.maps")
             end,
         })
         -- <++
@@ -314,21 +314,21 @@ packer.startup({
         use({
             "ThePrimeagen/vim-be-good",
             config = function()
-                require("safdar.plugins.configs.vim-be-good.maps")
+                require("safdar.plugins.vim-be-good.maps")
             end,
         })
         use({
             "ThePrimeagen/refactoring.nvim",
             config = function()
-                require("safdar.plugins.configs.refactoring")
-                require("safdar.plugins.configs.refactoring.maps")
+                require("safdar.plugins.refactoring")
+                require("safdar.plugins.refactoring.maps")
             end,
         })
         use({
             "ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
             config = function()
-                require("safdar.plugins.configs.harpoon")
-                require("safdar.plugins.configs.harpoon.maps")
+                require("safdar.plugins.harpoon")
+                require("safdar.plugins.harpoon.maps")
             end,
         })
         -- TODO: work on this plugin as you explore more about git
@@ -342,7 +342,7 @@ packer.startup({
                     clearjumps_on_change = true, -- default: true,
                     autopush = false, -- default: false,
                 })
-                require("safdar.plugins.configs.plugins_mappings.git_worktree_map")
+                require("safdar.plugins.plugins_mappings.git_worktree_map")
             end,
         })
         -- <++
@@ -357,8 +357,8 @@ packer.startup({
                 "nvim-neorg/neorg-telescope",
             },
             config = function()
-                require("safdar.plugins.configs.neorg")
-                require("safdar.plugins.configs.neorg.maps")
+                require("safdar.plugins.neorg")
+                require("safdar.plugins.neorg.maps")
             end,
         })
         -- Markdwon Plugin
@@ -368,8 +368,8 @@ packer.startup({
                 vim.fn["mkdp#util#install"]()
             end,
             config = function()
-                require("safdar.plugins.configs.markdown-preview")
-                require("safdar.plugins.configs.markdown-preview.maps")
+                require("safdar.plugins.markdown-preview")
+                require("safdar.plugins.markdown-preview.maps")
             end,
             ft = { "markdown" },
         })

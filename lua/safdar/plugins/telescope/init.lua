@@ -25,7 +25,7 @@ local borderchars = {
 
 telescope.setup({
     defaults = {
-        mappings = require("safdar.plugins.configs.telescope.maps").mappings(),
+        mappings = require("safdar.plugins.telescope.maps").mappings(),
         prompt_prefix = "   ",
         selection_caret = "  ",
         entry_prefix = "  ",

@@ -71,4 +71,4 @@ end
 require("safdar.lsp.lsp-ui")
 
 -- add the mappings
-require("safdar.plugins.configs.plugins_mappings.lsp_map")
+require("safdar.plugins.plugins_mappings.lsp_map")

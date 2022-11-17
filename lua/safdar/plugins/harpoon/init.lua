@@ -7,4 +7,4 @@ require("harpoon").setup({
 })
 
 -- require general mappings
-require("safdar.plugins.configs.harpoon.maps").maps()
+require("safdar.plugins.harpoon.maps").maps()

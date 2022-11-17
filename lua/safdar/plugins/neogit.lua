@@ -1,6 +1,6 @@
 local neogit = require("neogit")
-local status_maps = require("safdar.plugins.configs.plugins_mappings.neogit_map").status
-require("safdar.plugins.configs.plugins_mappings.neogit_map").mappings()
+local status_maps = require("safdar.plugins.plugins_mappings.neogit_map").status
+require("safdar.plugins.plugins_mappings.neogit_map").mappings()
 
 neogit.setup({
     -- should the commit popup appear in insert mode or normal mode

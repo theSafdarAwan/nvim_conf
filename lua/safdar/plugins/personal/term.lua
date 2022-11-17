@@ -35,4 +35,4 @@ function ToggleTerminal()
     end
 end
 
-require("safdar.plugins.configs.plugins_mappings.term_map")
+require("safdar.plugins.plugins_mappings.term_map")

@@ -1,5 +1,5 @@
 local dv = require("diffview")
-local mappings = require("safdar.plugins.configs.diffview.maps")
+local mappings = require("safdar.plugins.diffview.maps")
 
 dv.setup({
     diff_binaries = false,

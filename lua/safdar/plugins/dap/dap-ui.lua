@@ -1,5 +1,5 @@
 local vim = vim
-local maps = require("safdar.plugins.configs.dap.maps")
+local maps = require("safdar.plugins.dap.maps")
 require("dapui").setup({
     icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
     mappings = maps.dap_ui_mappings,
