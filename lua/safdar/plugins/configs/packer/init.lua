@@ -111,7 +111,7 @@ packer.startup({
         use({
             "lukas-reineke/indent-blankline.nvim",
             config = function()
-                require("safdar.plugins.configs.indentline")
+                require("safdar.plugins.configs.indent-blank-line")
             end,
         }) -- indent guides
         use({
@@ -165,7 +165,7 @@ packer.startup({
             "uga-rosa/cmp-dictionary",
             ft = { "markdown", "norg" },
             config = function()
-                require("safdar.plugins.configs.cmp-dictionary")
+                require("safdar.plugins.configs.cmp.cmp-dictionary")
             end,
         })
         use({
@@ -190,20 +190,20 @@ packer.startup({
         use({
             "ray-x/lsp_signature.nvim",
             config = function()
-                require("safdar.plugins.configs.signature")
+                require("safdar.plugins.configs.lspsignature")
             end,
         })
         use({
             "folke/trouble.nvim",
             config = function()
-                require("safdar.plugins.configs.trouble")
+                require("safdar.plugins.configs.lsp-trouble")
                 require("safdar.plugins_mappings.lsp-trouble_map")
             end,
         })
         use({
             "glepnir/lspsaga.nvim",
             config = function()
-                require("safdar.plugins.configs.lsp-saga")
+                require("safdar.plugins.configs.lspsaga")
                 require("safdar.plugins_mappings.lsp-saga_map")
             end,
         })
@@ -228,8 +228,8 @@ packer.startup({
                 require("safdar.dap")
                 require("safdar.plugins_mappings.dap_map")
                 --> plugins cfgs
-                require("safdar.plugins.configs.dap-ui")
-                require("safdar.plugins.configs.dap-virtual-text")
+                require("safdar.plugins.configs.dap.dap-ui")
+                require("safdar.plugins.configs.dap.dap-virtual-text")
             end,
         })
         -- <++
@@ -244,9 +244,9 @@ packer.startup({
             end,
         })
         use({
-            "nvim-treesitter/playground",
+            "nvim-treesitter/tsplayground",
             config = function()
-                require("safdar.plugins.configs.playground")
+                require("safdar.plugins.configs.tsplayground")
             end,
         })
         use({
@@ -264,7 +264,7 @@ packer.startup({
         use({
             "folke/todo-comments.nvim",
             config = function()
-                require("safdar.plugins.configs.todo")
+                require("safdar.plugins.configs.todo-comments")
                 require("safdar.plugins_mappings.todo_map")
             end,
         })
