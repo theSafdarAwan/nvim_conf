@@ -33,3 +33,6 @@ require("_packer")
 -- TODO:
 -- create folder for each plugin and put their config and maps in it rather then
 -- having a config and plugins_mappings folder
+
+-- TODO:
+-- create a popup wrapper for the harpoon.term like the toggle term does

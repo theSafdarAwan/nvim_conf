@@ -22,6 +22,12 @@ packer.startup({
                 vim.g.curshold_updatime = 100
             end,
         })
+        use({
+            "norcalli/profiler.nvim",
+            config = function()
+                require("profiler")
+            end,
+        })
         -- <++
 
         -- ++> Essential
@@ -124,6 +130,12 @@ packer.startup({
                 require("safdar.plugins_mappings.ale_map")
             end,
             ft = { "html" },
+        })
+        use({
+            "petertriho/nvim-scrollbar",
+            config = function()
+                require("safdar.plugins.configs.scroolbar")
+            end,
         })
         -- <++
 
@@ -263,6 +275,13 @@ packer.startup({
                     check_ts = true,
                     map_c_w = true,
                 })
+            end,
+        })
+        -- Packer
+        use({
+            "folke/paint.nvim",
+            config = function()
+                require("safdar.plugins.configs.paint")
             end,
         })
         use({
