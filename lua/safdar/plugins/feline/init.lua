@@ -1,10 +1,7 @@
---> TODO: rewrite some of the status line modules
-
---=====================================================
---                  general
---=====================================================
 local utils = require("safdar.core.utils")
 local vim = utils.vim
+
+-- @colors
 local cp = require("fused.palletes").dark_pallete
 local c = {
     white = cp.white,
@@ -12,8 +9,8 @@ local c = {
     warn = cp.warn,
     err = cp.err,
     err_sev = cp.err_sev,
-    info = cp.property,
-    hint = cp.teal,
+    info = cp.teal,
+    hint = cp.property,
     magenta = cp.func,
     green = cp.search,
     blue = cp.keywords,
@@ -23,8 +20,6 @@ local lsp = require("feline.providers.lsp")
 local lsp_severity = vim.diagnostic.severity
 
 local git = require("feline.providers.git")
-
--- TODO: creae a local table of colors from the fused pallete and used that
 
 local icon_styles = {
     default = {
@@ -133,7 +128,7 @@ local mode_colors = {
 components.active[1][1] = {
     provider = "██",
     -- return '██ '
-    enabled = enable_only_in_full_buf,
+    -- enabled = enable_only_in_full_buf,
     hl = function()
         return {
             fg = mode_colors[vim.fn.mode()][2],
@@ -167,17 +162,17 @@ components.active[1][2] = {
 
 components.active[1][3] = {
     provider = function()
-        local origFilename = vim.fn.expand("%:p:t:r")
-        local function splitLongString(originalNameString, maxLineLength)
-            local length = #originalNameString
-            if length > maxLineLength then
+        local orig_file_name = vim.fn.expand("%:p:t:r")
+        local function split_long_string(orig_name_str, max_line_len)
+            local length = #orig_name_str
+            if length > max_line_len then
                 return ""
             else
-                return originalNameString
+                return orig_name_str
             end
         end
 
-        local filename = splitLongString(origFilename, 15) .. " "
+        local filename = split_long_string(orig_file_name, 15) .. " "
         local extension = vim.fn.expand("%:e")
         local gIcon = require("nvim-web-devicons").get_icon(filename, extension)
 
@@ -217,7 +212,7 @@ components.active[1][4] = {
 -- diffModfified
 components.active[1][5] = {
     provider = "git_diff_changed",
-    hl = { fg = c.info, bg = c.dark },
+    hl = { fg = c.warn, bg = c.dark },
     icon = " ⦿ ",
 }
 -- diffRemove
@@ -226,19 +221,6 @@ components.active[1][6] = {
     hl = { fg = c.err, bg = c.dark },
     icon = "  ",
 }
-
--- components.active[1][7] = {
---     provider = icon_styles.slant.right,
---     -- TODO:
---     -- enabled = function()
---     --         local b = vim.b
---     --         local g = vim.k
---     -- 	return g.gitsigns_head or b.gitsigns_head or b.gitsigns_status_dict	end,
---     hl = {
---         fg = c.dark,
---         bg = c.dark,
---     },
--- }
 
 --=====================================================
 --                  center
@@ -326,7 +308,6 @@ components.active[2][1] = {
 --=====================================================
 --                  right
 --=====================================================
--- some custom manipulation
 components.active[3][1] = {
     provider = icon_styles.slant.left,
     enabled = function()
@@ -377,7 +358,6 @@ components.active[3][5] = {
     icon = "  ",
 }
 
--- some custom manipulation
 components.active[3][6] = {
     provider = " ",
     enabled = function()

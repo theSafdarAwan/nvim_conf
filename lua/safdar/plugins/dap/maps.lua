@@ -5,10 +5,10 @@ local map = utils.map
 local opts = { noremap = true, silent = true }
 
 M.dap_ui_maps = function()
-    map("n", "[du", "<cmd>lua require('dapui').open()<CR>", opts)
-    map("n", "[dt", "<cmd>lua require('dapui').toggle()<CR>", opts)
-    map("n", "[dc", "<cmd>lua require('dapui').close()<CR>", opts)
-    map("n", "[de", "<cmd>lua require('dapui').eval()<CR>", opts)
+    map("n", "_u", "<cmd>lua require('dapui').open()<CR>", opts)
+    map("n", "_t", "<cmd>lua require('dapui').toggle()<CR>", opts)
+    map("n", "_c", "<cmd>lua require('dapui').close()<CR>", opts)
+    map("n", "_e", "<cmd>lua require('dapui').eval()<CR>", opts)
 end
 
 M.dap_ui_mappings = {
@@ -22,17 +22,17 @@ M.dap_ui_mappings = {
 }
 
 M.dap_maps = function()
-    map("n", "[ds", "<cmd>lua require'dap'.continue()<CR>", opts)
-    map("n", "[db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
+    map("n", "_s", "<cmd>lua require'dap'.continue()<CR>", opts)
+    map("n", "_b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
     map(
         "n",
-        "[dB",
+        "_B",
         "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
         opts
     )
-    map("n", "[do", "<cmd>lua require'dap'.step_over()<CR>", opts)
-    map("n", "[di", "<cmd>lua require'dap'.step_into()<CR>", opts)
-    map("n", "[dO", "<cmd>lua require'dap'.repl.open()<CR>", opts)
+    map("n", "_o", "<cmd>lua require'dap'.step_over()<CR>", opts)
+    map("n", "_i", "<cmd>lua require'dap'.step_into()<CR>", opts)
+    map("n", "_O", "<cmd>lua require'dap'.repl.open()<CR>", opts)
 
     -- TODO: read the documentation and add the mappings
 

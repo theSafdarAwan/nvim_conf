@@ -1,7 +1,7 @@
 -----------------------
 --  git sigs plugin  --
 -----------------------
-local mappings = require("safdar.plugins.plugins_mappings.gitsigns_map")
+local mappings = require("safdar.plugins.gitsigns.maps")
 
 require("gitsigns").setup({
     on_attach = mappings.mappings,

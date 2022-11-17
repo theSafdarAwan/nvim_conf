@@ -1,6 +1,8 @@
 local neogit = require("neogit")
-local status_maps = require("safdar.plugins.plugins_mappings.neogit_map").status
-require("safdar.plugins.plugins_mappings.neogit_map").mappings()
+
+-- @mappings
+local maps = require("safdar.plugins.neogit.maps")
+maps.mappings()
 
 neogit.setup({
     -- should the commit popup appear in insert mode or normal mode
@@ -65,15 +67,16 @@ neogit.setup({
     },
     -- override/add mappings
     mappings = {
-        status = status_maps,
+        status = maps.status,
     },
 })
 
+-- @hacking
 local utils = require("safdar.core.utils")
 local optl = utils.optl
 local api = utils.api
 
-local function neogitUI()
+local function neogit_ui()
     optl.statusline = " "
 end
 
@@ -83,5 +86,5 @@ api.nvim_create_autocmd({ "FileType" }, {
         "NeogitPopup",
         "NeogitCommitMessage",
     },
-    callback = neogitUI,
+    callback = neogit_ui,
 })

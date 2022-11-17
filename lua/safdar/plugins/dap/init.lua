@@ -37,5 +37,5 @@ fn.sign_define(
     { text = "", texthl = "@keyword", linehl = "", numhl = "" }
 )
 
---- @mappings
+-- @mappings
 require("safdar.plugins.dap.maps").dap_maps()
