@@ -1,4 +1,4 @@
-local mappings_list = require("safdar.plugins_mappings.nvim-tree_map").nvim_tree_core_maps;
+local mappings_list = require("safdar.plugins.configs.nvim-tree.maps").nvim_tree_core_maps;
 
 require("nvim-tree").setup({
     auto_reload_on_write = true,

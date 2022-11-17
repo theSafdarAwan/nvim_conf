@@ -9,7 +9,7 @@ local colors = {
     sky = cp.sky,
 }
 local treesitter_maps =
-require("safdar.plugins_mappings.treesitter_map").treesitter_maps
+require("safdar.plugins.configs.treesitter.maps").treesitter_maps
 -- vim.cmd [[packadd nvim-treesitter]]
 
 -- tj's config

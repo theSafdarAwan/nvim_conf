@@ -1,8 +1,8 @@
 local vim = vim
-local maps = require("safdar.plugins_mappings.dap-ui_map")
+local maps = require("safdar.plugins.configs.dap.maps")
 require("dapui").setup({
     icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
-    mappings = maps.mappings,
+    mappings = maps.dap_ui_mappings,
     -- Use this to override mappings for specific elements
     element_mappings = {
         -- Example:
@@ -72,4 +72,4 @@ require("dapui").setup({
         max_value_lines = 100, -- Can be integer or nil.
     },
 })
-maps.maps()
+maps.dap_ui_maps()

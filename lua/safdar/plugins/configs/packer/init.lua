@@ -67,7 +67,7 @@ packer.startup({
             "kyazdani42/nvim-tree.lua",
             config = function()
                 require("safdar.plugins.configs.nvim-tree")
-                require("safdar.plugins_mappings.nvim-tree_map")
+                require("safdar.plugins.configs.nvim-tree.maps")
             end,
         })
         -- Git stuff
@@ -127,7 +127,7 @@ packer.startup({
             "dense-analysis/ale",
             config = function()
                 require("safdar.plugins.configs.ale")
-                require("safdar.plugins_mappings.ale_map")
+                require("safdar.plugins.configs.maps")
             end,
             ft = { "html" },
         })
@@ -149,7 +149,7 @@ packer.startup({
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
                     require("safdar.lsp.null-ls")
-                    require("safdar.plugins_mappings.null-ls_map")
+                    require("safdar.plugins.configs.plugins_mappings.null-ls_map")
                 end,
             },
         })
@@ -197,21 +197,21 @@ packer.startup({
             "folke/trouble.nvim",
             config = function()
                 require("safdar.plugins.configs.lsp-trouble")
-                require("safdar.plugins_mappings.lsp-trouble_map")
+                require("safdar.plugins.configs.lsp-trouble.maps")
             end,
         })
         use({
             "glepnir/lspsaga.nvim",
             config = function()
                 require("safdar.plugins.configs.lspsaga")
-                require("safdar.plugins_mappings.lsp-saga_map")
+                require("safdar.plugins.configs.lspsaga.maps")
             end,
         })
         use({
             "AckslD/nvim-FeMaco.lua",
             config = function()
                 require("femaco").setup()
-                require("safdar.plugins_mappings.FeMaco_map")
+                require("safdar.plugins.configs.plugins_mappings.FeMaco_map")
             end,
             ft = { "markdown", "norg" },
         })
@@ -226,7 +226,7 @@ packer.startup({
             },
             config = function()
                 require("safdar.dap")
-                require("safdar.plugins_mappings.dap_map")
+                require("safdar.plugins.configs.dap.maps").dap_maps()
                 --> plugins cfgs
                 require("safdar.plugins.configs.dap.dap-ui")
                 require("safdar.plugins.configs.dap.dap-virtual-text")
@@ -240,7 +240,7 @@ packer.startup({
             run = ":TSUpdate",
             config = function()
                 require("safdar.plugins.configs.treesitter")
-                require("safdar.plugins_mappings.treesitter_map")
+                require("safdar.plugins.configs.treesitter.maps")
             end,
         })
         use({
@@ -265,7 +265,7 @@ packer.startup({
             "folke/todo-comments.nvim",
             config = function()
                 require("safdar.plugins.configs.todo-comments")
-                require("safdar.plugins_mappings.todo_map")
+                require("safdar.plugins.configs.todo-comments.maps")
             end,
         })
         use({
@@ -305,7 +305,7 @@ packer.startup({
         use({
             "mbbill/undotree",
             config = function()
-                require("safdar.plugins_mappings.undotree_map")
+                require("safdar.plugins.configs.undotree.maps")
             end,
         })
         -- <++
@@ -314,21 +314,21 @@ packer.startup({
         use({
             "ThePrimeagen/vim-be-good",
             config = function()
-                require("safdar.plugins_mappings.vim-be-good_map")
+                require("safdar.plugins.configs.vim-be-good.maps")
             end,
         })
         use({
             "ThePrimeagen/refactoring.nvim",
             config = function()
                 require("safdar.plugins.configs.refactoring")
-                require("safdar.plugins_mappings.refactoring_map")
+                require("safdar.plugins.configs.refactoring.maps")
             end,
         })
         use({
             "ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
             config = function()
                 require("safdar.plugins.configs.harpoon")
-                require("safdar.plugins_mappings.harpoon_map")
+                require("safdar.plugins.configs.harpoon.maps")
             end,
         })
         -- TODO: work on this plugin as you explore more about git
@@ -342,7 +342,7 @@ packer.startup({
                     clearjumps_on_change = true, -- default: true,
                     autopush = false, -- default: false,
                 })
-                require("safdar.plugins_mappings.git_worktree_map")
+                require("safdar.plugins.configs.plugins_mappings.git_worktree_map")
             end,
         })
         -- <++
@@ -358,7 +358,7 @@ packer.startup({
             },
             config = function()
                 require("safdar.plugins.configs.neorg")
-                require("safdar.plugins_mappings.neorg_map")
+                require("safdar.plugins.configs.neorg.maps")
             end,
         })
         -- Markdwon Plugin
@@ -369,7 +369,7 @@ packer.startup({
             end,
             config = function()
                 require("safdar.plugins.configs.markdown-preview")
-                require("safdar.plugins_mappings.markdown-preview_map")
+                require("safdar.plugins.configs.markdown-preview.maps")
             end,
             ft = { "markdown" },
         })

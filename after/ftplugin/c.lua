@@ -4,7 +4,7 @@ local api = utils.api
 
 local function harpoon(bufInfo)
     if api.nvim_buf_is_valid(bufInfo.buf) then
-        local harpoon_map = require("safdar.plugins_mappings.harpoon_map")
+        local harpoon_map = require("safdar.plugins.configs.harpoon.maps")
         harpoon_map.c_lang_term_maps()
     end
 end
