@@ -8,8 +8,8 @@ local colors = {
     yellow = cp.dyellow,
     sky = cp.sky,
 }
-local treesitter_maps =
-require("safdar.plugins.treesitter.maps").treesitter_maps
+local ts_maps = require("safdar.plugins.treesitter.maps").treesitter_maps
+
 -- vim.cmd [[packadd nvim-treesitter]]
 
 -- tj's config
@@ -78,7 +78,7 @@ require("nvim-treesitter.configs").setup({
     },
     incremental_selection = {
         enable = true,
-        keymaps = treesitter_maps,
+        keymaps = ts_maps,
     },
     rainbow = {
         enable = true,
@@ -284,3 +284,5 @@ require("nvim-treesitter.configs").setup({
 --   },
 -- }
 --
+
+require("safdar.plugins.treesitter.maps")

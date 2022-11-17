@@ -68,6 +68,7 @@ local luaSnips = {
     parse("lfn", "local function $1($2)\n\t$0\nend"),
     -- local variable function
     parse("lvfn", "local $1 = function($2)\n\t$0\nend"),
+    parse("lvr", "local $1 = $0"),
     -- module function
     parse("mfn", "M.$1 = function($2)\n\t$0\nend"),
     -- global function

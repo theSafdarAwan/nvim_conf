@@ -1,3 +1,4 @@
+--- @packer
 local utils = require("safdar.core.utils")
 local vim = utils.vim
 
@@ -57,6 +58,11 @@ packer.startup({
         })
         use({
             "folke/tokyonight.nvim",
+            config = function ()
+                -- require("safdar.plugins.tokyonight")
+            end
+        })
+        use({
             "ellisonleao/gruvbox.nvim",
             "catppuccin/nvim",
         })
@@ -67,7 +73,6 @@ packer.startup({
             "kyazdani42/nvim-tree.lua",
             config = function()
                 require("safdar.plugins.nvim-tree")
-                require("safdar.plugins.nvim-tree.maps")
             end,
         })
         -- Git stuff
@@ -91,7 +96,7 @@ packer.startup({
         })
         use({
             "kylechui/nvim-surround",
-            tag = "main", -- Use for stability; omit to use `main` branch for the latest features
+            -- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
             config = function()
                 require("safdar.plugins.surround")
             end,
@@ -122,12 +127,11 @@ packer.startup({
         }) -- status line
         -- <~
 
-        -- ~> for linting files that null_ls does not support
+        -- ~> linting files that null_ls does not support
         use({
             "dense-analysis/ale",
             config = function()
                 require("safdar.plugins.ale")
-                require("safdar.plugins.maps")
             end,
             ft = { "html" },
         })
@@ -197,14 +201,12 @@ packer.startup({
             "folke/trouble.nvim",
             config = function()
                 require("safdar.plugins.lsp-trouble")
-                require("safdar.plugins.lsp-trouble.maps")
             end,
         })
         use({
             "glepnir/lspsaga.nvim",
             config = function()
                 require("safdar.plugins.lspsaga")
-                require("safdar.plugins.lspsaga.maps")
             end,
         })
         use({
@@ -226,7 +228,6 @@ packer.startup({
             },
             config = function()
                 require("safdar.plugins.dap")
-                require("safdar.plugins.dap.maps").dap_maps()
                 --> plugins cfgs
                 require("safdar.plugins.dap.dap-ui")
                 require("safdar.plugins.dap.dap-virtual-text")
@@ -240,11 +241,10 @@ packer.startup({
             run = ":TSUpdate",
             config = function()
                 require("safdar.plugins.treesitter")
-                require("safdar.plugins.treesitter.maps")
             end,
         })
         use({
-            "nvim-treesitter/tsplayground",
+            "nvim-treesitter/playground",
             config = function()
                 require("safdar.plugins.tsplayground")
             end,
@@ -265,7 +265,6 @@ packer.startup({
             "folke/todo-comments.nvim",
             config = function()
                 require("safdar.plugins.todo-comments")
-                require("safdar.plugins.todo-comments.maps")
             end,
         })
         use({
@@ -321,14 +320,12 @@ packer.startup({
             "ThePrimeagen/refactoring.nvim",
             config = function()
                 require("safdar.plugins.refactoring")
-                require("safdar.plugins.refactoring.maps")
             end,
         })
         use({
             "ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
             config = function()
                 require("safdar.plugins.harpoon")
-                require("safdar.plugins.harpoon.maps")
             end,
         })
         -- TODO: work on this plugin as you explore more about git
@@ -358,7 +355,6 @@ packer.startup({
             },
             config = function()
                 require("safdar.plugins.neorg")
-                require("safdar.plugins.neorg.maps")
             end,
         })
         -- Markdwon Plugin
@@ -369,7 +365,6 @@ packer.startup({
             end,
             config = function()
                 require("safdar.plugins.markdown-preview")
-                require("safdar.plugins.markdown-preview.maps")
             end,
             ft = { "markdown" },
         })

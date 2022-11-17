@@ -36,3 +36,6 @@ fn.sign_define(
     "DapLogPoint",
     { text = "", texthl = "@keyword", linehl = "", numhl = "" }
 )
+
+--- @mappings
+require("safdar.plugins.dap.maps").dap_maps()

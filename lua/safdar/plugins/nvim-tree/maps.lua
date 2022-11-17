@@ -1,7 +1,16 @@
 local map = require("safdar.core.utils").map
-map("n", "<leader>vet", ":NvimTreeToggle<cr>", { noremap = true, silent = true })
 
 local M = {}
+
+M.mappings = function()
+    map(
+        "n",
+        "<leader>vet",
+        ":NvimTreeToggle<cr>",
+        { noremap = true, silent = true }
+    )
+end
+
 M.nvim_tree_core_maps = {
     { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
     { key = "<C-e>", action = "edit_in_place" },

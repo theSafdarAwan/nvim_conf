@@ -102,3 +102,5 @@ require("lspsaga").init_lsp_saga({
     -- like server_filetype_map = { metals = { "sbt", "scala" } }
     server_filetype_map = {},
 })
+
+require("safdar.plugins.lspsaga.maps")

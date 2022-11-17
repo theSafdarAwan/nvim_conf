@@ -165,3 +165,5 @@ require("neorg").setup({
         ["core.integrations.telescope"] = {},
     },
 })
+
+require("safdar.plugins.neorg.maps")

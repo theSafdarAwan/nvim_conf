@@ -169,3 +169,5 @@ require("nvim-tree").setup({
         },
     },
 })
+
+require("safdar.plugins.nvim-tree.maps").mappings()

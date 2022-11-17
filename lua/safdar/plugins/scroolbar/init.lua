@@ -1,13 +1,14 @@
+local cp = require("fused.palletes").dark_pallete
 require("scrollbar").setup({
-    -- handle = {
-    --     color = colors.bg_highlight,
-    -- },
-    -- marks = {
-    --     Search = { color = colors.orange },
-    --     Error = { color = colors.error },
-    --     Warn = { color = colors.warning },
-    --     Info = { color = colors.info },
-    --     Hint = { color = colors.hint },
-    --     Misc = { color = colors.purple },
-    -- },
+    handle = {
+        color = cp.bg_windows,
+    },
+    marks = {
+        Search = { color = cp.search },
+        Error = { color = cp.red },
+        Warn = { color = cp.yellow },
+        Info = { color = cp.green },
+        Hint = { color = cp.teal },
+        Misc = { color = cp.pink },
+    },
 })

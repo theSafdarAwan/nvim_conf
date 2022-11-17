@@ -15,3 +15,5 @@ cmd([[
 autocmd BufEnter * ALEDisable
 autocmd BufEnter *.html ALEEnable
 ]])
+
+require("safdar.plugins.maps")
