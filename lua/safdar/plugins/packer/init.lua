@@ -101,6 +101,13 @@ packer.startup({
                 require("safdar.plugins.surround")
             end,
         })
+        use({
+            "s1n7ax/nvim-window-picker",
+            tag = "v1.*",
+            config = function ()
+                require("safdar.plugins.window-picker")
+            end
+        })
         -- <~
 
         -- ~> ui related stuff
