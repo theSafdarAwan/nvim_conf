@@ -29,6 +29,3 @@ end
 
 require("safdar")
 require("_packer")
-
--- TODO:
--- create a popup wrapper for the harpoon.term like the toggle term does
