@@ -47,8 +47,21 @@ opt.fillchars = { eob = " " }
 
 -- Line indenting
 opt.list = true
-opt.listchars:append("eol:↴")
--- opt.listchars:append("space:⋅")
+
+-- set list chars
+local list_chars_symbols = {
+    ["eol"] = "↲",
+    ["tab"] = "» ",
+    -- ["space"] = "⋅", -- dont want space
+    ["trail"] = "-",
+    ["extends"] = "☛",
+    ["precedes"] = "☚",
+    ["conceal"] = "┊",
+    ["nbsp"] = "☠",
+}
+for k, v in pairs(list_chars_symbols) do
+    opt.listchars:append(k .. ":" .. v)
+end
 
 -- time to update undo file or swap file
 opt.updatetime = 250

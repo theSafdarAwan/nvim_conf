@@ -16,3 +16,33 @@ api.nvim_create_autocmd({ "BufEnter" }, {
         harpoon(bufInfo)
     end,
 })
+
+--[[
+    This is cool now i can create my own stuff to compile the c code
+    TODO: write your script for executing c code
+--]]
+local vim = vim
+local api = vim.api
+local fn = vim.fn
+local bufnr = 50
+
+local function cool_func()
+    fn.jobstart({ "gcc", "main.c", "|", "./a.out" }, {
+        stdout_buffered = true,
+        on_stdout = function(_, data)
+            if data then
+                api.nvim_buf_set_lines(bufnr, -1, -1, false, data)
+            end
+        end,
+        on_stderr = function(_, data)
+            if data then
+                api.nvim_buf_set_lines(bufnr, -1, -1, false, data)
+            end
+        end,
+    })
+end
+
+--[[ api.nvim_create_autocmd("BufWritePost", {
+    group = api.nvim_create_augroup("tj", { clear = true }),
+    callback = cool_func,
+}) ]]
