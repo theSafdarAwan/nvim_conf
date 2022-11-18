@@ -143,12 +143,6 @@ packer.startup({
             end,
             ft = { "html" },
         })
-        use({
-            "petertriho/nvim-scrollbar",
-            config = function()
-                require("safdar.plugins.scroolbar")
-            end,
-        })
         -- <~
 
         -- ~> load luasnips + cmp related in insert mode only
