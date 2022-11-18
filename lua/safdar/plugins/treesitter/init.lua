@@ -1,13 +1,5 @@
 local vim = vim
 
-local cp = require("fused.palletes").dark_pallete
-local colors = {
-    pink = cp.pink,
-    red = cp.light_pink,
-    green = cp.green,
-    yellow = cp.dyellow,
-    sky = cp.sky,
-}
 local ts_maps = require("safdar.plugins.treesitter.maps").treesitter_maps
 
 -- vim.cmd [[packadd nvim-treesitter]]
@@ -83,16 +75,10 @@ require("nvim-treesitter.configs").setup({
     rainbow = {
         enable = true,
         disable = { "html", "md", "norg" },
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        -- termcolors = {},-- table of colour name strings
-        colors = {
-            colors.pink,
-            colors.red,
-            colors.green,
-            colors.yellow,
-            colors.sky,
-        }, -- table of hex strings
+        -- termcolors = {}, -- table of colour name strings
+        -- colors = {}, -- table of hex strings
     },
     context_commentstring = {
         enable = true,

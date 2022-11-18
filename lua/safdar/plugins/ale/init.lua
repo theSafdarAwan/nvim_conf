@@ -16,4 +16,4 @@ autocmd BufEnter * ALEDisable
 autocmd BufEnter *.html ALEEnable
 ]])
 
-require("safdar.plugins.maps")
+require("safdar.plugins.ale.maps")
