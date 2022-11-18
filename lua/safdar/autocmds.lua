@@ -39,15 +39,13 @@ create_autocmd({ "FileType" }, {
 })
 
 -- Help Helper Function
-local function norgFtOpts()
+local function norg_ft_opts()
     optl.shiftwidth = 2
 end
-
--- set spell forthe gitcommit messages and other filetypes
 create_autocmd({ "FileType" }, {
     group = autocmds_augroup,
     pattern = { "norg" },
-    callback = norgFtOpts,
+    callback = norg_ft_opts,
 })
 
 -- Don't show the line numbers in terminal mode

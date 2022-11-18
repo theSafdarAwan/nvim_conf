@@ -1,67 +1,61 @@
--- TODO: work on this extension
-
 --[[
         authord: @theSafdarAwan
         date: 11/17/22 - 00:52 AM
+        last modifiction date: 11/18/22 - 17:00
 
         Description:-
-        This is a small extension for enabaling spell checking only in insert
-        mode. If it was not set by the user on the defined filetypes.
+        This is a small plugin for enabaling spell checking only in insert
+        mode. In the user specified file types.
 --]]
+
 local utils = require("safdar.core.utils")
 local api = utils.api
 local optl = utils.optl
+local bo = utils.b
 local create_autocmd = api.nvim_create_autocmd
 
 local spell_checker = api.nvim_create_augroup("spell_checker", { clear = true })
 
-local file_types = { "gitcommit", "NeogitCommitMessage", "markdown", "tex", "norg" }
+-- file types to enable this plugin in
+local file_types = {
+    "gitcommit",
+    "NeogitCommitMessage",
+    "markdown",
+    "tex",
+    "norg",
+}
 
-local function setFileTypeSpellAu()
-    local spud = "spell_checker_disable"
+local function load_plugin()
     local spell = optl.spell._value
 
-    local function spell_var_setter(ft_buf_info)
-        if spell then
-            api.nvim_buf_set_var(ft_buf_info.buf, spud, true)
-        else
-            api.nvim_buf_set_var(ft_buf_info.buf, spud, false)
-        end
+    -- check if spell is set by user or not
+    if spell then
+        return
     end
 
-    api.nvim_create_autocmd("BufEnter", {
-        group = spell_checker,
-        callback = function(ft_buf_info)
-            spell_var_setter(ft_buf_info)
-        end,
-    })
-
-    local function _set_spell(bufInfo)
+    local function set_spell_on_insert()
         local mode = api.nvim_get_mode().mode
-        local get_spell_var = api.nvim_buf_get_var(bufInfo.buf, spud)
 
-        spell_var_setter(bufInfo)
-
-        if get_spell_var then
-            print(mode .. "r")
-            return
-        elseif mode == "i" then
-            print(mode .. "e")
+        if mode == "i" and bo.buftype ~= "prompt" then
             optl.spell = true
+        else
+            optl.spell = false
         end
     end
 
-    create_autocmd({ "InsertEnter", "InsertLeave" }, {
+    create_autocmd({ "ModeChanged" }, {
         group = api.nvim_create_augroup("ft_spell_au", { clear = true }),
-        callback = function(bufInfo)
-            _set_spell(bufInfo)
+        callback = function()
+            set_spell_on_insert()
         end,
     })
 end
 
--- -- set spell for the gitcommit messages and other filetypes
--- create_autocmd({ "FileType" }, {
---     group = spell_checker,
---     pattern = file_types,
---     callback = setFileTypeSpellAu,
--- })
+-- set spell for the gitcommit messages and other filetypes
+create_autocmd({ "FileType" }, {
+    group = spell_checker,
+    pattern = file_types,
+    callback = function()
+        load_plugin()
+    end,
+})

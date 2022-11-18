@@ -6,19 +6,19 @@ local command = utils.command
 local b = utils.b
 local cmd = utils.cmd
 local fn = utils.fn
-local dealyAutoSave = 300
+local delay_auto_save = 300
 
 -- create the autosave augroup and Initialization of the autosave_queued and
 -- autosave_block variables
-local autoSave = api.nvim_create_augroup("autosave", { clear = true })
-local autoSaveQueued = "autosave_queued"
-local autoSaveBlock = "autosave_block"
+local auto_save = api.nvim_create_augroup("autosave", { clear = true })
+local auto_save_queued = "autosave_queued"
+local auto_save_block = "autosave_block"
 
 api.nvim_create_autocmd("BufRead", {
-    group = autoSave,
-    callback = function(bufInfo)
-        api.nvim_buf_set_var(bufInfo.buf, autoSaveQueued, false)
-        api.nvim_buf_set_var(bufInfo.buf, autoSaveBlock, false)
+    group = auto_save,
+    callback = function(buf_info)
+        api.nvim_buf_set_var(buf_info.buf, auto_save_queued, false)
+        api.nvim_buf_set_var(buf_info.buf, auto_save_block, false)
     end,
 })
 
@@ -41,8 +41,9 @@ local function validater(opts)
 end
 
 -- autosave function
-local function autoSaveFn(bufInfo)
-    local ok, queued = pcall(api.nvim_buf_get_var, bufInfo.buf, autoSaveQueued)
+local function autoSaveFn(buf_info)
+    local ok, queued =
+    pcall(api.nvim_buf_get_var, buf_info.buf, auto_save_queued)
     if not ok then
         return
     end
@@ -50,51 +51,50 @@ local function autoSaveFn(bufInfo)
     if not queued then
         local excluded_ftype = { "TelescopePrompt", "harpoon" }
         local excluded_buftype = { "prompt" }
-        local invalidBuf = validater({ type = "buf", data = excluded_buftype })
-        local invalidFt = validater({ type = "ft", data = excluded_ftype })
+        local invalid_buf = validater({ type = "buf", data = excluded_buftype })
+        local invalid_ft = validater({ type = "ft", data = excluded_ftype })
         -- check if the buf is modifiable and then validate buf does not have any of
         -- the excluded filetypes or buftypes
-        if
-            b.modifiable == true
-            and invalidFt == false
-            and invalidBuf == false
+        if b.modifiable == true
+            and invalid_ft == false
+            and invalid_buf == false
         then
             command("update")
             -- print("saved at " .. vim.fn.strftime("%H:%M:%S"))
-            api.nvim_buf_set_var(bufInfo.buf, autoSaveQueued, true)
+            api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
             fn.timer_start(1500, function()
                 cmd("echon ''")
             end)
         end
 
-        local function deferFn()
-            if api.nvim_buf_is_valid(bufInfo.buf) then
-                api.nvim_buf_set_var(bufInfo.buf, autoSaveQueued, false)
+        local function defer_fn()
+            if api.nvim_buf_is_valid(buf_info.buf) then
+                api.nvim_buf_set_var(buf_info.buf, auto_save_queued, false)
             end
         end
 
-        vim.defer_fn(deferFn, dealyAutoSave)
-        local block = api.nvim_buf_get_var(bufInfo.buf, autoSaveBlock)
+        vim.defer_fn(defer_fn, delay_auto_save)
+        local block = api.nvim_buf_get_var(buf_info.buf, auto_save_block)
         if not block then
-            api.nvim_buf_set_var(bufInfo.buf, autoSaveBlock, true)
-            local function deferBlockFn()
+            api.nvim_buf_set_var(buf_info.buf, auto_save_block, true)
+            local function defer_block_fn()
                 -- check if the buffer valid
                 -- because buffer may disappear after delay
-                if api.nvim_buf_is_valid(bufInfo.buf) then
-                    api.nvim_buf_set_var(bufInfo.buf, autoSaveQueued, false)
-                    api.nvim_buf_set_var(bufInfo.buf, autoSaveBlock, false)
+                if api.nvim_buf_is_valid(buf_info.buf) then
+                    api.nvim_buf_set_var(buf_info.buf, auto_save_queued, false)
+                    api.nvim_buf_set_var(buf_info.buf, auto_save_block, false)
                 end
             end
 
-            vim.defer_fn(deferBlockFn, dealyAutoSave)
+            vim.defer_fn(defer_block_fn, delay_auto_save)
         end
     end
 end
 
 -- register autocmd to autosave on these events
 create_autocmd({ "TextChanged", "InsertLeave", "CursorHold" }, {
-    group = autoSave,
-    callback = function(bufInfo)
-        autoSaveFn(bufInfo)
+    group = auto_save,
+    callback = function(buf_info)
+        autoSaveFn(buf_info)
     end,
 })

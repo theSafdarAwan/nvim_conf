@@ -1,7 +1,7 @@
 local cp = require("fused.palletes").dark_pallete
 require("scrollbar").setup({
     handle = {
-        color = cp.bg_windows,
+        color = cp.bg_windows2,
     },
     marks = {
         Search = { color = cp.search },

@@ -65,6 +65,7 @@ packer.startup({
         use({
             "ellisonleao/gruvbox.nvim",
             "catppuccin/nvim",
+            "LunarVim/Colorschemes",
         })
         -- <~
 

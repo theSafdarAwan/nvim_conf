@@ -56,15 +56,15 @@ require("window-picker").setup({
     },
 
     -- the foreground (text) color of the picker
-    fg_color = cp.text,
+    fg_color = cp.property,
 
     -- if you have include_current_win == true, then current_win_hl_color will
     -- be highlighted using this background color
-    current_win_hl_color = cp.info,
+    current_win_hl_color = cp.property,
 
     -- all the windows except the curren window will be highlighted using this
     -- color
-    other_win_hl_color = cp.bg_windows,
+    other_win_hl_color = cp.bg_windows2,
 
     -- You can change the display string in status bar.
     -- It supports '%' printf style. Such as `return char .. ': %f'` to display

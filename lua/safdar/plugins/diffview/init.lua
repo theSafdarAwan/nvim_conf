@@ -1,4 +1,6 @@
 local dv = require("diffview")
+
+-- @mappings
 local mappings = require("safdar.plugins.diffview.maps")
 
 dv.setup({
