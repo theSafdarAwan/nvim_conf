@@ -4,7 +4,5 @@ require("nvim-treesitter.configs").setup({
         disable = { "css" }, -- optional, list of language that will be disabled
     },
 })
-vim.cmd([[
-let g:matchup_matchparen_offscreen = {'method': 'popup'}
-]])
 
+vim.g.matchup_matchparen_offscreen = { method = "popup" }

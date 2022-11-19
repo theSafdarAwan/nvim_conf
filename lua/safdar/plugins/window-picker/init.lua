@@ -1,5 +1,5 @@
 -- @colors
-local cp = require("fused.palletes").dark_pallete
+local cp = require("fused.pallets.dark").pallete
 require("window-picker").setup({
     -- when there is only one window available to pick from, use that window
     -- without prompting the user to select

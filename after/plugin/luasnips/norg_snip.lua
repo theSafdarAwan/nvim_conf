@@ -26,7 +26,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 local norgSnips = {
     s(
-        "comment",
+        "cl",
         fmt(
             [[
             @comment
@@ -38,7 +38,7 @@ local norgSnips = {
         )
     ),
     s(
-        "code",
+        "cd",
         fmt(
             [[
             @code {lang}

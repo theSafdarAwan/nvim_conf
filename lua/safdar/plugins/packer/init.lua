@@ -53,14 +53,14 @@ packer.startup({
         use({
             "TheSafdarAwan/fused.nvim",
             config = function()
-                require("fused").setup({ enable_plugins = true })
+                require("safdar.plugins.fused")
             end,
         })
         use({
             "folke/tokyonight.nvim",
-            config = function ()
+            config = function()
                 -- require("safdar.plugins.tokyonight")
-            end
+            end,
         })
         use({
             "ellisonleao/gruvbox.nvim",
@@ -105,9 +105,9 @@ packer.startup({
         use({
             "s1n7ax/nvim-window-picker",
             tag = "v1.*",
-            config = function ()
+            config = function()
                 require("safdar.plugins.window-picker")
-            end
+            end,
         })
         -- <~
 

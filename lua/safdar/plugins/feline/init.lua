@@ -2,7 +2,7 @@ local utils = require("safdar.core.utils")
 local vim = utils.vim
 
 -- @colors
-local cp = require("fused.palletes").dark_pallete
+local cp = require("fused.pallets.dark").pallete
 local c = {
     white = cp.white,
     dark = cp.bg_windows,
@@ -14,6 +14,7 @@ local c = {
     magenta = cp.func,
     green = cp.search,
     blue = cp.keywords,
+    cyan = cp.property,
 }
 
 local lsp = require("feline.providers.lsp")
@@ -212,7 +213,7 @@ components.active[1][4] = {
 -- diffModfified
 components.active[1][5] = {
     provider = "git_diff_changed",
-    hl = { fg = c.warn, bg = c.dark },
+    hl = { fg = c.cyan, bg = c.dark },
     icon = " ⦿ ",
 }
 -- diffRemove
