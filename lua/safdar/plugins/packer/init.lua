@@ -1,4 +1,4 @@
---- @packer
+-- @packer
 local utils = require("safdar.core.utils")
 local vim = utils.vim
 

@@ -1,4 +1,5 @@
 local utils = require("safdar.core.utils")
+local maps = require("safdar.plugins.telescope.maps")
 local vim = utils.vim
 -- =========================================================================
 --                          telescope config
@@ -26,7 +27,7 @@ local borderchars = {
 telescope.setup({
     defaults = {
         -- @mappings
-        mappings = require("safdar.plugins.telescope.maps").mappings(),
+        mappings = maps.mappings(),
         prompt_prefix = "   ",
         selection_caret = "  ",
         entry_prefix = "  ",
@@ -56,6 +57,11 @@ telescope.setup({
         -- path_display = { "shorten", shorten = 3 },
         -- path_display = { "smart" },
         file_ignore_patterns = { "^.git/", "^.obsidian/" },
+    },
+    pickers = {
+        buffers = {
+            mappings = maps.picker_find(),
+        },
     },
     extensions = {
         fzf = {

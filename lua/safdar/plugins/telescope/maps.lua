@@ -102,5 +102,15 @@ M.mappings = function()
         },
     }
 end
+M.picker_find = function()
+    return {
+        i = {
+            ["<C-_>"] = require("telescope.actions").delete_buffer,
+        },
+        n = {
+            ["<C-_>"] = require("telescope.actions").delete_buffer,
+        },
+    }
+end
 return M
 --

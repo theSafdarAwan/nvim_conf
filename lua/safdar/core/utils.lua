@@ -7,7 +7,7 @@ M.wo = vim.wo
 M.optl = vim.opt_local
 M.api = vim.api
 M.g = vim.g
-M.b = vim.bo
+M.bo = vim.bo
 M.cmd = vim.cmd
 M.fn = vim.fn
 

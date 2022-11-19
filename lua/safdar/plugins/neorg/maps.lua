@@ -1,7 +1,7 @@
 local utils = require("safdar.core.utils")
 local map = utils.map
 local command = utils.command
-local b = utils.b
+local b = utils.bo
 local opts = { noremap = true, silent = true }
 
 function NeorgMappingsHelper(cmd)

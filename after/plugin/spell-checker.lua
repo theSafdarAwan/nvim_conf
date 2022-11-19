@@ -11,7 +11,7 @@
 local utils = require("safdar.core.utils")
 local api = utils.api
 local optl = utils.optl
-local bo = utils.b
+local bo = utils.bo
 local create_autocmd = api.nvim_create_autocmd
 
 local spell_checker = api.nvim_create_augroup("spell_checker", { clear = true })

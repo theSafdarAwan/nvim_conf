@@ -27,45 +27,45 @@ M.maps = function()
     map("n", "<leader>ak", ":lua require('harpoon.ui').nav_file(2)<cr>", opts)
     map("n", "<leader>al", ":lua require('harpoon.ui').nav_file(3)<cr>", opts)
 
-    -- -- Terminal's
-    -- map(
-    --     "n",
-    --     "<leader>tj",
-    --     ":lua require('harpoon.term').gotoTerminal(1)<cr>",
-    --     opts
-    -- )
-    -- map(
-    --     "n",
-    --     "<leader>tk",
-    --     ":lua require('harpoon.term').gotoTerminal(2)<cr>",
-    --     opts
-    -- )
-    -- map(
-    --     "n",
-    --     "<leader>tl",
-    --     ":lua require('harpoon.term').gotoTerminal(3)<cr>",
-    --     opts
-    -- )
-
-    -- tmux Terminals
+    -- Terminal's
     map(
         "n",
         "<leader>tj",
-        ":lua require('harpoon.tmux').gotoTerminal(1)<cr>",
+        ":lua require('harpoon.term').gotoTerminal(1)<cr>",
         opts
     )
     map(
         "n",
         "<leader>tk",
-        ":lua require('harpoon.tmux').gotoTerminal(2)<cr>",
+        ":lua require('harpoon.term').gotoTerminal(2)<cr>",
         opts
     )
     map(
         "n",
         "<leader>tl",
-        ":lua require('harpoon.tmux').gotoTerminal(3)<cr>",
+        ":lua require('harpoon.term').gotoTerminal(3)<cr>",
         opts
     )
+
+    -- tmux Terminals
+    -- map(
+    --     "n",
+    --     "<leader>tj",
+    --     ":lua require('harpoon.tmux').gotoTerminal(1)<cr>",
+    --     opts
+    -- )
+    -- map(
+    --     "n",
+    --     "<leader>tk",
+    --     ":lua require('harpoon.tmux').gotoTerminal(2)<cr>",
+    --     opts
+    -- )
+    -- map(
+    --     "n",
+    --     "<leader>tl",
+    --     ":lua require('harpoon.tmux').gotoTerminal(3)<cr>",
+    --     opts
+    -- )
 end
 
 -- send commands to terminal windows
@@ -74,7 +74,7 @@ M.c_lang_term_maps = function()
         0,
         "n",
         "<leader>ts",
-        ":lua require('harpoon.tmux').sendCommand(1, './compile')<CR>",
+        ":lua require('harpoon.term').sendCommand(1, './compile')<CR>",
         opts
     )
 end
