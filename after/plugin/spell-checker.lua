@@ -16,14 +16,14 @@ local create_autocmd = api.nvim_create_autocmd
 
 local spell_checker = api.nvim_create_augroup("spell_checker", { clear = true })
 
--- file types to enable this plugin in
+--[[ -- file types to enable this plugin in
 local file_types = {
     "gitcommit",
     "NeogitCommitMessage",
     "markdown",
     "tex",
     "norg",
-}
+} ]]
 
 local function load_plugin()
     local spell = optl.spell._value
@@ -51,10 +51,19 @@ local function load_plugin()
     })
 end
 
--- set spell for the gitcommit messages and other filetypes
+--[[ -- set spell for the gitcommit messages and other filetypes
 create_autocmd({ "FileType" }, {
     group = spell_checker,
     pattern = file_types,
+    callback = function()
+        load_plugin()
+    end,
+}) ]]
+
+-- OR set on every buffer
+-- set spell for the gitcommit messages and other filetypes
+create_autocmd({ "BufEnter" }, {
+    group = spell_checker,
     callback = function()
         load_plugin()
     end,

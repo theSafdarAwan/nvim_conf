@@ -6,6 +6,9 @@ local vim = utils.vim
 -- =========================================================================
 local telescope = require("telescope")
 
+-- prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+-- results = { "─", "▐", "─", "│", "╭", "▐", "▐", "╰" },
+-- preview = { " ", "│", " ", "▌", "▌", "╮", "╯", "▌" },
 local borderchars = {
     default = {
         prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
@@ -255,5 +258,3 @@ M.center_list_document_symbols_find = function()
 end
 
 return M
-
--- TODO:  telescope vim_options

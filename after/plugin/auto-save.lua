@@ -6,7 +6,7 @@ local command = utils.command
 local b = utils.bo
 local cmd = utils.cmd
 local fn = utils.fn
-local delay_auto_save = 300
+local delay_auto_save = 10
 
 -- create the autosave augroup and Initialization of the autosave_queued and
 -- autosave_block variables
