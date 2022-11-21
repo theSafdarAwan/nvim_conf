@@ -19,5 +19,7 @@ require("fused").setup({
     },
     custom = {
         DamianConway = { bg = cp.cp0 },
+        HelpBar = { link = "Normal" },
+        HelpStar = { link = "Normal" },
     },
 })

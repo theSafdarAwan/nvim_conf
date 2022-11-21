@@ -81,8 +81,8 @@ map("n", "<leader>rp", ":resize 100<cr><c-l>", opts)
 map("n", "<leader>I", "mzggVG=`z<c-l>", opts)
 
 -- buffers mappings
-map("n", "<leader>]", ":bnext<cr>", opts)
-map("n", "<leader>[", ":bprevious<cr>", opts)
+map("n", "<C-l>", ":bnext<cr>", opts) -- control-l is used to clear the cmdline which i don't use too much so keep this in mind
+map("n", "<C-h>", ":bprevious<cr>", opts)
 map("n", "<leader>x", ":bdelete<cr>", opts)
 map("n", "<leader>X", ":bdelete!<cr>", opts)
 
@@ -91,8 +91,8 @@ map("n", "gx", ":close<cr>", opts)
 map("n", "gX", ":close!<cr>", opts)
 
 -- tab mappings
-map("n", "<leader>t]", ":tabnext<cr>", opts)
-map("n", "<leader>t[", ":tabprev<cr>", opts)
+map("n", "<leader>]", ":tabnext<cr>", opts)
+map("n", "<leader>[", ":tabprev<cr>", opts)
 map("n", "<leader>tx", ":tabclose<cr>", opts)
 map("n", "<leader>tn", ":tabnew<cr>", opts)
 

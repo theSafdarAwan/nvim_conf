@@ -10,5 +10,5 @@ map("n", "]]", ":Lspsaga diagnostic_jump_next<CR>", opts)
 map("n", "gd", ":Lspsaga lsp_finder<CR>", opts)
 -- rename
 map("n", "yr", ":Lspsaga rename<CR>", opts)
-map("n", "ysc", ":Lspsaga code_action<CR>", opts)
+map("n", "<leader>la", ":Lspsaga code_action<CR>", opts)
 map("n", "gh", ":Lspsaga peek_definition<CR>", opts)

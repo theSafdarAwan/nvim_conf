@@ -92,7 +92,7 @@ local function autoSaveFn(buf_info)
 end
 
 -- register autocmd to autosave on these events
-create_autocmd({ "TextChanged", "InsertLeave", "CursorHold" }, {
+create_autocmd({ "TextChanged", "ModeChanged", "CursorHold" }, {
     group = auto_save,
     callback = function(buf_info)
         autoSaveFn(buf_info)

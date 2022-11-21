@@ -4,6 +4,8 @@ local opt = utils.opt
 local optl = utils.optl
 local cmd = utils.cmd
 local create_autocmd = api.nvim_create_autocmd
+local map = utils.map
+local opts = { noremap = true, silent = true }
 
 local autocmds_augroup =
 api.nvim_create_augroup("autocmds.lua", { clear = true })
@@ -24,11 +26,6 @@ local function helpHelper()
     optl.number = true
     optl.conceallevel = 0
     optl.statusline = " "
-    local hl = function(highlightGroup, opts)
-        api.nvim_set_hl(0, highlightGroup, opts)
-    end
-    hl("HelpBar", { link = "Normal" })
-    hl("HelpStar", { link = "Normal" })
 end
 
 -- set a bunch of options for the help filetype
@@ -42,6 +39,7 @@ create_autocmd({ "FileType" }, {
 local function norg_ft_opts()
     optl.shiftwidth = 2
 end
+
 create_autocmd({ "FileType" }, {
     group = autocmds_augroup,
     pattern = { "norg" },
@@ -71,6 +69,19 @@ create_autocmd({ "BufEnter" }, {
 create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
     group = autocmds_augroup,
     command = "ColorizerAttachToBuffer",
+})
+
+-- mapping q to close the windows in help, packer and some other file types
+local function quitter()
+    map({ "n", "v" }, "q", function()
+        utils.command("close")
+    end, opts)
+end
+
+create_autocmd({ "FileType" }, {
+    pattern = { "help", "man", "lspinfo", "qf" },
+    group = autocmds_augroup,
+    callback = quitter,
 })
 
 -- don't give exit code when exiting the terminal
