@@ -73,7 +73,7 @@ map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
 -- delete into the void in visual mode
-map("v", "<leader>dd", "\"_d", opts)
+map("v", "<leader>d", "\"_d", opts)
 
 -- Resize the buffer window
 map("n", "<leader>=", ":vertical resize +5<cr>", opts)
