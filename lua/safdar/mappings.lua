@@ -72,6 +72,9 @@ map("n", "<ESC>", ":noh<cr><c-l>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
+-- delete into the void in visual mode
+map("v", "<leader>dd", "\"_d", opts)
+
 -- Resize the buffer window
 map("n", "<leader>=", ":vertical resize +5<cr>", opts)
 map("n", "<leader>-", ":vertical resize -5<cr>", opts)

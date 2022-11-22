@@ -56,7 +56,7 @@ require("window-picker").setup({
     },
 
     -- the foreground (text) color of the picker
-    fg_color = cp.property,
+    fg_color = cp.warn,
 
     -- if you have include_current_win == true, then current_win_hl_color will
     -- be highlighted using this background color

@@ -71,18 +71,18 @@ create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
     command = "ColorizerAttachToBuffer",
 })
 
--- mapping q to close the windows in help, packer and some other file types
+-- instead use gx map
+--[[ -- mapping q to close the windows in help, packer and some other file types
 local function quitter()
     map({ "n", "v" }, "q", function()
         utils.command("close")
     end, opts)
 end
-
 create_autocmd({ "FileType" }, {
     pattern = { "help", "man", "lspinfo", "qf" },
     group = autocmds_augroup,
     callback = quitter,
-})
+}) ]]
 
 -- don't give exit code when exiting the terminal
 cmd([[
