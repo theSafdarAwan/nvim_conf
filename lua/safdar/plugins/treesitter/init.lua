@@ -6,132 +6,131 @@ local ts_maps = require("safdar.plugins.treesitter.maps").treesitter_maps
 
 -- tj's config
 local swap_next, swap_prev = (function()
-    local swap_objects = {
-        p = "@parameter.inner",
-        f = "@function.outer",
-        e = "@element",
+	local swap_objects = {
+		p = "@parameter.inner",
+		f = "@function.outer",
+		e = "@element",
 
-        -- Not ready, but I think it's my fault :)
-        -- v = "@variable",
-    }
+		-- Not ready, but I think it's my fault :)
+		-- v = "@variable",
+	}
 
-    local n, p = {}, {}
-    for key, obj in pairs(swap_objects) do
-        n[string.format("<M-Space><M-%s>", key)] = obj
-        p[string.format("<M-BS><M-%s>", key)] = obj
-    end
+	local n, p = {}, {}
+	for key, obj in pairs(swap_objects) do
+		n[string.format("<M-Space><M-%s>", key)] = obj
+		p[string.format("<M-BS><M-%s>", key)] = obj
+	end
 
-    return n, p
+	return n, p
 end)()
 
 require("nvim-treesitter.configs").setup({
-    -- A list of parser names, or "all"
-    ensure_installed = {
-        "lua",
-        "vim",
-        "python",
-        "bash",
-        "norg",
-        "latex",
-        "typescript",
-        "javascript",
-        "css",
-        "markdown",
-        "rust",
-        "query",
-        "go",
-        "html",
-        "json",
-        "scss",
-    },
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = true,
-    -- Automatically install missing parsers when entering buffer
-    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-    auto_install = true,
-    highlight = {
-        enable = true,
-        -- to disable slow treesitter highlight for large files
-        disable = function(lang, buf)
-            local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats =
-            pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-                return true
-            end
-        end,
-        additional_vim_regex_highlighting = false,
-    },
-    indent = {
-        enable = true,
-    },
-    autotag = {
-        enable = false,
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = ts_maps,
-    },
-    rainbow = {
-        enable = true,
-        disable = { "html", "md", "norg" },
-        extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        -- termcolors = {}, -- table of colour name strings
-        -- colors = {}, -- table of hex strings
-    },
-    context_commentstring = {
-        enable = true,
-    },
+	-- A list of parser names, or "all"
+	ensure_installed = {
+		"lua",
+		"vim",
+		"python",
+		"bash",
+		"norg",
+		"latex",
+		"typescript",
+		"javascript",
+		"css",
+		"markdown",
+		"rust",
+		"query",
+		"go",
+		"html",
+		"json",
+		"scss",
+	},
+	-- Install parsers synchronously (only applied to `ensure_installed`)
+	sync_install = true,
+	-- Automatically install missing parsers when entering buffer
+	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	auto_install = true,
+	highlight = {
+		enable = true,
+		-- to disable slow treesitter highlight for large files
+		disable = function(lang, buf)
+			local max_filesize = 100 * 1024 -- 100 KB
+			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if ok and stats and stats.size > max_filesize then
+				return true
+			end
+		end,
+		additional_vim_regex_highlighting = false,
+	},
+	indent = {
+		enable = true,
+	},
+	autotag = {
+		enable = false,
+	},
+	incremental_selection = {
+		enable = true,
+		keymaps = ts_maps,
+	},
+	rainbow = {
+		enable = true,
+		disable = { "html", "md", "norg" },
+		extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+		max_file_lines = nil, -- Do not enable for files with more than n lines, int
+		-- termcolors = {}, -- table of colour name strings
+		-- colors = {}, -- table of hex strings
+	},
+	context_commentstring = {
+		enable = true,
+	},
 
-    textobjects = {
-        move = {
-            enable = true,
-            set_jumps = true,
+	textobjects = {
+		move = {
+			enable = true,
+			set_jumps = true,
 
-            goto_next_start = {
-                ["]p"] = "@parameter.inner",
-                ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer",
-            },
-            goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer",
-            },
-            goto_previous_start = {
-                ["[p"] = "@parameter.inner",
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer",
-            },
-            goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer",
-            },
-        },
+			goto_next_start = {
+				["]p"] = "@parameter.inner",
+				["]m"] = "@function.outer",
+				["]]"] = "@class.outer",
+			},
+			goto_next_end = {
+				["]M"] = "@function.outer",
+				["]["] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[p"] = "@parameter.inner",
+				["[m"] = "@function.outer",
+				["[["] = "@class.outer",
+			},
+			goto_previous_end = {
+				["[M"] = "@function.outer",
+				["[]"] = "@class.outer",
+			},
+		},
 
-        select = {
-            enable = true,
-            keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
+		select = {
+			enable = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
 
-                ["ac"] = "@conditional.outer",
-                ["ic"] = "@conditional.inner",
+				["ac"] = "@conditional.outer",
+				["ic"] = "@conditional.inner",
 
-                ["aa"] = "@parameter.outer",
-                ["ia"] = "@parameter.inner",
+				["aa"] = "@parameter.outer",
+				["ia"] = "@parameter.inner",
 
-                ["av"] = "@variable.outer",
-                ["iv"] = "@variable.inner",
-            },
-        },
+				["av"] = "@variable.outer",
+				["iv"] = "@variable.inner",
+			},
+		},
 
-        swap = {
-            enable = true,
-            swap_next = swap_next,
-            swap_previous = swap_prev,
-        },
-    },
+		swap = {
+			enable = true,
+			swap_next = swap_next,
+			swap_previous = swap_prev,
+		},
+	},
 })
 -- local _ = require("nvim-treesitter.configs").setup {
 --   ensure_installed = {

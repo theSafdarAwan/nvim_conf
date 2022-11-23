@@ -53,11 +53,11 @@ map("n", "<A-h>", "zh", opts)
 -- map("n", "<C-k>", "<c-o>k", opts)
 
 -- Copy to the system clipboard
-map("v", "<leader>y", "\"+y", opts)
-map("n", "<leader>Y", "mzgg\"+yG zzz", opts)
+map("v", "<leader>y", '"+y', opts)
+map("n", "<leader>Y", 'mzgg"+yG zzz', opts)
 
 -- Paster From the system clipboard
-map("n", "<leader>p", "\"+p", opts)
+map("n", "<leader>p", '"+p', opts)
 --
 -- Paste onto the selection and don't copy the selection to the reg
 map("v", "<leader>p", "_dP", opts)
@@ -73,7 +73,7 @@ map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
 -- delete into the void in visual mode
-map("v", "<leader>d", "\"_d", opts)
+map("v", "<leader>d", '"_d', opts)
 
 -- Resize the buffer window
 map("n", "<leader>=", ":vertical resize +5<cr>", opts)

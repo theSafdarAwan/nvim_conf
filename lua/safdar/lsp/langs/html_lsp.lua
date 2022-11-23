@@ -7,10 +7,10 @@ local on_attach = lsp_util.on_attach
 --                      jsonls
 --=======================================================
 nvim_lsp.html.setup({
-    ...,
+	...,
 	capabilities = capabilities,
 	on_attach = on_attach,
-    init_options = {
-      provideFormatter = false,
-    },
+	init_options = {
+		provideFormatter = false,
+	},
 })

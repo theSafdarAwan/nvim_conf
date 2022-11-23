@@ -17,19 +17,19 @@ M.cmd = vim.cmd
 M.fn = vim.fn
 
 M.map = function(mode, mapping, command, opts)
-    vim.keymap.set(mode, mapping, command, opts)
+	vim.keymap.set(mode, mapping, command, opts)
 end
 
 M.buf_set_keymap = function(buffer, mode, lhs, rhs, opts)
-    M.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, opts)
+	M.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, opts)
 end
 
 M.buf_set_option = function(buffer, name, value)
-    M.api.nvim_buf_set_option(buffer, name, value)
+	M.api.nvim_buf_set_option(buffer, name, value)
 end
 
 M.command = function(cmd)
-    M.api.nvim_command(cmd)
+	M.api.nvim_command(cmd)
 end
 
 return M

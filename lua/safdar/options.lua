@@ -50,17 +50,17 @@ opt.list = true
 
 -- set list chars
 local list_chars_symbols = {
-    ["eol"] = "↲",
-    ["tab"] = "» ",
-    -- ["space"] = "⋅", -- dont want space
-    ["trail"] = "-",
-    ["extends"] = "☛",
-    ["precedes"] = "☚",
-    ["conceal"] = "┊",
-    ["nbsp"] = "☠",
+	["eol"] = "↲",
+	["tab"] = "» ",
+	-- ["space"] = "⋅", -- dont want space
+	["trail"] = "-",
+	["extends"] = "☛",
+	["precedes"] = "☚",
+	["conceal"] = "┊",
+	["nbsp"] = "☠",
 }
 for k, v in pairs(list_chars_symbols) do
-    opt.listchars:append(k .. ":" .. v)
+	opt.listchars:append(k .. ":" .. v)
 end
 
 -- time to update undo file or swap file
@@ -100,7 +100,7 @@ opt.tabstop = 4
 opt.textwidth = 81
 opt.softtabstop = 4
 opt.smartindent = true
-opt.expandtab = true
+opt.expandtab = false
 
 -- opt.shortmess:append("c")
 -- opt.isfname:append("@-@")

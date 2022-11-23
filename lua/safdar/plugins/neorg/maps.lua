@@ -5,9 +5,9 @@ local b = utils.bo
 local opts = { noremap = true, silent = true }
 
 function NeorgMappingsHelper(cmd)
-    if b.filetype == "norg" then
-        command(cmd)
-    end
+	if b.filetype == "norg" then
+		command(cmd)
+	end
 end
 
 -- TODO: add some logic to load Neorg plugin only when i press the gtc to capture
@@ -20,12 +20,7 @@ map("n", "gtv", ":Neorg gtd views<CR>", opts)
 map("n", "gts", ":lua NeorgMappingsHelper('')<CR>", opts)
 map("n", "gti", ":Neorg toc inline<CR>", opts)
 map("n", "gtx", ":Neorg toc close<CR>", opts)
-map(
-    "n",
-    "gtt",
-    " :lua NeorgMappingsHelper('Neorg tangle current-file')<CR>",
-    opts
-)
+map("n", "gtt", " :lua NeorgMappingsHelper('Neorg tangle current-file')<CR>", opts)
 
 map("i", "<C-y>", "<ESC>:Telescope neorg insert_link<CR>", opts)
 map("n", "<leader>y", ":Telescope neorg insert_file_link<CR>", opts)

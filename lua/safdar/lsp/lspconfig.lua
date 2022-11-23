@@ -5,14 +5,14 @@ local on_attach = lsp_util.on_attach
 local capabilities = lsp_util.capabilities
 -- suppress error messages from lang servers
 vim.notify = function(msg, log_level, _opts)
-    if msg:match("exit code") then
-        return
-    end
-    if log_level == vim.log.levels.ERROR then
-        vim.api.nvim_err_writeln(msg)
-    else
-        vim.api.nvim_echo({ { msg } }, true, {})
-    end
+	if msg:match("exit code") then
+		return
+	end
+	if log_level == vim.log.levels.ERROR then
+		vim.api.nvim_err_writeln(msg)
+	else
+		vim.api.nvim_echo({ { msg } }, true, {})
+	end
 end
 
 --|||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -25,46 +25,46 @@ vim.o.completeopt = "menuone,noselect"
 
 -- enable lang_servers with same configs alll in one
 local servers = {
-    --love
-    "cssls",
-    "tailwindcss",
-    "tsserver",
-    "emmet_ls",
+	--love
+	"cssls",
+	"tailwindcss",
+	"tsserver",
+	"emmet_ls",
 
-    -- crush
-    -- "clangd",
-    "sumneko_lua",
-    "vimls",
+	-- crush
+	-- "clangd",
+	"sumneko_lua",
+	"vimls",
 
-    -- fun
-    "rust_analyzer",
-    "gopls",
-    "bashls",
-    "pyright",
+	-- fun
+	"rust_analyzer",
+	"gopls",
+	"bashls",
+	"pyright",
 }
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        autostart = true,
-        flags = {
-            debounce_text_changes = 150,
-        },
-    })
+	nvim_lsp[lsp].setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+		autostart = true,
+		flags = {
+			debounce_text_changes = 150,
+		},
+	})
 end
 
 --=======================================================
 --     require lang modules with additional configs
 --=======================================================
 local langsConfs = {
-    "sumneko-lua_lsp",
-    "jsonls_lsp",
-    "c_lsp",
-    "html_lsp",
-    "stylelint-lsp_lsp",
+	"sumneko-lua_lsp",
+	"jsonls_lsp",
+	"c_lsp",
+	"html_lsp",
+	"stylelint-lsp_lsp",
 }
 for _, file in ipairs(langsConfs) do
-    require("safdar.lsp.langs." .. file)
+	require("safdar.lsp.langs." .. file)
 end
 
 -- to change the ui

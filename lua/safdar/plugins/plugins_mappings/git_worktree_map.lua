@@ -7,7 +7,12 @@ map(
 	{ noremap = true, silent = true }
 )
 
-map("n", "<leader>gws", [[:lua require("git-worktree").switch_worktree("feat-69")<cr>]], { noremap = true, silent = true })
+map(
+	"n",
+	"<leader>gws",
+	[[:lua require("git-worktree").switch_worktree("feat-69")<cr>]],
+	{ noremap = true, silent = true }
+)
 
 map("n", "<leader>gwd", [[ :lua require("git-worktree").delete_worktree("feat-69")<cr>]], {
 	noremap = true,

@@ -13,4 +13,9 @@ map(
 )
 map("v", "<Leader>rt", [[ <Esc><Cmd>lua M.refactors()<CR>]], { noremap = true, silent = true, expr = false })
 
-map("v", "<Leader>rp", [[ <Esc><Cmd>lua require('refactoring').debug.printf({below = true})<CR>]], { noremap = true, silent = true, expr = false })
+map(
+	"v",
+	"<Leader>rp",
+	[[ <Esc><Cmd>lua require('refactoring').debug.printf({below = true})<CR>]],
+	{ noremap = true, silent = true, expr = false }
+)
