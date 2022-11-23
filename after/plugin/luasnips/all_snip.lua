@@ -25,11 +25,11 @@ local f = luasnip.function_node
 -- local parse = require("luasnip.util.parser").parse_snippet
 
 local allSnips = {
-    s(
-        "curtime",
-        f(function()
-            return os.date("%D - %H:%M")
-        end)
-    ),
+	s(
+		"curtime",
+		f(function()
+			return os.date("%D - %H:%M")
+		end)
+	),
 }
 luasnip.add_snippets("all", allSnips)

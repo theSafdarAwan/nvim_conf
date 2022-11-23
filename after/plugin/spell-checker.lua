@@ -26,29 +26,29 @@ local file_types = {
 } ]]
 
 local function load_plugin()
-    local spell = optl.spell._value
+	local spell = optl.spell._value
 
-    -- check if spell is set by user or not
-    if spell then
-        return
-    end
+	-- check if spell is set by user or not
+	if spell then
+		return
+	end
 
-    local function set_spell_on_insert()
-        local mode = api.nvim_get_mode().mode
+	local function set_spell_on_insert()
+		local mode = api.nvim_get_mode().mode
 
-        if mode == "i" and bo.buftype ~= "prompt" then
-            optl.spell = true
-        else
-            optl.spell = false
-        end
-    end
+		if mode == "i" and bo.buftype ~= "prompt" then
+			optl.spell = true
+		else
+			optl.spell = false
+		end
+	end
 
-    create_autocmd({ "ModeChanged" }, {
-        group = api.nvim_create_augroup("ft_spell_au", { clear = true }),
-        callback = function()
-            set_spell_on_insert()
-        end,
-    })
+	create_autocmd({ "ModeChanged" }, {
+		group = api.nvim_create_augroup("ft_spell_au", { clear = true }),
+		callback = function()
+			set_spell_on_insert()
+		end,
+	})
 end
 
 --[[ -- set spell for the gitcommit messages and other filetypes
@@ -63,8 +63,8 @@ create_autocmd({ "FileType" }, {
 -- OR set on every buffer
 -- set spell for the gitcommit messages and other filetypes
 create_autocmd({ "BufEnter" }, {
-    group = spell_checker,
-    callback = function()
-        load_plugin()
-    end,
+	group = spell_checker,
+	callback = function()
+		load_plugin()
+	end,
 })

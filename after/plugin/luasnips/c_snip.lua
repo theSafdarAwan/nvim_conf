@@ -27,26 +27,26 @@ local fmt = require("luasnip.extras.fmt").fmt
 local parse = require("luasnip.util.parser").parse_snippet
 
 local cSnips = {
-    -- function
-    s(
-        "fn",
-        fmt(
-            [[
+	-- function
+	s(
+		"fn",
+		fmt(
+			[[
             {type} {funcName}({args}) {openingParen}
                 {code}
             {closeParen}
             ]],
-            {
-                type = i(1, "type"),
-                funcName = i(2, "name"),
-                args = i(3, "args"),
-                code = i(4, "// code here"),
-                openingParen = t("{"),
-                closeParen = t("}"),
-            }
-        )
-    ),
-    parse("inc", "#include <$0>"),
+			{
+				type = i(1, "type"),
+				funcName = i(2, "name"),
+				args = i(3, "args"),
+				code = i(4, "// code here"),
+				openingParen = t("{"),
+				closeParen = t("}"),
+			}
+		)
+	),
+	parse("inc", "#include <$0>"),
 }
 
 ls.add_snippets("c", cSnips)

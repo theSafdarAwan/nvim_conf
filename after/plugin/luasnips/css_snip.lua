@@ -25,18 +25,18 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local parse = require("luasnip.util.parser").parse_snippet
 
 local cssFolds = {
-    s(
-        "fd",
-        fmt(
-            [[
+	s(
+		"fd",
+		fmt(
+			[[
         /* ~> {foldBodyDesc}*/
         {code}
         /* <~*/]],
-            {
-                foldBodyDesc = i(1, "fold body description"),
-                code = i(2, "/* code goes here */"),
-            }
-        )
-    ),
+			{
+				foldBodyDesc = i(1, "fold body description"),
+				code = i(2, "/* code goes here */"),
+			}
+		)
+	),
 }
 luasnip.add_snippets("css", cssFolds)

@@ -27,64 +27,64 @@ local fmt = require("luasnip.extras.fmt").fmt
 local parse = require("luasnip.util.parser").parse_snippet
 
 local luaSnips = {
-    -- folds
-    s(
-        "fd",
-        fmt(
-            [[
+	-- folds
+	s(
+		"fd",
+		fmt(
+			[[
         -- ~> {foldBodyDesc}
         {code}
         -- <~]],
-            {
-                foldBodyDesc = i(1, "fold body description"),
-                code = i(2, "-- code here"),
-            }
-        )
-    ),
-    -- comments
-    s("cl", t("-- ")),
-    s(
-        "cb",
-        fmt("--[[\n{comment}\n--]]", {
-            comment = i(1, "-- comment here"),
-        })
-    ),
-    -- local require
-    s(
-        "lreq",
-        fmt([[local {} = require("{}")]], {
-            f(function(import_name)
-                local parts = vim.split(import_name[1][1], ".", true)
-                return parts[#parts] or ""
-            end, { 1 }),
-            i(1),
-        })
-    ),
-    -- require("")
-    parse("req", "require(\"$0\")"),
-    -- global function
-    parse("gfn", "function $1($2)\n\t$0\nend"),
-    -- local function
-    parse("lfn", "local function $1($2)\n\t$0\nend"),
-    -- local variable function
-    parse("lvfn", "local $1 = function($2)\n\t$0\nend"),
-    parse("lvr", "local $1 = $0"),
-    -- module function
-    parse("mfn", "M.$1 = function($2)\n\t$0\nend"),
-    -- global function
-    parse("gfn", "$1 = function($2)\n\t$0\nend"),
-    -- local table
-    parse("ltb", "local $1 = {\n\t$2\n}$0"),
-    s(
-        "trig",
-        c(1, {
-            t("Ugh boring, a text node"),
-            i(1, "At least I can edit something now..."),
-            f(function(args)
-                return "Still only counts as text!!"
-            end, {}),
-        }, {})
-    ),
+			{
+				foldBodyDesc = i(1, "fold body description"),
+				code = i(2, "-- code here"),
+			}
+		)
+	),
+	-- comments
+	s("cl", t("-- ")),
+	s(
+		"cb",
+		fmt("--[[\n{comment}\n--]]", {
+			comment = i(1, "-- comment here"),
+		})
+	),
+	-- local require
+	s(
+		"lreq",
+		fmt([[local {} = require("{}")]], {
+			f(function(import_name)
+				local parts = vim.split(import_name[1][1], ".", true)
+				return parts[#parts] or ""
+			end, { 1 }),
+			i(1),
+		})
+	),
+	-- require("")
+	parse("req", 'require("$0")'),
+	-- global function
+	parse("gfn", "function $1($2)\n\t$0\nend"),
+	-- local function
+	parse("lfn", "local function $1($2)\n\t$0\nend"),
+	-- local variable function
+	parse("lvfn", "local $1 = function($2)\n\t$0\nend"),
+	parse("lvr", "local $1 = $0"),
+	-- module function
+	parse("mfn", "M.$1 = function($2)\n\t$0\nend"),
+	-- global function
+	parse("gfn", "$1 = function($2)\n\t$0\nend"),
+	-- local table
+	parse("ltb", "local $1 = {\n\t$2\n}$0"),
+	s(
+		"trig",
+		c(1, {
+			t("Ugh boring, a text node"),
+			i(1, "At least I can edit something now..."),
+			f(function(args)
+				return "Still only counts as text!!"
+			end, {}),
+		}, {})
+	),
 }
 
 ls.add_snippets("lua", luaSnips)

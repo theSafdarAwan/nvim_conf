@@ -25,30 +25,30 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local parse = require("luasnip.util.parser").parse_snippet
 
 local norgSnips = {
-    s(
-        "cl",
-        fmt(
-            [[
+	s(
+		"cl",
+		fmt(
+			[[
             @comment
             {commentBody}
             @end]],
-            {
-                commentBody = i(1, "commentBody"),
-            }
-        )
-    ),
-    s(
-        "cd",
-        fmt(
-            [[
+			{
+				commentBody = i(1, "commentBody"),
+			}
+		)
+	),
+	s(
+		"cd",
+		fmt(
+			[[
             @code {lang}
             {code}
             @end]],
-            {
-                lang = i(1, "lang"),
-                code = i(2, "code here"),
-            }
-        )
-    ),
+			{
+				lang = i(1, "lang"),
+				code = i(2, "code here"),
+			}
+		)
+	),
 }
 luasnip.add_snippets("norg", norgSnips)
