@@ -7,7 +7,8 @@ local create_autocmd = api.nvim_create_autocmd
 local map = utils.map
 local opts = { noremap = true, silent = true }
 
-local autocmds_augroup = api.nvim_create_augroup("autocmds.lua", { clear = true })
+local autocmds_augroup =
+api.nvim_create_augroup("autocmds.lua", { clear = true })
 
 -- Highlight The yanked text
 local function highlightOnYank()
@@ -37,6 +38,7 @@ create_autocmd({ "FileType" }, {
 -- Help Helper Function
 local function norg_ft_opts()
 	optl.shiftwidth = 2
+	optl.expandtab = true
 end
 
 create_autocmd({ "FileType" }, {

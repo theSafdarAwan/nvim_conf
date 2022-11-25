@@ -13,7 +13,7 @@ require("neorg").setup({
 				-- if you want to dim code blocks
 				dim_code_blocks = {
 					enabled = true,
-					content_only = true,
+					content_only = false,
 					width = "content",
 					padding = {
 						left = 0,

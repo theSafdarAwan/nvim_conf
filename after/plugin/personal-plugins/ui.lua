@@ -1,15 +1,20 @@
+--[[
+        authord: @theSafdarAwan
+        date: 11/23/22 - 23:19
+        last modifiction date: 11/25/22 - 16:01
+
+        Description:-
+		This file includes some of the improvement for the ui or some plugins related to
+		UI. I didn't wanted to add a new file for every utility so i added single for.
+--]]
 local utils = require("safdar.core.utils")
 local api = utils.api
 local command = utils.command
 local create_autocmd = api.nvim_create_autocmd
 
-local autocmds_augroup = api.nvim_create_augroup("ui.lua", { clear = true })
+local augroup_ui = api.nvim_create_augroup("ui.lua", { clear = true })
 
 --[[
-        authord: @theSafdarAwan
-        date: 11/23/22 - 23:19
-        last modifiction date: 11/23/22 - 23:19
-
         Description:-
         I got this from the Damian Conway from his vim talk (https://youtu.be/aHm36-na4-4?t=245)
         to highlight line like the `:h colorcolumn` but it only highlights it if it
@@ -29,16 +34,15 @@ local function damian_conways_matchadd(buf_info)
 		if buf_info.filetype == v then
 			return
 		end
+		-- DamianConway is just the name of the highlight you can provide any highlight
+		-- name here for convenience i create a new highlight wit the name DamianConway
 		command("call matchadd('DamianConway', '\\%80v')")
 	end
 end
 
--- create highlight when i enter insert mode to otherwise don't do it on the
--- files when reading
-create_autocmd({ "InsertEnter" }, {
-	group = autocmds_augroup,
+create_autocmd({ "BufEnter" }, {
+	group = augroup_ui,
 	callback = function(buf_info)
 		damian_conways_matchadd(buf_info)
 	end,
 })
-
