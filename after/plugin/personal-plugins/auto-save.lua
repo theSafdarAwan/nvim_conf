@@ -22,40 +22,84 @@ api.nvim_create_autocmd("BufRead", {
 	end,
 })
 
--- validate excluded buftype's and filetype's from autosaving if
--- included then will return true else will return false
+-- validate excluded buftype's and filetype's and dir names from autosaving if
+-- included then will return tabl with the type name and the type value
 local function validater(opts)
-	local ok = false
+	local ok = true
 	local type
-	if opts.type == "buf" then
-		type = b.buftype
+	-- dir name validate
+	if opts.type == "dir" then
+		local path_expanded = vim.fn.expand("%:p")
+		local path_split = vim.split(path_expanded, "/", { plain = true, trimempty = true })
+		local last_item_idx
+		for _, _ in ipairs(path_split) do
+			-- table second last element which is the path first is the file name
+			last_item_idx = #path_split - 1
+		end
+		local path = path_split[last_item_idx]
+		for _, v in ipairs(opts.data) do
+			if v == path then
+				ok = false
+				break
+			else
+				ok = true
+			end
+		end
+		type = "dir"
 	else
-		type = b.filetype
-	end
-	for _, value in ipairs(opts.data) do
-		if type == value and ok == false then
-			ok = true
+		-- validate buftype and filetype
+		local buf_info_type
+		if opts.type == "buf" then
+			buf_info_type = b.buftype
+			type = "buf"
+		else
+			buf_info_type = b.filetype
+			type = "ft"
+		end
+		for _, value in ipairs(opts.data) do
+			if buf_info_type == value then
+				ok = false
+			end
 		end
 	end
-	return ok
+	return { type = type, value = ok }
 end
 
 -- autosave function
-local function autoSaveFn(buf_info)
+local function auto_save_fn(buf_info)
 	local ok, queued = pcall(api.nvim_buf_get_var, buf_info.buf, auto_save_queued)
 	if not ok then
 		return
 	end
 
 	if not queued then
-		local excluded_ftype = { "TelescopePrompt", "harpoon" }
-		local excluded_buftype = { "prompt" }
-		local invalid_buf = validater({ type = "buf", data = excluded_buftype })
-		local invalid_ft = validater({ type = "ft", data = excluded_ftype })
+		local excluded = {
+			dir = { "wezterm", "alacritty" },
+			ft = { "TelescopePrompt", "harpoon" },
+			buf = { "prompt" },
+		}
+
+		local ft_val
+		local buf_val
+		local dir_val
+
+		for k, v in pairs(excluded) do
+			local valid = validater({ type = tostring(k), data = v })
+			if type(valid) == "table" then
+				if valid.type == "buf" then
+					buf_val = valid.value
+				elseif valid.type == "dir" then
+					dir_val = valid.value
+				else
+					ft_val = valid.value
+				end
+			end
+		end
+
 		-- check if the buf is modifiable and then validate buf does not have any of
 		-- the excluded filetypes or buftypes
-		if b.modifiable == true and invalid_ft == false and invalid_buf == false then
-			command("update")
+		if b.modifiable and ft_val and buf_val and dir_val then
+			command("silent update")
 			-- print("saved at " .. vim.fn.strftime("%H:%M:%S"))
 			api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
 			fn.timer_start(1500, function()
@@ -91,6 +135,6 @@ end
 create_autocmd({ "TextChanged", "ModeChanged", "CursorHold" }, {
 	group = auto_save,
 	callback = function(buf_info)
-		autoSaveFn(buf_info)
+		auto_save_fn(buf_info)
 	end,
 })

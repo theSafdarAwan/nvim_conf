@@ -32,10 +32,10 @@ local cSnips = {
 		"fn",
 		fmt(
 			[[
-            {type} {funcName}({args}) {openingParen}
-                {code}
-            {closeParen}
-            ]],
+			{type} {funcName}({args}) {openingParen}
+				{code}
+			{closeParen}
+			]],
 			{
 				type = i(1, "type"),
 				funcName = i(2, "name"),
@@ -43,6 +43,23 @@ local cSnips = {
 				code = i(4, "// code here"),
 				openingParen = t("{"),
 				closeParen = t("}"),
+			}
+		)
+	),
+	s(
+		"for",
+		fmt(
+			[[
+			for ({initial}; {statement}; {expr}) {l}
+				{code}
+			{r}]],
+			{
+				initial = i(1, "int i = 1"),
+				statement = i(2, "i <= 10"),
+				expr = i(3, "i++"),
+				code = i(4, "// code goes here"),
+				l = t("{"),
+				r = t("}"),
 			}
 		)
 	),

@@ -20,6 +20,8 @@ local augroup_ui = api.nvim_create_augroup("ui.lua", { clear = true })
         to highlight line like the `:h colorcolumn` but it only highlights it if it
         exceeds the 81 character limit.
 --]]
+-- BUG: highlight is global so i can't do anything here do something after you
+-- learn more about vim-script and lua.
 -- files to ignore
 local matchadd_ignore_ft = {
 	"packer",

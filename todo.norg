@@ -1,6 +1,2 @@
 * TODO's 
   - [ ] create a popup wrapper for the harpoon.term like the toggle-term.
-
-  - [ ] write the highlights for these plugins in fused.nvim
-  -- lspsaga
-  -- neogit

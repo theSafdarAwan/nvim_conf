@@ -28,10 +28,10 @@ local cssFolds = {
 	s(
 		"fd",
 		fmt(
-			[[
-        /* ~> {foldBodyDesc}*/
-        {code}
-        /* <~*/]],
+		[[
+		/* ~> {foldBodyDesc}*/
+		{code}
+		/* <~*/]],
 			{
 				foldBodyDesc = i(1, "fold body description"),
 				code = i(2, "/* code goes here */"),
