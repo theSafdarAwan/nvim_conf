@@ -46,6 +46,7 @@ local cSnips = {
 			}
 		)
 	),
+	-- for loop
 	s(
 		"for",
 		fmt(
@@ -58,6 +59,40 @@ local cSnips = {
 				statement = i(2, "i <= 10"),
 				expr = i(3, "i++"),
 				code = i(4, "// code goes here"),
+				l = t("{"),
+				r = t("}"),
+			}
+		)
+	),
+	-- while loop
+	s(
+		"whi",
+		fmt(
+			[[
+			while ({expr}) {l}
+				{code}
+			{r}
+			]],
+			{
+				expr = i(1, "i <= 10"),
+				code = i(2, "// code goes here"),
+				l = t("{"),
+				r = t("}"),
+			}
+		)
+	),
+	-- do while loop
+	s(
+		"dow",
+		fmt(
+			[[
+			do {l}
+				{code}
+			{r} while({expr})
+			]],
+			{
+				expr = i(1, "i <= 10"),
+				code = i(2, "// code goes here"),
 				l = t("{"),
 				r = t("}"),
 			}
