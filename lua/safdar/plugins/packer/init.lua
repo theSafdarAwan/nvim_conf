@@ -67,6 +67,9 @@ packer.startup({
 			"catppuccin/nvim",
 			"LunarVim/Colorschemes",
 			"nvchad/base46",
+			config = function()
+				require("base46").get_theme_tb("falcon")
+			end,
 		})
 		-- <~
 

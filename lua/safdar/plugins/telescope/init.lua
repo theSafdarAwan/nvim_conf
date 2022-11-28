@@ -148,7 +148,7 @@ M.center_list_find_files = function()
 			width = 0.80,
 			height = 0.30,
 		},
-		file_ignore_patterns = { ".git/", "assets/pictures" },
+		file_ignore_patterns = { "^.git/", "^assets/pictures" },
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
 			return string.format("%s (%s)", tail, path)
