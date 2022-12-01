@@ -28,7 +28,7 @@ local allSnips = {
 	s(
 		"curtime",
 		f(function()
-			return os.date("%D - %H:%M")
+			return os.date("%D - %I:%M")
 		end)
 	),
 }
