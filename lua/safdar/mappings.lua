@@ -68,6 +68,10 @@ map("n", "Y", "y$", opts)
 -- use ESC to turn off search highlighting
 map("n", "<ESC>", ":noh<cr><c-l>", opts)
 
+-- use backspace to change the selection
+-- only for the @luasnip selection
+map("v", "<BS>", "\"_c", opts)
+
 -- Indentation
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)

@@ -6,7 +6,7 @@ local s = ls.snippet
 -- local isn =ls.indent_snippet_node
 local t = ls.text_node
 local i = ls.insert_node
--- local f = ls.function_node
+local f = ls.function_node
 -- local c =ls.choice_node
 -- local d =ls.dynamic_node
 -- local r =ls.restore_node
@@ -51,14 +51,22 @@ local cSnips = {
 		"for",
 		fmt(
 			[[
-			for ({initial}; {statement}; {expr}) {l}
+			for (int {initial} = {i_num}; {statement_var} {statement_op} {statement_num}; {expr}{oper}) {l}
 				{code}
 			{r}]],
 			{
-				initial = i(1, "int i = 1"),
-				statement = i(2, "i <= 10"),
-				expr = i(3, "i++"),
-				code = i(4, "// code goes here"),
+				initial = i(1, "i"),
+				i_num = i(2, "1"),
+				statement_var = f(function(var_name)
+					return var_name[1][1] or ""
+				end, { 1 }),
+				statement_op = i(3, "<="),
+				statement_num = i(4, "1"),
+				expr = f(function(var_name)
+					return var_name[1][1] or ""
+				end, { 1 }),
+				oper = i(5, "++"),
+				code = i(6, ""),
 				l = t("{"),
 				r = t("}"),
 			}
