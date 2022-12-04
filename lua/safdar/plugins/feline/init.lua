@@ -2,7 +2,7 @@ local utils = require("safdar.core.utils")
 local vim = utils.vim
 
 -- @colors
-local cp = require("fused.pallets.dark").pallete
+local cp = require("fused.pallets.catppuccin").pallete
 local c = {
 	white = cp.white,
 	dark = cp.bg,
@@ -173,7 +173,7 @@ components.active[1][3] = {
 			end
 		end
 
-		local filename = split_long_string(orig_file_name, 15) .. " "
+		local filename = split_long_string(orig_file_name, 30) .. " "
 		local extension = vim.fn.expand("%:e")
 		local gIcon = require("nvim-web-devicons").get_icon(filename, extension)
 

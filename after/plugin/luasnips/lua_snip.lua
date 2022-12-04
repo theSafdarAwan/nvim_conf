@@ -54,14 +54,14 @@ local luaSnips = {
 		"lreq",
 		fmt([[local {} = require("{}")]], {
 			f(function(import_name)
-				local parts = vim.split(import_name[1][1], ".", true)
+				local parts = vim.split(import_name[1][1], ".", { plain = true, trimempty = true })
 				return parts[#parts] or ""
 			end, { 1 }),
 			i(1),
 		})
 	),
 	-- require("")
-	parse("req", 'require("$0")'),
+	parse("req", "require(\"$0\")"),
 	-- global function
 	parse("gfn", "function $1($2)\n\t$0\nend"),
 	-- local function
