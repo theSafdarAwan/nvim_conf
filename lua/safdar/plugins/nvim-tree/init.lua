@@ -16,7 +16,7 @@ require("nvim-tree").setup({
 	reload_on_bufenter = true,
 	respect_buf_cwd = false,
 	view = {
-		adaptive_size = false,
+		adaptive_size = true,
 		centralize_selection = false, -- dont turn this to true it gives error if you open file using other options rather then nvim-tree on startup like by using `nvim .` to open in the current directory
 		width = 20,
 		hide_root_folder = true,
