@@ -5,9 +5,9 @@ map("n", "gtk", ":TSHighlightCapturesUnderCursor<cr>", { noremap = true, silent 
 local M = {}
 M.treesitter_maps = {
 	init_selection = "gn",
-	node_incremental = "g]",
+	node_incremental = "]]",
 	scope_incremental = "gS",
-	node_decremental = "g[",
+	node_decremental = "[[",
 }
 
 return M

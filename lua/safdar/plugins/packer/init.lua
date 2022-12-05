@@ -32,8 +32,7 @@ packer.startup({
 		-- <~
 
 		-- ~> Essential
-		install({ "nvim-lua/plenary.nvim" })
-		install({ "nvim-lua/popup.nvim" })
+		install({ "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" })
 		-- <~
 
 		-- ~> Telescope
@@ -57,18 +56,16 @@ packer.startup({
 			end,
 		})
 		install({
-			"folke/tokyonight.nvim",
-			config = function()
-				-- require("safdar.plugins.tokyonight")
-			end,
-		})
-		install({
 			"ellisonleao/gruvbox.nvim",
 			"catppuccin/nvim",
 			"LunarVim/Colorschemes",
 			"nvchad/base46",
+			"folke/tokyonight.nvim",
 			config = function()
-				require("base46").get_theme_tb("falcon")
+				-- require("safdar.plugins.tokyonight")
+				local base46 = require("base46")
+				base46.load_theme()
+				base46.load_highlight("treesitter")
 			end,
 		})
 		-- <~
@@ -89,14 +86,16 @@ packer.startup({
 		})
 		install({
 			"TimUntersberger/neogit",
-			requires = {
-				"sindrets/diffview.nvim",
-				config = function()
-					require("safdar.plugins.diffview")
-				end,
-			},
+			after = "gitsigns.nvim",
 			config = function()
 				require("safdar.plugins.neogit")
+			end,
+		})
+		install({
+			"sindrets/diffview.nvim",
+			after = "neogit",
+			config = function()
+				require("safdar.plugins.diffview")
 			end,
 		})
 		install({
@@ -133,6 +132,7 @@ packer.startup({
 		}) -- indent guides
 		install({
 			"feline-nvim/feline.nvim",
+			after = "nvim-web-devicons",
 			config = function()
 				require("safdar.plugins.feline")
 			end,
@@ -152,25 +152,50 @@ packer.startup({
 		-- ~> load luasnips + cmp related in insert mode only
 		install({
 			"neovim/nvim-lspconfig", -- quckstart lsp conifgs
+			requires = { "b0o/schemastore.nvim" },
 			config = function()
 				require("safdar.lsp.lspconfig")
 			end,
-			requires = {
-				"jose-elias-alvarez/null-ls.nvim",
-				config = function()
-					require("safdar.lsp.null-ls")
-					require("safdar.plugins.plugins_mappings.null-ls_map")
-				end,
-			},
 		})
-		install({ "b0o/schemastore.nvim" })
+		install({
+			"jose-elias-alvarez/null-ls.nvim",
+			after = "nvim-lspconfig",
+			config = function()
+				require("safdar.lsp.null-ls")
+				require("safdar.plugins.plugins_mappings.null-ls_map")
+			end,
+		})
+
+		install({
+			"L3MON4D3/LuaSnip",
+			config = function()
+				require("safdar.plugins.luasnip")
+			end,
+		})
+
 		install({
 			"hrsh7th/nvim-cmp",
 			config = function()
 				require("safdar.lsp.cmp")
 			end,
+			requires = {
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-nvim-lsp",
+				"saadparwaiz1/cmp_luasnip",
+			},
 		})
+
+		install({
+			"hrsh7th/cmp-nvim-lua",
+			ft = "lua",
+		})
+
 		install({ "tzachar/cmp-tabnine", run = "./install.sh" })
+
+		install({
+			"hrsh7th/cmp-emoji",
+			ft = { "html", "css", "markdown", "norg" },
+		})
 		install({
 			"uga-rosa/cmp-dictionary",
 			ft = { "markdown", "norg" },
@@ -178,39 +203,26 @@ packer.startup({
 				require("safdar.plugins.cmp.cmp-dictionary")
 			end,
 		})
-		install({
-			"hrsh7th/cmp-emoji",
-			ft = { "html", "css", "markdown", "norg" },
-		})
-		install({
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-nvim-lsp",
-			"saadparwaiz1/cmp_luasnip",
-		})
-		install({
-			"L3MON4D3/LuaSnip",
-			config = function()
-				require("safdar.plugins.luasnip")
-			end,
-		})
 		-- <~
 
 		-- ~> Lsp utils & enhancements
 		install({
 			"ray-x/lsp_signature.nvim",
+			after = "nvim-lspconfig",
 			config = function()
 				require("safdar.plugins.lspsignature")
 			end,
 		})
 		install({
 			"folke/trouble.nvim",
+			after = "lsp_signature.nvim",
 			config = function()
 				require("safdar.plugins.lsp-trouble")
 			end,
 		})
 		install({
 			"glepnir/lspsaga.nvim",
+			after = "trouble.nvim",
 			config = function()
 				require("safdar.plugins.lspsaga")
 			end,
@@ -232,6 +244,7 @@ packer.startup({
 				{ "theHamsta/nvim-dap-virtual-text" },
 				{ "rcarriga/nvim-dap-ui" },
 			},
+			after = "nvim-lspconfig",
 			config = function()
 				require("safdar.plugins.dap")
 				--> plugins cfgs
@@ -251,18 +264,21 @@ packer.startup({
 		})
 		install({
 			"nvim-treesitter/playground",
+			after = "nvim-treesitter",
 			config = function()
 				require("safdar.plugins.tsplayground")
 			end,
 		})
 		install({
 			"windwp/nvim-ts-autotag",
+			after = "playground",
 			config = function()
 				require("nvim-ts-autotag").setup()
 			end,
 		})
 		install({
 			"p00f/nvim-ts-rainbow",
+			after = "nvim-ts-autotag",
 		})
 		-- <~
 
@@ -355,7 +371,6 @@ packer.startup({
 		install({
 			"nvim-neorg/neorg",
 			run = ":Neorg sync-parsers", -- This is the important bit!
-			-- ft = "norg",
 			requires = {
 				"nvim-neorg/neorg-telescope",
 			},

@@ -10,6 +10,7 @@ map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true, silent 
 map("n", "<leader>fh", ":Telescope help_tags<cr>", { noremap = true, silent = true })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { noremap = true, silent = true })
 map("n", "<leader>tb", ":Telescope builtin<cr>", { noremap = true, silent = true })
+map("n", "<leader>rr", ":Telescope reloader<cr>", { noremap = true, silent = true })
 
 map("n", "<leader>en", function()
 	require("safdar.plugins.telescope").search_nvim_dotfiles()
@@ -29,6 +30,10 @@ end, { noremap = true, silent = true })
 
 map("n", "<leader>tc", function()
 	require("safdar.plugins.telescope").get_cursor_change_colorscheme()
+end, { noremap = true, silent = true })
+
+map("n", "<leader>ti", function()
+	require("safdar.plugins.telescope").ivy_colorscheme_preview()
 end, { noremap = true, silent = true })
 
 map("n", "<leader>ff", function()
@@ -67,5 +72,5 @@ M.picker_find = function()
 		},
 	}
 end
+
 return M
---

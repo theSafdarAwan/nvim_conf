@@ -86,6 +86,19 @@ local M = {}
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 
+-- trim the long path names
+local short_path = function(path_str)
+	local split_path = vim.split(path_str, "/", { plain = false, trimempty = true })
+	local split_path_tbl_lenght = #split_path
+	if split_path_tbl_lenght == 2 then
+		return tostring(split_path[split_path_tbl_lenght - 1]) .. "/"
+	elseif split_path_tbl_lenght > 2 then
+		return tostring(split_path[split_path_tbl_lenght - 1]) .. "/" .. tostring(split_path[split_path_tbl_lenght - 2])
+	else
+		return path_str
+	end
+end
+
 --> Search Neorg TODO files
 M.gtd_neorg_files = function()
 	local find_gtd_neorg_files = themes.get_dropdown({
@@ -145,13 +158,13 @@ M.center_list_find_files = function()
 		hidden = true,
 		previewer = false,
 		layout_config = {
-			width = 0.80,
-			height = 0.30,
+			width = 0.50,
+			height = 0.22,
 		},
 		file_ignore_patterns = { "^.git/", "^assets/pictures" },
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
-			return string.format("%s (%s)", tail, path)
+			return string.format("%s (%s)", tail, short_path(path))
 		end,
 	})
 
@@ -177,7 +190,7 @@ M.ivy_find_files_with_preview = function()
 		},
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
-			return string.format("%s (%s)", tail, path)
+			return string.format("%s (%s)", tail, short_path(path))
 		end,
 	})
 
@@ -198,6 +211,10 @@ M.center_list_buffers_find = function()
 			height = 0.25,
 		},
 		borderchars = borderchars.dropdown,
+		path_display = function(opts, path)
+			local tail = require("telescope.utils").path_tail(path)
+			return string.format("%s (%s)", tail, short_path(path))
+		end,
 	})
 
 	local opts = vim.deepcopy(center_list)
@@ -209,11 +226,14 @@ end
 --> Search for colorschemes
 M.get_cursor_change_colorscheme = function()
 	local center_list = themes.get_cursor({
-		prompt_title = "Change Colorscheme",
-		results_title = "Available Colorschemes",
-		preview_title = "Colorscheme Highlights",
+		prompt_prefix = " ",
+		prompt_title = "Colorschemes",
 		borderchars = borderchars.get_cursor,
-		enable_preview = true,
+		enable_preview = false,
+		layout_config = {
+			width = 0.30,
+			height = 0.25,
+		},
 	})
 
 	local opts = vim.deepcopy(center_list)
@@ -226,7 +246,7 @@ M.ivy_colorscheme_preview = function()
 	local center_list = themes.get_ivy({
 		prompt_title = "Search Colorscheme",
 		results_title = "Available Colorschemes",
-		preview_title = "Colorscheme Highlights",
+		preview_title = "Live Preview",
 		borderchars = borderchars.ivy,
 		enable_preview = true,
 	})
