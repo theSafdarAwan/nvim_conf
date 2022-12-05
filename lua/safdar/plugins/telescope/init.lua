@@ -86,17 +86,45 @@ local M = {}
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 
--- trim the long path names
-local short_path = function(path_str)
-	local split_path = vim.split(path_str, "/", { plain = false, trimempty = true })
-	local split_path_tbl_lenght = #split_path
-	if split_path_tbl_lenght == 2 then
-		return tostring(split_path[split_path_tbl_lenght - 1]) .. "/"
-	elseif split_path_tbl_lenght > 2 then
-		return tostring(split_path[split_path_tbl_lenght - 1]) .. "/" .. tostring(split_path[split_path_tbl_lenght - 2])
+-- get the name of the root directory
+local function get_root_name()
+	local path
+	local root_path
+	local find_path = vim.fs.find({ ".git", ".", "node_modules" }, { upward = true })[1]
+	if find_path then
+		root_path = find_path
+		local root_path_split = vim.split(root_path, "/", { plain = false, trimempty = true })
+		local root_path_len = #root_path_split
+		path = root_path_split[root_path_len - 1]
 	else
-		return path_str
+		path = "/"
 	end
+	--  NOTE: one thing to note here is that the root directory will be
+	--  concatenated inside the string so its not present in the results so
+	--  you won't be able to fuzzy find on it.
+	--  On the name of the root directory its just an illusion for a good UI.
+	return path
+end
+
+-- trim the long path names
+local path_style = function(tail, path_str)
+	local split_path = vim.split(path_str, "/", { plain = false, trimempty = true })
+	local path_len = #split_path
+	local path
+	if path_len == 1 then
+		-- if the file is in the root of working directory
+		path = get_root_name()
+	elseif path_len == 2 then
+		-- if the file is in the next level of the root dir
+		path = tostring(get_root_name() .. "/" .. split_path[path_len - 1])
+	else
+		-- if the path is deep then only show two last directories names
+		path = tostring(split_path[path_len - 2]) .. "/" .. tostring(split_path[path_len - 1])
+	end
+
+	-- style the path string
+	local spaces = "\t\t"
+	return string.format("%s" .. spaces .. "*" .. spaces .. "%s", tail, path)
 end
 
 --> Search Neorg TODO files
@@ -164,7 +192,7 @@ M.center_list_find_files = function()
 		file_ignore_patterns = { "^.git/", "^assets/pictures" },
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
-			return string.format("%s (%s)", tail, short_path(path))
+			return path_style(tail, path)
 		end,
 	})
 
@@ -190,7 +218,7 @@ M.ivy_find_files_with_preview = function()
 		},
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
-			return string.format("%s (%s)", tail, short_path(path))
+			return path_style(tail, path)
 		end,
 	})
 
@@ -213,7 +241,7 @@ M.center_list_buffers_find = function()
 		borderchars = borderchars.dropdown,
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
-			return string.format("%s (%s)", tail, short_path(path))
+			return path_style(tail, path)
 		end,
 	})
 
