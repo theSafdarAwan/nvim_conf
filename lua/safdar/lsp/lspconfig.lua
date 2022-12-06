@@ -1,3 +1,4 @@
+-- TODO: disable formatting for all the servers from the server itself
 local utils = require("safdar.core.utils")
 local vim = utils.vim
 local lsp_util = require("safdar.lsp.lsp_util")
@@ -26,6 +27,7 @@ vim.o.completeopt = "menuone,noselect"
 -- enable lang_servers with same configs alll in one
 local servers = {
 	--love
+	"html",
 	"cssls",
 	"tailwindcss",
 	"tsserver",
