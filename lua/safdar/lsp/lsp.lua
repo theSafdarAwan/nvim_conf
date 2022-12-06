@@ -53,14 +53,16 @@ end
 --=======================================================
 --     require lang modules with additional configs
 --=======================================================
-local langsConfs = {
-	"sumneko-lua_lsp",
+-- names of the files should be the name of the servers and the append _lsp at
+-- the end even if the lsp names exits with the server name
+local langs_conf_files = {
+	"sumneko_lua_lsp",
 	"jsonls_lsp",
-	"c_lsp",
+	"clangd_lsp",
 	"html_lsp",
-	"stylelint-lsp_lsp",
+	"stylelint_lsp_lsp",
 }
-for _, file in ipairs(langsConfs) do
+for _, file in ipairs(langs_conf_files) do
 	require("safdar.lsp.langs." .. file)
 end
 
@@ -69,7 +71,6 @@ require("safdar.lsp.lsp-ui")
 
 -- add the mappings
 require("safdar.plugins.plugins_mappings.lsp_map")
-
 
 --=======================================================
 --     messing with the lsp servers
@@ -82,21 +83,12 @@ local lsp_conf_augroup = api.nvim_create_augroup("lsp_conf", { clear = true })
 
 -- copying the clients names tbl
 local client_names = vim.deepcopy(servers)
--- add clients names that are not present in the severs list instead on
--- their own file in the lsp/langs/*
-local new_clients = {
-	"sumneko_lua",
-	"clangd",
-	"ltex",
-	"html",
-	"jsonls",
-	"stylelint_lsp",
-	"sumneko_lua",
-}
--- add the new_clients tbl to the client_names tbl
-for _, v in pairs(new_clients) do
-	local pos = #new_clients
-	table.insert(client_names, pos + 1, v)
+-- add the langs_conf_files servers names
+for _, str_key in pairs(langs_conf_files) do
+	local tbl_len = #client_names
+	-- trim the last _lsp part from the file name string
+	local new_str = string.sub(str_key, 1, #str_key - 4)
+	client_names[tbl_len + 1] = new_str
 end
 
 -- setting the formatting to false
