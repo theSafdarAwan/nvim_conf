@@ -58,6 +58,7 @@ end
 local langs_conf_files = {
 	"sumneko_lua_lsp",
 	"jsonls_lsp",
+	"ltex_lsp",
 	"clangd_lsp",
 	"html_lsp",
 	"stylelint_lsp_lsp",
