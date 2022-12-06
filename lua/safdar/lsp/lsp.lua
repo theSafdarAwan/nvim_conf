@@ -2,6 +2,7 @@ local utils = require("safdar.core.utils")
 local vim = utils.vim
 local api = vim.api
 local lsp_util = require("safdar.lsp.lsp_util")
+local lspconfig_util = require("lspconfig.util")
 local on_attach = lsp_util.on_attach
 local capabilities = lsp_util.capabilities
 -- suppress error messages from lang servers
@@ -80,18 +81,9 @@ require("safdar.plugins.plugins_mappings.lsp_map")
 -- caused because of the two lsps trying to format one file. In my case the file
 -- text was deleted and i couldn't figure out why.
 local lsp_conf_augroup = api.nvim_create_augroup("lsp_conf", { clear = true })
+
+local client_names = lspconfig_util.available_servers()
 -- disable the default server formatting instead use null-ls
-
--- copying the clients names tbl
-local client_names = vim.deepcopy(servers)
--- add the langs_conf_files servers names
-for _, str_key in pairs(langs_conf_files) do
-	local tbl_len = #client_names
-	-- trim the last _lsp part from the file name string
-	local new_str = string.sub(str_key, 1, #str_key - 4)
-	client_names[tbl_len + 1] = new_str
-end
-
 -- setting the formatting to false
 api.nvim_create_autocmd("LspAttach", {
 	group = lsp_conf_augroup,
@@ -103,6 +95,9 @@ api.nvim_create_autocmd("LspAttach", {
 			if client.name == server then
 				if client.server_capabilities.documentFormattingProvider then
 					client.server_capabilities.documentFormattingProvider = false
+				end
+				if client.server_capabilities.documentRangeFormattingProvider then
+					client.server_capabilities.documentRangeFormattingProvider = false
 				end
 			end
 		end

@@ -97,7 +97,7 @@ local function get_root_name()
 		local root_path_len = #root_path_split
 		path = root_path_split[root_path_len - 1]
 	else
-		path = "/"
+		path = "root/"
 	end
 	--  NOTE: one thing to note here is that the root directory will be
 	--  concatenated inside the string so its not present in the results so
