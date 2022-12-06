@@ -1,7 +1,7 @@
 local utils = require("safdar.core.utils")
 local vim = utils.vim
 
-local on_attach = require("safdar.lsp.lsp_util").on_attach
+-- local on_attach = require("safdar.lsp.lsp_util").on_attach
 --=======================================================
 --                      null-ls
 --=======================================================
@@ -15,13 +15,13 @@ local sources = {
 	builtins.formatting.black.with({ extra_args = { "--fast" } }),
 	builtins.diagnostics.flake8,
 	builtins.diagnostics.eslint_d.with({
-		condition = function(utils)
-			return utils.root_has_file(".eslintrc.json")
+		condition = function(utls)
+			return utls.root_has_file(".eslintrc.json")
 		end,
 	}),
 	builtins.formatting.eslint_d,
 	builtins.formatting.stylelint,
-	-- builtins.diagnostics.stylelint, -- using stylelint-lsp server for diagnostics
+	-- builtins.diagnostics.stylelint, -- don't use this using stylelint-lsp server for diagnostics
 	builtins.formatting.clang_format,
 	builtins.diagnostics.chktex,
 	-- builtins.code_actions.gitsigns,
@@ -33,5 +33,5 @@ local sources = {
 null_ls.setup({
 	debug = true,
 	sources = sources,
-	on_attach = on_attach,
+	-- on_attach = on_attach,
 })

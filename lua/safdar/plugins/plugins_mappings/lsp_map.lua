@@ -56,7 +56,7 @@ M.on_attach = function(_, bufnr) -- will give client and bufnr
 	-- buf_set_keymap(bufnr,"n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	-- buf_set_keymap(bufnr,"n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap(bufnr, "n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-	buf_set_keymap(bufnr, "n", "<space>nf", "<cmd>lua vim.lsp.buf.format({async = false})<CR>", opts)
+	buf_set_keymap(bufnr, "n", "<space>nf", "<cmd>lua vim.lsp.buf.format({async = true, timeout_ms = 2000 })<CR>", opts)
 	buf_set_keymap(bufnr, "n", "<leader>lR", ":lua vim.StopAndStartLspServer()<CR>", opts)
 	buf_set_keymap(bufnr, "n", "<leader>lr", ":LspRestart<cr>", opts)
 	buf_set_keymap(bufnr, "n", "<leader>li", ":LspInfo<cr>", opts)

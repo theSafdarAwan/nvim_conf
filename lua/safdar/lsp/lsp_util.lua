@@ -19,6 +19,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 		"additionalTextEdits",
 	},
 }
+
 require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 M.capabilities = capabilities
