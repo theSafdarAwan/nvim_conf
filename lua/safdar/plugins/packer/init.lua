@@ -154,7 +154,7 @@ packer.startup({
 			"neovim/nvim-lspconfig", -- quckstart lsp conifgs
 			requires = { "b0o/schemastore.nvim" },
 			config = function()
-				require("safdar.lsp.lspconfig")
+				require("safdar.lsp.lsp")
 			end,
 		})
 		install({

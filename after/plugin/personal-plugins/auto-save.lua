@@ -30,7 +30,7 @@ local function validater(opts)
 	-- dir name validate
 	if opts.type == "dir" then
 		local path_expanded = vim.fn.expand("%:p")
-		local path_split = vim.split(path_expanded, "/", { plain = true, trimempty = true })
+		local path_split = vim.split(path_expanded, "/", { plain = false, trimempty = true })
 		local last_item_idx
 		for _, _ in ipairs(path_split) do
 			-- table second last element which is the path first is the file name
