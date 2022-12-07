@@ -1,6 +1,7 @@
 local utils = require("safdar.core.utils")
 local maps = require("safdar.plugins.telescope.maps")
 local vim = utils.vim
+local M = {}
 -- =========================================================================
 --                          telescope config
 -- =========================================================================
@@ -77,12 +78,14 @@ telescope.setup({
 	},
 })
 telescope.load_extension("fzf")
-telescope.load_extension("git_worktree")
+
+M.git_worktree = function()
+	telescope.load_extension("git_worktree")
+end
 
 -- =========================================================================
 --                          custom
 -- =========================================================================
-local M = {}
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 

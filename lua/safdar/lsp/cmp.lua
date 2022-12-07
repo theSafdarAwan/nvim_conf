@@ -97,17 +97,6 @@ cmp.setup({
 -- require the vscode html tag completion
 require("luasnip/loaders/from_vscode").lazy_load()
 
--- tabnine
-local tabnine = require("cmp_tabnine.config")
-tabnine:setup({
-	max_lines = 1000,
-	max_num_results = 20,
-	priority = 150,
-	sort = true,
-	run_on_every_keystroke = true,
-	snippet_placeholder = "..",
-})
-
 -- autopairs
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
