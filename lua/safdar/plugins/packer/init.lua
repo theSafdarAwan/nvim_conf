@@ -4,26 +4,26 @@ local vim = utils.vim
 
 local packer = require("packer")
 packer.startup({
-	function(install)
+	function(i)
 		--  ~> Packer can manage itself
-		install({ "wbthomason/packer.nvim" })
+		i({ "wbthomason/packer.nvim" })
 		-- <~
 
 		-- ~> Performance
-		install({
+		i({
 			"lewis6991/impatient.nvim",
 			config = function()
 				require("impatient")
 				require("impatient").enable_profile()
 			end,
 		})
-		install({
+		i({
 			"antoinemadec/FixCursorHold.nvim",
 			run = function()
 				vim.g.curshold_updatime = 100
 			end,
 		})
-		install({
+		i({
 			"norcalli/profiler.nvim",
 			config = function()
 				require("profiler")
@@ -32,18 +32,18 @@ packer.startup({
 		-- <~
 
 		-- ~> Essential
-		install({ "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim", after = "impatient" })
+		i({ "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim", after = "impatient" })
 		-- <~
 
 		-- ~> Telescope
-		install({
+		i({
 			"nvim-telescope/telescope.nvim",
 			after = "telescope-fzf-native.nvim",
 			config = function()
 				require("safdar.plugins.telescope")
 			end,
 		})
-		install({
+		i({
 			"nvim-telescope/telescope-fzf-native.nvim",
 			after = "plenary.nvim",
 			run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
@@ -51,13 +51,13 @@ packer.startup({
 		-- <~
 
 		-- ~> color scheme
-		install({
+		i({
 			"TheSafdarAwan/fused.nvim",
 			config = function()
 				require("safdar.plugins.fused")
 			end,
 		})
-		install({
+		i({
 			"ellisonleao/gruvbox.nvim",
 			"catppuccin/nvim",
 			"LunarVim/Colorschemes",
@@ -73,35 +73,35 @@ packer.startup({
 		-- <~
 
 		-- ~> more productive
-		install({
+		i({
 			"kyazdani42/nvim-tree.lua",
 			config = function()
 				require("safdar.plugins.nvim-tree")
 			end,
 		})
 		-- Git stuff
-		install({
+		i({
 			"lewis6991/gitsigns.nvim",
 			opt = true,
 			config = function()
 				require("safdar.plugins.gitsigns") -- should be called after other _plugins_configs
 			end,
 		})
-		install({
+		i({
 			"TimUntersberger/neogit",
 			after = "gitsigns.nvim",
 			config = function()
 				require("safdar.plugins.neogit")
 			end,
 		})
-		install({
+		i({
 			"sindrets/diffview.nvim",
 			after = "neogit",
 			config = function()
 				require("safdar.plugins.diffview")
 			end,
 		})
-		install({
+		i({
 			"kylechui/nvim-surround",
 			opt = true,
 			keys = { { "v", "S" }, { "n", "cs" }, { "n", "ds" } },
@@ -110,7 +110,7 @@ packer.startup({
 				require("safdar.plugins.surround")
 			end,
 		})
-		install({
+		i({
 			"s1n7ax/nvim-window-picker",
 			keys = { "n", "gf" },
 			tag = "v1.*",
@@ -121,7 +121,7 @@ packer.startup({
 		-- <~
 
 		-- ~> ui related stuff
-		install({
+		i({
 			"kyazdani42/nvim-web-devicons",
 			after = { "telescope.nvim", "nvim-tree.lua" },
 			config = function()
@@ -131,13 +131,13 @@ packer.startup({
 		-- use({
 		--     "onsails/lspkind-nvim",
 		-- }) -- better icons for the lsp
-		install({
+		i({
 			"lukas-reineke/indent-blankline.nvim",
 			config = function()
 				require("safdar.plugins.indent-blank-line")
 			end,
 		}) -- indent guides
-		install({
+		i({
 			"feline-nvim/feline.nvim",
 			after = "nvim-web-devicons",
 			config = function()
@@ -147,7 +147,7 @@ packer.startup({
 		-- <~
 
 		-- ~> linting files that null_ls does not support
-		install({
+		i({
 			"dense-analysis/ale",
 			opt = true,
 			config = function()
@@ -157,7 +157,7 @@ packer.startup({
 		-- <~
 
 		-- ~> load luasnips + cmp related in insert mode only
-		install({
+		i({
 			"neovim/nvim-lspconfig",
 			opt = true,
 			config = function()
@@ -165,8 +165,8 @@ packer.startup({
 			end,
 		})
 		-- this plguin should be loaded before lsp in the lazy-load-packer.lua
-		install({ "b0o/schemastore.nvim" })
-		install({
+		i({ "b0o/schemastore.nvim" })
+		i({
 			"jose-elias-alvarez/null-ls.nvim",
 			after = "nvim-lspconfig",
 			config = function()
@@ -175,7 +175,7 @@ packer.startup({
 			end,
 		})
 
-		install({
+		i({
 			"L3MON4D3/LuaSnip",
 			requires = {
 				"saadparwaiz1/cmp_luasnip",
@@ -185,7 +185,7 @@ packer.startup({
 			end,
 		})
 
-		install({
+		i({
 			"hrsh7th/nvim-cmp",
 			config = function()
 				require("safdar.lsp.cmp")
@@ -196,7 +196,7 @@ packer.startup({
 			},
 		})
 
-		install({
+		i({
 			"tzachar/cmp-tabnine",
 			run = "./install.sh",
 			opt = true,
@@ -204,16 +204,16 @@ packer.startup({
 				require("safdar.plugins.tabnine")
 			end,
 		})
-		install({
+		i({
 			"hrsh7th/cmp-nvim-lua",
 			opt = true,
 		})
 
-		install({
+		i({
 			"hrsh7th/cmp-emoji",
 			event = "InsertEnter",
 		})
-		install({
+		i({
 			"uga-rosa/cmp-dictionary",
 			opt = true,
 			config = function()
@@ -223,28 +223,28 @@ packer.startup({
 		-- <~
 
 		-- ~> Lsp utils & enhancements
-		install({
+		i({
 			"ray-x/lsp_signature.nvim",
 			after = "nvim-lspconfig",
 			config = function()
 				require("safdar.plugins.lspsignature")
 			end,
 		})
-		install({
+		i({
 			"folke/trouble.nvim",
 			after = "lsp_signature.nvim",
 			config = function()
 				require("safdar.plugins.lsp-trouble")
 			end,
 		})
-		install({
+		i({
 			"glepnir/lspsaga.nvim",
 			after = "trouble.nvim",
 			config = function()
 				require("safdar.plugins.lspsaga")
 			end,
 		})
-		install({
+		i({
 			"AckslD/nvim-FeMaco.lua",
 			config = function()
 				require("femaco").setup()
@@ -255,7 +255,7 @@ packer.startup({
 		-- <~
 
 		-- ~> Debugging
-		install({
+		i({
 			"mfussenegger/nvim-dap",
 			requires = {
 				{ "theHamsta/nvim-dap-virtual-text" },
@@ -272,42 +272,42 @@ packer.startup({
 		-- <~
 
 		-- ~> syntax Highlighting
-		install({
+		i({
 			"nvim-treesitter/nvim-treesitter",
 			run = ":TSUpdate",
 			config = function()
 				require("safdar.plugins.treesitter")
 			end,
 		})
-		install({
+		i({
 			"nvim-treesitter/playground",
 			after = "nvim-treesitter",
 			config = function()
 				require("safdar.plugins.tsplayground")
 			end,
 		})
-		install({
+		i({
 			"windwp/nvim-ts-autotag",
 			after = "playground",
 			config = function()
 				require("nvim-ts-autotag").setup()
 			end,
 		})
-		install({
+		i({
 			"p00f/nvim-ts-rainbow",
 			after = "nvim-ts-autotag",
 		})
 		-- <~
 
 		-- ~> utils
-		install({
+		i({
 			"folke/todo-comments.nvim",
 			opt = true,
 			config = function()
 				require("safdar.plugins.todo-comments")
 			end,
 		})
-		install({
+		i({
 			"windwp/nvim-autopairs",
 			config = function()
 				require("nvim-autopairs").setup({
@@ -317,34 +317,34 @@ packer.startup({
 			end,
 		})
 		-- Packer
-		install({
+		i({
 			"folke/paint.nvim",
 			after = "nvim-treesitter",
 			config = function()
 				require("safdar.plugins.paint")
 			end,
 		})
-		install({
+		i({
 			"numToStr/Comment.nvim",
 			keys = { { "n", "gc" }, { "v", "gc" }, { "v", "gb" }, { "n", "gb" } },
 			config = function()
 				require("Comment").setup({})
 			end,
 		}) -- comment out the blocks of text
-		install({
+		i({
 			"andymass/vim-matchup",
 			after = { "nvim-treesitter" },
 			config = function()
 				require("safdar.plugins.vim-matchup")
 			end,
 		})
-		install({
+		i({
 			"norcalli/nvim-colorizer.lua",
 			config = function()
 				require("safdar.plugins.colorizer")
 			end,
 		}) -- shows the colors
-		install({
+		i({
 			"mbbill/undotree",
 			config = function()
 				require("safdar.plugins.undotree.maps")
@@ -353,7 +353,7 @@ packer.startup({
 		-- <~
 
 		-- ~> ThePrimeagen coconut oil
-		install({
+		i({
 			"ThePrimeagen/vim-be-good",
 			opt = true,
 			keys = { "n", "<leader>gg" },
@@ -361,7 +361,7 @@ packer.startup({
 				require("safdar.plugins.vim-be-good.maps")
 			end,
 		})
-		install({
+		i({
 			"ThePrimeagen/refactoring.nvim",
 			opt = true,
 			keys = { "n", "v" },
@@ -369,7 +369,7 @@ packer.startup({
 				require("safdar.plugins.refactoring")
 			end,
 		})
-		install({
+		i({
 			"ThePrimeagen/harpoon", -- the most amazing plugin i have yet discoverd
 			opt = true,
 			keys = { { "n", "<leader>a" }, { "n", "<leader>t" } },
@@ -378,7 +378,7 @@ packer.startup({
 			end,
 		})
 		-- TODO: work on this plugin as you explore more about git
-		install({
+		i({
 			"ThePrimeagen/git-worktree.nvim",
 			after = "diffview.nvim",
 			config = function()
@@ -397,7 +397,7 @@ packer.startup({
 
 		-- ~> Note Takign Stuff Stuff
 		-- norg
-		install({
+		i({
 			"nvim-neorg/neorg",
 			run = ":Neorg sync-parsers", -- This is the important bit!
 			requires = {
@@ -409,7 +409,7 @@ packer.startup({
 			end,
 		})
 		-- Markdwon Plugin
-		install({
+		i({
 			"iamcco/markdown-preview.nvim",
 			run = function()
 				vim.fn["mkdp#util#install"]()

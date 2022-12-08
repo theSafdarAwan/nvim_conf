@@ -1,11 +1,9 @@
 local vim = vim
 
 local M = {}
---[[
-for anyone coming here this file is just here so that the vim variable warnings only remain to this file
-i don't like warnings so i have defined it here and i access it using require and then requiring the all other
-options.
---]]
+-- for anyone coming here this file is just here so that the vim variable warnings only remain to this file
+-- i don't like warnings so i have defined it here and i access it using require and then requiring the all other
+-- options.
 M.vim = vim
 M.opt = vim.opt
 M.wo = vim.wo
