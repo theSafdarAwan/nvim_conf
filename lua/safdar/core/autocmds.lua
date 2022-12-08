@@ -51,6 +51,14 @@ M.autocmds = function()
 		callback = terminalMode,
 	})
 
+	-- dont list quickfix buffers
+	create_autocmd("FileType", {
+		pattern = "qf",
+		callback = function()
+			vim.opt_local.buflisted = false
+		end,
+	})
+
 	-- instead use gx map
 	--[[ -- mapping q to close the windows in help, packer and some other file types
 	local function quitter()

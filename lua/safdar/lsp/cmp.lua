@@ -1,5 +1,4 @@
 -- luasnip setup
-local luasnip = require("luasnip")
 local border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 -- local border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" }
 local cmp = require("cmp")

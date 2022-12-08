@@ -3,10 +3,45 @@ local utils = require("safdar.core.utils")
 local vim = utils.vim
 
 local packer = require("packer")
+packer.init({
+	auto_clean = true,
+	compile_on_sync = true,
+	git = { clone_timeout = 6000 },
+	profile = {
+		enable = true,
+		threshold = 100, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+	},
+	display = {
+		working_sym = "ﲊ",
+		error_sym = "✗ ",
+		done_sym = " ",
+		removed_sym = " ",
+		moved_sym = "",
+		open_fn = function()
+			return require("packer.util").float({ border = "single" })
+		end,
+	},
+})
 packer.startup({
 	function(i)
 		--  ~> Packer can manage itself
-		i({ "wbthomason/packer.nvim" })
+		i({
+			opt = true,
+			cmd = {
+				"PackerSnapshot",
+				"PackerSnapshotRollback",
+				"PackerSnapshotDelete",
+				"PackerInstall",
+				"PackerUpdate",
+				"PackerSync",
+				"PackerClean",
+				"PackerCompile",
+				"PackerStatus",
+				"PackerProfile",
+				"PackerLoad",
+			},
+			"wbthomason/packer.nvim",
+		})
 		-- <~
 
 		-- ~> Performance
@@ -104,7 +139,7 @@ packer.startup({
 		i({
 			"kylechui/nvim-surround",
 			opt = true,
-			keys = { { "v", "S" }, { "n", "cs" }, { "n", "ds" } },
+			keys = { { "v", "S" }, { "n", "cs" }, { "n", "ds" }, { "n", "ys" }, { "n", "yS" } },
 			-- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
 			config = function()
 				require("safdar.plugins.surround")
@@ -123,7 +158,6 @@ packer.startup({
 		-- ~> ui related stuff
 		i({
 			"kyazdani42/nvim-web-devicons",
-			after = { "telescope.nvim", "nvim-tree.lua" },
 			config = function()
 				require("nvim-web-devicons").setup()
 			end,
@@ -275,6 +309,14 @@ packer.startup({
 		i({
 			"nvim-treesitter/nvim-treesitter",
 			run = ":TSUpdate",
+			-- cmd = {
+			-- 	"TSInstall",
+			-- 	"TSBufEnable",
+			-- 	"TSBufDisable",
+			-- 	"TSEnable",
+			-- 	"TSDisable",
+			-- 	"TSModuleInfo",
+			-- },
 			config = function()
 				require("safdar.plugins.treesitter")
 			end,
@@ -421,24 +463,4 @@ packer.startup({
 		})
 		-- <~
 	end,
-	config = {
-		compile_path = vim.fn.stdpath("config") .. "/lua/_packer/init.lua",
-		auto_clean = true,
-		compile_on_sync = true,
-		git = { clone_timeout = 6000 },
-		profile = {
-			enable = true,
-			threshold = 100, -- the amount in ms that a plugins load time must be over for it to be included in the profile
-		},
-		display = {
-			working_sym = "ﲊ",
-			error_sym = "✗ ",
-			done_sym = " ",
-			removed_sym = " ",
-			moved_sym = "",
-			open_fn = function()
-				return require("packer.util").float({ border = "single" })
-			end,
-		},
-	},
 })
