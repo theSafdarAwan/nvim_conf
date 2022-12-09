@@ -2,20 +2,23 @@ local vim = vim
 local fn = vim.fn
 local bo = vim.bo
 
+-- the @lazy_loading takes a tbl with 4 keys
+-- events -- events like InsertEnter etc.
+-- plugin_name -- name of the plugin
+-- condition -- condition which returns a boolean
+
 local compiled = fn.stdpath("config") .. "/plugin/packer_compiled.lua"
 if fn.empty(fn.glob(compiled)) == 0 then
 	local plugins = {
 		{
 			events = { "InsertEnter" },
 			plugin_name = "cmp-tabnine",
-			time = 2000,
 		},
 		{
 			events = { "InsertEnter" },
 			plguin_name = "cmp-nvim-lua",
-			time = 3000,
+			au = true,
 			condition = function()
-				vim.cmd("packadd packer/opt/cmp-nvim-lua")
 				if bo.filetype == "lua" then
 					return true
 				end
@@ -24,7 +27,7 @@ if fn.empty(fn.glob(compiled)) == 0 then
 		{
 			events = { "InsertEnter" },
 			plugin_name = "cmp-dictionary",
-			time = 2000,
+			au = true,
 			condition = function()
 				local ft = { "markdown", "norg" }
 				for _, f in pairs(ft) do
@@ -35,43 +38,34 @@ if fn.empty(fn.glob(compiled)) == 0 then
 			end,
 		},
 		{
-			events = { "BufReadPost" },
+			events = { "VimEnter", "BufReadPost" },
 			plugin_name = "gitsigns.nvim",
 			condition = function()
 				local git_present = vim.fs.find({ ".git" }, { upward = true })[1]
 				if git_present then
+					-- vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
+					-- if vim.v.shell_error == 0 then
 					return true
 				end
 			end,
 		},
 		{
 			events = { "BufReadPost" },
-			plugin_name = "ale",
-			time = 2000,
-			condition = function()
-				if bo.filetype == "html" then
-					return true
-				end
-			end,
-		},
-		{
-			events = { "VimEnter" },
 			plugin_name = "nvim-lspconfig",
 		},
 		{
-			events = { "BufEnter" },
+			events = { "VimEnter" },
 			plugin_name = "todo-comments.nvim",
-			time = 1000,
 		},
 		{
 			events = { "InsertEnter" },
+			au = true,
 			plugin_name = "markdown-preview.nvim",
 			condition = function()
 				if bo.filetype == "markdown" then
 					return true
 				end
 			end,
-			time = 3000,
 		},
 	}
 	require("safdar.core.utils").lazy_load(plugins)

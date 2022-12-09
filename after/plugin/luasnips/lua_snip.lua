@@ -75,6 +75,8 @@ local luaSnips = {
 	parse("gfn", "$1 = function($2)\n\t$0\nend"),
 	-- local table
 	parse("ltb", "local $1 = {\n\t$2\n}$0"),
+	-- vim.inspect
+	parse("ins", "print(vim.inspect($0))"),
 	s(
 		"trig",
 		c(1, {

@@ -107,6 +107,9 @@ map("n", "<leader>tn", ":tabnew<cr>", opts)
 -- a single pane so i replicated the ZZ command functionality and replace it with this one
 map("n", "<leader>ZZ", ":wa | qa <cr>", opts)
 
+-- source the current file
+map("n", "<leader>so", ":so %<CR>", opts)
+
 -- =========================================================================
 --                            Remove Mappings                            "
 -- =========================================================================

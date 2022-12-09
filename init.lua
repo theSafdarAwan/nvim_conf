@@ -36,6 +36,11 @@ local function setup()
 	-- lazy load the plugins
 	vim.cmd("PackerInstall")
 	vim.cmd("PackerCompile")
+	vim.defer_fn(
+		function()
+			require("safdar.core.lazy_load")
+		end, 0
+	)
 end
 
 -- install packer if doesn't exist's and compile the it if the compiled file
@@ -49,15 +54,15 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	-- install plugins + compile their configs
 	vim.cmd("packadd packer.nvim")
 	setup()
+	return
 elseif fn.empty(fn.glob(compiled)) > 0 then
+	-- need to lazy load plugin one by one
 	print("packer is compiling ..")
-	setup()
 	vim.g.lazy_load = true
+	setup()
 	vim.defer_fn(function()
-		require("after.plugin.lazy_load")
-	end, 1000)
-	vim.defer_fn(function()
-		vim.api.nvim_notify("packer has compiled reload neovim.", vim.log.levels.ERROR, {})
-	end, 2000)
+		vim.api.nvim_notify("compiled", vim.log.levels.WARN, {})
+	end, 0)
+	return
 end
 setup()

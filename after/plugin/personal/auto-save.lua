@@ -101,9 +101,9 @@ local function auto_save_fn(buf_info)
 			command("silent update")
 			-- print("saved at " .. vim.fn.strftime("%H:%M:%S"))
 			api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
-			fn.timer_start(1500, function()
-				cmd("echon ''")
-			end)
+			-- fn.timer_start(1500, function()
+			-- 	cmd("echon ''")
+			-- end)
 		end
 
 		local function defer_fn()

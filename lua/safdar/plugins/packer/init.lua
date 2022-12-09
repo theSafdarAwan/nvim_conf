@@ -163,7 +163,7 @@ local plugins = {
 
 	-- ~> linting files that null_ls does not support
 	["dense-analysis/ale"] = {
-		opt = true,
+		ft = { "html" },
 		config = function()
 			require("safdar.plugins.ale")
 		end,
@@ -214,7 +214,7 @@ local plugins = {
 		end,
 	},
 	["hrsh7th/cmp-nvim-lua"] = {
-		opt = true,
+		ft = "lua",
 	},
 
 	["hrsh7th/cmp-emoji"] = {
