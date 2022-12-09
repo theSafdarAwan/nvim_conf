@@ -36,11 +36,9 @@ local function setup()
 	-- lazy load the plugins
 	vim.cmd("PackerInstall")
 	vim.cmd("PackerCompile")
-	vim.defer_fn(
-		function()
-			require("safdar.core.lazy_load")
-		end, 0
-	)
+	vim.defer_fn(function()
+		require("safdar.core.lazy_load")
+	end, 0)
 end
 
 -- install packer if doesn't exist's and compile the it if the compiled file

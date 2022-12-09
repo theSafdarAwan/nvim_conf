@@ -89,12 +89,6 @@ M.plugins_autocmds = function()
 		pattern = { "norg" },
 		callback = norg_ft_opts,
 	})
-
-	-- Colorizer plugin attach autocmd's
-	create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
-		group = autocmds_augroup,
-		command = "ColorizerAttachToBuffer",
-	})
 end
 
 return M

@@ -3,3 +3,5 @@ safdar
 config
 lsp
 condition
+install
+event/!

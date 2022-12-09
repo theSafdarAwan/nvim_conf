@@ -50,14 +50,18 @@ opt.list = true
 
 -- set list chars
 local list_chars_symbols = {
-	["eol"] = "↲",
-	["tab"] = "» ",
-	-- ["space"] = "⋅", -- dont want space
+	-- ["eol"] = "↲",
+	["eol"] = "↴",
+	["tab"] = "→ ",
+	-- ["space"] = "␣",
 	["trail"] = "-",
-	["extends"] = "☛",
-	["precedes"] = "☚",
+	-- ["extends"] = "☛",
+	-- ["precedes"] = "☚",
+	["extends"] = "»",
+	["precedes"] = "«",
 	["conceal"] = "┊",
-	["nbsp"] = "☠",
+	-- ["nbsp"] = "☠",
+	["nbsp"] = "⣿",
 }
 for k, v in pairs(list_chars_symbols) do
 	opt.listchars:append(k .. ":" .. v)
@@ -89,6 +93,7 @@ opt.number = true
 opt.relativenumber = true
 
 opt.wildoptions = "pum"
+opt.wildmode = "longest:full,full"
 opt.winblend = 0
 opt.pumblend = 0
 opt.pumheight = 16
@@ -102,7 +107,8 @@ opt.softtabstop = 4
 opt.smartindent = true
 opt.expandtab = false
 
--- opt.shortmess:append("c")
+opt.shortmess:append("c") -- Shut off completion messages
+
 -- opt.isfname:append("@-@")
 
 -- opt.whichwrap="<>hl"

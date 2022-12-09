@@ -7,6 +7,7 @@ local bo = vim.bo
 -- plugin_name -- name of the plugin
 -- condition -- condition which returns a boolean
 
+-- use lazy_load function for each plugin and maybe use the cond key in packer
 local compiled = fn.stdpath("config") .. "/plugin/packer_compiled.lua"
 if fn.empty(fn.glob(compiled)) == 0 then
 	local plugins = {
@@ -56,16 +57,6 @@ if fn.empty(fn.glob(compiled)) == 0 then
 		{
 			events = { "VimEnter" },
 			plugin_name = "todo-comments.nvim",
-		},
-		{
-			events = { "InsertEnter" },
-			au = true,
-			plugin_name = "markdown-preview.nvim",
-			condition = function()
-				if bo.filetype == "markdown" then
-					return true
-				end
-			end,
 		},
 	}
 	require("safdar.core.utils").lazy_load(plugins)

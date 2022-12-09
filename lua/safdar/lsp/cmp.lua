@@ -83,6 +83,7 @@ cmp.setup({
 			name = "buffer",
 			keyword_length = 3,
 		},
+		{ name = "nvim_lsp_signature_help", group_index = 1 },
 		{ name = "nvim_lua" },
 		{ name = "dictionary" },
 		{ name = "emoji" },
@@ -95,7 +96,3 @@ cmp.setup({
 
 -- require the vscode html tag completion
 require("luasnip/loaders/from_vscode").lazy_load()
-
--- autopairs
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
