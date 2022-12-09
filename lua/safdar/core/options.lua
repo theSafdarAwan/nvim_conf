@@ -1,7 +1,7 @@
-local utils = require("safdar.core.utils")
-local opt = utils.opt
-local wo = utils.wo
-local g = utils.g
+local vim = vim
+local opt = vim.opt
+local wo = vim.wo
+local g = vim.g
 
 g.mapleader = " "
 g.localleader = ","

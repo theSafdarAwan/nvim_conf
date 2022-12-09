@@ -7,9 +7,9 @@
 		This file includes some of the improvement for the ui or some plugins related to
 		UI. I didn't wanted to add a new file for every utility so i added single for.
 --]]
-local utils = require("safdar.core.utils")
-local api = utils.api
-local command = utils.command
+local vim = vim
+local api = vim.api
+local command = vim.api.nvim_command
 local create_autocmd = api.nvim_create_autocmd
 
 local augroup_ui = api.nvim_create_augroup("ui.lua", { clear = true })

@@ -1,5 +1,4 @@
-local utils = require("safdar.core.utils")
-local cmd = utils.cmd
+local cmd = vim.cmd
 
 cmd([[
 let b:ale_linters = ['htmlhint']

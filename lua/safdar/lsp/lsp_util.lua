@@ -1,5 +1,4 @@
-local utils = require("safdar.core.utils")
-local vim = utils.vim
+local vim = vim
 local M = {}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

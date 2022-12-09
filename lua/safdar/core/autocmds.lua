@@ -1,11 +1,10 @@
 local M = {}
 
-local utils = require("safdar.core.utils")
-local vim = utils.vim
-local api = utils.api
-local opt = utils.opt
-local optl = utils.optl
-local cmd = utils.cmd
+local vim = vim
+local api = vim.api
+local opt = vim.opt
+local optl = vim.opt_local
+local cmd = vim.cmd
 local bo = vim.bo
 local create_autocmd = api.nvim_create_autocmd
 

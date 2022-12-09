@@ -1,5 +1,4 @@
-local utils = require("safdar.core.utils")
-local vim = utils.vim
+local vim = vim
 
 -- local on_attach = require("safdar.lsp.lsp_util").on_attach
 --=======================================================

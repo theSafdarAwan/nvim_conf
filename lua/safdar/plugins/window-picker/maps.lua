@@ -1,6 +1,5 @@
-local utils = require("safdar.core.utils")
-local vim = utils.vim
-local map = utils.map
+local vim = vim
+local map = require("safdar.core.utils").map
 
 local picker = require("window-picker")
 map("n", "gf", function()

@@ -1,6 +1,5 @@
-local utils = require("safdar.core.utils")
 local maps = require("safdar.plugins.telescope.maps")
-local vim = utils.vim
+local vim = vim
 local M = {}
 -- =========================================================================
 --                          telescope config

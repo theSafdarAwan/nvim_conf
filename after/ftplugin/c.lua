@@ -1,10 +1,11 @@
 -- TODO: do something cool with this
-local utils = require("safdar.core.utils")
-local api = utils.api
-local vim = utils.vim
-local command = utils.command
-local map = utils.map
+local vim = vim
+local api = vim.api
+local command = vim.api.nvim_command
 local fn = vim.fn
+
+local utils = require("safdar.core.utils")
+local map = utils.map
 
 -- NOTE: this is just for fun to test the limits of neovim
 local function c_debugger()

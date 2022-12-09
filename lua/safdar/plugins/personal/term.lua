@@ -1,19 +1,18 @@
-local utils = require("safdar.core.utils")
-local vim = utils.vim
+local vim = vim
 
 local te_buf = nil
 local te_win_id = nil
 
-local command = utils.command
-local fun = vim.fn
-local gotoid = fun.win_gotoid
-local getid = fun.win_getid
+local command = vim.api.nvim_command
+local fn = vim.fn
+local gotoid = fn.win_gotoid
+local getid = fn.win_getid
 
-local function openTerminal()
-	if fun.bufexists(te_buf) ~= 1 then
+local function open_terminal()
+	if fn.bufexists(te_buf) ~= 1 then
 		command("sp | winc J | res 15 | te")
 		te_win_id = getid()
-		te_buf = fun.bufnr("%")
+		te_buf = fn.bufnr("%")
 	elseif gotoid(te_win_id) ~= 1 then
 		command("sb " .. te_buf .. "| winc J | res 15 ")
 		te_win_id = getid()
@@ -21,17 +20,17 @@ local function openTerminal()
 	command("startinsert")
 end
 
-local function hideTerminal()
+local function hide_terminal()
 	if gotoid(te_win_id) == 1 then
 		command("hide")
 	end
 end
 
-function ToggleTerminal()
+function toggle_terminal()
 	if gotoid(te_win_id) == 1 then
-		hideTerminal()
+		hide_terminal()
 	else
-		openTerminal()
+		open_terminal()
 	end
 end
 
