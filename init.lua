@@ -35,6 +35,12 @@ local function setup_plugins()
 	require("safdar").plugins()
 	vim.cmd("PackerInstall")
 	vim.cmd("PackerCompile")
+	-- to load plugins which are not loaded after compilation or installation
+	vim.defer_fn(function()
+		vim.cmd("silent! do BufWinEnter")
+		vim.cmd("silent! LspStop")
+		vim.cmd("silent! LspStart ")
+	end, 1000)
 end
 
 local function notifyer(notify)

@@ -45,10 +45,6 @@ load.loader = function(plugin)
 		schedule_load(plugin.name)
 	end
 	register_autocmd(plugin)
-	-- so that the lsp indexes the repo
-	if plugin.name == "nvim-lspconfig" then
-		vim.cmd("silent! do FileType")
-	end
 end
 
 -- neorg file type

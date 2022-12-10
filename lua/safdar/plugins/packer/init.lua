@@ -315,15 +315,11 @@ local plugins = {
 			require("fused").lazy_load("cmp")
 		end,
 	},
-	["hrsh7th/cmp-nvim-lsp"] = {
-		after = "nvim-cmp",
-		requires = {
-			{ "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-nvim-lsp-signature-help", after = { "cmp-buffer" } },
-			{ "hrsh7th/cmp-emoji", key = { "i", ":" } },
-		},
-	},
+	["hrsh7th/cmp-nvim-lsp"] = { after = "nvim-cmp" },
+	["hrsh7th/cmp-buffer"] = { after = "cmp-nvim-lsp" },
+	["hrsh7th/cmp-nvim-lsp-signature-help"] = { after = { "cmp-buffer" } },
 	["hrsh7th/cmp-nvim-lua"] = { ft = "lua" },
+	["hrsh7th/cmp-emoji"] = { after = "cmp-nvim-lsp-signature-help" },
 
 	["tzachar/cmp-tabnine"] = {
 		run = "./install.sh",
