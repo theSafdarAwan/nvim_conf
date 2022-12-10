@@ -3,7 +3,7 @@ local actions = require("diffview.actions")
 
 M.maps = function()
 	local utils = require("safdar.core.utils")
-	local map = utils.map
+	local map = utils.set_map
 	local opts = { noremap = true, silent = true }
 
 	map("n", "ygd", "<cmd>DiffviewOpen<CR>", opts)
@@ -16,8 +16,8 @@ M.keymaps = {}
 M.keymaps.view = {
 	["J"] = actions.select_next_entry,
 	["K"] = actions.select_prev_entry,
-	["<C-w>gf"] = actions.goto_file_split,
-	["gF"] = actions.goto_file_tab,
+	["<C-w>go"] = actions.goto_file_split,
+	["go"] = actions.goto_file_tab,
 	["E"] = actions.focus_files,
 	["T"] = actions.toggle_files,
 	["cL"] = actions.cycle_layout,
@@ -51,8 +51,8 @@ M.keymaps.file_panel = {
 	["<c-f>"] = actions.scroll_view(0.25),
 	["J"] = actions.select_next_entry,
 	["K"] = actions.select_prev_entry,
-	["<C-w>gf"] = actions.goto_file_split,
-	["gF"] = actions.goto_file_tab,
+	["<C-w>go"] = actions.goto_file_split,
+	["go"] = actions.goto_file_tab,
 	["i"] = actions.listing_style,
 	["f"] = actions.toggle_flatten_dirs,
 	["R"] = actions.refresh_files,
@@ -76,8 +76,8 @@ M.keymaps.file_history_panel = {
 	["<c-f>"] = actions.scroll_view(0.25),
 	["J"] = actions.select_next_entry,
 	["K"] = actions.select_prev_entry,
-	["<C-w>gf"] = actions.goto_file_split,
-	["gF"] = actions.goto_file_tab,
+	["<C-w>go"] = actions.goto_file_split,
+	["go"] = actions.goto_file_tab,
 	["E"] = actions.focus_files,
 	["T"] = actions.toggle_files,
 	["cL"] = actions.cycle_layout,

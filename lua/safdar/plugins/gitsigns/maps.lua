@@ -1,6 +1,6 @@
 local M = {}
 local utils = require("safdar.core.utils")
-local map = utils.map
+local map = utils.set_map
 local vim = vim
 
 M.mappings = function(_) -- gives a bufnr

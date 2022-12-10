@@ -1,5 +1,5 @@
 local utils = require("safdar.core.utils")
-local map = utils.map
+local map = utils.set_map
 local command = utils.command
 local b = utils.bo
 local opts = { noremap = true, silent = true }

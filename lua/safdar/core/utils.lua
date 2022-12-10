@@ -3,15 +3,24 @@ local api = vim.api
 local bo = vim.bo
 
 local M = {}
-M.map = function(mode, mapping, command, opts)
+
+M.set_map = function(mode, mapping, command, opts)
 	vim.keymap.set(mode, mapping, command, opts)
 end
 
-M.buf_set_keymap = function(buffer, mode, lhs, rhs, opts)
+M.del_map = function(mode, mapping, opts)
+	vim.keymap.set(mode, mapping, opts)
+end
+
+M.deprecated = function()
+	-- vim.g.dep_foo = true
+end
+
+M.buf_set_map = function(buffer, mode, lhs, rhs, opts)
 	api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, opts)
 end
 
-M.buf_set_option = function(buffer, name, value)
+M.buf_set_opt = function(buffer, name, value)
 	api.nvim_buf_set_option(buffer, name, value)
 end
 
@@ -38,8 +47,13 @@ M.lazy_load = function(plugins_tbl)
 							if plugin["condition"] then
 								condition = plugin.condition
 							end
-							if not packer_plugins[plugin.plugin_name].loaded and condition then
-								api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin.plugin_name)
+							if
+								not packer_plugins[plugin.plugin_name].loaded
+								and condition
+							then
+								api.nvim_del_augroup_by_name(
+									"BeLazyOnFileOpen" .. plugin.plugin_name
+								)
 								vim.defer_fn(function()
 									packer.loader(plugin.plugin_name)
 								end, 1)

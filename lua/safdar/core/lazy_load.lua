@@ -17,16 +17,6 @@ if fn.empty(fn.glob(compiled)) == 0 then
 		},
 		{
 			events = { "InsertEnter" },
-			plguin_name = "cmp-nvim-lua",
-			au = true,
-			condition = function()
-				if bo.filetype == "lua" then
-					return true
-				end
-			end,
-		},
-		{
-			events = { "InsertEnter" },
 			plugin_name = "cmp-dictionary",
 			au = true,
 			condition = function()
@@ -39,7 +29,7 @@ if fn.empty(fn.glob(compiled)) == 0 then
 			end,
 		},
 		{
-			events = { "VimEnter", "BufReadPost" },
+			events = { "BufReadPost", "VimEnter" },
 			plugin_name = "gitsigns.nvim",
 			condition = function()
 				local git_present = vim.fs.find({ ".git" }, { upward = true })[1]

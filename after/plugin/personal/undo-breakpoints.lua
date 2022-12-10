@@ -1,6 +1,6 @@
 -- undo break points
 local utils = require("safdar.core.utils")
-local map = utils.map
+local map = utils.set_map
 local opts = { noremap = true, silent = true }
 
 local function addBreakPoint(symbol)

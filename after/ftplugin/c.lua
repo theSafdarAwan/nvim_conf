@@ -5,7 +5,7 @@ local command = vim.api.nvim_command
 local fn = vim.fn
 
 local utils = require("safdar.core.utils")
-local map = utils.map
+local map = utils.set_map
 
 -- NOTE: this is just for fun to test the limits of neovim
 local function c_debugger()

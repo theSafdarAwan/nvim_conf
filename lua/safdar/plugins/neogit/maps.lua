@@ -1,7 +1,7 @@
 local M = {}
 
 M.mappings = function()
-	local map = require("safdar.core.utils").map
+	local map = require("safdar.core.utils").set_map
 	map("n", "ygc", ":Neogit commit<cr>", { noremap = true, silent = true })
 	map("n", "ygo", ":Neogit<cr>", { noremap = true, silent = true })
 end

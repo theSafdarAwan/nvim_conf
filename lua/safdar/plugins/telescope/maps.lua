@@ -1,51 +1,51 @@
-local map = require("safdar.core.utils").map
+local set_map = require("safdar.core.utils").set_map
 -- --> Telescope
-map("n", "<leader>vc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
-map("n", "<leader>tr", ":Telescope resume<CR>", { noremap = true, silent = true })
-map("n", "<leader>b", ":Telescope git_bcommits<CR>", { noremap = true, silent = true })
-map("n", "<leader>vo", ":Telescope vim_options<CR>", { noremap = true, silent = true })
-map("n", "<leader>vm", ":Telescope marks<CR>", { noremap = true, silent = true })
-map("n", "<leader>ch", ":Telescope keymaps<CR>", { noremap = true, silent = true })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
-map("n", "<leader>fh", ":Telescope help_tags<cr>", { noremap = true, silent = true })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { noremap = true, silent = true })
-map("n", "<leader>tb", ":Telescope builtin<cr>", { noremap = true, silent = true })
-map("n", "<leader>rr", ":Telescope reloader<cr>", { noremap = true, silent = true })
+set_map("n", "<leader>vc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
+set_map("n", "<leader>tr", ":Telescope resume<CR>", { noremap = true, silent = true })
+set_map("n", "<leader>b", ":Telescope git_bcommits<CR>", { noremap = true, silent = true })
+set_map("n", "<leader>vo", ":Telescope vim_options<CR>", { noremap = true, silent = true })
+set_map("n", "<leader>vm", ":Telescope marks<CR>", { noremap = true, silent = true })
+set_map("n", "<leader>ch", ":Telescope keymaps<CR>", { noremap = true, silent = true })
+set_map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
+set_map("n", "<leader>fh", ":Telescope help_tags<cr>", { noremap = true, silent = true })
+set_map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { noremap = true, silent = true })
+set_map("n", "<leader>tb", ":Telescope builtin<cr>", { noremap = true, silent = true })
+set_map("n", "<leader>rr", ":Telescope reloader<cr>", { noremap = true, silent = true })
 
-map("n", "<leader>en", function()
+set_map("n", "<leader>en", function()
 	require("safdar.plugins.telescope").search_nvim_dotfiles()
 end, { noremap = true, silent = true })
 
-map("n", "<leader>gtd", function()
+set_map("n", "<leader>gtd", function()
 	require("safdar.plugins.telescope").gtd_neorg_files()
 end, { noremap = true, silent = true })
 
-map("n", "<leader>f;", function()
+set_map("n", "<leader>f;", function()
 	require("safdar.plugins.telescope").ivy_find_files_with_preview()
 end, { noremap = true, silent = true })
 
-map("n", "<leader>fb", function()
+set_map("n", "<leader>fb", function()
 	require("safdar.plugins.telescope").center_list_buffers_find()
 end, { noremap = true, silent = true })
 
-map("n", "<leader>tc", function()
+set_map("n", "<leader>tc", function()
 	require("safdar.plugins.telescope").get_cursor_change_colorscheme()
 end, { noremap = true, silent = true })
 
-map("n", "<leader>ti", function()
+set_map("n", "<leader>ti", function()
 	require("safdar.plugins.telescope").ivy_colorscheme_preview()
 end, { noremap = true, silent = true })
 
-map("n", "<leader>ff", function()
+set_map("n", "<leader>ff", function()
 	-- ":Telescope find_files theme=get_cursor previewer=false find_command=rg,--hidden,--files<CR>",
 	require("safdar.plugins.telescope").center_list_find_files()
 end, { noremap = true, silent = true })
 
-map("n", "<C-_>", function()
+set_map("n", "<C-_>", function()
 	require("safdar.plugins.telescope").current_buffer_fuzzy_find()
 end, { noremap = true, silent = true })
 
-map("n", "<leader>ds", function()
+set_map("n", "<leader>ds", function()
 	require("safdar.plugins.telescope").center_list_document_symbols_find()
 end, { noremap = true, silent = true })
 

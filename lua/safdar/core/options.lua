@@ -100,10 +100,10 @@ opt.pumheight = 16
 
 -- Indenline
 opt.smartindent = true
-opt.shiftwidth = 4
-opt.tabstop = 4
+opt.shiftwidth = 8
+opt.tabstop = 8
 opt.textwidth = 81
-opt.softtabstop = 4
+opt.softtabstop = 8
 opt.smartindent = true
 opt.expandtab = false
 

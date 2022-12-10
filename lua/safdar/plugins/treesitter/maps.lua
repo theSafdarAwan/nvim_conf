@@ -1,6 +1,6 @@
-local map = require("safdar.core.utils").map
+local set_map = require("safdar.core.utils").set_map
 --> TreeSitter
-map("n", "gtk", ":TSHighlightCapturesUnderCursor<cr>", { noremap = true, silent = true })
+set_map("n", "gtk", ":TSHighlightCapturesUnderCursor<cr>", { noremap = true, silent = true })
 
 local M = {}
 M.treesitter_maps = {

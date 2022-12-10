@@ -1,4 +1,4 @@
-local map = require("safdar.core.utils").map
+local map = require("safdar.core.utils").set_map
 --> lsp trouble
 map("n", "[tt", ":TroubleToggle<cr>", { noremap = true, silent = true })
 map("n", "[td", "<cmd>TroubleToggle document_diagnostics<cr>", { noremap = true, silent = true })

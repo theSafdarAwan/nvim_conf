@@ -1,5 +1,5 @@
 local opts = { noremap = true, silent = true }
-local map = require("safdar.core.utils").map
+local map = require("safdar.core.utils").set_map
 --> Lspsaga
 -- hover diagnostic
 map("n", "[k", ":Lspsaga show_cursor_diagnostics<CR>", opts)

@@ -1,7 +1,7 @@
 local utils = require("safdar.core.utils")
-local map = utils.map
+local map = utils.set_map
 local opts = { noremap = true, silent = true }
-local buf_map = utils.buf_set_keymap
+local buf_map = utils.buf_set_map
 
 local M = {}
 

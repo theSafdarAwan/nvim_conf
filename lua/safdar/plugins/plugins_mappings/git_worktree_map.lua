@@ -1,4 +1,4 @@
-local map = require("safdar.core.utils").map
+local map = require("safdar.core.utils").set_map
 
 map(
 	"n",

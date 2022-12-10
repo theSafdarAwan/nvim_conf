@@ -122,6 +122,7 @@ local plugins = {
 			require("safdar.plugins.vscode")
 		end,
 	},
+	["shaunsingh/nord.nvim"] = {},
 	-- <~
 
 	----------------------------------------------------------------------
@@ -133,8 +134,15 @@ local plugins = {
 		end,
 	},
 	["kylechui/nvim-surround"] = {
-		opt = true,
-		keys = { { "v", "S" }, { "n", "cs" }, { "n", "ds" }, { "n", "ys" }, { "n", "yS" } },
+		keys = {
+			{ "v", "S" },
+			{ "n", "cs" },
+			{ "n", "ds" },
+			{ "n", "ys" },
+			{ "n", "yS" },
+			{ "n", "ca" },
+			{ "n", "da" },
+		},
 		-- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
 		config = function()
 			require("safdar.plugins.surround")
@@ -190,11 +198,11 @@ local plugins = {
 	["lewis6991/gitsigns.nvim"] = {
 		opt = true,
 		config = function()
-			require("safdar.plugins.gitsigns") -- should be called after other _plugins_configs
+			require("safdar.plugins.gitsigns")
 		end,
 	},
 	["TimUntersberger/neogit"] = {
-		keys = { { "n", "yso" }, { "n", "ygc" } },
+		keys = { { "n", "ygo" }, { "n", "ygc" } },
 		config = function()
 			require("safdar.plugins.neogit")
 		end,
@@ -256,6 +264,7 @@ local plugins = {
 	},
 	-- ~> linting files that null_ls does not support
 	["dense-analysis/ale"] = {
+		event = "InsertEnter",
 		ft = { "html" },
 		config = function()
 			require("safdar.plugins.ale")
@@ -334,7 +343,7 @@ local plugins = {
 		end,
 		cmd = "CodeActionMenu",
 		keys = {
-			{ "n", "ca" },
+			{ "n", "gca" },
 		},
 	},
 	["filipdutescu/renamer.nvim"] = {
@@ -353,10 +362,10 @@ local plugins = {
 	--                         ~> Debugging                             --
 	----------------------------------------------------------------------
 	["mfussenegger/nvim-dap"] = {
-		keys = { "n", "_" },
+		after = "nvim-dap-virtual-text",
 		requires = {
-			{ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap" },
-			{ "rcarriga/nvim-dap-ui", after = "nvim-dap" },
+			{ "rcarriga/nvim-dap-ui", after = "plenary.nvim" },
+			{ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap-ui" },
 		},
 		config = function()
 			require("safdar.plugins.dap")
@@ -384,7 +393,7 @@ local plugins = {
 		end,
 	},
 	["folke/paint.nvim"] = {
-		after = "playground",
+		after = "impatient.nvim",
 		config = function()
 			require("safdar.plugins.paint")
 		end,
@@ -429,13 +438,8 @@ local plugins = {
 	},
 	["numToStr/Comment.nvim"] = {
 		keys = {
-			"gcc",
-			"gcb",
-			"gcl",
-			"gbl",
-			"gco",
-			"gcO",
-			"gca",
+			{ "v", "gc" },
+			{ "n", "gc" },
 		},
 		config = function()
 			require("Comment").setup({})
