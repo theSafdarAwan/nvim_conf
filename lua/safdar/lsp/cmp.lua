@@ -93,6 +93,3 @@ cmp.setup({
 		},
 	},
 })
-
--- require the vscode html tag completion
-require("luasnip/loaders/from_vscode").lazy_load()

@@ -30,3 +30,8 @@ ls.config.set_config({
 })
 
 require("safdar.plugins.luasnip.maps")
+
+-- require the vscode html tag completion
+require("luasnip/loaders/from_vscode").lazy_load()
+
+-- require snippets

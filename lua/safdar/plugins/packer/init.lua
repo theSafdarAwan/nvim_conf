@@ -295,7 +295,7 @@ local plugins = {
 	--                ~> Completion and Snippets                        --
 	----------------------------------------------------------------------
 	["L3MON4D3/LuaSnip"] = {
-		after = "impatient.nvim",
+		after = "vim-matchup",
 		requires = {
 			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
 		},
