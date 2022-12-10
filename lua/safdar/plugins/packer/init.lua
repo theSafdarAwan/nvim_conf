@@ -295,7 +295,7 @@ local plugins = {
 	--                ~> Completion and Snippets                        --
 	----------------------------------------------------------------------
 	["L3MON4D3/LuaSnip"] = {
-		after = "vim-matchup",
+		after = "impatient.nvim",
 		requires = {
 			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
 		},
@@ -306,17 +306,22 @@ local plugins = {
 
 	["hrsh7th/nvim-cmp"] = {
 		module = { "nvim-cmp", "cmp" },
+		setup = function()
+			local nvim_cmp = { name = "nvim-cmp", event = "InsertEnter" }
+			require("safdar.core.lazy_load").load.loader(nvim_cmp)
+		end,
 		config = function()
 			require("safdar.lsp.cmp")
 			require("fused").lazy_load("cmp")
 		end,
+	},
+	["hrsh7th/cmp-nvim-lsp"] = {
+		after = "nvim-cmp",
 		requires = {
-			{ "hrsh7th/cmp-nvim-lsp", event = "ModeChanged" },
 			{ "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-emoji", after = "cmp-buffer" },
-			{ "hrsh7th/cmp-nvim-lsp-signature-help", after = { "nvim-cmp" } },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help", after = { "cmp-buffer" } },
+			{ "hrsh7th/cmp-emoji", key = { "i", ":" } },
 		},
-		event = "InsertEnter",
 	},
 	["hrsh7th/cmp-nvim-lua"] = { ft = "lua" },
 
