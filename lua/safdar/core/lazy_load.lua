@@ -21,6 +21,7 @@ end
 local function register_autocmd(plugin)
 	api.nvim_create_autocmd(plugin.events or events, {
 		group = api.nvim_create_augroup("lazy_load_" .. tostring(plugin.name), { clear = true }),
+		pattern = plugin.pattern,
 		callback = plugin.callback,
 	})
 end
@@ -39,7 +40,7 @@ load.gitsigns = function(gitsigns)
 end
 
 -- load as soon as possible without callback
-load.asap = function(plugin)
+load.loader = function(plugin)
 	plugin.callback = function()
 		schedule_load(plugin.name)
 	end
@@ -48,10 +49,9 @@ end
 
 -- neorg file type
 load.neorg = function(neorg)
+	neorg.pattern = "*norg"
 	neorg.callback = function()
-		if vim.bo.filetype == "norg" then
-			schedule_load(neorg.name)
-		end
+		schedule_load(neorg.name)
 	end
 	register_autocmd(neorg)
 end

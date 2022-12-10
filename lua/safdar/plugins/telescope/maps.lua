@@ -1,3 +1,5 @@
+local M = {}
+
 local set_map = require("safdar.core.utils").set_map
 -- --> Telescope
 set_map("n", "<leader>vc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
@@ -49,8 +51,20 @@ set_map("n", "<leader>ds", function()
 	require("safdar.plugins.telescope").center_list_document_symbols_find()
 end, { noremap = true, silent = true })
 
+M.packer_keys = {
+	{ "n", "<leader>f" },
+	{ "n", "<leader>t" },
+	{ "n", "<leader>c" },
+	{ "n", "<leader>r" },
+	{ "n", "<leader>v" },
+	{ "n", "<leader>b" },
+	{ "n", "<leader>d" },
+	{ "n", "<C-_>" },
+	{ "n", "<leader>t" },
+	{ "n", "<leader>g" },
+}
+
 -- Telescope core mappings
-local M = {}
 M.mappings = function()
 	return {
 		i = {

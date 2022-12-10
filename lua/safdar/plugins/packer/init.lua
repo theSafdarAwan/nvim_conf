@@ -65,18 +65,21 @@ local plugins = {
 	--                        ~> Telescope                              --
 	----------------------------------------------------------------------
 	["nvim-telescope/telescope.nvim"] = {
-		after = "telescope-live-grep-args.nvim",
+		event = "BufWinEnter",
+		keys = require("safdar.plugins.telescope.maps").packer_keys,
 		module_pattern = "telescope.*",
-		requires = {
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-			},
-			{ "nvim-telescope/telescope-live-grep-args.nvim", after = "telescope-fzf-native.nvim" },
-		},
 		config = function()
 			require("safdar.plugins.telescope")
+			require("fused").lazy_load("telescope")
 		end,
+	},
+	["nvim-telescope/telescope-fzf-native.nvim"] = {
+		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		requires = {
+			event = "BufRead",
+			"nvim-telescope/telescope-live-grep-args.nvim",
+			after = "telescope-fzf-native.nvim",
+		},
 	},
 	-- <~
 
@@ -120,6 +123,7 @@ local plugins = {
 	["kyazdani42/nvim-tree.lua"] = {
 		config = function()
 			require("safdar.plugins.nvim-tree")
+			require("fused").lazy_load("nvimtree")
 		end,
 	},
 	["kylechui/nvim-surround"] = {
@@ -198,12 +202,14 @@ local plugins = {
 		keys = { { "n", "ygo" }, { "n", "ygc" } },
 		config = function()
 			require("safdar.plugins.neogit")
+			require("fused").lazy_load("neogit")
 		end,
 	},
 	["sindrets/diffview.nvim"] = {
 		keys = { { "n", "ygd" }, { "n", "ygD" } },
 		config = function()
 			require("safdar.plugins.diffview")
+			require("fused").lazy_load("diffview")
 		end,
 	},
 
@@ -225,6 +231,7 @@ local plugins = {
 		event = "BufReadPost",
 		config = function()
 			require("safdar.plugins.indent-blank-line")
+			require("fused").lazy_load("indentblankline")
 		end,
 	}, -- indent guides
 	-- <~
@@ -239,7 +246,7 @@ local plugins = {
 			local plugin = {
 				name = "nvim-lspconfig",
 			}
-			require("safdar.core.lazy_load").load.asap(plugin)
+			require("safdar.core.lazy_load").load.loader(plugin)
 		end,
 		module_pattern = { "lspconfig.*" },
 		config = function()
@@ -256,16 +263,28 @@ local plugins = {
 	},
 
 	["AckslD/nvim-FeMaco.lua"] = { -- edit code from the markdown and neorg file using the lsp
+		opt = true,
+		setup = function()
+			local femaco = {
+				name = "nvim-FeMaco.lua",
+				pattern = { "*.md", "*.norg" },
+			}
+			require("safdar.core.lazy_load").load.loader(femaco)
+		end,
 		config = function()
 			require("femaco").setup()
 			require("safdar.plugins.plugins_mappings.FeMaco_map")
 		end,
-		ft = { "markdown", "norg" },
 	},
 	-- ~> linting files that null_ls does not support
 	["dense-analysis/ale"] = {
-		event = "InsertEnter",
-		ft = { "html" },
+		setup = function()
+			local ale = {
+				name = "ale",
+				pattern = { "*.html" },
+			}
+			require("safdar.core.lazy_load").load.loader(ale)
+		end,
 		config = function()
 			require("safdar.plugins.ale")
 		end,
@@ -289,28 +308,35 @@ local plugins = {
 		module = { "nvim-cmp", "cmp" },
 		config = function()
 			require("safdar.lsp.cmp")
+			require("fused").lazy_load("cmp")
 		end,
 		requires = {
-			{ "hrsh7th/cmp-nvim-lsp", event = "BufRead" },
+			{ "hrsh7th/cmp-nvim-lsp", event = "ModeChanged" },
 			{ "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-emoji", after = "cmp-buffer" },
-			{ "hrsh7th/cmp-nvim-lua", ft = "lua" },
 			{ "hrsh7th/cmp-nvim-lsp-signature-help", after = { "nvim-cmp" } },
 		},
 		event = "InsertEnter",
 	},
+	["hrsh7th/cmp-nvim-lua"] = { ft = "lua" },
 
 	["tzachar/cmp-tabnine"] = {
 		run = "./install.sh",
-		event = "InsertEnter",
+		setup = function()
+			local tabnine = {
+				name = "cmp-tabnine",
+				events = "InsertEnter",
+			}
+			require("safdar.core.lazy_load").load.loader(tabnine)
+		end,
 		config = function()
 			require("safdar.plugins.tabnine")
 		end,
 	},
 
 	["uga-rosa/cmp-dictionary"] = {
-		ft = { "markdown", "norg" },
 		event = "InsertEnter",
+		ft = { "markdown", "norg", "html" },
 		config = function()
 			require("safdar.plugins.cmp.cmp-dictionary")
 		end,
@@ -321,6 +347,7 @@ local plugins = {
 	--                ~> Lsp utils & enhancements                       --
 	----------------------------------------------------------------------
 	["ray-x/lsp_signature.nvim"] = {
+		event = "InsertEnter",
 		after = "nvim-lspconfig",
 		config = function()
 			require("safdar.plugins.lspsignature")
@@ -330,12 +357,14 @@ local plugins = {
 		keys = { "n", "[" },
 		config = function()
 			require("safdar.plugins.lsp-trouble")
+			require("fused").lazy_load("trouble")
 		end,
 	},
 	["glepnir/lspsaga.nvim"] = {
 		after = "trouble.nvim",
 		config = function()
 			require("safdar.plugins.lspsaga")
+			require("fused").lazy_load("lspsaga")
 		end,
 	},
 	["weilbith/nvim-code-action-menu"] = {
@@ -364,15 +393,23 @@ local plugins = {
 	----------------------------------------------------------------------
 	["mfussenegger/nvim-dap"] = {
 		after = "nvim-dap-virtual-text",
-		requires = {
-			{ "rcarriga/nvim-dap-ui", after = "plenary.nvim" },
-			{ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap-ui" },
-		},
 		config = function()
 			require("safdar.plugins.dap")
 			--> plugins configs
 			require("safdar.plugins.dap.dap-ui")
 			require("safdar.plugins.dap.dap-virtual-text")
+		end,
+	},
+	["rcarriga/nvim-dap-ui"] = {
+		requires = { "theHamsta/nvim-dap-virtual-text", after = "nvim-dap-ui" },
+		keys = { { "n", "_" } },
+		setup = function()
+			local cmp_dictionary = {
+				name = "cmp-dictionary",
+				events = "InsertEnter",
+				pattern = { "*.md", "*.html", "*.norg" },
+			}
+			require("safdar.core.lazy_load").load.loader(cmp_dictionary)
 		end,
 	},
 	-- <~
@@ -381,6 +418,12 @@ local plugins = {
 	--                        ~> Treesitter                             --
 	----------------------------------------------------------------------
 	["nvim-treesitter/nvim-treesitter"] = {
+		setup = function()
+			local nvim_ts = {
+				name = "nvim-treesitter",
+			}
+			require("safdar.core.lazy_load").load.loader(nvim_ts)
+		end,
 		after = "plenary.nvim",
 		run = ":TSUpdate",
 		config = function()
@@ -407,6 +450,9 @@ local plugins = {
 	},
 	["p00f/nvim-ts-rainbow"] = {
 		after = "nvim-ts-autotag",
+		config = function()
+			require("fused").lazy_load("tsrainbow")
+		end,
 	},
 	-- <~
 
@@ -420,7 +466,7 @@ local plugins = {
 		end,
 	},
 	["andymass/vim-matchup"] = {
-		event = { "CursorMoved" },
+		keys = { "CursorMoved" },
 		config = function()
 			require("safdar.plugins.vim-matchup")
 		end,
@@ -450,6 +496,7 @@ local plugins = {
 		event = "BufWinEnter",
 		config = function()
 			require("safdar.plugins.todo-comments")
+			require("fused").lazy_load("todocomments")
 		end,
 	},
 	["s1n7ax/nvim-comment-frame"] = {
@@ -483,11 +530,12 @@ local plugins = {
 		keys = { { "n", "<leader>a" }, { "n", "<leader>t" } },
 		config = function()
 			require("safdar.plugins.harpoon")
+			require("fused").lazy_load("harpoon")
 		end,
 	},
 	-- TODO: work on this plugin as you explore more about git
 	["ThePrimeagen/git-worktree.nvim"] = {
-		after = "diffview.nvim",
+		keys = { { "n", "<leader>gw" } },
 		config = function()
 			require("git-worktree").setup({
 				change_directory_command = "cd", -- default: "cd",
@@ -506,25 +554,37 @@ local plugins = {
 	--                    ~> Note Takign Stuff Stuff                    --
 	----------------------------------------------------------------------
 	["nvim-neorg/neorg"] = {
-		opt = true,
-		run = ":Neorg sync-parsers", -- This is the important bit!
-		keys = { { "n", "gtc" } },
+		ft = "norg",
 		setup = function()
 			local neorg = {
 				name = "neorg",
 			}
 			require("safdar.core.lazy_load").load.neorg(neorg)
 		end,
+		keys = { "n", "gtc" },
+		module_pattern = {
+			"neorg.modules.*",
+			"neorg.modules.core.integrations.telescope.module",
+		},
+		run = ":Neorg sync-parsers", -- This is the important bit!
 		requires = {
 			"nvim-neorg/neorg-telescope",
 		},
 		-- after = "nvim-lspconfig",
 		config = function()
 			require("safdar.plugins.neorg")
+			require("fused").lazy_load("neorg")
 		end,
 	},
 	["iamcco/markdown-preview.nvim"] = {
-		ft = "markdown",
+		key = { "n", "<leader>mp" },
+		setup = function()
+			local md_preview = {
+				name = "markdown-preview.nvim",
+				pattern = "*.md",
+			}
+			require("safdar.core.lazy_load").load.loader(md_preview)
+		end,
 		run = function()
 			vim.fn["mkdp#util#install"]()
 		end,
