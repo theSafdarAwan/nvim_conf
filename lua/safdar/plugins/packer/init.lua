@@ -23,22 +23,11 @@ packer.init({
 		end,
 	},
 })
-local packer_cmds = {
-	"PackerSnapshot",
-	"PackerSnapshotRollback",
-	"PackerSnapshotDelete",
-	"PackerInstall",
-	"PackerUpdate",
-	"PackerSync",
-	"PackerClean",
-	"PackerCompile",
-	"PackerStatus",
-	"PackerProfile",
-	"PackerLoad",
-}
+
 local plugins = {
 	["wbthomason/packer.nvim"] = { -- packer can manage itself
-		cmd = packer_cmds,
+		opt = true,
+		cmd = require("safdar.core.utils").packer_cmds,
 	},
 
 	----------------------------------------------------------------------
@@ -196,7 +185,11 @@ local plugins = {
 	--                          ~> Git                                  --
 	----------------------------------------------------------------------
 	["lewis6991/gitsigns.nvim"] = {
-		event = "BufRead",
+		opt = true,
+		setup = function()
+			local plugin = { name = "gitsigns.nvim" }
+			require("safdar.core.lazy_load").lazy_load(plugin)
+		end,
 		config = function()
 			require("safdar.plugins.gitsigns")
 		end,
@@ -240,8 +233,14 @@ local plugins = {
 	--                            ~> Lsp                                --
 	----------------------------------------------------------------------
 	["neovim/nvim-lspconfig"] = {
-		cmd = { "LspAttach", "LspStop", "LspStart", "LspInfo", "LspLog" },
-		event = "BufReadPost",
+		opt = true,
+		cmd = require("safdar.core.lazy_load").lsp_cmds,
+		setup = function()
+			local plugin = {
+				name = "nvim-lspconfig",
+			}
+			require("safdar.core.lazy_load").lazy_load(plugin)
+		end,
 		module_pattern = { "lspconfig.*" },
 		config = function()
 			require("safdar.lsp.lsp")
@@ -310,7 +309,7 @@ local plugins = {
 	},
 
 	["uga-rosa/cmp-dictionary"] = {
-		ft = {"markdown", "norg"},
+		ft = { "markdown", "norg" },
 		event = "InsertEnter",
 		config = function()
 			require("safdar.plugins.cmp.cmp-dictionary")

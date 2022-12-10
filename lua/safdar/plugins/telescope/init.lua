@@ -91,11 +91,10 @@ local themes = require("telescope.themes")
 -- get the name of the root directory
 local function get_root_name()
 	local path
-	local root_path
-	local find_path = vim.fs.find({ ".git", ".", "node_modules" }, { upward = true })[1]
-	if find_path then
-		root_path = find_path
-		local root_path_split = vim.split(root_path, "/", { plain = false, trimempty = true })
+	local find_dir_in_root = vim.fs.find({ ".git", ".", "node_modules" }, { upward = true })[1]
+	if find_dir_in_root then
+		find_dir_in_root = find_dir_in_root
+		local root_path_split = vim.split(find_dir_in_root, "/", { plain = false, trimempty = true })
 		local root_path_len = #root_path_split
 		path = root_path_split[root_path_len - 1]
 	else
