@@ -35,3 +35,4 @@ require("safdar.plugins.luasnip.maps")
 require("luasnip/loaders/from_vscode").lazy_load()
 
 -- require snippets
+require("safdar.snippets.luasnips")

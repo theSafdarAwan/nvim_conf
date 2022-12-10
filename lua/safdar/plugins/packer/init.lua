@@ -532,7 +532,7 @@ local plugins = {
 		end,
 	},
 	["ThePrimeagen/harpoon"] = { -- the most amazing plugin i have yet discoverd
-		keys = { { "n", "<leader>a" }, { "n", "<leader>t" } },
+		keys = { "<leader>t", "<leader>a" },
 		config = function()
 			require("safdar.plugins.harpoon")
 			require("fused").lazy_load("harpoon")
@@ -575,7 +575,6 @@ local plugins = {
 		requires = {
 			"nvim-neorg/neorg-telescope",
 		},
-		-- after = "nvim-lspconfig",
 		config = function()
 			require("safdar.plugins.neorg")
 			require("fused").lazy_load("neorg")
