@@ -196,7 +196,7 @@ local plugins = {
 	--                          ~> Git                                  --
 	----------------------------------------------------------------------
 	["lewis6991/gitsigns.nvim"] = {
-		opt = true,
+		event = "BufRead",
 		config = function()
 			require("safdar.plugins.gitsigns")
 		end,
@@ -240,7 +240,8 @@ local plugins = {
 	--                            ~> Lsp                                --
 	----------------------------------------------------------------------
 	["neovim/nvim-lspconfig"] = {
-		opt = true,
+		cmd = { "LspAttach", "LspStop", "LspStart", "LspInfo", "LspLog" },
+		event = "BufReadPost",
 		module_pattern = { "lspconfig.*" },
 		config = function()
 			require("safdar.lsp.lsp")
@@ -302,14 +303,15 @@ local plugins = {
 
 	["tzachar/cmp-tabnine"] = {
 		run = "./install.sh",
-		opt = true,
+		event = "InsertEnter",
 		config = function()
 			require("safdar.plugins.tabnine")
 		end,
 	},
 
 	["uga-rosa/cmp-dictionary"] = {
-		opt = true,
+		ft = {"markdown", "norg"},
+		event = "InsertEnter",
 		config = function()
 			require("safdar.plugins.cmp.cmp-dictionary")
 		end,
@@ -446,7 +448,7 @@ local plugins = {
 		end,
 	}, -- comment out the blocks of text
 	["folke/todo-comments.nvim"] = {
-		opt = true,
+		event = "BufWinEnter",
 		config = function()
 			require("safdar.plugins.todo-comments")
 		end,

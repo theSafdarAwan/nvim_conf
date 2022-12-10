@@ -24,50 +24,52 @@ M.buf_set_opt = function(buffer, name, value)
 	api.nvim_buf_set_option(buffer, name, value)
 end
 
-M.lazy_load = function(plugins_tbl)
-	local packer_plugins = _G.packer_plugins
-	local packer = require("packer")
+----------------------------------------------------------------------
+--                       ~> Lazy Loading                            --
+----------------------------------------------------------------------
+local packer_plugins = _G.packer_plugins
+local packer = require("packer")
 
-	-- if condition is not provided then use this
-	local condition = function()
-		return true
-	end
-
-	-- creates a autocmd to load lazy plgin
-	local function lazy_loader(t)
-		for _, plugin in pairs(t) do
-			if plugin["au"] and plugin["au"] == true then
-				api.nvim_create_autocmd("BufWinEnter", {
-					group = api.nvim_create_augroup(
-						"BeLazyOnFileOpen" .. tostring(plugin.plugin_name),
-						{ clear = true }
-					),
-					callback = function()
-						if packer_plugins[plugin.plugin_name] then
-							if plugin["condition"] then
-								condition = plugin.condition
-							end
-							if
-								not packer_plugins[plugin.plugin_name].loaded
-								and condition
-							then
-								api.nvim_del_augroup_by_name(
-									"BeLazyOnFileOpen" .. plugin.plugin_name
-								)
-								vim.defer_fn(function()
-									packer.loader(plugin.plugin_name)
-								end, 1)
-							end
-						end
-					end,
-				})
-			else
-				packer.loader(plugin.plugin_name)
+-- creates a autocmd to lazy load plgin
+local function augroup_create(plugin)
+	api.nvim_create_autocmd(plugin.events, {
+		group = api.nvim_create_augroup("BeLazyOnFileOpen" .. tostring(plugin.name), { clear = true }),
+		callback = function()
+			if packer_plugins[plugin.name] then
+				if not packer_plugins[plugin.name].loaded then
+					api.nvim_del_augroup_by_name("lazy_load_" .. plugin.name)
+					vim.defer_fn(function()
+						packer.loader(plugin.name)
+					end, 1000)
+				end
 			end
+		end,
+	})
+end
+
+local function find_git()
+	local git_present = vim.fs.find({ ".git" }, { upward = true })[1]
+	if not git_present then
+		-- vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
+		-- if vim.v.shell_error == 0 then
+		return
+	end
+end
+
+M.lazy_load = function(plugins_tbl)
+	for _, plugin in pairs(plugins_tbl) do
+		if plugin.name == "gitsigns.nvim" then
+			if find_git() then
+				vim.defer_fn(function()
+					packer.loader(plugin.name)
+				end, 0)
+			else
+				augroup_create(plugin)
+			end
+		else
+			augroup_create(plugin)
 		end
 	end
-
-	lazy_loader(plugins_tbl)
 end
 
 return M
