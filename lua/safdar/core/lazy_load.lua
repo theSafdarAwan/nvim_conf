@@ -25,22 +25,38 @@ local function register_autocmd(plugin)
 	})
 end
 
-M.lazy_load = function(plugin)
-	if plugin.name == "gitsigns.nvim" then
-		plugin.callback = function()
-			vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
-			if vim.v.shell_error == 0 then
-				schedule_load(plugin.name)
-			end
+local load = {}
+
+-- gitsigns
+load.gitsigns = function(gitsigns)
+	gitsigns.callback = function()
+		vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
+		if vim.v.shell_error == 0 then
+			schedule_load(gitsigns.name)
 		end
-	else
-		plugin.callback = function()
-			schedule_load(plugin.name)
-		end
+	end
+	register_autocmd(gitsigns)
+end
+
+-- load as soon as possible without callback
+load.asap = function(plugin)
+	plugin.callback = function()
+		schedule_load(plugin.name)
 	end
 	register_autocmd(plugin)
 end
 
+-- neorg file type
+load.neorg = function(neorg)
+	neorg.callback = function()
+		if vim.bo.filetype == "norg" then
+			schedule_load(neorg.name)
+		end
+	end
+	register_autocmd(neorg)
+end
+
+M.load = load
 ----------------------------------------------------------------------
 --                   cmds of lazy loaded plugins                    --
 ----------------------------------------------------------------------

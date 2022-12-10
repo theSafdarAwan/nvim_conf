@@ -30,16 +30,19 @@ end
 
 local fn = vim.fn
 
-local function setup_plugins(notify)
+local function setup_plugins()
 	-- require the plugins
 	require("safdar").plugins()
 	vim.cmd("PackerInstall")
 	vim.cmd("PackerCompile")
+end
+
+local function notifyer(notify)
 	if notify then
 		local level = vim.log.levels.WARN
-		vim.defer_fn(function()
+		vim.schedule(function()
 			vim.api.nvim_notify(notify.msg, notify.level or level, notify.opts or {})
-		end, notify.time or 1000)
+		end)
 	end
 end
 
@@ -49,17 +52,21 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 local compiled = fn.stdpath("config") .. "/plugin/packer_compiled.lua"
 if fn.empty(fn.glob(install_path)) > 0 then
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#11111B" })
-	print("Cloning packer ..")
+	notifyer({
+		msg = "Cloning packer ..",
+	})
 	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 	-- install plugins + compile their configs
 	vim.cmd("packadd packer.nvim")
-	setup_plugins({
+	setup_plugins()
+	notifyer({
 		msg = "Plugin Installation done Reload neovim",
 	})
 	return
 elseif fn.empty(fn.glob(compiled)) > 0 then
 	print("packer is compiling ..")
-	setup_plugins({
+	setup_plugins()
+	notifyer({
 		msg = "packer compiled reload neovim",
 	})
 	return

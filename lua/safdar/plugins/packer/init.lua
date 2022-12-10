@@ -187,8 +187,8 @@ local plugins = {
 	["lewis6991/gitsigns.nvim"] = {
 		opt = true,
 		setup = function()
-			local plugin = { name = "gitsigns.nvim" }
-			require("safdar.core.lazy_load").lazy_load(plugin)
+			local gitsigns = { name = "gitsigns.nvim" }
+			require("safdar.core.lazy_load").load.gitsigns(gitsigns)
 		end,
 		config = function()
 			require("safdar.plugins.gitsigns")
@@ -239,7 +239,7 @@ local plugins = {
 			local plugin = {
 				name = "nvim-lspconfig",
 			}
-			require("safdar.core.lazy_load").lazy_load(plugin)
+			require("safdar.core.lazy_load").load.asap(plugin)
 		end,
 		module_pattern = { "lspconfig.*" },
 		config = function()
@@ -506,11 +506,19 @@ local plugins = {
 	--                    ~> Note Takign Stuff Stuff                    --
 	----------------------------------------------------------------------
 	["nvim-neorg/neorg"] = {
+		opt = true,
 		run = ":Neorg sync-parsers", -- This is the important bit!
+		keys = { { "n", "gtc" } },
+		setup = function()
+			local neorg = {
+				name = "neorg",
+			}
+			require("safdar.core.lazy_load").load.neorg(neorg)
+		end,
 		requires = {
 			"nvim-neorg/neorg-telescope",
 		},
-		after = "nvim-lspconfig",
+		-- after = "nvim-lspconfig",
 		config = function()
 			require("safdar.plugins.neorg")
 		end,
