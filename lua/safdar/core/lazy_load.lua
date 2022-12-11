@@ -26,37 +26,37 @@ local function register_autocmd(plugin)
 	})
 end
 
-local load = {}
+----------------------------------------------------------------------
+--                        CallBack functions                        --
+----------------------------------------------------------------------
 
--- gitsigns
-load.gitsigns = function(gitsigns)
-	gitsigns.callback = function()
+-- callbacks should be defined here because of packer compilation which is why we
+-- cant pass references to other functions
+local callbacks = {
+	gitsigns = function()
 		vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
+		local gitsigns = "gitsigns.nvim"
 		if vim.v.shell_error == 0 then
-			schedule_load(gitsigns.name)
+			schedule_load(gitsigns)
 		end
-	end
-	register_autocmd(gitsigns)
-end
+	end,
+}
 
--- load as soon as possible without callback
-load.loader = function(plugin)
-	plugin.callback = function()
-		schedule_load(plugin.name)
+----------------------------------------------------------------------
+--                          Plugins Loader                          --
+----------------------------------------------------------------------
+
+M.loader = function(plugin)
+	if plugin.name == "gitsigns.nvim" then
+		plugin.callback = callbacks.gitsigns
+	else
+		plugin.callback = function()
+			schedule_load(plugin.name)
+		end
 	end
 	register_autocmd(plugin)
 end
 
--- neorg file type
-load.neorg = function(neorg)
-	neorg.pattern = "*norg"
-	neorg.callback = function()
-		schedule_load(neorg.name)
-	end
-	register_autocmd(neorg)
-end
-
-M.load = load
 ----------------------------------------------------------------------
 --                   cmds of lazy loaded plugins                    --
 ----------------------------------------------------------------------

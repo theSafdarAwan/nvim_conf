@@ -191,8 +191,10 @@ local plugins = {
 	["lewis6991/gitsigns.nvim"] = {
 		opt = true,
 		setup = function()
-			local gitsigns = { name = "gitsigns.nvim" }
-			require("safdar.core.lazy_load").load.gitsigns(gitsigns)
+			local gitsigns = {
+				name = "gitsigns.nvim",
+			}
+			require("safdar.core.lazy_load").loader(gitsigns)
 		end,
 		config = function()
 			require("safdar.plugins.gitsigns")
@@ -246,7 +248,7 @@ local plugins = {
 			local plugin = {
 				name = "nvim-lspconfig",
 			}
-			require("safdar.core.lazy_load").load.loader(plugin)
+			require("safdar.core.lazy_load").loader(plugin)
 		end,
 		module_pattern = { "lspconfig.*" },
 		config = function()
@@ -269,7 +271,7 @@ local plugins = {
 				name = "nvim-FeMaco.lua",
 				pattern = { "*.md", "*.norg" },
 			}
-			require("safdar.core.lazy_load").load.loader(femaco)
+			require("safdar.core.lazy_load").loader(femaco)
 		end,
 		config = function()
 			require("femaco").setup()
@@ -278,12 +280,13 @@ local plugins = {
 	},
 	-- ~> linting files that null_ls does not support
 	["dense-analysis/ale"] = {
+		opt = true,
 		setup = function()
 			local ale = {
 				name = "ale",
 				pattern = { "*.html" },
 			}
-			require("safdar.core.lazy_load").load.loader(ale)
+			require("safdar.core.lazy_load").loader(ale)
 		end,
 		config = function()
 			require("safdar.plugins.ale")
@@ -305,11 +308,9 @@ local plugins = {
 	},
 
 	["hrsh7th/nvim-cmp"] = {
-		module = { "nvim-cmp", "cmp" },
-		setup = function()
-			local nvim_cmp = { name = "nvim-cmp", event = "InsertEnter" }
-			require("safdar.core.lazy_load").load.loader(nvim_cmp)
-		end,
+		opt = true,
+		event = "InsertEnter",
+		-- module = { "nvim-cmp", "cmp" },
 		config = function()
 			require("safdar.lsp.cmp")
 			require("fused").lazy_load("cmp")
@@ -318,17 +319,19 @@ local plugins = {
 	["hrsh7th/cmp-nvim-lsp"] = { after = "nvim-cmp" },
 	["hrsh7th/cmp-buffer"] = { after = "cmp-nvim-lsp" },
 	["hrsh7th/cmp-nvim-lsp-signature-help"] = { after = { "cmp-buffer" } },
-	["hrsh7th/cmp-nvim-lua"] = { ft = "lua" },
 	["hrsh7th/cmp-emoji"] = { after = "cmp-nvim-lsp-signature-help" },
 
+	["hrsh7th/cmp-nvim-lua"] = { ft = "lua" },
+
 	["tzachar/cmp-tabnine"] = {
+		opt = true,
 		run = "./install.sh",
 		setup = function()
 			local tabnine = {
 				name = "cmp-tabnine",
 				events = "InsertEnter",
 			}
-			require("safdar.core.lazy_load").load.loader(tabnine)
+			require("safdar.core.lazy_load").loader(tabnine)
 		end,
 		config = function()
 			require("safdar.plugins.tabnine")
@@ -336,8 +339,17 @@ local plugins = {
 	},
 
 	["uga-rosa/cmp-dictionary"] = {
-		event = "InsertEnter",
-		ft = { "markdown", "norg", "html" },
+		opt = true,
+		-- event = "InsertEnter",
+		-- ft = { "markdown", "norg", "html" },
+		setup = function()
+			local cmp_dictionary = {
+				name = "cmp-dictionary",
+				events = "InsertEnter",
+				pattern = { "*.md", "*.html", "*.norg" },
+			}
+			require("safdar.core.lazy_load").loader(cmp_dictionary)
+		end,
 		config = function()
 			require("safdar.plugins.cmp.cmp-dictionary")
 		end,
@@ -404,14 +416,6 @@ local plugins = {
 	["rcarriga/nvim-dap-ui"] = {
 		requires = { "theHamsta/nvim-dap-virtual-text", after = "nvim-dap-ui" },
 		keys = { { "n", "_" } },
-		setup = function()
-			local cmp_dictionary = {
-				name = "cmp-dictionary",
-				events = "InsertEnter",
-				pattern = { "*.md", "*.html", "*.norg" },
-			}
-			require("safdar.core.lazy_load").load.loader(cmp_dictionary)
-		end,
 	},
 	-- <~
 
@@ -419,11 +423,12 @@ local plugins = {
 	--                        ~> Treesitter                             --
 	----------------------------------------------------------------------
 	["nvim-treesitter/nvim-treesitter"] = {
+		opt = true,
 		setup = function()
 			local nvim_ts = {
 				name = "nvim-treesitter",
 			}
-			require("safdar.core.lazy_load").load.loader(nvim_ts)
+			require("safdar.core.lazy_load").loader(nvim_ts)
 		end,
 		after = "plenary.nvim",
 		run = ":TSUpdate",
@@ -555,12 +560,14 @@ local plugins = {
 	--                    ~> Note Takign Stuff Stuff                    --
 	----------------------------------------------------------------------
 	["nvim-neorg/neorg"] = {
-		ft = "norg",
+		opt = true,
+		-- ft = "norg",
 		setup = function()
 			local neorg = {
 				name = "neorg",
+				pattern = "*.norg",
 			}
-			require("safdar.core.lazy_load").load.neorg(neorg)
+			require("safdar.core.lazy_load").loader(neorg)
 		end,
 		keys = { "n", "gtc" },
 		module_pattern = {
@@ -577,13 +584,14 @@ local plugins = {
 		end,
 	},
 	["iamcco/markdown-preview.nvim"] = {
+		opt = true,
 		key = { "n", "<leader>mp" },
 		setup = function()
 			local md_preview = {
 				name = "markdown-preview.nvim",
 				pattern = "*.md",
 			}
-			require("safdar.core.lazy_load").load.loader(md_preview)
+			require("safdar.core.lazy_load").loader(md_preview)
 		end,
 		run = function()
 			vim.fn["mkdp#util#install"]()
