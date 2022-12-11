@@ -21,11 +21,8 @@ local callbacks = {}
 -- gitsigns callback function
 callbacks.gitsigns = function()
 	local gitsigns = "gitsigns.nvim"
-	-- vim.fn.system("git -c " .. vim.fn.expand("%:p:h") .. " rev-parse")
-	local git_root = vim.fs.find({ ".git" }, { upward = true })[1]
-	-- if vim.v.shell_error == 0 then
-	if git_root then
-		print("HI")
+	vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
+	if vim.v.shell_error == 0 then
 		schedule(gitsigns)
 	end
 end
