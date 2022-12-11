@@ -313,18 +313,22 @@ local plugins = {
 			require("safdar.plugins.luasnip")
 		end,
 	},
-	["saadparwaiz1/cmp_luasnip"] = { after = "LuaSnip" },
+	["saadparwaiz1/cmp_luasnip"] = { after = "nvim-cmp" },
 
 	["hrsh7th/nvim-cmp"] = {
 		opt = true,
 		event = "InsertEnter",
-		-- module = { "nvim-cmp", "cmp" },
 		config = function()
 			require("safdar.lsp.cmp")
 			require("fused").lazy_load("cmp")
 		end,
 	},
-	["hrsh7th/cmp-nvim-lsp"] = { after = "nvim-cmp" },
+	["hrsh7th/cmp-nvim-lsp"] = {
+		after = "nvim-cmp",
+		config = function()
+			require("safdar.lsp.cmp.cmp-nvim-lsp")
+		end,
+	},
 	["hrsh7th/cmp-buffer"] = { after = "cmp-nvim-lsp" },
 	["hrsh7th/cmp-nvim-lsp-signature-help"] = { after = { "cmp-buffer" } },
 	["hrsh7th/cmp-emoji"] = { after = "cmp-nvim-lsp-signature-help" },

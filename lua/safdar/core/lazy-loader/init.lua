@@ -93,6 +93,10 @@ end
 loaders.on_file = function(plugin)
 	plugin.callback = function()
 		packer.loader(plugin.name)
+		-- to revoke the lsp or treesitter
+		vim.defer_fn(function()
+			vim.cmd("silent! do FileType")
+		end, 1000)
 	end
 	register_autocmd(plugin)
 end

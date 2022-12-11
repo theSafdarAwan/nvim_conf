@@ -4,7 +4,10 @@ local M = {}
 -- =========================================================================
 --                          telescope config
 -- =========================================================================
-local telescope = require("telescope")
+local ok, telescope = pcall(require, "telescope")
+if not ok then
+	return
+end
 
 -- prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 -- results = { "─", "▐", "─", "│", "╭", "▐", "▐", "╰" },
@@ -305,5 +308,8 @@ M.center_list_document_symbols_find = function()
 	-- opts.cwd = vim.fn.stdpath("config")
 	require("telescope.builtin").lsp_document_symbols(opts)
 end
+
+-- @maps
+require("safdar.plugins.telescope.maps").maps()
 
 return M
