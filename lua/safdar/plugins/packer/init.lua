@@ -1,4 +1,4 @@
--- NOTE: if you are trying to lazy_load using the safdar/core/lazy_load.lua
+-- NOTE: if you are trying to lazy_load using the safdar/core.lazy-loader.lua
 -- functions then there should be only three keys in the plugin table
 -- 1) opt
 -- 2) setup
@@ -196,7 +196,7 @@ local plugins = {
 			local gitsigns = {
 				name = "gitsigns.nvim",
 			}
-			require("safdar.core.lazy_load").loader(gitsigns)
+			require("safdar.core.lazy-loader").loaders.callback(gitsigns)
 		end,
 		config = function()
 			require("safdar.plugins.gitsigns")
@@ -249,7 +249,7 @@ local plugins = {
 			local plugin = {
 				name = "schemastore.nvim",
 			}
-			require("safdar.core.lazy_load").loader(plugin)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(plugin)
 		end,
 	}, -- for json schemas
 	["neovim/nvim-lspconfig"] = {
@@ -274,7 +274,7 @@ local plugins = {
 				name = "nvim-FeMaco.lua",
 				pattern = { "*.md", "*.norg" },
 			}
-			require("safdar.core.lazy_load").loader(femaco)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(femaco)
 		end,
 		config = function()
 			require("femaco").setup()
@@ -289,7 +289,7 @@ local plugins = {
 				name = "ale",
 				pattern = { "*.html" },
 			}
-			require("safdar.core.lazy_load").loader(ale)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(ale)
 		end,
 		config = function()
 			require("safdar.plugins.ale")
@@ -307,7 +307,7 @@ local plugins = {
 				name = "LuaSnip",
 				events = "BufRead",
 			}
-			require("safdar.core.lazy_load").loader(luasnip)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(luasnip)
 		end,
 		config = function()
 			require("safdar.plugins.luasnip")
@@ -329,7 +329,15 @@ local plugins = {
 	["hrsh7th/cmp-nvim-lsp-signature-help"] = { after = { "cmp-buffer" } },
 	["hrsh7th/cmp-emoji"] = { after = "cmp-nvim-lsp-signature-help" },
 
-	["hrsh7th/cmp-nvim-lua"] = { ft = "lua" },
+	["hrsh7th/cmp-nvim-lua"] = {
+		opt = true,
+		setup = function()
+			local plugin = {
+				name = "cmp-nvim-lua",
+			}
+			require("safdar.core.lazy-loader").loaders.callback(plugin)
+		end,
+	},
 
 	["tzachar/cmp-tabnine"] = {
 		opt = true,
@@ -339,7 +347,7 @@ local plugins = {
 				name = "cmp-tabnine",
 				events = "InsertEnter",
 			}
-			require("safdar.core.lazy_load").loader(tabnine)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(tabnine)
 		end,
 		config = function()
 			require("safdar.plugins.tabnine")
@@ -356,7 +364,7 @@ local plugins = {
 				events = "InsertEnter",
 				pattern = { "*.md", "*.html", "*.norg" },
 			}
-			require("safdar.core.lazy_load").loader(cmp_dictionary)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(cmp_dictionary)
 		end,
 		config = function()
 			require("safdar.plugins.cmp.cmp-dictionary")
@@ -436,9 +444,8 @@ local plugins = {
 		setup = function()
 			local nvim_ts = {
 				name = "nvim-treesitter",
-				on_file = true,
 			}
-			require("safdar.core.lazy_load").loader(nvim_ts)
+			require("safdar.core.lazy-loader").loaders.on_file(nvim_ts)
 		end,
 		after = "plenary.nvim",
 		run = ":TSUpdate",
@@ -465,7 +472,7 @@ local plugins = {
 				name = "nvim-ts-autotag",
 				pattern = "*.html",
 			}
-			require("safdar.core.lazy_load").loader(ts_autotag)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(ts_autotag)
 		end,
 		config = function()
 			require("nvim-ts-autotag").setup()
@@ -477,7 +484,7 @@ local plugins = {
 			local ts_rainbow = {
 				name = "nvim-ts-rainbow",
 			}
-			require("safdar.core.lazy_load").loader(ts_rainbow)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(ts_rainbow)
 		end,
 		config = function()
 			require("fused").lazy_load("tsrainbow")
@@ -495,7 +502,7 @@ local plugins = {
 				name = "nvim-autopairs",
 				events = { "InsertEnter" },
 			}
-			require("safdar.core.lazy_load").loader(autopairs)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(autopairs)
 		end,
 		config = function()
 			require("safdar.plugins.autopairs")
@@ -525,7 +532,7 @@ local plugins = {
 					cmd = "UndotreeToggle | wincmd h",
 				},
 			}
-			require("safdar.core.lazy_load").keymap_plugin_loader(undotree)
+			require("safdar.core.lazy-loader").loaders.keymap(undotree)
 		end,
 		config = function()
 			require("safdar.plugins.undotree.maps")
@@ -573,7 +580,7 @@ local plugins = {
 					cmd = "VimBeGood",
 				},
 			}
-			require("safdar.core.lazy_load").keymap_plugin_loader(vim_be_good)
+			require("safdar.core.lazy-loader").loaders.keymap(vim_be_good)
 		end,
 		config = function()
 			require("safdar.plugins.vim-be-good.maps")
@@ -620,7 +627,7 @@ local plugins = {
 				name = "neorg",
 				pattern = "*.norg",
 			}
-			require("safdar.core.lazy_load").loader(neorg)
+			require("safdar.core.lazy-loader").loaders.callback(neorg)
 
 			neorg = {
 				name = "neorg",
@@ -632,7 +639,7 @@ local plugins = {
 					require("safdar.plugins.neorg").load_conf()
 				end,
 			}
-			require("safdar.core.lazy_load").keymap_plugin_loader(neorg)
+			require("safdar.core.lazy-loader").loaders.keymap(neorg)
 		end,
 		run = ":Neorg sync-parsers", -- This is the important bit!
 	},
@@ -645,7 +652,7 @@ local plugins = {
 				name = "markdown-preview.nvim",
 				pattern = "*.md",
 			}
-			require("safdar.core.lazy_load").loader(md_preview)
+			require("safdar.core.lazy-loader").loaders.schedule_autocmd(md_preview)
 		end,
 		run = function()
 			vim.fn["mkdp#util#install"]()
