@@ -402,6 +402,7 @@ local plugins = {
 		requires = { { "nvim-lua/plenary.nvim" } },
 		config = function()
 			require("safdar.plugins.renamer")
+			require("fused").lazy_load("renamer")
 		end,
 		keys = {
 			{ "n", "yr" },
@@ -435,6 +436,7 @@ local plugins = {
 		setup = function()
 			local nvim_ts = {
 				name = "nvim-treesitter",
+				on_file = true,
 			}
 			require("safdar.core.lazy_load").loader(nvim_ts)
 		end,
@@ -499,20 +501,32 @@ local plugins = {
 			require("safdar.plugins.autopairs")
 		end,
 	},
-	["andymass/vim-matchup"] = {
-		event = { "CursorMoved" },
+	["andymass/vim-matchup"] = { -- don't do lazy loading wit vim-matchup it breaks things
+		after = "nvim-treesitter",
 		config = function()
 			require("safdar.plugins.vim-matchup")
 		end,
 	},
 	["norcalli/nvim-colorizer.lua"] = {
-		after = "vim-matchup",
+		after = "nvim-autopairs",
 		config = function()
 			require("safdar.plugins.colorizer")
 		end,
 	}, -- shows the colors
 	["mbbill/undotree"] = {
-		after = "vim-matchup",
+		opt = true,
+		setup = function()
+			local undotree = {
+				name = "undotree",
+				packadd = true,
+				keymap = {
+					mode = "n",
+					key = "<leader>u",
+					cmd = "UndotreeToggle | wincmd h",
+				},
+			}
+			require("safdar.core.lazy_load").keymap_plugin_loader(undotree)
+		end,
 		config = function()
 			require("safdar.plugins.undotree.maps")
 		end,
@@ -572,7 +586,7 @@ local plugins = {
 		end,
 	},
 	["ThePrimeagen/harpoon"] = { -- the most amazing plugin i have yet discoverd
-		keys = { "<leader>t", "<leader>a" },
+		keys = { { "n", "<leader>t" }, { "n", "<leader>a" } },
 		config = function()
 			require("safdar.plugins.harpoon")
 			require("fused").lazy_load("harpoon")
@@ -580,7 +594,7 @@ local plugins = {
 	},
 	-- TODO: work on this plugin as you explore more about git
 	["ThePrimeagen/git-worktree.nvim"] = {
-		keys = { { "n", "<leader>gw" } },
+		after = "telescope.nvim",
 		config = function()
 			require("git-worktree").setup({
 				change_directory_command = "cd", -- default: "cd",
@@ -602,7 +616,7 @@ local plugins = {
 		opt = true,
 		setup = function()
 			local neorg = {
-				del_autocmd = true,
+				del_autocmd = false,
 				name = "neorg",
 				pattern = "*.norg",
 			}
