@@ -1,6 +1,6 @@
 local nvim_lsp = require("lspconfig")
 local lsp_util = require("safdar.lsp.lsp_util")
-local capabilities = lsp_util.capabilities
+local capabilities = require("safdar.lsp.lsp_util").capabilities
 local on_attach = lsp_util.on_attach
 
 --=======================================================

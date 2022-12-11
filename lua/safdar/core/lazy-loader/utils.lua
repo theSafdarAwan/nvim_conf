@@ -42,6 +42,9 @@ function M.schedule(plugin)
 		end
 		vim.schedule(function()
 			packer.loader(name)
+			if name == "nvim-lspconfig" then
+				vim.cmd("silent! do FileType")
+			end
 		end)
 	elseif packer_plugins[name] and packer_plugins[name].enabled then
 		-- delete the augroup group if the plugin is already loaded
