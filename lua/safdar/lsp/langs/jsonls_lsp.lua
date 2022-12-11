@@ -19,7 +19,7 @@ nvim_lsp.jsonls.setup({
 	},
 	settings = {
 		json = {
-			schemas = require("schemastore").json.schemas(),
+			schemas = require("schemastore").json.schemas({}),
 		},
 	},
 	init_options = {

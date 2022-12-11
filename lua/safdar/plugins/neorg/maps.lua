@@ -4,20 +4,19 @@ local command = utils.command
 local b = utils.bo
 local opts = { noremap = true, silent = true }
 
-local function NeorgMappingsHelper(cmd)
+local function neorg_file_helper(cmd)
 	if b.filetype == "norg" then
 		command(cmd)
 	end
 end
 
-map("n", "gtc", ":Neorg gtd capture<CR>", opts)
-
+-- map("n", "gtc", ":Neorg gtd capture<CR>", opts)
 map("n", "gtv", ":Neorg gtd views<CR>", opts)
 map("n", "gts", ":lua NeorgMappingsHelper('')<CR>", opts)
 map("n", "gti", ":Neorg toc inline<CR>", opts)
 map("n", "gtx", ":Neorg toc close<CR>", opts)
 map("n", "gtt", function()
-	NeorgMappingsHelper("Neorg tangle current-file")
+	neorg_file_helper("Neorg tangle current-file")
 end, opts)
 
 map("i", "<C-y>", "<ESC>:Telescope neorg insert_link<CR>", opts)

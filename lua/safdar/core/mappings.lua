@@ -132,7 +132,7 @@ set_map("n", "<C-c>", "<Nop>", opts)
 
 -- Spell checking
 -- Pressing ,ss will toggle and untoggle spell checking
-set_map("n", "<leader>ss", ":setlocal spell!<cr>", opts)
+-- set_map("n", "<leader>ss", ":setlocal spell!<cr>", opts)
 set_map("n", "<leader>sn", "]s", opts)
 set_map("n", "<leader>sp", "[s", opts)
 set_map("n", "<leader>sa", "zg", opts)

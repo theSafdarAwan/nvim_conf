@@ -1,4 +1,10 @@
--- @packer
+-- NOTE: if you are trying to lazy_load using the safdar/core/lazy_load.lua
+-- functions then there should be only three keys in the plugin table
+-- 1) opt
+-- 2) setup
+-- 3) config
+-- If you have requires key then it may break so move that to a separate key.
+
 local vim = vim
 
 pcall(require, "impatient") -- run :LuaCacheClear
@@ -46,12 +52,15 @@ local plugins = {
 		end,
 	},
 	["norcalli/profiler.nvim"] = {
-		after = "FixCursorHold.nvim",
+		opt = true,
 		config = function()
 			require("profiler")
 		end,
 	},
-	["dstein64/vim-startuptime"] = { after = "profiler.nvim", cmd = { "StartupTime" } },
+	["dstein64/vim-startuptime"] = {
+		opt = true,
+		cmd = { "StartupTime" },
+	},
 	-- <~
 
 	----------------------------------------------------------------------
@@ -65,18 +74,19 @@ local plugins = {
 	--                        ~> Telescope                              --
 	----------------------------------------------------------------------
 	["nvim-telescope/telescope.nvim"] = {
-		event = "BufWinEnter",
+		cmd = "Telescope*",
 		keys = require("safdar.plugins.telescope.maps").packer_keys,
-		module_pattern = "telescope.*",
+		setup = function()
+			require("fused").lazy_load("telescope")
+		end,
 		config = function()
 			require("safdar.plugins.telescope")
-			require("fused").lazy_load("telescope")
 		end,
 	},
 	["nvim-telescope/telescope-fzf-native.nvim"] = {
+		event = "CursorMoved",
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 		requires = {
-			event = "BufRead",
 			"nvim-telescope/telescope-live-grep-args.nvim",
 			after = "telescope-fzf-native.nvim",
 		},
@@ -146,14 +156,6 @@ local plugins = {
 			require("safdar.plugins.illuminate")
 		end,
 		event = { "CursorMoved" },
-	},
-	["abecodes/tabout.nvim"] = {
-		config = function()
-			require("safdar.plugins.tabout")
-		end,
-		wants = { "nvim-treesitter" }, -- or require if not used so far
-		after = { "nvim-cmp" }, -- if a completion plugin is using tabs load it before
-		event = { "BufRead" },
 	},
 	["s1n7ax/nvim-window-picker"] = {
 		keys = { "n", "gf" },
@@ -241,21 +243,22 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                            ~> Lsp                                --
 	----------------------------------------------------------------------
-	["neovim/nvim-lspconfig"] = {
+	["b0o/schemastore.nvim"] = {
 		opt = true,
-		cmd = require("safdar.core.lazy_load").lsp_cmds,
 		setup = function()
 			local plugin = {
-				name = "nvim-lspconfig",
+				name = "schemastore.nvim",
 			}
 			require("safdar.core.lazy_load").loader(plugin)
 		end,
+	}, -- for json schemas
+	["neovim/nvim-lspconfig"] = {
+		after = "schemastore.nvim",
 		module_pattern = { "lspconfig.*" },
 		config = function()
 			require("safdar.lsp.lsp")
 		end,
 	},
-	["b0o/schemastore.nvim"] = {}, -- for json schemas
 	["jose-elias-alvarez/null-ls.nvim"] = {
 		after = "nvim-lspconfig",
 		config = function()
@@ -298,14 +301,19 @@ local plugins = {
 	--                ~> Completion and Snippets                        --
 	----------------------------------------------------------------------
 	["L3MON4D3/LuaSnip"] = {
-		after = "impatient.nvim",
-		requires = {
-			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
-		},
+		opt = true,
+		setup = function()
+			local luasnip = {
+				name = "LuaSnip",
+				events = "BufRead",
+			}
+			require("safdar.core.lazy_load").loader(luasnip)
+		end,
 		config = function()
 			require("safdar.plugins.luasnip")
 		end,
 	},
+	["saadparwaiz1/cmp_luasnip"] = { after = "LuaSnip" },
 
 	["hrsh7th/nvim-cmp"] = {
 		opt = true,
@@ -414,8 +422,8 @@ local plugins = {
 		end,
 	},
 	["rcarriga/nvim-dap-ui"] = {
-		requires = { "theHamsta/nvim-dap-virtual-text", after = "nvim-dap-ui" },
 		keys = { { "n", "_" } },
+		requires = { "theHamsta/nvim-dap-virtual-text", after = "nvim-dap-ui" },
 	},
 	-- <~
 
@@ -437,7 +445,7 @@ local plugins = {
 		end,
 	},
 	["nvim-treesitter/playground"] = {
-		after = "nvim-treesitter",
+		cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
 		config = function()
 			require("safdar.plugins.tsplayground")
 		end,
@@ -449,13 +457,26 @@ local plugins = {
 		end,
 	},
 	["windwp/nvim-ts-autotag"] = {
-		ft = { "html" },
+		opt = true,
+		setup = function()
+			local ts_autotag = {
+				name = "nvim-ts-autotag",
+				pattern = "*.html",
+			}
+			require("safdar.core.lazy_load").loader(ts_autotag)
+		end,
 		config = function()
 			require("nvim-ts-autotag").setup()
 		end,
 	},
 	["p00f/nvim-ts-rainbow"] = {
-		after = "nvim-ts-autotag",
+		opt = true,
+		setup = function()
+			local ts_rainbow = {
+				name = "nvim-ts-rainbow",
+			}
+			require("safdar.core.lazy_load").loader(ts_rainbow)
+		end,
 		config = function()
 			require("fused").lazy_load("tsrainbow")
 		end,
@@ -466,13 +487,20 @@ local plugins = {
 	--                           ~> Utils                               --
 	----------------------------------------------------------------------
 	["windwp/nvim-autopairs"] = {
-		event = "InsertEnter",
+		opt = true,
+		setup = function()
+			local autopairs = {
+				name = "nvim-autopairs",
+				events = { "InsertEnter" },
+			}
+			require("safdar.core.lazy_load").loader(autopairs)
+		end,
 		config = function()
 			require("safdar.plugins.autopairs")
 		end,
 	},
 	["andymass/vim-matchup"] = {
-		keys = { "CursorMoved" },
+		event = { "CursorMoved" },
 		config = function()
 			require("safdar.plugins.vim-matchup")
 		end,
@@ -521,7 +549,18 @@ local plugins = {
 	--                      ~> ThePrimeagen                             --
 	----------------------------------------------------------------------
 	["ThePrimeagen/vim-be-good"] = {
-		keys = { "n", "<leader>gg" },
+		opt = true,
+		cmd = "VimBeGood",
+		setup = function()
+			local vim_be_good = {
+				name = "vim-be-good",
+				keymap = {
+					key = "<leader>gg",
+					cmd = "VimBeGood",
+				},
+			}
+			require("safdar.core.lazy_load").keymap_plugin_loader(vim_be_good)
+		end,
 		config = function()
 			require("safdar.plugins.vim-be-good.maps")
 		end,
@@ -561,28 +600,29 @@ local plugins = {
 	----------------------------------------------------------------------
 	["nvim-neorg/neorg"] = {
 		opt = true,
-		-- ft = "norg",
 		setup = function()
 			local neorg = {
+				del_autocmd = true,
 				name = "neorg",
 				pattern = "*.norg",
 			}
 			require("safdar.core.lazy_load").loader(neorg)
+
+			neorg = {
+				name = "neorg",
+				keymap = {
+					key = "gtc",
+					cmd = "Neorg gtd capture",
+				},
+				callback = function()
+					require("safdar.plugins.neorg").load_conf()
+				end,
+			}
+			require("safdar.core.lazy_load").keymap_plugin_loader(neorg)
 		end,
-		keys = { "n", "gtc" },
-		module_pattern = {
-			"neorg.modules.*",
-			"neorg.modules.core.integrations.telescope.module",
-		},
 		run = ":Neorg sync-parsers", -- This is the important bit!
-		requires = {
-			"nvim-neorg/neorg-telescope",
-		},
-		config = function()
-			require("safdar.plugins.neorg")
-			require("fused").lazy_load("neorg")
-		end,
 	},
+	["nvim-neorg/neorg-telescope"] = { after = "neorg" },
 	["iamcco/markdown-preview.nvim"] = {
 		opt = true,
 		key = { "n", "<leader>mp" },

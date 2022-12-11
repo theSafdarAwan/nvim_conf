@@ -7,6 +7,7 @@ local api = vim.api
 --                       ~> Lazy Loading                            --
 ----------------------------------------------------------------------
 local packer = require("packer")
+local packer_plugins = _G.packer_plugins
 
 local events = { "BufRead", "BufWinEnter", "BufNewFile" }
 
@@ -18,12 +19,49 @@ local function schedule_load(name)
 	end)
 end
 
+-- this function needs a tbl with this info
+-- {
+-- }
 local function register_autocmd(plugin)
 	api.nvim_create_autocmd(plugin.events or events, {
 		group = api.nvim_create_augroup("lazy_load_" .. tostring(plugin.name), { clear = true }),
 		pattern = plugin.pattern,
 		callback = plugin.callback,
 	})
+end
+
+-- for plugins that need a key to be loaded
+-- 1){
+--	name = plugin name -- string
+--	keymap = {
+--		mode = mode name, -- string
+--		key = key to map, -- string
+--		cmd = command name without : or <CR>, -- string
+--		opts = options like noremap,silent, -- tbl
+--		}
+--	callback = load plugin configuration here, -- function
+--  }
+function M.keymap_plugin_loader(plugin)
+	local opts = { noremap = true, silent = true }
+	local mode = "n"
+	vim.keymap.set(plugin.keymap.mode or mode, plugin.keymap.key, function()
+		if packer_plugins[plugin.name] and not packer_plugins[plugin.name].enable then
+			if plugin.callback then
+				-- in callback you should provide the require modules
+				plugin.callback()
+			end
+			vim.cmd(plugin.keymap.cmd)
+			if plugin.del_autocmd then
+				schedule_load(plugin.name)
+			else
+				vim.schedule(function()
+					packer.loader(plugin.name)
+				end)
+			end
+		else
+			vim.cmd(plugin.keymap.cmd)
+		end
+	end, plugin.keymap.opts or opts)
 end
 
 ----------------------------------------------------------------------
@@ -40,6 +78,11 @@ local callbacks = {
 			schedule_load(gitsigns)
 		end
 	end,
+	neorg = function()
+		local neorg = "neorg"
+		schedule_load(neorg)
+		require("safdar.plugins.neorg").load_conf()
+	end,
 }
 
 ----------------------------------------------------------------------
@@ -49,6 +92,10 @@ local callbacks = {
 M.loader = function(plugin)
 	if plugin.name == "gitsigns.nvim" then
 		plugin.callback = callbacks.gitsigns
+	elseif plugin.name == "neorg" then
+		plugin.callback = callbacks.neorg
+		-- elseif plugin.name == "vim-be-good" then
+		-- plugin.callback = callbacks.vim_be_good
 	else
 		plugin.callback = function()
 			schedule_load(plugin.name)
@@ -73,14 +120,6 @@ M.packer_cmds = {
 	"PackerStatus",
 	"PackerProfile",
 	"PackerLoad",
-}
-
-M.lsp_cmds = {
-	"LspAttach",
-	"LspStop",
-	"LspStart",
-	"LspInfo",
-	"LspLog",
 }
 
 M.treesitter_cmds = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" }
