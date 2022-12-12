@@ -74,7 +74,7 @@ local plugins = {
 	--                        ~> Telescope                              --
 	----------------------------------------------------------------------
 	["nvim-telescope/telescope.nvim"] = {
-		cmd = "Telescope*",
+		cmd = "Telescope",
 		keys = require("safdar.plugins.telescope.maps").packer_keys,
 		setup = function()
 			require("fused").lazy_load("telescope")
