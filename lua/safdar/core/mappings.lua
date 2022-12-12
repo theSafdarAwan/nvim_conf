@@ -18,8 +18,11 @@ end
 -- <~
 
 -- Center the next searched item
--- map("n", "n", "nzz", opts)
--- map("n", "N", "Nzz", opts)
+-- set_map("n", "n", "nzz", opts)
+-- set_map("n", "N", "Nzz", opts)
+-- set_map("c", "<CR>", function()
+-- 	return vim.fn.getcmdtype() == "/" and "<cr>zz" or "<CR>"
+-- end, { expr = true, noremap = true, silent = true })
 
 -- copy the whole line after the cursor
 set_map("n", "Y", "y$", opts)
@@ -30,7 +33,7 @@ set_map("n", "cn", "*``cgn", opts)
 set_map("n", "cN", "*``cgN", opts)
 
 -- Paste onto the selection and don't copy the selection to the reg
--- map("v", "p", '"_dP', opts)
+-- set_map("v", "p", '"_dP', opts)
 
 -- mark before format paragraph mapping
 set_map("n", "=ap", "mm=ap`m", opts)
@@ -52,11 +55,11 @@ set_map("n", "<A-h>", "zh", opts)
 
 -- Don't need them not so productive
 -- Move to the left and right, up and down in insert mode
--- map("i", "<C-l>", "<c-o>a", opts)
--- map("n", "<C-h>", "<c-o>h", opts)
+-- set_map("i", "<C-l>", "<c-o>a", opts)
+-- set_map("n", "<C-h>", "<c-o>h", opts)
 --
--- map("i", "<C-j>", "<c-o>j", opts)
--- map("n", "<C-k>", "<c-o>k", opts)
+-- set_map("i", "<C-j>", "<c-o>j", opts)
+-- set_map("n", "<C-k>", "<c-o>k", opts)
 
 -- Copy to the system clipboard
 set_map("v", "<leader>y", "\"+y", opts)
@@ -128,7 +131,7 @@ set_map("n", "<C-c>", "<Nop>", opts)
 -- ==========================================================================
 --                         built_in_plugins configs
 -- ==========================================================================
--- map("n", "<leader>so", ":so %<cr>", opts) -- look into packer/maps
+-- set_map("n", "<leader>so", ":so %<cr>", opts) -- look into packer/maps
 
 -- Spell checking
 -- Pressing ,ss will toggle and untoggle spell checking
@@ -147,6 +150,6 @@ set_map("i", "<C-j>", "<Enter><ESC>i", opts)
 
 -- Terminal"
 set_map("t", "<c-[>", "<c-\\><c-n>", opts)
--- map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", opts)
--- map("n", "<c-s><c-l>",":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>", opts)
--- map("n", "<c-s><c-t>", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>", opts)
+-- set_map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>", opts)
+-- set_map("n", "<c-s><c-l>",":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>", opts)
+-- set_map("n", "<c-s><c-t>", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>", opts)
