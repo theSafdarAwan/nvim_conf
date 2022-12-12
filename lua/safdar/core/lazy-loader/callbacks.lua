@@ -49,7 +49,9 @@ end
 callbacks.neorg = function()
 	local neorg = "neorg"
 	schedule(neorg)
-	require("safdar.plugins.neorg").load_conf()
+	vim.schedule(function()
+		require("safdar.plugins.neorg").load_conf()
+	end)
 end
 
 M.callbacks = callbacks
