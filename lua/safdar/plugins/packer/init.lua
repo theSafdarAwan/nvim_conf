@@ -230,7 +230,8 @@ local plugins = {
 	},
 	["kyazdani42/nvim-web-devicons"] = {
 		config = function()
-			require("nvim-web-devicons").setup()
+			require("safdar.plugins.web-dev-icons")
+			require("fused").lazy_load("devicons")
 		end,
 	}, -- icons for the nvim
 	["feline-nvim/feline.nvim"] = {
