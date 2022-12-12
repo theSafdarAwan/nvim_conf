@@ -16,40 +16,40 @@ M.maps = function()
 	set_map("n", "<leader>rr", ":Telescope reloader<cr>", { noremap = true, silent = true })
 
 	set_map("n", "<leader>en", function()
-		require("safdar.plugins.telescope").search_nvim_dotfiles()
+		require("safdar.plugins.telescope.telescope-custom").search_nvim_dotfiles()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>gtd", function()
-		require("safdar.plugins.telescope").gtd_neorg_files()
+		require("safdar.plugins.telescope.telescope-custom").gtd_neorg_files()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>f;", function()
-		require("safdar.plugins.telescope").ivy_find_files_with_preview()
+		require("safdar.plugins.telescope.telescope-custom").ivy_find_files_with_preview()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>fb", function()
-		require("safdar.plugins.telescope").center_list_buffers_find()
+		require("safdar.plugins.telescope.telescope-custom").center_list_buffers_find()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>tc", function()
-		require("safdar.plugins.telescope").get_cursor_change_colorscheme()
+		require("safdar.plugins.telescope.telescope-custom").get_cursor_change_colorscheme()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>ti", function()
-		require("safdar.plugins.telescope").ivy_colorscheme_preview()
+		require("safdar.plugins.telescope.telescope-custom").ivy_colorscheme_preview()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>ff", function()
 		-- ":Telescope find_files theme=get_cursor previewer=false find_command=rg,--hidden,--files<CR>",
-		require("safdar.plugins.telescope").center_list_find_files()
+		require("safdar.plugins.telescope.telescope-custom").center_list_find_files()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<C-_>", function()
-		require("safdar.plugins.telescope").current_buffer_fuzzy_find()
+		require("safdar.plugins.telescope.telescope-custom").current_buffer_fuzzy_find()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>ds", function()
-		require("safdar.plugins.telescope").center_list_document_symbols_find()
+		require("safdar.plugins.telescope.telescope-custom").center_list_document_symbols_find()
 	end, { noremap = true, silent = true })
 end
 
@@ -89,4 +89,16 @@ M.picker_find = function()
 	}
 end
 
+M.telescope_plugins_maps = {
+	tabs = function()
+		local set_map = require("safdar.core.utils").set_map
+		set_map("n", "<leader>tt", function()
+			require("telescope-tabs").list_tabs()
+		end)
+	end,
+	harpoon = function()
+		local set_map = require("safdar.core.utils").set_map
+		set_map("n", "<leader>af", ":Telescope harpoon marks<CR>")
+	end,
+}
 return M

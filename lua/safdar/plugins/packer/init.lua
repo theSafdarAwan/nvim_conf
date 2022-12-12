@@ -80,16 +80,25 @@ local plugins = {
 			require("fused").lazy_load("telescope")
 		end,
 		config = function()
-			require("safdar.plugins.telescope")
+			require("safdar.plugins.telescope").telescope()
 		end,
 	},
 	["nvim-telescope/telescope-fzf-native.nvim"] = {
-		event = "CursorMoved",
+		after = "telescope.nvim",
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-		requires = {
-			"nvim-telescope/telescope-live-grep-args.nvim",
-			after = "telescope-fzf-native.nvim",
-		},
+		config = function()
+			require("safdar.plugins.telescope.telescope-plugins").fzf()
+		end,
+	},
+	-- TODO: look into telescope plugin ans config for searching
+	-- ["nvim-telescope/telescope-live-grep-args.nvim"] = {
+	-- 	after = "telescope-fzf-native.nvim",
+	-- },
+	["LukasPietzschmann/telescope-tabs"] = {
+		after = "telescope-fzf-native.nvim",
+		config = function()
+			require("safdar.plugins.telescope.telescope-plugins").tabs()
+		end,
 	},
 	-- <~
 
@@ -175,7 +184,7 @@ local plugins = {
 		},
 	},
 	["beauwilliams/focus.nvim"] = {
-		keys = { "gF", "go", "g,", },
+		keys = { "gF", "go", "g," },
 		config = function()
 			require("safdar.plugins.focus")
 		end,
@@ -593,15 +602,19 @@ local plugins = {
 	},
 	["ThePrimeagen/harpoon"] = { -- the most amazing plugin i have yet discoverd
 		keys = {
-			"<leader>ah",
-			"<leader>aH",
-			"<leader>aj",
-			"<leader>ak",
-			"<leader>al",
-			"<leader>tj",
-			"<leader>tk",
-			"<leader>tl",
+			{ "n", "<leader>ah" },
+			{ "n", "<leader>af" },
+			{ "n", "<leader>aa" },
+			{ "n", "<leader>aH" },
+			{ "n", "<leader>aj" },
+			{ "n", "<leader>ak" },
+			{ "n", "<leader>al" },
+			{ "n", "<leader>tj" },
+			{ "n", "<leader>tk" },
+			{ "n", "<leader>tl" },
 		},
+		-- for harpoon telescope plugin
+		requies = { "telescope.nvim" },
 		config = function()
 			require("safdar.plugins.harpoon")
 			require("fused").lazy_load("harpoon")
@@ -619,7 +632,7 @@ local plugins = {
 				autopush = false, -- default: false,
 			})
 			require("safdar.plugins.plugins_mappings.git_worktree_map")
-			require("safdar.plugins.telescope").git_worktree()
+			require("safdar.plugins.telescope.telescope-plugins").git_worktree()
 		end,
 	},
 	-- <~
