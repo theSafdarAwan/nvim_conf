@@ -137,9 +137,7 @@ end
 -- plugins that need to be loaded before files like treesitter
 loaders.on_file = function(plugin)
 	plugin.callback = function()
-		vim.schedule(function()
-			packer.loader(plugin.name)
-		end)
+		packer.loader(plugin.name)
 	end
 	register_autocmd(plugin)
 end
