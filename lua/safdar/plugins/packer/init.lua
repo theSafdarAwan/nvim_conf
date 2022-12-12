@@ -1,4 +1,4 @@
--- NOTE: if you are trying to lazy_load using the safdar/core/lazy-loader
+-- NOTE: if you are trying to lazy_load using the lazy-loader
 -- functions then there should be only three keys in the plugin table
 -- 1) opt
 -- 2) setup
@@ -45,6 +45,10 @@ local plugins = {
 			require("impatient").enable_profile()
 		end,
 	},
+
+	-- lazy loader
+	["TheSafdarAwan/lazy-loader.nvim"] = {},
+
 	["antoinemadec/FixCursorHold.nvim"] = {
 		after = "impatient.nvim",
 		run = function()
@@ -201,7 +205,7 @@ local plugins = {
 			local gitsigns = {
 				name = "gitsigns.nvim",
 			}
-			require("safdar.core.lazy-loader").loaders.callback(gitsigns)
+			require("lazy-loader").loaders.callback(gitsigns)
 		end,
 		config = function()
 			require("safdar.plugins.gitsigns")
@@ -258,7 +262,7 @@ local plugins = {
 			local plugin = {
 				name = "schemastore.nvim",
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(plugin)
+			require("lazy-loader").loaders.schedule_autocmd(plugin)
 		end,
 	}, -- for json schemas
 	["neovim/nvim-lspconfig"] = {
@@ -283,7 +287,7 @@ local plugins = {
 				name = "nvim-FeMaco.lua",
 				pattern = { "*.md", "*.norg" },
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(femaco)
+			require("lazy-loader").loaders.schedule_autocmd(femaco)
 		end,
 		config = function()
 			require("femaco").setup()
@@ -298,7 +302,7 @@ local plugins = {
 				name = "ale",
 				pattern = { "*.html" },
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(ale)
+			require("lazy-loader").loaders.schedule_autocmd(ale)
 		end,
 		config = function()
 			require("safdar.plugins.ale")
@@ -316,7 +320,7 @@ local plugins = {
 				name = "LuaSnip",
 				events = "BufRead",
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(luasnip)
+			require("lazy-loader").loaders.schedule_autocmd(luasnip)
 		end,
 		config = function()
 			require("safdar.plugins.luasnip")
@@ -348,7 +352,7 @@ local plugins = {
 			local plugin = {
 				name = "cmp-nvim-lua",
 			}
-			require("safdar.core.lazy-loader").loaders.callback(plugin)
+			require("lazy-loader").loaders.callback(plugin)
 		end,
 	},
 
@@ -360,7 +364,7 @@ local plugins = {
 				name = "cmp-tabnine",
 				events = "InsertEnter",
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(tabnine)
+			require("lazy-loader").loaders.schedule_autocmd(tabnine)
 		end,
 		config = function()
 			require("safdar.plugins.tabnine")
@@ -377,7 +381,7 @@ local plugins = {
 				events = "InsertEnter",
 				pattern = { "*.md", "*.html", "*.norg" },
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(cmp_dictionary)
+			require("lazy-loader").loaders.schedule_autocmd(cmp_dictionary)
 		end,
 		config = function()
 			require("safdar.plugins.cmp.cmp-dictionary")
@@ -458,7 +462,7 @@ local plugins = {
 			local nvim_ts = {
 				name = "nvim-treesitter",
 			}
-			require("safdar.core.lazy-loader").loaders.on_file(nvim_ts)
+			require("lazy-loader").loaders.on_file(nvim_ts)
 		end,
 		after = "plenary.nvim",
 		run = ":TSUpdate",
@@ -485,7 +489,7 @@ local plugins = {
 				name = "nvim-ts-autotag",
 				pattern = "*.html",
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(ts_autotag)
+			require("lazy-loader").loaders.schedule_autocmd(ts_autotag)
 		end,
 		config = function()
 			require("nvim-ts-autotag").setup()
@@ -497,7 +501,7 @@ local plugins = {
 			local ts_rainbow = {
 				name = "nvim-ts-rainbow",
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(ts_rainbow)
+			require("lazy-loader").loaders.schedule_autocmd(ts_rainbow)
 		end,
 		config = function()
 			require("fused").lazy_load("tsrainbow")
@@ -515,7 +519,7 @@ local plugins = {
 				name = "nvim-autopairs",
 				events = { "InsertEnter" },
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(autopairs)
+			require("lazy-loader").loaders.schedule_autocmd(autopairs)
 		end,
 		config = function()
 			require("safdar.plugins.autopairs")
@@ -544,7 +548,7 @@ local plugins = {
 			local keys = {
 				{ "n", "<leader>u" },
 			}
-			require("safdar.core.lazy-loader").loaders.keymap(undotree, keys)
+			require("lazy-loader").loaders.keymap(undotree, keys)
 		end,
 		config = function()
 			require("safdar.plugins.undotree.maps")
@@ -592,7 +596,7 @@ local plugins = {
 			local keys = {
 				{ "n", "<leader>gg" },
 			}
-			require("safdar.core.lazy-loader").loaders.keymap(vim_be_good, keys)
+			require("lazy-loader").loaders.keymap(vim_be_good, keys)
 		end,
 		config = function()
 			require("safdar.plugins.vim-be-good.maps")
@@ -651,7 +655,7 @@ local plugins = {
 				name = "neorg",
 				pattern = "*.norg",
 			}
-			require("safdar.core.lazy-loader").loaders.callback(neorg)
+			require("lazy-loader").loaders.callback(neorg)
 
 			neorg = {
 				name = "neorg",
@@ -663,7 +667,7 @@ local plugins = {
 			local keys = {
 				{ "n", "gtc" },
 			}
-			require("safdar.core.lazy-loader").loaders.keymap(neorg, keys)
+			require("lazy-loader").loaders.keymap(neorg, keys)
 		end,
 		run = ":Neorg sync-parsers", -- This is the important bit!
 	},
@@ -675,8 +679,9 @@ local plugins = {
 			local md_preview = {
 				name = "markdown-preview.nvim",
 				pattern = "*.md",
+				ft = true,
 			}
-			require("safdar.core.lazy-loader").loaders.schedule_autocmd(md_preview)
+			require("lazy-loader").loaders.schedule_autocmd(md_preview)
 		end,
 		run = function()
 			vim.fn["mkdp#util#install"]()
