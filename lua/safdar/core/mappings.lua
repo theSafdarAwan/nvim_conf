@@ -109,8 +109,8 @@ set_map("n", "gX", ":close!<cr>", opts)
 -- tab mappings
 set_map("n", "<leader>]", ":tabnext<cr>", opts)
 set_map("n", "<leader>[", ":tabprev<cr>", opts)
-set_map("n", "<leader>tx", ":tabclose<cr>", opts)
-set_map("n", "<leader>tn", ":tabnew<cr>", opts)
+set_map("n", "<C-x>", ":tabclose<cr>", opts)
+set_map("n", "<C-n>", ":tabnew<cr>", opts)
 
 -- I use Obsession plugin and i need to restore the whole (n)vim session without losing
 -- a single pane so i replicated the ZZ command functionality and replace it with this one
