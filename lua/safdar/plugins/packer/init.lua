@@ -175,15 +175,11 @@ local plugins = {
 		},
 	},
 	["beauwilliams/focus.nvim"] = {
+		keys = { "gF", "go", "g,", },
 		config = function()
 			require("safdar.plugins.focus")
 		end,
 		cmd = { "FocusToggle", "FocusEnable" },
-		keys = {
-			{ "n", "gF" },
-			{ "n", "go" },
-			{ "n", "g," },
-		},
 	},
 	-- <~
 
@@ -597,12 +593,14 @@ local plugins = {
 	},
 	["ThePrimeagen/harpoon"] = { -- the most amazing plugin i have yet discoverd
 		keys = {
-			{ "n", "<leader>aj" },
-			{ "n", "<leader>ak" },
-			{ "n", "<leader>al" },
-			{ "n", "<leader>tj" },
-			{ "n", "<leader>tk" },
-			{ "n", "<leader>tl" },
+			"<leader>ah",
+			"<leader>aH",
+			"<leader>aj",
+			"<leader>ak",
+			"<leader>al",
+			"<leader>tj",
+			"<leader>tk",
+			"<leader>tl",
 		},
 		config = function()
 			require("safdar.plugins.harpoon")

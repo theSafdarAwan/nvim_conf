@@ -80,6 +80,10 @@ local keymap_callback = function(plugin, key)
 			schedule({ name = plugin.name, del_autocmd = plugin.del_autocmd })
 		end
 
+		-- TODO: add something lie on_loading or something where
+		-- execute_cmd should be defined to reduce the ambiguity between
+		-- which key is for loading and which is after loading the plugin
+
 		-- to execute command as soon as the plugin is loaded
 		if plugin.execute_cmd then
 			vim.schedule(function()
@@ -87,7 +91,7 @@ local keymap_callback = function(plugin, key)
 			end)
 		end
 
-		-- TODO: work on this
+		-- TODO: work on this and after this lazy_load the harpoon using this
 		-- if key.feedkey then
 		-- 	vim.schedule(function()
 		-- 		vim.fn.feedkeys(key[2], key[1])
