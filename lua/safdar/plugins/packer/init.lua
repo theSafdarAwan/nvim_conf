@@ -225,6 +225,9 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                     ~> UI                              --
 	----------------------------------------------------------------------
+	["rcarriga/nvim-notify"] = {
+		after = "impatient.nvim",
+	},
 	["kyazdani42/nvim-web-devicons"] = {
 		config = function()
 			require("nvim-web-devicons").setup()
@@ -644,7 +647,6 @@ local plugins = {
 		opt = true,
 		setup = function()
 			local neorg = {
-				del_autocmd = false,
 				name = "neorg",
 				pattern = "*.norg",
 			}
