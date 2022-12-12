@@ -1,4 +1,4 @@
--- NOTE: if you are trying to lazy_load using the safdar/core.lazy-loader.lua
+-- NOTE: if you are trying to lazy_load using the safdar/core/lazy-loader
 -- functions then there should be only three keys in the plugin table
 -- 1) opt
 -- 2) setup
