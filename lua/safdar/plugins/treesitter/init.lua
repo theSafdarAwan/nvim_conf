@@ -43,6 +43,9 @@ require("nvim-treesitter.configs").setup({
 		"html",
 		"json",
 		"scss",
+		"gitcommit",
+		"gitattributes",
+		"git_rebase",
 	},
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = true,
