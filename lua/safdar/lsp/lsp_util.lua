@@ -21,8 +21,18 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 M.capabilities = capabilities
 
-M.on_attach = function(c, b)
-	require("safdar.plugins.plugins_mappings.lsp_map").on_attach(c, b)
+M.on_attach = function(client, bufnr)
+	require("safdar.plugins.plugins_mappings.lsp_map").on_attach(client, bufnr)
+
+	-- only format wit the null_ls configured formatters
+	if client.name ~= "null_ls" then
+		if client.server_capabilities.documentFormattingProvider then
+			client.server_capabilities.documentFormattingProvider = false
+		end
+		if client.server_capabilities.documentRangeFormattingProvider then
+			client.server_capabilities.documentRangeFormattingProvider = false
+		end
+	end
 end
 
 return M

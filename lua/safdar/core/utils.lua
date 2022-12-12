@@ -4,12 +4,13 @@ local bo = vim.bo
 
 local M = {}
 
+local local_opts = { noremap = true, silent = true }
 M.set_map = function(mode, mapping, command, opts)
-	vim.keymap.set(mode, mapping, command, opts)
+	vim.keymap.set(mode, mapping, command, opts or local_opts)
 end
 
 M.del_map = function(mode, mapping, opts)
-	vim.keymap.set(mode, mapping, opts)
+	vim.keymap.set(mode, mapping, opts or local_opts)
 end
 
 M.deprecated = function()

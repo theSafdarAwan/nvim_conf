@@ -21,6 +21,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 	underline = true,
 	update_in_insert = true, -- update diagnostics insert mode
 })
+
 --     ["bold"] = {
 --       {"┏", highlight},
 --       {"─", highlight},

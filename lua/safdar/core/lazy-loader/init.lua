@@ -45,44 +45,85 @@ end
 --                          Keymap Loader                           --
 ----------------------------------------------------------------------
 
--- for plugins that need a key to be loaded
--- 1){
---	name = "plugin name" -- string
---	packadd = "to add plugin package boolean value", -- boolean
---	keymap = {
---		mode = "mode name", -- string
---		key = "key to map", -- string
---		cmd = "command name without : or <CR>", -- string
---		opts = "options like noremap,silent", -- tbl
---		}
---	del_autocmd = "boolean value to delete the autocmd if exists or not", -- boolean
---	callback = function() print("load plugin configuration here") end, -- function
---  }
-loaders.keymap = function(plugin)
-	local opts = { noremap = true, silent = true }
+-- to add the mappings
+local function set_keymap(key, plugin, callback)
+	-- if user only gave string key binding rather then table for mapping
 	local mode = "n"
-	vim.keymap.set(plugin.keymap.mode or mode, plugin.keymap.key, function()
-		if packer_plugins[plugin.name] and not packer_plugins[plugin.name].enable then
-			if plugin.callback then
-				-- in callback you should provide the require modules
-				plugin.callback()
-			end
+	local binding = key
+	if type(key) == "table" then
+		mode = key[1]
+		binding = key[2]
+	end
 
-			-- if the plugin doesn't have a setup func so we can add
-			-- it using packadd option
-			if plugin.packadd then
-				add_package(plugin.name)
-			end
+	vim.keymap.set(mode, binding, function()
+		callback(plugin, key)
+	end, key[3] or { noremap = true, silent = true })
+end
 
-			vim.cmd(plugin.keymap.cmd)
-
-			if plugin.del_autocmd then
-				schedule({ name = plugin.name, del_autocmd = plugin.del_autocmd })
-			end
+-- to load the keymap plugin
+local keymap_callback = function(plugin, key)
+	if packer_plugins[plugin.name] and not packer_plugins[plugin.name].enable then
+		-- add plugin as a package or load using packer loader
+		if plugin.packadd then
+			add_package(plugin.name)
 		else
-			vim.cmd(plugin.keymap.cmd)
+			packer.loader(plugin.name)
 		end
-	end, plugin.keymap.opts or opts)
+
+		-- in callback you should provide the require modules
+		if plugin.callback then
+			plugin.callback()
+		end
+
+		-- if plugin already has an autocmd to be loaded
+		if plugin.del_autocmd then
+			schedule({ name = plugin.name, del_autocmd = plugin.del_autocmd })
+		end
+
+		-- to execute command as soon as the plugin is loaded
+		if plugin.execute_cmd then
+			vim.schedule(function()
+				vim.cmd(plugin.execute_cmd)
+			end)
+		end
+
+		-- TODO: work on this
+		-- if key.feedkey then
+		-- 	vim.schedule(function()
+		-- 		vim.fn.feedkeys(key[2], key[1])
+		-- 	end)
+		-- end
+	end
+end
+
+-- NOTE: the mappings that you are giving here should be defined before you load
+-- the plugin mappings maybe load the plugin mappings in the callback function
+-- but not before these. And also to overridden these mappings when you require
+-- you plugin mappings.
+
+-- To lazy load plugins with mappings
+-- expects two tables
+-- 1) plugin information
+-- {
+--	name = "plugin name" -- string
+--	callback = function() --[[ to load plugin configuration and maps ]] end, -- function
+--	del_autocmd = "boolean value to delete the autocmd if exists or not useful for plugins that have keymaps and also autocmds to load", -- boolean
+--	packadd = "add plugin as a package", -- boolean
+--	execute_cmd = "command to execute after the plugin is loaded helpful when you want to open the plugin as soon as you loaded", -- string
+--  }
+-- 2) keymaps you can add as many keymaps as you want there is no need to add key
+--    for the mapping just add the kymap tbl
+-- {
+--	{
+--		"mode",--  string
+--		"key", -- string
+--		{ "tbl of opts this is optional" }, -- tbl
+--	}
+-- }
+loaders.keymap = function(plugin, keys)
+	for _, key in pairs(keys) do
+		set_keymap(key, plugin, keymap_callback)
+	end
 end
 
 ----------------------------------------------------------------------

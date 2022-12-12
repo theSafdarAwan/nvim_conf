@@ -530,13 +530,12 @@ local plugins = {
 			local undotree = {
 				name = "undotree",
 				packadd = true,
-				keymap = {
-					mode = "n",
-					key = "<leader>u",
-					cmd = "UndotreeToggle | wincmd h",
-				},
+				execute_cmd = "UndotreeToggle | wincmd h",
 			}
-			require("safdar.core.lazy-loader").loaders.keymap(undotree)
+			local keys = {
+				{ "n", "<leader>u" },
+			}
+			require("safdar.core.lazy-loader").loaders.keymap(undotree, keys)
 		end,
 		config = function()
 			require("safdar.plugins.undotree.maps")
@@ -579,12 +578,12 @@ local plugins = {
 		setup = function()
 			local vim_be_good = {
 				name = "vim-be-good",
-				keymap = {
-					key = "<leader>gg",
-					cmd = "VimBeGood",
-				},
+				execute_cmd = "VimBeGood",
 			}
-			require("safdar.core.lazy-loader").loaders.keymap(vim_be_good)
+			local keys = {
+				{ "n", "<leader>gg" },
+			}
+			require("safdar.core.lazy-loader").loaders.keymap(vim_be_good, keys)
 		end,
 		config = function()
 			require("safdar.plugins.vim-be-good.maps")
@@ -597,7 +596,14 @@ local plugins = {
 		end,
 	},
 	["ThePrimeagen/harpoon"] = { -- the most amazing plugin i have yet discoverd
-		keys = { { "n", "<leader>t" }, { "n", "<leader>a" } },
+		keys = {
+			{ "n", "<leader>aj" },
+			{ "n", "<leader>ak" },
+			{ "n", "<leader>al" },
+			{ "n", "<leader>tj" },
+			{ "n", "<leader>tk" },
+			{ "n", "<leader>tl" },
+		},
 		config = function()
 			require("safdar.plugins.harpoon")
 			require("fused").lazy_load("harpoon")
@@ -635,15 +641,15 @@ local plugins = {
 
 			neorg = {
 				name = "neorg",
-				keymap = {
-					key = "gtc",
-					cmd = "Neorg gtd capture",
-				},
+				execute_cmd = "Neorg gtd capture",
 				callback = function()
 					require("safdar.plugins.neorg").load_conf()
 				end,
 			}
-			require("safdar.core.lazy-loader").loaders.keymap(neorg)
+			local keys = {
+				{ "n", "gtc" },
+			}
+			require("safdar.core.lazy-loader").loaders.keymap(neorg, keys)
 		end,
 		run = ":Neorg sync-parsers", -- This is the important bit!
 	},

@@ -1,7 +1,6 @@
 local vim = vim
 local api = vim.api
 local lsp_util = require("safdar.lsp.lsp_util")
-local lspconfig_util = require("lspconfig.util")
 local on_attach = lsp_util.on_attach
 local capabilities = lsp_util.capabilities
 -- suppress error messages from lang servers
@@ -47,6 +46,10 @@ for _, lsp in ipairs(servers) do
 		flags = {
 			debounce_text_changes = 150,
 		},
+		-- handlers = {
+		-- 	["textDocument/formatting"] = false,
+		-- 	["textDocument/rangeformatting"] = false,
+		-- },
 	})
 end
 
@@ -73,7 +76,8 @@ require("safdar.lsp.lsp-ui")
 -- add the mappings
 require("safdar.plugins.plugins_mappings.lsp_map")
 
---=======================================================
+-- now this is done in on_attach function
+--[[ --=======================================================
 --     messing with the lsp servers
 --=======================================================
 -- NOTE: if you format the file and find some unwanted behaviour then that maybe
@@ -81,6 +85,7 @@ require("safdar.plugins.plugins_mappings.lsp_map")
 -- text was deleted and i couldn't figure out why.
 local lsp_conf_augroup = api.nvim_create_augroup("lsp_conf", { clear = true })
 
+local lspconfig_util = require("lspconfig.util")
 local client_names = lspconfig_util.available_servers()
 -- disable the default server formatting instead use null-ls
 -- setting the formatting to false
@@ -101,4 +106,4 @@ api.nvim_create_autocmd("LspAttach", {
 			end
 		end
 	end,
-})
+}) ]]

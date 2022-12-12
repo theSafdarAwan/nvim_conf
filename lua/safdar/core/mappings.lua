@@ -97,8 +97,8 @@ set_map("n", "<leader>rp", ":resize 100<cr><c-l>", opts)
 set_map("n", "<leader>I", "mzggVG=`z<c-l>", opts)
 
 -- buffers mappings
--- map("n", "<C-l>", ":bnext<cr>", opts) -- control-l is used to clear the cmdline which i don't use too much so keep this in mind
--- map("n", "<C-h>", ":bprevious<cr>", opts)
+set_map("n", "<Tab>", ":bnext<cr>", opts)
+set_map("n", "<S-Tab>", ":bprevious<cr>", opts)
 set_map("n", "<leader>x", ":bdelete<cr>", opts)
 set_map("n", "<leader>X", ":bdelete!<cr>", opts)
 

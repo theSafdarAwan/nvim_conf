@@ -226,72 +226,88 @@ components.active[1][6] = {
 --                  center
 --=====================================================
 
-components.active[2][1] = {
-	provider = function()
-		local Lsp = vim.lsp.util.get_progress_messages()[1]
-		if Lsp then
-			local msg = Lsp.message or ""
-			local percentage = Lsp.percentage or 0
-			local title = Lsp.title or ""
-			local spinners = {
-				-- ◐ ◓ ◑ ◒
-				"◐",
-				"◓",
-				"◑",
-				"◒",
-				"◐",
-				"◓",
-				"◑",
-				"◒",
-				"◐",
-				"◓",
-				"◑",
-				"◒",
+local function show_lsp_progress()
+	local Lsp = vim.lsp.util.get_progress_messages()[1]
+	if Lsp then
+		local msg = Lsp.message or ""
+		local percentage = Lsp.percentage or 0
+		local title = Lsp.title or ""
+		local spinners = {
+			-- ◐ ◓ ◑ ◒
+			"◐",
+			"◓",
+			"◑",
+			"◒",
+			"◐",
+			"◓",
+			"◑",
+			"◒",
+			"◐",
+			"◓",
+			"◑",
+			"◒",
 
-				-- "⠋",
-				-- "⠇",
-				-- "⠦",
-				-- "⠙",
-				-- "⠹",
-				-- "⠼",
-				-- "⠴",
-				-- "⠸",
-				-- "⠦",
-				-- "⠧",
-				-- "⠇",
-				-- "⠏",
-			}
+			-- "⠋",
+			-- "⠇",
+			-- "⠦",
+			-- "⠙",
+			-- "⠹",
+			-- "⠼",
+			-- "⠴",
+			-- "⠸",
+			-- "⠦",
+			-- "⠧",
+			-- "⠇",
+			-- "⠏",
+		}
 
-			local success_icon = {
-				-- "",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-			}
+		local success_icon = {
+			-- "",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+		}
 
-			local ms = vim.loop.hrtime() / 1000000
-			local frame = math.floor(ms / 120) % #spinners
+		local ms = vim.loop.hrtime() / 1000000
+		local frame = math.floor(ms / 120) % #spinners
 
-			if percentage >= 70 then
-				return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
-			else
-				return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
-			end
+		if percentage >= 70 then
+			return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
+		else
+			return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
 		end
-		return "%b-0x%B"
+	end
+
+	local cur_buf_clients = vim.lsp.buf_get_clients()
+	local clients_str = ""
+	for _, server in pairs(cur_buf_clients) do
+		clients_str = clients_str .. server.name .. ","
+	end
+
+	return "[" .. clients_str .. "]"
+end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("setting_feline_lsp_buf_clients", { clear = true }),
+	callback = function()
+		components.active[2][1] = {
+			provider = function()
+				return show_lsp_progress()
+			end,
+			enabled = enable_only_in_full_buf,
+			hl = { fg = c.cyan, bg = c.dark },
+		}
 	end,
-	enabled = enable_only_in_full_buf,
-	hl = { fg = c.green, bg = c.dark },
-}
+})
 
 --=====================================================
 --                  right
