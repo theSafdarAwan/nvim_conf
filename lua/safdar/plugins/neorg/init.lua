@@ -167,12 +167,4 @@ require("neorg").setup({
 })
 
 require("safdar.plugins.neorg.maps")
-
-local M = {}
-
-M.load_conf = function()
-	require("safdar.plugins.neorg")
-	require("fused").lazy_load("neorg")
-end
-
-return M
+require("fused").lazy_load("neorg")

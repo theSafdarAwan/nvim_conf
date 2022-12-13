@@ -33,7 +33,7 @@ packer.init({
 local plugins = {
 	["wbthomason/packer.nvim"] = { -- packer can manage itself
 		opt = true,
-		cmd = require("safdar.core.utils").packer_cmds,
+		cmd = require("lazy-loader.cmds").packer_cmds,
 	},
 
 	----------------------------------------------------------------------
@@ -407,7 +407,8 @@ local plugins = {
 		end,
 	},
 	["glepnir/lspsaga.nvim"] = {
-		after = "trouble.nvim",
+		-- TODO: load this with lazy-loader
+		event = "CursorMoved",
 		config = function()
 			require("safdar.plugins.lspsaga")
 			require("fused").lazy_load("lspsaga")
@@ -651,43 +652,57 @@ local plugins = {
 	["nvim-neorg/neorg"] = {
 		opt = true,
 		setup = function()
-			local neorg = {
+			local lazy_load = {
 				name = "neorg",
-				pattern = "*.norg",
+				del_augroup = true,
+				registers = {
+					keymap = {
+						keys = { "gtc" },
+						on_load = {
+							cmd = "Neorg gtd capture",
+							config = function()
+								require("safdar.plugins.neorg")
+							end,
+						},
+					},
+					autocmd = {
+						ft_ext = "norg",
+					},
+				},
 			}
-			require("lazy-loader").loaders.callback(neorg)
-
-			neorg = {
-				name = "neorg",
-				execute_cmd = "Neorg gtd capture",
-				callback = function()
-					require("safdar.plugins.neorg").load_conf()
-				end,
-			}
-			local keys = {
-				{ "n", "gtc" },
-			}
-			require("lazy-loader").loaders.keymap(neorg, keys)
+			require("lazy-loader").loader(lazy_load)
 		end,
 		run = ":Neorg sync-parsers", -- This is the important bit!
 	},
 	["nvim-neorg/neorg-telescope"] = { after = "neorg" },
 	["iamcco/markdown-preview.nvim"] = {
 		opt = true,
-		key = { "n", "<leader>mp" },
 		setup = function()
+			-- TODO: is was here
 			local md_preview = {
 				name = "markdown-preview.nvim",
-				pattern = "*.md",
-				ft = true,
+				del_augroup = true,
+				packadd = false,
+				registers = {
+					keymap = {
+						keys = {
+							"<leader>mp",
+						},
+						on_load = {
+							config = function()
+								require("safdar.plugins.markdown-preview")
+							end,
+						},
+					},
+					autocmd = {
+						ft_ext = "md",
+					},
+				},
 			}
-			require("lazy-loader").loaders.schedule_autocmd(md_preview)
+			require("lazy-loader").loader(md_preview)
 		end,
 		run = function()
 			vim.fn["mkdp#util#install"]()
-		end,
-		config = function()
-			require("safdar.plugins.markdown-preview")
 		end,
 	},
 	-- <~
