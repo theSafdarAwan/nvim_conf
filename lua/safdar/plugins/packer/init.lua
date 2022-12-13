@@ -313,21 +313,6 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                ~> Completion and Snippets                        --
 	----------------------------------------------------------------------
-	["L3MON4D3/LuaSnip"] = {
-		opt = true,
-		setup = function()
-			local luasnip = {
-				name = "LuaSnip",
-				events = "BufRead",
-			}
-			require("lazy-loader").loaders.schedule_autocmd(luasnip)
-		end,
-		config = function()
-			require("safdar.plugins.luasnip")
-		end,
-	},
-	["saadparwaiz1/cmp_luasnip"] = { after = "nvim-cmp" },
-
 	["hrsh7th/nvim-cmp"] = {
 		opt = true,
 		event = "InsertEnter",
@@ -387,6 +372,24 @@ local plugins = {
 			require("safdar.plugins.cmp.cmp-dictionary")
 		end,
 	},
+
+	-- snippets
+	["L3MON4D3/LuaSnip"] = {
+		opt = true,
+		after = "nvim-cmp",
+		setup = function()
+			local luasnip = {
+				name = "LuaSnip",
+				events = "BufRead",
+			}
+			require("lazy-loader").loaders.schedule_autocmd(luasnip)
+		end,
+		config = function()
+			require("safdar.plugins.luasnip")
+		end,
+	},
+	["saadparwaiz1/cmp_luasnip"] = { after = "nvim-cmp" },
+
 	-- <~
 
 	----------------------------------------------------------------------
@@ -541,15 +544,24 @@ local plugins = {
 	["mbbill/undotree"] = {
 		opt = true,
 		setup = function()
-			local undotree = {
+			local plugin = {
 				name = "undotree",
 				packadd = true,
-				execute_cmd = "UndotreeToggle | wincmd h",
+				registers = {
+					keymap = {
+						keys = {
+							"<leader>u",
+						},
+						on_load = {
+							config = function()
+								require("safdar.plugins.markdown-preview")
+							end,
+							cmd = "UndotreeToggle | wincmd h"
+						},
+					},
+				},
 			}
-			local keys = {
-				{ "n", "<leader>u" },
-			}
-			require("lazy-loader").loaders.keymap(undotree, keys)
+			require("lazy-loader").loader(plugin)
 		end,
 		config = function()
 			require("safdar.plugins.undotree.maps")
@@ -663,6 +675,7 @@ local plugins = {
 							config = function()
 								require("safdar.plugins.neorg")
 							end,
+							event = "BufEnter",
 						},
 					},
 					autocmd = {
@@ -678,11 +691,9 @@ local plugins = {
 	["iamcco/markdown-preview.nvim"] = {
 		opt = true,
 		setup = function()
-			-- TODO: is was here
 			local md_preview = {
 				name = "markdown-preview.nvim",
-				del_augroup = true,
-				packadd = false,
+				packadd = true,
 				registers = {
 					keymap = {
 						keys = {
@@ -692,10 +703,8 @@ local plugins = {
 							config = function()
 								require("safdar.plugins.markdown-preview")
 							end,
+							cmd = "MarkdownPreviewToggle"
 						},
-					},
-					autocmd = {
-						ft_ext = "md",
 					},
 				},
 			}

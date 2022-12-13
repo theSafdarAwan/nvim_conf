@@ -1,6 +1,9 @@
 local M = {}
 
 M.maps = function()
+	----------------------------------------------------------------------
+	--                      Mappings for Telescope                      --
+	----------------------------------------------------------------------
 	local set_map = require("safdar.core.utils").set_map
 	-- --> Telescope
 	set_map("n", "<leader>vc", ":Telescope git_commits<CR>", { noremap = true, silent = true })
@@ -53,6 +56,9 @@ M.maps = function()
 	end, { noremap = true, silent = true })
 end
 
+----------------------------------------------------------------------
+--              Keys for Packer to Lazy Load Telescope              --
+----------------------------------------------------------------------
 M.packer_keys = {
 	{ "n", "<leader>f" },
 	{ "n", "<leader>t" },
@@ -66,6 +72,9 @@ M.packer_keys = {
 	{ "n", "<leader>g" },
 }
 
+----------------------------------------------------------------------
+--                     Telescope PickerMappings                     --
+----------------------------------------------------------------------
 -- Telescope core mappings
 M.mappings = function()
 	return {
@@ -88,6 +97,10 @@ M.picker_find = function()
 		},
 	}
 end
+
+----------------------------------------------------------------------
+--                      Telescope Plugins Maps                      --
+----------------------------------------------------------------------
 
 M.telescope_plugins_maps = {
 	tabs = function()

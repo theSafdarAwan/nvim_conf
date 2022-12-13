@@ -7,10 +7,10 @@ end
 
 M.telescope = function()
 	local borderchars = require("safdar.core.utils").telescop_border_chars
+	----------------------------------------------------------------------
+	--                            Lsp Config                            --
+	----------------------------------------------------------------------
 	local maps = require("safdar.plugins.telescope.maps")
-	-- =========================================================================
-	--                          telescope config
-	-- =========================================================================
 	telescope.setup({
 		defaults = {
 			-- @mappings

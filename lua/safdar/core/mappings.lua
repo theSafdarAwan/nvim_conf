@@ -68,7 +68,7 @@ set_map("v", "<leader>y", "\"+y", opts)
 set_map("n", "<leader>Y", "mzgg\"+yG zzz", opts)
 
 -- show messages
-set_map("n", "<leader>m", ":messages<CR>", opts)
+set_map("n", "<C-m>", ":messages<CR>", opts)
 
 -- Paster From the system clipboard
 set_map("n", "<leader>p", "\"+p", opts)

@@ -5,9 +5,9 @@ local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 local borderchars = require("safdar.core.utils").telescop_border_chars
 
--- =========================================================================
---                          custom
--- =========================================================================
+----------------------------------------------------------------------
+--                     Telescope Custom Pickers                     --
+----------------------------------------------------------------------
 
 -- get the name of the root directory
 local function get_root_name()

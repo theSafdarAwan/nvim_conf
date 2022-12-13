@@ -75,23 +75,24 @@ cmp.setup({
 		end,
 	},
 	sources = { -- different source for the completion
-		{ name = "nvim_lsp" },
-		{ name = "neorg" },
+		{ name = "nvim_lsp", keyword_length = 2, max_item_count = 15 },
+		{ name = "neorg", keyword_length = 2 },
 		{
 			name = "luasnip",
 			keyword_length = 2,
 		},
 		{
 			name = "buffer",
-			keyword_length = 3,
+			keyword_length = 2,
 		},
 		{ name = "nvim_lsp_signature_help", group_index = 1 },
-		{ name = "nvim_lua" },
-		{ name = "dictionary" },
+		{ name = "nvim_lua", keyword_length = 2 },
+		{ name = "dictionary", keyword_length = 2 },
 		{ name = "emoji" },
 		{
 			name = "cmp_tabnine",
-			keyword_length = 4,
+			keyword_length = 2,
+			max_item_count = 10,
 		},
 	},
 })
