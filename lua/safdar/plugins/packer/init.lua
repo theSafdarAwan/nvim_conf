@@ -696,6 +696,7 @@ local plugins = {
 				packadd = true,
 				registers = {
 					keymap = {
+						attach_on_autocmd = true,
 						keys = {
 							"<leader>mp",
 						},
