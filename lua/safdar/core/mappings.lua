@@ -1,4 +1,3 @@
-local vim = vim
 local utils = require("safdar.core.utils")
 local set_map = utils.set_map
 local opts = { noremap = true, silent = true }
@@ -6,18 +5,14 @@ local expr = { noremap = true, silent = true, expr = true }
 
 -- ~> Remove mappings
 local removed_maps = {
-	{ "n", "<F1>" },
-	{ "t", "<F1>" },
-	{ "i", "<F1>" },
+	{ { "n", "t", "i", "v" }, "<F1>" },
 	{ "n", "[[" },
 	{ "n", "]]" },
-	{ "v", "<F1>" },
 	{ "n", "gf" },
 }
-for _, map_tbl in pairs(removed_maps) do
-	set_map(map_tbl[1], map_tbl[2], "", opts)
+for _, map in pairs(removed_maps) do
+	set_map(map[1], map[2], "", nil)
 end
--- <~
 
 -- Center the next searched item
 -- set_map("n", "n", "nzz", opts)

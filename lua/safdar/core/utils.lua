@@ -10,7 +10,7 @@ M.set_map = function(mode, mapping, command, opts)
 end
 
 M.del_map = function(mode, mapping, opts)
-	vim.keymap.set(mode, mapping, opts or local_opts)
+	vim.keymap.del(mode, mapping, opts)
 end
 
 M.deprecated = function()
