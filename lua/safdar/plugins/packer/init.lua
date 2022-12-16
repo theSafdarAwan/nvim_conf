@@ -330,9 +330,24 @@ local plugins = {
 	["hrsh7th/nvim-cmp"] = {
 		opt = true,
 		event = "InsertEnter",
+		setup = function()
+			local plugin = {
+				name = "undotree",
+				before_load = {
+					config = function()
+						require("fused").lazy_load("cmp")
+					end,
+				},
+				registers = {
+					autocmd = {
+						event = "InsertEnter",
+					},
+				},
+			}
+			require("lazy-loader").loader(plugin)
+		end,
 		config = function()
 			require("safdar.lsp.cmp")
-			require("fused").lazy_load("cmp")
 		end,
 	},
 	["hrsh7th/cmp-nvim-lsp"] = {
@@ -636,24 +651,29 @@ local plugins = {
 		end,
 	},
 	["ThePrimeagen/harpoon"] = { -- the most amazing plugin i have yet discoverd
-		keys = {
-			{ "n", "<leader>ah" },
-			{ "n", "<leader>af" },
-			{ "n", "<leader>aa" },
-			{ "n", "<leader>aH" },
-			{ "n", "<leader>aj" },
-			{ "n", "<leader>ak" },
-			{ "n", "<leader>al" },
-			{ "n", "<leader>tj" },
-			{ "n", "<leader>tk" },
-			{ "n", "<leader>tl" },
-		},
+		setup = function()
+			local plugin = {
+				name = "harpoon",
+				before_load = {
+					config = function()
+						require("fused").lazy_load("harpoon")
+					end,
+				},
+				on_load = {
+					config = function()
+						require("safdar.plugins.harpoon")
+					end,
+				},
+				registers = {
+					keymap = {
+						keys = require("safdar.plugins.harpoon.maps").packer_keys,
+					},
+				},
+			}
+			require("lazy-loader").loader(plugin)
+		end,
 		-- for harpoon telescope plugin
 		requies = { "telescope.nvim" },
-		config = function()
-			require("safdar.plugins.harpoon")
-			require("fused").lazy_load("harpoon")
-		end,
 	},
 	-- TODO: work on this plugin as you explore more about git
 	["ThePrimeagen/git-worktree.nvim"] = {
