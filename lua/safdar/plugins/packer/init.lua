@@ -78,13 +78,27 @@ local plugins = {
 	--                        ~> Telescope                              --
 	----------------------------------------------------------------------
 	["nvim-telescope/telescope.nvim"] = {
-		cmd = "Telescope",
-		keys = require("safdar.plugins.telescope.maps").packer_keys,
+		opt = true,
 		setup = function()
-			require("fused").lazy_load("telescope")
-		end,
-		config = function()
-			require("safdar.plugins.telescope").telescope()
+			local plugin = {
+				name = "telescope.nvim",
+				before_load = {
+					config = function()
+						require("fused").lazy_load("telescope")
+					end,
+				},
+				on_load = {
+					config = function()
+						require("safdar.plugins.telescope").telescope()
+					end,
+				},
+				registers = {
+					keymap = {
+						keys = require("safdar.plugins.telescope.maps").packer_keys,
+					},
+				},
+			}
+			require("lazy-loader").loader(plugin)
 		end,
 	},
 	["nvim-telescope/telescope-fzf-native.nvim"] = {
@@ -280,7 +294,7 @@ local plugins = {
 		end,
 	},
 
-	["AckslD/nvim-FeMaco.lua"] = { -- edit code from the markdown and neorg file using the lsp
+	["AckslD/nvim-FeMaco.lua"] = { -- edit code from the markdown and norg file using the lsp
 		opt = true,
 		setup = function()
 			local femaco = {
@@ -342,6 +356,7 @@ local plugins = {
 	},
 
 	["tzachar/cmp-tabnine"] = {
+		disable = true,
 		opt = true,
 		run = "./install.sh",
 		setup = function()
@@ -546,17 +561,16 @@ local plugins = {
 		setup = function()
 			local plugin = {
 				name = "undotree",
-				packadd = true,
+				on_load = {
+					config = function()
+						require("safdar.plugins.markdown-preview")
+					end,
+					cmd = "UndotreeToggle | wincmd h",
+				},
 				registers = {
 					keymap = {
 						keys = {
 							"<leader>u",
-						},
-						on_load = {
-							config = function()
-								require("safdar.plugins.markdown-preview")
-							end,
-							cmd = "UndotreeToggle | wincmd h"
 						},
 					},
 				},
@@ -667,16 +681,16 @@ local plugins = {
 			local lazy_load = {
 				name = "neorg",
 				del_augroup = true,
+				on_load = {
+					cmd = "Neorg gtd capture",
+					config = function()
+						require("safdar.plugins.neorg")
+					end,
+					event = "BufEnter",
+				},
 				registers = {
 					keymap = {
 						keys = { "gtc" },
-						on_load = {
-							cmd = "Neorg gtd capture",
-							config = function()
-								require("safdar.plugins.neorg")
-							end,
-							event = "BufEnter",
-						},
 					},
 					autocmd = {
 						ft_ext = "norg",
@@ -693,19 +707,19 @@ local plugins = {
 		setup = function()
 			local md_preview = {
 				name = "markdown-preview.nvim",
-				packadd = true,
+				on_load = {
+					config = function()
+						require("safdar.plugins.markdown-preview")
+					end,
+					cmd = "MarkdownPreviewToggle",
+				},
 				registers = {
 					keymap = {
-						attach_on_autocmd = true,
-						keys = {
-							"<leader>mp",
-						},
-						on_load = {
-							config = function()
-								require("safdar.plugins.markdown-preview")
-							end,
-							cmd = "MarkdownPreviewToggle"
-						},
+						after = "autocmd",
+						keys = { "<leader>mp" },
+					},
+					autocmd = {
+						ft = "markdown",
 					},
 				},
 			}

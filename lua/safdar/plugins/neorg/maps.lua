@@ -10,7 +10,7 @@ local function neorg_file_helper(cmd)
 	end
 end
 
--- map("n", "gtc", ":Neorg gtd capture<CR>", opts)
+map("n", "gtc", ":Neorg gtd capture<CR>", opts)
 map("n", "gtv", ":Neorg gtd views<CR>", opts)
 map("n", "gts", ":lua NeorgMappingsHelper('')<CR>", opts)
 map("n", "gti", ":Neorg toc inline<CR>", opts)

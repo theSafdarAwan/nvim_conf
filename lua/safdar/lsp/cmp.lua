@@ -89,10 +89,10 @@ cmp.setup({
 		{ name = "nvim_lua", keyword_length = 2 },
 		{ name = "dictionary", keyword_length = 2 },
 		{ name = "emoji" },
-		{
-			name = "cmp_tabnine",
-			keyword_length = 2,
-			max_item_count = 10,
-		},
+		-- {
+		-- 	name = "cmp_tabnine",
+		-- 	keyword_length = 2,
+		-- 	max_item_count = 10,
+		-- },
 	},
 })

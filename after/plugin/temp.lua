@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 	group = aug,
 	-- pattern = "This_is_user_autocmd",
 	callback = function()
-		print("this is right")
+		-- print("this is right")
 	end,
 })
 

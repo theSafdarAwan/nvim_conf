@@ -21,11 +21,9 @@ M.autocmds = function()
 		callback = highlightOnYank,
 	})
 
-	-- Help Helper Function
-	local function help_helper()
+	-- setting for the help file type buffer
+	local function help_ft()
 		if bo.filetype == "help" then
-			optl.relativenumber = true
-			optl.number = true
 			optl.conceallevel = 0
 			optl.statusline = " "
 		end
@@ -34,7 +32,20 @@ M.autocmds = function()
 	-- set a bunch of options for the help filetype
 	create_autocmd({ "BufWinEnter" }, {
 		group = autocmds_augroup,
-		callback = help_helper,
+		callback = help_ft,
+	})
+
+	-- set line number for every buffer except a prompt, nofile and terminal
+	local function line_numers()
+		if bo.buftype ~= "prompt" and bo.buftype ~= "nofile" and bo.buftype ~= "terminal" then
+			optl.relativenumber = true
+			optl.number = true
+		end
+	end
+
+	create_autocmd({ "BufWinEnter" }, {
+		group = autocmds_augroup,
+		callback = line_numers,
 	})
 
 	-- Don't show the line numbers in terminal mode
