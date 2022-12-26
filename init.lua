@@ -23,8 +23,7 @@ local function notifyer(notify)
 	end
 end
 
--- install packer if doesn't exist's and compile the it if the compiled file
--- doesn't exists
+-- install packer if doesn't exist's and compile it if the compiled file doesn't exists
 local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 local compiled = fn.stdpath("config") .. "/plugin/packer_compiled.lua"
 if fn.empty(fn.glob(install_path)) > 0 then
