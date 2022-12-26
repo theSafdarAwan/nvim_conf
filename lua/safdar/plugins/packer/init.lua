@@ -702,7 +702,7 @@ local plugins = {
 				name = "neorg",
 				del_augroup = true,
 				on_load = {
-					cmd = "Neorg gtd capture",
+					-- cmd = "Neorg gtd capture",
 					config = function()
 						require("safdar.plugins.neorg")
 					end,

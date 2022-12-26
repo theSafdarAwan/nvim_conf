@@ -149,18 +149,19 @@ require("neorg").setup({
 				index = "index.norg", -- The name of the main (root) .norg file
 			},
 		},
-		["core.gtd.base"] = {
-			config = {
-				workspace = "todo",
-				syntax = {
-					context = "#contexts",
-					start = "#time.start",
-					due = "#time.due",
-					waiting = "#waiting.for",
-				},
-				custom_tag_completion = true,
-			},
-		},
+		-- NOTE: this module is removed fro now
+		-- ["core.gtd.base"] = {
+		-- 	config = {
+		-- 		workspace = "todo",
+		-- 		syntax = {
+		-- 			context = "#contexts",
+		-- 			start = "#time.start",
+		-- 			due = "#time.due",
+		-- 			waiting = "#waiting.for",
+		-- 		},
+		-- 		custom_tag_completion = true,
+		-- 	},
+		-- },
 		["core.norg.manoeuvre"] = {},
 		["core.integrations.telescope"] = {},
 	},
