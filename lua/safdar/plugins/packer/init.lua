@@ -342,6 +342,12 @@ local plugins = {
 		setup = function()
 			local plugin = {
 				name = "cmp-nvim-lua",
+				ft = "lua",
+				registers = {
+					autocmd = {
+						callback = "cmp_nvim_lua",
+					}
+				}
 			}
 			require("lazy-loader").loaders.callback(plugin)
 		end,
@@ -557,7 +563,6 @@ local plugins = {
 					config = function()
 						require("safdar.plugins.markdown-preview")
 					end,
-					cmd = "UndotreeToggle | wincmd h",
 				},
 				registers = {
 					keymap = {
