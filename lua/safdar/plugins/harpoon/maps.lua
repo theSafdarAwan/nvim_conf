@@ -35,16 +35,8 @@ M.c_lang_term_maps = function()
 end
 
 M.packer_keys = {
-	{ "n", "<leader>ah" },
-	{ "n", "<leader>af" },
-	{ "n", "<leader>aa" },
-	{ "n", "<leader>aH" },
-	{ "n", "<leader>aj" },
-	{ "n", "<leader>ak" },
-	{ "n", "<leader>al" },
-	{ "n", "<leader>tj" },
-	{ "n", "<leader>tk" },
-	{ "n", "<leader>tl" },
+	{ "n", "<leader>a" },
+	{ "n", "<leader>t" },
 }
 
 return M
