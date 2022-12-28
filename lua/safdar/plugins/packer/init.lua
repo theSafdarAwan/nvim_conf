@@ -270,18 +270,9 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                            ~> Lsp                                --
 	----------------------------------------------------------------------
-	["b0o/schemastore.nvim"] = {
-		opt = true,
-		setup = function()
-			local plugin = {
-				name = "schemastore.nvim",
-			}
-			require("lazy-loader").loaders.schedule_autocmd(plugin)
-		end,
-	}, -- for json schemas
+	["b0o/schemastore.nvim"] = { event = "BufWinEnter" }, -- for json schemas
 	["neovim/nvim-lspconfig"] = {
 		after = "schemastore.nvim",
-		module_pattern = { "lspconfig.*" },
 		config = function()
 			require("safdar.lsp.lsp")
 		end,
@@ -328,23 +319,9 @@ local plugins = {
 	--                ~> Completion and Snippets                        --
 	----------------------------------------------------------------------
 	["hrsh7th/nvim-cmp"] = {
-		opt = true,
-		event = "InsertEnter",
+		evnet = "InsertEnter",
 		setup = function()
-			local plugin = {
-				name = "undotree",
-				before_load = {
-					config = function()
-						require("fused").lazy_load("cmp")
-					end,
-				},
-				registers = {
-					autocmd = {
-						event = "InsertEnter",
-					},
-				},
-			}
-			require("lazy-loader").loader(plugin)
+			require("fused").lazy_load("cmp")
 		end,
 		config = function()
 			require("safdar.lsp.cmp")
@@ -365,6 +342,12 @@ local plugins = {
 		setup = function()
 			local plugin = {
 				name = "cmp-nvim-lua",
+				ft = "lua",
+				registers = {
+					autocmd = {
+						callback = "cmp_nvim_lua",
+					}
+				}
 			}
 			require("lazy-loader").loaders.callback(plugin)
 		end,
@@ -580,7 +563,6 @@ local plugins = {
 					config = function()
 						require("safdar.plugins.markdown-preview")
 					end,
-					cmd = "UndotreeToggle | wincmd h",
 				},
 				registers = {
 					keymap = {
