@@ -33,7 +33,19 @@ packer.init({
 local plugins = {
 	["wbthomason/packer.nvim"] = { -- packer can manage itself
 		opt = true,
-		cmd = require("lazy-loader.cmds").packer_cmds,
+		cmd = {
+			"PackerSnapshot",
+			"PackerSnapshotRollback",
+			"PackerSnapshotDelete",
+			"PackerInstall",
+			"PackerUpdate",
+			"PackerSync",
+			"PackerClean",
+			"PackerCompile",
+			"PackerStatus",
+			"PackerProfile",
+			"PackerLoad",
+		},
 	},
 
 	----------------------------------------------------------------------
