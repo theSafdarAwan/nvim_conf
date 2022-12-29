@@ -293,7 +293,8 @@ local function show_lsp_progress()
 		clients_str = clients_str .. server.name .. ","
 	end
 
-	return "[" .. clients_str .. "]"
+	local client_list = string.sub(clients_str, 1, -2)
+	return "[" .. client_list .. "]"
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
