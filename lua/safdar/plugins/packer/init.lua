@@ -214,6 +214,7 @@ local plugins = {
 	["lewis6991/gitsigns.nvim"] = {
 		opt = true,
 		setup = function()
+			-- TODO: do something about callback functions
 			local gitsigns = {
 				name = "gitsigns.nvim",
 			}
@@ -288,9 +289,11 @@ local plugins = {
 		setup = function()
 			local femaco = {
 				name = "nvim-FeMaco.lua",
-				pattern = { "*.md", "*.norg" },
+				autocmd = {
+					ft_ext = { "md", "norg" },
+				},
 			}
-			require("lazy-loader").loaders.schedule_autocmd(femaco)
+			require("lazy-loader").loader(femaco)
 		end,
 		config = function()
 			require("femaco").setup()
@@ -303,9 +306,11 @@ local plugins = {
 		setup = function()
 			local ale = {
 				name = "ale",
-				pattern = { "*.html" },
+				autocmd = {
+					ft_ext = "html",
+				},
 			}
-			require("lazy-loader").loaders.schedule_autocmd(ale)
+			require("lazy-loader").loader(ale)
 		end,
 		config = function()
 			require("safdar.plugins.ale")
@@ -356,9 +361,11 @@ local plugins = {
 		setup = function()
 			local tabnine = {
 				name = "cmp-tabnine",
-				events = "InsertEnter",
+				autocmd = {
+					events = "InsertEnter",
+				},
 			}
-			require("lazy-loader").loaders.schedule_autocmd(tabnine)
+			require("lazy-loader").loader(tabnine)
 		end,
 		config = function()
 			require("safdar.plugins.tabnine")
@@ -372,10 +379,12 @@ local plugins = {
 		setup = function()
 			local cmp_dictionary = {
 				name = "cmp-dictionary",
-				events = "InsertEnter",
-				pattern = { "*.md", "*.html", "*.norg" },
+				autocmd = {
+					ft_ext = { "md", "html", "norg" },
+					events = "InsertEnter",
+				},
 			}
-			require("lazy-loader").loaders.schedule_autocmd(cmp_dictionary)
+			require("lazy-loader").loader(cmp_dictionary)
 		end,
 		config = function()
 			require("safdar.plugins.cmp.cmp-dictionary")
@@ -389,9 +398,11 @@ local plugins = {
 		setup = function()
 			local luasnip = {
 				name = "LuaSnip",
-				events = "BufRead",
+				autocmd = {
+					events = "BufRead",
+				},
 			}
-			require("lazy-loader").loaders.schedule_autocmd(luasnip)
+			require("lazy-loader").loader(luasnip)
 		end,
 		config = function()
 			require("safdar.plugins.luasnip")
@@ -475,7 +486,7 @@ local plugins = {
 			local nvim_ts = {
 				name = "nvim-treesitter",
 			}
-			require("lazy-loader").loaders.on_file(nvim_ts)
+			require("lazy-loader").loader(nvim_ts)
 		end,
 		after = "plenary.nvim",
 		run = ":TSUpdate",
@@ -500,9 +511,9 @@ local plugins = {
 		setup = function()
 			local ts_autotag = {
 				name = "nvim-ts-autotag",
-				pattern = "*.html",
+				autocmd = { ft_ext = "*.html" },
 			}
-			require("lazy-loader").loaders.schedule_autocmd(ts_autotag)
+			require("lazy-loader").loader(ts_autotag)
 		end,
 		config = function()
 			require("nvim-ts-autotag").setup()
@@ -514,7 +525,7 @@ local plugins = {
 			local ts_rainbow = {
 				name = "nvim-ts-rainbow",
 			}
-			require("lazy-loader").loaders.schedule_autocmd(ts_rainbow)
+			require("lazy-loader").loader(ts_rainbow)
 		end,
 		config = function()
 			require("fused").lazy_load("tsrainbow")
@@ -530,9 +541,11 @@ local plugins = {
 		setup = function()
 			local autopairs = {
 				name = "nvim-autopairs",
-				events = { "InsertEnter" },
+				autocmd = {
+					events = { "InsertEnter" },
+				},
 			}
-			require("lazy-loader").loaders.schedule_autocmd(autopairs)
+			require("lazy-loader").loader(autopairs)
 		end,
 		config = function()
 			require("safdar.plugins.autopairs")
@@ -609,12 +622,13 @@ local plugins = {
 		setup = function()
 			local vim_be_good = {
 				name = "vim-be-good",
-				execute_cmd = "VimBeGood",
+				keymap = {
+					keys = {
+						{ "n", "<leader>gg" },
+					},
+				},
 			}
-			local keys = {
-				{ "n", "<leader>gg" },
-			}
-			require("lazy-loader").loaders.keymap(vim_be_good, keys)
+			require("lazy-loader").loader(vim_be_good)
 		end,
 		config = function()
 			require("safdar.plugins.vim-be-good.maps")
