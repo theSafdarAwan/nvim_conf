@@ -92,10 +92,8 @@ local plugins = {
 						require("safdar.plugins.telescope").telescope()
 					end,
 				},
-				registers = {
-					keymap = {
-						keys = require("safdar.plugins.telescope.maps").packer_keys,
-					},
+				keymap = {
+					keys = require("safdar.plugins.telescope.maps").packer_keys,
 				},
 			}
 			require("lazy-loader").loader(plugin)
@@ -342,14 +340,12 @@ local plugins = {
 		setup = function()
 			local plugin = {
 				name = "cmp-nvim-lua",
-				ft = "lua",
-				registers = {
-					autocmd = {
-						callback = "cmp_nvim_lua",
-					}
-				}
+				autocmd = {
+					event = "InsertEnter",
+					ft = "lua",
+				},
 			}
-			require("lazy-loader").loaders.callback(plugin)
+			require("lazy-loader").loader(plugin)
 		end,
 	},
 
@@ -564,11 +560,9 @@ local plugins = {
 						require("safdar.plugins.markdown-preview")
 					end,
 				},
-				registers = {
-					keymap = {
-						keys = {
-							"<leader>u",
-						},
+				keymap = {
+					keys = {
+						"<leader>u",
 					},
 				},
 			}
@@ -646,10 +640,8 @@ local plugins = {
 						require("safdar.plugins.harpoon")
 					end,
 				},
-				registers = {
-					keymap = {
-						keys = require("safdar.plugins.harpoon.maps").packer_keys,
-					},
+				keymap = {
+					keys = require("safdar.plugins.harpoon.maps").packer_keys,
 				},
 			}
 			require("lazy-loader").loader(plugin)
@@ -677,12 +669,14 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                    ~> Note Takign Stuff Stuff                    --
 	----------------------------------------------------------------------
-	["nvim-neorg/neorg"] = {
+	--[[ ["nvim-neorg/neorg"] = {
 		opt = true,
 		setup = function()
 			local lazy_load = {
 				name = "neorg",
+				-- TODO: re-write
 				del_augroup = true,
+				ft_ext = "norg",
 				on_load = {
 					-- cmd = "Neorg gtd capture",
 					config = function()
@@ -690,20 +684,16 @@ local plugins = {
 					end,
 					event = "BufEnter",
 				},
-				registers = {
-					keymap = {
-						keys = { "gtc" },
-					},
-					autocmd = {
-						ft_ext = "norg",
-					},
-				},
+				-- keymap = {
+				-- 	keys = { "gtc" },
+				-- },
+				autocmd = {},
 			}
 			require("lazy-loader").loader(lazy_load)
 		end,
 		run = ":Neorg sync-parsers", -- This is the important bit!
 	},
-	["nvim-neorg/neorg-telescope"] = { after = "neorg" },
+	["nvim-neorg/neorg-telescope"] = { after = "neorg" }, ]]
 	["iamcco/markdown-preview.nvim"] = {
 		opt = true,
 		setup = function()
@@ -713,15 +703,11 @@ local plugins = {
 					config = function()
 						require("safdar.plugins.markdown-preview")
 					end,
-					cmd = "MarkdownPreviewToggle",
 				},
-				registers = {
+				autocmd = {
+					ft = "markdown",
 					keymap = {
-						after = "autocmd",
 						keys = { "<leader>mp" },
-					},
-					autocmd = {
-						ft = "markdown",
 					},
 				},
 			}

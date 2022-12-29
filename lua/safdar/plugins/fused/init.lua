@@ -6,7 +6,7 @@ require("fused").setup({
 	flavour = "catppuccin",
 	-- flavour = "aquarium",
 	-- flavour = "onedark",
-	plugins_integration = false,
+	-- plugins_integration = false,
 	custom = {
 		DamianConway = { bg = cp.cp0 },
 	},
