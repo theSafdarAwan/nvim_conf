@@ -681,31 +681,29 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                    ~> Note Takign Stuff Stuff                    --
 	----------------------------------------------------------------------
-	--[[ ["nvim-neorg/neorg"] = {
+	["nvim-neorg/neorg"] = {
 		opt = true,
 		setup = function()
 			local lazy_load = {
 				name = "neorg",
-				-- TODO: re-write
-				del_augroup = true,
-				ft_ext = "norg",
-				on_load = {
-					-- cmd = "Neorg gtd capture",
-					config = function()
-						require("safdar.plugins.neorg")
-					end,
-					event = "BufEnter",
-				},
+				-- on_load = {
+				-- 	-- cmd = "Neorg gtd capture",
+				-- 	config = function()
+				-- 		require("safdar.plugins.neorg").load_conf()
+				-- 	end,
+				-- },
 				-- keymap = {
 				-- 	keys = { "gtc" },
 				-- },
-				autocmd = {},
+				autocmd = {
+					ft_ext = "norg",
+				},
 			}
 			require("lazy-loader").loader(lazy_load)
 		end,
 		run = ":Neorg sync-parsers", -- This is the important bit!
 	},
-	["nvim-neorg/neorg-telescope"] = { after = "neorg" }, ]]
+	["nvim-neorg/neorg-telescope"] = { after = "neorg" },
 	["iamcco/markdown-preview.nvim"] = {
 		opt = true,
 		setup = function()
