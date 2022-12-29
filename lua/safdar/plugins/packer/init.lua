@@ -269,7 +269,7 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                            ~> Lsp                                --
 	----------------------------------------------------------------------
-	["b0o/schemastore.nvim"] = { event = "BufWinEnter" }, -- for json schemas
+	["b0o/schemastore.nvim"] = { event = { "VimEnter", "BufRead" } }, -- for json schemas
 	["neovim/nvim-lspconfig"] = {
 		after = "schemastore.nvim",
 		config = function()
@@ -399,7 +399,7 @@ local plugins = {
 			local luasnip = {
 				name = "LuaSnip",
 				autocmd = {
-					events = "BufRead",
+					events = "InsertEnter",
 				},
 			}
 			require("lazy-loader").loader(luasnip)
@@ -520,13 +520,7 @@ local plugins = {
 		end,
 	},
 	["p00f/nvim-ts-rainbow"] = {
-		opt = true,
-		setup = function()
-			local ts_rainbow = {
-				name = "nvim-ts-rainbow",
-			}
-			require("lazy-loader").loader(ts_rainbow)
-		end,
+		after = "nvim-treesitter",
 		config = function()
 			require("fused").lazy_load("tsrainbow")
 		end,
@@ -644,6 +638,8 @@ local plugins = {
 		setup = function()
 			local plugin = {
 				name = "harpoon",
+				-- for harpoon telescope plugin
+				requies = { "telescope.nvim" },
 				before_load = {
 					config = function()
 						require("fused").lazy_load("harpoon")
@@ -660,8 +656,6 @@ local plugins = {
 			}
 			require("lazy-loader").loader(plugin)
 		end,
-		-- for harpoon telescope plugin
-		requies = { "telescope.nvim" },
 	},
 	-- TODO: work on this plugin as you explore more about git
 	["ThePrimeagen/git-worktree.nvim"] = {
