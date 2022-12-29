@@ -47,7 +47,12 @@ local plugins = {
 	},
 
 	-- lazy loader
-	["TheSafdarAwan/lazy-loader.nvim"] = {},
+	["TheSafdarAwan/lazy-loader.nvim"] = {
+		after = "impatient.nvim",
+		config = function()
+			require("safdar.plugins.lazy-loader")
+		end,
+	},
 
 	["antoinemadec/FixCursorHold.nvim"] = {
 		after = "impatient.nvim",
@@ -162,19 +167,30 @@ local plugins = {
 		end,
 	},
 	["kylechui/nvim-surround"] = {
-		keys = {
-			{ "v", "S" },
-			{ "n", "cs" },
-			{ "n", "ds" },
-			{ "n", "ys" },
-			{ "n", "yS" },
-			{ "n", "ca" },
-			{ "n", "da" },
-		},
-		-- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
-		config = function()
-			require("safdar.plugins.surround")
+		opt = true,
+		setup = function()
+			local plugin = {
+				name = "nvim-surround",
+				on_load = {
+					config = function()
+						require("safdar.plugins.surround")
+					end,
+				},
+				keymap = {
+					keys = {
+						{ "v", "S" },
+						{ "n", "cs" },
+						{ "n", "ds" },
+						{ "n", "ys" },
+						{ "n", "yS" },
+						{ "n", "ca" },
+						{ "n", "da" },
+					},
+				},
+			}
+			require("lazy-loader").loader(plugin)
 		end,
+		-- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
 	},
 	["RRethy/vim-illuminate"] = {
 		config = function()
@@ -211,19 +227,7 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                          ~> Git                                  --
 	----------------------------------------------------------------------
-	["lewis6991/gitsigns.nvim"] = {
-		opt = true,
-		setup = function()
-			-- TODO: do something about callback functions
-			local gitsigns = {
-				name = "gitsigns.nvim",
-			}
-			require("lazy-loader").loaders.callback(gitsigns)
-		end,
-		config = function()
-			require("safdar.plugins.gitsigns")
-		end,
-	},
+	["lewis6991/gitsigns.nvim"] = { opt = true },
 	["TimUntersberger/neogit"] = {
 		keys = { { "n", "ygo" }, { "n", "ygc" } },
 		config = function()
