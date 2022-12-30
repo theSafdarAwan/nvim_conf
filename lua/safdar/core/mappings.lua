@@ -7,6 +7,8 @@ local expr = { noremap = true, silent = true, expr = true }
 local removed_maps = {
 	{ { "n", "t", "i", "v" }, "<F1>" },
 	{ "n", "[[" },
+	--  remove the ctrl+c causes some problem's with lsp
+	{ "n", "<C-c>" },
 	{ "n", "]]" },
 	{ "n", "gf" },
 }
@@ -119,15 +121,9 @@ set_map("n", "<leader>ZZ", ":wa | qa <cr>", opts)
 -- source the current file
 set_map("n", "<leader>so", ":so %<CR>", opts)
 
--- =========================================================================
---                            Remove Mappings                            "
--- =========================================================================
---  remove the ctrl+c causes some problem's with lsp
-set_map("n", "<C-c>", "<Nop>", opts)
-
--- ==========================================================================
---                         built_in_plugins configs
--- ==========================================================================
+----------------------------------------------------------------------
+--                      Built-in plugins maps                       --
+----------------------------------------------------------------------
 -- set_map("n", "<leader>so", ":so %<cr>", opts) -- look into packer/maps
 
 -- Spell checking
