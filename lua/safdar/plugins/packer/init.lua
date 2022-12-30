@@ -533,7 +533,6 @@ local plugins = {
 		end,
 	},
 	["folke/paint.nvim"] = {
-		disable = true,
 		opt = true,
 		after = "impatient.nvim",
 		config = function()
@@ -554,7 +553,6 @@ local plugins = {
 		end,
 	},
 	["p00f/nvim-ts-rainbow"] = {
-		disable = true,
 		after = "nvim-treesitter",
 		config = function()
 			require("fused").lazy_load("tsrainbow")
