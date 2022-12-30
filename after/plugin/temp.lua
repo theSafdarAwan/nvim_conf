@@ -30,16 +30,17 @@
 --   notify("It closed!")
 -- end)
 
--- Trying to understand the User autocmd's
+-- local vim = vim
+-- -- Trying to understand the User autocmd's
 -- local aug = vim.api.nvim_create_augroup("clear the This_is_user_autocmd", { clear = true })
 -- vim.api.nvim_create_autocmd("InsertEnter", {
 -- 	group = aug,
 -- 	-- pattern = "This_is_user_autocmd",
 -- 	callback = function()
--- 		-- print("this is right")
+-- 		print("this is right")
 -- 	end,
 -- })
---
+
 -- vim.api.nvim_create_autocmd("InsertEnter", {
 -- 	group = vim.api.nvim_create_augroup("you are right", { clear = true }),
 -- 	pattern = "clear the This_is_user_autocmd",

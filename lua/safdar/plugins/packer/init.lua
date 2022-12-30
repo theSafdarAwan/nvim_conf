@@ -204,12 +204,6 @@ local plugins = {
 		end,
 		-- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
 	},
-	["RRethy/vim-illuminate"] = {
-		config = function()
-			require("safdar.plugins.illuminate")
-		end,
-		event = { "CursorMoved" },
-	},
 	["s1n7ax/nvim-window-picker"] = {
 		keys = { "n", "gf" },
 		tag = "v1.*",
@@ -476,7 +470,7 @@ local plugins = {
 		end,
 		cmd = "CodeActionMenu",
 		keys = {
-			{ "n", "gca" },
+			{ "n", "<C-a>" },
 		},
 	},
 	["filipdutescu/renamer.nvim"] = {
@@ -534,6 +528,7 @@ local plugins = {
 		end,
 	},
 	["folke/paint.nvim"] = {
+		disable = true,
 		opt = true,
 		after = "impatient.nvim",
 		config = function()
@@ -554,6 +549,7 @@ local plugins = {
 		end,
 	},
 	["p00f/nvim-ts-rainbow"] = {
+		disable = true,
 		after = "nvim-treesitter",
 		config = function()
 			require("fused").lazy_load("tsrainbow")
@@ -717,12 +713,12 @@ local plugins = {
 		setup = function()
 			local lazy_load = {
 				name = "neorg",
-				-- on_load = {
-				-- 	-- cmd = "Neorg gtd capture",
-				-- 	config = function()
-				-- 		require("safdar.plugins.neorg").load_conf()
-				-- 	end,
-				-- },
+				on_load = {
+					-- cmd = "Neorg gtd capture",
+					config = function()
+						require("safdar.plugins.neorg").load_conf()
+					end,
+				},
 				-- keymap = {
 				-- 	keys = { "gtc" },
 				-- },
