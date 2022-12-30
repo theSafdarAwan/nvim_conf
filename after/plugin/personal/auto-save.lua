@@ -97,7 +97,7 @@ local function auto_save_fn(buf_info)
 
 		-- check if the buf is modifiable and then validate buf does not have any of
 		-- the excluded filetypes or buftypes
-		if b.modifiable and ft_val and buf_val and dir_val then
+		if b.modifiable and ft_val and buf_val and dir_val and not b.readonly then
 			command("silent update")
 			-- print("saved at " .. vim.fn.strftime("%H:%M:%S"))
 			api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
