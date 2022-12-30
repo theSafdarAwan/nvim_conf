@@ -21,8 +21,8 @@ colorizer.setup({ "*" }, {
 	css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
 })
 
--- Colorizer plugin attach autocmd's
-api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
-	group = api.nvim_create_augroup("__nvim-colorizer", { clear = true }),
-	command = "ColorizerAttachToBuffer",
-})
+-- -- Colorizer plugin attach autocmd's
+-- api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
+-- 	group = api.nvim_create_augroup("__nvim-colorizer", { clear = true }),
+-- 	command = "ColorizerAttachToBuffer",
+-- })

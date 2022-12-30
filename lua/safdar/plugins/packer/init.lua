@@ -239,7 +239,9 @@ local plugins = {
 	----------------------------------------------------------------------
 	--                          ~> Git                                  --
 	----------------------------------------------------------------------
-	["lewis6991/gitsigns.nvim"] = { opt = true },
+	["lewis6991/gitsigns.nvim"] = {
+		opt = true,
+	},
 	["TimUntersberger/neogit"] = {
 		keys = { { "n", "ygo" }, { "n", "ygc" } },
 		config = function()
@@ -459,8 +461,8 @@ local plugins = {
 						"[[",
 						"gh",
 						"gd",
-					}
-				}
+					},
+				},
 			}
 			require("lazy-loader").loader(plugin)
 		end,
@@ -532,6 +534,7 @@ local plugins = {
 		end,
 	},
 	["folke/paint.nvim"] = {
+		opt = true,
 		after = "impatient.nvim",
 		config = function()
 			require("safdar.plugins.paint")
