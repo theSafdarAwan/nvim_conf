@@ -56,7 +56,7 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		-- to disable slow treesitter highlight for large files
 		disable = function(lang, buf)
-			local max_filesize = 100 * 1024 -- 100 KB
+			local max_filesize = 1000 * 1024 -- to disable in a file large then this size in KB 100 * 1024 means 100 kb
 			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 			if ok and stats and stats.size > max_filesize then
 				return true

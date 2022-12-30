@@ -446,11 +446,26 @@ local plugins = {
 		end,
 	},
 	["glepnir/lspsaga.nvim"] = {
-		-- TODO: load this with lazy-loader
-		event = "CursorMoved",
+		opt = true,
+		setup = function()
+			require("fused").lazy_load("lspsaga")
+			local plugin = {
+				name = "lspsaga.nvim",
+				keymap = {
+					keys = {
+						"[k",
+						"[l",
+						"]]",
+						"[[",
+						"gh",
+						"gd",
+					}
+				}
+			}
+			require("lazy-loader").loader(plugin)
+		end,
 		config = function()
 			require("safdar.plugins.lspsaga")
-			require("fused").lazy_load("lspsaga")
 		end,
 	},
 	["weilbith/nvim-code-action-menu"] = {
@@ -651,6 +666,7 @@ local plugins = {
 		end,
 	},
 	["ThePrimeagen/harpoon"] = { -- the most amazing plugin i have yet discoverd
+		opt = true,
 		setup = function()
 			local plugin = {
 				name = "harpoon",
