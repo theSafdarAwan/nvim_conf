@@ -766,5 +766,3 @@ for key, value in pairs(plugins) do
 end
 
 packer.startup({ install })
-
-require("safdar.plugins.packer.on-last")

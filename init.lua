@@ -3,11 +3,15 @@ local fn = vim.fn
 
 require("safdar").default()
 
-local function setup_plugins()
+local function setup_plugins(cmd)
 	-- require the plugins
 	require("safdar").plugins()
-	vim.cmd("PackerInstall")
-	vim.cmd("PackerCompile")
+	-- either PackerCompile or PackerSync
+	if cmd then
+		vim.cmd(cmd)
+	end
+	-- to require the modules that need to be required
+	require("safdar.plugins.packer.on-last")
 	-- to load plugins which are not loaded after compilation or installation
 	vim.defer_fn(function()
 		vim.cmd("silent! do BufRead")
@@ -34,14 +38,15 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 	-- install plugins + compile their configs
 	vim.cmd("packadd packer.nvim")
-	setup_plugins()
+	vim.cmd("silent! do VimEnter")
+	setup_plugins("PackerSync")
 	notifyer({
 		msg = "Plugin Installation done Reload neovim",
 	})
 	return
 elseif fn.empty(fn.glob(compiled)) > 0 then
 	print("packer is compiling ..")
-	setup_plugins()
+	setup_plugins("PackerCompile")
 	notifyer({
 		msg = "packer compiled reload neovim",
 	})
