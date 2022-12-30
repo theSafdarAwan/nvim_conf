@@ -60,7 +60,6 @@ local plugins = {
 
 	-- lazy loader
 	["TheSafdarAwan/lazy-loader.nvim"] = {
-		after = "impatient.nvim",
 		config = function()
 			require("safdar.plugins.lazy-loader")
 		end,
@@ -264,8 +263,8 @@ local plugins = {
 		event = { "CursorMoved" },
 	},
 	["kyazdani42/nvim-web-devicons"] = {
-		config = function()
-			require("safdar.plugins.web-dev-icons")
+		after = "impatient.nvim",
+		setup = function()
 			require("fused").lazy_load("devicons")
 		end,
 	}, -- icons for the nvim
@@ -769,3 +768,5 @@ for key, value in pairs(plugins) do
 end
 
 packer.startup({ install })
+
+require("safdar.plugins.packer.on-last")
