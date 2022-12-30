@@ -257,6 +257,12 @@ local plugins = {
 	["rcarriga/nvim-notify"] = {
 		after = "impatient.nvim",
 	},
+	["RRethy/vim-illuminate"] = {
+		config = function()
+			require("safdar.plugins.illuminate")
+		end,
+		event = { "CursorMoved" },
+	},
 	["kyazdani42/nvim-web-devicons"] = {
 		config = function()
 			require("safdar.plugins.web-dev-icons")
