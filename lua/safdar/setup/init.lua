@@ -10,6 +10,7 @@ local function get_plugins(install)
 		"lsp",
 		"completion",
 		"others",
+		"debugging",
 	}
 	for _, mod in pairs(modules) do
 		require("safdar.setup." .. mod).get_plugins(install)
