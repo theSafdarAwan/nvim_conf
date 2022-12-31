@@ -42,9 +42,9 @@ local function damian_conways_matchadd(buf_info)
 	end
 end
 
-create_autocmd({ "BufEnter" }, {
+--[[ create_autocmd({ "BufEnter" }, {
 	group = augroup_ui,
 	callback = function(buf_info)
 		damian_conways_matchadd(buf_info)
 	end,
-})
+}) ]]
