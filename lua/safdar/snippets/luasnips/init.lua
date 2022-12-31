@@ -1,7 +1,0 @@
-require("safdar.snippets.luasnips.all_snip")
-require("safdar.snippets.luasnips.c_snip")
-require("safdar.snippets.luasnips.css_snip")
-require("safdar.snippets.luasnips.cstyle_snip")
-require("safdar.snippets.luasnips.lua_snip")
-require("safdar.snippets.luasnips.norg_snip")
-require("safdar.snippets.luasnips.tex_snip")

@@ -1,12 +1,11 @@
 local M = {}
 
 M.default = function()
-	require("safdar.core").core()
+	require("safdar.default")
 end
 
-M.plugins = function()
-	require("safdar.plugins")
-	require("safdar.core").plugins()
+M.setup = function()
+	require("safdar.setup")
 end
 
 return M

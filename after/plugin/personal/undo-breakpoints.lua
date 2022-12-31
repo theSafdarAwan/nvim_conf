@@ -1,10 +1,9 @@
 -- undo break points
-local utils = require("safdar.core.utils")
-local map = utils.set_map
-local opts = { noremap = true, silent = true }
+local utils = require("safdar.utils")
+local set_map = utils.set_map
 
-local function addBreakPoint(symbol)
-	map("i", symbol, symbol .. "<C-g>u", opts)
+local function add_break_points(symbol)
+	set_map("i", symbol, symbol .. "<C-g>u")
 end
 
 local symbols = {
@@ -16,5 +15,5 @@ local symbols = {
 }
 
 for _, symbol in ipairs(symbols) do
-	addBreakPoint(symbol)
+	add_break_points(symbol)
 end

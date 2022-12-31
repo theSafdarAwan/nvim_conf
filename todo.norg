@@ -1,7 +1,0 @@
-* TODO's 
-  - [ ]  work on creating notify-nvim config
-  - [ ] create a popup wrapper for the harpoon.term like the toggle-term.
-
-  - [ ] look into the code-action-menu readme
-  - [ ] see the autopairs documentation
-  - [ ] Create a snippet for the lua to wrap a selection inside a function

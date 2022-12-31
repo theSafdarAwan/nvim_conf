@@ -42,9 +42,10 @@ local function damian_conways_matchadd(buf_info)
 	end
 end
 
+-- TODO: this is wrong work on this
 --[[ create_autocmd({ "BufEnter" }, {
 	group = augroup_ui,
 	callback = function(buf_info)
 		damian_conways_matchadd(buf_info)
 	end,
-}) ]]
+}) -]]
