@@ -20,6 +20,13 @@ local plugin = function(install)
 			require("safdar.setup.navigation.telescope.telescope-plugins").fzf()
 		end,
 	})
+	install({
+		"LukasPietzschmann/telescope-tabs",
+		after = "telescope-fzf-native.nvim",
+		config = function()
+			require("safdar.setup.navigation.telescope.telescope-plugins").tabs()
+		end,
+	})
 end
 
 return { install = plugin }

@@ -2,6 +2,8 @@ local function plugins(install)
 	local plugin_list = {
 		"cmp",
 		"luasnip",
+		"tabnine",
+		"cmp-dictionary",
 		"autopairs",
 	}
 

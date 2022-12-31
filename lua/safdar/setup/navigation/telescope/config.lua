@@ -1,10 +1,10 @@
-local ok, telescope = pcall(require, "telescope")
-if not ok then
-	require("safdar.utils").notify("Telescope not found")
-	return
-end
-local maps = require("safdar.setup.navigation.telescope.maps")
 local config = function()
+	local ok, telescope = pcall(require, "telescope")
+	if not ok then
+		require("safdar.utils").notify("Telescope not found")
+		return
+	end
+	local maps = require("safdar.setup.navigation.telescope.maps")
 	local borders = require("safdar.utils.telescope").borders
 	----------------------------------------------------------------------
 	--                            Lsp Config                            --

@@ -1,7 +1,9 @@
 local plugins = function(install)
 	local plugin_list = {
 		"lspconfig",
-		"null-ls"
+		"null-ls",
+		"lsp-signature",
+		"lsp-trouble",
 	}
 
 	for _, plugin in pairs(plugin_list) do

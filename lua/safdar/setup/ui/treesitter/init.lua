@@ -1,6 +1,7 @@
 local function plugin(install)
 	install({
 		"nvim-treesitter/nvim-treesitter",
+		after = "impatient.nvim",
 		setup = function()
 			require("safdar.utils").fused("treesitter")
 		end,

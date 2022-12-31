@@ -1,4 +1,5 @@
 local maps = require("safdar.setup.navigation.harpoon.maps").maps
+local vim = vim
 
 local config = function()
 	require("harpoon").setup({
@@ -9,6 +10,10 @@ local config = function()
 		},
 	})
 	maps()
+
+	require("safdar.setup.navigation.telescope.telescope-plugins").harpoon()
+	-- require the telescope config
+	require("safdar.setup.navigation.telescope.maps").telescope_plugins_maps.harpoon()
 end
 
 return { config = config }

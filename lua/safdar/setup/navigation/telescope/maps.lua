@@ -104,13 +104,13 @@ end
 
 M.telescope_plugins_maps = {
 	tabs = function()
-		local set_map = require("safdar.core.utils").set_map
+		local set_map = require("safdar.utils").set_map
 		set_map("n", "<leader>tt", function()
 			require("telescope-tabs").list_tabs()
 		end)
 	end,
 	harpoon = function()
-		local set_map = require("safdar.core.utils").set_map
+		local set_map = require("safdar.utils").set_map
 		set_map("n", "<leader>af", ":Telescope harpoon marks<CR>")
 	end,
 }
