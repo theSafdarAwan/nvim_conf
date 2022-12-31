@@ -1,8 +1,12 @@
 local function plugin(install)
 	install({
+		opt = true,
 		"nvim-treesitter/nvim-treesitter",
-		after = "impatient.nvim",
 		setup = function()
+			local ts = {
+				name = "nvim-treesitter",
+			}
+			require("lazy-loader").load(ts)
 			require("safdar.utils").fused("treesitter")
 		end,
 		config = function()

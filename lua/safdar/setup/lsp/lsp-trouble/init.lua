@@ -1,7 +1,7 @@
 local function plugin(install)
 	install({
 		"folke/trouble.nvim",
-		keys = { { "n", "[" }, { "n", "]" } },
+		keys = { { "n", "[" } },
 		setup = function()
 			require("safdar.utils").fused("trouble")
 		end,
