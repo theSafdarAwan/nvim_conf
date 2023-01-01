@@ -6,6 +6,7 @@ local function plugin(install)
 			local ale = {
 				name = "ale",
 				autocmd = {
+					event = "BufReadPost",
 					ft_ext = "html",
 				},
 			}

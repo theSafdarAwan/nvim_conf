@@ -67,11 +67,11 @@ if fn.empty(fn.glob(packer_path)) > 0 then
 	})
 	setup("PackerSync")
 elseif fn.empty(fn.glob(packer_compiled)) > 0 then
-	print("packer is compiling ..")
-	setup("PackerCompile")
 	notify({
-		msg = "packer compiled reload neovim",
+		msg = "Packer is compiling ....",
+		level = vim.log.levels.WARN
 	})
+	setup("PackerCompile")
 else
 	setup()
 end
