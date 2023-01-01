@@ -1,7 +1,13 @@
 local config = function()
-	local status_ok, npairs = pcall(require, "nvim-autopairs")
-	if not status_ok then
-		vim.notify("nvim-autopairs not found")
+	local autopairs_status, npairs = pcall(require, "nvim-autopairs")
+	if not autopairs_status then
+		require("safdar.utils").notify("nvim-autopairs not found")
+		return
+	end
+
+	local cmp_status, cmp = pcall(require, "cmp")
+	if not cmp_status then
+		require("safdar.utils").notify("cmp not found")
 		return
 	end
 
@@ -24,7 +30,6 @@ local config = function()
 		-- ignored_next_char = "[%w%.]",
 	})
 
-	local cmp = require("cmp")
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
