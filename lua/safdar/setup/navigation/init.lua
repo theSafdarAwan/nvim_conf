@@ -2,7 +2,7 @@ local function plugins(install)
 	local plugin_list = {
 		"nvim-tree",
 		"telescope",
-		"harpoon"
+		"harpoon",
 	}
 
 	for _, plugin in pairs(plugin_list) do

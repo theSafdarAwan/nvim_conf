@@ -108,7 +108,7 @@ local cSnips = {
 	),
 	parse("inc", "#include <$0>"),
 	parse("vr", "$1 $2 = $0;"),
-	parse("pri", "printf(\"$1\\n\", $0);"),
+	parse("pri", 'printf("$1\\n", $0);'),
 	parse("if", "if ($1) {\n\t$0\n};"),
 }
 

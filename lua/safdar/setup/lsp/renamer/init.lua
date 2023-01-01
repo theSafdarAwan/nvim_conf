@@ -3,7 +3,7 @@ local function plugin(install)
 		"filipdutescu/renamer.nvim",
 		branch = "master",
 		requires = { { "nvim-lua/plenary.nvim" } },
-		setup = function ()
+		setup = function()
 			require("safdar.utils").fused("renamer")
 		end,
 		config = function()

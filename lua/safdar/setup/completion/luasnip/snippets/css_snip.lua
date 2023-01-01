@@ -28,7 +28,7 @@ local cssFolds = {
 	s(
 		"fd",
 		fmt(
-		[[
+			[[
 		/* ~> {foldBodyDesc}*/
 		{code}
 		/* <~*/]],

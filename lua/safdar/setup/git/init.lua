@@ -3,7 +3,7 @@ local function plugins(install)
 		"gitsigns",
 		"neogit",
 		"diffview",
-		"git-worktree"
+		"git-worktree",
 	}
 
 	for _, plugin in pairs(plugin_list) do

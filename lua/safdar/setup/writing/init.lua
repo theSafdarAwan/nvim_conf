@@ -1,7 +1,7 @@
 local function plugins(install)
 	local plugin_list = {
 		"neorg",
-		"markdown-preview"
+		"markdown-preview",
 	}
 
 	for _, plugin in pairs(plugin_list) do

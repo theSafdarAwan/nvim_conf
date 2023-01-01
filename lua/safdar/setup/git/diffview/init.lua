@@ -8,7 +8,7 @@ local plugin = function(install)
 		end,
 		config = function()
 			require("safdar.setup.git.diffview.config").config()
-		end
+		end,
 	})
 end
 

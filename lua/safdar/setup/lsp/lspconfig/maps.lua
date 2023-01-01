@@ -14,10 +14,8 @@ local M = {}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 M.on_attach = function(_, bufnr) -- will give client and bufnr
-
 	-- Enable completion triggered by <c-x><c-o>
 	set_buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -34,13 +32,7 @@ M.on_attach = function(_, bufnr) -- will give client and bufnr
 	-- set_buf_map(bufnr,"n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	set_buf_map(bufnr, "n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
 	set_buf_map(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-	set_buf_map(
-		bufnr,
-		"n",
-		"<space>wl",
-		"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-		opts
-	)
+	set_buf_map(bufnr, "n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
 	set_buf_map(bufnr, "n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 	-- set_buf_map(bufnr,"n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	-- set_buf_map(

@@ -1,6 +1,6 @@
 local function get_plugins(install)
 	local plugins_list = {
-		"dap"
+		"dap",
 	}
 
 	for _, plugin in pairs(plugins_list) do
