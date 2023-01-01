@@ -1,5 +1,7 @@
 local M = {}
-local set_map = require("safdar.utils").set_map
+local utils = require("safdar.utils")
+local set_map = utils.set_map
+local set_buf_map = utils.set_buf_map
 function M.maps()
 	-- TODO: add some autocmd or mapping so whenever you move between two files then
 	-- it should add the previous file to a harpoon nav_file(4) and add the mapping
@@ -21,6 +23,11 @@ function M.maps()
 	set_map("n", "<leader>tj", ":lua require('harpoon.tmux').gotoTerminal(1)<cr>")
 	set_map("n", "<leader>tk", ":lua require('harpoon.tmux').gotoTerminal(2)<cr>")
 	set_map("n", "<leader>tl", ":lua require('harpoon.tmux').gotoTerminal(3)<cr>") ]]
+end
+
+M.c_lang = function()
+	set_buf_map(0, "n", "<leader>ts", ":lua require('harpoon.term').sendCommand(1, './compile')<CR>", opts)
+	-- set_buf_map(0, "n", "<leader>ts", ":lua require('harpoon.tmux').sendCommand(1, './compile')<CR>", opts)
 end
 
 M.keys = {
