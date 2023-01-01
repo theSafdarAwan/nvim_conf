@@ -5,6 +5,15 @@ local plugins = function(install)
 		"comment",
 		"todo-comments",
 		"comment-frame",
+		"surround",
+		"refactoring",
+		"vim-be-good",
+		----------------------------------------------------------------------
+		--                        Window Management                         --
+		----------------------------------------------------------------------
+		"nvim-window-picker",
+		"winshift",
+		"focus",
 	}
 
 	for _, plugin in pairs(plugin_list) do

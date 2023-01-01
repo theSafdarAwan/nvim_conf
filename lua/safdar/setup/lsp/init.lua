@@ -7,6 +7,8 @@ local plugins = function(install)
 		"lsp-saga",
 		"lsp-code-action-menu",
 		"renamer",
+		"ale",
+		"femaco",
 	}
 
 	for _, plugin in pairs(plugin_list) do

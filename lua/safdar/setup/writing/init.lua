@@ -1,13 +1,11 @@
 local function plugins(install)
 	local plugin_list = {
-		"gitsigns",
-		"neogit",
-		"diffview",
-		"git-worktree"
+		"neorg",
+		"markdown-preview"
 	}
 
 	for _, plugin in pairs(plugin_list) do
-		require("safdar.setup.git." .. plugin).install(install)
+		require("safdar.setup.writing." .. plugin).install(install)
 	end
 end
 

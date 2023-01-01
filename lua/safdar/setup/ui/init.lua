@@ -6,7 +6,11 @@ local function plugins(install)
 		"treesitter",
 		"ts-playground",
 		"paint",
-		"colorizer"
+		"colorizer",
+		"themes",
+		"notify",
+		"vim-illuminate",
+		"indent-blank-line",
 	}
 
 	for _, plugin in pairs(plugin_list) do

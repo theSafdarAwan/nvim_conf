@@ -11,6 +11,7 @@ local function get_plugins(install)
 		"completion",
 		"others",
 		"debugging",
+		"writing",
 	}
 	for _, mod in pairs(modules) do
 		require("safdar.setup." .. mod).get_plugins(install)
