@@ -173,7 +173,7 @@ local function config()
 		},
 	})
 
-	require("safdar.setup.writing.maps")
+	require("safdar.setup.writing.neorg.maps")
 	require("safdar.utils").fused("neorg")
 end
 return { config = config }

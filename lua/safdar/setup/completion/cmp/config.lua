@@ -76,7 +76,7 @@ local config = function()
 			end,
 		},
 		sources = { -- different source for the completion
-			{ name = "nvim_lsp", keyword_length = 2, max_item_count = 15, priority = 1 },
+			{ name = "nvim_lsp", max_item_count = 15, priority = 1 },
 			{ name = "neorg", keyword_length = 2, priority = 1 },
 			{
 				name = "luasnip",
@@ -99,6 +99,33 @@ local config = function()
 				max_item_count = 10,
 			},
 		},
+	})
+
+	local vim = vim
+	-- the reason i use file extension rather then file types is that
+	-- file types like norg won't have filetype set if the plugin for norg
+	-- isn't loaded. Which sets the filetype.
+	local ft_extensions = {
+		["html"] = "html",
+		["norg"] = "norg",
+		["md"] = "md",
+	}
+	vim.api.nvim_create_autocmd("BufWinEnter", {
+		group = vim.api.nvim_create_augroup("cmp-dictionary cmp source autocmd", { clear = true }),
+		callback = function()
+			-- This function will remove the cmp-dictionary from source list of cmp if file
+			-- extension is not not listed in the ft_extensions list
+			if not ft_extensions[vim.fn.expand("%:e")] then
+				local sources = cmp.get_config().sources
+				for i = #sources, 1, -1 do
+					if sources[i].name == "dictionary" then
+						table.remove(sources, i)
+						break
+					end
+				end
+				cmp.setup.buffer({ sources = sources })
+			end
+		end,
 	})
 end
 
