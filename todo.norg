@@ -1,4 +1,6 @@
 * TODO's 
+  - [ ] Read the packer source code, that will make you a good neovim plugin dev
+    trust me 🤣. No actually it's just to satisfy me that i can make the best nvim configuration possible.
   - [ ]  work on creating notify-nvim config
   - [ ] create a popup wrapper for the harpoon.term like the toggle-term.
 
