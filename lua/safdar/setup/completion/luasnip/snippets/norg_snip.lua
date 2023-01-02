@@ -22,7 +22,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local conds = require("luasnip.extras.expand_conditions")
 -- local postfix = require("luasnip.extras.postfix").postfix
 -- local types = require("luasnip.util.types")
--- local parse = require("luasnip.util.parser").parse_snippet
+local parse = require("luasnip.util.parser").parse_snippet
 
 local norgSnips = {
 	s(
@@ -37,6 +37,7 @@ local norgSnips = {
 			}
 		)
 	),
+	parse("td", "- [ ] $0"),
 	s(
 		"cd",
 		fmt(
