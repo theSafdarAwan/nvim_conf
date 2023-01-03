@@ -9,3 +9,5 @@ lazy_load_/!
 keymap
 func
 js/!
+Neovim
+nvim

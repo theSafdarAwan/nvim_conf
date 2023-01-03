@@ -27,7 +27,6 @@ opt.termguicolors = true
 opt.wrap = false
 opt.scrolloff = 2
 opt.showmode = false
-opt.wrap = false
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
 
 -- folding

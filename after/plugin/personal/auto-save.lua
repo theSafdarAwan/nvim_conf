@@ -3,8 +3,6 @@ local api = vim.api
 local create_autocmd = api.nvim_create_autocmd
 local command = vim.api.nvim_command
 local b = vim.bo
-local cmd = vim.cmd
-local fn = vim.fn
 local delay_auto_save = 10
 
 -- create the autosave augroup and Initialization of the autosave_queued and

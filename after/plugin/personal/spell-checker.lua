@@ -25,15 +25,16 @@ local notify = function(notify)
 end
 
 local config = {
-	ignore_filetypes = {
-		"lua",
-		"css",
-	},
-	check_filetypes = {
-		"markdown",
-		"html",
-		"norg",
-	},
+	-- ignore_filetypes = {
+	-- 	"lua",
+	-- 	"css",
+	-- },
+	check_filetypes = true,
+	-- check_filetypes = {
+	-- 	"markdown",
+	-- 	"html",
+	-- 	"norg",
+	-- },
 }
 
 local function set_spell()

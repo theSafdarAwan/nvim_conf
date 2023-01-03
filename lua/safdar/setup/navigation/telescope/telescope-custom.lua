@@ -9,50 +9,27 @@ local borders = require("safdar.utils.telescope").borders
 --                     Telescope Custom Pickers                     --
 ----------------------------------------------------------------------
 
--- get the name of the root directory
-local function get_root_name()
-	local path
-	local find_dir_in_root = vim.fs.find({ ".git", ".", "node_modules" }, { upward = true })[1]
-	if find_dir_in_root then
-		find_dir_in_root = find_dir_in_root
-		local root_path_split = vim.split(find_dir_in_root, "/", { plain = false, trimempty = true })
-		local root_path_len = #root_path_split
-		path = root_path_split[root_path_len - 1]
-	else
-		path = "root/"
-	end
-	--  NOTE: one thing to note here is that the root directory will be
-	--  concatenated inside the string so its not present in the results so
-	--  you won't be able to fuzzy find on it.
-	--  On the name of the root directory its just an illusion for a good UI.
-	return path
-end
-
--- trim the long path names
+-- trim the long path names will show maximum of 2 parent directories
 local path_style = function(tail, path_str)
 	local split_path = vim.split(path_str, "/", { plain = false, trimempty = true })
 	local path_len = #split_path
 	local path
-	if path_len == 1 then
-		-- if the file is in the root of working directory
-		path = get_root_name()
-	elseif path_len == 2 then
-		-- if the file is in the next level of the root dir
-		path = tostring(get_root_name() .. "/" .. split_path[path_len - 1])
-	else
-		-- if the path is deep then only show two last directories names
-		path = tostring(split_path[path_len - 2]) .. "/" .. tostring(split_path[path_len - 1])
+	if path_len == 2 then
+		-- will show only one because the second would be the root
+		-- directory name like nvim/init.lua to just init.lua
+		path = tostring(split_path[path_len - 1]) .. "/" .. tail
+	elseif path_len > 2 then
+		-- show 2 directories if has more than 2
+		path = tostring(split_path[path_len - 2]) .. "/" .. tostring(split_path[path_len - 1]) .. "/" .. tail
 	end
 
-	-- style the path string
-	local spaces = "\t\t"
-	return string.format("%s" .. spaces .. "*" .. spaces .. "%s", path, tail)
+	return string.format("%s", path or tail)
 end
 
 --> Search Neorg TODO files
 M.gtd_neorg_files = function()
 	local find_gtd_neorg_files = themes.get_dropdown({
-		prompt_title = "< GTD >",
+		prompt_title = "❮ GTD ❯",
 		cwd = "~/safdar-local/NOTES/Personal\\-Management/TODO/",
 		borderchars = borders.dropdown,
 		previewer = false,
