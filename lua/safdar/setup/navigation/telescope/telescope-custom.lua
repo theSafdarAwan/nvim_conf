@@ -46,7 +46,7 @@ local path_style = function(tail, path_str)
 
 	-- style the path string
 	local spaces = "\t\t"
-	return string.format("%s" .. spaces .. "*" .. spaces .. "%s", tail, path)
+	return string.format("%s" .. spaces .. "*" .. spaces .. "%s", path, tail)
 end
 
 --> Search Neorg TODO files

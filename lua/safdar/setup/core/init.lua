@@ -43,4 +43,5 @@ local function plugins(install)
 	install({ "nvim-lua/popup.nvim", after = "plenary.nvim" })
 	-- <~
 end
+
 return { get_plugins = plugins }
