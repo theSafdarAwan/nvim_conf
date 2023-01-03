@@ -1,10 +1,10 @@
 * TODO's 
   - [ ] Read the packer source code, that will make you a good neovim plugin dev
     trust me 🤣. No actually it's just to satisfy me that i can make the best nvim configuration possible.
+  - [ ] add the packer like logic to add cmd for plugins that are lazy-loaded
   - [ ]  work on creating notify-nvim config
   - [ ] read the autopairs docs
   - [ ] create a popup wrapper for the harpoon.term like the toggle-term.
 
   - [ ] look into the code-action-menu readme
-  - [ ] see the autopairs documentation
   - [ ] Create a snippet for the lua to wrap a selection inside a function

@@ -36,6 +36,7 @@ local config = function()
 		ensure_installed = {
 			"lua",
 			"vim",
+			"help",
 			"python",
 			"bash",
 			"norg",
