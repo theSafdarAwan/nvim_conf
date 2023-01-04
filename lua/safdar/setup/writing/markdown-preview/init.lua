@@ -5,8 +5,8 @@ local function plugin(install)
 		setup = function()
 			local md_preview = {
 				name = "markdown-preview.nvim",
-				force_reload = true,
 				on_load = {
+					reload_buffer = true,
 					config = function()
 						require("safdar.setup.writing.markdown-preview.config").config()
 					end,
