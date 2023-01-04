@@ -90,7 +90,6 @@ local config = function()
 			},
 			{ name = "nvim_lsp_signature_help", group_index = 1, priority = 1 },
 			{ name = "nvim_lua", keyword_length = 2, priority = 2 },
-			{ name = "dictionary", keyword_length = 2, priority = 4, max_item_count = 4 },
 			{ name = "emoji", priority = 1 },
 			{
 				name = "cmp_tabnine",
@@ -110,19 +109,23 @@ local config = function()
 		["norg"] = "norg",
 		["md"] = "md",
 	}
+	local dictionary_source = { name = "dictionary", keyword_length = 2, priority = 4, max_item_count = 4 }
 	vim.api.nvim_create_autocmd("BufWinEnter", {
-		group = vim.api.nvim_create_augroup("cmp-dictionary cmp source autocmd", { clear = true }),
+		group = vim.api.nvim_create_augroup("cmp-dictionary source autocmd", { clear = true }),
+		-- This function will remove the cmp-dictionary from source list of cmp if file
+		-- extension is not not listed in the ft_extensions list
 		callback = function()
-			-- This function will remove the cmp-dictionary from source list of cmp if file
-			-- extension is not not listed in the ft_extensions list
+			local sources = cmp.get_config().sources
 			if not ft_extensions[vim.fn.expand("%:e")] then
-				local sources = cmp.get_config().sources
 				for i = #sources, 1, -1 do
 					if sources[i].name == "dictionary" then
 						table.remove(sources, i)
 						break
 					end
 				end
+				cmp.setup.buffer({ sources = sources })
+			else
+				table.insert(sources, dictionary_source)
 				cmp.setup.buffer({ sources = sources })
 			end
 		end,
