@@ -1,4 +1,5 @@
 * TODO's 
+  - [ ] norg bugging me for InsertEnter
   - [ ] Read the packer source code, that will make you a good neovim plugin dev
     trust me 🤣. No actually it's just to satisfy me that i can make the best nvim configuration possible.
   - [ ] add the packer like logic to add cmd for plugins that are lazy-loaded
