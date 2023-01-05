@@ -1,5 +1,6 @@
 local function plugin(install)
 	install({
+		opt = true,
 		"norcalli/nvim-colorizer.lua",
 		setup = function()
 			local nc = {

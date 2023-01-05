@@ -25,7 +25,7 @@ local function config()
 							left = 0,
 							right = 5,
 						},
-						conceal = false,
+						conceal = true,
 					},
 					folds = false,
 					icons = {
@@ -175,5 +175,19 @@ local function config()
 
 	require("safdar.setup.writing.neorg.maps")
 	require("safdar.utils").fused("neorg")
+
+	local vim = vim
+	local optl = vim.opt_local
+	local api = vim.api
+	local function norg_ft_opts()
+		optl.shiftwidth = 2
+		optl.expandtab = true
+	end
+
+	api.nvim_create_autocmd({ "FileType" }, {
+		group = api.nvim_create_augroup("_norg_config_autocmd", { clear = true }),
+		pattern = { "norg" },
+		callback = norg_ft_opts,
+	})
 end
 return { config = config }
