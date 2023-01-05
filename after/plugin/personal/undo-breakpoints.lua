@@ -1,4 +1,4 @@
--- undo break points
+-- undo break points in insert mode
 local utils = require("safdar.utils")
 local set_map = utils.set_map
 

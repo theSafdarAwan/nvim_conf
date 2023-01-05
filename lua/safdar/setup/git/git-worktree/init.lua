@@ -1,7 +1,9 @@
 local function plugin(install)
 	install({
 		"ThePrimeagen/git-worktree.nvim",
-		after = "telescope.nvim",
+		keys = {
+			"<leader>gw"
+		},
 		config = function()
 			require("safdar.setup.git.git-worktree.config").config()
 		end,

@@ -76,25 +76,36 @@ local config = function()
 			end,
 		},
 		sources = { -- different source for the completion
-			{ name = "nvim_lsp", max_item_count = 15, priority = 1 },
-			{ name = "neorg", keyword_length = 2, priority = 1 },
+			{
+				name = "nvim_lsp",
+				max_item_count = 15,
+			},
+			{
+				name = "neorg",
+				keyword_length = 2,
+			},
 			{
 				name = "luasnip",
 				keyword_length = 2,
-				priority = 2,
 			},
 			{
 				name = "buffer",
 				keyword_length = 2,
-				priority = 3,
 			},
-			{ name = "nvim_lsp_signature_help", group_index = 1, priority = 1 },
-			{ name = "nvim_lua", keyword_length = 2, priority = 2 },
-			{ name = "emoji", priority = 1 },
+			{
+				name = "nvim_lsp_signature_help",
+				group_index = 1,
+			},
+			{
+				name = "nvim_lua",
+				keyword_length = 2,
+			},
+			{
+				name = "emoji",
+			},
 			{
 				name = "cmp_tabnine",
 				keyword_length = 2,
-				priority = 2,
 				max_item_count = 10,
 			},
 		},

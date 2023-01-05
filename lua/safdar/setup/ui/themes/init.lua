@@ -1,13 +1,23 @@
 local function themes(install)
 	install({
+		opt = true,
+		after = "fused.nvim",
 		"ellisonleao/gruvbox.nvim",
 	})
 	install({
+		opt = true,
+		after = "gruvbox.nvim",
 		"catppuccin/nvim",
 	})
-	install({ "LunarVim/Colorschemes" })
 	install({
+		opt = true,
+		"LunarVim/Colorschemes",
+		after = "gruvbox.nvim",
+	})
+	install({
+		opt = true,
 		"nvchad/base46",
+		after = "Colorschemes",
 		config = function()
 			-- local base46 = require("base46")
 			-- base46.load_theme()
@@ -15,13 +25,17 @@ local function themes(install)
 		end,
 	})
 	install({
+		opt = true,
 		"folke/tokyonight.nvim",
+		after = "base46",
 		config = function()
 			-- require("safdar.setup.ui.themes.config").tokyonight()
 		end,
 	})
 	install({
+		opt = true,
 		"Mofiqul/vscode.nvim",
+		after = "tokyonight.nvim",
 		cond = function()
 			return false
 		end,
@@ -29,7 +43,11 @@ local function themes(install)
 			-- require("safdar.setup.ui.themes.config").vscode()
 		end,
 	})
-	install({ "shaunsingh/nord.nvim" })
+	install({
+		opt = true,
+		after = "vscode.nvim",
+		"shaunsingh/nord.nvim",
+	})
 end
 
 return { install = themes }

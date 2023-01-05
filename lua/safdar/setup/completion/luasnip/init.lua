@@ -2,7 +2,6 @@ local plugins = function(install)
 	install({
 		opt = true,
 		"L3MON4D3/LuaSnip",
-		after = "nvim-cmp",
 		setup = function()
 			local luasnip = {
 				name = "LuaSnip",
@@ -16,7 +15,7 @@ local plugins = function(install)
 			require("safdar.setup.completion.luasnip.config").config()
 		end,
 	})
-	install({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
+	install({ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" })
 end
 
 return { install = plugins }
