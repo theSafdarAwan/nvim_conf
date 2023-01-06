@@ -1,4 +1,6 @@
 * TODO's 
+  - [ ] add something like in lazy-loader that if a variable is set to installing
+    then add a run key which will require the plugin and then run that command
   - [ ] figure out why the lua language server doesn't recognizes the vim global
   - [ ] Read the packer source code, that will make you a good neovim plugin dev
     trust me 🤣. No actually it's just to satisfy me that i can make the best nvim configuration possible.
