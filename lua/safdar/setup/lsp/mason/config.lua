@@ -25,38 +25,63 @@ local config = function()
 		},
 	})
 	require("safdar.setup.lsp.mason.maps").maps()
-
-	local ensure_installed = {
-		"lua-language-server",
-		"bash-language-server",
-		"black",
-		"chrome-debug-adapter",
-		"clang-format",
-		"clangd",
-		"css-lsp",
-		"emmet-ls",
-		"eslint-lsp",
-		"eslint_d",
-		"flake8",
-		"gopls",
-		"html-lsp",
-		"json-lsp",
-		"ltex-ls",
-		"lua-language-server",
-		"luacheck",
-		"node-debug2-adapter",
-		"prettierd",
-		"pyright",
-		"rust-analyzer",
-		"stylelint-lsp",
-		"stylua",
-		"tailwindcss-language-server",
-		"typescript-language-server",
-		"vim-language-server",
-	}
-	vim.api.nvim_create_user_command("MasonInstallAll", function()
-		vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
-	end, {})
 end
 
-return { config = config }
+local mason_installer = function()
+	-- if the executables are different then the package name then add the
+	-- executable name as a value to the package key
+	local ensure_installed = {
+		["lua-language-server"] = "",
+		["bash-language-server"] = "",
+		["black"] = "",
+		["chrome-debug-adapter"] = "",
+		["clang-format"] = "",
+		["clangd"] = "",
+		["css-lsp"] = "vscode-css-language-server",
+		["emmet-ls"] = "",
+		["eslint-lsp"] = "vscode-eslint-language-server",
+		["eslint_d"] = "",
+		["flake8"] = "",
+		["gopls"] = "",
+		["html-lsp"] = "vscode-html-language-server",
+		["json-lsp"] = "vscode-json-language-server",
+		["ltex-ls"] = "",
+		["luacheck"] = "",
+		["node-debug2-adapter"] = "",
+		["prettierd"] = "",
+		["pyright"] = "",
+		["rust-analyzer"] = "",
+		["stylelint-lsp"] = "",
+		["stylua"] = "",
+		["tailwindcss-language-server"] = "",
+		["typescript-language-server"] = "",
+		["vim-language-server"] = "",
+	}
+
+	-- only install packages that are not installed
+	local fn = vim.fn
+	local not_installed_pkgs = {}
+	local already_installed_pkgs = {}
+	local packer_path = fn.stdpath("data") .. "/mason/bin/"
+	for key, pkg in pairs(ensure_installed) do
+		local executable
+		if pkg == "" then
+			executable = key
+		else
+			executable = pkg
+		end
+		if fn.empty(fn.glob(packer_path .. executable)) > 0 then
+			not_installed_pkgs[#not_installed_pkgs + 1] = pkg
+		else
+			already_installed_pkgs[#already_installed_pkgs + 1] = pkg
+		end
+	end
+	vim.api.nvim_create_user_command("MasonInstallAll", function()
+		vim.cmd("MasonInstall " .. table.concat(not_installed_pkgs, " "))
+	end, {})
+	require("safdar.utils").notify(
+		"these packages are already installed " .. table.concat(already_installed_pkgs, " ")
+	)
+end
+
+return { config = config, mason_installer = mason_installer }

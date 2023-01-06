@@ -67,6 +67,7 @@ if fn.empty(fn.glob(packer_path)) > 0 then
 	})
 	setup("PackerSync")
 	-- install binaries from mason.nvim & tsparsers
+	require("safdar.setup.lsp.mason.config").mason_installer()
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "PackerComplete",
 		callback = function()
