@@ -7,6 +7,9 @@ local function plugin(install)
 				name = "neorg",
 				on_load = {
 					-- cmd = "Neorg gtd capture",
+					config = function()
+						require("safdar.setup.writing.neorg.config").config()
+					end,
 				},
 				cmds = {
 					"Neorg*",
@@ -23,9 +26,6 @@ local function plugin(install)
 		-- NOTE: at the moment cant do the commands when lazy loading
 		-- plugin with lazy-loader.
 		-- run = ":Neorg sync-parsers", -- This is the important bit!
-		config = function()
-			require("safdar.setup.writing.neorg.config").config()
-		end,
 	})
 	install({ "nvim-neorg/neorg-telescope", after = "neorg" })
 end

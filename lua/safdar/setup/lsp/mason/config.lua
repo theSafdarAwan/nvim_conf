@@ -79,9 +79,13 @@ local mason_installer = function()
 	vim.api.nvim_create_user_command("MasonInstallAll", function()
 		vim.cmd("MasonInstall " .. table.concat(not_installed_pkgs, " "))
 	end, {})
-	require("safdar.utils").notify(
-		"these packages are already installed " .. table.concat(already_installed_pkgs, " ")
-	)
+	if #already_installed_pkgs == 0 then
+		require("safdar.utils").notify("mason: all packages are installed already")
+	else
+		require("safdar.utils").notify(
+			"mason: these packages are already installed " .. table.concat(already_installed_pkgs, " ")
+		)
+	end
 end
 
 return { config = config, mason_installer = mason_installer }
