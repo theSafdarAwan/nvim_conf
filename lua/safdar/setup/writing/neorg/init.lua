@@ -11,9 +11,6 @@ local function plugin(install)
 						require("safdar.setup.writing.neorg.config").config()
 					end,
 				},
-				cmds = {
-					"Neorg*",
-				},
 				-- keymap = {
 				-- 	keys = { "gtc" },
 				-- },
