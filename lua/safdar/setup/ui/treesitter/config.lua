@@ -42,6 +42,8 @@ local config = function()
 			"norg",
 			"latex",
 			"typescript",
+			"yaml",
+			"toml",
 			"javascript",
 			"css",
 			"markdown",

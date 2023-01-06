@@ -1,5 +1,6 @@
 local plugins = function(install)
 	local plugin_list = {
+		"mason",
 		"lspconfig",
 		"null-ls",
 		"lsp-signature",

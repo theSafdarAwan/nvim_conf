@@ -30,10 +30,10 @@ local function setup(cmd)
 		},
 		display = {
 			working_sym = "ﲊ",
-			error_sym = "✗ ",
+			error_sym = "✗",
 			done_sym = " ",
 			removed_sym = " ",
-			moved_sym = "",
+			moved_sym = "➜",
 			open_fn = function()
 				return require("packer.util").float({ border = "single" })
 			end,
@@ -66,10 +66,18 @@ if fn.empty(fn.glob(packer_path)) > 0 then
 		msg = "Installing Plugins",
 	})
 	setup("PackerSync")
+	-- install binaries from mason.nvim & tsparsers
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "PackerComplete",
+		callback = function()
+			vim.cmd("bw | silent! MasonInstallAll") -- close packer window
+			require("packer").loader("nvim-treesitter")
+		end,
+	})
 elseif fn.empty(fn.glob(packer_compiled)) > 0 then
 	notify({
 		msg = "Packer is compiling ....",
-		level = vim.log.levels.WARN
+		level = vim.log.levels.WARN,
 	})
 	setup("PackerCompile")
 else
