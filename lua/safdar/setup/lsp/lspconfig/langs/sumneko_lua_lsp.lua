@@ -12,21 +12,21 @@ local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-
+local root_patterns = {
+	".luarc.json",
+	".luarc.jsonc",
+	".luacheckrc",
+	".stylua.toml",
+	"stylua.toml",
+	"selene.toml",
+	"selene.yml",
+	".gitignore",
+	".git",
+}
 nvim_lsp.sumneko_lua.setup({
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	on_attach = on_attach,
-	root_dir = (function()
-		local function a()
-			local root = vim.fn.expand("%:p")
-			local str = ".config/nvim"
-			local validate_root = string.find(root, str, nil, true)
-			if not validate_root then
-				root = util.root_pattern(".gitignore", ".git", "stylua.toml")
-			end
-			return root
-		end
-	end)(),
+	root_dir = util.root_pattern(root_patterns),
 	handlers = {
 		-- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 		-- 	-- Disable virtual_text
@@ -50,7 +50,7 @@ nvim_lsp.sumneko_lua.setup({
 				library = {
 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-					[vim.fn.expand("$/home/safdar/\\.config/nvim/lua/")] = true,
+					[vim.fn.expand(os.getenv("HOME") .. ".config/nvim/")] = true,
 				},
 			},
 			-- Do not send telemetry data containing a randomized but unique identifier

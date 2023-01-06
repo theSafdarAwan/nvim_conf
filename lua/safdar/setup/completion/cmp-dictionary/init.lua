@@ -9,7 +9,7 @@ local function plugin(install)
 				name = "cmp-dictionary",
 				autocmd = {
 					ft_ext = { "md", "html", "norg" },
-					events = "InsertEnter",
+					events = "CursorMoved",
 				},
 			}
 			require("lazy-loader").load(cmp_dictionary)

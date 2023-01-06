@@ -40,4 +40,48 @@ local function config()
 	})
 end
 
-return { config = config }
+local dict_source_autocmd = function()
+	local vim = vim
+	local api = vim.api
+	local cmp = require("cmp")
+	-- the reason i use file extension rather then file types is that
+	-- file types like norg won't have filetype set if the plugin for norg
+	-- isn't loaded. Which sets the filetype.
+	local ft_extensions = {
+		["html"] = "html",
+		["norg"] = "norg",
+		["md"] = "md",
+	}
+	local dictionary_source = { name = "dictionary", keyword_length = 2, max_item_count = 4 }
+	-- NOTE: you have to re-enter or execute ":e" in command mode the buffer for this
+	-- first time to load this plugin source i have no idea why it doesn't loads but 
+	-- after loading for the first time then it works perfectly
+	api.nvim_create_autocmd({ "InsertEnter" }, {
+		group = api.nvim_create_augroup("cmp-dictionary source autocmd", { clear = true }),
+		-- This function will remove the cmp-dictionary from source list of cmp if file
+		-- extension is not not listed in the ft_extensions list
+		callback = function()
+			local sources = cmp.get_config().sources
+			if not ft_extensions[vim.fn.expand("%:e")] then
+				for i = #sources, 1, -1 do
+					if sources[i].name == "dictionary" then
+						table.remove(sources, i)
+						break
+					end
+				end
+				cmp.setup.buffer({ sources = sources })
+			else
+				-- guard for adding multiple sources
+				for _, s in pairs(sources) do
+					if s.name == "dictionary" then
+						return
+					end
+				end
+				table.insert(sources, dictionary_source)
+				cmp.setup.buffer({ sources = sources })
+			end
+		end,
+	})
+end
+
+return { config = config, dict_source_autocmd = dict_source_autocmd }

@@ -111,36 +111,8 @@ local config = function()
 		},
 	})
 
-	local vim = vim
-	-- the reason i use file extension rather then file types is that
-	-- file types like norg won't have filetype set if the plugin for norg
-	-- isn't loaded. Which sets the filetype.
-	local ft_extensions = {
-		["html"] = "html",
-		["norg"] = "norg",
-		["md"] = "md",
-	}
-	local dictionary_source = { name = "dictionary", keyword_length = 2, priority = 4, max_item_count = 4 }
-	vim.api.nvim_create_autocmd("BufWinEnter", {
-		group = vim.api.nvim_create_augroup("cmp-dictionary source autocmd", { clear = true }),
-		-- This function will remove the cmp-dictionary from source list of cmp if file
-		-- extension is not not listed in the ft_extensions list
-		callback = function()
-			local sources = cmp.get_config().sources
-			if not ft_extensions[vim.fn.expand("%:e")] then
-				for i = #sources, 1, -1 do
-					if sources[i].name == "dictionary" then
-						table.remove(sources, i)
-						break
-					end
-				end
-				cmp.setup.buffer({ sources = sources })
-			else
-				table.insert(sources, dictionary_source)
-				cmp.setup.buffer({ sources = sources })
-			end
-		end,
-	})
+	-- set the source autocmd for the cmp-dictionary source
+	require("safdar.setup.completion.cmp-dictionary.config").dict_source_autocmd()
 end
 
 return { config = config }
