@@ -51,17 +51,4 @@ M.fused = function(plugin)
 	end
 	fused.lazy_load(plugin)
 end
-
-local double_keys_tbl = {}
-M.double_key_mapper = function(tbl)
-	local keys = ""
-	while true do
-		local c = vim.fn.getchar(0)
-		if c == 0 then
-			break
-		end
-		keys = keys .. vim.fn.nr2char(c)
-	end
-	vim.api.nvim_feedkeys(keys, "n")
-end
 return M
