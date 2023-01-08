@@ -63,7 +63,9 @@ set_map("n", "<A-h>", "zh", opts)
 -- set_map("n", "<C-k>", "<c-o>k", opts)
 
 -- Copy to the system clipboard
-set_map("v", "<leader>y", '"+y', opts)
+set_map("v", "Y", '"+y', opts)
+-- TODO: write a function that will copy line starting from the cursor position
+-- if the Y is pressed once if its pressed multiple times then copy the whole file
 set_map("n", "<leader>Y", 'mzgg"+yG zzz', opts)
 
 -- show messages
@@ -90,7 +92,7 @@ set_map("v", "<", "<gv", opts)
 set_map("v", ">", ">gv", opts)
 
 -- delete into the void in visual mode
-set_map("v", "<leader>d", '"_d', opts)
+set_map("v", "D", '"_d', opts)
 
 -- Resize the buffer window
 set_map("n", "<leader>=", ":vertical resize +5<cr>", opts)

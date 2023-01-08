@@ -3,7 +3,7 @@ local set_map = require("safdar.utils").set_map
 local M = {}
 
 M.mappings = function()
-	set_map("n", "<leader>vet", ":NvimTreeToggle<cr>", { noremap = true, silent = true })
+	set_map("n", "<leader>vv", ":NvimTreeToggle<cr>", { noremap = true, silent = true })
 end
 
 M.nvim_tree_core_maps = {

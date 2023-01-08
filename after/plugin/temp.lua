@@ -1,7 +1,8 @@
 --:h lua 642
 -- TODO: work with notify
+
+-- vim.notify = require("notify")
 -- local plugin = "My Awesome Plugin"
---
 -- vim.notify("This is an error message.\nSomething went wrong!", "error", {
 -- 	title = plugin,
 -- 	on_open = function()
@@ -21,7 +22,7 @@
 -- 		end)
 -- 	end,
 -- })
---
+
 -- local async = require("plenary.async")
 -- local notify = require("notify").async
 --
@@ -47,4 +48,10 @@
 -- 	callback = function()
 -- 		vim.cmd("do This_is_user_autocmd")
 -- 	end,
--- })
+
+-- local notify = require("notify")
+-- local async = require("plenary.async")
+-- async.run(function()
+--   notify("Let's wait for this to close").events.close()
+--   notify("It closed!")
+-- end)
