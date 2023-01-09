@@ -20,6 +20,14 @@ M.set_buf_opt = function(buffer, name, value)
 end
 
 M.notify = function(notify)
+	local fn = vim.fn
+	-- install notify plugin if not present
+	local notify_path = fn.stdpath("data") .. "/site/pack/packer/opt/nvim-notify"
+	if fn.empty(fn.glob(notify_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/rcarriga/nvim-notify", notify_path })
+		vim.cmd("packadd nvim-notify")
+	end
+
 	local msg
 	if type(notify) == "string" then
 		msg = notify
@@ -39,10 +47,10 @@ end
 
 M.fused = function(plugin)
 	local fn = vim.fn
-	-- install notify plugin if not present
-	local notify_path = fn.stdpath("data") .. "/site/pack/packer/opt/nvim-notify"
-	if fn.empty(fn.glob(notify_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/rcarriga/nvim-notify", notify_path })
+	-- install fused if not present
+	local fused_path = fn.stdpath("data") .. "/site/pack/packer/start/fused.nvim-"
+	if fn.empty(fn.glob(fused_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/TheSafdarAwan/fused.nvim", fused_path })
 	end
 	local ok, fused = pcall(require, "fused")
 	if not ok then
