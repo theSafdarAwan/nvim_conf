@@ -8,7 +8,6 @@ local function plugins(install)
 		"paint",
 		"colorizer",
 		"themes",
-		"notify",
 		"vim-illuminate",
 		"indent-blank-line",
 	}

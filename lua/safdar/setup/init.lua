@@ -41,7 +41,9 @@ local function setup(cmd)
 	})
 
 	packer.startup(function(install)
+		-- install all the plugins
 		get_plugins(install)
+		-- execute this script on last
 		require("safdar.setup.core.on-last")
 	end)
 
