@@ -4,7 +4,7 @@ local function plugin(install)
 		"norcalli/nvim-colorizer.lua",
 		setup = function()
 			local nc = {
-				name = "nvim-colorizer.nvim",
+				name = "nvim-colorizer.lua",
 				autocmd = {},
 			}
 			require("lazy-loader").load(nc)

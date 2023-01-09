@@ -2,9 +2,6 @@ local function config()
 	------------------------
 	--  colorizer plugin  --
 	------------------------
-	local vim = vim
-	local api = vim.api
-
 	local status_ok, colorizer = pcall(require, "colorizer")
 	if not status_ok then
 		vim.notify("colorizer not found")
@@ -20,12 +17,6 @@ local function config()
 		hsl_fn = true, -- CSS hsl() and hsla() functions
 		css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
 		css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-	})
-
-	-- Colorizer plugin attach autocmd's
-	api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorMoved", "CursorHold" }, {
-		group = api.nvim_create_augroup("__nvim-colorizer", { clear = true }),
-		command = "ColorizerAttachToBuffer",
 	})
 end
 
