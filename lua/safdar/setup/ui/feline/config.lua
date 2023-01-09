@@ -155,9 +155,10 @@ local config = function()
 
 	components.active[1][2] = {
 		provider = function()
-			local branch = "  " .. git.git_branch()
-			local ft = tostring(vim.bo.filetype)
-			if ft == "" then
+			local branch
+			if vim.g.__git_is_ok then
+				branch = "  " .. git.git_branch()
+			elseif tostring(vim.bo.filetype) == "" or not vim.g.__git_is_ok then
 				branch = "  " -- little tux
 			end
 			return branch
@@ -297,9 +298,21 @@ local config = function()
 			local frame = math.floor(ms / 120) % #spinners
 
 			if percentage >= 70 then
-				return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
+				return string.format(
+					" %%<%s %s %s (%s%%%%) ",
+					success_icon[frame + 1],
+					title,
+					msg,
+					percentage
+				)
 			else
-				return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
+				return string.format(
+					" %%<%s %s %s (%s%%%%) ",
+					spinners[frame + 1],
+					title,
+					msg,
+					percentage
+				)
 			end
 		end
 
