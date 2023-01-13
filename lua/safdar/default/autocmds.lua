@@ -37,6 +37,7 @@ local function line_numers()
 	if bo.buftype ~= "prompt" and bo.buftype ~= "nofile" and bo.buftype ~= "terminal" and bo.filetype ~= "norg" then
 		optl.relativenumber = true
 		optl.number = true
+		optl.signcolumn = "yes"
 	end
 end
 
