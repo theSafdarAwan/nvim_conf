@@ -155,11 +155,10 @@ local config = function()
 
 	components.active[1][2] = {
 		provider = function()
-			local branch
-			if vim.g.__git_is_ok then
-				branch = "  " .. git.git_branch()
-			elseif tostring(vim.bo.filetype) == "" or not vim.g.__git_is_ok then
-				branch = "  " -- little tux
+			local branch_name = git.git_branch()
+			local branch = "  " -- little tux
+			if vim.g.__git_is_ok and branch_name ~= "" then
+				branch = "  " .. branch_name
 			end
 			return branch
 		end,
