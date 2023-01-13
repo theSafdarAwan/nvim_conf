@@ -13,5 +13,7 @@
 --                "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     "
 --                "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     "
 ----------------------------------------------------------------------
-require("safdar").default()
-require("safdar").setup()
+(function()
+	require("safdar").default()
+	require("safdar").setup()
+end)()
