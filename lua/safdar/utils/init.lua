@@ -48,7 +48,7 @@ end
 M.fused = function(plugin)
 	local fn = vim.fn
 	-- install fused if not present
-	local fused_path = fn.stdpath("data") .. "/site/pack/packer/start/fused.nvim-"
+	local fused_path = fn.stdpath("data") .. "/site/pack/packer/start/fused.nvim"
 	if fn.empty(fn.glob(fused_path)) > 0 then
 		fn.system({ "git", "clone", "--depth", "1", "https://github.com/TheSafdarAwan/fused.nvim", fused_path })
 	end
