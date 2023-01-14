@@ -3,7 +3,6 @@ local function plugin(install)
 		"glepnir/lspsaga.nvim",
 		opt = true,
 		setup = function()
-			require("safdar.utils").fused("lspsaga")
 			local lsp_saga = {
 				name = "lspsaga.nvim",
 				keymap = {
@@ -18,6 +17,7 @@ local function plugin(install)
 				},
 			}
 			require("lazy-loader").load(lsp_saga)
+			require("safdar.utils").fused("lspsaga")
 		end,
 		config = function()
 			require("safdar.setup.lsp.lsp-saga.config").config()
