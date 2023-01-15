@@ -5,6 +5,8 @@ local function config()
 		return
 	end
 
+	local surround_config = require("nvim-surround.config")
+
 	surround.setup({
 		keymaps = {
 			insert = "<C-g>s",
@@ -21,29 +23,91 @@ local function config()
 		surrounds = {
 			["("] = {
 				add = { "(", ")" },
+				find = function()
+					return surround_config.get_selection({ motion = "a(" })
+				end,
+				delete = "^(. ?)().-( ?.)()$",
 			},
 			[")"] = {
 				add = { "( ", " )" },
+				find = function()
+					return surround_config.get_selection({ motion = "a)" })
+				end,
+				delete = "^(.)().-(.)()$",
 			},
 			["{"] = {
 				add = { "{", "}" },
+				find = function()
+					return surround_config.get_selection({ motion = "a{" })
+				end,
+				delete = "^(. ?)().-( ?.)()$",
 			},
 			["}"] = {
 				add = { "{ ", " }" },
+				find = function()
+					return surround_config.get_selection({ motion = "a}" })
+				end,
+				delete = "^(.)().-(.)()$",
+			},
+			["<"] = {
+				add = { "<", ">" },
+				find = function()
+					return surround_config.get_selection({ motion = "a<" })
+				end,
+				delete = "^(. ?)().-( ?.)()$",
+			},
+			[">"] = {
+				add = { "< ", " >" },
+				find = function()
+					return surround_config.get_selection({ motion = "a>" })
+				end,
+				delete = "^(.)().-(.)()$",
 			},
 			["["] = {
 				add = { "[", "]" },
+				find = function()
+					return surround_config.get_selection({ motion = "a[" })
+				end,
+				delete = "^(. ?)().-( ?.)()$",
 			},
 			["]"] = {
 				add = { "[ ", " ]" },
+				find = function()
+					return surround_config.get_selection({ motion = "a]" })
+				end,
+				delete = "^(.)().-(.)()$",
+			},
+			invalid_key_behavior = {
+				add = function(char)
+					return { { char }, { char } }
+				end,
+				find = function(char)
+					return surround_config.get_selection({
+						pattern = vim.pesc(char) .. ".-" .. vim.pesc(char),
+					})
+				end,
+				delete = function(char)
+					return surround_config.get_selections({
+						char = char,
+						pattern = "^(.)().-(.)()$",
+					})
+				end,
+				change = {
+					target = function(char)
+						return surround_config.get_selections({
+							char = char,
+							pattern = "^(.)().-(.)()$",
+						})
+					end,
+				},
 			},
 		},
 		aliases = {
 			["j"] = "(",
 			["k"] = "{",
 			["l"] = "[",
-			["q"] = { '"', "'", "`" },
-			["s"] = { "{", "[", "(", "<", '"', "'", "`", " " },
+			["q"] = { "\"", "'", "`" },
+			["s"] = { "{", "[", "(", "<", "\"", "'", "`", " " },
 		},
 		move_cursor = false,
 		indent_lines = false,

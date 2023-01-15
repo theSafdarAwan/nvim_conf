@@ -13,3 +13,5 @@
 
   - [ ] look into the code-action-menu readme
   - [ ] Create a snippet for the lua to wrap a selection inside a function
+
+  - [ ] create a plugin like tmux picking windows to pick the tabs
