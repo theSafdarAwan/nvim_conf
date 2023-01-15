@@ -24,28 +24,27 @@ local augroup_ui = api.nvim_create_augroup("ui.lua", { clear = true })
 -- learn more about vim-script and lua.
 -- files to ignore
 local matchadd_ignore_ft = {
-	"packer",
-	"terminal",
-	"^NvimTree$",
-	"^Outline$",
-	"DiffviewFileHistory",
-	"DiffviewFiles",
+	["packer"] = "packer",
+	["terminal"] = "terminal",
+	["^NvimTree$"] = "^NvimTree$",
+	["^Outline$"] = "^Outline$",
+	["DiffviewFileHistory"] = "DiffviewFileHistory",
+	["DiffviewFiles"] = "DiffviewFiles",
 }
+
 local function damian_conways_matchadd(buf_info)
-	for _, v in pairs(matchadd_ignore_ft) do
-		if buf_info.filetype == v then
-			return
-		end
+	if matchadd_ignore_ft[buf_info.filetype] then
+		command("call matchadd('DamianConway', '\\%1180v')")
+	else
 		-- DamianConway is just the name of the highlight you can provide any highlight
 		-- name here for convenience i create a new highlight wit the name DamianConway
 		command("call matchadd('DamianConway', '\\%80v')")
 	end
 end
 
--- TODO: this is wrong work on this
---[[ create_autocmd({ "BufEnter" }, {
+create_autocmd({ "BufWinEnter" }, {
 	group = augroup_ui,
 	callback = function(buf_info)
 		damian_conways_matchadd(buf_info)
 	end,
-}) -]]
+})
