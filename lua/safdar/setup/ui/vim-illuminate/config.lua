@@ -23,6 +23,9 @@ local function config()
 			"fugitive",
 			"Outline",
 			"NvimTree",
+			"lspsagafinder",
+			"NeogitStatus",
+			"NeogitPopup",
 		},
 		-- filetypes_allowlist: filetypes to illuminate, this is overridden by filetypes_denylist
 		filetypes_allowlist = {},

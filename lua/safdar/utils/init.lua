@@ -8,11 +8,11 @@ M.set_map = function(mode, mapping, command, opts)
 end
 
 M.del_map = function(mode, mapping, opts)
-	vim.keymap.del(mode, mapping, opts)
+	vim.keymap.del(mode, mapping, opts or local_opts)
 end
 
 M.set_buf_map = function(buffer, mode, lhs, rhs, opts)
-	vim.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, opts)
+	vim.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, opts or local_opts)
 end
 
 M.set_buf_opt = function(buffer, name, value)
