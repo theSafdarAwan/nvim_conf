@@ -5,7 +5,6 @@ local function config()
 		require("safdar.utils").notify("dap not found")
 		return
 	end
-	local vim = vim
 	local dapui = require("dapui")
 	dap.listeners.after.event_initialized["dapui_config"] = function()
 		print("Debugger Initialised")
@@ -43,7 +42,6 @@ local function dap_ui_config()
 		require("safdar.utils").notify("dap-ui not found")
 		return
 	end
-	local vim = vim
 	dapui.setup({
 		icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
 		mappings = maps.dap_ui_mappings,

@@ -1,7 +1,6 @@
 local M = {}
 local utils = require("safdar.utils")
 local set_map = utils.set_map
-local vim = vim
 
 M.mappings = function(_) -- gives a bufnr
 	local gs = package.loaded.gitsigns

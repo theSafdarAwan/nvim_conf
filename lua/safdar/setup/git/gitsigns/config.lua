@@ -1,4 +1,3 @@
-local vim = vim
 local config = function()
 	require("gitsigns").setup({
 		on_attach = require("safdar.setup.git.gitsigns.maps").mappings,

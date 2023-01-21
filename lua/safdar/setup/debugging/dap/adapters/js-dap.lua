@@ -1,4 +1,3 @@
-local vim = vim
 local dap = require("dap")
 --[[
 dap.adapters.firefox = {

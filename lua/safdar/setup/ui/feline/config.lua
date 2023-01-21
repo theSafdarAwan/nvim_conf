@@ -14,7 +14,6 @@ local config = function()
 		return
 	end
 
-	local vim = vim
 
 	-- @colors
 	local cp = require("fused.pallets.catppuccin").pallete

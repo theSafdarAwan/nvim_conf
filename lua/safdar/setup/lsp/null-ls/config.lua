@@ -1,5 +1,4 @@
 local config = function()
-	local vim = vim
 
 	-- local on_attach = require("safdar.setup.lsp.utils").on_attach
 	--=======================================================
@@ -11,7 +10,18 @@ local config = function()
 		builtins.formatting.stylua.with({
 			extra_args = { "--config-path", vim.fn.expand("~/.config/stylua.toml") },
 		}),
-		builtins.diagnostics.luacheck,
+		builtins.diagnostics.luacheck.with({
+			args = {
+				"--formatter",
+				"plain",
+				"globals vim",
+				"--codes",
+				"--ranges",
+				"--filename",
+				"$FILENAME",
+				"-",
+			},
+		}),
 		builtins.formatting.black.with({ extra_args = { "--fast" } }),
 		builtins.diagnostics.flake8,
 		builtins.diagnostics.eslint_d.with({

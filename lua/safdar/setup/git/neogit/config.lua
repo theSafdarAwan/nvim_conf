@@ -75,7 +75,6 @@ local function config()
 
 	maps.mappings()
 
-	local vim = vim
 	local optl = vim.opt_local
 	local api = vim.api
 

@@ -41,7 +41,6 @@ local function config()
 end
 
 local dict_source_autocmd = function()
-	local vim = vim
 	local api = vim.api
 	local cmp = require("cmp")
 	-- the reason i use file extension rather then file types is that

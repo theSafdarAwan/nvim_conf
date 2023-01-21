@@ -1,6 +1,5 @@
 local M = {}
 
-local vim = vim
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 local borders = require("safdar.utils.telescope").borders

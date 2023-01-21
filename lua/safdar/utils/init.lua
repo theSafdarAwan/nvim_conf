@@ -1,5 +1,3 @@
-local vim = vim
-
 local M = {}
 
 local local_opts = { noremap = true, silent = true }

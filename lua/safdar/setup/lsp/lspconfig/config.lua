@@ -1,5 +1,4 @@
 local config = function()
-	local vim = vim
 	local api = vim.api
 	local utils = require("safdar.setup.lsp.utils")
 	local on_attach = utils.on_attach

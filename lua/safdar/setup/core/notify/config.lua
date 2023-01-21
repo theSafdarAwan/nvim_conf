@@ -1,5 +1,4 @@
 local function lsp_progress()
-	local vim = vim
 	vim.notify = require("notify")
 	local client_notifs = {}
 

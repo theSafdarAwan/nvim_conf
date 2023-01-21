@@ -1,5 +1,4 @@
 local utils = require("safdar.utils")
-local vim = vim
 
 local set_buf_opt = utils.set_buf_opt
 local set_buf_map = utils.set_buf_map

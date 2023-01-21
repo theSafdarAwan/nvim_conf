@@ -1,5 +1,4 @@
 local maps = require("safdar.setup.navigation.harpoon.maps").maps
-local vim = vim
 
 local config = function()
 	require("harpoon").setup({

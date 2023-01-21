@@ -1,4 +1,3 @@
-local vim = vim
 local set_map = require("safdar.utils").set_map
 
 local picker = require("window-picker")
