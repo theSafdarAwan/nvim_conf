@@ -14,14 +14,30 @@ local bo = vim.bo
 local create_autocmd = api.nvim_create_autocmd
 
 local notify = function(notify)
+	local level = notify.level or vim.log.levels.WARN
+	if not notify then
+		vim.api.nvim_notify(
+			"spell-checker: notify table is not valid",
+			notify.level or level,
+			notify.opts or {}
+		)
+		return
+	end
+
 	local msg
 	if type(notify) == "string" then
 		msg = notify
+	elseif notify.msg and type(notify.msg) == "string" then
+		msg = notify.msg
+	elseif type(notify.msg) == "nil" then
+		vim.api.nvim_notify(
+			"spell-checker: notify message is not valid",
+			notify.level or level,
+			notify.opts or {}
+		)
+		return
 	end
-	if notify then
-		local level = vim.log.levels.WARN
-		vim.api.nvim_notify(notify.msg or msg, notify.level or level, notify.opts or {})
-	end
+	vim.api.nvim_notify(msg, level, notify.opts or {})
 end
 
 local config = {
