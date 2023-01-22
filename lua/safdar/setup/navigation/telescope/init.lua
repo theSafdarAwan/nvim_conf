@@ -3,17 +3,42 @@ local plugin = function(install)
 	install({
 		opt = true,
 		"nvim-telescope/telescope.nvim",
-		keys = keys,
 		setup = function()
+			local plugin = {
+				name = "telescope.nvim",
+				on_load = {
+					config = function()
+						require("safdar.setup.navigation.telescope.config").config()
+					end,
+				},
+				keymap = {
+					keys = {
+						{ "n", "<leader>f" },
+						{ "n", "<leader>t" },
+						{ "n", "<leader>c" },
+						{ "n", "<leader>r" },
+						{ "n", "<leader>v" },
+						{ "n", "<leader>b" },
+						{ "n", "<leader>d" },
+						{ "n", "<C-_>" },
+						{ "n", "<leader>t" },
+						{ "n", "<leader>g" },
+					},
+				},
+			}
+			require("lazy-loader").load(plugin)
 			require("safdar.utils").fused("telescope")
-		end,
-		config = function()
-			require("safdar.setup.navigation.telescope.config").config()
 		end,
 	})
 	install({
 		opt = true,
-		after = "telescope.nvim",
+		setup = function()
+			local plugin = {
+				name = "telescope-fzf-native.nvim",
+				after = "telescope.nvim",
+			}
+			require("lazy-loader").load(plugin)
+		end,
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 		config = function()
@@ -21,8 +46,15 @@ local plugin = function(install)
 		end,
 	})
 	install({
+		opt = true,
 		"LukasPietzschmann/telescope-tabs",
-		after = "telescope-fzf-native.nvim",
+		setup = function()
+			local plugin = {
+				name = "telescope-fzf-native.nvim",
+				after = "telescope-fzf-native.nvim",
+			}
+			require("lazy-loader").load(plugin)
+		end,
 		config = function()
 			require("safdar.setup.navigation.telescope.telescope-plugins").tabs()
 		end,
