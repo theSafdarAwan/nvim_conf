@@ -8,11 +8,13 @@ local function plugin(install)
 				autocmd = {
 					event = "BufEnter",
 				},
+				on_load = {
+					config = function()
+						require("safdar.setup.others.todo-comments.config").config()
+					end,
+				},
 			}
 			require("lazy-loader").load(tdc)
-		end,
-		config = function()
-			require("safdar.setup.others.todo-comments.config").config()
 		end,
 	})
 end

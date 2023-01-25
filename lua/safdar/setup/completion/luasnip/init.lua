@@ -8,11 +8,13 @@ local plugins = function(install)
 				autocmd = {
 					events = "InsertEnter",
 				},
+				on_load = {
+					config = function()
+						require("safdar.setup.completion.luasnip.config").config()
+					end,
+				},
 			}
 			require("lazy-loader").load(luasnip)
-		end,
-		config = function()
-			require("safdar.setup.completion.luasnip.config").config()
 		end,
 	})
 	install({ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" })

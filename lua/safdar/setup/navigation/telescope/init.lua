@@ -36,27 +36,31 @@ local plugin = function(install)
 			local plugin = {
 				name = "telescope-fzf-native.nvim",
 				after = "telescope.nvim",
+				on_load = {
+					config = function()
+						require("safdar.setup.navigation.telescope.telescope-plugins").fzf()
+					end,
+				},
 			}
 			require("lazy-loader").load(plugin)
 		end,
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-		config = function()
-			require("safdar.setup.navigation.telescope.telescope-plugins").fzf()
-		end,
 	})
 	install({
 		opt = true,
 		"LukasPietzschmann/telescope-tabs",
 		setup = function()
 			local plugin = {
-				name = "telescope-fzf-native.nvim",
+				name = "telescop-tabs",
 				after = "telescope-fzf-native.nvim",
+				on_load = {
+					config = function()
+						require("safdar.setup.navigation.telescope.telescope-plugins").tabs()
+					end,
+				},
 			}
 			require("lazy-loader").load(plugin)
-		end,
-		config = function()
-			require("safdar.setup.navigation.telescope.telescope-plugins").tabs()
 		end,
 	})
 end

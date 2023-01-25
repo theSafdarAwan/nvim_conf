@@ -11,11 +11,13 @@ local function plugin(install)
 					ft_ext = { "md", "html", "norg" },
 					events = "CursorMoved",
 				},
+				on_load = {
+					config = function()
+						require("safdar.setup.completion.cmp-dictionary.config").config()
+					end,
+				},
 			}
 			require("lazy-loader").load(cmp_dictionary)
-		end,
-		config = function()
-			require("safdar.setup.completion.cmp-dictionary.config").config()
 		end,
 	})
 end

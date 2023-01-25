@@ -5,12 +5,14 @@ local function plugin(install)
 		setup = function()
 			local ts = {
 				name = "nvim-treesitter",
+				on_load = {
+					config = function()
+						require("safdar.setup.ui.treesitter.config").config()
+					end,
+				},
 			}
 			require("lazy-loader").load(ts)
 			require("safdar.utils").fused("treesitter")
-		end,
-		config = function()
-			require("safdar.setup.ui.treesitter.config").config()
 		end,
 	})
 	-- Other Plugins
@@ -20,12 +22,17 @@ local function plugin(install)
 		setup = function()
 			local ts_autotag = {
 				name = "nvim-ts-autotag",
-				autocmd = { ft = "html", event = "InsertEnter" },
+				on_load = {
+					config = function()
+						require("nvim-ts-autotag").setup()
+					end,
+				},
+				autocmd = {
+					ft = "html",
+					event = "InsertEnter",
+				},
 			}
 			require("lazy-loader").load(ts_autotag)
-		end,
-		config = function()
-			require("nvim-ts-autotag").setup()
 		end,
 	})
 	install({

@@ -6,14 +6,16 @@ local function plugin(install)
 			require("safdar.utils").fused("cmp")
 			local cmp = {
 				name = "nvim-cmp",
+				on_load = {
+					config = function()
+						require("safdar.setup.completion.cmp.config").config()
+					end,
+				},
 				autocmd = {
 					event = "InsertEnter",
 				},
 			}
 			require("lazy-loader").load(cmp)
-		end,
-		config = function()
-			require("safdar.setup.completion.cmp.config").config()
 		end,
 	})
 	install({

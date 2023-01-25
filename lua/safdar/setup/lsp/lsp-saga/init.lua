@@ -15,12 +15,14 @@ local function plugin(install)
 						"gd",
 					},
 				},
+				on_load = {
+					config = function()
+						require("safdar.setup.lsp.lsp-saga.config").config()
+					end,
+				},
 			}
 			require("lazy-loader").load(lsp_saga)
 			require("safdar.utils").fused("lspsaga")
-		end,
-		config = function()
-			require("safdar.setup.lsp.lsp-saga.config").config()
 		end,
 	})
 end

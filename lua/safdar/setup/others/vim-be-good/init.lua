@@ -11,11 +11,13 @@ local function plugin(install)
 						{ "n", "<leader>gg" },
 					},
 				},
+				on_load = {
+					config = function()
+						require("safdar.setup.others.vim-be-good.maps")
+					end,
+				},
 			}
 			require("lazy-loader").load(vim_be_good)
-		end,
-		config = function()
-			require("safdar.setup.others.vim-be-good.maps")
 		end,
 	})
 end

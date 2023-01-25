@@ -5,14 +5,16 @@ local function plugin(install)
 		setup = function()
 			local autopairs = {
 				name = "nvim-autopairs",
+				on_load = {
+					config = function()
+						require("safdar.setup.completion.autopairs.config").config()
+					end,
+				},
 				autocmd = {
 					events = { "InsertEnter" },
 				},
 			}
 			require("lazy-loader").load(autopairs)
-		end,
-		config = function()
-			require("safdar.setup.completion.autopairs.config").config()
 		end,
 	})
 end

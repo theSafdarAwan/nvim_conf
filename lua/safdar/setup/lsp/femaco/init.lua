@@ -8,12 +8,14 @@ local function plugin(install)
 				autocmd = {
 					ft_ext = { "md", "norg" },
 				},
+				on_load = {
+					config = function()
+						require("femaco").setup()
+						require("safdar.setup.lsp.femaco.maps")
+					end,
+				},
 			}
 			require("lazy-loader").load(femaco)
-		end,
-		config = function()
-			require("femaco").setup()
-			require("safdar.setup.lsp.femaco.maps")
 		end,
 	})
 end

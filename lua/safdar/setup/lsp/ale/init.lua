@@ -5,15 +5,17 @@ local function plugin(install)
 		setup = function()
 			local ale = {
 				name = "ale",
+				on_load = {
+					config = function()
+						require("safdar.setup.lsp.ale.config").config()
+					end,
+				},
 				autocmd = {
 					event = "BufReadPost",
 					ft_ext = "html",
 				},
 			}
 			require("lazy-loader").load(ale)
-		end,
-		config = function()
-			require("safdar.setup.lsp.ale.config").config()
 		end,
 	})
 end

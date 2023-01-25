@@ -5,12 +5,14 @@ local function plugin(install)
 		setup = function()
 			local nc = {
 				name = "nvim-colorizer.lua",
+				on_load = {
+					config = function()
+						require("safdar.setup.ui.colorizer.config").config()
+					end,
+				},
 				autocmd = {},
 			}
 			require("lazy-loader").load(nc)
-		end,
-		config = function()
-			require("safdar.setup.ui.colorizer.config").config()
 		end,
 	})
 end

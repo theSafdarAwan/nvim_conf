@@ -10,11 +10,13 @@ local function plugin(install)
 						"<leader>u",
 					},
 				},
+				on_load = {
+					config = function()
+						require("safdar.setup.others.undotree.maps")
+					end,
+				},
 			}
 			require("lazy-loader").load(undotree)
-		end,
-		config = function()
-			require("safdar.setup.others.undotree.maps")
 		end,
 	})
 end
