@@ -1,6 +1,6 @@
 local maps = function()
 	local set_map = require("safdar.utils").set_map
-	set_map("n", "<leader>m", ":Mason<CR>")
+	set_map("n", "<leader>mm", ":Mason<CR>")
 end
 
 local mason_maps = function()
