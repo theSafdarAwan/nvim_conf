@@ -19,13 +19,7 @@ M.on_attach = function(_, bufnr) -- will give client and bufnr
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	-- set_buf_map(bufnr,"n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	set_buf_map(
-	    bufnr,
-	    "n",
-	    "gD",
-	    "<cmd>lua vim.lsp.buf.definition()<CR>",
-	    opts
-	)
+	set_buf_map( bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	set_buf_map(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	set_buf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	-- set_buf_map(bufnr,"n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
