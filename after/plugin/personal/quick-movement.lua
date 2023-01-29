@@ -38,6 +38,19 @@ end)
 --                             then one                             --
 ----------------------------------------------------------------------
 
+local function reverse_tbl(tbl)
+	local transformed_tbl = {}
+	local idx = #tbl
+	while true do
+		table.insert(transformed_tbl, tbl[idx])
+		if idx < 1 then
+			break
+		end
+		idx = idx - 1
+	end
+	return transformed_tbl
+end
+
 local function string_map(str, pattern)
 	local loc_tbl = {}
 	local last_pos
@@ -59,20 +72,25 @@ local function get_pos(pattern, direction)
 	local all_indicies = string_map(cur_line, pattern)
 
 	local target_pos
-	if direction == "h" then
-		for key, val in ipairs(all_indicies) do
-			if val > cursor_pos then
-				target_pos = all_indicies[key - 1] or all_indicies[key]
-				break
-			end
-		end
-	elseif direction == "l" then
+	if direction == "l" then
 		for key, val in ipairs(all_indicies) do
 			if val > cursor_pos then
 				target_pos = val
 				-- if the cursor is already on one occurrence then move to the next one
 				if cursor_pos == val - 1 then
 					target_pos = all_indicies[key + 1]
+				end
+				break
+			end
+		end
+	elseif direction == "h" then
+		all_indicies = reverse_tbl(all_indicies)
+		for key, val in ipairs(all_indicies) do
+			if val < cursor_pos then
+				target_pos = val
+				-- if the cursor is already on one occurrence then move to the previous one
+				if cursor_pos == val + 1 then
+					target_pos = all_indicies[key - 1]
 				end
 				break
 			end
@@ -93,6 +111,7 @@ local function get_chars()
 	return chars
 end
 
+-- TODO: this code is messy refactor it
 local function move_to_char_pos(key)
 	local last_find_tbl = vim._last_find_tbl
 	if not last_find_tbl.pattern and key == "," or key == ";" and not last_find_tbl.pattern then
@@ -117,7 +136,7 @@ local function move_to_char_pos(key)
 	local pos = get_pos(chars_pattern, direction)
 
 	if not pos.target_pos then
-		require("safdar.utils").notify(chars_pattern .. " pattern not found")
+		api.nvim_notify(chars_pattern .. " pattern not found", vim.log.levels.WARN, {})
 		return
 	end
 
@@ -142,11 +161,6 @@ local find_keys_tbl = {
 	",",
 	";",
 }
-
--- TODO: map the whole string with indices of pattern and then get position for
--- the target
--- or maybe use regular expression like match till the next punctuation and then use
--- that as the target_pos
 
 for _, key in ipairs(find_keys_tbl) do
 	set_map("n", key, function()
