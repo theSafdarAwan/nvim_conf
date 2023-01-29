@@ -39,6 +39,9 @@ end)
 -- to remember the last pattern and the command when using the ; and , command
 vim._previous_find_info = { pattern = nil, key = nil }
 
+-- how many characters to find for
+vim.quick_movement_find_chars_length = 2
+
 local function reverse_tbl(tbl)
 	local transformed_tbl = {}
 	local idx = #tbl
@@ -107,7 +110,7 @@ local function get_chars()
 	while true do
 		local c = fn.getchar(0)
 		chars = chars .. fn.nr2char(c)
-		if #chars > 1 then
+		if #chars == vim.quick_movement_find_chars_length then
 			break
 		end
 	end
@@ -163,14 +166,15 @@ local function move_to_char_position(key)
 		return
 	end
 
-	local go_to_position
+	-- to determine how much away the target position is
+	local target_distance
 	if direction_l then
-		go_to_position = position.target_position - position.cursor_position - 1
+		target_distance = position.target_position - position.cursor_position - 1
 	elseif direction_h then
-		go_to_position = position.cursor_position - position.target_position + 1
+		target_distance = position.cursor_position - position.target_position + 1
 	end
 
-	fn.feedkeys(go_to_position)
+	fn.feedkeys(target_distance)
 	api.nvim_feedkeys(direction, "m", true)
 end
 
