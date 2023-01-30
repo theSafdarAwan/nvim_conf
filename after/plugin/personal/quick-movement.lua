@@ -6,8 +6,8 @@ local fn = vim.fn
 -- replace the default nvim map gm for rather the half of the screen to half of
 -- the current line text
 set_map({ "n", "v" }, "gm", function()
-	local cur_line = #api.nvim_get_current_line()
-	local middle = math.floor(cur_line / 2)
+	local current_line = #api.nvim_get_current_line()
+	local middle = math.floor(current_line / 2)
 	local position = api.nvim_win_get_cursor(0)[2]
 
 	if position == middle then
@@ -42,8 +42,8 @@ vim._previous_find_info = { pattern = nil, key = nil }
 -- how many characters to find for
 vim.quick_movement_find_chars_length = 2
 -- timeout before the quick movement goes to the default behavior of f to find 1
--- char false or timeout in ms
-vim.quick_movement_find_timeout = 500
+-- char false or timeout in ms false by default
+vim.quick_movement_find_timeout = false
 
 local function reverse_tbl(tbl)
 	local transformed_tbl = {}
@@ -77,29 +77,31 @@ end
 -- get the position for the next or previous chars pattern position
 local function get_position(pattern, direction)
 	local cursor_position = api.nvim_win_get_cursor(0)[2]
-	local cur_line = api.nvim_get_current_line()
-	local all_occurrences = string_map(cur_line, pattern)
+	local current_line = api.nvim_get_current_line()
+	local mapped_string = string_map(current_line, pattern)
 
 	local target_position
 	if direction == "l" then
-		for key, val in ipairs(all_occurrences) do
-			if val > cursor_position then
-				target_position = val
+		for key, position in ipairs(mapped_string) do
+			if position > cursor_position then
+				target_position = position
 				-- if the cursor is already on one occurrence then move to the next one
-				if cursor_position == val - 1 then
-					target_position = all_occurrences[key + 1]
+				if cursor_position == position - 1 then
+					target_position = mapped_string[key + 1]
 				end
 				break
 			end
 		end
 	elseif direction == "h" then
-		all_occurrences = reverse_tbl(all_occurrences)
-		for key, val in ipairs(all_occurrences) do
-			if val < cursor_position then
-				target_position = val
+		-- need to reverse the tbl of the mapped_string because now we have to
+		-- start searching from the end of the string rather then from the start
+		mapped_string = reverse_tbl(mapped_string)
+		for key, position in ipairs(mapped_string) do
+			if position < cursor_position then
+				target_position = position
 				-- if the cursor is already on one occurrence then move to the previous one
-				if cursor_position == val + 1 then
-					target_position = all_occurrences[key - 1]
+				if cursor_position == position + 1 then
+					target_position = mapped_string[key - 1]
 				end
 				break
 			end
@@ -117,7 +119,9 @@ local function get_chars()
 		-- this timer will only stop waiting the second character
 		if timeout and #chars == 1 then
 			vim.defer_fn(function()
-				api.nvim_feedkeys("�", "m", false)
+				-- to get rid of the getchar will through dummy value which won't
+				-- be added to the chars list
+				api.nvim_feedkeys("�", "n", false)
 				break_loop = true
 			end, timeout)
 		end
