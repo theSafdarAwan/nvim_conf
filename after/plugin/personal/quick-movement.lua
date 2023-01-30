@@ -41,6 +41,10 @@ vim._previous_find_info = { pattern = nil, key = nil }
 
 -- how many characters to find for
 vim.quick_movement_find_chars_length = 2
+-- timeout before the quick movement goes to the default behavior of f to find 1
+-- char false or timeout in ms
+-- NOTE: this is only recommended if the quick_movement_find_chars_length is 2
+vim.quick_movement_find_timeout = 300
 
 local function reverse_tbl(tbl)
 	local transformed_tbl = {}
@@ -110,10 +114,20 @@ local function get_chars()
 	local chars = ""
 	while true do
 		local c = fn.getchar()
-		-- only accept characters ASCII value from 65 to 122 which is A-Z and a-z
-		if c < 65 or c > 122 then
+		-- only do this if the timeout is true
+		if vim.quick_movement_find_timeout then
+			vim.defer_fn(function()
+				api.nvim_feedkeys("", "m", false)
+			end, vim.quick_movement_find_timeout)
+		end
+		if #chars == 1 and c == 27 then
+			return chars
+		elseif c < 32 or c > 127 then
+			-- only accept ASCII value for the letters and punctuations including
+			-- space as input
 			return
 		end
+
 		chars = chars .. fn.nr2char(c)
 		if #chars == vim.quick_movement_find_chars_length then
 			break
