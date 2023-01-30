@@ -19,9 +19,6 @@ local function config()
 		hijack_cursor = true,
 		hijack_netrw = true,
 		hijack_unnamed_buffer_when_opening = true,
-		ignore_buffer_on_setup = false,
-		open_on_setup = true,
-		open_on_setup_file = false,
 		open_on_tab = true,
 		sort_by = "name",
 		update_cwd = true,
@@ -104,7 +101,6 @@ local function config()
 			update_cwd = true,
 			ignore_list = {},
 		},
-		ignore_ft_on_setup = { "dashboard" },
 		system_open = {
 			cmd = "",
 			args = {},
