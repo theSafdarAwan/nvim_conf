@@ -126,6 +126,11 @@ local function get_chars()
 			end, timeout)
 		end
 		local c = fn.getchar()
+
+		if type(c) ~= "number" then
+			return
+		end
+
 		if break_loop then
 			return chars
 		elseif c < 32 or c > 127 then
