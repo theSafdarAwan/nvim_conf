@@ -71,6 +71,7 @@ local function string_map(str, pattern)
 	return loc_tbl
 end
 
+-- get the position for the next or previous chars pattern position
 local function get_position(pattern, direction)
 	local cursor_position = api.nvim_win_get_cursor(0)[2]
 	local cur_line = api.nvim_get_current_line()
@@ -108,7 +109,11 @@ end
 local function get_chars()
 	local chars = ""
 	while true do
-		local c = fn.getchar(0)
+		local c = fn.getchar()
+		-- only accept characters ASCII value from 65 to 122 which is A-Z and a-z
+		if c < 65 or c > 122 then
+			return
+		end
 		chars = chars .. fn.nr2char(c)
 		if #chars == vim.quick_movement_find_chars_length then
 			break
@@ -152,6 +157,9 @@ local function move_to_char_position(key)
 		-- if find command is executed then add the pattern and the key to the
 		-- vim._previous_find_info table.
 		chars_pattern = get_chars()
+		if not chars_pattern then
+			return
+		end
 		previous_find_info.key = key
 		previous_find_info.pattern = chars_pattern
 	else
