@@ -14,12 +14,13 @@ set_map({ "n", "v" }, "gm", function()
 		return
 	end
 
-	local key = "l"
+	local key
 	local move
 	if position > middle then
 		key = "h"
 		move = position - middle
 	elseif position < middle then
+		key = "l"
 		move = middle - position
 	end
 
@@ -32,7 +33,7 @@ set_map({ "n", "v" }, "gm", function()
 end)
 
 ----------------------------------------------------------------------
---        replace find command to find two characters rather        --
+--        replace find command to find more characters rather       --
 --                             then one                             --
 ----------------------------------------------------------------------
 
@@ -59,26 +60,25 @@ local function reverse_tbl(tbl)
 end
 
 -- maps the occurrences of the pattern in a string
-local function string_map(str, pattern)
-	local loc_tbl = {}
-	local last_position
-	local idx = loc_tbl[#loc_tbl] or 1
+local function map_string(str, pattern)
+	local mapped_tbl = {}
+	local pattern_last_idx = mapped_tbl[#mapped_tbl] or 1
 	while true do
-		last_position = string.find(str, pattern, idx, true)
-		if idx == last_position or not last_position then
+		local pattern_idx = string.find(str, pattern, pattern_last_idx, true)
+		if pattern_last_idx == pattern_idx or not pattern_idx then
 			break
 		end
-		table.insert(loc_tbl, last_position)
-		idx = loc_tbl[#loc_tbl] + 2
+		table.insert(mapped_tbl, pattern_idx)
+		pattern_last_idx = mapped_tbl[#mapped_tbl] + 2
 	end
-	return loc_tbl
+	return mapped_tbl
 end
 
 -- get the position for the next or previous chars pattern position
 local function get_position(pattern, direction)
 	local cursor_position = api.nvim_win_get_cursor(0)[2]
 	local current_line = api.nvim_get_current_line()
-	local mapped_string = string_map(current_line, pattern)
+	local mapped_string = map_string(current_line, pattern)
 
 	local target_position
 	if direction == "l" then
