@@ -69,6 +69,10 @@ local function auto_save_fn(buf_info)
 		return
 	end
 
+	if #api.nvim_buf_get_name(0) < 1 then
+		return
+	end
+
 	if not queued then
 		local excluded = {
 			dir = { "wezterm", "alacritty" },
