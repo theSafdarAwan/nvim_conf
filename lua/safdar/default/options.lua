@@ -1,5 +1,4 @@
 local opt = vim.opt_global
-local optl = vim.opt_local
 local wo = vim.wo
 local g = vim.g
 

@@ -1,4 +1,5 @@
 * TODO's 
+  - [ ] add nvim-tree autocmd to open on startup
   - [ ] add something like in lazy-loader that if a variable is set to installing
     then add a run key which will require the plugin and then run that command
   - [ ] figure out why the lua language server doesn't recognizes the vim global

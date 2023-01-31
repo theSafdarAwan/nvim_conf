@@ -3,6 +3,7 @@ local function plugins(install)
 		"nvim-tree",
 		"telescope",
 		"harpoon",
+		"find-extender"
 	}
 
 	for _, plugin in pairs(plugin_list) do

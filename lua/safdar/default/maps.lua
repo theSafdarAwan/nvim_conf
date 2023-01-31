@@ -4,7 +4,6 @@ local opts = { noremap = true, silent = true }
 local expr = vim.deepcopy(opts)
 expr.expr = true
 
--- TODO: figure out this
 -- ~> Remove mappings
 local removed_maps = {
 	{ { "n", "t", "i", "v" }, "<F1>" },
@@ -13,8 +12,10 @@ local removed_maps = {
 	{ "n", "<C-c>" },
 	{ "n", "]]" },
 	{ "n", "gf" },
+	-- remove space to acts as the l in normal mode
+	{ "n", " " },
 }
-for _, map in pairs(removed_maps) do
+for _, map in ipairs(removed_maps) do
 	set_map(map[1], map[2], "", nil)
 end
 
@@ -63,16 +64,16 @@ set_map("n", "<A-h>", "zh", opts)
 -- set_map("n", "<C-k>", "<c-o>k", opts)
 
 -- Copy to the system clipboard
-set_map("v", "Y", '"+y', opts)
+set_map("v", "Y", "\"+y", opts)
 -- TODO: write a function that will copy line starting from the cursor position
 -- if the Y is pressed once if its pressed multiple times then copy the whole file
-set_map("n", "<leader>Y", 'mzgg"+yG zzz', opts)
+set_map("n", "<leader>Y", "mzgg\"+yG zzz", opts)
 
 -- show messages
 set_map("n", "<C-m>", ":messages<CR>", opts)
 
 -- Paster From the system clipboard
-set_map("n", "<leader>p", '"+p', opts)
+set_map("n", "<leader>p", "\"+p", opts)
 --
 -- Paste onto the selection and don't copy the selection to the reg
 set_map("v", "<leader>p", "_dP", opts)
@@ -85,14 +86,14 @@ set_map("n", "<ESC>", ":noh<cr><c-l>", opts)
 
 -- use backspace to change the selection
 -- only for the @luasnip selection
-set_map("v", "<BS>", '"_c', opts)
+set_map("v", "<BS>", "\"_c", opts)
 
 -- Indentation
 set_map("v", "<", "<gv", opts)
 set_map("v", ">", ">gv", opts)
 
 -- delete into the void in visual mode
-set_map("v", "D", '"_d', opts)
+set_map("v", "D", "\"_d", opts)
 
 -- Resize the buffer window
 set_map("n", "<leader>=", ":vertical resize +5<cr>", opts)
