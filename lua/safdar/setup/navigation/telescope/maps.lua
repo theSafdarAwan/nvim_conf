@@ -30,7 +30,7 @@ M.maps = function()
 		require("safdar.setup.navigation.telescope.telescope-custom").ivy_find_files_with_preview()
 	end, { noremap = true, silent = true })
 
-	set_map("n", "<leader>fb", function()
+	set_map("n", "<M-b>", function()
 		require("safdar.setup.navigation.telescope.telescope-custom").center_list_buffers_find()
 	end, { noremap = true, silent = true })
 

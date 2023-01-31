@@ -61,10 +61,21 @@ create_autocmd({ "TermOpen" }, {
 
 -- dont list quickfix buffers
 create_autocmd("FileType", {
+	group = autocmds_augroup,
 	pattern = "qf",
 	callback = function()
 		optl.buflisted = false
 	end,
+})
+
+-- don't wrap files except norg
+create_autocmd("BufWinEnter", {
+	group = autocmds_augroup,
+	callback = function ()
+		if vim.bo.filetype ~= "norg" then
+			vim.opt_global.wrap = false
+		end
+	end
 })
 
 -- instead use gx map

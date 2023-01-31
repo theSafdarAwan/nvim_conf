@@ -3,7 +3,10 @@ local plugin = function(install)
 		opt = true,
 		"TheSafdarAwan/find-extender.nvim",
 		keys = {
+			{ "v", "f" },
+			{ "v", "F" },
 			{ "n", "f" },
+			{ "n", "F" },
 		},
 		config = function()
 			require("find-extender").setup()
