@@ -30,7 +30,7 @@ M.maps = function()
 		require("safdar.setup.navigation.telescope.telescope-custom").ivy_find_files_with_preview()
 	end, { noremap = true, silent = true })
 
-	set_map("n", "<M-b>", function()
+	set_map("n", "<leader>fb", function()
 		require("safdar.setup.navigation.telescope.telescope-custom").center_list_buffers_find()
 	end, { noremap = true, silent = true })
 
@@ -55,22 +55,6 @@ M.maps = function()
 		require("safdar.setup.navigation.telescope.telescope-custom").center_list_document_symbols_find()
 	end, { noremap = true, silent = true })
 end
-
-----------------------------------------------------------------------
---              Keys for Packer to Lazy Load Telescope              --
-----------------------------------------------------------------------
-M.keys = {
-	{ "n", "<leader>f" },
-	{ "n", "<leader>t" },
-	{ "n", "<leader>c" },
-	{ "n", "<leader>r" },
-	{ "n", "<leader>v" },
-	{ "n", "<leader>b" },
-	{ "n", "<leader>d" },
-	{ "n", "<C-_>" },
-	{ "n", "<leader>t" },
-	{ "n", "<leader>g" },
-}
 
 ----------------------------------------------------------------------
 --                     Telescope PickerMappings                     --

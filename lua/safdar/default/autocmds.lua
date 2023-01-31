@@ -68,16 +68,6 @@ create_autocmd("FileType", {
 	end,
 })
 
--- don't wrap files except norg
-create_autocmd("BufWinEnter", {
-	group = autocmds_augroup,
-	callback = function ()
-		if vim.bo.filetype ~= "norg" then
-			vim.opt_global.wrap = false
-		end
-	end
-})
-
 -- instead use gx map
 --[[ -- mapping q to close the windows in help, packer and some other file types
   local function quitter()
