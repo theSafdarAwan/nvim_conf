@@ -8,6 +8,8 @@ local config = function()
 	cmd([[
 		let g:ale_sign_error = ''
 		let g:ale_sign_warning = ' '
+		" use the neovim lsp api to show diagnostics
+		let g:ale_use_neovim_diagnostics_api=1
 	]])
 
 	-- Trick
