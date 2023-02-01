@@ -12,8 +12,9 @@ local bufs_info = {}
 local api = vim.api
 local fn = vim.fn
 
+local augroup = api.nvim_create_augroup("file toggler", { clear = true })
 api.nvim_create_autocmd({ "BufWinLeave", "BufUnload" }, {
-	group = api.nvim_create_augroup("file toggler BufLeave", { clear = true }),
+	group = augroup,
 	callback = function()
 		-- need to check so we don't accidentally add the buffer like nvim-tree after
 		-- buffer leaving to the stack
@@ -32,16 +33,12 @@ api.nvim_create_autocmd({ "BufWinLeave", "BufUnload" }, {
 		local buf = {}
 		buf.file_name = fn.expand("%:p")
 
-		if bufs_info[1] and buf.file_name == bufs_info[1].file_name then
-			return
-		end
-
 		buf.buf_nr = fn.bufnr()
 		buf.cursor = api.nvim_win_get_cursor(0)
 
 		-- need to check the next buffer before moving the previous one
 		api.nvim_create_autocmd({ "BufWinEnter", "BufNew" }, {
-			group = api.nvim_create_augroup("file toggler BufWinEnter", { clear = true }),
+			group = augroup,
 			callback = function()
 				local file_name = fn.expand("%:p")
 				-- need to make sure that the first and the second files are not the same
