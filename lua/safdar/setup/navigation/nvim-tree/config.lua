@@ -1,10 +1,10 @@
 local function config()
-	local ok, fused = pcall(require, "fused")
+	local ok, _ = pcall(require, "fused")
 	if not ok then
 		require("safdar.utils").notify("fused theme not loaded for nvim-tree")
 	end
 
-	local ok, nvimtree = pcall(require, "nvim-tree")
+	local _, nvimtree = pcall(require, "nvim-tree")
 	if not ok then
 		require("safdar.utils").notify("nvim-tree not found")
 		return
@@ -184,6 +184,17 @@ local function config()
 			},
 		},
 	})
+
+	local api = vim.api
+	local autocmd = api.nvim_create_autocmd
+	local augroup = api.nvim_create_augroup("nvim-tree open", { clear = true })
+	local function open_nvim_tree()
+		if #vim.bo.filetype < 1 then
+			require("nvim-tree.api").tree.open()
+		end
+		api.nvim_del_augroup_by_id(augroup)
+	end
+	autocmd({ "BufWinEnter" }, { group = augroup, callback = open_nvim_tree })
 
 	maps.mappings()
 end
