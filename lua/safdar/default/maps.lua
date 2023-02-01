@@ -104,6 +104,7 @@ set_map("n", "<leader>X", ":bdelete!<cr>")
 set_map("n", "[b", ":bp<cr>")
 set_map("n", "]b", ":bn<cr>")
 set_map("n", "<A-b>", ":buffers<cr>")
+set_map("n", "<leader>ap", ":buffer #<cr>")
 
 -- window mappings
 set_map("n", "gx", ":close<cr>")

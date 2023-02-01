@@ -6,6 +6,8 @@
         Description:-
         This is a small script for toggling last two files.
 --]]
+-- NOTE: apparently there is a builtin way to do this using Ctrl-6 key or using
+-- the # as the buffer number
 
 local bufs_info = {}
 
@@ -53,13 +55,13 @@ api.nvim_create_autocmd({ "BufWinLeave", "BufUnload" }, {
 	end,
 })
 
-vim.keymap.set("n", "<leader>ap", function()
-	if not bufs_info[1] then
-		return
-	end
-
-	vim.cmd("edit " .. bufs_info[1].file_name)
-	vim.schedule_wrap(function()
-		api.nvim_win_set_cursor(0, bufs_info[1].cursor)
-	end)
-end)
+-- vim.keymap.set("n", "<leader>ap", function()
+-- 	if not bufs_info[1] then
+-- 		return
+-- 	end
+--
+-- 	vim.cmd("edit " .. bufs_info[1].file_name)
+-- 	vim.schedule_wrap(function()
+-- 		api.nvim_win_set_cursor(0, bufs_info[1].cursor)
+-- 	end)
+-- end)
