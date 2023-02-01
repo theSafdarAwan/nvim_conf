@@ -27,7 +27,6 @@ M.c_lang = function()
 end
 
 M.keys = {
-	{ "n", "<leader>ll" },
 	{ "n", "<leader>aa" },
 	{ "n", "<leader>aj" },
 	{ "n", "<leader>ak" },
