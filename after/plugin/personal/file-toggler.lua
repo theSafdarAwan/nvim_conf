@@ -2,45 +2,44 @@ local files_info = {}
 
 local api = vim.api
 
-api.nvim_create_autocmd("BufWinLeave", {
+api.nvim_create_autocmd({ "BufWinLeave", "BufLeave", "BufDelete", "BufUnload" }, {
 	group = api.nvim_create_augroup("file toggler BufLeave", { clear = true }),
 	callback = function()
-		local buf_name = api.nvim_buf_get_name(0)
-		local file = {}
-		file.file_name = buf_name
-		file.buf_nr = vim.fn.bufnr()
-		file.cursor = api.nvim_win_get_cursor(0)
+		-- need to check so we don't accidentally add the buffer like nvim-tree after
+		-- buffer leaving to the stack
+		if not api.nvim_buf_get_option(0, "buflisted") or #vim.bo.filetype < 1 then
+			return
+		end
 
-		-- need to check the next buffer before adding the previous one
-		api.nvim_create_autocmd("BufWinEnter", {
+		local buf_name = api.nvim_buf_get_name(0)
+		local buffer = {}
+		buffer.file_name = buf_name
+		buffer.buf_nr = vim.fn.bufnr()
+		buffer.cursor = api.nvim_win_get_cursor(0)
+
+		-- need to check the next buffer before moving the previous one
+		api.nvim_create_autocmd({ "BufWinEnter", "BufNew", "BufRead", "BufAdd", "BufEnter" }, {
 			group = api.nvim_create_augroup("file toggler BufWinEnter", { clear = true }),
 			callback = function()
-				-- returns if the hidden string is not empty and the filetype isn't an
-				-- empty string
-				local buf_is_listed = api.nvim_buf_get_option(0, "buflisted")
-				if not buf_is_listed or #vim.bo.filetype < 1 then
+				-- need t o
+				if not api.nvim_buf_get_option(0, "buflisted") or #vim.bo.filetype < 1 then
 					return
 				end
 
 				-- need to make sure that the first and the second files are not the same
-				if file.file_name == api.nvim_buf_get_name(0) then
+				if buffer.file_name == api.nvim_buf_get_name(0) then
 					return
 				end
 
-				-- check if the first key is present in the files_info table then move it
-				-- to the second
-				if files_info[1] then
-					files_info[2] = file
-				end
-
-				files_info[1] = file
+				files_info[2] = files_info[1]
+				files_info[1] = buffer
 			end,
 		})
 	end,
 })
 
 vim.keymap.set("n", "<leader>ll", function()
-	if #files_info < 1 then
+	if not files_info[1] then
 		return
 	end
 
