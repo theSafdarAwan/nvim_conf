@@ -17,7 +17,7 @@ M.set_buf_opt = function(buffer, name, value)
 	vim.api.nvim_buf_set_option(buffer, name, value)
 end
 
-M.notify = function(notify)
+M.notify = function(notify_tbl_or_msg)
 	local fn = vim.fn
 	-- install notify plugin if not present
 	local notify_path = fn.stdpath("data") .. "/site/pack/packer/opt/nvim-notify"
@@ -27,10 +27,10 @@ M.notify = function(notify)
 	end
 
 	local msg
-	if type(notify) == "string" then
-		msg = notify
+	if type(notify_tbl_or_msg) == "string" then
+		msg = notify_tbl_or_msg
 	end
-	if notify then
+	if notify_tbl_or_msg then
 		local ok, _ = pcall(require, "notify")
 		if not ok then
 			vim.cmd("packadd nvim-notify")
@@ -38,8 +38,8 @@ M.notify = function(notify)
 				background_colour = "#1E1E2E",
 			})
 		end
-		local level = notify.level or vim.log.levels.WARN -- vim.api.nvim_notify(notify.msg or msg, notify.level or level, notify.opts or {})
-		require("notify")(notify.msg or msg, level, notify.opts or {})
+		local level = notify_tbl_or_msg.level or vim.log.levels.WARN -- vim.api.nvim_notify(notify.msg or msg, notify.level or level, notify.opts or {})
+		require("notify")(notify_tbl_or_msg.msg or msg, level, notify_tbl_or_msg.opts or {})
 	end
 end
 
