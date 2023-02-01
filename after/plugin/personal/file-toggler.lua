@@ -47,7 +47,7 @@ api.nvim_create_autocmd({ "BufWinLeave", "BufLeave", "BufDelete", "BufUnload" },
 	end,
 })
 
-vim.keymap.set("n", "<leader>ll", function()
+vim.keymap.set("n", "<leader><leader>", function()
 	if not files_info[1] then
 		return
 	end
