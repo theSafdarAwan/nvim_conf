@@ -1,7 +1,7 @@
 local utils = require("safdar.utils")
 local set_map = utils.set_map
 -- TODO: do something like ray-x does in his dot files
-local expr = { noremap = true, silent = true ,expr = true}
+local expr = { noremap = true, silent = true, expr = true }
 
 -- ~> Remove mappings
 local removed_maps = {
@@ -61,12 +61,6 @@ set_map("n", "<A-h>", "zh")
 --
 -- set_map("i", "<C-j>", "<c-o>j")
 -- set_map("n", "<C-k>", "<c-o>k")
-
--- Copy to the system clipboard
-set_map("v", "Y", "\"+y")
--- TODO: write a function that will copy line starting from the cursor position
--- if the Y is pressed once if its pressed multiple times then copy the whole file
-set_map("n", "<leader>Y", "mzgg\"+yG zzz")
 
 -- show messages
 set_map("n", "<C-m>", ":messages<CR>")
