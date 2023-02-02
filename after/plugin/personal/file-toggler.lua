@@ -6,19 +6,19 @@
         Description:-
         This is a small script for toggling last two files.
 --]]
--- NOTE: apparently there is a builtin way to do this using Ctrl-6 key or using
--- the # as the buffer number
 
--- TODO: expand this to more then two files toggling so and add two maps one for
--- going backwards and one going forward.
-
-local bufs_info = {}
+-- this script is different from the command :buffer # or the Ctrl-^ these doesn't work
+-- sometimes when we delete a buffer from another buffer and then there is no
+-- alternate file or the previous buffer either
+local bufs_tbl = {}
 
 local api = vim.api
 local fn = vim.fn
 
-local augroup = api.nvim_create_augroup("file toggler", { clear = true })
-api.nvim_create_autocmd({ "BufWinLeave", "BufUnload" }, {
+local autocmd = api.nvim_create_autocmd
+
+local augroup = api.nvim_create_augroup("file history", { clear = true })
+autocmd({ "BufWinLeave", "BufUnload" }, {
 	group = augroup,
 	callback = function()
 		-- need to check so we don't accidentally add the buffer like nvim-tree after
@@ -39,8 +39,8 @@ api.nvim_create_autocmd({ "BufWinLeave", "BufUnload" }, {
 		buf.file_name = fn.expand("%:p")
 		buf.cursor = api.nvim_win_get_cursor(0)
 
-		-- need to check the next buffer before moving the previous one
-		api.nvim_create_autocmd({ "BufWinEnter", "BufNew" }, {
+		-- need to check the next buffer before adding the previous
+		autocmd({ "BufWinEnter", "BufNew" }, {
 			group = augroup,
 			callback = function()
 				local file_name = fn.expand("%:p")
@@ -48,21 +48,22 @@ api.nvim_create_autocmd({ "BufWinLeave", "BufUnload" }, {
 				if buf.file_name == file_name then
 					return
 				end
-				local move_idx = vim.deepcopy(bufs_info[1])
-				bufs_info[1] = buf
-				bufs_info[2] = move_idx
+				local move_idx = vim.deepcopy(bufs_tbl[1])
+				bufs_tbl[1] = buf
+				bufs_tbl[2] = move_idx
 			end,
 		})
 	end,
 })
 
--- vim.keymap.set("n", "<leader>ap", function()
--- 	if not bufs_info[1] then
--- 		return
--- 	end
---
--- 	vim.cmd("edit " .. bufs_info[1].file_name)
--- 	vim.schedule_wrap(function()
--- 		api.nvim_win_set_cursor(0, bufs_info[1].cursor)
--- 	end)
--- end)
+local set_map = vim.keymap.set
+set_map("n", "<leader>ap", function()
+	if not bufs_tbl[1] then
+		return
+	end
+
+	vim.cmd("edit " .. bufs_tbl[1].file_name)
+	vim.schedule_wrap(function()
+		api.nvim_win_set_cursor(0, bufs_tbl[1].cursor)
+	end)
+end)

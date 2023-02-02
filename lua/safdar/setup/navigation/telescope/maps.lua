@@ -17,6 +17,8 @@ M.maps = function()
 	set_map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { noremap = true, silent = true })
 	set_map("n", "<leader>tb", ":Telescope builtin<cr>", { noremap = true, silent = true })
 	set_map("n", "<leader>rr", ":Telescope reloader<cr>", { noremap = true, silent = true })
+	-- TODO: create a custom config for this map
+	set_map("n", "<leader>cf", ":Telescope git_status<cr>", { noremap = true, silent = true })
 
 	set_map("n", "<leader>en", function()
 		require("safdar.setup.navigation.telescope.telescope-custom").search_nvim_dotfiles()

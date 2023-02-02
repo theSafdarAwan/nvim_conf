@@ -104,7 +104,10 @@ set_map("n", "<leader>X", ":bdelete!<cr>")
 set_map("n", "[b", ":bp<cr>")
 set_map("n", "]b", ":bn<cr>")
 set_map("n", "<A-b>", ":buffers<cr>")
-set_map("n", "<leader>ap", ":buffer #<cr>")
+
+-- actually this doesn't work sometimes or the Ctrl-^ because some times i delete
+-- the buffer instead i use my script file-history
+-- set_map("n", "<leader>ap", ":buffer #<cr>")
 
 -- window mappings
 set_map("n", "gx", ":close<cr>")
