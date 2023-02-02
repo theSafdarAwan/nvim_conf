@@ -9,6 +9,9 @@
 -- NOTE: apparently there is a builtin way to do this using Ctrl-6 key or using
 -- the # as the buffer number
 
+-- TODO: expand this to more then two files toggling so and add two maps one for
+-- going backwards and one going forward.
+
 local bufs_info = {}
 
 local api = vim.api
@@ -34,8 +37,6 @@ api.nvim_create_autocmd({ "BufWinLeave", "BufUnload" }, {
 
 		local buf = {}
 		buf.file_name = fn.expand("%:p")
-
-		buf.buf_nr = fn.bufnr()
 		buf.cursor = api.nvim_win_get_cursor(0)
 
 		-- need to check the next buffer before moving the previous one
