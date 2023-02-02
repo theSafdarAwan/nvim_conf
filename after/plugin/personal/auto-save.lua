@@ -2,7 +2,7 @@ local vim = vim
 local api = vim.api
 local create_autocmd = api.nvim_create_autocmd
 local command = vim.api.nvim_command
-local b = vim.bo
+local bo = vim.bo
 local delay_auto_save = 10
 
 -- create the autosave augroup and Initialization of the autosave_queued and
@@ -47,10 +47,10 @@ local function validater(opts)
 		-- validate buftype and filetype
 		local buf_info_type
 		if opts.type == "buf" then
-			buf_info_type = b.buftype
+			buf_info_type = bo.buftype
 			type = "buf"
 		else
-			buf_info_type = b.filetype
+			buf_info_type = bo.filetype
 			type = "ft"
 		end
 		for _, value in ipairs(opts.data) do
@@ -100,7 +100,7 @@ local function auto_save_fn(buf_info)
 
 		-- check if the buf is modifiable and then validate buf does not have any of
 		-- the excluded filetypes or buftypes
-		if b.modifiable and #b.buftype < 1 and ft_val and buf_val and dir_val and not b.readonly then
+		if bo.modifiable and #bo.buftype < 1 and ft_val and buf_val and dir_val then
 			command("silent update")
 			-- print("saved at " .. vim.fn.strftime("%H:%M:%S"))
 			api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
@@ -133,7 +133,7 @@ local function auto_save_fn(buf_info)
 	end
 end
 
--- register autocmd to autosave on these events
+-- save changes on these events
 create_autocmd({ "TextChanged", "ModeChanged", "CursorHold" }, {
 	group = auto_save,
 	callback = function(buf_info)

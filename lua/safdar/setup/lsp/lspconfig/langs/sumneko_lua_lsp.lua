@@ -35,6 +35,7 @@ nvim_lsp.sumneko_lua.setup({
 				globals = { "vim" },
 			},
 			workspace = {
+				checkThirdParty = false,
 				library = {
 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
