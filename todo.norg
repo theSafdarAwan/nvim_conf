@@ -1,4 +1,6 @@
 * TODO's 
+  - [ ] check out how the leap-vim does the color highlight for the text only
+    once and then to none
   - [ ] add nvim-tree autocmd to open on startup
   - [ ] add something like in lazy-loader that if a variable is set to installing
     then add a run key which will require the plugin and then run that command
