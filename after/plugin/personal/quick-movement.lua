@@ -40,8 +40,8 @@ end)
         Description:-
         This is a small script for moving between last two files.
 
-        NOTE: this script is different from the command :buffer # or the Ctrl-^ these doesn't work
-        sometimes when we delete a buffer using the vim.api.nvim_buf_delete
+        NOTE: this script is different from the command :buffer # or the Ctrl-^ these don't
+		work when we delete a buffer using the vim.api.nvim_buf_delete
 --]]
 
 local autocmd = api.nvim_create_autocmd
@@ -49,32 +49,30 @@ local autocmd = api.nvim_create_autocmd
 local alternate_bufs = {}
 
 local augroup = api.nvim_create_augroup("alternate file movment", { clear = true })
-autocmd({ "BufWinLeave", "BufUnload" }, {
+autocmd({ "BufWinLeave" }, {
 	group = augroup,
 	callback = function()
-		-- need to check so we don't accidentally add the buffer like nvim-tree after
-		-- buffer leaving to the stack
+		-- need to check so we don't accidentally add the buffer like nvim-tree
+		-- or buffer with empty file_name string
 		if not api.nvim_buf_get_option(0, "buflisted") or #vim.bo.buftype > 1 then
 			return
 		end
 
-		local buf = {}
-		buf.file_name = fn.expand("%:p")
-		buf.cursor_position = api.nvim_win_get_cursor(0)
-		buf.buf_number = fn.bufnr()
+		local previous_buf = {}
+		previous_buf.file_name = fn.expand("%:p")
+		previous_buf.cursor_position = api.nvim_win_get_cursor(0)
+		previous_buf.buf_number = fn.bufnr()
 
 		-- need to check the next buffer before adding the previous
-		autocmd({ "BufWinEnter", "BufNew" }, {
+		autocmd({ "BufWinEnter" }, {
 			group = augroup,
 			callback = function()
-				local file_name = fn.expand("%:p")
 				-- need to make sure that the first and the second files are not the same
-				if buf.file_name == file_name then
-					return
+				if previous_buf.file_name ~= fn.expand("%:p") then
+					-- moving the current buf to the last index
+					alternate_bufs[2] = alternate_bufs[1]
+					alternate_bufs[1] = previous_buf
 				end
-				local move_idx = vim.deepcopy(alternate_bufs[1])
-				alternate_bufs[1] = buf
-				alternate_bufs[2] = move_idx
 			end,
 		})
 	end,
