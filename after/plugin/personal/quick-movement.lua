@@ -41,7 +41,8 @@ end)
         This is a small script for moving between last two files.
 
         NOTE: this script is different from the command :buffer # or the Ctrl-^ these don't
-		work when we delete a buffer using the vim.api.nvim_buf_delete
+		work when we delete a buffer using the vim.api.nvim_buf_delete and i delete buffers
+		from telescope buffers which uses this api.
 --]]
 
 local autocmd = api.nvim_create_autocmd
@@ -54,25 +55,26 @@ autocmd({ "BufWinLeave" }, {
 	callback = function()
 		-- need to check so we don't accidentally add the buffer like nvim-tree
 		-- or buffer with empty file_name string
-		if not api.nvim_buf_get_option(0, "buflisted") or #vim.bo.buftype > 1 then
+		if not api.nvim_buf_get_option(0, "buflisted") or #vim.bo.buftype > 1 or #fn.expand("%:p") < 1 then
 			return
 		end
 
-		local previous_buf = {}
-		previous_buf.file_name = fn.expand("%:p")
-		previous_buf.cursor_position = api.nvim_win_get_cursor(0)
-		previous_buf.buf_number = fn.bufnr()
+		local current_buf = {}
+		current_buf.file_name = fn.expand("%:p")
+		current_buf.cursor_position = api.nvim_win_get_cursor(0)
+		current_buf.buf_number = fn.bufnr()
 
 		-- need to check the next buffer before adding the previous
 		autocmd({ "BufWinEnter" }, {
 			group = augroup,
 			callback = function()
+				local previous_buf = current_buf
 				-- need to make sure that the first and the second files are not the same
-				if previous_buf.file_name ~= fn.expand("%:p") then
-					-- moving the current buf to the last index
-					alternate_bufs[2] = alternate_bufs[1]
-					alternate_bufs[1] = previous_buf
+				if previous_buf.file_name == fn.expand("%:p") then
+					return
 				end
+				-- moving the current buf to the last index
+				alternate_bufs[2], alternate_bufs[1] = alternate_bufs[1], previous_buf
 			end,
 		})
 	end,
