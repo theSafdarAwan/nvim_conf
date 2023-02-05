@@ -1,15 +1,58 @@
 local M = {}
 
-local local_opts = { noremap = true, silent = true }
+-- NOTE: if you are using this map_options in on_attach function then create this
+-- class inside the function because if you created it outside of that function
+-- scope then others files might use it and the options from that files could
+-- remain with it and you will get unexpected behaviour like if some map enabled
+-- expr then you will get expr in you tbl even if you didn't enabled it
+M.map_options = {}
+function M.map_options:new()
+	self.options = {}
+	self.__index = self
+	return self
+end
+
+function M.map_options:noremap()
+	self.options.noremap = true
+	return self
+end
+
+function M.map_options:silent()
+	self.options.silent = true
+	return self
+end
+
+function M.map_options:expr()
+	self.options.expr = true
+	return self
+end
+
+function M.map_options:buffer(buffer)
+	self.options.buffer = buffer
+	return self
+end
+
+local opt = M.map_options:new()
+local local_opts = opt:noremap():silent()
+local_opts = local_opts.__index.options
 M.set_map = function(mode, mapping, command, opts)
+	if opts and opts.__index then
+		opts = opts.__index.options
+	end
 	vim.keymap.set(mode, mapping, command, opts or local_opts)
 end
 
 M.del_map = function(mode, mapping, opts)
+	if opts and opts.__index then
+		opts = opts.__index.options
+	end
 	vim.keymap.del(mode, mapping, opts or local_opts)
 end
 
 M.set_buf_map = function(buffer, mode, lhs, rhs, opts)
+	if opts and opts.__index then
+		opts = opts.__index.options
+	end
 	vim.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, opts or local_opts)
 end
 

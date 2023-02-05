@@ -1,7 +1,6 @@
 local utils = require("safdar.utils")
 local set_map = utils.set_map
--- TODO: do something like ray-x does in his dot files
-local expr = { noremap = true, silent = true, expr = true }
+local map_opts = require("safdar.utils").map_options:new()
 
 -- ~> Remove mappings
 local removed_maps = {
@@ -41,8 +40,8 @@ set_map("n", "=ap", "mm=ap`m")
 set_map("n", "=ip", "mm=ip`m")
 
 -- Adding jump after 5 lines
-set_map("n", "k", [[(v:count > 5 ? "m'" . v:count: "") . 'k']], expr)
-set_map("n", "j", [[(v:count > 5 ? "m'" . v:count: "") . 'j']], expr)
+set_map("n", "k", [[(v:count > 5 ? "m'" . v:count: "") . 'k']], map_opts:noremap():silent():expr())
+set_map("n", "j", [[(v:count > 5 ? "m'" . v:count: "") . 'j']], map_opts:noremap():silent():expr())
 
 --  Move Lines up and down
 set_map("v", "<C-j>", ":m '>+1<cr>gv=gv")
