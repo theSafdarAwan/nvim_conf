@@ -35,9 +35,11 @@ create_autocmd({ "BufWinEnter" }, {
 -- set line number for every buffer except a prompt, nofile and terminal
 local function line_numers()
 	if bo.buftype ~= "prompt" and bo.buftype ~= "nofile" and bo.buftype ~= "terminal" and bo.filetype ~= "norg" then
-		optl.relativenumber = true
-		optl.number = true
-		optl.signcolumn = "yes"
+		vim.schedule_wrap(function()
+			optl.relativenumber = true
+			optl.number = true
+			optl.signcolumn = "yes"
+		end)
 	end
 end
 
