@@ -54,6 +54,7 @@ local config = function()
 			"gitcommit",
 			"gitattributes",
 			"git_rebase",
+			"gitignore",
 		},
 		-- Install parsers synchronously (only applied to `ensure_installed`)
 		sync_install = true,

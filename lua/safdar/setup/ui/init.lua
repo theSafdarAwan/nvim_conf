@@ -5,7 +5,6 @@ local function plugins(install)
 		"devicons",
 		"treesitter",
 		"ts-playground",
-		"paint",
 		"colorizer",
 		"themes",
 		"vim-illuminate",
