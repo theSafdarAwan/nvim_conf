@@ -14,10 +14,6 @@ local plugins = function(install)
 		"nvim-window-picker",
 		"winshift",
 		"focus",
-		----------------------------------------------------------------------
-		--                        Session Management                        --
-		----------------------------------------------------------------------
-		"persistence",
 	}
 
 	for _, plugin in pairs(plugin_list) do
