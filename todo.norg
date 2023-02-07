@@ -1,4 +1,5 @@
 * TODO's 
+  - [ ] feat for saving session every x amount of time or on an event
   - [ ] check out how the leap-vim does the color highlight for the text only
     once and then to none
   - [ ] add nvim-tree autocmd to open on startup
