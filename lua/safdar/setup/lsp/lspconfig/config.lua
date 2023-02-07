@@ -33,6 +33,7 @@ local config = function()
 
 		-- crush
 		"rust_analyzer",
+		"fennel-ls",
 		"gopls",
 		"bashls",
 		"pyright",

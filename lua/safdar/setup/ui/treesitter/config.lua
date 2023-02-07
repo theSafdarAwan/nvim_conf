@@ -39,6 +39,8 @@ local config = function()
 			"bash",
 			"norg",
 			"latex",
+			"commonlisp",
+			"fennel",
 			"typescript",
 			"yaml",
 			"toml",
