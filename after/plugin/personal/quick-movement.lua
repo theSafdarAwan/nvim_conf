@@ -80,7 +80,7 @@ autocmd({ "BufWinLeave" }, {
 	end,
 })
 
-set_map("n", "<leader>ap", function()
+set_map("n", "<C-z>", function()
 	if not alternate_bufs[1] then
 		return
 	end

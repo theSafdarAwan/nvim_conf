@@ -41,6 +41,8 @@ local config = function()
 			"latex",
 			"commonlisp",
 			"fennel",
+			"scheme",
+			"c",
 			"typescript",
 			"yaml",
 			"toml",
