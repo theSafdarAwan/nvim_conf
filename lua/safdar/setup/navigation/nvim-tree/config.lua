@@ -39,6 +39,9 @@ local function config()
 				list = maps.nvim_tree_core_maps,
 			},
 		},
+		notify = {
+			threshold = vim.log.levels.WARN,
+		},
 		renderer = {
 			add_trailing = false,
 			group_empty = false,
