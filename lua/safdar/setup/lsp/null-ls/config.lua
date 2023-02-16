@@ -1,5 +1,4 @@
 local config = function()
-
 	-- local on_attach = require("safdar.setup.lsp.utils").on_attach
 	--=======================================================
 	--                      null-ls

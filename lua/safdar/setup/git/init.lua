@@ -4,6 +4,7 @@ local function plugins(install)
 		"neogit",
 		"diffview",
 		"git-worktree",
+		"octo",
 	}
 
 	for _, plugin in pairs(plugin_list) do

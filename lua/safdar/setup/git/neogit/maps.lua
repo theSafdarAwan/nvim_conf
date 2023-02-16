@@ -3,7 +3,7 @@ local M = {}
 M.mappings = function()
 	local map = require("safdar.utils").set_map
 	map("n", "ygc", ":Neogit commit<cr>")
-	map("n", "ygo", ":Neogit<cr>")
+	map("n", "ygn", ":Neogit<cr>")
 end
 
 M.status = { -- modify status buffer mappings
