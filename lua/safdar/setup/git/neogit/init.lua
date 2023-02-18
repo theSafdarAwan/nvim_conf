@@ -1,7 +1,7 @@
 local function plugin(install)
 	install({
 		"TimUntersberger/neogit",
-		keys = { { "n", "ygo" }, { "n", "ygc" } },
+		keys = { { "n", "ygn" }, { "n", "ygc" } },
 		setup = function()
 			require("safdar.utils").fused("neogit")
 		end,

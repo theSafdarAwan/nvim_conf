@@ -42,6 +42,17 @@ local function plugin(install)
 			require("safdar.utils").fused("tsrainbow")
 		end,
 	})
+	install({
+		"nvim-treesitter/nvim-treesitter-context",
+		setup = function()
+			require("safdar.utils").fused("treesitter_context")
+		end,
+		after = "nvim-ts-rainbow",
+	})
+	install({
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		after = "nvim-treesitter-context",
+	})
 end
 
 return { install = plugin }
