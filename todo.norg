@@ -1,5 +1,4 @@
 * TODO's 
-  - [ ] you are currently working on the treesitter-textobjects
   - [ ] read the source code for the octo.nvim
   - [ ] feat for saving session every x amount of time or on an event
   - [ ] check out how the leap-vim does the color highlight for the text only
