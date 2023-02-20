@@ -51,8 +51,6 @@ local autocmd = api.nvim_create_autocmd
 -- the alternate_bufs so that we can move even after exiting the neovim
 local alternate_bufs = {}
 
--- TODO: add the t(till) movement along f and F
-
 local augroup = api.nvim_create_augroup("alternate file movment", { clear = true })
 autocmd({ "BufWinLeave" }, {
 	group = augroup,
