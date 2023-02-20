@@ -1,8 +1,8 @@
 local M = {}
 M.treesitter_maps = {
-	init_selection = "gn",
+	init_selection = "vv",
 	node_incremental = "]]",
-	scope_incremental = "gS",
+	scope_incremental = "vV",
 	node_decremental = "[[",
 }
 

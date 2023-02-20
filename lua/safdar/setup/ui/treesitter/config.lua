@@ -9,26 +9,6 @@ local config = function()
 
 	-- vim.cmd [[packadd nvim-treesitter]]
 
-	-- tj's config
-	local swap_next, swap_prev = (function()
-		local swap_objects = {
-			p = "@parameter.inner",
-			f = "@function.outer",
-			e = "@element",
-
-			-- Not ready, but I think it's my fault :)
-			-- v = "@variable",
-		}
-
-		local n, p = {}, {}
-		for key, obj in pairs(swap_objects) do
-			n[string.format("<M-Space><M-%s>", key)] = obj
-			p[string.format("<M-BS><M-%s>", key)] = obj
-		end
-
-		return n, p
-	end)()
-
 	require("nvim-treesitter.configs").setup({
 		-- A list of parser names, or "all"
 		ensure_installed = {
@@ -99,54 +79,6 @@ local config = function()
 			enable = true,
 		},
 
-		textobjects = {
-			move = {
-				enable = true,
-				set_jumps = true,
-
-				goto_next_start = {
-					["]p"] = "@parameter.inner",
-					["]m"] = "@function.outer",
-					["]]"] = "@class.outer",
-				},
-				goto_next_end = {
-					["]M"] = "@function.outer",
-					["]["] = "@class.outer",
-				},
-				goto_previous_start = {
-					["[p"] = "@parameter.inner",
-					["[m"] = "@function.outer",
-					["[["] = "@class.outer",
-				},
-				goto_previous_end = {
-					["[M"] = "@function.outer",
-					["[]"] = "@class.outer",
-				},
-			},
-
-			select = {
-				enable = true,
-				keymaps = {
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-
-					["ac"] = "@conditional.outer",
-					["ic"] = "@conditional.inner",
-
-					["aa"] = "@parameter.outer",
-					["ia"] = "@parameter.inner",
-
-					["av"] = "@variable.outer",
-					["iv"] = "@variable.inner",
-				},
-			},
-
-			swap = {
-				enable = true,
-				swap_next = swap_next,
-				swap_previous = swap_prev,
-			},
-		},
 	})
 	-- local _ = require("nvim-treesitter.configs").setup {
 	--   ensure_installed = {
