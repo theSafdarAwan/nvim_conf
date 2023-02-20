@@ -67,6 +67,14 @@ local function plugin(install)
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		after = "nvim-treesitter-textobjects",
 		config = function()
+			-- TODO: work on this type of nodes injected in js
+
+			--[[
+			    <div class='${data.className}'>
+				    Your favorite color is now ${data.color}
+				</div>
+			`; ]]
+
 			require("nvim-treesitter.configs").setup({
 				context_commentstring = {
 					enable = true,

@@ -8,6 +8,7 @@ local plugins = function(install)
 		"surround",
 		"refactoring",
 		"vim-be-good",
+		"nvim-spectre",
 		----------------------------------------------------------------------
 		--                        Window Management                         --
 		----------------------------------------------------------------------
