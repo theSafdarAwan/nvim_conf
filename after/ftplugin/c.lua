@@ -47,7 +47,7 @@ end
 
 api.nvim_create_autocmd({ "BufWinEnter" }, {
 	group = api.nvim_create_augroup("main.c compile", { clear = true }),
-	pattern = { "main.c" },
+	pattern = { "*.c" },
 	callback = function(bufInfo)
 		harpoon(bufInfo)
 	end,

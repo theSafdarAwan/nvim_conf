@@ -47,6 +47,8 @@ end)
 
 local autocmd = api.nvim_create_autocmd
 
+-- TODO: create a database dir that keeps track of the current directory and
+-- the alternate_bufs so that we can move even after exiting the neovim
 local alternate_bufs = {}
 
 local augroup = api.nvim_create_augroup("alternate file movment", { clear = true })
