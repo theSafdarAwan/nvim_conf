@@ -63,6 +63,18 @@ local function plugin(install)
 		end,
 		after = "nvim-ts-rainbow",
 	})
+	install({
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		after = "nvim-treesitter-textobjects",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				context_commentstring = {
+					enable = true,
+					enable_autocmd = false,
+				},
+			})
+		end,
+	})
 
 	require("safdar.setup.ui.treesitter.text-objects").install(install)
 end

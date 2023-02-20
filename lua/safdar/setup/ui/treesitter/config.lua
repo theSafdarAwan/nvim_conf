@@ -75,9 +75,6 @@ local config = function()
 			-- termcolors = {}, -- table of colour name strings
 			-- colors = {}, -- table of hex strings
 		},
-		context_commentstring = {
-			enable = true,
-		},
 
 	})
 	-- local _ = require("nvim-treesitter.configs").setup {
