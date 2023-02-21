@@ -3,7 +3,7 @@ local function plugin(install)
 		"windwp/nvim-spectre",
 		config = function()
 			require("safdar.setup.others.nvim-spectre.config").config()
-			require("safdar.setup.others.nvim-spectre.maps")
+			require("safdar.setup.others.nvim-spectre.maps").maps()
 		end,
 	})
 end
