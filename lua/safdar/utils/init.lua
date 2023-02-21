@@ -32,6 +32,11 @@ function M.map_options:buffer(buffer)
 	return self
 end
 
+function M.map_options:desc(desc)
+	self.options.desc = desc
+	return self
+end
+
 local opt = M.map_options:new()
 local local_opts = opt:noremap():silent()
 local_opts = local_opts.__index.options

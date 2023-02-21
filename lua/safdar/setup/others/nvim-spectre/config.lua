@@ -4,7 +4,7 @@ local function config()
 		live_update = true, -- auto execute search again when you write any file in vim
 		mapping = {
 			["toggle_line"] = {
-				map = "dd",
+				map = "tt",
 				cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
 				desc = "toggle current item",
 			},
