@@ -14,32 +14,32 @@ local function config()
 				desc = "goto current file",
 			},
 			["send_to_qf"] = {
-				map = "<leader>q",
+				map = "=q",
 				cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
 				desc = "send all item to quickfix",
 			},
 			["replace_cmd"] = {
-				map = "<leader>c",
+				map = "=y",
 				cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
 				desc = "input replace vim command",
 			},
 			["show_option_menu"] = {
-				map = "<leader>o",
+				map = "=m",
 				cmd = "<cmd>lua require('spectre').show_options()<CR>",
 				desc = "show option",
 			},
 			["run_current_replace"] = {
-				map = "<leader>rc",
+				map = "=rc",
 				cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
 				desc = "replace current line",
 			},
 			["run_replace"] = {
-				map = "<leader>R",
+				map = "=R",
 				cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
 				desc = "replace all",
 			},
 			["change_view_mode"] = {
-				map = "<leader>v",
+				map = "=v",
 				cmd = "<cmd>lua require('spectre').change_view()<CR>",
 				desc = "change result view mode",
 			},
@@ -69,7 +69,7 @@ local function config()
 				desc = "toggle search hidden",
 			},
 			["resume_last_search"] = {
-				map = "<leader>l",
+				map = "=l",
 				cmd = "<cmd>lua require('spectre').resume_last_search()<CR>",
 				desc = "resume last search before close",
 			},
