@@ -91,8 +91,8 @@ local function config()
 						desc = "Select Conditional inner body",
 					},
 
-					["ap"] = { query = "@parameter.outer", desc = "Select Parameter Outer body" },
-					["ip"] = { query = "@parameter.inner", desc = "Select Parameter Inner body" },
+					["aa"] = { query = "@parameter.outer", desc = "Select Parameter Outer body" },
+					["ia"] = { query = "@parameter.inner", desc = "Select Parameter Inner body" },
 
 					["av"] = { query = "@variable.outer", desc = "Select variable outer body" },
 					["iv"] = { query = "@variable.inner", desc = "Select variable inner body" },
