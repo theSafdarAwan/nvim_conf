@@ -7,6 +7,10 @@ local plugin = function(install)
 			{ "v", "F" },
 			{ "n", "f" },
 			{ "n", "F" },
+			{ "n", "F" },
+			{ "n", "t" },
+			{ "v", "F" },
+			{ "v", "t" },
 		},
 		config = function()
 			require("find-extender").setup()
