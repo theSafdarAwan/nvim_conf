@@ -62,12 +62,14 @@ local function config()
 					["gpc"] = { query = "@class.outer", desc = "Previous Class start" },
 					["gpi"] = { query = "@conditional.outer", desc = "Previous Conditional start" },
 					["gpp"] = { query = "@parameter.inner", desc = "Previous Parameter Start" },
+					["gpl"] = { query = "@loop.outer", desc = "Previous loop start" },
 					-- ["[m"] = { query = "@function", desc = "Previous function call Start" },
 				},
 				goto_previous_end = {
 					["gpF"] = { query = "@function.outer", desc = "Previous Function end" },
 					["gpC"] = { query = "@class.outer", desc = "Previous Class end" },
 					["gpI"] = { query = "@conditional.outer", desc = "Previous conditional end" },
+					["gpL"] = { query = "@loop.outer", desc = "Previous loop end" },
 				},
 			},
 
