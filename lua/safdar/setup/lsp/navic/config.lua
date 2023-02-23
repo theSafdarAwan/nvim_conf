@@ -18,7 +18,17 @@ local function config()
 
 	local optl = vim.opt_local
 	local function navic_navbar()
-		optl.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+		local attach_winbar = false
+		local current_buf_clients = vim.lsp.buf_get_clients()
+		for _, client in pairs(current_buf_clients) do
+			if client.server_capabilities.documentSymbolProvider then
+				attach_winbar = true
+				break
+			end
+		end
+		if attach_winbar then
+			optl.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+		end
 	end
 
 	create_autocmd({ "LspAttach" }, {
