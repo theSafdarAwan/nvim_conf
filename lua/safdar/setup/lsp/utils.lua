@@ -24,8 +24,9 @@ M.capabilities = capabilities
 M.on_attach = function(client, bufnr)
 	require("safdar.setup.lsp.lspconfig.maps").on_attach(client, bufnr)
 
-	-- winbar plugin that shows your current code context
-	require("nvim-navic").attach(client, bufnr)
+	if client.server_capabilities.documentSymbolProvider then
+		require("nvim-navic").attach(client, bufnr)
+	end
 
 	-- only format wit the null_ls configured formatters
 	if client.name ~= "null_ls" then

@@ -16,18 +16,16 @@ local function config()
 	local create_autocmd = vim.api.nvim_create_autocmd
 	local autocmds_augroup = vim.api.nvim_create_augroup("navic navbar config", { clear = true })
 
-	-- TODO: add this autocmd in on_attach function by getting the file type and
-	-- setting this for that file type
 	local optl = vim.opt_local
 	local function navic_navbar()
-		if #vim.bo.buftype > 1 then
-			optl.winbar = ""
-		else
+		local bufnr = vim.fn.bufnr()
+		local client = vim.lsp.get_client_by_id(bufnr)
+		if client and #vim.bo.buftype < 1 then
 			optl.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 		end
 	end
 
-	create_autocmd({ "BufWinEnter", "BufEnter" }, {
+	create_autocmd({ "BufWinEnter", "LspAttach" }, {
 		group = autocmds_augroup,
 		callback = navic_navbar,
 	})
