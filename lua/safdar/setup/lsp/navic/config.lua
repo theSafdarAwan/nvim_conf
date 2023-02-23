@@ -18,14 +18,10 @@ local function config()
 
 	local optl = vim.opt_local
 	local function navic_navbar()
-		local bufnr = vim.fn.bufnr()
-		local client = vim.lsp.get_client_by_id(bufnr)
-		if client and #vim.bo.buftype < 1 then
-			optl.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-		end
+		optl.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 	end
 
-	create_autocmd({ "BufWinEnter", "LspAttach" }, {
+	create_autocmd({ "LspAttach" }, {
 		group = autocmds_augroup,
 		callback = navic_navbar,
 	})
