@@ -8,6 +8,7 @@ local plugins = function(install)
 		"lsp-saga",
 		"lsp-code-action-menu",
 		"renamer",
+		"navic",
 		"ale",
 		"femaco",
 	}

@@ -43,29 +43,8 @@ local function plugin(install)
 		end,
 	})
 	install({
-		"nvim-treesitter/nvim-treesitter-context",
-		setup = function()
-			require("safdar.utils").fused("treesitter_context")
-		end,
-		config = function()
-			require("treesitter-context").setup({
-				max_lines = 1, -- How many lines the window should span. Values <= 0 mean no limit.
-				patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-					-- Patterns for specific filetypes
-					-- If a pattern is missing, *open a PR* so everyone can benefit.
-					lua = {
-						"field",
-					},
-				},
-
-				mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
-			})
-		end,
-		after = "nvim-ts-rainbow",
-	})
-	install({
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		after = "nvim-treesitter-textobjects",
+		after = "nvim-ts-rainbow",
 		config = function()
 			-- TODO: work on this type of nodes injected in js
 
