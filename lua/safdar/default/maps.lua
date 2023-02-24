@@ -123,6 +123,10 @@ set_map("n", "<leader>[", ":tabprev<cr>")
 set_map("n", "<C-x>", ":tabclose<cr>")
 set_map("n", "<C-n>", ":tabnew<cr>")
 
+-- screen movement by 10 lines
+set_map("n", "zt", "10<C-y>")
+set_map("n", "zz", "10<C-e>")
+
 -- I use Obsession plugin and i need to restore the whole (n)vim session without losing
 -- a single pane so i replicated the ZZ command functionality and replace it with this one
 set_map("n", "<leader>ZZ", ":wa | qa <cr>")
