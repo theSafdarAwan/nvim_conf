@@ -1,4 +1,5 @@
 * TODO's 
+  - [ ] write a time tracker plugin that tracks how much time you spent on coding
   - [ ] read the source code for the octo.nvim
   - [ ] feat for saving session every x amount of time or on an event
   - [ ] check out how the leap-vim does the color highlight for the text only

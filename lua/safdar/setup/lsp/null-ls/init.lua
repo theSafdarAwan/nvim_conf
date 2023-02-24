@@ -4,6 +4,7 @@ local plugin = function(install)
 		"jose-elias-alvarez/null-ls.nvim",
 		config = function()
 			require("safdar.setup.lsp.null-ls.config").config()
+			require("safdar.setup.lsp.null-ls.maps")
 		end,
 	})
 end

@@ -7,9 +7,9 @@ local plugin = function(install)
 			{ "v", "F" },
 			{ "n", "f" },
 			{ "n", "F" },
-			{ "n", "F" },
+			{ "n", "T" },
 			{ "n", "t" },
-			{ "v", "F" },
+			{ "v", "T" },
 			{ "v", "t" },
 		},
 		config = function()
