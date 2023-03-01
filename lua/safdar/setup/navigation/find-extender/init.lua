@@ -11,9 +11,14 @@ local plugin = function(install)
 			{ "n", "t" },
 			{ "v", "T" },
 			{ "v", "t" },
+			{ "n", "c" },
+			{ "n", "d" },
+			{ "n", "y" },
 		},
 		config = function()
-			require("find-extender").setup()
+			require("find-extender").setup({
+				chars_lenght = 4,
+			})
 		end,
 	})
 end

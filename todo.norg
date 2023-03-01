@@ -21,3 +21,9 @@
 ** My Plugins New Functionality ideas
    - [ ] add something like in lazy-loader that if a variable is set to installing
      then add a run key which will require the plugin and then run that command
+
+ ** Other Scripts
+- [ ] write a script that checks if we are in a git repo if yes then check every
+    x amount of time if any changes happen to to the files then copy those files
+    to a backup dir where already a backup of the full repo is present and then
+    on every change re-write those changes to the backup repo

@@ -181,3 +181,23 @@
 -- 	StatusColumn.sections.border,
 -- 	StatusColumn.sections.padding,
 -- })
+
+-- TODO: do something cool if you think would be cool with this
+-- local function toggle_move()
+-- 	if vim.v.count > 0 then
+-- 		require("harpoon.ui").nav_file(vim.v.count)
+-- 	else
+-- 		require("harpoon.mark").toggle_file()
+-- 	end
+-- end
+-- vim.keymap.set("n", "gh", toggle_move, { expr = true })
+-- -Improved version
+-- local function toggle_move()
+-- 	if vim.v.count > 0 then
+-- 		-- this does not work (yet?)
+-- 		-- require('harpoon.ui').nav_file(vim.v.count)
+-- 		return "<cmd>lua require(\"harpoon.ui\").nav_file(vim.v.count) <CR>"
+-- 	else
+-- 		require("harpoon.mark").toggle_file()
+-- 	end
+-- end

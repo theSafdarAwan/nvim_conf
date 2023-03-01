@@ -102,7 +102,7 @@ local function auto_save_fn(buf_info)
 		-- the excluded filetypes or buftypes
 		if bo.modifiable and #bo.buftype < 1 and ft_val and buf_val and dir_val then
 			command("silent update")
-			-- print("saved at " .. vim.fn.strftime("%H:%M:%S"))
+			-- print("saved at " .. vim.fn.strftime("%I:%M:%S"))
 			api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
 			-- fn.timer_start(1500, function()
 			-- 	cmd("echon ''")
