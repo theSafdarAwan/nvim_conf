@@ -1,6 +1,7 @@
 local function plugins(install)
 	local plugin_list = {
 		"fused",
+		"monokai-pro",
 		"feline",
 		"devicons",
 		"treesitter",
