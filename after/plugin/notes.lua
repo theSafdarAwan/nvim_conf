@@ -1,0 +1,203 @@
+--:h lua 642
+-- TODO: work with notify
+
+-- vim.notify = require("notify")
+-- local plugin = "My Awesome Plugin"
+-- vim.notify("This is an error message.\nSomething went wrong!", "error", {
+-- 	title = plugin,
+-- 	on_open = function()
+-- 		vim.notify("Attempting recovery.", vim.log.levels.WARN, {
+-- 			title = plugin,
+-- 		})
+-- 		local timer = vim.loop.new_timer()
+-- 		timer:start(2000, 0, function()
+-- 			vim.notify({ "Fixing problem.", "Please wait..." }, "info", {
+-- 				title = plugin,
+-- 				timeout = 3000,
+-- 				on_close = function()
+-- 					vim.notify("Problem solved", nil, { title = plugin })
+-- 					vim.notify("Error code 0x0395AF", 1, { title = plugin })
+-- 				end,
+-- 			})
+-- 		end)
+-- 	end,
+-- })
+
+-- local async = require("plenary.async")
+-- local notify = require("notify").async
+--
+-- async.run(function()
+--   notify("Let's wait for this to close").events.close()
+--   notify("It closed!")
+-- end)
+
+-- local vim = vim
+-- -- Trying to understand the User autocmd's
+-- local aug = vim.api.nvim_create_augroup("clear the This_is_user_autocmd", { clear = true })
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+-- 	group = aug,
+-- 	-- pattern = "This_is_user_autocmd",
+-- 	callback = function()
+-- 		print("this is right")
+-- 	end,
+-- })
+
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+-- 	group = vim.api.nvim_create_augroup("you are right", { clear = true }),
+-- 	pattern = "clear the This_is_user_autocmd",
+-- 	callback = function()
+-- 		vim.cmd("do This_is_user_autocmd")
+-- 	end,
+
+-- local notify = require("notify")
+-- local async = require("plenary.async")
+-- async.run(function()
+-- 	notify("Let's wait for this to close").events.close()
+-- 	notify("It closed!")
+-- end)
+
+----------------------------------------------------------------------
+--                          Status Column                           --
+----------------------------------------------------------------------
+
+-- if _G.StatusColumn then
+-- 	return
+-- end
+--
+-- _G.StatusColumn = {
+-- 	handler = {
+-- 		fold = function()
+-- 			local lnum = vim.fn.getmousepos().line
+--
+-- 			-- Only lines with a mark should be clickable
+-- 			if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
+-- 				return
+-- 			end
+--
+-- 			local state
+-- 			if vim.fn.foldclosed(lnum) == -1 then
+-- 				state = "close"
+-- 			else
+-- 				state = "open"
+-- 			end
+--
+-- 			vim.cmd.execute("'" .. lnum .. "fold" .. state .. "'")
+-- 		end,
+-- 	},
+--
+-- 	display = {
+-- 		line = function()
+-- 			if vim.v.wrap then
+-- 				return ""
+-- 			end
+--
+-- 			local lnum = tostring(vim.v.lnum)
+-- 			if #lnum == 1 then -- Prevent adding a tenth line from bumping the size of the column
+-- 				return " " .. lnum
+-- 			else
+-- 				return lnum
+-- 			end
+-- 		end,
+--
+-- 		fold = function()
+-- 			if vim.v.wrap then
+-- 				return ""
+-- 			end
+--
+-- 			local lnum = vim.v.lnum
+-- 			local icon = "  "
+--
+-- 			-- Line isn't in folding range
+-- 			if vim.fn.foldlevel(lnum) <= 0 then
+-- 				return icon
+-- 			end
+--
+-- 			-- Not the first line of folding range
+-- 			if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
+-- 				return icon
+-- 			end
+--
+-- 			if vim.fn.foldclosed(lnum) == -1 then
+-- 				icon = "--"
+-- 			else
+-- 				icon = "++"
+-- 			end
+--
+-- 			return icon
+-- 		end,
+-- 	},
+--
+-- 	sections = {
+-- 		sign_column = {
+-- 			[[%s]],
+-- 		},
+-- 		line_number = {
+-- 			[[%=%{v:lua.StatusColumn.display.line()}]],
+-- 		},
+-- 		spacing = {
+-- 			[[ ]],
+-- 		},
+-- 		folds = {
+-- 			[[%#FoldColumn#]], -- HL
+-- 			[[%@v:lua.StatusColumn.handler.fold@]],
+-- 			[[%{v:lua.StatusColumn.display.fold()}]],
+-- 		},
+-- 		border = {
+-- 			[[%#StatusColumnBorder#]], -- HL
+-- 			[[▐]],
+-- 		},
+-- 		padding = {
+-- 			[[%#StatusColumnBuffer#]], -- HL
+-- 			[[ ]],
+-- 		},
+-- 	},
+--
+-- 	build = function(tbl)
+-- 		local statuscolumn = {}
+--
+-- 		for _, value in ipairs(tbl) do
+-- 			if type(value) == "string" then
+-- 				table.insert(statuscolumn, value)
+-- 			elseif type(value) == "table" then
+-- 				table.insert(statuscolumn, StatusColumn.build(value))
+-- 			end
+-- 		end
+--
+-- 		return table.concat(statuscolumn)
+-- 	end,
+--
+-- 	set_window = function(value)
+-- 		vim.defer_fn(function()
+-- 			vim.api.nvim_win_set_option(vim.api.nvim_get_current_win(), "statuscolumn", value)
+-- 		end, 1)
+-- 	end,
+-- }
+--
+-- vim.opt.statuscolumn = StatusColumn.build({
+-- 	StatusColumn.sections.sign_column,
+-- 	StatusColumn.sections.line_number,
+-- 	StatusColumn.sections.spacing,
+-- 	StatusColumn.sections.folds,
+-- 	StatusColumn.sections.border,
+-- 	StatusColumn.sections.padding,
+-- })
+
+-- TODO: do something cool if you think would be cool with this
+-- local function toggle_move()
+-- 	if vim.v.count > 0 then
+-- 		require("harpoon.ui").nav_file(vim.v.count)
+-- 	else
+-- 		require("harpoon.mark").toggle_file()
+-- 	end
+-- end
+-- vim.keymap.set("n", "gh", toggle_move, { expr = true })
+-- -Improved version
+-- local function toggle_move()
+-- 	if vim.v.count > 0 then
+-- 		-- this does not work (yet?)
+-- 		-- require('harpoon.ui').nav_file(vim.v.count)
+-- 		return "<cmd>lua require(\"harpoon.ui\").nav_file(vim.v.count) <CR>"
+-- 	else
+-- 		require("harpoon.mark").toggle_file()
+-- 	end
+-- end

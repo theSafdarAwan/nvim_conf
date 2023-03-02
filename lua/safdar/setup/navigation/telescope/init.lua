@@ -1,4 +1,3 @@
-local keys = require("safdar.setup.navigation.telescope.maps").keys
 local plugin = function(install)
 	install({
 		opt = true,
@@ -57,6 +56,7 @@ local plugin = function(install)
 				on_load = {
 					config = function()
 						require("safdar.setup.navigation.telescope.telescope-plugins").tabs()
+						require("safdar.setup.navigation.telescope.maps").telescope_plugins_maps.tabs()
 					end,
 				},
 			}
