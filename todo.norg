@@ -13,7 +13,8 @@
    - [ ] Create a snippet for the lua to wrap a selection inside a function
 
 ** Plugin Ideas
-   - [ ] create a plugin like tmux picking windows to pick the tabs
+   - [ ] write a plugin that lets you move backward and forward to the next node
+     with same type as the current node under the cursor
    - [ ] write a time tracker plugin that tracks how much time you spent on coding
    - [ ] create a popup wrapper for the harpoon.term like the toggle-term. Read
      the lspsaga toggle-term source code.
