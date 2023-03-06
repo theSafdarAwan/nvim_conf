@@ -17,6 +17,10 @@ for _, map in ipairs(removed_maps) do
 	set_map(map[1], map[2], "", nil)
 end
 
+set_map("n", "gld", function()
+	vim.fn.system("ldoc " .. vim.fn.expand("%"))
+end)
+
 -- Center the next searched item
 -- set_map("n", "n", "nzz")
 -- set_map("n", "N", "Nzz")
