@@ -3,7 +3,7 @@ local function plugin(install)
 		"rcarriga/nvim-notify",
 		after = "impatient.nvim",
 		setup = function ()
-			require("safdar.utils").fused("notify")
+			require("safdar.utils").fused("nvim-notify")
 		end
 	})
 end

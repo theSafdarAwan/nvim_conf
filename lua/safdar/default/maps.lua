@@ -17,8 +17,13 @@ for _, map in ipairs(removed_maps) do
 	set_map(map[1], map[2], "", nil)
 end
 
-set_map("n", "gld", function()
+set_map("n", "gls", function()
 	vim.fn.system("ldoc " .. vim.fn.expand("%"))
+end)
+
+set_map("n", "glw", function()
+	local lua_mod = vim.fn.system("git rev-parse --show-toplevel") .. "/lua"
+	vim.fn.system("ldoc " .. lua_mod)
 end)
 
 -- Center the next searched item

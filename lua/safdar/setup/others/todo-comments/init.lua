@@ -2,7 +2,7 @@ local function plugin(install)
 	install({
 		"folke/todo-comments.nvim",
 		setup = function()
-			require("safdar.utils").fused("todocomments")
+			require("safdar.utils").fused("todo-comments.nvim")
 			local tdc = {
 				name = "todo-comments.nvim",
 				autocmd = {

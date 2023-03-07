@@ -22,7 +22,7 @@ local function plugin(install)
 				},
 			}
 			require("lazy-loader").load(lsp_saga)
-			require("safdar.utils").fused("lspsaga")
+			require("safdar.utils").fused("lspsaga.nvim")
 		end,
 	})
 end

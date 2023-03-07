@@ -3,7 +3,7 @@ local icons = function(install)
 		"kyazdani42/nvim-web-devicons",
 		after = "impatient.nvim",
 		setup = function()
-			require("safdar.utils").fused("devicons")
+			require("safdar.utils").fused("nvim-web-devicons")
 		end,
 	}) -- icons for the nvim
 	-- these are extracted from the nvim_chad ui plugin

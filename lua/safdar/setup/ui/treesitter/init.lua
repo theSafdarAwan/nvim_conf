@@ -12,7 +12,7 @@ local function plugin(install)
 				},
 			}
 			require("lazy-loader").load(ts)
-			require("safdar.utils").fused("treesitter")
+			require("safdar.utils").fused("nvim-treesitter")
 		end,
 	})
 	-- Other Plugins
@@ -39,7 +39,7 @@ local function plugin(install)
 		"p00f/nvim-ts-rainbow",
 		after = "nvim-treesitter",
 		setup = function()
-			require("safdar.utils").fused("tsrainbow")
+			require("safdar.utils").fused("nvim-ts-rainbow")
 		end,
 	})
 	install({

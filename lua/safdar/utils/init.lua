@@ -103,6 +103,6 @@ M.fused = function(plugin)
 		require("safdar.utils").notify("fused theme is not loaded for " .. plugin)
 		return
 	end
-	fused.lazy_load(plugin)
+	fused.load_plugin(plugin)
 end
 return M

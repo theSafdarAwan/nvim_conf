@@ -26,7 +26,7 @@ local plugin = function(install)
 				},
 			}
 			require("lazy-loader").load(plugin)
-			require("safdar.utils").fused("telescope")
+			require("safdar.utils").fused("telescope.nvim")
 		end,
 	})
 	install({
