@@ -5,8 +5,9 @@ local fused = function(install)
 			require("safdar.utils").notify("fused not found")
 			return
 		end
-		-- @colorsjrequire the fused color pallete
-		local cp = require("fused.pallets.dark").pallete
+		--- table of colors
+		--- @table colors
+		local colors = require("fused.utils").colors
 
 		require("fused").setup({
 			-- flavour = "dark",
@@ -15,7 +16,7 @@ local fused = function(install)
 			-- flavour = "onedark",
 			plugins_integration = false,
 			custom = {
-				DamianConway = { bg = cp.bg_windows2, styles = "bold,noitalic" },
+				DamianConway = { bg = colors.bg_windows2, styles = "bold,noitalic" },
 			},
 		})
 	end
