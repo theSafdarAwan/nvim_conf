@@ -3,7 +3,7 @@ local utils = require("safdar.utils")
 local set_map = utils.set_map
 local opts = utils.map_options:new()
 
-M.mappings = function(_) -- gives a bufnr
+M.mappings = function(bufnr) -- gives a bufnr
 	local gs = package.loaded.gitsigns
 
 	-- Navigation
@@ -15,7 +15,7 @@ M.mappings = function(_) -- gives a bufnr
 			gs.next_hunk()
 		end)
 		return "<Ignore>"
-	end, opts:expr():silent())
+	end, opts:expr():silent():buffer(bufnr))
 	set_map("n", "[g", function()
 		if vim.wo.diff then
 			return "[c"
@@ -24,7 +24,7 @@ M.mappings = function(_) -- gives a bufnr
 			gs.prev_hunk()
 		end)
 		return "<Ignore>"
-	end, opts:expr():silent())
+	end, opts:expr():silent():buffer(bufnr))
 
 	-- Actions
 	set_map("n", "gcs", ":Gitsigns stage_hunk<CR>")

@@ -15,7 +15,7 @@ local fused = function(install)
 			-- flavour = "onedark",
 			plugins_integration = false,
 			custom = {
-				DamianConway = { bg = cp.cp0 },
+				DamianConway = { bg = cp.bg_windows2, styles = "bold,noitalic" },
 			},
 		})
 	end
