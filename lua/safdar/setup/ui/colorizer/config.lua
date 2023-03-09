@@ -18,6 +18,11 @@ local function config()
 		css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
 		css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
 	})
+
+	vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+		group = vim.api.nvim_create_augroup("__colorizer", { clear = true }),
+		command = "ColorizerReloadAllBuffers",
+	})
 end
 
 return { config = config }

@@ -7,16 +7,15 @@ local fused = function(install)
 		end
 		--- table of colors
 		--- @table colors
-		local colors = require("fused.utils").colors
+		-- local colors = require("fused.pallets.catppuccin").colors
 
 		require("fused").setup({
 			-- flavour = "dark",
+			-- flavour = "palenight",
 			flavour = "catppuccin",
-			-- flavour = "aquarium",
-			-- flavour = "onedark",
 			plugins_integration = false,
 			custom = {
-				DamianConway = { bg = colors.bg_windows2, styles = "bold,noitalic" },
+				-- DamianConway = { bg = colors.bg_windows2, styles = "bold,noitalic" },
 			},
 		})
 	end
