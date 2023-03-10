@@ -14,21 +14,20 @@ local config = function()
 		return
 	end
 
-
 	-- @colors
-	local cp = require("fused.pallets.catppuccin").pallete
+	local cp = require("fused.utils").colors
 	local c = {
-		white = cp.white,
-		dark = cp.bg,
-		warn = cp.warn,
-		err = cp.err,
-		err_sev = cp.err_sev,
-		info = cp.property,
-		hint = cp.property,
-		magenta = cp.func,
-		green = cp.search,
-		blue = cp.keywords,
-		cyan = cp.property,
+		white = cp.base07,
+		dark = cp.base01,
+		warn = cp.base09,
+		err = cp.base11,
+		err_sev = cp.base08,
+		info = cp.base10,
+		hint = cp.base10,
+		magenta = cp.base14,
+		green = cp.base15,
+		blue = cp.base16,
+		cyan = cp.base13,
 	}
 
 	local lsp = require("feline.providers.lsp")

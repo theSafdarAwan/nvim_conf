@@ -4,7 +4,6 @@ local function config()
 		require("safdar.utils").notify("lsp-saga.nvim not found")
 		return
 	end
-	local cp = require("fused.pallets.catppuccin").pallete
 	lsp_saga.setup({
 		ui = {
 			theme = "round",

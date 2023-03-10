@@ -10,7 +10,10 @@ local autocmds_augroup = api.nvim_create_augroup("autocmds.lua", { clear = true 
 
 -- Highlight The yanked text
 local function highlight_on_yank()
-	require("vim.highlight").on_yank({ timeout = 40 })
+	require("vim.highlight").on_yank({
+		timeout = 40,
+		higroup = "MatchParen",
+	})
 end
 
 create_autocmd({ "TextYankPost" }, {

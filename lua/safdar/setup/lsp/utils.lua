@@ -24,6 +24,9 @@ M.capabilities = capabilities
 M.on_attach = function(client, bufnr)
 	require("safdar.setup.lsp.lspconfig.maps").on_attach(client, bufnr)
 
+	-- if client.server_capabilities.semanticTokensProvider then
+	-- 	client.server_capabilities.semanticTokensProvider.full = false
+	-- end
 	if client.server_capabilities.documentSymbolProvider then
 		require("nvim-navic").attach(client, bufnr)
 	end
