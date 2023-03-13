@@ -7,7 +7,6 @@ local fused = function(install)
 		end
 
 		require("fused").setup({
-			flavour = "ayu-mirage",
 			plugins_integration = false,
 			custom = {
 				-- DamianConway = { bg = colors.bg_windows2, styles = "bold,noitalic" },

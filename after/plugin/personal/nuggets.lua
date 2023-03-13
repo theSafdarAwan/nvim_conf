@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------
---        A script that goes to the position where you were         --
---                after yanking using a text object                 --
+--         A script that doesn't looses the position where          --
+--                     you started yanking text                     --
 ----------------------------------------------------------------------
 local api = vim.api
 local fn = vim.fn

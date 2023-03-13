@@ -14,7 +14,7 @@ local config = function()
 		return
 	end
 
-	-- @colors
+	--- @colors
 	local cp = require("fused.utils").colors
 	local c = {
 		white = cp.base07,
