@@ -6,13 +6,19 @@ local fused = function(install)
 			return
 		end
 
+		local hooks = {
+			feline_config = function()
+				package.loaded["feline"] = nil
+				require("safdar.setup.ui.feline.config").config()
+			end,
+		}
+
 		require("fused").setup({
 			plugins_integration = false,
 			override = function()
 				return {
 					["catppuccin-mocha"] = {
-						builtin = {
-						},
+						builtin = {},
 					},
 				}
 			end,
@@ -20,6 +26,7 @@ local fused = function(install)
 				-- DamianConway = { bg = colors.bg_windows2, styles = "bold,noitalic" },
 			},
 		})
+		require("fused").add_hooks(hooks)
 	end
 
 	install({

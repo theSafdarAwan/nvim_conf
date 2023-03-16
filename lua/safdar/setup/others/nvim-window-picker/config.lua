@@ -4,8 +4,7 @@ local function config()
 		require("safdar.utils").notify("window-picker not found")
 		return
 	end
-	-- @colors
-	local cp = require("fused.pallets.dark").pallete
+	local cp = require("fused.utils").colors
 	win_picker.setup({
 		-- when there is only one window available to pick from, use that window
 		-- without prompting the user to select
@@ -62,15 +61,15 @@ local function config()
 		},
 
 		-- the foreground (text) color of the picker
-		fg_color = cp.warn,
+		fg_color = cp.base09,
 
 		-- if you have include_current_win == true, then current_win_hl_color will
 		-- be highlighted using this background color
-		current_win_hl_color = cp.property,
+		current_win_hl_color = cp.base10,
 
 		-- all the windows except the curren window will be highlighted using this
 		-- color
-		other_win_hl_color = cp.bg_windows2,
+		other_win_hl_color = cp.base02,
 
 		-- You can change the display string in status bar.
 		-- It supports '%' printf style. Such as `return char .. ': %f'` to display

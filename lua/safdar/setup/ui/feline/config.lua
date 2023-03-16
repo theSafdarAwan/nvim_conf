@@ -14,7 +14,6 @@ local config = function()
 		return
 	end
 
-	--- @colors
 	local cp = require("fused.utils").colors
 	local c = {
 		white = cp.base07,
@@ -473,8 +472,8 @@ local config = function()
 
 	feline.setup({
 		colors = {
-			bg = c.dark,
-			fg = c.white,
+			bg = c.base02,
+			fg = c.base07,
 		},
 		components = components,
 		force_inactive = {
@@ -495,5 +494,8 @@ local config = function()
 		},
 	})
 end
+
+-- TODO: add autocmd to realod
+-- local autocmd = vim.api.nvim_create_autocmd("Feline")
 
 return { config = config }

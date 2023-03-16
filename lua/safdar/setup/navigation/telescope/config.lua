@@ -11,7 +11,6 @@ local config = function()
 	----------------------------------------------------------------------
 	telescope.setup({
 		defaults = {
-			-- @mappings
 			mappings = maps.mappings(),
 			prompt_prefix = "   ",
 			selection_caret = "  ",
