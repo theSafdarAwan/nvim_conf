@@ -7,6 +7,8 @@
         This is a small plugin for enabaling spell checking in insert mode.
 --]]
 
+-- TODO: re-write this script
+
 local vim = vim
 local api = vim.api
 local optl = vim.opt_local
@@ -17,7 +19,7 @@ local notify = function(notify)
 	local level = notify.level or vim.log.levels.WARN
 	if not notify then
 		vim.api.nvim_notify(
-			"spell-checker: notify table is not valid",
+			"spell-checker: table is not valid",
 			notify.level or level,
 			notify.opts or {}
 		)
@@ -31,7 +33,7 @@ local notify = function(notify)
 		msg = notify.msg
 	elseif type(notify.msg) == "nil" then
 		vim.api.nvim_notify(
-			"spell-checker: notify message is not valid",
+			"spell-checker: message is not valid",
 			notify.level or level,
 			notify.opts or {}
 		)

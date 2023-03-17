@@ -14,7 +14,6 @@ local fused = function(install)
 		}
 
 		require("fused").setup({
-			plugins_integration = false,
 			override = function()
 				return {
 					["catppuccin-mocha"] = {
