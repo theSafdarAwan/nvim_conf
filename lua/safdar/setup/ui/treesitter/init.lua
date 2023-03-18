@@ -36,15 +36,15 @@ local function plugin(install)
 		end,
 	})
 	install({
-		"p00f/nvim-ts-rainbow",
+		"HiPhish/nvim-ts-rainbow2",
 		after = "nvim-treesitter",
 		setup = function()
-			require("safdar.utils").fused("nvim-ts-rainbow")
+			require("safdar.utils").fused("nvim-ts-rainbow2")
 		end,
 	})
 	install({
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		after = "nvim-ts-rainbow",
+		after = "nvim-ts-rainbow2",
 		config = function()
 			-- TODO: work on this type of nodes injected in js
 
