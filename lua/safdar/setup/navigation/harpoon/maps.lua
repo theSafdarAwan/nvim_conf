@@ -1,8 +1,39 @@
 local M = {}
 local utils = require("safdar.utils")
+local a = vim.api
 local fn = vim.fn
 local set_map = utils.set_map
 local set_buf_map = utils.set_buf_map
+local enabled_float_term = true
+
+a.nvim_create_user_command("ToggleHarpoonFloatTerm", function()
+	if enabled_float_term then
+		enabled_float_term = false
+	else
+		enabled_float_term = true
+	end
+end, {})
+
+local create_popup = function()
+	if not enabled_float_term then
+		return
+	end
+	local bufnr = 0
+	-- a.nvim_create_buf(true, false)
+	local width = vim.api.nvim_win_get_width(0) - 15
+	local height = vim.api.nvim_win_get_height(0) - 13
+
+	a.nvim_open_win(bufnr, true, {
+		relative = "win",
+		row = 5,
+		col = 8,
+		width = width,
+		height = height,
+		border = "single",
+	})
+	a.nvim_feedkeys("i", "n", false)
+end
+
 function M.maps()
 	set_map("n", "<leader>aa", ":lua require('harpoon.mark').add_file()<CR>")
 	set_map("n", "<leader>ah", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
@@ -12,9 +43,18 @@ function M.maps()
 	set_map("n", "<leader>al", ":lua require('harpoon.ui').nav_file(3)<cr>")
 
 	-- Terminal's
-	set_map("n", "<leader>tj", ":lua require('harpoon.term').gotoTerminal(1)<cr>")
-	set_map("n", "<leader>tk", ":lua require('harpoon.term').gotoTerminal(2)<cr>")
-	set_map("n", "<leader>tl", ":lua require('harpoon.term').gotoTerminal(3)<cr>")
+	set_map("n", "<leader>tj", function()
+		create_popup()
+		require("harpoon.term").gotoTerminal(1)
+	end)
+	set_map("n", "<leader>tk", function()
+		create_popup()
+		require("harpoon.term").gotoTerminal(2)
+	end)
+	set_map("n", "<leader>tl", function()
+		create_popup()
+		require("harpoon.term").gotoTerminal(3)
+	end)
 
 	--[[ -- tmux Terminals
 	set_map("n", "<leader>tj", ":lua require('harpoon.tmux').gotoTerminal(1)<cr>")

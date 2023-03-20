@@ -49,9 +49,14 @@ local config = function()
 			enable = true,
 			-- to disable slow treesitter highlight for large files
 			disable = function(lang, buf)
-				local max_filesize = 1000 * 1024 -- to disable in a file large then this size in KB 100 * 1024 means 100 kb
-				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-				if ok and stats and stats.size > max_filesize then
+				-- local max_filesize = 1000 * 1024 -- to disable in a file large then this size in KB 100 * 1024 means 100 kb
+				-- local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+				-- if ok and stats and stats.size > max_filesize then
+				-- 	return true
+				-- end
+				local line_count = vim.api.nvim_buf_line_count(buf)
+				if line_count > 5000 then
+					print("treesitter: disabled")
 					return true
 				end
 			end,

@@ -14,7 +14,6 @@ local fused = function(install)
 		}
 
 		require("fused").setup({
-			flavour = "dark-plus",
 			override = function()
 				return {
 					["catppuccin-mocha"] = {
