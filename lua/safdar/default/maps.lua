@@ -127,8 +127,6 @@ set_map("n", "gx", ":close<cr>")
 set_map("n", "gX", ":close!<cr>")
 
 -- tab mappings
-set_map("n", "<leader>]", ":tabnext<cr>")
-set_map("n", "<leader>[", ":tabprev<cr>")
 set_map("n", "<C-x>", ":tabclose<cr>")
 set_map("n", "<C-n>", ":tabnew<cr>")
 
@@ -158,13 +156,11 @@ set_map("n", "<leader>sr", "zug")
 set_map("n", "<leader>sd", "zw")
 set_map("n", "<leader>s?", "z=")
 
--- To get out of the insert mode
-set_map("i", "<C-[>", "<c-\\><c-n>")
 -- Create a new line with no indentation
 set_map("i", "<C-j>", "<Enter><ESC>i")
 
 -- Terminal"
-set_map("t", "<c-[>", "<c-\\><c-n>")
+set_map("t", "<c-[>", "<C-\\><C-n>")
 -- set_map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>")
 -- set_map("n", "<c-s><c-l>",":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>")
 -- set_map("n", "<c-s><c-t>", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>")
