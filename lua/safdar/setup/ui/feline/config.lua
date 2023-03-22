@@ -154,7 +154,9 @@ local config = function()
 		provider = function()
 			local branch_name = git.git_branch()
 			local branch = "  " -- little tux
-			if vim.g.__git_is_ok and branch_name ~= "" then
+
+			vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
+			if vim.v.shell_error == 0 and branch_name ~= "" then
 				branch = "  " .. branch_name
 			end
 			return branch
