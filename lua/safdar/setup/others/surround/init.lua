@@ -6,12 +6,9 @@ local function plugin(install)
 		end,
 		keys = {
 			{ mode = "v", "S" },
-			{ "cs" },
-			{ "ds" },
-			{ "ys" },
-			{ "yS" },
-			{ "ca" },
-			{ "da" },
+			"d",
+			"y",
+			"c",
 		},
 		-- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
 	})
