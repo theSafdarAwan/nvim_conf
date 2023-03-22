@@ -1,7 +1,7 @@
 local icons = function(install)
 	install({
 		"kyazdani42/nvim-web-devicons",
-		after = "impatient.nvim",
+		priority = 150,
 		init = function()
 			require("safdar.utils").fused("nvim-web-devicons")
 		end,

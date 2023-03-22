@@ -1,10 +1,10 @@
 local plugin = function(install)
 	install({
-		after = "impatient.nvim",
+		event = "BufRead",
 		"b0o/schemastore.nvim",
 	})
 	install({
-		after = "schemastore.nvim",
+		event = "BufRead",
 		"neovim/nvim-lspconfig",
 		config = function()
 			require("safdar.setup.lsp.lspconfig.config").config()

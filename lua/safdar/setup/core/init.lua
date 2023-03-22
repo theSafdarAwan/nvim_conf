@@ -14,21 +14,20 @@ local function plugins(install)
 		"lewis6991/impatient.nvim",
 	})
 	install({
-		after = "impatient.nvim",
+		lazy = false,
 		"antoinemadec/FixCursorHold.nvim",
 		run = function()
 			vim.g.curshold_updatime = 100
 		end,
 	})
 	install({
-		opt = true,
+		lazy = false,
 		"norcalli/profiler.nvim",
 		config = function()
 			require("profiler")
 		end,
 	})
 	install({
-		opt = true,
 		"dstein64/vim-startuptime",
 		cmd = { "StartupTime" },
 	})
@@ -36,7 +35,7 @@ local function plugins(install)
 	--                   ~> Common Libraries                            --
 	----------------------------------------------------------------------
 	install({ "nvim-lua/plenary.nvim", lazy = false })
-	install({ "nvim-lua/popup.nvim", after = "plenary.nvim" })
+	install({ "nvim-lua/popup.nvim", lazy = false })
 
 	-- install the nvim-notify
 	require("safdar.setup.core.notify").install(install)

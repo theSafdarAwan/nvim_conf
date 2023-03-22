@@ -4,7 +4,6 @@ local function plugin(install)
 		config = function()
 			require("safdar.setup.lsp.ale.config").config()
 		end,
-		event = "BufReadPost",
 		ft = "html",
 	})
 end

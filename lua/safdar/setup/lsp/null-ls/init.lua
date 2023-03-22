@@ -1,7 +1,7 @@
 local plugin = function(install)
 	install({
 		"jose-elias-alvarez/null-ls.nvim",
-		after = "nvim-lspconfig",
+		event = "BufRead",
 		config = function()
 			require("safdar.setup.lsp.null-ls.config").config()
 			require("safdar.setup.lsp.null-ls.maps")

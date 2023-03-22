@@ -1,7 +1,7 @@
 local plugins = function(install)
 	install({
 		"williamboman/mason.nvim",
-		after = "nvim-lspconfig",
+		event = "BufRead",
 		config = function()
 			require("safdar.setup.lsp.mason.config").config()
 		end,

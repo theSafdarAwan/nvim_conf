@@ -17,18 +17,17 @@ local function plugin(install)
 			require("nvim-ts-autotag").setup()
 		end,
 		ft = "html",
-		event = "InsertEnter",
 	})
 	install({
 		"HiPhish/nvim-ts-rainbow2",
-		after = "nvim-treesitter",
+		event = "BufRead",
 		init = function()
 			require("safdar.utils").fused("nvim-ts-rainbow2")
 		end,
 	})
 	install({
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		after = "nvim-ts-rainbow2",
+		keys = "gc",
 		config = function()
 			-- TODO: work on this type of nodes injected in js
 
