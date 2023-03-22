@@ -18,7 +18,7 @@ local function yank_callback(callback)
 		if #chars == 2 then
 			break
 		end
-		if #chars == 1 and c ~= 97 or c ~= 105 then
+		if #chars == 1 and c ~= 97 and c ~= 105 then
 			break
 		end
 	end

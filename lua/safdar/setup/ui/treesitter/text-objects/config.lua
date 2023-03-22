@@ -111,9 +111,27 @@ local function config()
 	--- text manipulation.
 	local function text_manipulation_text_objects(extended_key, callback)
 		local fn = vim.fn
+
+		-- to go to default `d` key
 		vim.keymap.set("n", extended_key, extended_key, map_opts)
+
 		local chars = ""
+		-- to add timeout
+		local timeout = vim.opt.timeoutlen._value
+		-- i variable acts as a id identifier to not let the previous loop
+		-- iteration feedkeys affect the current one.
+		local i = 0
 		while true do
+			i = i + 1
+			local id = i
+			vim.defer_fn(function()
+				if i == id and fn.mode() ~= "i" then
+					-- to get rid of the getchar will throw dummy value which won't
+					-- be added to the chars list
+					vim.api.nvim_feedkeys("�", "n", false)
+				end
+			end, timeout)
+
 			local c = fn.getchar()
 			if type(c) ~= "number" or c < 65 or c > 127 then
 				return
@@ -122,30 +140,12 @@ local function config()
 			if #chars == 2 then
 				break
 			end
-			if #chars == 1 and c ~= 97 or c ~= 105 then
-				vim.api.nvim_feedkeys(extended_key .. chars, "n", false)
+			if #chars == 1 and c ~= 97 and c ~= 105 then
 				break
 			end
 		end
 
-		local keymaps = vim.api.nvim_get_keymap("n")
-
-		local key_is_loaded = false
-		for _, key in ipairs(keymaps) do
-			if key.lhs == chars then
-				key_is_loaded = true
-				break
-			end
-		end
-
-		if not key_is_loaded then
-			return
-		end
-
-		vim.api.nvim_feedkeys("v" .. chars, "n", false)
-		vim.schedule_wrap(function()
-			vim.api.nvim_feedkeys(extended_key, "n", false)
-		end)
+		vim.api.nvim_feedkeys("v" .. chars .. extended_key, "t", false)
 
 		vim.keymap.set("n", extended_key, function()
 			callback(extended_key, callback)
@@ -156,7 +156,7 @@ local function config()
 	for _, key in ipairs(extended_keys) do
 		vim.keymap.set("n", key, function()
 			text_manipulation_text_objects(key, text_manipulation_text_objects)
-		end, { noremap = true, silent = true })
+		end, map_opts)
 	end
 end
 
