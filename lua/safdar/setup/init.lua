@@ -27,7 +27,7 @@ local function setup()
 		"lsp",
 		"completion",
 		"others",
-		-- "debugging",
+		"debugging",
 		-- "writing",
 	}
 	for _, mod in pairs(modules) do

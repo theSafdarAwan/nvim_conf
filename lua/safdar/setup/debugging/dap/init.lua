@@ -1,7 +1,6 @@
 local function plugins(install)
 	install({
 		"mfussenegger/nvim-dap",
-		after = "nvim-dap-virtual-text",
 		config = function()
 			require("safdar.setup.debugging.dap.config").config()
 			--> plugins configs
@@ -11,8 +10,8 @@ local function plugins(install)
 	})
 	install({
 		"rcarriga/nvim-dap-ui",
-		keys = { { "n", "_" } },
-		requires = { "theHamsta/nvim-dap-virtual-text", after = "nvim-dap-ui" },
+		keys = "_",
+		dependencies = { "theHamsta/nvim-dap-virtual-text", dependencies = "nvim-dap" },
 	})
 end
 
