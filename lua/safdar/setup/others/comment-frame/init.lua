@@ -1,6 +1,5 @@
 local function plugin(install)
 	install({
-		opt = true,
 		keys = {
 			"<leader>cm",
 			"<leader>cl",

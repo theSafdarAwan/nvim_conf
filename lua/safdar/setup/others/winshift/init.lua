@@ -6,8 +6,8 @@ local function plugin(install)
 		end,
 		cmd = { "WinShift" },
 		keys = {
-			{ "n", "g;" },
-			{ "n", "g:" },
+			"g:",
+			"g;",
 		},
 	})
 end

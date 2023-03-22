@@ -1,6 +1,5 @@
 local function plugin(install)
 	install({
-		opt = true,
 		"windwp/nvim-spectre",
 		keys = { "=" },
 		config = function()

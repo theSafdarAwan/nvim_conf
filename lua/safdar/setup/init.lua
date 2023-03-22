@@ -26,7 +26,7 @@ local function setup()
 		"git",
 		"lsp",
 		"completion",
-		-- "others",
+		"others",
 		-- "debugging",
 		-- "writing",
 	}
@@ -55,8 +55,6 @@ if not vim.loop.fs_stat(lazypath) then
 		"https://github.com/folke/lazy.nvim.git",
 		lazypath,
 	})
-
-	vim.cmd("packadd lazy.nvim")
 
 	notify("Installing Plugins")
 	setup()

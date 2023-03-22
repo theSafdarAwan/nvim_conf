@@ -105,4 +105,5 @@ M.fused = function(plugin)
 	end
 	fused.load_plugin(plugin)
 end
+
 return M
