@@ -8,16 +8,16 @@ local plugin = function(install)
 			require("safdar.utils").fused("telescope.nvim")
 		end,
 		keys = {
-			{ "<leader>f" },
-			{ "<leader>t" },
-			{ "<leader>c" },
-			{ "<leader>r" },
-			{ "<leader>v" },
-			{ "<leader>b" },
-			{ "<leader>d" },
-			{ "<C-_>" },
-			{ "<leader>t" },
-			{ "<leader>g" },
+			"<leader>f",
+			"<leader>t",
+			"<leader>c",
+			"<leader>r",
+			"<leader>v",
+			"<leader>b",
+			"<leader>d",
+			"<C-_>",
+			"<leader>t",
+			"<leader>g",
 		},
 		dependencies = {
 			"telescope-fzf-native.nvim",
@@ -26,7 +26,7 @@ local plugin = function(install)
 	})
 	install({
 		"nvim-telescope/telescope-fzf-native.nvim",
-		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 		config = function()
 			require("safdar.setup.navigation.telescope.telescope-plugins").fzf()
 		end,

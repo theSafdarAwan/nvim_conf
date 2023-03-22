@@ -2,10 +2,10 @@ local function plugin(install)
 	install({
 		"numToStr/Comment.nvim",
 		keys = {
-			{ "v", "gc" },
-			{ "n", "gc" },
-			{ "v", "gb" },
-			{ "n", "gb" },
+			{ mode = "v", "gc" },
+			{ "gc" },
+			{ mode = "v", "gb" },
+			{ "gb" },
 		},
 		config = function()
 			local ok, _ = pcall(require, "Comment")

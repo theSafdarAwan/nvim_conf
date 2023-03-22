@@ -16,7 +16,7 @@ local function plugins(install)
 	install({
 		lazy = false,
 		"antoinemadec/FixCursorHold.nvim",
-		run = function()
+		build = function()
 			vim.g.curshold_updatime = 100
 		end,
 	})

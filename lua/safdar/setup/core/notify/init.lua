@@ -2,7 +2,7 @@ local function plugin(install)
 	install({
 		"rcarriga/nvim-notify",
 		lazy = false,
-		setup = function ()
+		config = function ()
 			require("safdar.utils").fused("nvim-notify")
 		end
 	})
