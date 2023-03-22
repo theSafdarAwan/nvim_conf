@@ -4,15 +4,15 @@ local plugin = function(install)
 		keys = {
 			{ mode = "v", "f" },
 			{ mode = "v", "F" },
-			{ "n", "f" },
-			{ "n", "F" },
-			{ "n", "T" },
-			{ "n", "t" },
+			{ "f" },
+			{ "F" },
+			{ "T" },
+			{ "t" },
 			{ mode = "v", "T" },
 			{ mode = "v", "t" },
-			{ "n", "c" },
-			{ "n", "d" },
-			{ "n", "y" },
+			{ "c" },
+			{ "d" },
+			{ "y" },
 		},
 		config = function()
 			require("find-extender").setup()

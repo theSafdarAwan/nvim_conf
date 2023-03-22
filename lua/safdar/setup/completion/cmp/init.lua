@@ -1,48 +1,30 @@
 local function plugin(install)
 	install({
 		"hrsh7th/nvim-cmp",
-		opt = true,
-		setup = function()
+		config = function()
 			require("safdar.utils").fused("nvim-cmp")
-			local cmp = {
-				name = "nvim-cmp",
-				on_load = {
-					config = function()
-						require("safdar.setup.completion.cmp.config").config()
-					end,
-				},
-				autocmd = {
-					event = "InsertEnter",
-				},
-			}
-			require("lazy-loader").load(cmp)
+			require("safdar.setup.completion.cmp.config").config()
 		end,
+		event = "InsertEnter",
 	})
 	install({
 		"hrsh7th/cmp-nvim-lsp",
-		after = "nvim-cmp",
+		event = "InsertEnter",
 		config = function()
 			require("safdar.setup.completion.cmp.cmp-nvim-lsp").config()
 		end,
 	})
-	install({ "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" })
+	install({ "hrsh7th/cmp-buffer", event = "InsertEnter" })
 
 	install({
-		opt = true,
 		"hrsh7th/cmp-nvim-lua",
-		setup = function()
-			local cmp_lua = {
-				name = "cmp-nvim-lua",
-				autocmd = {
-					event = "InsertEnter",
-					ft = "lua",
-				},
-			}
-			require("lazy-loader").load(cmp_lua)
-		end,
+		ft = "lua",
 	})
-	install({ "hrsh7th/cmp-nvim-lsp-signature-help", after = { "cmp-buffer" } })
-	install({ "hrsh7th/cmp-emoji", after = "cmp-nvim-lsp-signature-help" })
+	install({ "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" })
+	install({
+		"hrsh7th/cmp-emoji",
+		keys = "i",
+	})
 end
 
 return { install = plugin }
