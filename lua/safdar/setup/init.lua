@@ -28,7 +28,7 @@ local function setup()
 		"completion",
 		"others",
 		"debugging",
-		-- "writing",
+		"writing",
 	}
 	for _, mod in pairs(modules) do
 		require("safdar.setup." .. mod).get_plugins(install)
