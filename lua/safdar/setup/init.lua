@@ -24,7 +24,7 @@ local function setup()
 		"ui",
 		"navigation",
 		"git",
-		-- "lsp",
+		"lsp",
 		-- "completion",
 		-- "others",
 		-- "debugging",

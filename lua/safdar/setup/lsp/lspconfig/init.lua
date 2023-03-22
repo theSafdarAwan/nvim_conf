@@ -4,8 +4,8 @@ local plugin = function(install)
 		"b0o/schemastore.nvim",
 	})
 	install({
+		after = "schemastore.nvim",
 		"neovim/nvim-lspconfig",
-		after = "nvim-navic",
 		config = function()
 			require("safdar.setup.lsp.lspconfig.config").config()
 		end,
