@@ -102,6 +102,62 @@ local function config()
 			},
 		},
 	})
+
+	local map_opts = { noremap = true, silent = true }
+
+	-- extend the text-objects to delete/change
+	---@param extended_key string key c/d
+	---@param callback function function to remap the extended_key with after
+	--- text manipulation.
+	local function text_manipulation_text_objects(extended_key, callback)
+		local fn = vim.fn
+		vim.keymap.set("n", extended_key, extended_key, map_opts)
+		local chars = ""
+		while true do
+			local c = fn.getchar()
+			if type(c) ~= "number" or c < 65 or c > 127 then
+				return
+			end
+			chars = chars .. fn.nr2char(c)
+			if #chars == 2 then
+				break
+			end
+			if #chars == 1 and c ~= 97 or c ~= 105 then
+				vim.api.nvim_feedkeys(extended_key .. chars, "n", false)
+				break
+			end
+		end
+
+		local keymaps = vim.api.nvim_get_keymap("n")
+
+		local key_is_loaded = false
+		for _, key in ipairs(keymaps) do
+			if key.lhs == chars then
+				key_is_loaded = true
+				break
+			end
+		end
+
+		if not key_is_loaded then
+			return
+		end
+
+		vim.api.nvim_feedkeys("v" .. chars, "n", false)
+		vim.schedule_wrap(function()
+			vim.api.nvim_feedkeys(extended_key, "n", false)
+		end)
+
+		vim.keymap.set("n", extended_key, function()
+			callback(extended_key, callback)
+		end)
+	end
+
+	local extended_keys = { "d", "c" }
+	for _, key in ipairs(extended_keys) do
+		vim.keymap.set("n", key, function()
+			text_manipulation_text_objects(key, text_manipulation_text_objects)
+		end, { noremap = true, silent = true })
+	end
 end
 
 return { config = config }
