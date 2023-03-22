@@ -43,6 +43,8 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 vim.opt.rtp:prepend(lazypath)
 
+vim.keymap.set("n", "<leader>ll", ":Lazy<CR>", { noremap = true, silent = true })
+
 --- Bootstrap lazy.nvim
 if not vim.loop.fs_stat(lazypath) then
 	notify("Bootstrapping lazy.nvim ..")
