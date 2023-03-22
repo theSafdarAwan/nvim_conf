@@ -32,10 +32,15 @@ local function config()
 			en10k_items = en10k_items - 1
 		end
 	end
-
-	require("cmp_dictionary").setup({
-		dic = {
+	local dictionary = require("cmp_dictionary")
+	dictionary.setup({
+		filepath = {
 			["*"] = dict,
+		},
+	})
+	dictionary.switcher({
+		spelllang = {
+			en = dict,
 		},
 	})
 end
@@ -52,9 +57,6 @@ local dict_source_autocmd = function()
 		["md"] = "md",
 	}
 	local dictionary_source = { name = "dictionary", keyword_length = 2, max_item_count = 4 }
-	-- NOTE: you have to re-enter or execute ":e" in command mode the buffer for this
-	-- first time to load this plugin source i have no idea why it doesn't loads but 
-	-- after loading for the first time then it works perfectly
 	api.nvim_create_autocmd({ "InsertEnter" }, {
 		group = api.nvim_create_augroup("cmp-dictionary source autocmd", { clear = true }),
 		-- This function will remove the cmp-dictionary from source list of cmp if file
