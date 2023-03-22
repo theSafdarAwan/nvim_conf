@@ -1,7 +1,58 @@
 local vim = vim
-local fn = vim.fn
 
-local function get_plugins(install)
+local function setup()
+	local lazy_config = {
+		defaults = { lazy = true },
+		install = { colorscheme = { "nvchad" } },
+
+		ui = {
+			icons = {
+				ft = "",
+				lazy = "鈴 ",
+				loaded = "",
+				not_loaded = "",
+			},
+		},
+
+		performance = {
+			rtp = {
+				disabled_plugins = {
+					"2html_plugin",
+					"tohtml",
+					"getscript",
+					"getscriptPlugin",
+					"gzip",
+					"logipat",
+					"netrw",
+					"netrwPlugin",
+					"netrwSettings",
+					"netrwFileHandlers",
+					"matchit",
+					"tar",
+					"tarPlugin",
+					"rrhelper",
+					"spellfile_plugin",
+					"vimball",
+					"vimballPlugin",
+					"zip",
+					"zipPlugin",
+					"tutor",
+					"rplugin",
+					"syntax",
+					"synmenu",
+					"optwin",
+					"compiler",
+					"bugreport",
+					"ftplugin",
+				},
+			},
+		},
+	}
+
+	local plugins = {}
+	local function install(plugin)
+		table.insert(plugins, plugin)
+	end
 	local modules = {
 		"core",
 		"ui",
@@ -16,73 +67,43 @@ local function get_plugins(install)
 	for _, mod in pairs(modules) do
 		require("safdar.setup." .. mod).get_plugins(install)
 	end
-end
-
-local function setup(cmd)
-	local packer = require("packer")
-	packer.init({
-		auto_clean = true,
-		compile_on_sync = true,
-		git = { clone_timeout = 6000 },
-		profile = {
-			enable = true,
-			threshold = 30, -- the amount in ms that a plugins load time must be over for it to be included in the profile
-		},
-		display = {
-			working_sym = "ﲊ",
-			error_sym = "✗",
-			done_sym = " ",
-			removed_sym = " ",
-			moved_sym = "➜",
-			open_fn = function()
-				return require("packer.util").float({ border = "single" })
-			end,
-		},
-	})
-
-	packer.startup(function(install)
-		-- install all the plugins
-		get_plugins(install)
-		-- execute this script on last
-		require("safdar.setup.core.on-last")
-	end)
-
-	if cmd then
-		vim.cmd(cmd)
-	end
+	require("lazy").setup(plugins, lazy_config)
 end
 
 local notify = require("safdar.utils").notify
 
--- install packer if doesn't exist's and compile it if the compiled file doesn't exists
-local packer_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-local packer_compiled = fn.stdpath("config") .. "/plugin/packer_compiled.lua"
-if fn.empty(fn.glob(packer_path)) > 0 then
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#11111B" })
-	notify({
-		msg = "Cloning packer ..",
+-- lazy.nvim installation path
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+--- Bootstrap lazy.nvim
+if not vim.loop.fs_stat(lazypath) then
+	notify("Bootstrapping lazy.nvim ..")
+
+	--- clone lazy.nvim
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		lazypath,
 	})
-	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", packer_path })
-	vim.cmd("packadd packer.nvim")
-	notify({
-		msg = "Installing Plugins",
-	})
-	setup("PackerSync")
+
+	vim.opt.rtp:prepend(lazypath)
+
+	notify("Installing Plugins")
+	setup()
+
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#11111B" }) -- change the bg color for poup
+
+	-- vim.api.nvim_buf_delete(0, { force = true }) -- close lazy window
+
 	-- install binaries from mason.nvim & tsparsers
 	require("safdar.setup.lsp.mason.config").mason_installer()
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "PackerComplete",
-		callback = function()
-			vim.cmd("bw | silent! MasonInstallAll") -- close packer window
-			require("packer").loader("nvim-treesitter")
-		end,
-	})
-elseif fn.empty(fn.glob(packer_compiled)) > 0 then
-	notify({
-		msg = "Packer is compiling ....",
-		level = vim.log.levels.WARN,
-	})
-	setup("PackerCompile")
+	vim.defer_fn(function()
+		vim.cmd("silent! MasonInstallAll")
+	end, 0)
 else
 	setup()
 end
+
+vim.opt.rtp:prepend(lazypath)
