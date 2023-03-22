@@ -6,15 +6,11 @@ local function plugins(install)
 	else
 		impatient.enable_profile()
 	end
-
-	install({ -- packer can manage itself
-		opt = true,
-		"wbthomason/packer.nvim",
-	})
-	install({ -- my plugin to have extra power over lazy-loading
-		"TheSafdarAwan/lazy-loader.nvim",
-	})
+	-- install({ -- my plugin to have extra power over lazy-loading
+	-- 	"TheSafdarAwan/lazy-loader.nvim",
+	-- })
 	install({
+		lazy = false,
 		"lewis6991/impatient.nvim",
 	})
 	install({
@@ -39,7 +35,7 @@ local function plugins(install)
 	----------------------------------------------------------------------
 	--                   ~> Common Libraries                            --
 	----------------------------------------------------------------------
-	install({ "nvim-lua/plenary.nvim" })
+	install({ "nvim-lua/plenary.nvim", lazy = false })
 	install({ "nvim-lua/popup.nvim", after = "plenary.nvim" })
 
 	-- install the nvim-notify

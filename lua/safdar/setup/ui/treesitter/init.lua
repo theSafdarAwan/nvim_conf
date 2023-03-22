@@ -1,39 +1,22 @@
 local function plugin(install)
 	install({
-		opt = true,
+		lazy = false,
 		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			require("safdar.setup.ui.treesitter.config").config()
+		end,
 		setup = function()
-			local ts = {
-				name = "nvim-treesitter",
-				on_load = {
-					config = function()
-						require("safdar.setup.ui.treesitter.config").config()
-					end,
-				},
-			}
-			require("lazy-loader").load(ts)
 			require("safdar.utils").fused("nvim-treesitter")
 		end,
 	})
 	-- Other Plugins
 	install({
 		"windwp/nvim-ts-autotag",
-		opt = true,
-		setup = function()
-			local ts_autotag = {
-				name = "nvim-ts-autotag",
-				on_load = {
-					config = function()
-						require("nvim-ts-autotag").setup()
-					end,
-				},
-				autocmd = {
-					ft = "html",
-					event = "InsertEnter",
-				},
-			}
-			require("lazy-loader").load(ts_autotag)
+		config = function()
+			require("nvim-ts-autotag").setup()
 		end,
+		ft = "html",
+		event = "InsertEnter",
 	})
 	install({
 		"HiPhish/nvim-ts-rainbow2",

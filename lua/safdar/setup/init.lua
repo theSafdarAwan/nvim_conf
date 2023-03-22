@@ -3,7 +3,7 @@ local vim = vim
 local function setup()
 	local lazy_config = {
 		defaults = { lazy = true },
-		install = { colorscheme = { "nvchad" } },
+		install = {},
 
 		ui = {
 			icons = {
@@ -11,40 +11,6 @@ local function setup()
 				lazy = "鈴 ",
 				loaded = "",
 				not_loaded = "",
-			},
-		},
-
-		performance = {
-			rtp = {
-				disabled_plugins = {
-					"2html_plugin",
-					"tohtml",
-					"getscript",
-					"getscriptPlugin",
-					"gzip",
-					"logipat",
-					"netrw",
-					"netrwPlugin",
-					"netrwSettings",
-					"netrwFileHandlers",
-					"matchit",
-					"tar",
-					"tarPlugin",
-					"rrhelper",
-					"spellfile_plugin",
-					"vimball",
-					"vimballPlugin",
-					"zip",
-					"zipPlugin",
-					"tutor",
-					"rplugin",
-					"syntax",
-					"synmenu",
-					"optwin",
-					"compiler",
-					"bugreport",
-					"ftplugin",
-				},
 			},
 		},
 	}
@@ -56,13 +22,13 @@ local function setup()
 	local modules = {
 		"core",
 		"ui",
-		"navigation",
-		"git",
-		"lsp",
-		"completion",
-		"others",
-		"debugging",
-		"writing",
+		-- "navigation",
+		-- "git",
+		-- "lsp",
+		-- "completion",
+		-- "others",
+		-- "debugging",
+		-- "writing",
 	}
 	for _, mod in pairs(modules) do
 		require("safdar.setup." .. mod).get_plugins(install)
@@ -74,6 +40,8 @@ local notify = require("safdar.utils").notify
 
 -- lazy.nvim installation path
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+vim.opt.rtp:prepend(lazypath)
 
 --- Bootstrap lazy.nvim
 if not vim.loop.fs_stat(lazypath) then
@@ -88,7 +56,7 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 
-	vim.opt.rtp:prepend(lazypath)
+	vim.cmd("packadd lazy.nvim")
 
 	notify("Installing Plugins")
 	setup()
@@ -105,5 +73,3 @@ if not vim.loop.fs_stat(lazypath) then
 else
 	setup()
 end
-
-vim.opt.rtp:prepend(lazypath)

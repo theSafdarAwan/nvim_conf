@@ -1,18 +1,9 @@
 local function plugin(install)
 	install({
-		opt = true,
+		lazy = true,
 		"norcalli/nvim-colorizer.lua",
-		setup = function()
-			local nc = {
-				name = "nvim-colorizer.lua",
-				on_load = {
-					config = function()
-						require("safdar.setup.ui.colorizer.config").config()
-					end,
-				},
-				autocmd = {},
-			}
-			require("lazy-loader").load(nc)
+		config = function()
+			require("safdar.setup.ui.colorizer.config").config()
 		end,
 	})
 end

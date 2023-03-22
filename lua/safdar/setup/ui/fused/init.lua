@@ -30,6 +30,7 @@ local fused = function(install)
 
 	install({
 		"TheSafdarAwan/fused.nvim",
+		lazy = false,
 		branch = "re-write",
 		config = config,
 	})
