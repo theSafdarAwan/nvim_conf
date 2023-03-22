@@ -1,9 +1,8 @@
 local plugin = function(install)
 	install({
-		opt = true,
-		keys = { { "n", "ygd" }, { "n", "ygD" } },
+		keys = { "ygd", "ygD" },
 		"sindrets/diffview.nvim",
-		setup = function()
+		init = function()
 			require("safdar.utils").fused("diffview.nvim")
 		end,
 		config = function()

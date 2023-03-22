@@ -22,8 +22,8 @@ local function setup()
 	local modules = {
 		"core",
 		"ui",
-		-- "navigation",
-		-- "git",
+		"navigation",
+		"git",
 		-- "lsp",
 		-- "completion",
 		-- "others",

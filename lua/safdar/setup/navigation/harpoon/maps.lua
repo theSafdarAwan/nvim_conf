@@ -78,15 +78,15 @@ M.common_lisp = function()
 end
 
 M.keys = {
-	{ "n", "<leader>aa" },
-	{ "n", "<leader>aj" },
-	{ "n", "<leader>ak" },
-	{ "n", "<leader>al" },
-	{ "n", "<leader>aH" },
-	{ "n", "<leader>ah" },
-	{ "n", "<leader>af" },
-	{ "n", "<leader>tj" },
-	{ "n", "<leader>tk" },
-	{ "n", "<leader>tl" },
+	"<leader>aa",
+	"<leader>aj",
+	"<leader>ak",
+	"<leader>al",
+	"<leader>aH",
+	"<leader>ah",
+	"<leader>af",
+	"<leader>tj",
+	"<leader>tk",
+	"<leader>tl",
 }
 return M

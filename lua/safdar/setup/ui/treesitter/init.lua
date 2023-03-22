@@ -1,12 +1,13 @@
 local function plugin(install)
 	install({
 		lazy = false,
+		priority = 1000,
 		"nvim-treesitter/nvim-treesitter",
+		init = function()
+			require("safdar.utils").fused("nvim-treesitter")
+		end,
 		config = function()
 			require("safdar.setup.ui.treesitter.config").config()
-		end,
-		setup = function()
-			require("safdar.utils").fused("nvim-treesitter")
 		end,
 	})
 	-- Other Plugins
@@ -21,7 +22,7 @@ local function plugin(install)
 	install({
 		"HiPhish/nvim-ts-rainbow2",
 		after = "nvim-treesitter",
-		setup = function()
+		init = function()
 			require("safdar.utils").fused("nvim-ts-rainbow2")
 		end,
 	})

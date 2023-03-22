@@ -1,66 +1,39 @@
 local plugin = function(install)
 	install({
-		opt = true,
 		"nvim-telescope/telescope.nvim",
-		setup = function()
-			local plugin = {
-				name = "telescope.nvim",
-				on_load = {
-					config = function()
-						require("safdar.setup.navigation.telescope.config").config()
-					end,
-				},
-				keymap = {
-					keys = {
-						{ "n", "<leader>f" },
-						{ "n", "<leader>t" },
-						{ "n", "<leader>c" },
-						{ "n", "<leader>r" },
-						{ "n", "<leader>v" },
-						{ "n", "<leader>b" },
-						{ "n", "<leader>d" },
-						{ "n", "<C-_>" },
-						{ "n", "<leader>t" },
-						{ "n", "<leader>g" },
-					},
-				},
-			}
-			require("lazy-loader").load(plugin)
+		config = function()
+			require("safdar.setup.navigation.telescope.config").config()
+		end,
+		init = function()
 			require("safdar.utils").fused("telescope.nvim")
 		end,
+		keys = {
+			{ "<leader>f" },
+			{ "<leader>t" },
+			{ "<leader>c" },
+			{ "<leader>r" },
+			{ "<leader>v" },
+			{ "<leader>b" },
+			{ "<leader>d" },
+			{ "<C-_>" },
+			{ "<leader>t" },
+			{ "<leader>g" },
+		},
 	})
 	install({
-		opt = true,
-		setup = function()
-			local plugin = {
-				name = "telescope-fzf-native.nvim",
-				after = "telescope.nvim",
-				on_load = {
-					config = function()
-						require("safdar.setup.navigation.telescope.telescope-plugins").fzf()
-					end,
-				},
-			}
-			require("lazy-loader").load(plugin)
-		end,
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		after = "telescope.nvim",
+		config = function()
+			require("safdar.setup.navigation.telescope.telescope-plugins").fzf()
+		end,
 	})
 	install({
-		opt = true,
 		"LukasPietzschmann/telescope-tabs",
-		setup = function()
-			local plugin = {
-				name = "telescop-tabs",
-				after = "telescope-fzf-native.nvim",
-				on_load = {
-					config = function()
-						require("safdar.setup.navigation.telescope.telescope-plugins").tabs()
-						require("safdar.setup.navigation.telescope.maps").telescope_plugins_maps.tabs()
-					end,
-				},
-			}
-			require("lazy-loader").load(plugin)
+		after = "telescope-fzf-native.nvim",
+		config = function()
+			require("safdar.setup.navigation.telescope.telescope-plugins").tabs()
+			require("safdar.setup.navigation.telescope.maps").telescope_plugins_maps.tabs()
 		end,
 	})
 end

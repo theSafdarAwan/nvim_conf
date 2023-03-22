@@ -1,16 +1,15 @@
 local plugin = function(install)
 	install({
-		opt = true,
 		"TheSafdarAwan/find-extender.nvim",
 		keys = {
-			{ "v", "f" },
-			{ "v", "F" },
+			{ mode = "v", "f" },
+			{ mode = "v", "F" },
 			{ "n", "f" },
 			{ "n", "F" },
 			{ "n", "T" },
 			{ "n", "t" },
-			{ "v", "T" },
-			{ "v", "t" },
+			{ mode = "v", "T" },
+			{ mode = "v", "t" },
 			{ "n", "c" },
 			{ "n", "d" },
 			{ "n", "y" },

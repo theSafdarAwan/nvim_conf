@@ -1,7 +1,8 @@
 local plugin = function(install)
 	install({
 		"kyazdani42/nvim-tree.lua",
-		setup = function()
+		keys = "<A-e>",
+		init = function()
 			require("safdar.utils").fused("nvim-tree.lua")
 		end,
 		config = function()

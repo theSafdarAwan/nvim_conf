@@ -2,7 +2,7 @@ local function plugin(install)
 	install({
 		"lukas-reineke/indent-blankline.nvim",
 		event = "BufReadPost",
-		setup = function()
+		init = function()
 			require("safdar.utils").fused("indent-blankline.nvim")
 		end,
 		config = function()
