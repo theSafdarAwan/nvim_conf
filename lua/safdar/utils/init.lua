@@ -68,10 +68,10 @@ end
 M.notify = function(notify_tbl_or_msg)
 	local fn = vim.fn
 	-- install notify plugin if not present
-	local notify_path = fn.stdpath("data") .. "/site/pack/packer/opt/nvim-notify"
+	local notify_path = fn.stdpath("data") .. "/lazy/nvim-notify"
 	if fn.empty(fn.glob(notify_path)) > 0 then
 		fn.system({ "git", "clone", "--depth", "1", "https://github.com/rcarriga/nvim-notify", notify_path })
-		vim.cmd("packadd nvim-notify")
+		vim.opt.rtp:prepend(notify_path)
 	end
 
 	local msg
@@ -81,7 +81,7 @@ M.notify = function(notify_tbl_or_msg)
 	if notify_tbl_or_msg then
 		local ok, _ = pcall(require, "notify")
 		if not ok then
-			vim.cmd("packadd nvim-notify")
+			vim.opt.rtp:prepend(notify_path)
 			require("notify").setup({
 				background_colour = "#1E1E2E",
 			})
@@ -94,7 +94,7 @@ end
 M.fused = function(plugin)
 	local fn = vim.fn
 	-- install fused if not present
-	local fused_path = fn.stdpath("data") .. "/site/pack/packer/start/fused.nvim"
+	local fused_path = fn.stdpath("data") .. "/lazy/fused.nvim"
 	if fn.empty(fn.glob(fused_path)) > 0 then
 		fn.system({ "git", "clone", "--depth", "1", "https://github.com/TheSafdarAwan/fused.nvim", fused_path })
 	end

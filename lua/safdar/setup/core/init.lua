@@ -1,11 +1,7 @@
 local function plugins(install)
 	-- make sure impatient is loaded before any plugin
-	local ok, impatient = pcall(require, "impatient")
-	if not ok then
-		require("safdar.utils").notify("impatient not found")
-	else
-		impatient.enable_profile()
-	end
+	local _, impatient = pcall(require, "impatient")
+	pcall(impatient.enable_profile)
 	-- install({ -- my plugin to have extra power over lazy-loading
 	-- 	"TheSafdarAwan/lazy-loader.nvim",
 	-- })

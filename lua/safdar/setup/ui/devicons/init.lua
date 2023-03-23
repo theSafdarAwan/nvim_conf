@@ -7,11 +7,7 @@ local icons = function(install)
 		end,
 	}) -- icons for the nvim
 	-- these are extracted from the nvim_chad ui plugin
-	local ok, devicons = pcall(require, "nvim-web-devicons")
-	if not ok then
-		require("safdar.utils").notify("nvim-web-devicons not found")
-		return
-	end
+	local _, devicons = pcall(require, "nvim-web-devicons")
 	local custom_dev_icons = {
 		default_icon = {
 			icon = "",
@@ -154,7 +150,7 @@ local icons = function(install)
 		},
 	}
 
-	devicons.setup({
+	local setup_config = {
 		-- your personnal icons can go here (to override)
 		-- you can specify color or cterm_color instead of specifying both of them
 		-- DevIcon will be appended to `name`
@@ -165,7 +161,8 @@ local icons = function(install)
 		-- globally enable default icons (default to false)
 		-- will get overriden by `get_icons` option
 		default = false,
-	})
+	}
+	pcall(devicons.setup, setup_config)
 end
 
 return { install = icons }
