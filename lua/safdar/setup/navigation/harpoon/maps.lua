@@ -19,18 +19,29 @@ local create_popup = function()
 		return
 	end
 
-	local bufnr = 0
-	local width = vim.api.nvim_win_get_width(0) - 15
-	local height = vim.api.nvim_win_get_height(0) - 13
+	local width = 80
+	local height = 33
+	local row = 3
+	local col = 9
 
-	a.nvim_open_win(bufnr, true, {
-		relative = "win",
-		row = 5,
-		col = 8,
+	local buf = 0
+	vim.api.nvim_open_win(buf, true, {
+		col = col,
+		row = row,
 		width = width,
-		height = height,
 		border = "single",
+		height = height,
+		relative = "editor",
 	})
+
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = "terminal",
+		group = vim.api.nvim_create_augroup("harpoon float terminal", { clear = true }),
+		command = [[ lua
+				   vim.opt_local.signcolumn = 'no'
+		]],
+	})
+
 	a.nvim_feedkeys("i", "n", false)
 end
 

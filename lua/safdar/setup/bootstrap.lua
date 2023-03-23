@@ -81,7 +81,7 @@ M.bootstrap = function(setup)
 		notify("Installing Plugins")
 		lazy_installer(setup)
 
-		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#11111B" }) -- change the bg color for poup
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1f2335" }) -- change the bg color for poup
 
 		-- vim.api.nvim_buf_delete(0, { force = true }) -- close lazy window
 
