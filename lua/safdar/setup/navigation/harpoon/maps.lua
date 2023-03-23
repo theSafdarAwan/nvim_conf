@@ -1,12 +1,12 @@
 local M = {}
 local utils = require("safdar.utils")
-local a = vim.api
+local api = vim.api
 local fn = vim.fn
 local set_map = utils.set_map
 local set_buf_map = utils.set_buf_map
 local enabled_float_term = true
 
-a.nvim_create_user_command("ToggleHarpoonFloatTerm", function()
+api.nvim_create_user_command("ToggleHarpoonFloatTerm", function()
 	if enabled_float_term then
 		enabled_float_term = false
 	else
@@ -14,44 +14,76 @@ a.nvim_create_user_command("ToggleHarpoonFloatTerm", function()
 	end
 end, {})
 
+--- close poup window if it has `_is_popup` variable
+local function close_poup()
+	if pcall(api.nvim_win_get_var, 0, "_is_popup") then
+		api.nvim_win_close(0, true)
+	end
+end
+
+local group = api.nvim_create_augroup("harpoon float terminal", { clear = true })
+-- set no signcolumn for terminal file types
+api.nvim_create_autocmd("FileType", {
+	pattern = "terminal",
+	group = group,
+	command = "lua vim.opt_local.signcolumn = 'no'",
+})
+-- close poup window before leaving to another window
+api.nvim_create_autocmd("WinLeave", {
+	group = group,
+	callback = function()
+		close_poup()
+	end,
+})
+
 local create_popup = function()
 	if not enabled_float_term then
 		return
 	end
 
-	local width = 80
-	local height = 33
-	local row = 3
-	local col = 9
+	close_poup()
+
+	local opts = {
+		width = 80,
+		height = 33,
+		row = 3,
+		col = 9,
+	}
 
 	local buf = 0
-	vim.api.nvim_open_win(buf, true, {
-		col = col,
-		row = row,
-		width = width,
+	local win = api.nvim_open_win(buf, true, {
+		col = opts.col,
+		row = opts.row,
+		width = opts.width,
 		border = "single",
-		height = height,
+		height = opts.height,
 		relative = "editor",
 	})
-
-	vim.api.nvim_create_autocmd("FileType", {
-		pattern = "terminal",
-		group = vim.api.nvim_create_augroup("harpoon float terminal", { clear = true }),
-		command = [[ lua
-				   vim.opt_local.signcolumn = 'no'
-		]],
-	})
-
-	a.nvim_feedkeys("i", "n", false)
+	api.nvim_win_set_var(win, "_is_popup", true)
+	-- start insert mode after creating popup window
+	api.nvim_feedkeys("i", "n", false)
 end
 
 function M.maps()
-	set_map("n", "<leader>aa", ":lua require('harpoon.mark').add_file()<CR>")
-	set_map("n", "<leader>ah", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
-	set_map("n", "<leader>aH", ":lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>")
-	set_map("n", "<leader>aj", ":lua require('harpoon.ui').nav_file(1)<cr>")
-	set_map("n", "<leader>ak", ":lua require('harpoon.ui').nav_file(2)<cr>")
-	set_map("n", "<leader>al", ":lua require('harpoon.ui').nav_file(3)<cr>")
+	set_map("n", "<leader>aa", function()
+		require("harpoon.mark").add_file()
+	end)
+	set_map("n", "<leader>ah", function()
+		require("harpoon.ui").toggle_quick_menu()
+	end)
+	set_map("n", "<leader>aH", function()
+		require("harpoon.cmd-ui").toggle_quick_menu()
+	end)
+
+	---@diagnostic disable-next-line: lowercase-global
+	function nav_file(file_nr)
+		close_poup()
+		require("harpoon.ui").nav_file(file_nr)
+	end
+
+	set_map("n", "<leader>aj", ":lua nav_file(1)<CR>")
+	set_map("n", "<leader>ak", ":lua nav_file(2)<CR>")
+	set_map("n", "<leader>al", ":lua nav_file(3)<CR>")
 
 	-- Terminal's
 	set_map("n", "<leader>tj", function()
