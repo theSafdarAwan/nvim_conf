@@ -124,6 +124,7 @@ M.icons = {
 	Enum = "了",
 	Keyword = "",
 	Snippet = " ",
+	TabNine = "",
 	Color = "",
 	File = "",
 	Folder = "",
