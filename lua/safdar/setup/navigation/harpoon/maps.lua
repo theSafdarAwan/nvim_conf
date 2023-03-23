@@ -18,8 +18,8 @@ local create_popup = function()
 	if not enabled_float_term then
 		return
 	end
+
 	local bufnr = 0
-	-- a.nvim_create_buf(true, false)
 	local width = vim.api.nvim_win_get_width(0) - 15
 	local height = vim.api.nvim_win_get_height(0) - 13
 

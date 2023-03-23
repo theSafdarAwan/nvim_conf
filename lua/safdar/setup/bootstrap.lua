@@ -12,8 +12,7 @@ local lazy_config = {
 
 	ui = {
 		icons = {
-			-- ft = "",
-			ft = "",
+			ft = "",
 			lazy = "鈴 ",
 			loaded = "",
 			not_loaded = "",
