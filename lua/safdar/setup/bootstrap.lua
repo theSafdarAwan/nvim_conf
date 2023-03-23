@@ -17,6 +17,9 @@ local lazy_config = {
 			loaded = "",
 			not_loaded = "",
 		},
+		custom_keys = {
+			x = false,
+		},
 	},
 	concurrency = 5, ---@type number limit the maximum amount of concurrent tasks
 	dev = {
@@ -45,6 +48,9 @@ local lazy_config = {
 local lazy_installer = function(get_plugins)
 	local plugins = get_plugins()
 	require("lazy").setup(plugins, lazy_config)
+	-- disable some of the default config commands and keys
+	local config = require("lazy.view.config")
+	config.commands.clean.key_plugin = nil
 end
 
 --- bootstraps lazy.nvim

@@ -7,7 +7,7 @@ local function plugin(install)
 		keys = {
 			{ mode = "v", "S" },
 			"d",
-			"y",
+			"ys",
 			"c",
 		},
 		-- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
