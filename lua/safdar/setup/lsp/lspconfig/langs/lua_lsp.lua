@@ -1,4 +1,3 @@
-local vim = vim
 local nvim_lsp = require("lspconfig")
 local util = require("lspconfig.util")
 local utils = require("safdar.setup.lsp.utils")

@@ -1,4 +1,3 @@
-local vim = vim
 local api = vim.api
 local opt = vim.opt
 local optl = vim.opt_local

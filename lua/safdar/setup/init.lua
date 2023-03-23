@@ -1,8 +1,8 @@
-local vim = vim
-
 local function setup()
 	local lazy_config = {
-		defaults = { lazy = true },
+		defaults = {
+			lazy = true,
+		},
 		install = {},
 
 		ui = {

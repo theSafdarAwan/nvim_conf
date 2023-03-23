@@ -1,5 +1,5 @@
 -- TODO: re-write this script
-local vim = vim
+
 local api = vim.api
 local create_autocmd = api.nvim_create_autocmd
 local command = vim.api.nvim_command

@@ -2,9 +2,6 @@ local function plugins(install)
 	-- make sure impatient is loaded before any plugin
 	local _, impatient = pcall(require, "impatient")
 	pcall(impatient.enable_profile)
-	-- install({ -- my plugin to have extra power over lazy-loading
-	-- 	"TheSafdarAwan/lazy-loader.nvim",
-	-- })
 	install({
 		lazy = false,
 		"lewis6991/impatient.nvim",

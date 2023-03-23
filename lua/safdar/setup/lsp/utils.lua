@@ -1,4 +1,3 @@
-local vim = vim
 local M = {}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

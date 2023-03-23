@@ -295,21 +295,9 @@ local config = function()
 			local frame = math.floor(ms / 120) % #spinners
 
 			if percentage >= 70 then
-				return string.format(
-					" %%<%s %s %s (%s%%%%) ",
-					success_icon[frame + 1],
-					title,
-					msg,
-					percentage
-				)
+				return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
 			else
-				return string.format(
-					" %%<%s %s %s (%s%%%%) ",
-					spinners[frame + 1],
-					title,
-					msg,
-					percentage
-				)
+				return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
 			end
 		end
 

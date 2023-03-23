@@ -7,7 +7,6 @@
         This is a small plugin for enabaling spell checking in insert mode.
 --]]
 
-local vim = vim
 local api = vim.api
 local optl = vim.opt_local
 local bo = vim.bo
