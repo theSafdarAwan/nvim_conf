@@ -26,10 +26,6 @@ local function plugins(install)
 		"dstein64/vim-startuptime",
 		cmd = { "StartupTime" },
 	})
-	install({
-		"thesafdarawan/lazy-loader.nvim",
-		lazy = false,
-	})
 	----------------------------------------------------------------------
 	--                   ~> Common Libraries                            --
 	----------------------------------------------------------------------

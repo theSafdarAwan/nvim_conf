@@ -5,9 +5,6 @@
 local function setup()
 	local plugins = {}
 	local function install(plugin)
-		if plugin.lazy_loader then
-			plugin = require("safdar.utils").lazy_loader_helper(plugin)
-		end
 		table.insert(plugins, plugin)
 	end
 	local modules = {
