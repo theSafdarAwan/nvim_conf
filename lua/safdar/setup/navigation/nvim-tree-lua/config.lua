@@ -10,7 +10,7 @@ local function config()
 		return
 	end
 
-	local maps = require("safdar.setup.navigation.nvim-tree.maps")
+	local maps = require("safdar.setup.navigation.nvim-tree-lua.maps")
 
 	nvimtree.setup({
 		auto_reload_on_write = true,

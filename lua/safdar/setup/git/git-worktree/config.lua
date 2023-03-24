@@ -11,7 +11,7 @@ local function config()
 		clearjumps_on_change = true, -- default: true,
 		autopush = false, -- default: false,
 	})
-	require("safdar.setup.navigation.telescope.telescope-plugins").git_worktree()
+	require("safdar.setup.navigation.telescope-nvim.telescope-plugins").git_worktree()
 end
 
 return { config = config }

@@ -2,7 +2,7 @@ local plugin = function(install)
 	install({
 		"nvim-telescope/telescope.nvim",
 		config = function()
-			require("safdar.setup.navigation.telescope.config").config()
+			require("safdar.setup.navigation.telescope-nvim.config").config()
 		end,
 		init = function()
 			require("fused").load_plugin("telescope.nvim")
@@ -28,14 +28,14 @@ local plugin = function(install)
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 		config = function()
-			require("safdar.setup.navigation.telescope.telescope-plugins").fzf()
+			require("safdar.setup.navigation.telescope-nvim.telescope-plugins").fzf()
 		end,
 	})
 	install({
 		"LukasPietzschmann/telescope-tabs",
 		config = function()
-			require("safdar.setup.navigation.telescope.telescope-plugins").tabs()
-			require("safdar.setup.navigation.telescope.maps").telescope_plugins_maps.tabs()
+			require("safdar.setup.navigation.telescope-nvim.telescope-plugins").tabs()
+			require("safdar.setup.navigation.telescope-nvim.maps").telescope_plugins_maps.tabs()
 		end,
 	})
 end

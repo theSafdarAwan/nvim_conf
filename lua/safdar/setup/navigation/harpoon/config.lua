@@ -11,9 +11,9 @@ local config = function()
 	maps()
 
 	vim.schedule_wrap(function()
-		require("safdar.setup.navigation.telescope.telescope-plugins").harpoon()
+		require("safdar.setup.navigation.telescope-nvim.telescope-plugins").harpoon()
 		-- require the telescope config
-		require("safdar.setup.navigation.telescope.maps").telescope_plugins_maps.harpoon()
+		require("safdar.setup.navigation.telescope-nvim.maps").telescope_plugins_maps.harpoon()
 	end)
 end
 

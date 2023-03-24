@@ -4,8 +4,8 @@ local config = function()
 		require("safdar.utils").notify("Telescope not found")
 		return
 	end
-	local maps = require("safdar.setup.navigation.telescope.maps")
-	local borders = require("safdar.setup.navigation.telescope.utils").borders
+	local maps = require("safdar.setup.navigation.telescope-nvim.maps")
+	local borders = require("safdar.setup.navigation.telescope-nvim.utils").borders
 	----------------------------------------------------------------------
 	--                            Lsp Config                            --
 	----------------------------------------------------------------------
