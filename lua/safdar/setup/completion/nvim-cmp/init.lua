@@ -3,7 +3,7 @@ local function plugin(install)
 		"hrsh7th/nvim-cmp",
 		config = function()
 			require("fused").load_plugin("nvim-cmp")
-			require("safdar.setup.completion.cmp.config").config()
+			require("safdar.setup.completion.nvim-cmp.config").config()
 		end,
 		event = "InsertEnter",
 	})
@@ -11,7 +11,7 @@ local function plugin(install)
 		"hrsh7th/cmp-nvim-lsp",
 		event = "InsertEnter",
 		config = function()
-			require("safdar.setup.completion.cmp.cmp-nvim-lsp").config()
+			require("safdar.setup.completion.nvim-cmp.cmp-nvim-lsp").config()
 		end,
 	})
 	install({ "hrsh7th/cmp-buffer", event = "InsertEnter" })

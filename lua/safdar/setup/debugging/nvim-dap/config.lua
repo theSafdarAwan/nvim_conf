@@ -1,4 +1,4 @@
-local maps = require("safdar.setup.debugging.dap.maps")
+local maps = require("safdar.setup.debugging.nvim-dap.maps")
 local function config()
 	local ok, dap = pcall(require, "dap")
 	if not ok then
@@ -24,7 +24,7 @@ local function config()
 		"js-dap",
 	}
 	for _, adapters in ipairs(dapAdapters) do
-		require("safdar.setup.debugging.dap.adapters." .. adapters)
+		require("safdar.setup.debugging.nvim-dap.adapters." .. adapters)
 	end
 
 	local fn = vim.fn

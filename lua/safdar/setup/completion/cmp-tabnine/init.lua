@@ -4,7 +4,7 @@ local function plugin(install)
 		event = "InsertEnter",
 		build = "./install.sh",
 		config = function()
-			require("safdar.setup.completion.tabnine.config").config()
+			require("safdar.setup.completion.cmp-tabnine.config").config()
 		end,
 	})
 end

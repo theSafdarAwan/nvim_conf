@@ -112,7 +112,7 @@ local config = function()
 	})
 
 	-- set the source autocmd for the cmp-dictionary source
-	require("safdar.setup.completion.cmp-dictionary.config").dict_source_autocmd()
+	require("safdar.setup.completion.nvim-cmp-dictionary.config").dict_source_autocmd()
 end
 
 return { config = config }
