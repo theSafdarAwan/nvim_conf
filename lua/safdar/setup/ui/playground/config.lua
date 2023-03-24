@@ -25,7 +25,7 @@ local config = function()
 		},
 	})
 
-	require("safdar.setup.ui.ts-playground.maps")
+	require("safdar.setup.ui.playground.maps")
 end
 
 return { config = config }

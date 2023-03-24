@@ -21,7 +21,7 @@ local function plugin(install)
 		end,
 		build = ":TSUpdate",
 		config = function()
-			require("safdar.setup.ui.treesitter.config").config()
+			require("safdar.setup.ui.nvim-treesitter.config").config()
 		end,
 	})
 	-- Other Plugins
@@ -60,7 +60,7 @@ local function plugin(install)
 		end,
 	})
 
-	require("safdar.setup.ui.treesitter.text-objects").install(install)
+	require("safdar.setup.ui.nvim-treesitter.text-objects").install(install)
 end
 
 return { install = plugin }

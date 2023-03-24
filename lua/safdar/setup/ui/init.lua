@@ -12,7 +12,7 @@ local function plugins(install)
 		"feline",
 		"nvim-web-devicons",
 		"nvim-treesitter",
-		"ts-playground",
+		"playground",
 		"colorizer",
 		"vim-illuminate",
 		"indent-blank-line",

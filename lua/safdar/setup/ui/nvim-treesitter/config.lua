@@ -5,7 +5,7 @@ local config = function()
 		return
 	end
 
-	local ts_maps = require("safdar.setup.ui.treesitter.maps").treesitter_maps
+	local ts_maps = require("safdar.setup.ui.nvim-treesitter.maps").treesitter_maps
 
 	-- vim.cmd [[packadd nvim-treesitter]]
 
@@ -217,6 +217,6 @@ local config = function()
 	-- }
 	--
 
-	require("safdar.setup.ui.treesitter.maps")
+	require("safdar.setup.ui.nvim-treesitter.maps")
 end
 return { config = config }

@@ -4,7 +4,7 @@ local plugin = function(install)
 		cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
 		keys = { "gtk" },
 		config = function()
-			require("safdar.setup.ui.ts-playground.config").config()
+			require("safdar.setup.ui.playground.config").config()
 		end,
 	})
 end
