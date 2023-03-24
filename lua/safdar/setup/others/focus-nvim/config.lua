@@ -11,6 +11,6 @@ local function config()
 		cursorline = false,
 		signcolumn = false,
 	})
-	require("safdar.setup.others.focus.maps")
+	require("safdar.setup.others.focus-nvim.maps")
 end
 return { config = config }

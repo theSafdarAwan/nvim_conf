@@ -3,7 +3,7 @@ local function plugin(install)
 		"beauwilliams/focus.nvim",
 		keys = { "gF", "go", "g," },
 		config = function()
-			require("safdar.setup.others.focus.config").config()
+			require("safdar.setup.others.focus-nvim.config").config()
 		end,
 		cmd = { "FocusToggle", "FocusEnable" },
 	})

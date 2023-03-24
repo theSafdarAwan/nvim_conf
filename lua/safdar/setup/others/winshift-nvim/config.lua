@@ -88,7 +88,7 @@ local function config()
 			})
 		end,
 	})
-	require("safdar.setup.others.winshift.maps")
+	require("safdar.setup.others.winshift-nvim.maps")
 end
 
 return { config = config }

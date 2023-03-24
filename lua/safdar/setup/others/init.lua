@@ -11,6 +11,10 @@
 ---@field vim_be_good Plugin ThePrimeagen Plugin for improving movement in nvim.
 ---@field nvim_spectre Plugin replacing text utility plugin like vscode replace option.
 ---@field refactoring_nvim Plugin ThePrimeagen plugin for refactoring code.
+---@field nvim_window_picker Plugin window picker like tmux option for picking windows.
+---@field winshift_nvim Plugin moving|shifting window's easily.
+---@field focus_nvim Plugin focus the current window, has different layouts for
+--- focusing it is same as the tmux layouts.
 
 ---@param install function
 local plugins = function(install)
@@ -37,8 +41,8 @@ local plugins = function(install)
 		--                        Window Management                         --
 		----------------------------------------------------------------------
 		"nvim-window-picker",
-		"winshift",
-		"focus",
+		"winshift-nvim",
+		"focus-nvim",
 	}
 
 	for _, plugin in pairs(Plugins) do
