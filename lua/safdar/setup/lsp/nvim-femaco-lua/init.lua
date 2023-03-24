@@ -5,7 +5,7 @@ local function plugin(install)
 		ft = { "md", "norg" },
 		config = function()
 			require("femaco").setup()
-			require("safdar.setup.nvim-femaco-lua.maps")
+			require("safdar.setup.lsp.nvim-femaco-lua.maps")
 		end,
 	})
 end

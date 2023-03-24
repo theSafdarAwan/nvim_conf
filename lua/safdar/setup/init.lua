@@ -21,6 +21,7 @@ local function setup()
 	for _, module in pairs(modules) do
 		require("safdar.setup." .. module).get_plugins(install)
 	end
+
 	return plugins
 end
 require("safdar.setup.bootstrap").bootstrap(setup)

@@ -484,7 +484,4 @@ local config = function()
 	})
 end
 
--- TODO: add autocmd to realod
--- local autocmd = vim.api.nvim_create_autocmd("Feline")
-
 return { config = config }
