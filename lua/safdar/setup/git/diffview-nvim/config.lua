@@ -4,7 +4,7 @@ local function config()
 		require("safdar.utils").notify("diffview.nvim not found")
 	end
 
-	local mappings = require("safdar.setup.git.diffview.maps")
+	local mappings = require("safdar.setup.git.diffview-nvim.maps")
 
 	diffview.setup({
 		diff_binaries = false,

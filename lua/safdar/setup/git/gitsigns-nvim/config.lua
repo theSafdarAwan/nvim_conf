@@ -1,6 +1,6 @@
 local config = function()
 	require("gitsigns").setup({
-		on_attach = require("safdar.setup.git.gitsigns.maps").mappings,
+		on_attach = require("safdar.setup.git.gitsigns-nvim.maps").mappings,
 		sign_priority = 5,
 		signs = {
 			add = { hl = "DiffAdd", text = "┃", numhl = "GitSignsAddNr" },

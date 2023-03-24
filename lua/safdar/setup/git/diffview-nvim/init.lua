@@ -6,7 +6,7 @@ local plugin = function(install)
 			require("fused").load_plugin("diffview.nvim")
 		end,
 		config = function()
-			require("safdar.setup.git.diffview.config").config()
+			require("safdar.setup.git.diffview-nvim.config").config()
 		end,
 	})
 end

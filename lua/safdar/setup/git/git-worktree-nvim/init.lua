@@ -5,7 +5,7 @@ local function plugin(install)
 			"<leader>gw",
 		},
 		config = function()
-			require("safdar.setup.git.git-worktree.config").config()
+			require("safdar.setup.git.git-worktree-nvim.config").config()
 		end,
 	})
 end

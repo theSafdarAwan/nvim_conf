@@ -2,7 +2,7 @@ local function plugin(install)
 	install({
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("safdar.setup.git.gitsigns.config").config()
+			require("safdar.setup.git.gitsigns-nvim.config").config()
 		end,
 		init = function()
 			vim.api.nvim_create_autocmd("BufRead", {
