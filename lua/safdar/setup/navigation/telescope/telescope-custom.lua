@@ -2,7 +2,7 @@ local M = {}
 
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
-local borders = require("safdar.utils.telescope").borders
+local borders = require("safdar.setup.navigation.telescope.utils").borders
 
 ----------------------------------------------------------------------
 --                     Telescope Custom Pickers                     --

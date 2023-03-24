@@ -34,7 +34,7 @@ local lazy_config = {
 		-- * git: will run git diff and open a buffer with filetype git
 		-- * terminal_git: will open a pseudo terminal with git diff
 		-- * diffview.nvim: will open Diffview to show the diff
-		cmd = "diffview.nvim",
+		cmd = "git",
 	},
 	change_detection = {
 		-- automatically check for config file changes and reload the ui

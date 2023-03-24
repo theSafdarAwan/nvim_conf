@@ -5,7 +5,7 @@ local config = function()
 		return
 	end
 	local maps = require("safdar.setup.navigation.telescope.maps")
-	local borders = require("safdar.utils.telescope").borders
+	local borders = require("safdar.setup.navigation.telescope.utils").borders
 	----------------------------------------------------------------------
 	--                            Lsp Config                            --
 	----------------------------------------------------------------------

@@ -27,8 +27,8 @@ local function plugins(install)
 	----------------------------------------------------------------------
 	--                   ~> Common Libraries                            --
 	----------------------------------------------------------------------
-	install({ "nvim-lua/plenary.nvim", lazy = false })
-	install({ "nvim-lua/popup.nvim", lazy = false })
+	install({ "nvim-lua/plenary.nvim" })
+	install({ "nvim-lua/popup.nvim" })
 
 	-- install the nvim-notify
 	require("safdar.setup.core.notify").install(install)
