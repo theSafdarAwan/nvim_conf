@@ -4,7 +4,7 @@ local function plugin(install)
 		branch = "master",
 		dependencies = { { "nvim-lua/plenary.nvim" } },
 		config = function()
-			require("safdar.utils").fused("renamer.nvim")
+			require("fused").load_plugin("renamer.nvim")
 			require("safdar.setup.lsp.renamer.config").config()
 		end,
 		keys = { "yr" },

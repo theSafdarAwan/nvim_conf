@@ -163,7 +163,7 @@ local icons = function(install)
 			pcall(devicons.setup, setup_config)
 		end,
 		init = function()
-			require("safdar.utils").fused("nvim-web-devicons")
+			require("fused").load_plugin("nvim-web-devicons")
 		end,
 	}) -- icons for the nvim
 end

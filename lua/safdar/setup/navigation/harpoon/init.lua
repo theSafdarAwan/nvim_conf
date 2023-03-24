@@ -5,7 +5,7 @@ local function plugin(install)
 		keys = maps.keys,
 		"ThePrimeagen/harpoon",
 		init = function()
-			require("safdar.utils").fused("harpoon")
+			require("fused").load_plugin("harpoon")
 		end,
 		config = function()
 			require("safdar.setup.navigation.harpoon.config").config()

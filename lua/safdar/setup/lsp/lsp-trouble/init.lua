@@ -3,7 +3,7 @@ local function plugin(install)
 		"folke/trouble.nvim",
 		keys = { mode = "n", "[" },
 		config = function()
-			require("safdar.utils").fused("trouble.nvim")
+			require("fused").load_plugin("trouble.nvim")
 			require("safdar.setup.lsp.lsp-trouble.config").config()
 		end,
 	})

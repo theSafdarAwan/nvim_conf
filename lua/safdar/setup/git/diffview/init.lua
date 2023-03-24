@@ -3,7 +3,7 @@ local plugin = function(install)
 		keys = { "ygd", "ygD" },
 		"sindrets/diffview.nvim",
 		init = function()
-			require("safdar.utils").fused("diffview.nvim")
+			require("fused").load_plugin("diffview.nvim")
 		end,
 		config = function()
 			require("safdar.setup.git.diffview.config").config()

@@ -19,7 +19,7 @@ local plugin = function(install)
 		end,
 		dependencies = { "nvim-web-devicons" },
 		config = function()
-			require("safdar.utils").fused("nvim-tree.lua")
+			require("fused").load_plugin("nvim-tree.lua")
 			require("safdar.setup.navigation.nvim-tree.config").config()
 		end,
 	})

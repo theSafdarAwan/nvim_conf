@@ -2,7 +2,7 @@ local function plugin(install)
 	install({
 		"hrsh7th/nvim-cmp",
 		config = function()
-			require("safdar.utils").fused("nvim-cmp")
+			require("fused").load_plugin("nvim-cmp")
 			require("safdar.setup.completion.cmp.config").config()
 		end,
 		event = "InsertEnter",

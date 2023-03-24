@@ -3,7 +3,7 @@ local function plugin(install)
 		"TimUntersberger/neogit",
 		keys = { "ygn", "ygc" },
 		config = function()
-			require("safdar.utils").fused("neogit")
+			require("fused").load_plugin("neogit")
 			require("safdar.setup.git.neogit.config").config()
 		end,
 	})

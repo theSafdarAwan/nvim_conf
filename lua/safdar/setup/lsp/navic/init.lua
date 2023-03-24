@@ -3,7 +3,7 @@ local function plugin(install)
 		"SmiteshP/nvim-navic",
 		event = "BufRead",
 		config = function()
-			require("safdar.utils").fused("nvim-navic")
+			require("fused").load_plugin("nvim-navic")
 			require("safdar.setup.lsp.navic.config").config()
 		end,
 	})

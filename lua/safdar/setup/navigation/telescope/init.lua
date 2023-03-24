@@ -5,7 +5,7 @@ local plugin = function(install)
 			require("safdar.setup.navigation.telescope.config").config()
 		end,
 		init = function()
-			require("safdar.utils").fused("telescope.nvim")
+			require("fused").load_plugin("telescope.nvim")
 		end,
 		keys = {
 			"<leader>f",

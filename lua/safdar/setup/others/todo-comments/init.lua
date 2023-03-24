@@ -3,7 +3,7 @@ local function plugin(install)
 		"folke/todo-comments.nvim",
 		event = "BufEnter",
 		config = function()
-			require("safdar.utils").fused("todo-comments.nvim")
+			require("fused").load_plugin("todo-comments.nvim")
 			require("safdar.setup.others.todo-comments.config").config()
 		end,
 	})

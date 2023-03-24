@@ -174,7 +174,7 @@ local function config()
 	})
 
 	require("safdar.setup.writing.neorg.maps")
-	require("safdar.utils").fused("neorg")
+	require("fused").load_plugin("neorg")
 
 	local optl = vim.opt_local
 	local api = vim.api

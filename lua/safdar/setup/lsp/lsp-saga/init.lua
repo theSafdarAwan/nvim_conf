@@ -11,7 +11,7 @@ local function plugin(install)
 		},
 		config = function()
 			require("safdar.setup.lsp.lsp-saga.config").config()
-			require("safdar.utils").fused("lspsaga.nvim")
+			require("fused").load_plugin("lspsaga.nvim")
 		end,
 	})
 end

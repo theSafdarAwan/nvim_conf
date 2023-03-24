@@ -4,7 +4,7 @@ local function plugin(install)
 		priority = 1000,
 		"nvim-treesitter/nvim-treesitter",
 		init = function()
-			require("safdar.utils").fused("nvim-treesitter")
+			require("fused").load_plugin("nvim-treesitter")
 			-- vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
 			-- 	group = vim.api.nvim_create_augroup("lazy load treesitter", {}),
 			-- 	callback = function()
@@ -36,7 +36,7 @@ local function plugin(install)
 		"HiPhish/nvim-ts-rainbow2",
 		event = "BufRead",
 		init = function()
-			require("safdar.utils").fused("nvim-ts-rainbow2")
+			require("fused").load_plugin("nvim-ts-rainbow2")
 		end,
 	})
 	install({
