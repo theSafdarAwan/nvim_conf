@@ -8,7 +8,7 @@
 ---@field nvim_autopairs Plugin autopair {['" and other punctuations.
 
 local function plugins(install)
-	local plugin_list = {
+	local Plugins = {
 		"nvim-cmp",
 		"luasnip",
 		"cmp-tabnine",
@@ -16,7 +16,7 @@ local function plugins(install)
 		"nvim-autopairs",
 	}
 
-	for _, plugin in pairs(plugin_list) do
+	for _, plugin in pairs(Plugins) do
 		require("safdar.setup.completion." .. plugin).install(install)
 	end
 end

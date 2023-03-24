@@ -18,8 +18,8 @@ local function setup()
 		"debugging",
 		"writing",
 	}
-	for _, mod in pairs(modules) do
-		require("safdar.setup." .. mod).get_plugins(install)
+	for _, module in pairs(modules) do
+		require("safdar.setup." .. module).get_plugins(install)
 	end
 	return plugins
 end

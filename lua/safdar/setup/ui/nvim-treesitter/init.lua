@@ -1,3 +1,4 @@
+--- This Plugins module includes plugins related to treesitter
 local function plugin(install)
 	install({
 		lazy = false,
