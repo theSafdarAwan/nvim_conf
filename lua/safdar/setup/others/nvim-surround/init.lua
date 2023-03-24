@@ -4,12 +4,7 @@ local function plugin(install)
 		config = function()
 			require("safdar.setup.others.nvim-surround.config").config()
 		end,
-		keys = {
-			{ mode = "v", "S" },
-			"d",
-			"ys",
-			"c",
-		},
+		event = "BufRead"
 		-- tag = "main", -- Use for stability; omit to use `main` branch for the latest features
 	})
 end

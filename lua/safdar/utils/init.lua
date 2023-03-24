@@ -67,4 +67,75 @@ M.notify = function(message)
 	end
 end
 
+--- I had to write my own keymap lazy loader because lazy.nvim doesn't behave the
+--- way i want it to behave for keys lazy loading.
+---@param plugin_tbl table plugin spec same as lazy.nvim we only need two field
+---@field plugin_tbl.config function config to load which should also have the
+--- maps which we need to load.
+---@field plugin_tbl.keys table|string keys or single key.
+M.keymap_lazy_load = function(plugin_tbl)
+	plugin_tbl = vim.deepcopy(plugin_tbl)
+	local fn = vim.fn
+	local api = vim.api
+
+	local function set_key(key)
+		vim.keymap.set(key.mode, key.bind, function()
+			-- delete the lazy map otherwise you will be in endless loop.
+			vim.keymap.del(key.mode, key.bind)
+			require("lazy").load({ plugins = { plugin_tbl.name } })
+			plugin_tbl.config()
+
+			local extra = ""
+			while true do
+				local c = fn.getchar(0)
+				if c == 0 then
+					break
+				end
+				extra = extra .. fn.nr2char(c)
+			end
+
+			local prefix = vim.v.count ~= 0 and vim.v.count or ""
+			prefix = prefix .. "\"" .. vim.v.register
+			if fn.mode("full") == "no" then
+				if vim.v.operator == "c" then
+					prefix = "" .. prefix
+				end
+				prefix = prefix .. vim.v.operator
+			end
+
+			fn.feedkeys(prefix, "n")
+
+			local escaped_keys = api.nvim_replace_termcodes(key.bind .. extra, true, true, true)
+			api.nvim_feedkeys(escaped_keys, "m", true)
+		end, key.opts)
+	end
+
+	local keys = plugin_tbl.keys
+	if type(plugin_tbl.keys) == "table" then
+		for _, key in pairs(keys) do
+			local mode = "n"
+			local bind = key
+			if type(key) == "table" then
+				if key.mode then
+					mode = key.mode
+				end
+				bind = key[1]
+			end
+			local keybind = {
+				mode = mode,
+				bind = bind,
+				opts = key.opts or { noremap = true, silent = true },
+			}
+			set_key(keybind)
+		end
+	elseif type(plugin_tbl.keys) == "string" then
+		local keybind = {
+			mode = "n",
+			bind = plugin_tbl.keys,
+			opts = { noremap = true, silent = true },
+		}
+		set_key(keybind)
+	end
+end
+
 return M
