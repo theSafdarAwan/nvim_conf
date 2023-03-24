@@ -5,12 +5,6 @@
 local function setup()
 	local plugins = {}
 	local function install(plugin)
-		if plugin.keys then
-			require("safdar.utils").keymap_lazy_load(plugin)
-			-- remove from the lazy.nvim spec
-			plugin.config = nil
-			plugin.keys = nil
-		end
 		table.insert(plugins, plugin)
 	end
 	local modules = {
