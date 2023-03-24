@@ -64,7 +64,7 @@ local function config()
 		},
 	})
 
-	require("safdar.setup.others.todo-comments.maps")
+	require("safdar.setup.others.todo-comments-nvim.maps")
 end
 
 return { config = config }

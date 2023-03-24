@@ -4,7 +4,7 @@ local function plugin(install)
 		event = "BufEnter",
 		config = function()
 			require("fused").load_plugin("todo-comments.nvim")
-			require("safdar.setup.others.todo-comments.config").config()
+			require("safdar.setup.others.todo-comments-nvim.config").config()
 		end,
 	})
 end

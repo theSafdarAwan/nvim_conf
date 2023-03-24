@@ -37,7 +37,7 @@ local config = function()
 		-- configurations for individual language goes here
 		languages = {},
 	})
-	require("safdar.setup.others.comment-frame.maps").maps()
+	require("safdar.setup.others.nvim-comment-frame.maps").maps()
 end
 
 return { config = config }

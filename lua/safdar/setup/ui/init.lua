@@ -1,13 +1,13 @@
 --- This Plugins module includes plugins related to UI.
 
 ---@table Plugins
----@field fused string color scheme.
----@field feline string status line.
----@field nvim_web_devicons string nice icons for file types.
----@field nvim_treesitter string better syntax highlights for files.
----@field nvim_colorizer_lua string colorize the colors in your editor.
----@field vim_illuminate string Highlight word under the cursor and generate movement text-objects.
----@field indent_blankline_nvim string adds context line for the indentations.
+---@field fused Plugin color scheme.
+---@field feline Plugin status line.
+---@field nvim_web_devicons Plugin nice icons for file types.
+---@field nvim_treesitter Plugin better syntax highlights for files.
+---@field nvim_colorizer_lua Plugin colorize the colors in your editor.
+---@field vim_illuminate Plugin Highlight word under the cursor and generate movement text-objects.
+---@field indent_blankline_nvim Plugin adds context line for the indentations.
 
 local function plugins(install)
 	local Plugins = {

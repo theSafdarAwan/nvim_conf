@@ -6,7 +6,7 @@ local function plugin(install)
 		},
 		"s1n7ax/nvim-comment-frame",
 		config = function()
-			require("safdar.setup.others.comment-frame.config").config()
+			require("safdar.setup.others.nvim-comment-frame.config").config()
 		end,
 	})
 end

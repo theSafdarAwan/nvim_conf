@@ -3,7 +3,7 @@ local function plugin(install)
 		"ThePrimeagen/refactoring.nvim",
 		keys = { "v", "V" },
 		config = function()
-			require("safdar.setup.others.refactoring.maps")
+			require("safdar.setup.others.refactoring-nvim.maps")
 		end,
 	})
 end

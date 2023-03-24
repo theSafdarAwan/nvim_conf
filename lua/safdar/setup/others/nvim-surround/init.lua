@@ -2,7 +2,7 @@ local function plugin(install)
 	install({
 		"kylechui/nvim-surround",
 		config = function()
-			require("safdar.setup.others.surround.config").config()
+			require("safdar.setup.others.nvim-surround.config").config()
 		end,
 		keys = {
 			{ mode = "v", "S" },
