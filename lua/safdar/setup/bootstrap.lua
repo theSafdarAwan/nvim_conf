@@ -1,3 +1,4 @@
+--- Bootstrapping lazy.nvim, up and running.
 local M = {}
 
 --- lazy.nvim configuration
@@ -43,7 +44,7 @@ local lazy_config = {
 	},
 }
 
---- installs plugins
+--- loads lazy.nvim and passes plugins table and config table.
 ---@param get_plugins function get's plugins
 local lazy_installer = function(get_plugins)
 	local plugins = get_plugins()

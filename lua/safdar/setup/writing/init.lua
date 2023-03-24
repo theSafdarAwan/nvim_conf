@@ -1,3 +1,6 @@
+--- This modules includes plugins related to writing.
+
+---@param install function
 local function plugins(install)
 	local plugin_list = {
 		"neorg",

@@ -7,7 +7,7 @@ M.default = function()
 	require("safdar.default")
 end
 
---- main function for adding plugins
+--- load PDE(Personal Development Environment).
 M.setup = function()
 	require("safdar.setup")
 end

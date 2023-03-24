@@ -1,4 +1,6 @@
---- setup function adds plugins to the stack
+--- Loads plugins modules using lazy.nvim
+
+--- Requires plugins modules.
 ---@return table plugins.
 local function setup()
 	local plugins = {}
@@ -21,5 +23,4 @@ local function setup()
 	end
 	return plugins
 end
-
 require("safdar.setup.bootstrap").bootstrap(setup)
