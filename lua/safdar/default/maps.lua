@@ -22,7 +22,9 @@ set_map("n", "gls", function()
 end)
 
 set_map("n", "glw", function()
-	local lua_mod = vim.fn.system("git rev-parse --show-toplevel") .. "/lua"
+	-- lua module
+	local lua_mod = vim.fn.system("git rev-parse --show-toplevel")
+	lua_mod = string.sub(lua_mod, 1, #lua_mod - 1) .. "/lua/"
 	vim.fn.system("ldoc " .. lua_mod)
 end)
 
@@ -74,7 +76,7 @@ set_map("n", "<A-h>", "zh")
 set_map("n", "<C-m>", ":messages<CR>")
 
 -- Paster From the system clipboard
-set_map("n", "<leader>p", '"+p')
+set_map("n", "<leader>p", "\"+p")
 --
 -- Paste onto the selection and don't copy the selection to the reg
 set_map("v", "<leader>p", "_dP")
@@ -87,14 +89,14 @@ set_map("n", "<ESC>", ":noh<cr><c-l>")
 
 -- use backspace to change the selection
 -- only for the @luasnip selection
-set_map("v", "<BS>", '"_c')
+set_map("v", "<BS>", "\"_c")
 
 -- Indentation
 set_map("v", "<", "<gv")
 set_map("v", ">", ">gv")
 
 -- delete into the void in visual mode
-set_map("v", "D", '"_d')
+set_map("v", "D", "\"_d")
 
 -- Resize the buffer window
 set_map("n", "<leader>=", ":vertical resize +5<cr>")
