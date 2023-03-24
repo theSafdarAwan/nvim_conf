@@ -53,18 +53,70 @@ M.set_buf_opt = function(buffer, name, value)
 	vim.api.nvim_buf_set_option(buffer, name, value)
 end
 
-M.notify = function(notify_tbl_or_msg)
+M.notify = function(message)
 	local msg
-	if type(notify_tbl_or_msg) == "string" then
-		msg = notify_tbl_or_msg
+	if type(message) == "string" then
+		msg = message
 	end
-	if notify_tbl_or_msg then
+	if message then
 		require("notify").setup({
 			background_colour = "#1f2335",
 		})
-		local level = notify_tbl_or_msg.level or vim.log.levels.WARN -- vim.api.nvim_notify(notify.msg or msg, notify.level or level, notify.opts or {})
-		require("notify")(notify_tbl_or_msg.msg or msg, level, notify_tbl_or_msg.opts or {})
+		local level = message.level or vim.log.levels.WARN -- vim.api.nvim_notify(notify.msg or msg, notify.level or level, notify.opts or {})
+		require("notify")(message.msg or msg, level, message.opts or {})
 	end
+end
+
+--- lazy-loader.nvim helper function
+---@param plugin table plugin info
+---@return table transformed plugin table compatible for lazy.nvim
+M.lazy_loader_helper = function(plugin)
+	local loader_tbl = {}
+	loader_tbl.on_load = {}
+
+	local plugin_name = plugin[1]
+	local i = string.find(plugin_name, "/", 1) + 1
+	plugin_name = string.sub(plugin_name, i, -1)
+	loader_tbl.name = plugin_name
+
+	if plugin.event or plugin.ft or plugin.ft_ext then
+		loader_tbl.autocmd = {}
+	end
+	if plugin.event then
+		loader_tbl.autocmd.event = plugin.event
+		plugin.event = nil
+	end
+	if plugin.ft then
+		loader_tbl.autocmd.ft = plugin.ft
+		plugin.ft = nil
+	end
+	if plugin.ft_ext then
+		loader_tbl.autocmd.ft_ext = plugin.ft_ext
+		plugin.ft_ext = nil
+	end
+
+	if plugin.keys then
+		loader_tbl.keymap = {}
+		loader_tbl.keymap.keys = plugin.keys
+		plugin.keys = nil
+	end
+
+	if plugin.config then
+		loader_tbl.on_load.config = plugin.config
+		plugin.config = nil
+	end
+
+	if plugin.cmds then
+		loader_tbl.cmds = plugin.cmds
+		plugin.cmds = nil
+	end
+	-- lazy.nvim installation path
+	local lazy_loader_path = vim.fn.stdpath("data") .. "/lazy/lazy-loader.nvim"
+	vim.opt.rtp:prepend(lazy_loader_path)
+	require("lazy-loader").load(loader_tbl)
+
+	plugin.lazy_loader = nil
+	return plugin
 end
 
 return M

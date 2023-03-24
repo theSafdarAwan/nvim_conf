@@ -7,7 +7,6 @@ local fn = vim.fn
 local utils = require("safdar.utils")
 local set_map = utils.set_map
 
--- NOTE: this is just for fun to test the limits of neovim
 local function c_debugger()
 	command("new")
 	-- get the bufid

@@ -18,12 +18,14 @@ local function plugin(install)
 
 	install({
 		"hrsh7th/cmp-nvim-lua",
+		lazy_loader = true,
+		event = { "InsertEnter" },
 		ft = "lua",
 	})
 	install({ "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" })
 	install({
 		"hrsh7th/cmp-emoji",
-		keys = "i",
+		keys = { mode = "i", ":" },
 	})
 end
 
