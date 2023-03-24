@@ -4,7 +4,10 @@
 ---@field fused string color scheme.
 ---@field feline string status line.
 ---@field nvim_web_devicons string nice icons for file types.
----@field nvim_treesitter string highlights for files.
+---@field nvim_treesitter string better syntax highlights for files.
+---@field nvim_colorizer_lua string colorize the colors in your editor.
+---@field vim_illuminate string Highlight word under the cursor and generate movement text-objects.
+---@field indent_blankline_nvim string adds context line for the indentations.
 
 local function plugins(install)
 	local Plugins = {
@@ -13,9 +16,9 @@ local function plugins(install)
 		"nvim-web-devicons",
 		"nvim-treesitter",
 		"playground",
-		"colorizer",
+		"nvim-colorizer-lua",
 		"vim-illuminate",
-		"indent-blank-line",
+		"indent-blankline-nvim",
 	}
 
 	local temp_plugins = {

@@ -3,7 +3,7 @@ local function plugin(install)
 		event = "CursorMoved",
 		"norcalli/nvim-colorizer.lua",
 		config = function()
-			require("safdar.setup.ui.colorizer.config").config()
+			require("safdar.setup.ui.nvim-colorizer-lua.config").config()
 		end,
 	})
 end

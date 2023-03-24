@@ -6,7 +6,7 @@ local function plugin(install)
 			require("fused").load_plugin("indent-blankline.nvim")
 		end,
 		config = function()
-			require("safdar.setup.ui.indent-blank-line.config").config()
+			require("safdar.setup.ui.indent-blankline-nvim.config").config()
 		end,
 	})
 end
