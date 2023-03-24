@@ -87,7 +87,7 @@ M.bootstrap = function(setup)
 		-- vim.api.nvim_buf_delete(0, { force = true }) -- close lazy window
 
 		-- install binaries from mason.nvim & tsparsers
-		require("safdar.setup.lsp.mason.config").mason_installer()
+		require("safdar.setup.lsp.mason-nvim.config").mason_installer()
 		vim.defer_fn(function()
 			vim.cmd("silent! MasonInstallAll")
 		end, 0)

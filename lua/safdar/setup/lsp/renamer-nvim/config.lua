@@ -5,7 +5,7 @@ local function config()
 		return
 	end
 
-	local mappings = require("safdar.setup.lsp.renamer.maps")
+	local mappings = require("safdar.setup.lsp.renamer-nvim.maps")
 	renamer.setup({
 		-- The popup title, shown if `border` is true
 		title = "Rename",

@@ -3,7 +3,7 @@ local function plugin(install)
 		"ray-x/lsp_signature.nvim",
 		event = "InsertEnter",
 		config = function()
-			require("safdar.setup.lsp.lsp-signature.config").config()
+			require("safdar.setup.lsp.lsp-signature-nvim.config").config()
 		end,
 	})
 end

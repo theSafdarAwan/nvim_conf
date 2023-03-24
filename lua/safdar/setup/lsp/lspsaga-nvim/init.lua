@@ -10,7 +10,7 @@ local function plugin(install)
 			"gd",
 		},
 		config = function()
-			require("safdar.setup.lsp.lsp-saga.config").config()
+			require("safdar.setup.lsp.lspsaga-nvim.config").config()
 			require("fused").load_plugin("lspsaga.nvim")
 		end,
 	})

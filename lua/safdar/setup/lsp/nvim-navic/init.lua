@@ -4,7 +4,7 @@ local function plugin(install)
 		event = "BufRead",
 		config = function()
 			require("fused").load_plugin("nvim-navic")
-			require("safdar.setup.lsp.navic.config").config()
+			require("safdar.setup.lsp.nvim-navic.config").config()
 		end,
 	})
 end

@@ -39,7 +39,7 @@ local function config()
 		use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
 	})
 
-	require("safdar.setup.lsp.lsp-trouble.maps")
+	require("safdar.setup.lsp.trouble-nvim.maps")
 end
 
 return { config = config }

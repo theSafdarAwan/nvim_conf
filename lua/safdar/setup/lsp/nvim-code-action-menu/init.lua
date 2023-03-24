@@ -4,7 +4,7 @@ local function plugin(install)
 		keys = { "<C-a>" },
 		"weilbith/nvim-code-action-menu",
 		config = function()
-			require("safdar.setup.lsp.lsp-code-action-menu.maps")
+			require("safdar.setup.lsp.nvim-code-action-menu.maps")
 		end,
 	})
 end

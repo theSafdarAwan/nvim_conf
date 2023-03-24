@@ -7,7 +7,7 @@ local plugin = function(install)
 		event = "BufRead",
 		"neovim/nvim-lspconfig",
 		config = function()
-			require("safdar.setup.lsp.lspconfig.config").config()
+			require("safdar.setup.lsp.nvim-lspconfig.config").config()
 		end,
 	})
 end

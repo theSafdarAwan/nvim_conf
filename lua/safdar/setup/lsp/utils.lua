@@ -21,7 +21,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 M.capabilities = capabilities
 
 M.on_attach = function(client, bufnr)
-	require("safdar.setup.lsp.lspconfig.maps").on_attach(client, bufnr)
+	require("safdar.setup.lsp.nvim-lspconfig.maps").on_attach(client, bufnr)
 
 	-- if client.server_capabilities.semanticTokensProvider then
 	-- 	client.server_capabilities.semanticTokensProvider.full = false

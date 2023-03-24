@@ -68,13 +68,13 @@ local config = function()
 		"stylelint_lsp_lsp",
 	}
 	for _, lang in ipairs(langs_conf_files) do
-		require("safdar.setup.lsp.lspconfig.langs." .. lang)
+		require("safdar.setup.lsp.nvim-lspconfig.langs." .. lang)
 	end
 
 	require("safdar.setup.lsp.lsp-ui")
 
 	-- add the mappings
-	require("safdar.setup.lsp.lspconfig.maps")
+	require("safdar.setup.lsp.nvim-lspconfig.maps")
 
 	-- now this is done in on_attach function
 	--[[ --=======================================================

@@ -21,10 +21,10 @@ local config = function()
 				package_uninstalled = "✗",
 			},
 
-			keymaps = require("safdar.setup.lsp.mason.maps").mason_maps(),
+			keymaps = require("safdar.setup.lsp.mason-nvim.maps").mason_maps(),
 		},
 	})
-	require("safdar.setup.lsp.mason.maps").maps()
+	require("safdar.setup.lsp.mason-nvim.maps").maps()
 end
 
 local mason_installer = function()

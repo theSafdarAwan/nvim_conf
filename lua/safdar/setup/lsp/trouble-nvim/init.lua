@@ -4,7 +4,7 @@ local function plugin(install)
 		keys = { mode = "n", "[" },
 		config = function()
 			require("fused").load_plugin("trouble.nvim")
-			require("safdar.setup.lsp.lsp-trouble.config").config()
+			require("safdar.setup.lsp.trouble-nvim.config").config()
 		end,
 	})
 end
