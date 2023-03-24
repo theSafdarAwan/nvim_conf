@@ -153,12 +153,14 @@ local function config()
 		end)
 	end
 
-	local extended_keys = { "d", "c" }
-	for _, key in ipairs(extended_keys) do
-		vim.keymap.set("n", key, function()
-			text_manipulation_text_objects(key, text_manipulation_text_objects)
-		end, map_opts)
-	end
+	vim.defer_fn(function()
+		local extended_keys = { "d", "c" }
+		for _, key in ipairs(extended_keys) do
+			vim.keymap.set("n", key, function()
+				text_manipulation_text_objects(key, text_manipulation_text_objects)
+			end, map_opts)
+		end
+	end, 0)
 end
 
 return { config = config }
