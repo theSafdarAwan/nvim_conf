@@ -141,7 +141,8 @@ local function config()
 				break
 			end
 			if #chars == 1 and c ~= 97 and c ~= 105 then
-				break
+				vim.api.nvim_feedkeys(extended_key .. chars, "t", false)
+				return
 			end
 		end
 

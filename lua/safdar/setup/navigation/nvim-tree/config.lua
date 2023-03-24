@@ -188,19 +188,6 @@ local function config()
 		},
 	})
 
-	local api = vim.api
-	local fn = vim.fn
-	local autocmd = api.nvim_create_autocmd
-	local augroup = api.nvim_create_augroup("nvim-tree open", { clear = true })
-	local function open_nvim_tree()
-		if #vim.bo.filetype < 1 then
-			local path = fn.argv()[1]
-			require("nvim-tree.api").tree.open({ path = path })
-		end
-		api.nvim_del_augroup_by_id(augroup)
-	end
-	autocmd({ "BufWinEnter" }, { group = augroup, callback = open_nvim_tree })
-
 	maps.mappings()
 end
 
