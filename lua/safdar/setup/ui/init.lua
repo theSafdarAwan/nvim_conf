@@ -1,18 +1,32 @@
+--- This Plugins module includes plugins related to UI.
+
+---@table Plugins
+---@field fused string color scheme.
+---@field feline string status line.
+---@field nvim_web_devicons string nice icons for file types.
+---@field nvim_treesitter string highlights for files.
+
 local function plugins(install)
-	local plugin_list = {
+	local Plugins = {
 		"fused",
-		"monokai-pro",
 		"feline",
-		"devicons",
-		"treesitter",
+		"nvim-web-devicons",
+		"nvim-treesitter",
 		"ts-playground",
 		"colorizer",
-		"themes",
 		"vim-illuminate",
 		"indent-blank-line",
 	}
 
-	for _, plugin in pairs(plugin_list) do
+	local temp_plugins = {
+		"monokai-pro",
+		"themes",
+	}
+	for _, plugin in ipairs(temp_plugins) do
+		table.insert(Plugins, plugin)
+	end
+
+	for _, plugin in pairs(Plugins) do
 		require("safdar.setup.ui." .. plugin).install(install)
 	end
 end
