@@ -205,7 +205,7 @@ local config = function()
 		}, ---@see section on views
 		---@type NoiceRouteConfig[]
 		routes = {
-			{ -- redirect the showmode messages to the mini
+			{
 				view = "mini",
 				filter = {
 					any = {
