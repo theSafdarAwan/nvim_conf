@@ -220,6 +220,14 @@ local config = function()
 					},
 				},
 			},
+			{
+				filter = { event = "msg_show", max_length = 1 },
+				opts = { skip = true },
+			},
+			{
+				view = "mini",
+				filter = { event = "msg_show", find = "Select a command" }, -- select menu
+			},
 		}, --- @see section on routes
 		---@type table<string, NoiceFilter>
 		status = {}, --- @see section on statusline components

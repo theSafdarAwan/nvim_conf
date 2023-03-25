@@ -11,4 +11,4 @@ set_map({ "i", "s" }, "<C-u>", function()
 	end
 end)
 
-set_map({ "i", "n" }, "<C-m>", ":Noice<CR>")
+set_map({ "n" }, "<C-m>", "<cmd>Noice<CR>")
