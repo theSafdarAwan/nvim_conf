@@ -7,7 +7,7 @@
 ---@field trouble_nvim Plugin shows diagnostics for the lsp in a window like vscode.
 ---@field lspsaga_nvim Plugin shows diagnostics messages in a file.
 ---@field nvim_code_action_menu Plugin code action utility for lsp.
----@field renamer_nvim Plugin renaming utility for lsp symbols.
+---@field inc_rename_nvim Plugin renaming utility for lsp symbols.
 ---@field ale Plugin linting engine i am only using it for html.
 ---@field mason_nvim Plugin lsp binary installer.
 ---@field nvim_navic Plugin shows lsp symbol context in nav bar like vscode.
@@ -22,7 +22,7 @@ local plugins = function(install)
 		"trouble-nvim",
 		"lspsaga-nvim",
 		"nvim-code-action-menu",
-		"renamer-nvim",
+		"inc-rename-nvim",
 		"ale",
 		"mason-nvim",
 		"nvim-navic",
