@@ -20,9 +20,6 @@ local config = function()
 	--|||||||||||||||||||||||||||||||||||||||||||||||||||||||
 	local nvim_lsp = require("lspconfig")
 
-	-- Set completeopt to have a better completion experience
-	vim.o.completeopt = "menuone,noselect"
-
 	-- enable lang_servers with same configs alll in one
 	local servers = {
 		--love

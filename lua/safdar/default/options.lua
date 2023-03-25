@@ -1,78 +1,47 @@
 local opt = vim.opt
-local wo = vim.wo
-local g = vim.g
+local window_option = vim.wo
+local option = vim.o
+local global = vim.g
 
-g.mapleader = " "
-g.localleader = ","
+global.mapleader = " "
+global.localleader = " "
 
--- disable the default filetype detenction
--- g.did_load_filetypes = 1
-
--- enable mouse
--- opt.mouse = "a"
--- disable mouse
-opt.mouse = ""
+opt.mouse = "" -- disable mouse
 opt.laststatus = 3 -- to have a global status line
 
--- Spell Checking lang
+opt.updatetime = 1000 -- time for updating {undo, swap}file and a few other things.
+
+opt.undofile = true -- use undo file
+opt.undodir = os.getenv("HOME") .. "/.config/nvim/undo"
+
+opt.swapfile = false -- No swap File
+opt.backup = false -- Don't use swap or Backup
+opt.writebackup = false -- don't write backup
+
+vim.lsp.set_log_level("OFF") -- DEBUG
+
 opt.spelllang = "en,cjk"
 opt.spelloptions:append("noplainbuffer,camel")
 opt.spell = false
 
--- set the terminal
 opt.shell = "/bin/zsh"
 opt.termguicolors = true
 
+option.errorbells = false -- Disable error bells
+option.showcmd = true -- show's commands in the cmd line
+
 opt.wrap = false
-opt.scrolloff = 2
-opt.showmode = false
-opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block"
+opt.scrolloff = 2 -- minimal screen lines to keep above and below the cursor
 
--- folding
--- opt.foldmethod = "marker"
--- opt.foldmarker = "~>,<~"
--- g.nofoldenable = true
--- vim.cmd([[
--- set foldmethod=expr
--- set foldexpr=nvim_treesitter#foldexpr()
--- ]])
+opt.showmode = false -- We don't need to see things like -- INSERT -- anymore
+opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block" -- change the shape of the cursor
+opt.fillchars = { eob = " " } -- Hide the tilde sign in the blank line
 
--- finding files - search down into subfolders
-opt.path:append({ "**" })
+option.ruler = true -- Make search act like search in modern browsers
 
--- Hide the tilde sign in the blank line
-opt.fillchars = { eob = " " }
+option.synmaxcol = 500 -- Stop syntax highlight on long lines
 
--- Line indenting
-opt.list = true
-
--- set list chars
-local list_chars_symbols = {
-	-- ["eol"] = "↲",
-	["eol"] = "↴",
-	-- ["tab"] = "→ ",
-	["tab"] = "» ",
-	-- ["space"] = "␣",
-	["trail"] = "-",
-	["extends"] = "☛",
-	["precedes"] = "☚",
-	-- ["extends"] = "»",
-	-- ["precedes"] = "«",
-	["conceal"] = "┊",
-	-- ["nbsp"] = "☠",
-	["nbsp"] = "⣿",
-}
-for k, v in pairs(list_chars_symbols) do
-	opt.listchars:append(k .. ":" .. v)
-end
-
--- time to update undo file or swap file
-opt.updatetime = 250
-
--- use either undo file or swap file
-opt.undofile = true
-opt.undodir = os.getenv("HOME") .. "/.nvim_undodir/"
-opt.swapfile = false
+opt.path:append({ "**" }) -- :find files down into subfolders
 
 -- trick to solve the vim compatible functionality to not let backspace the file
 -- content othe then just inserted one
@@ -83,6 +52,8 @@ opt.smartcase = true
 opt.splitright = true
 opt.splitbelow = true
 
+opt.hidden = true -- Allow to switch buffer without saving
+
 opt.cursorline = false
 
 opt.cmdheight = 1
@@ -91,13 +62,15 @@ opt.timeoutlen = 500
 opt.number = true
 opt.relativenumber = true
 
-opt.wildoptions = "pum"
-opt.wildmode = "longest:full,full"
-opt.winblend = 0
-opt.pumblend = 0
-opt.pumheight = 16
+option.completeopt = "menu,menuone,noselect" -- completion menu
+window_option.signcolumn = "yes" -- column before line numbers
+opt.wildoptions = "pum" -- command line completion menu
+opt.wildmode = "longest:full,full" -- completion menu options
+opt.pumheight = 16 -- completion menu height
 
--- Indenline
+opt.pumblend = 0 -- completion menu blending option
+opt.winblend = 0 -- floating windows blending option
+
 opt.smartindent = true
 opt.shiftwidth = 4
 opt.tabstop = 4
@@ -106,15 +79,44 @@ opt.softtabstop = 4
 opt.smartindent = true
 opt.expandtab = false
 
-opt.shortmess:append("c") -- Shut off completion messages
-
--- opt.isfname:append("@-@")
+opt.shortmess:append("cI") -- turn of completion messages and starting intro screen
 
 -- opt.whichwrap="<>hl"
 -- opt.autochdir = true
 
--- sets the column on the left side (or before) of the line numbers
-wo.signcolumn = "yes"
+-- global.nofoldenable = true
+-- opt.foldmethod = "marker"
+-- opt.foldmarker = "~>,<~"
+-- vim.cmd([[
+-- set foldmethod=expr
+-- set foldexpr=nvim_treesitter#foldexpr()
+-- ]])
+
+opt.list = true -- show space,tab using symbols
+-- set list chars
+local list_chars_symbols = {
+	-- ["eol"] = "↲",
+	["eol"] = "↴",
+	-- ["tab"] = "→ ",
+	-- ["tab"] = "» ",
+	["tab"] = "▸ ",
+	-- ["space"] = "␣",
+	-- ["trail"] = "-",
+	["trail"] = "·",
+	-- ["extends"] = "☛",
+	-- ["precedes"] = "☚",
+	-- ["extends"] = "»",
+	-- ["precedes"] = "«",
+	["extends"] = "❯",
+	["precedes"] = "❮",
+	["conceal"] = "┊",
+	-- ["nbsp"] = "☠",
+	-- ["nbsp"] = "⣿",
+	["nbsp"] = "␣",
+}
+for k, v in pairs(list_chars_symbols) do
+	opt.listchars:append(k .. ":" .. v)
+end
 
 -- Remove default plugins
 local disabled_built_ins = {
@@ -147,7 +149,7 @@ local disabled_built_ins = {
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-	g["loaded_" .. plugin] = 1
+	global["loaded_" .. plugin] = 1
 end
 
 local default_providers = {
