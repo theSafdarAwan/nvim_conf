@@ -40,7 +40,7 @@ M.gtd_neorg_files = function()
 	})
 
 	local opts = vim.deepcopy(find_gtd_neorg_files)
-	opts.prompt_prefix = " ❯ "
+	opts.prompt_prefix = "  "
 	require("telescope.builtin").fd(opts)
 end
 
