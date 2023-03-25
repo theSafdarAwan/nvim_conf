@@ -16,7 +16,6 @@
 ---@field focus_nvim Plugin focus the current window, has different layouts for
 --- focusing it is same as the tmux layouts.
 ---@field neo_minimap Plugin custom minimap
----@field neo_clip_lua Plugin clipboard manager.
 
 ---@param install function
 local plugins = function(install)
@@ -34,7 +33,6 @@ local plugins = function(install)
 		"nvim-spectre",
 		"refactoring-nvim",
 		"neo-minimap",
-		"neo-clip-lua",
 		----------------------------------------------------------------------
 		--                        commeting Plugins                         --
 		----------------------------------------------------------------------
