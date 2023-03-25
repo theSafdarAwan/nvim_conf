@@ -20,11 +20,13 @@ local function plugin(install)
 			nm.set({ "zi", "zo" }, "javascript", {
 				query = {
 					[[
+						;; query for functions/if_statement/class_declaration
 						(function_declaration) @cap
 						(if_statement) @cap
 						(class_declaration) @cap
 					]],
 					[[
+						;; query for comments/expressions which includes function calls
 						(comment) @cap
 						(expression_statement) @cap
 					]],
