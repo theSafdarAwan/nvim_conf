@@ -1,1 +1,13 @@
 ---@alias Plugin string
+
+--- noice.nvim
+---@alias NoiceViewOptions table|string
+---@alias NoicePopupmenuItemKind table|string
+---@alias NoiceRouteConfig table|string
+---@alias NoiceCommand table|string
+---@alias NoicePresets table
+---@alias NoiceConfigViews table
+---@alias NoiceFilter table
+---@alias NoiceFormatOptions table
+---@alias CmdlineFormat table|string
+---@alias NoiceFormat string

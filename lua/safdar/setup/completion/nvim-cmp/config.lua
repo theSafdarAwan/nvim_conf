@@ -93,10 +93,6 @@ local config = function()
 				keyword_length = 2,
 			},
 			{
-				name = "nvim_lsp_signature_help",
-				group_index = 1,
-			},
-			{
 				name = "nvim_lua",
 				keyword_length = 2,
 			},

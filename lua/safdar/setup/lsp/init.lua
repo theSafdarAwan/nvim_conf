@@ -3,7 +3,6 @@
 ---@table Plugins
 ---@field nvim_lspocnfig Plugin includes configuration for lsp.
 ---@field null_ls_nvim Plugin lsp extension for adding formatting and diagnostics.
----@field lsp_signature_nvim Plugin shows docs for Lsp symbols.
 ---@field trouble_nvim Plugin shows diagnostics for the lsp in a window like vscode.
 ---@field lspsaga_nvim Plugin shows diagnostics messages in a file.
 ---@field nvim_code_action_menu Plugin code action utility for lsp.
@@ -18,7 +17,6 @@ local plugins = function(install)
 	local Plugins = {
 		"nvim-lspconfig",
 		"null-ls-nvim",
-		"lsp-signature-nvim",
 		"trouble-nvim",
 		"lspsaga-nvim",
 		"nvim-code-action-menu",
