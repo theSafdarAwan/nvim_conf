@@ -150,8 +150,5 @@ set_map("n", "<leader>sr", "zug")
 set_map("n", "<leader>sd", "zw")
 set_map("n", "<leader>s?", "z=")
 
--- Create a new line with no indentation
-set_map("i", "<C-j>", "<Enter><ESC>i")
-
 -- Terminal"
 set_map("t", "<c-[>", "<C-\\><C-n>")

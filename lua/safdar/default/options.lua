@@ -37,6 +37,8 @@ opt.showmode = false -- We don't need to see things like -- INSERT -- anymore
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block" -- change the shape of the cursor
 opt.fillchars = { eob = " " } -- Hide the tilde sign in the blank line
 
+opt.isfname:append("@-@")
+
 option.ruler = true -- Make search act like search in modern browsers
 
 option.synmaxcol = 500 -- Stop syntax highlight on long lines
@@ -58,12 +60,13 @@ opt.cursorline = false
 
 opt.cmdheight = 1
 opt.timeoutlen = 500
--- line numbers
 opt.number = true
 opt.relativenumber = true
 
 option.completeopt = "menu,menuone,noselect" -- completion menu
 window_option.signcolumn = "yes" -- column before line numbers
+-- Remove artifacts/redraw issue from indent-blankline.nvim
+window_option.colorcolumn = "9999"
 opt.wildoptions = "pum" -- command line completion menu
 opt.wildmode = "longest:full,full" -- completion menu options
 opt.pumheight = 16 -- completion menu height
@@ -71,13 +74,14 @@ opt.pumheight = 16 -- completion menu height
 opt.pumblend = 0 -- completion menu blending option
 opt.winblend = 0 -- floating windows blending option
 
-opt.smartindent = true
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.textwidth = 81
-opt.softtabstop = 4
-opt.smartindent = true
+local indent = 4
+opt.shiftwidth = indent
+opt.tabstop = indent
+opt.softtabstop = indent
 opt.expandtab = false
+opt.smartindent = true
+opt.autoindent = true
+opt.textwidth = 81
 
 opt.shortmess:append("cI") -- turn of completion messages and starting intro screen
 
@@ -92,7 +96,7 @@ opt.shortmess:append("cI") -- turn of completion messages and starting intro scr
 -- set foldexpr=nvim_treesitter#foldexpr()
 -- ]])
 
-opt.list = true -- show space,tab using symbols
+opt.list = true -- show hidden {space,tab} chars
 -- set list chars
 local list_chars_symbols = {
 	-- ["eol"] = "↲",
@@ -155,6 +159,7 @@ end
 local default_providers = {
 	"node",
 	"perl",
+	"python",
 	"python3",
 	"ruby",
 }
