@@ -46,6 +46,9 @@ local config = function()
 			buffers = {
 				mappings = maps.picker_find(),
 			},
+			live_grep = {
+				mappings = maps.picker_live_grep(),
+			},
 		},
 		extensions = {
 			fzf = {

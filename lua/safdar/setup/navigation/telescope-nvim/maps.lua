@@ -83,6 +83,13 @@ M.picker_find = function()
 		},
 	}
 end
+M.picker_live_grep = function()
+	return {
+		i = {
+			["<C-r>"] = require("telescope.actions").to_fuzzy_refine,
+		},
+	}
+end
 
 ----------------------------------------------------------------------
 --                      Telescope Plugins Maps                      --
