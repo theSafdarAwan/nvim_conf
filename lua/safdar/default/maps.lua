@@ -73,7 +73,7 @@ set_map("n", "<A-h>", "zh")
 -- set_map("n", "<C-k>", "<c-o>k")
 
 -- show messages
-set_map("n", "<C-m>", ":messages<CR>")
+-- set_map("n", "<C-m>", ":messages<CR>") -- i am using noice.nvim
 
 -- Paster From the system clipboard
 set_map("n", "<leader>p", "\"+p")

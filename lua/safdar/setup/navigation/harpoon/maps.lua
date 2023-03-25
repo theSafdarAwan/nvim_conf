@@ -45,16 +45,13 @@ local create_popup = function()
 
 	local ui = vim.api.nvim_list_uis()[1]
 
-	local width = 80
-	local height = 33
-
 	local buf = 0
 	local win = api.nvim_open_win(buf, true, {
-		col = (ui.width - width) / 2,
-		row = (ui.height - height) / 2,
-		width = width,
+		col = math.floor(ui.width / 10),
+		row = math.floor(ui.height / 10),
+		width = math.floor(ui.width - (ui.width / 6)),
+		height = math.floor(ui.height / 1.5),
 		border = "single",
-		height = height,
 		relative = "editor",
 	})
 	api.nvim_win_set_var(win, "_is_popup", true)
