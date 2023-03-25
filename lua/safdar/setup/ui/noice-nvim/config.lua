@@ -209,14 +209,14 @@ local config = function()
 				view = "mini",
 				filter = {
 					any = {
-						{ event = "msg_showmode" },
-						{ find = " change" },
-						{ event = "msg_history_show" },
-						{ event = "msg_show", kind = "wmsg" },
-						{ find = "E486" },
+						{ event = "msg_showmode" }, -- see :h showmode
+						{ find = " change" }, -- to use string.find() on message
+						{ event = "msg_history_show" }, -- for :messages output
+						{ event = "msg_show", kind = "wmsg" }, -- see :h W10
+						{ find = "E486" }, -- see :h E486
 						-- TODO: move to lualine and show the msg_showcmd in the
 						-- statusline
-						{ event = "msg_showcmd" },
+						{ event = "msg_showcmd" }, -- see :h showcmd
 					},
 				},
 			},
