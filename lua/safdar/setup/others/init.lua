@@ -15,6 +15,7 @@
 ---@field winshift_nvim Plugin moving|shifting window's easily.
 ---@field focus_nvim Plugin focus the current window, has different layouts for
 --- focusing it is same as the tmux layouts.
+---@field neo_minimap Plugin custom minimap
 
 ---@param install function
 local plugins = function(install)
@@ -31,6 +32,7 @@ local plugins = function(install)
 		"vim-be-good",
 		"nvim-spectre",
 		"refactoring-nvim",
+		"neo-minimap",
 		----------------------------------------------------------------------
 		--                        commeting Plugins                         --
 		----------------------------------------------------------------------
