@@ -3,22 +3,22 @@ local map = utils.set_map
 
 local ls = require("luasnip")
 
--- <c-j> is my expansion key
+-- <c-e> is my expansion key
 -- this will expand the current item or jump to the next item within the snippet.
-map({ "i", "s" }, "<c-j>", function()
+map({ "i", "s" }, "<c-e>", function()
 	-- if ls.expand_or_jumpable() then
 	if ls.expand_or_locally_jumpable() then
 		ls.expand_or_jump()
 	end
-end, { silent = true })
+end)
 
--- <c-k> is my jump backwards key.
+-- <c-h> is my jump backwards key.
 -- this always moves to the previous item within the snippet
-map({ "i", "s" }, "<c-k>", function()
+map({ "i", "s" }, "<c-h>", function()
 	if ls.jumpable(-1) then
 		ls.jump(-1)
 	end
-end, { silent = true })
+end)
 
 -- <c-l> is selecting within a list of options.
 -- This is useful for choice nodes

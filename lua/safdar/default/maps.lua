@@ -128,7 +128,6 @@ set_map("n", "<A-b>", ":buffers<cr>")
 set_map("n", "gx", ":close<cr>")
 set_map("n", "gX", ":close!<cr>")
 
--- tab mappings
 set_map("n", "<C-x>", ":tabclose<cr>")
 set_map("n", "<C-n>", ":tabnew<cr>")
 
@@ -136,16 +135,9 @@ set_map("n", "<C-n>", ":tabnew<cr>")
 set_map("n", "zy", "10<C-y>")
 set_map("n", "ze", "10<C-e>")
 
--- I use Obsession plugin and i need to restore the whole (n)vim session without losing
--- a single pane so i replicated the ZZ command functionality and replace it with this one
-set_map("n", "<leader>ZZ", ":wa | qa <cr>")
-
 -- source the current file
 set_map("n", "<leader>so", ":so %<CR>")
 
-----------------------------------------------------------------------
---                      Built-in plugins maps                       --
-----------------------------------------------------------------------
 -- set_map("n", "<leader>so", ":so %<cr>") -- look into packer/maps
 
 -- Spell checking
@@ -163,6 +155,3 @@ set_map("i", "<C-j>", "<Enter><ESC>i")
 
 -- Terminal"
 set_map("t", "<c-[>", "<C-\\><C-n>")
--- set_map("n", "<c-s><c-n>", ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>")
--- set_map("n", "<c-s><c-l>",":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>")
--- set_map("n", "<c-s><c-t>", ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>")
