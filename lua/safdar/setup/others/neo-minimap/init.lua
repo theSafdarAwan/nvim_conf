@@ -1,7 +1,7 @@
 local function plugin(install)
 	install({
 		"ziontee113/neo-minimap",
-		ft = { "javascript", "go", "lua", "python", "c", "markdown", "rust" },
+		ft = {"html", "javascript", "go", "lua", "python", "c", "markdown", "rust" },
 		config = function()
 			require("safdar.setup.others.neo-minimap.config").config()
 		end,
