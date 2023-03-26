@@ -1,5 +1,5 @@
 local function config()
-	local icons = vim.deepcopy(require("safdar.setup.ui.lspkind").icons)
+	local icons = vim.deepcopy(require("safdar.setup.ui.icons").kind)
 	for icon_name, icon in pairs(icons) do
 		icons[icon_name] = icon .. " "
 	end

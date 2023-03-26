@@ -32,7 +32,7 @@ local config = function()
 		formatting = {
 			format = function(entry, vim_item)
 				-- load lspkind icons
-				local icons = require("safdar.setup.ui.lspkind").icons
+				local icons = require("safdar.setup.ui.icons").kind
 				vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
 
 				vim_item.menu = ({
