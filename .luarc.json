@@ -1,6 +1,7 @@
 {
     "diagnostics.disable": [
-        "doc-field-no-class"
+        "doc-field-no-class",
+        "undefined-global"
     ],
     "diagnostics.globals": [
         "vim",

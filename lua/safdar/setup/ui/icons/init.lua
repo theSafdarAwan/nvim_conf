@@ -300,9 +300,9 @@ M.status_line = {
 		},
 	},
 	misc = {
-		mode_icon = "  ",
-		position_icon_1 = " ",
-		position_icon_2 = " ",
+		mode_icon = "",
+		position_icon_1 = "",
+		position_icon_2 = "",
 	},
 	round = {
 		left = "",

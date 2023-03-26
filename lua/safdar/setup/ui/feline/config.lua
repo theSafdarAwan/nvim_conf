@@ -14,19 +14,19 @@ local config = function()
 		return
 	end
 
-	local cp = require("fused.utils").colors
-	local c = {
-		white = cp.base07,
-		dark = cp.base01,
-		warn = cp.base09,
-		err = cp.base11,
-		err_sev = cp.base08,
-		info = cp.base10,
-		hint = cp.base10,
-		magenta = cp.base14,
-		green = cp.base15,
-		blue = cp.base16,
-		cyan = cp.base13,
+	local fused_colors = require("fused.utils").colors
+	local colors = {
+		fg = fused_colors.base07,
+		bg = fused_colors.base01,
+		yellow = fused_colors.base09,
+		pink = fused_colors.base12,
+		sky = fused_colors.base10,
+		teal = fused_colors.base13,
+		green = fused_colors.base15,
+		magenta = fused_colors.base14,
+		blue = fused_colors.base17,
+		red = fused_colors.base11,
+		red_error = fused_colors.base08,
 	}
 
 	local lsp = require("feline.providers.lsp")
@@ -102,26 +102,26 @@ local config = function()
 	--=====================================================
 
 	local mode_colors = {
-		["n"] = { "NORMAL", c.warn },
-		["no"] = { "N-PENDING", c.warn },
-		["i"] = { "INSERT", c.green },
-		["ic"] = { "INSERT", c.green },
-		["t"] = { "TERMINAL", c.green },
-		["v"] = { "VISUAL", c.blue },
-		["V"] = { "V-LINE", c.blue },
-		[""] = { "V-BLOCK", c.blue },
-		["R"] = { "REPLACE", c.err },
-		["Rv"] = { "V-REPLACE", c.err },
-		["s"] = { "SELECT", c.err },
-		["S"] = { "S-LINE", c.err },
-		[""] = { "S-BLOCK", c.err },
-		["c"] = { "COMMAND", c.magenta },
-		["cv"] = { "COMMAND", c.magenta },
-		["ce"] = { "COMMAND", c.magenta },
-		["r"] = { "PROMPT", c.info },
-		["rm"] = { "MORE", c.info },
-		["r?"] = { "CONFIRM", c.info },
-		["!"] = { "SHELL", c.blue },
+		["n"] = { text = "NORMAL", color = colors.pink },
+		["no"] = { text = "N-PENDING", color = colors.pink },
+		["i"] = { text = "INSERT", color = colors.green },
+		["ic"] = { text = "INSERT", color = colors.green },
+		["t"] = { text = "TERMINAL", color = colors.green },
+		["v"] = { text = "VISUAL", color = colors.blue },
+		["V"] = { text = "V-LINE", color = colors.blue },
+		[""] = { text = "V-BLOCK", color = colors.blue },
+		["R"] = { text = "REPLACE", color = colors.red },
+		["Rv"] = { text = "V-REPLACE", color = colors.red },
+		["s"] = { text = "SELECT", color = colors.red },
+		["S"] = { text = "S-LINE", color = colors.red },
+		[""] = { text = "S-BLOCK", color = colors.red },
+		["c"] = { text = "COMMAND", color = colors.magenta },
+		["cv"] = { text = "COMMAND", color = colors.magenta },
+		["ce"] = { text = "COMMAND", color = colors.magenta },
+		["r"] = { text = "PROMPT", color = colors.sky },
+		["rm"] = { text = "MORE", color = colors.sky },
+		["r?"] = { text = "CONFIRM", color = colors.sky },
+		["!"] = { text = "SHELL", color = colors.blue },
 	}
 
 	-- local sid_mode_hl = function()
@@ -144,8 +144,8 @@ local config = function()
 		-- enabled = enable_only_in_full_buf,
 		hl = function()
 			return {
-				fg = mode_colors[vim.fn.mode()][2],
-				bg = mode_colors[vim.fn.mode()][2],
+				bg = colors.bg,
+				fg = mode_colors[vim.fn.mode()].color,
 			}
 		end,
 	}
@@ -162,14 +162,14 @@ local config = function()
 		end,
 		enabled = enable_only_in_full_buf,
 		hl = {
-			fg = c.white,
-			bg = c.dark,
+			fg = colors.fg,
+			bg = colors.bg,
 		},
 		right_sep = {
 			str = icon_styles.default2.right,
 			hl = {
-				fg = c.dark,
-				bg = c.white,
+				fg = colors.bg,
+				bg = colors.fg,
 			},
 		},
 	}
@@ -205,34 +205,34 @@ local config = function()
 		end,
 		enabled = enable_only_in_full_buf,
 		hl = {
-			fg = c.dark,
-			bg = c.white,
+			fg = colors.bg,
+			bg = colors.fg,
 		},
 
 		right_sep = {
 			str = icon_styles.default2.right,
 			hl = {
-				fg = c.white,
-				bg = c.dark,
+				fg = colors.fg,
+				bg = colors.bg,
 			},
 		},
 	}
 
 	components.active[1][4] = {
 		provider = "git_diff_added",
-		hl = { fg = c.green, bg = c.dark },
+		hl = { fg = colors.green, bg = colors.bg },
 		icon = "  ",
 	}
 	-- diffModfified
 	components.active[1][5] = {
 		provider = "git_diff_changed",
-		hl = { fg = c.cyan, bg = c.dark },
+		hl = { fg = colors.sky, bg = colors.bg },
 		icon = " ⦿ ",
 	}
 	-- diffRemove
 	components.active[1][6] = {
 		provider = "git_diff_removed",
-		hl = { fg = c.err, bg = c.dark },
+		hl = { fg = colors.red, bg = colors.bg },
 		icon = "  ",
 	}
 
@@ -295,9 +295,21 @@ local config = function()
 			local frame = math.floor(ms / 120) % #spinners
 
 			if percentage >= 70 then
-				return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
+				return string.format(
+					" %%<%s %s %s (%s%%%%) ",
+					success_icon[frame + 1],
+					title,
+					msg,
+					percentage
+				)
 			else
-				return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
+				return string.format(
+					" %%<%s %s %s (%s%%%%) ",
+					spinners[frame + 1],
+					title,
+					msg,
+					percentage
+				)
 			end
 		end
 
@@ -319,7 +331,7 @@ local config = function()
 					return show_lsp_progress()
 				end,
 				enabled = enable_only_in_full_buf,
-				hl = { fg = c.cyan, bg = c.dark },
+				hl = { fg = colors.sky, bg = colors.bg },
 			}
 		end,
 	})
@@ -336,8 +348,8 @@ local config = function()
 				or lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
 		hl = {
-			fg = c.dark,
-			bg = c.dark,
+			fg = colors.bg,
+			bg = colors.bg,
 		},
 	}
 
@@ -346,7 +358,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
 		end,
-		hl = { fg = c.err_sev, bg = c.dark },
+		hl = { fg = colors.red_error, bg = colors.bg },
 		icon = "  ",
 	}
 
@@ -355,7 +367,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.WARN)
 		end,
-		hl = { fg = c.warn, bg = c.dark },
+		hl = { fg = colors.yellow, bg = colors.bg },
 		icon = "  ",
 	}
 
@@ -364,7 +376,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.HINT)
 		end,
-		hl = { fg = c.hint, bg = c.dark },
+		hl = { fg = colors.sky, bg = colors.bg },
 		icon = "  ",
 	}
 
@@ -373,7 +385,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
-		hl = { fg = c.info, bg = c.dark },
+		hl = { fg = colors.teal, bg = colors.bg },
 		icon = "  ",
 	}
 
@@ -386,8 +398,8 @@ local config = function()
 				or lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
 		hl = {
-			fg = c.dark,
-			bg = c.dark,
+			fg = colors.bg,
+			bg = colors.bg,
 		},
 	}
 
@@ -395,8 +407,8 @@ local config = function()
 		provider = icon_styles.default.left,
 		enabled = enable_only_in_full_buf,
 		hl = {
-			fg = c.white,
-			bg = c.dark,
+			fg = colors.fg,
+			bg = colors.bg,
 		},
 	}
 
@@ -417,12 +429,12 @@ local config = function()
 			end
 		end,
 		enabled = enable_only_in_full_buf,
-		hl = { fg = c.dark, bg = c.white },
+		hl = { fg = colors.bg, bg = colors.fg },
 		left_sep = {
 			str = icon_styles.default.left,
 			hl = {
-				fg = c.white,
-				bg = c.dark,
+				fg = colors.fg,
+				bg = colors.bg,
 			},
 		},
 	}
@@ -444,8 +456,8 @@ local config = function()
 		enabled = enable_only_in_full_buf,
 
 		hl = {
-			fg = c.white,
-			bg = c.dark,
+			fg = colors.fg,
+			bg = colors.bg,
 		},
 	}
 
@@ -453,16 +465,16 @@ local config = function()
 		provider = "scroll_bar",
 		enabled = enable_only_in_full_buf,
 		hl = {
-			fg = c.blue,
-			bg = c.dark,
+			fg = colors.blue,
+			bg = colors.bg,
 			style = "bold",
 		},
 	}
 
 	feline.setup({
 		colors = {
-			bg = c.base02,
-			fg = c.base07,
+			bg = colors.base02,
+			fg = colors.base07,
 		},
 		components = components,
 		force_inactive = {

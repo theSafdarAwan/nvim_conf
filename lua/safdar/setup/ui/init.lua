@@ -3,7 +3,6 @@
 ---@table Plugins
 ---@field fused Plugin color scheme.
 ---@field feline Plugin status line.
----@field lualine_nvim Plugin status line.
 ---@field nvim_web_devicons Plugin nice icons for file types.
 ---@field nvim_treesitter Plugin better syntax highlights for files.
 ---@field nvim_colorizer_lua Plugin colorize the colors in your editor.
@@ -22,7 +21,6 @@ local function plugins(install)
 		"vim-illuminate",
 		"indent-blankline-nvim",
 		"noice-nvim",
-		"lualine-nvim"
 	}
 
 	local temp_plugins = {
