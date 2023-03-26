@@ -221,6 +221,11 @@ local config = function()
 				},
 			},
 			{
+				view = "mini",
+				filter = { event = "confirm" },
+				opts = { skip = true },
+			},
+			{
 				filter = { event = "msg_show", max_length = 1 },
 				opts = { skip = true },
 			},
