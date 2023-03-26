@@ -214,8 +214,6 @@ local config = function()
 						{ event = "msg_history_show" }, -- for :messages output
 						{ event = "msg_show", kind = "wmsg" }, -- see :h W10
 						{ find = "E486" }, -- see :h E486
-						-- TODO: move to lualine and show the msg_showcmd in the
-						-- statusline
 						{ event = "msg_showcmd" }, -- see :h showcmd
 					},
 				},
