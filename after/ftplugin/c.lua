@@ -1,5 +1,3 @@
--- TODO: do something cool with this
-
 local api = vim.api
 local command = vim.api.nvim_command
 local fn = vim.fn
