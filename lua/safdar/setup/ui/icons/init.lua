@@ -40,7 +40,7 @@ local M = {}
 -- ["leaf-name"] = " ",
 -- ["action-name"] = " ",
 
-M.icons = {
+M.kind = {
 	-- ~> icons
 	--M.icons = {
 	--  Class = "   ",
