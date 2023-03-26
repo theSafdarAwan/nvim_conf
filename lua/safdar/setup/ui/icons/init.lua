@@ -288,4 +288,30 @@ M.misc = {
 	CircuitBoard = "",
 }
 
+M.status_line = {
+	triangle = {
+		equilateral = {
+			right = "",
+			left = "",
+		},
+		acute = {
+			left = " ",
+			right = "",
+		},
+	},
+	misc = {
+		mode_icon = "  ",
+		position_icon_1 = " ",
+		position_icon_2 = " ",
+	},
+	round = {
+		left = "",
+		right = "",
+	},
+	seperators = {
+		left = "",
+		right = "",
+	},
+}
+
 return M

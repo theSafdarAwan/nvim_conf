@@ -8,8 +8,8 @@ local fused = function(install)
 
 		local hooks = {
 			feline_config = function()
-				package.loaded["feline"] = nil
-				require("safdar.setup.ui.feline.config").config()
+				-- package.loaded["feline"] = nil
+				-- require("safdar.setup.ui.feline.config").config()
 			end,
 		}
 
