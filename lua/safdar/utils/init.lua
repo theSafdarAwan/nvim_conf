@@ -59,6 +59,19 @@ M.notify = function(message)
 		msg = message
 	end
 	if message then
+		-- nvim-notify installation path
+		local notifypath = vim.fn.stdpath("data") .. "/lazy/nvim-notify"
+		vim.opt.rtp:prepend(notifypath)
+		if not vim.loop.fs_stat(notifypath) then
+			--- clone nvim-notify
+			vim.fn.system({
+				"git",
+				"clone",
+				"--filter=blob:none",
+				"https://github.com/rcarriga/nvim-notify",
+				notifypath,
+			})
+		end
 		require("notify").setup({
 			background_colour = "#1f2335",
 		})
