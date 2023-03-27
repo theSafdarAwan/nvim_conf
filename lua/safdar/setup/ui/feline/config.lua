@@ -115,16 +115,19 @@ local config = function()
 					return true
 				end
 			end
-			local git_branch_icon = " " .. icons.misc.Tux .. " "
+			local git_branch_icon = icons.misc.Tux
 			local branch_name = ""
 			if git_is_ok() then
-				git_branch_icon = " " .. icons.git.Branch .. " "
-				branch_name = git.git_branch() .. " "
-				self.left_sep.str = git_branch_icon
-			else
-				self.left_sep.str = git_branch_icon
+				git_branch_icon = icons.git.Branch
+				branch_name = git.git_branch()
 			end
-			return branch_name
+			self.left_sep.str = " " .. git_branch_icon .. " "
+			if not string.find(vim.fn.expand("%:t"), "[%d?%a]") then
+				self.right_sep.str = ""
+			else
+				self.right_sep.str = icons.status_line.round.right
+			end
+			return branch_name .. " "
 		end,
 		hl = {
 			fg = colors.white,
@@ -138,7 +141,7 @@ local config = function()
 			},
 		},
 		right_sep = {
-			str = icons.status_line.round.right,
+			str = "",
 			hl = {
 				fg = colors.dark1,
 				bg = colors.dark3,
@@ -170,23 +173,31 @@ local config = function()
 			local truncated_file_name = file_name_lenght(30)
 			local provider = " "
 			if #truncated_file_name > 1 then
-				provider = " " .. truncated_file_name .. " "
+				provider = truncated_file_name
 			end
 
-			local file_name_with_ext = vim.fn.expand("%:t")
-			local file_ext = vim.fn.expand("%:e")
-			local ft_icon = require("nvim-web-devicons").get_icon(file_name_with_ext, file_ext)
-			if ft_icon == nil then
-				return icons.kind.Null
+			if string.find(just_file_name, "[%d?%a]") then
+				local file_name_with_ext = vim.fn.expand("%:t")
+				local file_ext = vim.fn.expand("%:e")
+				local ft_icon = require("nvim-web-devicons").get_icon(file_name_with_ext, file_ext)
+				local _, fg = require("nvim-web-devicons").get_icon_color(file_name_with_ext, file_ext)
+				if not ft_icon then
+					return icons.kind.Null
+				end
+				self.left_sep.str = ft_icon
+				self.left_sep.hl.fg = fg
+			else
+				self.left_sep.str = nil
+				self.left_sep.hl.fg = nil
 			end
-			self.left_sep.str = ft_icon
-			local _, fg = require("nvim-web-devicons").get_icon_color(file_name_with_ext, file_ext)
-			self.left_sep.hl.fg = fg
-			return provider
+			if not string.find(provider, "[%a?%d]") then
+				return ""
+			end
+			return " " .. provider .. " "
 		end,
 		enabled = enable_in_full_win,
 		hl = {
-			fg = colors.sky,
+			fg = colors.white,
 			bg = colors.dark1,
 		},
 		left_sep = {
