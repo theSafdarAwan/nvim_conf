@@ -223,104 +223,78 @@ local config = function()
 		hl = { fg = colors.green, bg = colors.dark2 },
 		icon = " " .. icons.git.FileAddedRound .. " ",
 	}
-	-- diffModfified
 	local git_changed = {
 		provider = "git_diff_changed",
 		hl = { fg = colors.cyan, bg = colors.dark2 },
 		icon = " " .. icons.git.FileModifiedRound .. " ",
 	}
-	-- diffRemove
 	local git_remove = {
 		provider = "git_diff_removed",
 		hl = { fg = colors.red, bg = colors.dark2 },
 		icon = " " .. icons.git.FileRemoveRound .. " ",
 	}
 
-	--=====================================================
-	--                  center
-	--=====================================================
-
-	local function lsp_progress()
-		local Lsp = vim.lsp.util.get_progress_messages()[1]
-		if Lsp then
-			local msg = Lsp.message or ""
-			local percentage = Lsp.percentage or 0
-			local title = Lsp.title or ""
-			local spinners = {
-				"◐",
-				"◓",
-				"◑",
-				"◒",
-				"◐",
-				"◓",
-				"◑",
-				"◒",
-				"◐",
-				"◓",
-				"◑",
-				"◒",
-			}
-
-			local success_icon = {
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"",
-			}
-
-			local ms = vim.loop.hrtime() / 1000000
-			local frame = math.floor(ms / 120) % #spinners
-
-			if percentage >= 70 then
-				return string.format(
-					" %%<%s %s %s (%s%%%%) ",
-					success_icon[frame + 1],
-					title,
-					msg,
-					percentage
-				)
-			else
-				return string.format(
-					" %%<%s %s %s (%s%%%%) ",
-					spinners[frame + 1],
-					title,
-					msg,
-					percentage
-				)
-			end
-		end
-
-		local cur_buf_clients = vim.lsp.buf_get_clients()
-		local clients_str = ""
-		for _, server in pairs(cur_buf_clients) do
-			for _, ft in ipairs(server.config.filetypes) do
-				if ft == vim.bo.filetype then
-					clients_str = clients_str .. server.name .. ","
-				end
-			end
-		end
-
-		local client_list = string.sub(clients_str, 1, -2)
-		return "[" .. client_list .. "]"
-	end
-
+	----------------------------------------------------------------------
+	--                               Lsp                                --
+	----------------------------------------------------------------------
 	local lsp_info = {
 		provider = function()
-			vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach" }, {
-				group = vim.api.nvim_create_augroup("setting_feline_lsp_buf_clients", { clear = true }),
-				callback = function()
-					lsp_progress()
-				end,
-			})
-			return lsp_progress()
+			--- NOTE> this util function is only helpful here
+			---@param tbl table to be merged with.
+			---@param num number for how many times the `tbl` should be merged
+			---@return table duplicated table
+			local function duplicate_tbl(tbl, num)
+				local t = {}
+				local quantity = 1
+				while true do
+					if quantity > num then
+						break
+					end
+					for _, v in ipairs(tbl) do
+						table.insert(t, v)
+					end
+					quantity = quantity + 1
+				end
+				return t
+			end
+			local Lsp = vim.lsp.util.get_progress_messages()[1]
+			if Lsp then
+				local msg = Lsp.message or ""
+				local percentage = Lsp.percentage or 0
+				local title = Lsp.title or ""
+				local spinners = duplicate_tbl(icons.animation.circle, 4)
+				local success_icon = duplicate_tbl({ icons.animation.Done }, 12)
+				local ms = vim.loop.hrtime() / 1000000
+				local frame = math.floor(ms / 120) % #spinners
+				if percentage >= 90 then
+					return string.format(
+						" %%<%s %s %s (%s%%%%) ",
+						success_icon[frame + 1],
+						title,
+						msg,
+						percentage
+					)
+				else
+					return string.format(
+						" %%<%s %s %s (%s%%%%) ",
+						spinners[frame + 1],
+						title,
+						msg,
+						percentage
+					)
+				end
+			end
+			local cur_buf_clients = vim.lsp.buf_get_clients()
+			local clients_str = ""
+			for _, server in pairs(cur_buf_clients) do
+				for _, ft in ipairs(server.config.filetypes) do
+					if ft == vim.bo.filetype then
+						clients_str = clients_str .. server.name .. ","
+					end
+				end
+			end
+			local client_list = string.sub(clients_str, 1, -2)
+			return "[" .. client_list .. "]"
 		end,
 		enabled = enable_in_full_win,
 		hl = { fg = colors.cyan, bg = colors.dark2 },
@@ -329,26 +303,12 @@ local config = function()
 	--=====================================================
 	--                  right
 	--=====================================================
-	local diagnostics_dummy1 = {
-		provider = icons.status_line.triangle.acute.right,
-		enabled = function()
-			return lsp.diagnostics_exist(lsp_severity.ERROR)
-				or lsp.diagnostics_exist(lsp_severity.WARN)
-				or lsp.diagnostics_exist(lsp_severity.HINT)
-				or lsp.diagnostics_exist(lsp_severity.INFO)
-		end,
-		hl = {
-			fg = colors.dark1,
-			bg = colors.dark1,
-		},
-	}
-
 	local diagnostics_error = {
 		provider = "diagnostic_errors",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
 		end,
-		hl = { fg = colors.red_error, bg = colors.dark1 },
+		hl = { fg = colors.red_error, bg = colors.dark2 },
 		icon = "  ",
 	}
 
@@ -357,7 +317,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.WARN)
 		end,
-		hl = { fg = colors.yellow, bg = colors.dark1 },
+		hl = { fg = colors.yellow, bg = colors.dark2 },
 		icon = "  ",
 	}
 
@@ -366,7 +326,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.HINT)
 		end,
-		hl = { fg = colors.cyan, bg = colors.dark1 },
+		hl = { fg = colors.cyan, bg = colors.dark2 },
 		icon = "  ",
 	}
 
@@ -375,22 +335,8 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
-		hl = { fg = colors.teal, bg = colors.dark1 },
+		hl = { fg = colors.teal, bg = colors.dark2 },
 		icon = "  ",
-	}
-
-	local diagnostics_dummy2 = {
-		provider = " ",
-		enabled = function()
-			return lsp.diagnostics_exist(lsp_severity.ERROR)
-				or lsp.diagnostics_exist(lsp_severity.WARN)
-				or lsp.diagnostics_exist(lsp_severity.HINT)
-				or lsp.diagnostics_exist(lsp_severity.INFO)
-		end,
-		hl = {
-			fg = colors.dark1,
-			bg = colors.dark1,
-		},
 	}
 
 	local lsp_active_icon = {
@@ -415,7 +361,7 @@ local config = function()
 			str = icons.status_line.triangle.equilateral.right,
 			hl = {
 				fg = colors.white,
-				bg = colors.dark1,
+				bg = colors.dark2,
 			},
 		},
 	}
@@ -468,12 +414,10 @@ local config = function()
 				lsp_info,
 			},
 			{
-				diagnostics_dummy1,
 				diagnostics_error,
 				diagnostics_warning,
 				diagnostics_hint,
 				diagnostics_info,
-				diagnostics_dummy2,
 				lsp_active_icon,
 				location,
 				location_bar,
