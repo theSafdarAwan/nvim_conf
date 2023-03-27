@@ -1,3 +1,4 @@
+---@diagnostic disable: unused-local
 local config = function()
 	----------------------------------------------------------------------
 	--                              guards                              --
@@ -83,55 +84,64 @@ local config = function()
 	}
 
 	local mode = {
-		provider = " " .. icons.status_line.misc.mode_icon .. "  ",
-		hl = function()
-			return {
-				fg = colors.dark1,
-				bg = mode_colors[vim.fn.mode()].color,
-			}
+		provider = function(self)
+			local icon = icons.status_line.misc.mode_icon
+			local cur_mode = vim.fn.mode()
+			if cur_mode == "R" then
+				icon = icons.kind.TabNine
+			elseif cur_mode == "i" then
+				icon = icons.git.FileModifiedRound
+			elseif cur_mode == "v" or cur_mode == "V" or cur_mode == "" then
+				icon = icons.kind.Null
+			end
+
+			local mode_info = mode_colors[cur_mode]
+			self.hl.bg = mode_info.color
+			return " " .. icon .. " "
 		end,
+		hl = {
+			fg = colors.dark1,
+		},
 	}
 
 	----------------------------------------------------------------------
 	--                            git branch                            --
 	----------------------------------------------------------------------
-	local git_is_ok = function()
-		local branch = git.git_branch()
-		if package.loaded["gitsigns"] and branch ~= "" then
-			return true
-		end
-	end
-	local git_branch_icon = {
-		provider = function()
+	local git_branch = {
+		provider = function(self)
+			local git_is_ok = function()
+				local branch = git.git_branch()
+				if package.loaded["gitsigns"] and branch ~= "" then
+					return true
+				end
+			end
 			local git_branch_icon = " " .. icons.misc.Tux .. " "
+			local branch_name = ""
 			if git_is_ok() then
 				git_branch_icon = " " .. icons.git.Branch .. " "
-			end
-			return git_branch_icon
-		end,
-		hl = {
-			fg = colors.yellow,
-			bg = colors.dark2,
-		},
-		enabled = enable_in_full_win,
-	}
-	local git_branch = {
-		provider = function()
-			if git_is_ok() then
-				return git.git_branch() .. " "
+				branch_name = git.git_branch() .. " "
+				self.left_sep.str = git_branch_icon
 			else
-				return ""
+				self.left_sep.str = git_branch_icon
 			end
+			return branch_name
 		end,
 		hl = {
 			fg = colors.white,
-			bg = colors.dark2,
+			bg = colors.dark3,
+		},
+		left_sep = {
+			str = "",
+			hl = {
+				fg = colors.yellow,
+				bg = colors.dark3,
+			},
 		},
 		right_sep = {
 			str = icons.status_line.round.right,
 			hl = {
-				fg = colors.dark3,
-				bg = colors.dark1,
+				fg = colors.dark1,
+				bg = colors.dark3,
 			},
 		},
 		enabled = enable_in_full_win,
@@ -141,80 +151,76 @@ local config = function()
 	--                            file name                             --
 	----------------------------------------------------------------------
 	local file_name = {
-		provider = function()
-			local orig_file_name = vim.fn.expand("%:p:t:r")
-			local function split_long_string(orig_name_str, max_line_len)
-				local length = #orig_name_str
+		provider = function(self)
+			-- file name with no extension
+			local just_file_name = vim.fn.expand("%:p:t:r")
+			--- dictates the decision to display or not display file name based
+			--- on <args>.
+			---@param max_line_len number maximum file name length.
+			---@return string either empty string if `max_line_len` is exceeded
+			--- else `just_file_name`
+			local function file_name_lenght(max_line_len)
+				local length = #just_file_name
 				if length > max_line_len then
 					return ""
 				else
-					return orig_name_str
+					return just_file_name
 				end
 			end
-			local filename = split_long_string(orig_file_name, 30) .. " "
-			local extension = vim.fn.expand("%:e")
-			local gIcon = require("nvim-web-devicons").get_icon(filename, extension)
-			local provider
-			if gIcon == nil then
-				-- icon = "  " -- dont like this at the moment probably new icon
-				-- Also include filename otherwise no filename when no icon
-				provider = " " .. filename
-			elseif tostring(filename) == "" then
-				provider = " "
-			else
-				provider = " " .. gIcon .. " " .. filename .. " "
+			local truncated_file_name = file_name_lenght(30)
+			local provider = " "
+			if #truncated_file_name > 1 then
+				provider = " " .. truncated_file_name .. " "
 			end
+
+			local file_name_with_ext = vim.fn.expand("%:t")
+			local file_ext = vim.fn.expand("%:e")
+			local ft_icon = require("nvim-web-devicons").get_icon(file_name_with_ext, file_ext)
+			if ft_icon == nil then
+				return icons.kind.Null
+			end
+			self.left_sep.str = ft_icon
+			local _, fg = require("nvim-web-devicons").get_icon_color(file_name_with_ext, file_ext)
+			self.left_sep.hl.fg = fg
 			return provider
 		end,
 		enabled = enable_in_full_win,
-		hl = function()
-			local _, file_name_color
-			local file_types = {
-				["javascript"] = {},
-				["html"] = {},
-				["lua"] = {},
-				["css"] = {},
-				["c"] = {},
-				["json"] = {},
-			}
-			for ft, _ in pairs(file_types) do
-				if vim.bo.filetype == ft then
-					_, file_name_color = require("nvim-web-devicons").get_icon_color(
-						vim.fn.expand("%:t"),
-						vim.fn.expand("%:e")
-					)
-				end
-			end
-			return {
-				fg = file_name_color or colors.sky,
-				bg = colors.dark3,
-			}
-		end,
+		hl = {
+			fg = colors.sky,
+			bg = colors.dark1,
+		},
+		left_sep = {
+			str = "",
+			hl = { fg = "", bg = colors.dark1 },
+		},
 		right_sep = {
 			str = icons.status_line.round.left,
 			hl = {
-				fg = colors.dark3,
-				bg = colors.dark1,
+				fg = colors.dark1,
+				bg = colors.dark3,
 			},
 		},
 	}
 
+	----------------------------------------------------------------------
+	--                               Git                                --
+	----------------------------------------------------------------------
 	local git_add = {
 		provider = "git_diff_added",
 		hl = { fg = colors.green, bg = colors.dark1 },
-		icon = "  ",
+		icon = " " .. icons.git.FileAddedRound .. " ",
 	}
 	-- diffModfified
 	local git_changed = {
 		provider = "git_diff_changed",
 		hl = { fg = colors.cyan, bg = colors.dark1 },
-		icon = " ⦿ ",
+		icon = " " .. icons.git.FileModifiedRound .. " ",
 	}
 	-- diffRemove
 	local git_remove = {
 		provider = "git_diff_removed",
 		hl = { fg = colors.red, bg = colors.dark1 },
-		icon = "  ",
+		icon = " " .. icons.git.FileRemoveRound .. " ",
 	}
 
 	--=====================================================
@@ -450,7 +456,6 @@ local config = function()
 		active = {
 			{
 				mode,
-				git_branch_icon,
 				git_branch,
 				file_name,
 				git_add,
@@ -477,8 +482,8 @@ local config = function()
 
 	feline.setup({
 		colors = {
-			bg = colors.base02,
-			fg = colors.base07,
+			fg = colors.white,
+			bg = colors.dark4,
 		},
 		components = components,
 		force_inactive = {
