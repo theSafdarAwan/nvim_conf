@@ -240,7 +240,7 @@ local config = function()
 	--                  center
 	--=====================================================
 
-	local function show_lsp_progress()
+	local function lsp_progress()
 		local Lsp = vim.lsp.util.get_progress_messages()[1]
 		if Lsp then
 			local msg = Lsp.message or ""
@@ -301,7 +301,11 @@ local config = function()
 		local cur_buf_clients = vim.lsp.buf_get_clients()
 		local clients_str = ""
 		for _, server in pairs(cur_buf_clients) do
-			clients_str = clients_str .. server.name .. ","
+			for _, ft in ipairs(server.config.filetypes) do
+				if ft == vim.bo.filetype then
+					clients_str = clients_str .. server.name .. ","
+				end
+			end
 		end
 
 		local client_list = string.sub(clients_str, 1, -2)
@@ -312,9 +316,11 @@ local config = function()
 		provider = function()
 			vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach" }, {
 				group = vim.api.nvim_create_augroup("setting_feline_lsp_buf_clients", { clear = true }),
-				callback = function() end,
+				callback = function()
+					lsp_progress()
+				end,
 			})
-			return show_lsp_progress()
+			return lsp_progress()
 		end,
 		enabled = enable_in_full_win,
 		hl = { fg = colors.cyan, bg = colors.dark2 },
