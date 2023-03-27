@@ -40,7 +40,7 @@ local M = {}
 -- ["leaf-name"] = " ",
 -- ["action-name"] = " ",
 
-M.kind = {
+M.kind2 = {
 	-- ~> icons
 	--M.icons = {
 	--  Class = "   ",
@@ -135,7 +135,7 @@ M.kind = {
 	Operator = "",
 	TypeParameter = "𝙏",
 }
-M.kind2 = {
+M.kind = {
 	Array = "",
 	Boolean = "",
 	Class = "",
