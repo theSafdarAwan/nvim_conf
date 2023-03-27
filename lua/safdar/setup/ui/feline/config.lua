@@ -1,4 +1,7 @@
 local config = function()
+	----------------------------------------------------------------------
+	--                              guards                              --
+	----------------------------------------------------------------------
 	local fused_ok, _ = pcall(require, "fused")
 	if not fused_ok then
 		print("fused not installed")
@@ -14,6 +17,9 @@ local config = function()
 		return
 	end
 
+	----------------------------------------------------------------------
+	--                              Colors                              --
+	----------------------------------------------------------------------
 	local fused_colors = require("fused.utils").colors
 	local colors = {
 		fg = fused_colors.base07,
@@ -29,63 +35,25 @@ local config = function()
 		red_error = fused_colors.base08,
 	}
 
+	local icons = require("safdar.setup.ui.icons").status_line
+
+	----------------------------------------------------------------------
+	--                             modules                              --
+	----------------------------------------------------------------------
 	local lsp = require("feline.providers.lsp")
 	local lsp_severity = vim.diagnostic.severity
-
 	local git = require("feline.providers.git")
 
-	local icon_styles = {
-		default = {
-			left = "",
-			right = " ",
-			main_icon = "  ",
-			vi_mode_icon = " ",
-			position_icon = " ",
-		},
-		default2 = {
-			left = "",
-			right = "",
-			main_icon = "  ",
-			vi_mode_icon = " ",
-			position_icon = " ",
-		},
-
-		block = {
-			left = " ",
-			right = " ",
-			main_icon = "   ",
-			vi_mode_icon = "  ",
-			position_icon = "  ",
-		},
-
-		round = {
-			left = "",
-			right = "",
-			main_icon = "  ",
-			vi_mode_icon = " ",
-			position_icon = " ",
-		},
-
-		slant = {
-			left = "",
-			right = " ",
-			main_icon = "  ",
-			vi_mode_icon = " ",
-			position_icon = " ",
-		},
-	}
-
-	--=====================================================
-	--               defining custom functions
-	--=====================================================
+	----------------------------------------------------------------------
+	--                              custom                              --
+	----------------------------------------------------------------------
 	local enable_only_in_full_buf = function()
 		return vim.api.nvim_win_get_width(0) > 40
 	end
 
-	--=====================================================
-	--                  defining compnents
-	--=====================================================
-
+	----------------------------------------------------------------------
+	--                            components                            --
+	----------------------------------------------------------------------
 	-- Initialize the components table
 	local components = {
 		active = {},
@@ -166,7 +134,7 @@ local config = function()
 			bg = colors.bg,
 		},
 		right_sep = {
-			str = icon_styles.default2.right,
+			str = icons.triangle.equilateral.left,
 			hl = {
 				fg = colors.bg,
 				bg = colors.fg,
@@ -210,7 +178,7 @@ local config = function()
 		},
 
 		right_sep = {
-			str = icon_styles.default2.right,
+			str = icons.triangle.equilateral.left,
 			hl = {
 				fg = colors.fg,
 				bg = colors.bg,
@@ -340,7 +308,7 @@ local config = function()
 	--                  right
 	--=====================================================
 	components.active[3][1] = {
-		provider = icon_styles.slant.left,
+		provider = icons.triangle.acute.right,
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
 				or lsp.diagnostics_exist(lsp_severity.WARN)
@@ -404,7 +372,7 @@ local config = function()
 	}
 
 	components.active[3][7] = {
-		provider = icon_styles.default.left,
+		provider = icons.triangle.equilateral.right,
 		enabled = enable_only_in_full_buf,
 		hl = {
 			fg = colors.fg,
@@ -419,19 +387,19 @@ local config = function()
 			local lsp_symbol_str_not_atcive = " "
 
 			if next(vim.lsp.buf_get_clients()) ~= nil then
-				local lsp_status_slant = lsp_symbol_str .. icon_styles.default.left
+				local lsp_status_slant = lsp_symbol_str .. icons.triangle.equilateral.right
 				return lsp_status_slant
 			else
 				local lsp_status_slant = lsp_symbol_str_not_atcive
 					.. "" -- just to keep up with style
-					.. icon_styles.default.left
+					.. icons.triangle.equilateral.right
 				return lsp_status_slant
 			end
 		end,
 		enabled = enable_only_in_full_buf,
 		hl = { fg = colors.bg, bg = colors.fg },
 		left_sep = {
-			str = icon_styles.default.left,
+			str = icons.triangle.equilateral.right,
 			hl = {
 				fg = colors.fg,
 				bg = colors.bg,
