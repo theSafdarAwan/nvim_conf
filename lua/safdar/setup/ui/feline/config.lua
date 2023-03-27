@@ -122,8 +122,10 @@ local config = function()
 				branch_name = git.git_branch()
 			end
 			self.left_sep.str = " " .. git_branch_icon .. " "
+			self.left_sep.hl.bg = colors.dark2
 			if not string.find(vim.fn.expand("%:t"), "[%d?%a]") then
 				self.right_sep.str = ""
+				self.left_sep.hl.bg = colors.dark1
 			else
 				self.right_sep.str = icons.status_line.round.right
 			end
@@ -131,20 +133,20 @@ local config = function()
 		end,
 		hl = {
 			fg = colors.white,
-			bg = colors.dark3,
+			bg = colors.dark2,
 		},
 		left_sep = {
 			str = "",
 			hl = {
 				fg = colors.yellow,
-				bg = colors.dark3,
+				bg = "",
 			},
 		},
 		right_sep = {
 			str = "",
 			hl = {
 				fg = colors.dark1,
-				bg = colors.dark3,
+				bg = colors.dark2,
 			},
 		},
 		enabled = enable_in_full_win,
@@ -208,7 +210,7 @@ local config = function()
 			str = icons.status_line.round.left,
 			hl = {
 				fg = colors.dark1,
-				bg = colors.dark3,
+				bg = colors.dark2,
 			},
 		},
 	}
@@ -218,19 +220,19 @@ local config = function()
 	----------------------------------------------------------------------
 	local git_add = {
 		provider = "git_diff_added",
-		hl = { fg = colors.green, bg = colors.dark1 },
+		hl = { fg = colors.green, bg = colors.dark2 },
 		icon = " " .. icons.git.FileAddedRound .. " ",
 	}
 	-- diffModfified
 	local git_changed = {
 		provider = "git_diff_changed",
-		hl = { fg = colors.cyan, bg = colors.dark1 },
+		hl = { fg = colors.cyan, bg = colors.dark2 },
 		icon = " " .. icons.git.FileModifiedRound .. " ",
 	}
 	-- diffRemove
 	local git_remove = {
 		provider = "git_diff_removed",
-		hl = { fg = colors.red, bg = colors.dark1 },
+		hl = { fg = colors.red, bg = colors.dark2 },
 		icon = " " .. icons.git.FileRemoveRound .. " ",
 	}
 
