@@ -286,6 +286,7 @@ M.misc = {
 	Smiley = "",
 	Package = "",
 	CircuitBoard = "",
+	Tux = "",
 }
 
 M.status_line = {
@@ -303,6 +304,7 @@ M.status_line = {
 		mode_icon = "",
 		position_icon_1 = "",
 		position_icon_2 = "",
+		block = "█",
 	},
 	round = {
 		left = "",

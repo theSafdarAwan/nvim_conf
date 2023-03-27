@@ -1,6 +1,6 @@
 local function plugin(install)
 	install({
-		"feline-nvim/feline.nvim",
+		"freddiehaddad/feline.nvim",
 		event = "VimEnter",
 		config = function()
 			require("safdar.setup.ui.feline.config").config()

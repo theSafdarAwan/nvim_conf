@@ -22,11 +22,16 @@ local config = function()
 	----------------------------------------------------------------------
 	local fused_colors = require("fused.utils").colors
 	local colors = {
-		fg = fused_colors.base07,
-		bg = fused_colors.base01,
+		white = fused_colors.base07,
+		grey_white = fused_colors.base06,
+		dark1 = fused_colors.base01,
+		dark2 = fused_colors.base02,
+		dark3 = fused_colors.base03,
+		dark4 = fused_colors.base04,
+		dark5 = fused_colors.base05,
 		yellow = fused_colors.base09,
 		pink = fused_colors.base12,
-		sky = fused_colors.base10,
+		cyan = fused_colors.base10,
 		teal = fused_colors.base13,
 		green = fused_colors.base15,
 		magenta = fused_colors.base14,
@@ -35,7 +40,7 @@ local config = function()
 		red_error = fused_colors.base08,
 	}
 
-	local icons = require("safdar.setup.ui.icons").status_line
+	local icons = require("safdar.setup.ui.icons")
 
 	----------------------------------------------------------------------
 	--                             modules                              --
@@ -45,18 +50,15 @@ local config = function()
 	local git = require("feline.providers.git")
 
 	----------------------------------------------------------------------
-	--                              custom                              --
+	--                           custom funcs                           --
 	----------------------------------------------------------------------
-	local enable_only_in_full_buf = function()
+	local enable_in_full_win = function()
 		return vim.api.nvim_win_get_width(0) > 40
 	end
 
 	----------------------------------------------------------------------
-	--                            components                            --
-	--=====================================================
-	--                  left
-	--=====================================================
-
+	--                               mode                               --
+	----------------------------------------------------------------------
 	local mode_colors = {
 		["n"] = { text = "NORMAL", color = colors.pink },
 		["no"] = { text = "N-PENDING", color = colors.pink },
@@ -74,48 +76,70 @@ local config = function()
 		["c"] = { text = "COMMAND", color = colors.magenta },
 		["cv"] = { text = "COMMAND", color = colors.magenta },
 		["ce"] = { text = "COMMAND", color = colors.magenta },
-		["r"] = { text = "PROMPT", color = colors.sky },
-		["rm"] = { text = "MORE", color = colors.sky },
-		["r?"] = { text = "CONFIRM", color = colors.sky },
+		["r"] = { text = "PROMPT", color = colors.cyan },
+		["rm"] = { text = "MORE", color = colors.cyan },
+		["r?"] = { text = "CONFIRM", color = colors.cyan },
 		["!"] = { text = "SHELL", color = colors.blue },
 	}
 
 	local mode = {
-		provider = "██",
-		-- return '██ '
-		-- enabled = enable_only_in_full_buf,
+		provider = " " .. icons.status_line.misc.mode_icon .. "  ",
 		hl = function()
 			return {
-				bg = colors.bg,
-				fg = mode_colors[vim.fn.mode()].color,
+				fg = colors.dark1,
+				bg = mode_colors[vim.fn.mode()].color,
 			}
 		end,
 	}
 
+	----------------------------------------------------------------------
+	--                            git branch                            --
+	----------------------------------------------------------------------
+	local git_is_ok = function()
+		local branch = git.git_branch()
+		if package.loaded["gitsigns"] and branch ~= "" then
+			return true
+		end
+	end
+	local git_branch_icon = {
+		provider = function()
+			local git_branch_icon = " " .. icons.misc.Tux .. " "
+			if git_is_ok() then
+				git_branch_icon = " " .. icons.git.Branch .. " "
+			end
+			return git_branch_icon
+		end,
+		hl = {
+			fg = colors.yellow,
+			bg = colors.dark2,
+		},
+		enabled = enable_in_full_win,
+	}
 	local git_branch = {
 		provider = function()
-			local branch_name = git.git_branch()
-			local branch = "  " -- little tux
-
-			if package.loaded["gitsigns"] and branch_name ~= "" then
-				branch = "  " .. branch_name
+			if git_is_ok() then
+				return git.git_branch() .. " "
+			else
+				return ""
 			end
-			return branch
 		end,
-		enabled = enable_only_in_full_buf,
 		hl = {
-			fg = colors.fg,
-			bg = colors.bg,
+			fg = colors.white,
+			bg = colors.dark2,
 		},
 		right_sep = {
-			str = icons.triangle.equilateral.left,
+			str = icons.status_line.round.right,
 			hl = {
-				fg = colors.bg,
-				bg = colors.fg,
+				fg = colors.dark3,
+				bg = colors.dark1,
 			},
 		},
+		enabled = enable_in_full_win,
 	}
 
+	----------------------------------------------------------------------
+	--                            file name                             --
+	----------------------------------------------------------------------
 	local file_name = {
 		provider = function()
 			local orig_file_name = vim.fn.expand("%:p:t:r")
@@ -127,15 +151,12 @@ local config = function()
 					return orig_name_str
 				end
 			end
-
 			local filename = split_long_string(orig_file_name, 30) .. " "
 			local extension = vim.fn.expand("%:e")
 			local gIcon = require("nvim-web-devicons").get_icon(filename, extension)
-
 			local provider
 			if gIcon == nil then
 				-- icon = "  " -- dont like this at the moment probably new icon
-
 				-- Also include filename otherwise no filename when no icon
 				provider = " " .. filename
 			elseif tostring(filename) == "" then
@@ -145,36 +166,54 @@ local config = function()
 			end
 			return provider
 		end,
-		enabled = enable_only_in_full_buf,
-		hl = {
-			fg = colors.bg,
-			bg = colors.fg,
-		},
-
+		enabled = enable_in_full_win,
+		hl = function()
+			local _, file_name_color
+			local file_types = {
+				["javascript"] = {},
+				["html"] = {},
+				["lua"] = {},
+				["css"] = {},
+				["c"] = {},
+				["json"] = {},
+			}
+			for ft, _ in pairs(file_types) do
+				if vim.bo.filetype == ft then
+					_, file_name_color = require("nvim-web-devicons").get_icon_color(
+						vim.fn.expand("%:t"),
+						vim.fn.expand("%:e")
+					)
+				end
+			end
+			return {
+				fg = file_name_color or colors.sky,
+				bg = colors.dark3,
+			}
+		end,
 		right_sep = {
-			str = icons.triangle.equilateral.left,
+			str = icons.status_line.round.left,
 			hl = {
-				fg = colors.fg,
-				bg = colors.bg,
+				fg = colors.dark3,
+				bg = colors.dark1,
 			},
 		},
 	}
 
 	local git_add = {
 		provider = "git_diff_added",
-		hl = { fg = colors.green, bg = colors.bg },
+		hl = { fg = colors.green, bg = colors.dark1 },
 		icon = "  ",
 	}
 	-- diffModfified
 	local git_changed = {
 		provider = "git_diff_changed",
-		hl = { fg = colors.sky, bg = colors.bg },
+		hl = { fg = colors.cyan, bg = colors.dark1 },
 		icon = " ⦿ ",
 	}
 	-- diffRemove
 	local git_remove = {
 		provider = "git_diff_removed",
-		hl = { fg = colors.red, bg = colors.bg },
+		hl = { fg = colors.red, bg = colors.dark1 },
 		icon = "  ",
 	}
 
@@ -265,16 +304,16 @@ local config = function()
 		return "[" .. client_list .. "]"
 	end
 
-	local lsp
+	local lsp_info
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("setting_feline_lsp_buf_clients", { clear = true }),
 		callback = function()
-			lsp = {
+			lsp_info = {
 				provider = function()
 					return show_lsp_progress()
 				end,
-				enabled = enable_only_in_full_buf,
-				hl = { fg = colors.sky, bg = colors.bg },
+				enabled = enable_in_full_win,
+				hl = { fg = colors.cyan, bg = colors.dark1 },
 			}
 		end,
 	})
@@ -283,7 +322,7 @@ local config = function()
 	--                  right
 	--=====================================================
 	local diagnostics_dummy1 = {
-		provider = icons.triangle.acute.right,
+		provider = icons.status_line.triangle.acute.right,
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
 				or lsp.diagnostics_exist(lsp_severity.WARN)
@@ -291,8 +330,8 @@ local config = function()
 				or lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
 		hl = {
-			fg = colors.bg,
-			bg = colors.bg,
+			fg = colors.dark1,
+			bg = colors.dark1,
 		},
 	}
 
@@ -301,7 +340,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
 		end,
-		hl = { fg = colors.red_error, bg = colors.bg },
+		hl = { fg = colors.red_error, bg = colors.dark1 },
 		icon = "  ",
 	}
 
@@ -310,7 +349,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.WARN)
 		end,
-		hl = { fg = colors.yellow, bg = colors.bg },
+		hl = { fg = colors.yellow, bg = colors.dark1 },
 		icon = "  ",
 	}
 
@@ -319,7 +358,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.HINT)
 		end,
-		hl = { fg = colors.sky, bg = colors.bg },
+		hl = { fg = colors.cyan, bg = colors.dark1 },
 		icon = "  ",
 	}
 
@@ -328,7 +367,7 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
-		hl = { fg = colors.teal, bg = colors.bg },
+		hl = { fg = colors.teal, bg = colors.dark1 },
 		icon = "  ",
 	}
 
@@ -341,8 +380,8 @@ local config = function()
 				or lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
 		hl = {
-			fg = colors.bg,
-			bg = colors.bg,
+			fg = colors.dark1,
+			bg = colors.dark1,
 		},
 	}
 
@@ -353,22 +392,22 @@ local config = function()
 			local lsp_symbol_str_not_atcive = " "
 
 			if next(vim.lsp.buf_get_clients()) ~= nil then
-				local lsp_status_slant = lsp_symbol_str .. icons.triangle.equilateral.right
+				local lsp_status_slant = lsp_symbol_str .. icons.status_line.triangle.equilateral.right
 				return lsp_status_slant
 			else
 				local lsp_status_slant = lsp_symbol_str_not_atcive
 					.. "" -- just to keep up with style
-					.. icons.triangle.equilateral.right
+					.. icons.status_line.triangle.equilateral.right
 				return lsp_status_slant
 			end
 		end,
-		enabled = enable_only_in_full_buf,
-		hl = { fg = colors.bg, bg = colors.fg },
+		enabled = enable_in_full_win,
+		hl = { fg = colors.dark1, bg = colors.white },
 		left_sep = {
-			str = icons.triangle.equilateral.right,
+			str = icons.status_line.triangle.equilateral.right,
 			hl = {
-				fg = colors.fg,
-				bg = colors.bg,
+				fg = colors.white,
+				bg = colors.dark1,
 			},
 		},
 	}
@@ -387,20 +426,20 @@ local config = function()
 			return " " .. result .. "%% "
 		end,
 
-		enabled = enable_only_in_full_buf,
+		enabled = enable_in_full_win,
 
 		hl = {
-			fg = colors.fg,
-			bg = colors.bg,
+			fg = colors.white,
+			bg = colors.dark1,
 		},
 	}
 
 	local location_bar = {
 		provider = "scroll_bar",
-		enabled = enable_only_in_full_buf,
+		enabled = enable_in_full_win,
 		hl = {
 			fg = colors.blue,
-			bg = colors.bg,
+			bg = colors.dark1,
 			style = "bold",
 		},
 	}
@@ -411,6 +450,7 @@ local config = function()
 		active = {
 			{
 				mode,
+				git_branch_icon,
 				git_branch,
 				file_name,
 				git_add,
@@ -418,7 +458,7 @@ local config = function()
 				git_remove,
 			},
 			{
-				lsp,
+				lsp_info,
 			},
 			{
 				diagnostics_dummy1,
