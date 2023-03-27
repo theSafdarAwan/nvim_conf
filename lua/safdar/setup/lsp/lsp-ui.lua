@@ -1,9 +1,11 @@
+local icons = require("safdar.setup.ui.icons")
+
 local signs = {
-	Error = " ",
-	Warn = " ",
-	Hint = "",
-	Info = " ",
-	other = " ",
+	Error = icons.diagnostics.BoldError,
+	Warn = icons.diagnostics.BoldWarning,
+	Hint = icons.diagnostics.BoldHint,
+	Info = icons.diagnostics.BoldInformation,
+	other = icons.status_line.misc.mode_icon,
 }
 
 for sign, icon in pairs(signs) do

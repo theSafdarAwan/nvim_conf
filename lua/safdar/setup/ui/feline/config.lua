@@ -27,9 +27,6 @@ local config = function()
 		grey_white = fused_colors.base06,
 		dark1 = fused_colors.base01,
 		dark2 = fused_colors.base02,
-		dark3 = fused_colors.base03,
-		dark4 = fused_colors.base04,
-		dark5 = fused_colors.base05,
 		yellow = fused_colors.base09,
 		pink = fused_colors.base12,
 		cyan = fused_colors.base10,
@@ -61,14 +58,14 @@ local config = function()
 	--                               mode                               --
 	----------------------------------------------------------------------
 	local mode_colors = {
-		["n"] = { text = "NORMAL", color = colors.pink },
-		["no"] = { text = "N-PENDING", color = colors.pink },
+		["n"] = { text = "NORMAL", color = colors.blue },
+		["no"] = { text = "N-PENDING", color = colors.blue },
 		["i"] = { text = "INSERT", color = colors.green },
 		["ic"] = { text = "INSERT", color = colors.green },
 		["t"] = { text = "TERMINAL", color = colors.green },
-		["v"] = { text = "VISUAL", color = colors.blue },
-		["V"] = { text = "V-LINE", color = colors.blue },
-		[""] = { text = "V-BLOCK", color = colors.blue },
+		["v"] = { text = "VISUAL", color = colors.pink },
+		["V"] = { text = "V-LINE", color = colors.pink },
+		[""] = { text = "V-BLOCK", color = colors.pink },
 		["R"] = { text = "REPLACE", color = colors.red },
 		["Rv"] = { text = "V-REPLACE", color = colors.red },
 		["s"] = { text = "SELECT", color = colors.red },
@@ -80,7 +77,7 @@ local config = function()
 		["r"] = { text = "PROMPT", color = colors.cyan },
 		["rm"] = { text = "MORE", color = colors.cyan },
 		["r?"] = { text = "CONFIRM", color = colors.cyan },
-		["!"] = { text = "SHELL", color = colors.blue },
+		["!"] = { text = "SHELL", color = colors.pink },
 	}
 
 	local mode = {
@@ -94,14 +91,15 @@ local config = function()
 			elseif cur_mode == "v" or cur_mode == "V" or cur_mode == "" then
 				icon = icons.kind.Null
 			end
-
-			local mode_info = mode_colors[cur_mode]
-			self.hl.bg = mode_info.color
 			return " " .. icon .. " "
 		end,
-		hl = {
-			fg = colors.dark1,
-		},
+		hl = function()
+			local color = mode_colors[vim.fn.mode()].color
+			return {
+				fg = colors.dark1,
+				bg = color,
+			}
+		end,
 	}
 
 	----------------------------------------------------------------------
@@ -124,10 +122,7 @@ local config = function()
 			self.left_sep.str = " " .. git_branch_icon .. " "
 			self.left_sep.hl.bg = colors.dark2
 			if not string.find(vim.fn.expand("%:t"), "[%d?%a]") then
-				self.right_sep.str = ""
 				self.left_sep.hl.bg = colors.dark1
-			else
-				self.right_sep.str = icons.status_line.round.right
 			end
 			return branch_name .. " "
 		end,
@@ -140,13 +135,6 @@ local config = function()
 			hl = {
 				fg = colors.yellow,
 				bg = "",
-			},
-		},
-		right_sep = {
-			str = "",
-			hl = {
-				fg = colors.dark1,
-				bg = colors.dark2,
 			},
 		},
 		enabled = enable_in_full_win,
@@ -186,7 +174,7 @@ local config = function()
 				if not ft_icon then
 					return icons.kind.Null
 				end
-				self.left_sep.str = ft_icon
+				self.left_sep.str = " " .. ft_icon
 				self.left_sep.hl.fg = fg
 			else
 				self.left_sep.str = nil
@@ -207,7 +195,7 @@ local config = function()
 			hl = { fg = "", bg = colors.dark1 },
 		},
 		right_sep = {
-			str = icons.status_line.round.left,
+			str = icons.status_line.triangle.acute.left,
 			hl = {
 				fg = colors.dark1,
 				bg = colors.dark2,
@@ -237,8 +225,8 @@ local config = function()
 	----------------------------------------------------------------------
 	--                               Lsp                                --
 	----------------------------------------------------------------------
-	local lsp_info = {
-		provider = function()
+	local lsp_progress_and_servers_list = {
+		provider = function(self)
 			--- NOTE> this util function is only helpful here
 			---@param tbl table to be merged with.
 			---@param num number for how many times the `tbl` should be merged
@@ -266,6 +254,7 @@ local config = function()
 				local success_icon = duplicate_tbl({ icons.animation.Done }, 12)
 				local ms = vim.loop.hrtime() / 1000000
 				local frame = math.floor(ms / 120) % #spinners
+				self.hl.fg = colors.pink
 				if percentage >= 90 then
 					return string.format(
 						" %%<%s %s %s (%s%%%%) ",
@@ -284,6 +273,7 @@ local config = function()
 					)
 				end
 			end
+			self.hl.fg = colors.white
 			local cur_buf_clients = vim.lsp.buf_get_clients()
 			local clients_str = ""
 			for _, server in pairs(cur_buf_clients) do
@@ -294,31 +284,36 @@ local config = function()
 				end
 			end
 			local client_list = string.sub(clients_str, 1, -2)
-			return "[" .. client_list .. "]"
+			if #client_list > 1 then
+				client_list = icons.ui.Setting .. " " .. client_list
+			else
+				client_list = ""
+			end
+			return client_list
 		end,
 		enabled = enable_in_full_win,
-		hl = { fg = colors.cyan, bg = colors.dark2 },
+		hl = { fg = colors.white, bg = colors.dark2 },
 	}
 
-	--=====================================================
-	--                  right
-	--=====================================================
+	----------------------------------------------------------------------
+	--                         Lsp Diagnostics                          --
+	----------------------------------------------------------------------
 	local diagnostics_error = {
 		provider = "diagnostic_errors",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
 		end,
 		hl = { fg = colors.red_error, bg = colors.dark2 },
-		icon = "  ",
+		icon = " " .. icons.diagnostics.BoldError .. " ",
+		right_sep = { str = " ", hl = { fg = colors.red_error, bg = colors.dark2 } },
 	}
-
 	local diagnostics_warning = {
 		provider = "diagnostic_warnings",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.WARN)
 		end,
 		hl = { fg = colors.yellow, bg = colors.dark2 },
-		icon = "  ",
+		icon = " " .. icons.diagnostics.BoldWarning .. " ",
 	}
 
 	local diagnostics_hint = {
@@ -327,7 +322,7 @@ local config = function()
 			return lsp.diagnostics_exist(lsp_severity.HINT)
 		end,
 		hl = { fg = colors.cyan, bg = colors.dark2 },
-		icon = "  ",
+		icon = " " .. icons.diagnostics.BoldHint .. " ",
 	}
 
 	local diagnostics_info = {
@@ -336,66 +331,44 @@ local config = function()
 			return lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
 		hl = { fg = colors.teal, bg = colors.dark2 },
-		icon = "  ",
-	}
-
-	local lsp_active_icon = {
-		provider = function()
-			local lsp_symbol_str = "   LSP "
-			-- local lsp_symbol_str_not_atcive = "   no LSP "
-			local lsp_symbol_str_not_atcive = " "
-
-			if next(vim.lsp.buf_get_clients()) ~= nil then
-				local lsp_status_slant = lsp_symbol_str .. icons.status_line.triangle.equilateral.right
-				return lsp_status_slant
-			else
-				local lsp_status_slant = lsp_symbol_str_not_atcive
-					.. "" -- just to keep up with style
-					.. icons.status_line.triangle.equilateral.right
-				return lsp_status_slant
-			end
-		end,
-		enabled = enable_in_full_win,
-		hl = { fg = colors.dark1, bg = colors.white },
-		left_sep = {
-			str = icons.status_line.triangle.equilateral.right,
-			hl = {
-				fg = colors.white,
-				bg = colors.dark2,
-			},
-		},
+		icon = " " .. icons.diagnostics.BoldInformation .. " ",
 	}
 
 	local location = {
-		provider = function()
+		provider = function(self)
 			local current_line = vim.fn.line(".")
 			local total_line = vim.fn.line("$")
-
 			if current_line == 1 then
 				return " Top "
 			elseif current_line == vim.fn.line("$") then
 				return " Bot "
 			end
 			local result, _ = math.modf((current_line / total_line) * 100)
+			if result < 10 then
+				---@diagnostic disable-next-line: cast-local-type
+				result = "0" .. tostring(result)
+			end
 			return " " .. result .. "%% "
 		end,
-
-		enabled = enable_in_full_win,
-
-		hl = {
-			fg = colors.white,
-			bg = colors.dark1,
+		left_sep = {
+			str = " " .. icons.status_line.misc.position_icon_1 .. " ",
+			hl = function()
+				--- mode colors
+				local color = mode_colors[vim.fn.mode()].color
+				return {
+					fg = colors.dark1,
+					bg = color,
+				}
+			end,
 		},
-	}
-
-	local location_bar = {
-		provider = "scroll_bar",
-		enabled = enable_in_full_win,
-		hl = {
-			fg = colors.blue,
-			bg = colors.dark1,
-			style = "bold",
-		},
+		hl = function()
+			--- mode colors
+			local color = mode_colors[vim.fn.mode()].color
+			return {
+				fg = color,
+				bg = colors.dark1,
+			}
+		end,
 	}
 
 	----------------------------------------------------------------------
@@ -411,16 +384,14 @@ local config = function()
 				git_remove,
 			},
 			{
-				lsp_info,
+				lsp_progress_and_servers_list,
 			},
 			{
-				diagnostics_error,
-				diagnostics_warning,
-				diagnostics_hint,
 				diagnostics_info,
-				lsp_active_icon,
+				diagnostics_hint,
+				diagnostics_warning,
+				diagnostics_error,
 				location,
-				location_bar,
 			},
 		},
 		inactive = {},
@@ -429,7 +400,7 @@ local config = function()
 	feline.setup({
 		colors = {
 			fg = colors.white,
-			bg = colors.dark4,
+			bg = colors.dark2,
 		},
 		components = components,
 		force_inactive = {

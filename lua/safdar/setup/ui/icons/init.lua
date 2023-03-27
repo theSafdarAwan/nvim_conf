@@ -240,6 +240,7 @@ M.ui = {
 	Lightbulb = "",
 	LineLeft = "▏",
 	LineMiddle = "│",
+	Setting = " ",
 	List = "",
 	Lock = "",
 	NewFile = "",
@@ -316,7 +317,7 @@ M.status_line = {
 			left = "",
 		},
 		acute = {
-			left = " ",
+			left = "",
 			right = "",
 		},
 	},
