@@ -247,7 +247,6 @@ local config = function()
 			local percentage = Lsp.percentage or 0
 			local title = Lsp.title or ""
 			local spinners = {
-				-- ◐ ◓ ◑ ◒
 				"◐",
 				"◓",
 				"◑",
@@ -260,23 +259,9 @@ local config = function()
 				"◓",
 				"◑",
 				"◒",
-
-				-- "⠋",
-				-- "⠇",
-				-- "⠦",
-				-- "⠙",
-				-- "⠹",
-				-- "⠼",
-				-- "⠴",
-				-- "⠸",
-				-- "⠦",
-				-- "⠧",
-				-- "⠇",
-				-- "⠏",
 			}
 
 			local success_icon = {
-				-- "",
 				"",
 				"",
 				"",
@@ -323,19 +308,17 @@ local config = function()
 		return "[" .. client_list .. "]"
 	end
 
-	local lsp_info
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = vim.api.nvim_create_augroup("setting_feline_lsp_buf_clients", { clear = true }),
-		callback = function()
-			lsp_info = {
-				provider = function()
-					return show_lsp_progress()
-				end,
-				enabled = enable_in_full_win,
-				hl = { fg = colors.cyan, bg = colors.dark1 },
-			}
+	local lsp_info = {
+		provider = function()
+			vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach" }, {
+				group = vim.api.nvim_create_augroup("setting_feline_lsp_buf_clients", { clear = true }),
+				callback = function() end,
+			})
+			return show_lsp_progress()
 		end,
-	})
+		enabled = enable_in_full_win,
+		hl = { fg = colors.cyan, bg = colors.dark2 },
+	}
 
 	--=====================================================
 	--                  right

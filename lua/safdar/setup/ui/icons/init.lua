@@ -288,6 +288,27 @@ M.misc = {
 	Tux = "",
 }
 
+M.animation = {
+	Done = "",
+	circle = {
+		"◐",
+		"◓",
+		"◑",
+		"◒",
+	},
+	dots = {
+		"⠋",
+		"⠙",
+		"⠴",
+		"⠦",
+		"⠹",
+		"⠇",
+		"⠧",
+		"⠸",
+		"⠼",
+	},
+}
+
 M.status_line = {
 	triangle = {
 		equilateral = {
