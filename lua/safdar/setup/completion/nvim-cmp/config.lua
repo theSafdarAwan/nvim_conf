@@ -30,6 +30,7 @@ local config = function()
 		},
 		experimental = { ghost_text = true },
 		formatting = {
+			fields = { "abbr", "kind", "menu" },
 			format = function(entry, vim_item)
 				-- load lspkind icons
 				local icons = require("safdar.setup.ui.icons").kind
