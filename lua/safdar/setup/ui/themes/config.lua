@@ -1,7 +1,7 @@
 local function tokyonight_config()
 	local ok, tokyonight = pcall(require, "tokyonight")
 	if not ok then
-		require("safdar.utils").notify("tokyonight not found")
+		require("safdar.utils").notify("tokyonight not installed")
 		return
 	end
 
@@ -47,7 +47,7 @@ end
 local function vs_code_config()
 	local ok, colors = pcall(require, "vscode")
 	if not ok then
-		require("safdar.utils").notify("vscode theme not found")
+		require("safdar.utils").notify("vscode theme not installed")
 		return
 	end
 

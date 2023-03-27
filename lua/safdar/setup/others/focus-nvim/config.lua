@@ -1,7 +1,7 @@
 local function config()
 	local status_ok, focus = pcall(require, "focus")
 	if not status_ok then
-		require("safdar.utils").notify("focus not found")
+		require("safdar.utils").notify("focus not installed")
 		return
 	end
 

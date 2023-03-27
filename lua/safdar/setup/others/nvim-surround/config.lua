@@ -1,7 +1,7 @@
 local function config()
 	local ok, surround = pcall(require, "nvim-surround")
 	if not ok then
-		require("safdar.utils").notify("nvim-surround not found")
+		require("safdar.utils").notify("nvim-surround not installed")
 		return
 	end
 

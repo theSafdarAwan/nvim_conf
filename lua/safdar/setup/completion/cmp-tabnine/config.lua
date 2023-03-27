@@ -1,7 +1,7 @@
 local function config()
 	local ok, tabnine = pcall(require, "cmp_tabnine.config")
 	if not ok then
-		require("safdar.utils").notify("tabnine not found")
+		require("safdar.utils").notify("tabnine not installed")
 		return
 	end
 	tabnine:setup({

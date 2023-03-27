@@ -1,7 +1,7 @@
 local function config()
 	local ok, win_picker = pcall(require, "window-picker")
 	if not ok then
-		require("safdar.utils").notify("window-picker not found")
+		require("safdar.utils").notify("window-picker not installed")
 		return
 	end
 	local cp = require("fused.utils").colors

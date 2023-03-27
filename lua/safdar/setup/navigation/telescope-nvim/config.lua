@@ -1,7 +1,7 @@
 local config = function()
 	local ok, telescope = pcall(require, "telescope")
 	if not ok then
-		require("safdar.utils").notify("Telescope not found")
+		require("safdar.utils").notify("Telescope not installed")
 		return
 	end
 	local maps = require("safdar.setup.navigation.telescope-nvim.maps")

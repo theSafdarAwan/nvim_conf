@@ -2,7 +2,7 @@ local maps = require("safdar.setup.debugging.nvim-dap.maps")
 local function config()
 	local ok, dap = pcall(require, "dap")
 	if not ok then
-		require("safdar.utils").notify("dap not found")
+		require("safdar.utils").notify("dap not installed")
 		return
 	end
 	local dapui = require("dapui")
@@ -39,7 +39,7 @@ end
 local function dap_ui_config()
 	local ok, dapui = pcall(require, "dapui")
 	if not ok then
-		require("safdar.utils").notify("dap-ui not found")
+		require("safdar.utils").notify("dap-ui not installed")
 		return
 	end
 	dapui.setup({
@@ -120,7 +120,7 @@ end
 local function dap_virtual_text_config()
 	local ok, dap_vt = pcall(require, "nvim-dap-virtual-text")
 	if not ok then
-		require("safdar.utils").notify("nvim-dap-virtual-text not found")
+		require("safdar.utils").notify("nvim-dap-virtual-text not installed")
 		return
 	end
 	dap_vt.setup({

@@ -1,7 +1,7 @@
 local function config()
 	local ok, illuminate = pcall(require, "illuminate")
 	if not ok then
-		require("safdar.utils").notify("vim-illuminate not found")
+		require("safdar.utils").notify("vim-illuminate not installed")
 		return
 	end
 

@@ -1,7 +1,7 @@
 local config = function()
 	local ok, _ = pcall(require, "nvim-treesitter")
 	if not ok then
-		require("safdar.utils").notify("treesitter not found")
+		require("safdar.utils").notify("treesitter not installed")
 		return
 	end
 

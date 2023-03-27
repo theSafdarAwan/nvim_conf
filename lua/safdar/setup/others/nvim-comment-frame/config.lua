@@ -1,7 +1,7 @@
 local config = function()
 	local status_ok, ncf = pcall(require, "nvim-comment-frame")
 	if not status_ok then
-		require("safdar.utils").notify("nvim-comment-frame not found")
+		require("safdar.utils").notify("nvim-comment-frame not installed")
 		return
 	end
 

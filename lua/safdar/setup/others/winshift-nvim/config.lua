@@ -1,7 +1,7 @@
 local function config()
 	local ok, winshift = pcall(require, "winshift")
 	if not ok then
-		require("safdar.utils").notify("winshift not found")
+		require("safdar.utils").notify("winshift not installed")
 		return
 	end
 

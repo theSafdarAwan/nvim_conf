@@ -1,13 +1,13 @@
 local config = function()
 	local autopairs_status, npairs = pcall(require, "nvim-autopairs")
 	if not autopairs_status then
-		require("safdar.utils").notify("nvim-autopairs not found")
+		require("safdar.utils").notify("nvim-autopairs not installed")
 		return
 	end
 
 	local cmp_status, cmp = pcall(require, "cmp")
 	if not cmp_status then
-		require("safdar.utils").notify("cmp not found")
+		require("safdar.utils").notify("cmp not installed")
 		return
 	end
 

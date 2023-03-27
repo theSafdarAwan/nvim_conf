@@ -1,7 +1,7 @@
 local function config()
 	local ok, diffview = pcall(require, "diffview")
 	if not ok then
-		require("safdar.utils").notify("diffview.nvim not found")
+		require("safdar.utils").notify("diffview.nvim not installed")
 	end
 
 	local mappings = require("safdar.setup.git.diffview-nvim.maps")

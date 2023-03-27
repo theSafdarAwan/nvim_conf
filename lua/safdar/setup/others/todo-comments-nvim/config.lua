@@ -1,7 +1,7 @@
 local function config()
 	local ok, todo_comments = pcall(require, "todo-comments")
 	if not ok then
-		require("safdar.utils").notify("todo-comment.nvim not found")
+		require("safdar.utils").notify("todo-comment.nvim not installed")
 		return
 	end
 
@@ -40,7 +40,7 @@ local function config()
 			exclude = {}, -- list of file types to exclude highlighting
 		},
 		-- list of named colors where we try to extract the guifg from the
-		-- list of hilight groups or use the hex color if hl not found as a fallback
+		-- list of hilight groups or use the hex color if hl not installed as a fallback
 		colors = {
 			error = { "@todocomment.error", "ErrorMsg", "#DC2626" },
 			warning = { "@todocomment.warn", "WarningMsg", "#FBBF24" },

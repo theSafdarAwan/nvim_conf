@@ -1,7 +1,7 @@
 local function config()
 	local ok, neorg = pcall(require, "neorg")
 	if not ok then
-		require("safdar.utils").notify("neorg not found")
+		require("safdar.utils").notify("neorg not installed")
 		return
 	end
 	neorg.setup({

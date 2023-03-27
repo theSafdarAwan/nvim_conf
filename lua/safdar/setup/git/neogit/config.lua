@@ -1,7 +1,7 @@
 local function config()
 	local ok, neogit = pcall(require, "neogit")
 	if not ok then
-		require("safdar.utils").notify("neogit.nvim not found")
+		require("safdar.utils").notify("neogit.nvim not installed")
 	end
 
 	local maps = require("safdar.setup.git.neogit.maps")

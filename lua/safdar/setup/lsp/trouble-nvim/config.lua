@@ -1,7 +1,7 @@
 local function config()
 	local ok, trouble = pcall(require, "trouble")
 	if not ok then
-		require("safdar.utils").notify("trouble.nvim not found")
+		require("safdar.utils").notify("trouble.nvim not installed")
 		return
 	end
 	trouble.setup({

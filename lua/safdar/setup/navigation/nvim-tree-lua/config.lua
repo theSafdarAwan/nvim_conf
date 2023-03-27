@@ -6,7 +6,7 @@ local function config()
 
 	local _, nvimtree = pcall(require, "nvim-tree")
 	if not ok then
-		require("safdar.utils").notify("nvim-tree not found")
+		require("safdar.utils").notify("nvim-tree not installed")
 		return
 	end
 

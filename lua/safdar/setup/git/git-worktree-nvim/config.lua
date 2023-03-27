@@ -1,7 +1,7 @@
 local function config()
 	local ok, git_worktree = pcall(require, "git-worktree")
 	if not ok then
-		require("safdar.utils").notify("git-worktree not found")
+		require("safdar.utils").notify("git-worktree not installed")
 		return
 	end
 	git_worktree.setup({

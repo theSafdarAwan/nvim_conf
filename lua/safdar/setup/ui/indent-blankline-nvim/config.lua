@@ -1,7 +1,7 @@
 local function config()
 	local ok, ib = pcall(require, "indent_blankline")
 	if not ok then
-		require("safdar.utils").notify("indent-blankline.nvim not found")
+		require("safdar.utils").notify("indent-blankline.nvim not installed")
 		return
 	end
 	ib.setup({

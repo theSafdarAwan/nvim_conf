@@ -1,7 +1,7 @@
 local function config()
 	local ok, lsp_saga = pcall(require, "lspsaga")
 	if not ok then
-		require("safdar.utils").notify("lspsaga-nvim.nvim not found")
+		require("safdar.utils").notify("lspsaga-nvim.nvim not installed")
 		return
 	end
 	lsp_saga.setup({

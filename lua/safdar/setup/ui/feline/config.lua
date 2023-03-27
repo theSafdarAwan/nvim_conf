@@ -1,16 +1,16 @@
 local config = function()
 	local fused_ok, _ = pcall(require, "fused")
 	if not fused_ok then
-		print("fused not found")
-		require("safdar.utils").notify("fused not found for feline")
+		print("fused not installed")
+		require("safdar.utils").notify("fused not installed for feline")
 		return
 	end
 
 	local feline_ok, feline = pcall(require, "feline")
 
 	if not feline_ok then
-		print("feline not found")
-		require("safdar.utils").notify("feline not found")
+		print("feline not installed")
+		require("safdar.utils").notify("feline not installed")
 		return
 	end
 

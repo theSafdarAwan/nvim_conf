@@ -10,7 +10,7 @@ local function plugin(install)
 		config = function()
 			local ok, _ = pcall(require, "Comment")
 			if not ok then
-				require("safdar.utils").notify("Comment.nvim not found")
+				require("safdar.utils").notify("Comment.nvim not installed")
 				return
 			end
 			require("Comment").setup({
