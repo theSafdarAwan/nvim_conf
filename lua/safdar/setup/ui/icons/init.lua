@@ -288,6 +288,10 @@ M.misc = {
 	Package = "",
 	CircuitBoard = "",
 	Tux = "",
+	NormalMode = "",
+	Position = "",
+	Info = "",
+	Block = "█",
 }
 
 M.animation = {
@@ -321,12 +325,6 @@ M.status_line = {
 			left = "",
 			right = "",
 		},
-	},
-	misc = {
-		mode_icon = "",
-		position_icon_1 = "",
-		position_icon_2 = "",
-		block = "█",
 	},
 	round = {
 		left = "",

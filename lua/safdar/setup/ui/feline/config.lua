@@ -82,7 +82,7 @@ local config = function()
 
 	local mode = {
 		provider = function(self)
-			local icon = icons.status_line.misc.mode_icon
+			local icon = icons.misc.NormalMode
 			local cur_mode = vim.fn.mode()
 			if cur_mode == "R" then
 				icon = icons.kind.TabNine
@@ -355,7 +355,7 @@ local config = function()
 			return " " .. result .. "%% "
 		end,
 		left_sep = {
-			str = " " .. icons.status_line.misc.position_icon_1 .. " ",
+			str = " " .. icons.misc.Position .. " ",
 			hl = function()
 				--- mode colors
 				local color = mode_colors[vim.fn.mode()].color
