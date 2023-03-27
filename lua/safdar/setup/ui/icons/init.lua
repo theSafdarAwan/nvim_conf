@@ -169,6 +169,7 @@ M.kind = {
 	TypeParameter = "",
 	Unit = "",
 	Value = "",
+	TabNine = "",
 	Variable = "",
 }
 M.git = {
