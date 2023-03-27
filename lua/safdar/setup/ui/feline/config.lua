@@ -53,18 +53,6 @@ local config = function()
 
 	----------------------------------------------------------------------
 	--                            components                            --
-	----------------------------------------------------------------------
-	-- Initialize the components table
-	local components = {
-		active = {},
-		inactive = {},
-	}
-
-	-- Initialize left, mid and right
-	table.insert(components.active, {})
-	table.insert(components.active, {})
-	table.insert(components.active, {})
-
 	--=====================================================
 	--                  left
 	--=====================================================
@@ -92,21 +80,7 @@ local config = function()
 		["!"] = { text = "SHELL", color = colors.blue },
 	}
 
-	-- local sid_mode_hl = function()
-	--     return {
-	--         fg = mode_colors[vim.fn.mode()][2],
-	--         bg = c.lightbg,
-	--     }
-	-- end
-
-	-- components.active[1][1] = {
-	--     provider = function()
-	--         return " " .. mode_colors[vim.fn.mode()][1] .. " "
-	--     end,
-	--     hl = chad_mode_hl,
-	-- }
-
-	components.active[1][1] = {
+	local mode = {
 		provider = "██",
 		-- return '██ '
 		-- enabled = enable_only_in_full_buf,
@@ -118,7 +92,7 @@ local config = function()
 		end,
 	}
 
-	components.active[1][2] = {
+	local git_branch = {
 		provider = function()
 			local branch_name = git.git_branch()
 			local branch = "  " -- little tux
@@ -142,7 +116,7 @@ local config = function()
 		},
 	}
 
-	components.active[1][3] = {
+	local file_name = {
 		provider = function()
 			local orig_file_name = vim.fn.expand("%:p:t:r")
 			local function split_long_string(orig_name_str, max_line_len)
@@ -186,19 +160,19 @@ local config = function()
 		},
 	}
 
-	components.active[1][4] = {
+	local git_add = {
 		provider = "git_diff_added",
 		hl = { fg = colors.green, bg = colors.bg },
 		icon = "  ",
 	}
 	-- diffModfified
-	components.active[1][5] = {
+	local git_changed = {
 		provider = "git_diff_changed",
 		hl = { fg = colors.sky, bg = colors.bg },
 		icon = " ⦿ ",
 	}
 	-- diffRemove
-	components.active[1][6] = {
+	local git_remove = {
 		provider = "git_diff_removed",
 		hl = { fg = colors.red, bg = colors.bg },
 		icon = "  ",
@@ -291,10 +265,11 @@ local config = function()
 		return "[" .. client_list .. "]"
 	end
 
+	local lsp
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("setting_feline_lsp_buf_clients", { clear = true }),
 		callback = function()
-			components.active[2][1] = {
+			lsp = {
 				provider = function()
 					return show_lsp_progress()
 				end,
@@ -307,7 +282,7 @@ local config = function()
 	--=====================================================
 	--                  right
 	--=====================================================
-	components.active[3][1] = {
+	local diagnostics_dummy1 = {
 		provider = icons.triangle.acute.right,
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
@@ -321,7 +296,7 @@ local config = function()
 		},
 	}
 
-	components.active[3][2] = {
+	local diagnostics_error = {
 		provider = "diagnostic_errors",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
@@ -330,7 +305,7 @@ local config = function()
 		icon = "  ",
 	}
 
-	components.active[3][3] = {
+	local diagnostics_warning = {
 		provider = "diagnostic_warnings",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.WARN)
@@ -339,7 +314,7 @@ local config = function()
 		icon = "  ",
 	}
 
-	components.active[3][4] = {
+	local diagnostics_hint = {
 		provider = "diagnostic_hints",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.HINT)
@@ -348,7 +323,7 @@ local config = function()
 		icon = "  ",
 	}
 
-	components.active[3][5] = {
+	local diagnostics_info = {
 		provider = "diagnostic_info",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.INFO)
@@ -357,7 +332,7 @@ local config = function()
 		icon = "  ",
 	}
 
-	components.active[3][6] = {
+	local diagnostics_dummy2 = {
 		provider = " ",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
@@ -371,16 +346,7 @@ local config = function()
 		},
 	}
 
-	components.active[3][7] = {
-		provider = icons.triangle.equilateral.right,
-		enabled = enable_only_in_full_buf,
-		hl = {
-			fg = colors.fg,
-			bg = colors.bg,
-		},
-	}
-
-	components.active[3][7] = {
+	local lsp_active_icon = {
 		provider = function()
 			local lsp_symbol_str = "   LSP "
 			-- local lsp_symbol_str_not_atcive = "   no LSP "
@@ -407,7 +373,7 @@ local config = function()
 		},
 	}
 
-	components.active[3][8] = {
+	local location = {
 		provider = function()
 			local current_line = vim.fn.line(".")
 			local total_line = vim.fn.line("$")
@@ -429,7 +395,7 @@ local config = function()
 		},
 	}
 
-	components.active[3][9] = {
+	local location_bar = {
 		provider = "scroll_bar",
 		enabled = enable_only_in_full_buf,
 		hl = {
@@ -437,6 +403,36 @@ local config = function()
 			bg = colors.bg,
 			style = "bold",
 		},
+	}
+
+	----------------------------------------------------------------------
+	-- Initialize the components table
+	local components = {
+		active = {
+			{
+				mode,
+				git_branch,
+				file_name,
+				git_add,
+				git_changed,
+				git_remove,
+			},
+			{
+				lsp,
+			},
+			{
+				diagnostics_dummy1,
+				diagnostics_error,
+				diagnostics_warning,
+				diagnostics_hint,
+				diagnostics_info,
+				diagnostics_dummy2,
+				lsp_active_icon,
+				location,
+				location_bar,
+			},
+		},
+		inactive = {},
 	}
 
 	feline.setup({
