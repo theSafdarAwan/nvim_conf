@@ -371,8 +371,6 @@ local config = function()
 		end,
 	}
 
-	----------------------------------------------------------------------
-	-- Initialize the components table
 	local components = {
 		active = {
 			{

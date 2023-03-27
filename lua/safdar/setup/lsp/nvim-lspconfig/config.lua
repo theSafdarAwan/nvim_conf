@@ -1,19 +1,18 @@
 local config = function()
-	local api = vim.api
 	local utils = require("safdar.setup.lsp.utils")
 	local on_attach = utils.on_attach
 	local capabilities = utils.capabilities
 	-- suppress error messages from lang servers
-	-- vim.notify = function(msg, log_level, opts)
-	-- 	if msg:match("exit code") then
-	-- 		return
-	-- 	end
-	-- 	if log_level == vim.log.levels.ERROR then
-	-- 		api.nvim_err_writeln(msg)
-	-- 	else
-	-- 		api.nvim_echo({ { msg } }, true, {})
-	-- 	end
-	-- end
+	vim.notify = function(msg, log_level, opts)
+		if msg:match("exit code") then
+			return
+		end
+		if log_level == vim.log.levels.ERROR then
+			api.nvim_err_writeln(msg)
+		else
+			api.nvim_echo({ { msg } }, true, {})
+		end
+	end
 
 	--|||||||||||||||||||||||||||||||||||||||||||||||||||||||
 	--                      lsp general
