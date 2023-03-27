@@ -209,12 +209,12 @@ local config = function()
 				view = "mini",
 				filter = {
 					any = {
-						{ event = "msg_showmode" }, -- see :h showmode
+						-- { event = "msg_showmode" }, -- see :h showmode| messages like recorind @x
 						{ find = " change" }, -- to use string.find() on message
 						{ event = "msg_history_show" }, -- for :messages output
 						{ event = "msg_show", kind = "wmsg" }, -- see :h W10
 						{ find = "E486" }, -- see :h E486
-						{ event = "msg_showcmd" }, -- see :h showcmd
+						{ event = "msg_showcmd", find = "[%d]" }, -- see :h showcmd [here i am using find to show only the numbers cmds like selections info etc.]
 					},
 				},
 			},

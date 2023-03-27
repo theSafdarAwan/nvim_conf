@@ -291,8 +291,12 @@ local config = function()
 			end
 			return client_list
 		end,
-		enabled = enable_in_full_win,
-		hl = { fg = colors.white, bg = colors.dark2 },
+		enabled = function()
+			if not require("noice").api.statusline.mode.get() then
+				return true
+			end
+		end,
+		hl = { fg = colors.white, bg = colors.dark2, style = "italic" },
 	}
 
 	----------------------------------------------------------------------
@@ -370,6 +374,18 @@ local config = function()
 			}
 		end,
 	}
+	----------------------------------------------------------------------
+	--                              Noice                               --
+	----------------------------------------------------------------------
+	local noice_macro_recording = {
+		provider = function()
+			if require("noice").api.statusline.mode.get() then
+				return icons.misc.Watch .. " " .. require("noice").api.statusline.mode.get()
+			end
+			return " "
+		end,
+		hl = { style = "bold", fg = colors.pink, bg = colors.dark2 },
+	}
 
 	local components = {
 		active = {
@@ -383,6 +399,7 @@ local config = function()
 			},
 			{
 				lsp_progress_and_servers_list,
+				noice_macro_recording,
 			},
 			{
 				diagnostics_info,
