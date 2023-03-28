@@ -22,3 +22,13 @@
      x amount of time if any changes happen to to the files then copy those files
      to a backup dir where already a backup of the full repo is present and then
      on every change re-write those changes to the backup repo
+
+
+** Commented Ideas
+   - nvim-notify use case -> by: `https://www.reddit.com/user/cseickel/`
+     You know what this would be great for? If I have a something like an angular
+     build watcher in a hidden terminal, I would love to just have a notification
+     when it rebuilds to know if it was successful or had errors.
+     Right now I just leave a terminal open at all times at the bottom of the tab,
+     but I'd rather have that space back and only be notified when something
+     happens.
