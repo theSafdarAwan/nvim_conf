@@ -220,22 +220,21 @@ local config = function()
 			},
 			{
 				filter = {
-					event = "msg_show",
-					max_length = 1, -- don't show messages with no body
-				},
-				opts = { skip = true },
-			},
-			{
-				filter = {
-					find = "exit code",
-				},
-				opts = {
-					skip = true,
-				},
-			}, -- skip the exit code messages from lsp servers
-			{
-				-- view = "mini",
-				filter = { event = "msg_show", find = "Select a command" }, -- select menu
+					any = {
+						{ event = "msg_show", find = "Select a command" }, -- select ui
+						{
+							find = "exit code", -- skip the exit code messages from lsp servers
+						},
+						{
+							event = "msg_show",
+							max_length = 1, -- don't show messages with no body
+						},
+						{ -- ignore indentations messages
+							event = "msg_show",
+							find = "indent",
+						},
+					},
+				}, -- select menu
 				opts = { skip = true },
 			},
 		}, --- @see section on routes

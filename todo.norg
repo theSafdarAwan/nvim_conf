@@ -3,13 +3,10 @@
    - [ ] read the source code for the octo.nvim
    - [ ] check out how the leap-vim does the color highlight for the text only
      once and then to none
-   - [ ] Read the packer source code, that will make you a good neovim plugin dev
-     trust me 🤣. No actually it's just to satisfy me that i can make the best nvim configuration possible.
 *** Docs Reading List
     - [ ] read the autopairs docs
 
 ** config Related
-   - [ ] work on creating notify-nvim config
    - [ ] Create a snippet for the lua to wrap a selection inside a function
 
 ** Personal Plugin Ideas
@@ -17,12 +14,11 @@
      with same type as the current node under the cursor
    - [ ] write a time tracker plugin that tracks how much time you spent on coding
 
-** My Plugins New Functionality ideas
-   - [ ] add something like in lazy-loader that if a variable is set to installing
-     then add a run key which will require the plugin and then run that command
-
- ** Other Scripts
-- [ ] write a script that checks if we are in a git repo if yes then check every
-    x amount of time if any changes happen to to the files then copy those files
-    to a backup dir where already a backup of the full repo is present and then
-    on every change re-write those changes to the backup repo
+** Other Scripts
+   - [ ] write a script that allows you to move to previous and next mark in the
+     same file. Get mark in the file then calculate which is the next or
+     previous mark in the file.
+   - [ ] write a script that checks if we are in a git repo if yes then check every
+     x amount of time if any changes happen to to the files then copy those files
+     to a backup dir where already a backup of the full repo is present and then
+     on every change re-write those changes to the backup repo
