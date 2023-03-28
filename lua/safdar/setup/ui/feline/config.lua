@@ -143,47 +143,44 @@ local config = function()
 	----------------------------------------------------------------------
 	--                            file name                             --
 	----------------------------------------------------------------------
-	local file_name = {
+	local filename = {
 		provider = function(self)
 			-- file name with no extension
-			local just_file_name = vim.fn.expand("%:p:t:r")
+			local file_name_no_ext = vim.fn.expand("%:p:t:r")
 			--- dictates the decision to display or not display file name based
 			--- on <args>.
 			---@param max_line_len number maximum file name length.
 			---@return string either empty string if `max_line_len` is exceeded
 			--- else `just_file_name`
 			local function file_name_lenght(max_line_len)
-				local length = #just_file_name
+				local length = #file_name_no_ext
 				if length > max_line_len then
 					return ""
 				else
-					return just_file_name
+					return file_name_no_ext
 				end
 			end
-			local truncated_file_name = file_name_lenght(30)
-			local provider = " "
-			if #truncated_file_name > 1 then
-				provider = truncated_file_name
+			-- get the file name for provider
+			local provider_content = file_name_lenght(30)
+			if #provider_content > 1 then
+				provider_content = " " .. provider_content .. " "
 			end
 
-			if string.find(just_file_name, "[%d?%a]") then
+			if string.find(file_name_no_ext, "[%d?%a]") then
 				local file_name_with_ext = vim.fn.expand("%:t")
 				local file_ext = vim.fn.expand("%:e")
 				local ft_icon = require("nvim-web-devicons").get_icon(file_name_with_ext, file_ext)
 				local _, fg = require("nvim-web-devicons").get_icon_color(file_name_with_ext, file_ext)
 				if not ft_icon then
-					return icons.kind.Null
+					ft_icon = icons.kind.Null
 				end
 				self.left_sep.str = " " .. ft_icon
 				self.left_sep.hl.fg = fg
-			else
-				self.left_sep.str = nil
-				self.left_sep.hl.fg = nil
 			end
-			if not string.find(provider, "[%a?%d]") then
+			if not string.find(file_name_no_ext, "[%a?%d]") then
 				return ""
 			end
-			return " " .. provider .. " "
+			return provider_content
 		end,
 		enabled = enable_in_full_win,
 		hl = {
@@ -410,7 +407,7 @@ local config = function()
 			{
 				mode,
 				git_branch,
-				file_name,
+				filename,
 				git_add,
 				git_changed,
 				git_remove,
