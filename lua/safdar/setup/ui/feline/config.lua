@@ -443,6 +443,7 @@ local config = function()
 				"^Outline$",
 				"DiffviewFileHistory",
 				"DiffviewFiles",
+				"alpha",
 			},
 			buftypes = {
 				"^terminal$",

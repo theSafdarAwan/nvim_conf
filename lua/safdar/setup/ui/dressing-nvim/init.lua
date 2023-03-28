@@ -1,7 +1,7 @@
 local function plugin(install)
 	install({
 		"stevearc/dressing.nvim",
-		lazy = false,
+		event = "VeryLazy",
 		config = function()
 			require("dressing").setup({
 				input = {
