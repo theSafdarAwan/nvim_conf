@@ -230,7 +230,7 @@ local config = function()
 			return true
 		end
 	end
-	local lsp_progress_and_servers_list = {
+	local lsp_progress = {
 		provider = function(self)
 			--- NOTE> this util function is only helpful here
 			---@param tbl table to be merged with.
@@ -415,7 +415,7 @@ local config = function()
 				git_remove,
 			},
 			{
-				lsp_progress_and_servers_list,
+				-- lsp_progress,
 				lsp_clients_info,
 				noice_macro_recording,
 			},
