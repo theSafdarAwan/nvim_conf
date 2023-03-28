@@ -222,19 +222,13 @@ local config = function()
 				filter = {
 					any = {
 						{ event = "msg_show", find = "Select a command" }, -- select ui
-						{
-							find = "exit code", -- skip the exit code messages from lsp servers
-						},
-						{
-							event = "msg_show",
-							max_length = 1, -- don't show messages with no body
-						},
-						{ -- ignore indentations messages
-							event = "msg_show",
-							find = "indent",
-						},
+						{ find = "exit code" }, -- skip the exit code messages from lsp servers
+						{ event = "msg_show", max_length = 1 }, -- don't show messages with no body
+						{ event = "msg_show", find = "indent" }, -- ignore indentations messages
+						{ find = "No information available" }, -- lsp no more information messages
+						{ find = "Special characters must be escaped " }, -- show the ale linting errors
 					},
-				}, -- select menu
+				},
 				opts = { skip = true },
 			},
 		}, --- @see section on routes
