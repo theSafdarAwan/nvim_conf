@@ -225,6 +225,11 @@ local config = function()
 	----------------------------------------------------------------------
 	--                               Lsp                                --
 	----------------------------------------------------------------------
+	local noice_is_active = function()
+		if require("noice").api.statusline.mode.get() then
+			return true
+		end
+	end
 	local lsp_progress_and_servers_list = {
 		provider = function(self)
 			--- NOTE> this util function is only helpful here
@@ -254,7 +259,6 @@ local config = function()
 				local success_icon = duplicate_tbl({ icons.animation.Done }, 12)
 				local ms = vim.loop.hrtime() / 1000000
 				local frame = math.floor(ms / 120) % #spinners
-				self.hl.fg = colors.pink
 				if percentage >= 90 then
 					return string.format(
 						" %%<%s %s %s (%s%%%%) ",
@@ -272,8 +276,18 @@ local config = function()
 						percentage
 					)
 				end
+			else
+				return ""
 			end
-			self.hl.fg = colors.white
+		end,
+		enabled = function()
+			return not noice_is_active()
+		end,
+		hl = { fg = colors.pink, bg = colors.dark2, style = "italic" },
+	}
+
+	local lsp_clients_info = {
+		provider = function()
 			local cur_buf_clients = vim.lsp.buf_get_clients()
 			local clients_str = ""
 			for _, server in pairs(cur_buf_clients) do
@@ -292,11 +306,14 @@ local config = function()
 			return client_list
 		end,
 		enabled = function()
-			if not require("noice").api.statusline.mode.get() then
-				return true
+			local Lsp = vim.lsp.util.get_progress_messages()[1]
+			local lsp_progress = false
+			if Lsp then
+				lsp_progress = true
 			end
+			return not noice_is_active() and not lsp_progress
 		end,
-		hl = { fg = colors.white, bg = colors.dark2, style = "italic" },
+		hl = { fg = colors.white, bg = colors.dark2 },
 	}
 
 	----------------------------------------------------------------------
@@ -399,6 +416,7 @@ local config = function()
 			},
 			{
 				lsp_progress_and_servers_list,
+				lsp_clients_info,
 				noice_macro_recording,
 			},
 			{
