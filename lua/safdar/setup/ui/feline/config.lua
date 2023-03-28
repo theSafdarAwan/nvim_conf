@@ -324,7 +324,7 @@ local config = function()
 		end,
 		hl = { fg = colors.red_error, bg = colors.dark2 },
 		icon = " " .. icons.diagnostics.BoldError .. " ",
-		right_sep = { str = " ", hl = { fg = colors.red_error, bg = colors.dark2 } },
+		right_sep = { str = " ", hl = { fg = colors.dark2, bg = colors.dark2 } },
 	}
 	local diagnostics_warning = {
 		provider = "diagnostic_warnings",
@@ -333,6 +333,16 @@ local config = function()
 		end,
 		hl = { fg = colors.yellow, bg = colors.dark2 },
 		icon = " " .. icons.diagnostics.BoldWarning .. " ",
+		right_sep = {
+			str = function()
+				if not lsp.diagnostics_exist(lsp_severity.ERROR) then
+					return " "
+				else
+					return ""
+				end
+			end,
+			hl = { fg = colors.dark2, bg = colors.dark2 },
+		},
 	}
 
 	local diagnostics_hint = {
@@ -342,6 +352,19 @@ local config = function()
 		end,
 		hl = { fg = colors.cyan, bg = colors.dark2 },
 		icon = " " .. icons.diagnostics.BoldHint .. " ",
+		right_sep = {
+			str = function()
+				if
+					not lsp.diagnostics_exist(lsp_severity.ERROR)
+					and not lsp.diagnostics_exist(lsp_severity.WARN)
+				then
+					return " "
+				else
+					return ""
+				end
+			end,
+			hl = { fg = colors.dark2, bg = colors.dark2 },
+		},
 	}
 
 	local diagnostics_info = {
@@ -349,6 +372,20 @@ local config = function()
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
+		right_sep = {
+			str = function()
+				if
+					not lsp.diagnostics_exist(lsp_severity.HINT)
+					and not lsp.diagnostics_exist(lsp_severity.ERROR)
+					and not lsp.diagnostics_exist(lsp_severity.WARN)
+				then
+					return " "
+				else
+					return ""
+				end
+			end,
+			hl = { fg = colors.dark1, bg = colors.dark1 },
+		},
 		hl = { fg = colors.teal, bg = colors.dark2 },
 		icon = " " .. icons.diagnostics.BoldInformation .. " ",
 	}

@@ -72,25 +72,33 @@ local function lsp_progress()
 				hide_from_history = false,
 			})
 		elseif val.kind == "end" and notif_data then
-			notif_data.notification = vim.notify(val.message and format_message(val.message) or "Complete", "info", {
-				icon = "",
-				replace = notif_data.notification,
-				timeout = 3000,
-			})
+			notif_data.notification =
+				vim.notify(val.message and format_message(val.message) or "Complete", "info", {
+					icon = "",
+					replace = notif_data.notification,
+					timeout = 3000,
+				})
 
 			notif_data.spinner = nil
 		end
 	end
 
-	-- table from lsp severity to vim severity.
-	local severity = {
-		"error",
-		"warn",
-		"info",
-		"info", -- map both hint and info to info?
-	}
-	vim.lsp.handlers["window/showMessage"] = function(err, method, params, client_id)
-		vim.notify(method.message, severity[params.type])
+	local notify = require("notify")
+	vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
+		local client = vim.lsp.get_client_by_id(ctx.client_id)
+		local lvl = ({
+			"ERROR",
+			"WARN",
+			"INFO",
+			"DEBUG",
+		})[result.type]
+		notify({ result.message }, lvl, {
+			title = "LSP | " .. client.name,
+			timeout = 10000,
+			keep = function()
+				return lvl == "ERROR" or lvl == "WARN"
+			end,
+		})
 	end
 end
 
