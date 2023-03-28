@@ -306,12 +306,13 @@ local config = function()
 			return client_list
 		end,
 		enabled = function()
-			local Lsp = vim.lsp.util.get_progress_messages()[1]
-			local lsp_progress = false
-			if Lsp then
-				lsp_progress = true
-			end
-			return not noice_is_active() and not lsp_progress
+			-- local Lsp = vim.lsp.util.get_progress_messages()[1]
+			-- local Lsp_progress = false
+			-- if Lsp then
+			-- 	Lsp_progress = true
+			-- end
+			-- return not noice_is_active() and not lsp_progress
+			return not noice_is_active()
 		end,
 		hl = { fg = colors.white, bg = colors.dark2 },
 	}
