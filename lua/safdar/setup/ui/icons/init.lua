@@ -292,6 +292,9 @@ M.misc = {
 	Position = "",
 	Info = "",
 	Block = "█",
+	-- Terminal = "",
+	Terminal = "",
+	-- Terminal = "",
 }
 
 M.animation = {

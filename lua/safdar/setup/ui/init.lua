@@ -9,6 +9,7 @@
 ---@field vim_illuminate Plugin Highlight word under the cursor and generate movement text-objects.
 ---@field indent_blankline_nvim Plugin adds context line for the indentations.
 ---@field noice_nvim Plugin modern UI for neovim
+---@field dressing_nvim Plugin modern UI for neovim
 
 local function plugins(install)
 	local Plugins = {
@@ -21,6 +22,7 @@ local function plugins(install)
 		"vim-illuminate",
 		"indent-blankline-nvim",
 		"noice-nvim",
+		"dressing-nvim",
 	}
 
 	local temp_plugins = {

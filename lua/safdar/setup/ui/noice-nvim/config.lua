@@ -234,8 +234,9 @@ local config = function()
 				},
 			}, -- skip the exit code messages from lsp servers
 			{
-				view = "mini",
+				-- view = "mini",
 				filter = { event = "msg_show", find = "Select a command" }, -- select menu
+				opts = { skip = true },
 			},
 		}, --- @see section on routes
 		---@type table<string, NoiceFilter>
