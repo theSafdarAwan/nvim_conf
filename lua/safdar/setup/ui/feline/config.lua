@@ -545,7 +545,7 @@ local config = function()
 				diagnostics.HINT,
 				diagnostics_sep.HINT,
 				diagnostics.WARN,
-				diagnostics.WARN,
+				diagnostics_sep.WARN,
 				diagnostics.ERROR,
 				location,
 			},
