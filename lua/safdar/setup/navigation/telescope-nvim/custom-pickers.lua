@@ -8,17 +8,17 @@ local borders = require("safdar.setup.navigation.telescope-nvim.utils").borders
 --                     Telescope Custom Pickers                     --
 ----------------------------------------------------------------------
 
--- trim the long path names will show maximum of 2 parent directories
-local path_style = function(tail, path_str)
+-- trim the long path names, will show maximum of 2 parent directories
+local trime_path = function(tail, path_str)
 	local split_path = vim.split(path_str, "/", { plain = false, trimempty = true })
 	local path_len = #split_path
 	local path
 	if path_len == 2 then
-		-- will show only one because the second would be the root
+		-- will show only one, the second would be the root
 		-- directory name like nvim/init.lua to just init.lua
 		path = tostring(split_path[path_len - 1]) .. "/" .. tail
 	elseif path_len > 2 then
-		-- show 2 directories if has more than 2
+		-- show 2 directories if has in more deeper level
 		path = tostring(split_path[path_len - 2]) .. "/" .. tostring(split_path[path_len - 1]) .. "/" .. tail
 	end
 
@@ -90,7 +90,7 @@ M.center_list_find_files = function()
 		file_ignore_patterns = { "^.git/", "^assets/pictures" },
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
-			return path_style(tail, path)
+			return trime_path(tail, path)
 		end,
 	})
 
@@ -116,7 +116,7 @@ M.ivy_find_files_with_preview = function()
 		},
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
-			return path_style(tail, path)
+			return trime_path(tail, path)
 		end,
 	})
 
@@ -139,7 +139,7 @@ M.center_list_buffers_find = function()
 		borderchars = borders.dropdown,
 		path_display = function(opts, path)
 			local tail = require("telescope.utils").path_tail(path)
-			return path_style(tail, path)
+			return trime_path(tail, path)
 		end,
 	})
 

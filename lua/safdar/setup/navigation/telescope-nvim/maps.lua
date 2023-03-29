@@ -21,40 +21,40 @@ M.maps = function()
 	set_map("n", "<leader>gs", ":Telescope git_status<cr>", { noremap = true, silent = true })
 
 	set_map("n", "<leader>en", function()
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").search_nvim_dotfiles()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").search_nvim_dotfiles()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>gtd", function()
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").gtd_neorg_files()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").gtd_neorg_files()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>f;", function()
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").ivy_find_files_with_preview()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").ivy_find_files_with_preview()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>fb", function()
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").center_list_buffers_find()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").center_list_buffers_find()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>tc", function()
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").get_cursor_change_colorscheme()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").get_cursor_change_colorscheme()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>ti", function()
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").ivy_colorscheme_preview()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").ivy_colorscheme_preview()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>ff", function()
 		-- ":Telescope find_files theme=get_cursor previewer=false find_command=rg,--hidden,--files<CR>",
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").center_list_find_files()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").center_list_find_files()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<C-_>", function()
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").current_buffer_fuzzy_find()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").current_buffer_fuzzy_find()
 	end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>ds", function()
-		require("safdar.setup.navigation.telescope-nvim.telescope-custom").center_list_document_symbols_find()
+		require("safdar.setup.navigation.telescope-nvim.custom-pickers").center_list_document_symbols_find()
 	end, { noremap = true, silent = true })
 end
 
