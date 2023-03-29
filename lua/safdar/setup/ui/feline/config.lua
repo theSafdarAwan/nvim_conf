@@ -558,6 +558,7 @@ local config = function()
 				"^Outline$",
 				"DiffviewFileHistory",
 				"DiffviewFiles",
+				"Trouble",
 				"alpha",
 			},
 			buftypes = {
