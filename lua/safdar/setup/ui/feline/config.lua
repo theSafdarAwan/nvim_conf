@@ -1,12 +1,11 @@
----@diagnostic disable: unused-local
 local config = function()
 	----------------------------------------------------------------------
 	--                              guards                              --
 	----------------------------------------------------------------------
 	local fused_ok, _ = pcall(require, "fused")
 	if not fused_ok then
-		print("fused not installed")
-		require("safdar.utils").notify("fused not installed for feline")
+		print("fused.nvim not installed")
+		require("safdar.utils").notify("fused.nvim not installed for feline")
 		return
 	end
 
@@ -81,7 +80,7 @@ local config = function()
 	}
 
 	local mode = {
-		provider = function(self)
+		provider = function()
 			local icon = icons.misc.NormalMode
 			local cur_mode = vim.fn.mode()
 			if cur_mode == "R" then
@@ -311,7 +310,7 @@ local config = function()
 			-- return not noice_is_active() and not lsp_progress
 			return not noice_is_active()
 		end,
-		hl = { fg = colors.white, bg = colors.dark2 },
+		hl = { fg = colors.blue, bg = colors.dark2 },
 	}
 
 	----------------------------------------------------------------------

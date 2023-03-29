@@ -2,7 +2,7 @@ local fused = function(install)
 	local config = function()
 		local ok, _ = pcall(require, "fused")
 		if not ok then
-			require("safdar.utils").notify("fused not installed")
+			require("safdar.utils").notify("fused.nvim not installed")
 			return
 		end
 
@@ -31,7 +31,7 @@ local fused = function(install)
 	install({
 		"TheSafdarAwan/fused.nvim",
 		lazy = false,
-		branch = "re-write",
+		branch = "improving/plugins",
 		config = config,
 	})
 end
