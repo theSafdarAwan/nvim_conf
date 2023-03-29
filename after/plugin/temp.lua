@@ -1,0 +1,33 @@
+-- TODO: maybe some other time. When i learn more about extmark and how to using them
+
+-- local api = vim.api
+--
+-- local config = {
+-- 	height = 2,
+-- }
+--
+-- local ui_info = api.nvim_list_uis()[1]
+--
+-- local window_opts = {
+-- 	relative = "editor",
+-- 	width = ui_info.width + 10,
+-- 	height = config.height,
+-- 	row = 100,
+-- 	col = 1,
+-- 	focusable = true,
+-- 	zindex = 99,
+-- 	style = "minimal",
+-- 	border = "none",
+-- }
+--
+-- local status_line_opts = {
+-- 	number = false,
+-- 	relativenumber = false,
+-- 	signcolumn = "no",
+-- 	filetype = "sh",
+-- }
+--
+-- local status_line = api.nvim_open_win(0, false, window_opts)
+-- for opt, val in pairs(status_line_opts) do
+-- 	api.nvim_win_set_var(status_line, tostring(opt), val)
+-- end

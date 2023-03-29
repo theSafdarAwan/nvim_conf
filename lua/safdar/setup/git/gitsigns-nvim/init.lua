@@ -8,9 +8,6 @@ local function plugin(install)
 			vim.api.nvim_create_autocmd("BufRead", {
 				group = vim.api.nvim_create_augroup("lazy load gitsigns", { clear = true }),
 				callback = function()
-					-- this variable is just for my status line which changes the git
-					-- git status
-					vim.g.__git_is_ok = false
 					vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
 					if vim.v.shell_error == 0 then
 						vim.api.nvim_del_augroup_by_name("lazy load gitsigns")

@@ -295,6 +295,7 @@ M.misc = {
 	-- Terminal = "",
 	Terminal = "",
 	-- Terminal = "",
+	SignColumnBar = "┃",
 }
 
 M.animation = {

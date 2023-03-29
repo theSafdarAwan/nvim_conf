@@ -54,6 +54,16 @@ local config = function()
 	end
 
 	----------------------------------------------------------------------
+	--                            separator                             --
+	----------------------------------------------------------------------
+	local separator = {
+		left_sep = { str = " ", hl = { fg = colors.dark2, bg = colors.dark2 } },
+		right_sep = { str = " ", hl = { fg = colors.dark2, bg = colors.dark2 } },
+		icon = "",
+		hl = { fg = colors.dark1, bg = colors.dark1 },
+	}
+
+	----------------------------------------------------------------------
 	--                               mode                               --
 	----------------------------------------------------------------------
 	local mode_colors = {
@@ -198,25 +208,57 @@ local config = function()
 			},
 		},
 	}
+	local filename_sep = vim.tbl_deep_extend("force", {
+		provider = function(self)
+			local file_name_valid = string.find(filename.provider(filename), "[%a%d]")
+			local git_branch_valid = string.find(git_branch.provider(git_branch), "[%a%d]")
+			self.left_sep = nil
+			if file_name_valid and git_branch_valid then
+				return " "
+			end
+			return ""
+		end,
+	}, separator)
 
 	----------------------------------------------------------------------
 	--                               Git                                --
 	----------------------------------------------------------------------
-	local git_add = {
-		provider = "git_diff_added",
-		hl = { fg = colors.green, bg = colors.dark2 },
-		icon = " " .. icons.git.FileAddedRound .. " ",
-	}
-	local git_changed = {
-		provider = "git_diff_changed",
-		hl = { fg = colors.cyan, bg = colors.dark2 },
-		icon = " " .. icons.git.FileModifiedRound .. " ",
-	}
 	local git_remove = {
 		provider = "git_diff_removed",
 		hl = { fg = colors.red, bg = colors.dark2 },
 		icon = " " .. icons.git.FileRemoveRound .. " ",
 	}
+	local git_add = {
+		provider = "git_diff_added",
+		hl = { fg = colors.green, bg = colors.dark2 },
+		icon = " " .. icons.git.FileAddedRound .. " ",
+	}
+	local git_add_sep = vim.tbl_deep_extend("force", {
+		provider = function(self)
+			local diff_removed = string.find(git.git_diff_removed(), "[%a]")
+			self.left_sep = nil
+			if diff_removed then
+				return " "
+			end
+			return ""
+		end,
+	}, separator)
+	local git_changed = {
+		provider = "git_diff_changed",
+		hl = { fg = colors.cyan, bg = colors.dark2 },
+		icon = " " .. icons.git.FileModifiedRound .. " ",
+	}
+	local git_changed_sep = vim.tbl_deep_extend("force", {
+		provider = function(self)
+			local diff_removed = string.find(git.git_diff_removed(), "[%a]")
+			local diff_added = string.find(git.git_diff_added(), "[%a]")
+			self.left_sep = nil
+			if diff_removed or diff_added then
+				return " "
+			end
+			return ""
+		end,
+	}, separator)
 
 	----------------------------------------------------------------------
 	--                               Lsp                                --
@@ -443,10 +485,13 @@ local config = function()
 			{
 				mode,
 				git_branch,
+				filename_sep,
 				filename,
-				git_add,
-				git_changed,
 				git_remove,
+				git_add_sep,
+				git_add,
+				git_changed_sep,
+				git_changed,
 			},
 			{
 				-- lsp_progress,
