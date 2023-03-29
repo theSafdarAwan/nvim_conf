@@ -184,6 +184,7 @@ local config = function()
 				end
 				self.left_sep.str = " " .. ft_icon
 				self.left_sep.hl.fg = fg or colors.red
+				self.hl.fg = self.left_sep.hl.fg
 			end
 			if not string.find(file_name_no_ext, "[%a?%d]") then
 				return ""

@@ -20,6 +20,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 M.capabilities = capabilities
 
+local api = vim.api
 M.on_attach = function(client, bufnr)
 	require("safdar.setup.lsp.nvim-lspconfig.maps").on_attach(client, bufnr)
 
@@ -27,18 +28,21 @@ M.on_attach = function(client, bufnr)
 	-- 	client.server_capabilities.semanticTokensProvider.full = false
 	-- end
 	if client.server_capabilities.documentSymbolProvider then
-		vim.api.nvim_create_autocmd("CursorMoved", {
+		local cur_bufnr = api.nvim_get_current_buf()
+		api.nvim_create_autocmd("CursorMoved", {
 			callback = function()
-				-- ignore adding navic in these file types
-				local navic_ignore = { "sh" }
-				local navic_is_ok = true
-				for _, ft in ipairs(navic_ignore) do
-					if vim.bo.filetype == ft then
-						navic_is_ok = false
+				if api.nvim_buf_is_valid(cur_bufnr) then
+					-- ignore adding navic in these file types
+					local navic_ignore = { "sh" }
+					local navic_is_ok = true
+					for _, ft in ipairs(navic_ignore) do
+						if vim.bo.filetype == ft then
+							navic_is_ok = false
+						end
 					end
-				end
-				if navic_is_ok then
-					require("nvim-navic").attach(client, bufnr)
+					if navic_is_ok then
+						require("nvim-navic").attach(client, cur_bufnr)
+					end
 				end
 			end,
 			once = true,
