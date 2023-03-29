@@ -27,17 +27,22 @@ M.on_attach = function(client, bufnr)
 	-- 	client.server_capabilities.semanticTokensProvider.full = false
 	-- end
 	if client.server_capabilities.documentSymbolProvider then
-		-- ignore adding navic in these file types
-		local navic_ignore = { "sh" }
-		local navic_is_ok = true
-		for _, ft in ipairs(navic_ignore) do
-			if vim.bo.filetype == ft then
-				navic_is_ok = false
-			end
-		end
-		if navic_is_ok then
-			require("nvim-navic").attach(client, bufnr)
-		end
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			callback = function()
+				-- ignore adding navic in these file types
+				local navic_ignore = { "sh" }
+				local navic_is_ok = true
+				for _, ft in ipairs(navic_ignore) do
+					if vim.bo.filetype == ft then
+						navic_is_ok = false
+					end
+				end
+				if navic_is_ok then
+					require("nvim-navic").attach(client, bufnr)
+				end
+			end,
+			once = true,
+		})
 	end
 
 	-- only format wit the null_ls configured formatters
