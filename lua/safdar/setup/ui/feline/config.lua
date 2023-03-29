@@ -57,10 +57,9 @@ local config = function()
 	--                            separator                             --
 	----------------------------------------------------------------------
 	local separator = {
-		left_sep = { str = " ", hl = { fg = colors.dark2, bg = colors.dark2 } },
-		right_sep = { str = " ", hl = { fg = colors.dark2, bg = colors.dark2 } },
-		icon = "",
-		hl = { fg = colors.dark1, bg = colors.dark1 },
+		left_sep = { str = " ", hl = { fg = colors.dark1, bg = colors.dark2 } },
+		right_sep = { str = " ", hl = { fg = colors.dark1, bg = colors.dark2 } },
+		hl = { fg = colors.dark1, bg = colors.dark2 },
 	}
 
 	----------------------------------------------------------------------
@@ -201,7 +200,7 @@ local config = function()
 			hl = { fg = "", bg = colors.dark1 },
 		},
 		right_sep = {
-			str = icons.status_line.triangle.acute.left,
+			str = "",
 			hl = {
 				fg = colors.dark1,
 				bg = colors.dark2,
@@ -213,8 +212,9 @@ local config = function()
 			local file_name_valid = string.find(filename.provider(filename), "[%a%d]")
 			local git_branch_valid = string.find(git_branch.provider(git_branch), "[%a%d]")
 			self.left_sep = nil
+			self.right_sep = nil
 			if file_name_valid and git_branch_valid then
-				return " "
+				return icons.misc.ColumnBarThin
 			end
 			return ""
 		end,
@@ -235,10 +235,13 @@ local config = function()
 	}
 	local git_add_sep = vim.tbl_deep_extend("force", {
 		provider = function(self)
-			local diff_removed = string.find(git.git_diff_removed(), "[%a]")
-			self.left_sep = nil
-			if diff_removed then
-				return " "
+			local diff_removed, _ = git.git_diff_removed()
+			diff_removed = string.find(diff_removed, "[%d]")
+			local diff_added, _ = git.git_diff_added()
+			diff_added = string.find(diff_added, "[%d]")
+			self.right_sep = nil
+			if diff_removed and diff_added then
+				return icons.misc.ColumnBarThin
 			end
 			return ""
 		end,
@@ -246,15 +249,21 @@ local config = function()
 	local git_changed = {
 		provider = "git_diff_changed",
 		hl = { fg = colors.cyan, bg = colors.dark2 },
-		icon = " " .. icons.git.FileModifiedRound .. " ",
+		icon = icons.git.FileModifiedRound .. " ",
 	}
 	local git_changed_sep = vim.tbl_deep_extend("force", {
 		provider = function(self)
-			local diff_removed = string.find(git.git_diff_removed(), "[%a]")
-			local diff_added = string.find(git.git_diff_added(), "[%a]")
-			self.left_sep = nil
-			if diff_removed or diff_added then
-				return " "
+			local diff_removed, _ = git.git_diff_removed()
+			diff_removed = string.find(diff_removed, "[%d]")
+			local diff_added, _ = git.git_diff_added()
+			diff_added = string.find(diff_added, "[%d]")
+			local diff_changed, _ = git.git_diff_changed()
+			diff_changed = string.find(diff_changed, "[%d]")
+			self.right_sep = nil
+			if diff_changed then
+				if diff_removed or diff_added then
+					return icons.misc.ColumnBarThin
+				end
 			end
 			return ""
 		end,
@@ -269,7 +278,7 @@ local config = function()
 		end
 	end
 	local lsp_progress = {
-		provider = function(self)
+		provider = function()
 			--- NOTE> this util function is only helpful here
 			---@param tbl table to be merged with.
 			---@param num number for how many times the `tbl` should be merged
@@ -364,7 +373,7 @@ local config = function()
 			return lsp.diagnostics_exist(lsp_severity.ERROR)
 		end,
 		hl = { fg = colors.red_error, bg = colors.dark2 },
-		icon = " " .. icons.diagnostics.BoldError .. " ",
+		icon = icons.diagnostics.BoldError .. " ",
 		right_sep = { str = " ", hl = { fg = colors.dark2, bg = colors.dark2 } },
 	}
 	local diagnostics_warning = {
@@ -373,7 +382,7 @@ local config = function()
 			return lsp.diagnostics_exist(lsp_severity.WARN)
 		end,
 		hl = { fg = colors.yellow, bg = colors.dark2 },
-		icon = " " .. icons.diagnostics.BoldWarning .. " ",
+		icon = icons.diagnostics.BoldWarning .. " ",
 		right_sep = {
 			str = function()
 				if not lsp.diagnostics_exist(lsp_severity.ERROR) then
@@ -385,6 +394,15 @@ local config = function()
 			hl = { fg = colors.dark2, bg = colors.dark2 },
 		},
 	}
+	local diagnostics_warning_sep = vim.tbl_deep_extend("force", {
+		provider = function(self)
+			self.rigth_sep = nil
+			if lsp.diagnostics_exist(lsp_severity.ERROR) and lsp.diagnostics_exist(lsp_severity.WARN) then
+				return icons.misc.ColumnBarThin
+			end
+			return ""
+		end,
+	}, separator)
 
 	local diagnostics_hint = {
 		provider = "diagnostic_hints",
@@ -392,7 +410,7 @@ local config = function()
 			return lsp.diagnostics_exist(lsp_severity.HINT)
 		end,
 		hl = { fg = colors.cyan, bg = colors.dark2 },
-		icon = " " .. icons.diagnostics.BoldHint .. " ",
+		icon = icons.diagnostics.BoldHint .. " ",
 		right_sep = {
 			str = function()
 				if
@@ -407,32 +425,47 @@ local config = function()
 			hl = { fg = colors.dark2, bg = colors.dark2 },
 		},
 	}
+	local diagnostics_hint_sep = vim.tbl_deep_extend("force", {
+		provider = function(self)
+			self.rigth_sep = nil
+			if lsp.diagnostics_exist(lsp_severity.HINT) then
+				if
+					lsp.diagnostics_exist(lsp_severity.ERROR)
+					or lsp.diagnostics_exist(lsp_severity.WARN)
+				then
+					return icons.misc.ColumnBarThin
+				end
+			end
+			return ""
+		end,
+	}, separator)
 
 	local diagnostics_info = {
 		provider = "diagnostic_info",
 		enabled = function()
 			return lsp.diagnostics_exist(lsp_severity.INFO)
 		end,
-		right_sep = {
-			str = function()
-				if
-					not lsp.diagnostics_exist(lsp_severity.HINT)
-					and not lsp.diagnostics_exist(lsp_severity.ERROR)
-					and not lsp.diagnostics_exist(lsp_severity.WARN)
-				then
-					return " "
-				else
-					return ""
-				end
-			end,
-			hl = { fg = colors.dark1, bg = colors.dark1 },
-		},
 		hl = { fg = colors.teal, bg = colors.dark2 },
-		icon = " " .. icons.diagnostics.BoldInformation .. " ",
+		icon = icons.diagnostics.BoldInformation .. " ",
 	}
+	local diagnostics_info_sep = vim.tbl_deep_extend("force", {
+		provider = function(self)
+			self.rigth_sep = nil
+			if lsp.diagnostics_exist(lsp_severity.INFO) then
+				if
+					lsp.diagnostics_exist(lsp_severity.ERROR)
+					or lsp.diagnostics_exist(lsp_severity.WARN)
+					or lsp.diagnostics_exist(lsp_severity.HINT)
+				then
+					return icons.misc.ColumnBarThin
+				end
+			end
+			return ""
+		end,
+	}, separator)
 
 	local location = {
-		provider = function(self)
+		provider = function()
 			local current_line = vim.fn.line(".")
 			local total_line = vim.fn.line("$")
 			if current_line == 1 then
@@ -500,8 +533,11 @@ local config = function()
 			},
 			{
 				diagnostics_info,
+				diagnostics_info_sep,
 				diagnostics_hint,
+				diagnostics_hint_sep,
 				diagnostics_warning,
+				diagnostics_warning_sep,
 				diagnostics_error,
 				location,
 			},

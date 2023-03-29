@@ -295,7 +295,10 @@ M.misc = {
 	-- Terminal = "",
 	Terminal = "",
 	-- Terminal = "",
-	SignColumnBar = "┃",
+	ColumnBarBold = "┃",
+	ColumnBarThin = "▎",
+	BackSlash = "",
+	ForwardSlash = "",
 }
 
 M.animation = {
