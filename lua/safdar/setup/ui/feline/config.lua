@@ -121,18 +121,18 @@ local config = function()
 					return true
 				end
 			end
-			local git_branch_icon = icons.misc.Tux
+			local git_branch_icon = ""
 			local branch_name = ""
 			if git_is_ok() then
 				git_branch_icon = icons.git.Branch
-				branch_name = git.git_branch()
+				branch_name = git.git_branch() .. " "
 			end
 			self.left_sep.str = " " .. git_branch_icon .. " "
 			self.left_sep.hl.bg = colors.dark2
 			if not string.find(vim.fn.expand("%:t"), "[%d?%a]") then
 				self.left_sep.hl.bg = colors.dark1
 			end
-			return branch_name .. " "
+			return branch_name
 		end,
 		hl = {
 			fg = colors.white,
