@@ -227,7 +227,8 @@ local config = function()
 						{ event = "msg_show", find = "indent" }, -- ignore indentations messages
 						{ find = "No information available" }, -- lsp no more information messages
 						{ find = "Special characters must be escaped " }, -- show the ale linting errors
-						{ find = "No code actions available" } -- skip no code actions notifications
+						{ find = "No code actions available" }, -- skip no code actions notifications
+						{ find = "Pick window:" } -- ignore this message from nvim-window-picker
 					},
 				},
 				opts = { skip = true },

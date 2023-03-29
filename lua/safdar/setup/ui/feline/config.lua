@@ -42,9 +42,9 @@ local config = function()
 	----------------------------------------------------------------------
 	--                             modules                              --
 	----------------------------------------------------------------------
-	local lsp = require("feline.providers.lsp")
+	local lsp_provider = require("feline.providers.lsp")
 	local lsp_severity = vim.diagnostic.severity
-	local git = require("feline.providers.git")
+	local git_provider = require("feline.providers.git")
 
 	----------------------------------------------------------------------
 	--                           custom funcs                           --
@@ -111,41 +111,90 @@ local config = function()
 	}
 
 	----------------------------------------------------------------------
-	--                            git branch                            --
+	--                               Git                                --
 	----------------------------------------------------------------------
-	local git_branch = {
-		provider = function(self)
-			local git_is_ok = function()
-				local branch = git.git_branch()
-				if package.loaded["gitsigns"] and branch ~= "" then
-					return true
+	local git = {
+		branch = {
+			provider = function(self)
+				local git_is_ok = function()
+					local branch = git_provider.git_branch()
+					if package.loaded["gitsigns"] and branch ~= "" then
+						return true
+					end
 				end
-			end
-			local git_branch_icon = ""
-			local branch_name = ""
-			if git_is_ok() then
-				git_branch_icon = icons.git.Branch
-				branch_name = git.git_branch() .. " "
-			end
-			self.left_sep.str = " " .. git_branch_icon .. " "
-			self.left_sep.hl.bg = colors.dark2
-			if not string.find(vim.fn.expand("%:t"), "[%d?%a]") then
-				self.left_sep.hl.bg = colors.dark1
-			end
-			return branch_name
-		end,
-		hl = {
-			fg = colors.white,
-			bg = colors.dark2,
-		},
-		left_sep = {
-			str = "",
+				local git_branch_icon = ""
+				local branch_name = ""
+				if git_is_ok() then
+					git_branch_icon = icons.git.Branch
+					branch_name = git_provider.git_branch() .. " "
+				end
+				self.left_sep.str = " " .. git_branch_icon .. " "
+				self.left_sep.hl.bg = colors.dark2
+				if not string.find(vim.fn.expand("%:t"), "[%d?%a]") then
+					self.left_sep.hl.bg = colors.dark1
+				end
+				return branch_name
+			end,
 			hl = {
-				fg = colors.yellow,
-				bg = "",
+				fg = colors.white,
+				bg = colors.dark2,
 			},
+			left_sep = {
+				str = "",
+				hl = {
+					fg = colors.yellow,
+					bg = "",
+				},
+			},
+			enabled = enable_in_full_win,
 		},
-		enabled = enable_in_full_win,
+		diff_removed = {
+			provider = "git_diff_removed",
+			hl = { fg = colors.red, bg = colors.dark2 },
+			icon = " " .. icons.git.FileRemoveRound .. " ",
+		},
+		diff_added = {
+			provider = "git_diff_added",
+			hl = { fg = colors.green, bg = colors.dark2 },
+			icon = " " .. icons.git.FileAddedRound .. " ",
+		},
+		diff_changed = {
+			provider = "git_diff_changed",
+			hl = { fg = colors.cyan, bg = colors.dark2 },
+			icon = icons.git.FileModifiedRound .. " ",
+		},
+	}
+	local git_sep = {
+		diff_added = vim.tbl_deep_extend("force", {
+			provider = function(self)
+				local diff_removed, _ = git_provider.git_diff_removed()
+				diff_removed = string.find(diff_removed, "[%d]")
+				local diff_added, _ = git_provider.git_diff_added()
+				diff_added = string.find(diff_added, "[%d]")
+				self.right_sep = nil
+				if diff_removed and diff_added then
+					return icons.misc.ColumnBarThin
+				end
+				return ""
+			end,
+		}, separator),
+		diff_changed = vim.tbl_deep_extend("force", {
+			provider = function(self)
+				local diff_removed, _ = git_provider.git_diff_removed()
+				diff_removed = string.find(diff_removed, "[%d]")
+				local diff_added, _ = git_provider.git_diff_added()
+				diff_added = string.find(diff_added, "[%d]")
+				local diff_changed, _ = git_provider.git_diff_changed()
+				diff_changed = string.find(diff_changed, "[%d]")
+				self.right_sep = nil
+				if diff_changed then
+					if diff_removed or diff_added then
+						return icons.misc.ColumnBarThin
+					end
+				end
+				return ""
+			end,
+		}, separator),
 	}
 
 	----------------------------------------------------------------------
@@ -211,60 +260,11 @@ local config = function()
 	local filename_sep = vim.tbl_deep_extend("force", {
 		provider = function(self)
 			local file_name_valid = string.find(filename.provider(filename), "[%a%d]")
-			local git_branch_valid = string.find(git_branch.provider(git_branch), "[%a%d]")
+			local git_branch_valid = string.find(git.branch.provider(git.branch), "[%a%d]")
 			self.left_sep = nil
 			self.right_sep = nil
 			if file_name_valid and git_branch_valid then
 				return icons.misc.ColumnBarThin
-			end
-			return ""
-		end,
-	}, separator)
-
-	----------------------------------------------------------------------
-	--                               Git                                --
-	----------------------------------------------------------------------
-	local git_remove = {
-		provider = "git_diff_removed",
-		hl = { fg = colors.red, bg = colors.dark2 },
-		icon = " " .. icons.git.FileRemoveRound .. " ",
-	}
-	local git_add = {
-		provider = "git_diff_added",
-		hl = { fg = colors.green, bg = colors.dark2 },
-		icon = " " .. icons.git.FileAddedRound .. " ",
-	}
-	local git_add_sep = vim.tbl_deep_extend("force", {
-		provider = function(self)
-			local diff_removed, _ = git.git_diff_removed()
-			diff_removed = string.find(diff_removed, "[%d]")
-			local diff_added, _ = git.git_diff_added()
-			diff_added = string.find(diff_added, "[%d]")
-			self.right_sep = nil
-			if diff_removed and diff_added then
-				return icons.misc.ColumnBarThin
-			end
-			return ""
-		end,
-	}, separator)
-	local git_changed = {
-		provider = "git_diff_changed",
-		hl = { fg = colors.cyan, bg = colors.dark2 },
-		icon = icons.git.FileModifiedRound .. " ",
-	}
-	local git_changed_sep = vim.tbl_deep_extend("force", {
-		provider = function(self)
-			local diff_removed, _ = git.git_diff_removed()
-			diff_removed = string.find(diff_removed, "[%d]")
-			local diff_added, _ = git.git_diff_added()
-			diff_added = string.find(diff_added, "[%d]")
-			local diff_changed, _ = git.git_diff_changed()
-			diff_changed = string.find(diff_changed, "[%d]")
-			self.right_sep = nil
-			if diff_changed then
-				if diff_removed or diff_added then
-					return icons.misc.ColumnBarThin
-				end
 			end
 			return ""
 		end,
@@ -278,192 +278,199 @@ local config = function()
 			return true
 		end
 	end
-	local lsp_progress = {
-		provider = function()
-			--- NOTE> this util function is only helpful here
-			---@param tbl table to be merged with.
-			---@param num number for how many times the `tbl` should be merged
-			---@return table duplicated table
-			local function duplicate_tbl(tbl, num)
-				local t = {}
-				local quantity = 1
-				while true do
-					if quantity > num then
-						break
-					end
-					for _, v in ipairs(tbl) do
-						table.insert(t, v)
-					end
-					quantity = quantity + 1
-				end
-				return t
-			end
-			local Lsp = vim.lsp.util.get_progress_messages()[1]
-			if Lsp then
-				local msg = Lsp.message or ""
-				local percentage = Lsp.percentage or 0
-				local title = Lsp.title or ""
-				local spinners = duplicate_tbl(icons.animation.circle, 4)
-				local success_icon = duplicate_tbl({ icons.animation.Done }, 12)
-				local ms = vim.loop.hrtime() / 1000000
-				local frame = math.floor(ms / 120) % #spinners
-				if percentage >= 90 then
-					return string.format(
-						" %%<%s %s %s (%s%%%%) ",
-						success_icon[frame + 1],
-						title,
-						msg,
-						percentage
-					)
-				else
-					return string.format(
-						" %%<%s %s %s (%s%%%%) ",
-						spinners[frame + 1],
-						title,
-						msg,
-						percentage
-					)
-				end
-			else
-				return ""
-			end
-		end,
-		enabled = function()
-			return not noice_is_active()
-		end,
-		hl = { fg = colors.pink, bg = colors.dark2, style = "italic" },
-	}
 
-	local lsp_clients_info = {
-		provider = function()
-			local cur_buf_clients = vim.lsp.buf_get_clients()
-			local clients_str = ""
-			for _, server in pairs(cur_buf_clients) do
-				for _, ft in ipairs(server.config.filetypes) do
-					if ft == vim.bo.filetype then
-						clients_str = clients_str .. server.name .. ","
+	local lsp = {
+		clients = {
+			provider = function()
+				local cur_buf_clients = vim.lsp.buf_get_clients()
+				local clients_str = ""
+				for _, server in pairs(cur_buf_clients) do
+					for _, ft in ipairs(server.config.filetypes) do
+						if ft == vim.bo.filetype then
+							clients_str = clients_str .. server.name .. ","
+						end
 					end
 				end
-			end
-			local client_list = string.sub(clients_str, 1, -2)
-			if #client_list > 1 then
-				client_list = icons.ui.Setting .. " " .. client_list
-			else
-				client_list = ""
-			end
-			return client_list
-		end,
-		enabled = function()
-			-- local Lsp = vim.lsp.util.get_progress_messages()[1]
-			-- local Lsp_progress = false
-			-- if Lsp then
-			-- 	Lsp_progress = true
-			-- end
-			-- return not noice_is_active() and not lsp_progress
-			return not noice_is_active()
-		end,
-		hl = { fg = colors.blue, bg = colors.dark2 },
+				local client_list = string.sub(clients_str, 1, -2)
+				if #client_list > 1 then
+					client_list = icons.ui.Setting .. " " .. client_list
+				else
+					client_list = ""
+				end
+				return client_list
+			end,
+			enabled = function()
+				-- local Lsp = vim.lsp.util.get_progress_messages()[1]
+				-- local Lsp_progress = false
+				-- if Lsp then
+				-- 	Lsp_progress = true
+				-- end
+				-- return not noice_is_active() and not lsp_progress
+				return not noice_is_active()
+			end,
+			hl = { fg = colors.blue, bg = colors.dark2 },
+		},
+		progress = {
+			provider = function()
+				--- NOTE> this util function is only helpful here
+				---@param tbl table to be merged with.
+				---@param num number for how many times the `tbl` should be merged
+				---@return table duplicated table
+				local function duplicate_tbl(tbl, num)
+					local t = {}
+					local quantity = 1
+					while true do
+						if quantity > num then
+							break
+						end
+						for _, v in ipairs(tbl) do
+							table.insert(t, v)
+						end
+						quantity = quantity + 1
+					end
+					return t
+				end
+				local Lsp = vim.lsp.util.get_progress_messages()[1]
+				if Lsp then
+					local msg = Lsp.message or ""
+					local percentage = Lsp.percentage or 0
+					local title = Lsp.title or ""
+					local spinners = duplicate_tbl(icons.animation.circle, 4)
+					local success_icon = duplicate_tbl({ icons.animation.Done }, 12)
+					local ms = vim.loop.hrtime() / 1000000
+					local frame = math.floor(ms / 120) % #spinners
+					if percentage >= 90 then
+						return string.format(
+							" %%<%s %s %s (%s%%%%) ",
+							success_icon[frame + 1],
+							title,
+							msg,
+							percentage
+						)
+					else
+						return string.format(
+							" %%<%s %s %s (%s%%%%) ",
+							spinners[frame + 1],
+							title,
+							msg,
+							percentage
+						)
+					end
+				else
+					return ""
+				end
+			end,
+			enabled = function()
+				return not noice_is_active()
+			end,
+			hl = { fg = colors.pink, bg = colors.dark2, style = "italic" },
+		},
 	}
 
 	----------------------------------------------------------------------
 	--                         Lsp Diagnostics                          --
 	----------------------------------------------------------------------
-	local diagnostics_error = {
-		provider = "diagnostic_errors",
-		enabled = function()
-			return lsp.diagnostics_exist(lsp_severity.ERROR)
-		end,
-		hl = { fg = colors.red_error, bg = colors.dark2 },
-		icon = icons.diagnostics.BoldError .. " ",
-		right_sep = { str = " ", hl = { fg = colors.dark2, bg = colors.dark2 } },
-	}
-	local diagnostics_warning = {
-		provider = "diagnostic_warnings",
-		enabled = function()
-			return lsp.diagnostics_exist(lsp_severity.WARN)
-		end,
-		hl = { fg = colors.yellow, bg = colors.dark2 },
-		icon = icons.diagnostics.BoldWarning .. " ",
-		right_sep = {
-			str = function()
-				if not lsp.diagnostics_exist(lsp_severity.ERROR) then
-					return " "
-				else
-					return ""
-				end
+	local diagnostics = {
+		ERROR = {
+			provider = "diagnostic_errors",
+			enabled = function()
+				return lsp_provider.diagnostics_exist(lsp_severity.ERROR)
 			end,
-			hl = { fg = colors.dark2, bg = colors.dark2 },
+			hl = { fg = colors.red_error, bg = colors.dark2 },
+			icon = icons.diagnostics.BoldError .. " ",
+			right_sep = { str = " ", hl = { fg = colors.dark2, bg = colors.dark2 } },
+		},
+		WARN = {
+			provider = "diagnostic_warnings",
+			enabled = function()
+				return lsp_provider.diagnostics_exist(lsp_severity.WARN)
+			end,
+			hl = { fg = colors.yellow, bg = colors.dark2 },
+			icon = icons.diagnostics.BoldWarning .. " ",
+			right_sep = {
+				str = function()
+					if not lsp_provider.diagnostics_exist(lsp_severity.ERROR) then
+						return " "
+					else
+						return ""
+					end
+				end,
+				hl = { fg = colors.dark2, bg = colors.dark2 },
+			},
+		},
+		HINT = {
+			provider = "diagnostic_hints",
+			enabled = function()
+				return lsp_provider.diagnostics_exist(lsp_severity.HINT)
+			end,
+			hl = { fg = colors.cyan, bg = colors.dark2 },
+			icon = icons.diagnostics.BoldHint .. " ",
+			right_sep = {
+				str = function()
+					if
+						not lsp_provider.diagnostics_exist(lsp_severity.ERROR)
+						and not lsp_provider.diagnostics_exist(lsp_severity.WARN)
+					then
+						return " "
+					else
+						return ""
+					end
+				end,
+				hl = { fg = colors.dark2, bg = colors.dark2 },
+			},
+		},
+		INFO = {
+			provider = "diagnostic_info",
+			enabled = function()
+				return lsp_provider.diagnostics_exist(lsp_severity.INFO)
+			end,
+			hl = { fg = colors.teal, bg = colors.dark2 },
+			icon = icons.diagnostics.BoldInformation .. " ",
 		},
 	}
-	local diagnostics_warning_sep = vim.tbl_deep_extend("force", {
-		provider = function(self)
-			self.rigth_sep = nil
-			if lsp.diagnostics_exist(lsp_severity.ERROR) and lsp.diagnostics_exist(lsp_severity.WARN) then
-				return icons.misc.ColumnBarThin
-			end
-			return ""
-		end,
-	}, separator)
-
-	local diagnostics_hint = {
-		provider = "diagnostic_hints",
-		enabled = function()
-			return lsp.diagnostics_exist(lsp_severity.HINT)
-		end,
-		hl = { fg = colors.cyan, bg = colors.dark2 },
-		icon = icons.diagnostics.BoldHint .. " ",
-		right_sep = {
-			str = function()
+	local diagnostics_sep = {
+		WARN = vim.tbl_deep_extend("force", {
+			provider = function(self)
+				self.rigth_sep = nil
 				if
-					not lsp.diagnostics_exist(lsp_severity.ERROR)
-					and not lsp.diagnostics_exist(lsp_severity.WARN)
-				then
-					return " "
-				else
-					return ""
-				end
-			end,
-			hl = { fg = colors.dark2, bg = colors.dark2 },
-		},
-	}
-	local diagnostics_hint_sep = vim.tbl_deep_extend("force", {
-		provider = function(self)
-			self.rigth_sep = nil
-			if lsp.diagnostics_exist(lsp_severity.HINT) then
-				if
-					lsp.diagnostics_exist(lsp_severity.ERROR)
-					or lsp.diagnostics_exist(lsp_severity.WARN)
+					lsp_provider.diagnostics_exist(lsp_severity.ERROR)
+					and lsp_provider.diagnostics_exist(lsp_severity.WARN)
 				then
 					return icons.misc.ColumnBarThin
 				end
-			end
-			return ""
-		end,
-	}, separator)
-
-	local diagnostics_info = {
-		provider = "diagnostic_info",
-		enabled = function()
-			return lsp.diagnostics_exist(lsp_severity.INFO)
-		end,
-		hl = { fg = colors.teal, bg = colors.dark2 },
-		icon = icons.diagnostics.BoldInformation .. " ",
-	}
-	local diagnostics_info_sep = vim.tbl_deep_extend("force", {
-		provider = function(self)
-			self.rigth_sep = nil
-			if lsp.diagnostics_exist(lsp_severity.INFO) then
-				if
-					lsp.diagnostics_exist(lsp_severity.ERROR)
-					or lsp.diagnostics_exist(lsp_severity.WARN)
-					or lsp.diagnostics_exist(lsp_severity.HINT)
-				then
-					return icons.misc.ColumnBarThin
+				return ""
+			end,
+		}, separator),
+		HINT = vim.tbl_deep_extend("force", {
+			provider = function(self)
+				self.rigth_sep = nil
+				if lsp_provider.diagnostics_exist(lsp_severity.HINT) then
+					if
+						lsp_provider.diagnostics_exist(lsp_severity.ERROR)
+						or lsp_provider.diagnostics_exist(lsp_severity.WARN)
+					then
+						return icons.misc.ColumnBarThin
+					end
 				end
-			end
-			return ""
-		end,
-	}, separator)
+				return ""
+			end,
+		}, separator),
+		INFO = vim.tbl_deep_extend("force", {
+			provider = function(self)
+				self.rigth_sep = nil
+				if lsp_provider.diagnostics_exist(lsp_severity.INFO) then
+					if
+						lsp_provider.diagnostics_exist(lsp_severity.ERROR)
+						or lsp_provider.diagnostics_exist(lsp_severity.WARN)
+						or lsp_provider.diagnostics_exist(lsp_severity.HINT)
+					then
+						return icons.misc.ColumnBarThin
+					end
+				end
+				return ""
+			end,
+		}, separator),
+	}
 
 	local location = {
 		provider = function()
@@ -518,28 +525,28 @@ local config = function()
 		active = {
 			{
 				mode,
-				git_branch,
+				git.branch,
 				filename_sep,
 				filename,
-				git_remove,
-				git_add_sep,
-				git_add,
-				git_changed_sep,
-				git_changed,
+				git.diff_removed,
+				git_sep.diff_added,
+				git.diff_added,
+				git_sep.diff_changed,
+				git.diff_changed,
 			},
 			{
 				-- lsp_progress,
-				lsp_clients_info,
+				lsp.clients,
 				noice_macro_recording,
 			},
 			{
-				diagnostics_info,
-				diagnostics_info_sep,
-				diagnostics_hint,
-				diagnostics_hint_sep,
-				diagnostics_warning,
-				diagnostics_warning_sep,
-				diagnostics_error,
+				diagnostics.INFO,
+				diagnostics_sep.INFO,
+				diagnostics.HINT,
+				diagnostics_sep.HINT,
+				diagnostics.WARN,
+				diagnostics.WARN,
+				diagnostics.ERROR,
 				location,
 			},
 		},
