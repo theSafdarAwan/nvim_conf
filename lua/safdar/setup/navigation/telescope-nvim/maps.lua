@@ -17,7 +17,6 @@ M.maps = function()
 	set_map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { noremap = true, silent = true })
 	set_map("n", "<leader>tb", ":Telescope builtin<cr>", { noremap = true, silent = true })
 	set_map("n", "<leader>rr", ":Telescope reloader<cr>", { noremap = true, silent = true })
-	-- TODO: create a custom config for this map
 	set_map("n", "<leader>gs", ":Telescope git_status<cr>", { noremap = true, silent = true })
 
 	set_map("n", "<leader>en", function()
