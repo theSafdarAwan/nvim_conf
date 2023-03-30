@@ -1,9 +1,7 @@
--- TODO: re-write this script
-
 local api = vim.api
-local create_autocmd = api.nvim_create_autocmd
-local command = vim.api.nvim_command
 local bo = vim.bo
+local create_autocmd = api.nvim_create_autocmd
+local cmd = vim.api.nvim_command
 
 local delay_auto_save = 10
 
@@ -13,7 +11,7 @@ local auto_save = api.nvim_create_augroup("autosave", { clear = true })
 local auto_save_queued = "autosave_queued"
 local auto_save_block = "autosave_block"
 
-api.nvim_create_autocmd("BufRead", {
+api.nvim_create_autocmd("BufReadPre", {
 	group = auto_save,
 	callback = function(buf_info)
 		api.nvim_buf_set_var(buf_info.buf, auto_save_queued, false)
@@ -21,47 +19,47 @@ api.nvim_create_autocmd("BufRead", {
 	end,
 })
 
--- validate excluded buftype's and filetype's and dir names from autosaving if
--- included then will return tabl with the type name and the type value
+--- validates if current the buftype, filetype or dir name is the ignored.
+---@param opts table
+---@field opts.data table of type to check for ignoring either, buf or file types or dir name.
+---@field opts.type string type of the opts.data.
 local function validater(opts)
-	local ok = true
-	local type
-	-- dir name validate
-	if opts.type == "dir" then
+	local status = true
+	if not opts.type then
+		vim.notify("auto-save: no type provided to validate", vim.log.levels.WARN, {})
+		return
+	end
+	if opts.type.dir then
 		local path_expanded = vim.fn.expand("%:p")
 		local path_split = vim.split(path_expanded, "/", { plain = false, trimempty = true })
-		local last_item_idx
-		for _, _ in ipairs(path_split) do
-			-- table second last element which is the path first is the file name
-			last_item_idx = #path_split - 1
-		end
-		local path = path_split[last_item_idx]
+		local path = path_split[#path_split - 1]
 		for _, v in ipairs(opts.data) do
 			if v == path then
-				ok = false
+				status = false
 				break
 			else
-				ok = true
-			end
-		end
-		type = "dir"
-	else
-		-- validate buftype and filetype
-		local buf_info_type
-		if opts.type == "buf" then
-			buf_info_type = bo.buftype
-			type = "buf"
-		else
-			buf_info_type = bo.filetype
-			type = "ft"
-		end
-		for _, value in ipairs(opts.data) do
-			if buf_info_type == value then
-				ok = false
+				status = true
 			end
 		end
 	end
-	return { type = type, value = ok }
+
+	if opts.type.buf then
+		for _, value in ipairs(opts.data) do
+			if bo.buftype == value then
+				status = false
+			end
+		end
+	end
+
+	if opts.type.ft then
+		for _, value in ipairs(opts.data) do
+			if bo.filetype == value then
+				status = false
+			end
+		end
+	end
+
+	return status
 end
 
 -- autosave function
@@ -76,34 +74,23 @@ local function auto_save_fn(buf_info)
 	end
 
 	if not queued then
-		-- TODO: might remove the ft and buf and just use the buftype
 		local excluded = {
 			dir = { "wezterm", "alacritty" },
 			ft = { "TelescopePrompt", "harpoon" },
 			buf = { "prompt" },
 		}
 
-		local ft_val
-		local buf_val
-		local dir_val
-
+		local status = true
 		for k, v in pairs(excluded) do
-			local valid = validater({ type = tostring(k), data = v })
-			if type(valid) == "table" then
-				if valid.type == "buf" then
-					buf_val = valid.value
-				elseif valid.type == "dir" then
-					dir_val = valid.value
-				else
-					ft_val = valid.value
-				end
+			local valid = validater({ type = { [k] = true }, data = v })
+			if not valid then
+				status = false
+				break
 			end
 		end
 
-		-- check if the buf is modifiable and then validate buf does not have any of
-		-- the excluded filetypes or buftypes
-		if bo.modifiable and #bo.buftype < 1 and ft_val and buf_val and dir_val then
-			command("silent update")
+		if bo.modifiable and status then
+			cmd("silent write")
 			-- print("saved at " .. vim.fn.strftime("%I:%M:%S"))
 			api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
 			-- fn.timer_start(1500, function()
@@ -122,8 +109,7 @@ local function auto_save_fn(buf_info)
 		if not block then
 			api.nvim_buf_set_var(buf_info.buf, auto_save_block, true)
 			local function defer_block_fn()
-				-- check if the buffer valid
-				-- because buffer may disappear after delay
+				-- check if buffers is still valid
 				if api.nvim_buf_is_valid(buf_info.buf) then
 					api.nvim_buf_set_var(buf_info.buf, auto_save_queued, false)
 					api.nvim_buf_set_var(buf_info.buf, auto_save_block, false)
@@ -136,7 +122,7 @@ local function auto_save_fn(buf_info)
 end
 
 -- save changes on these events
-create_autocmd({ "TextChanged", "ModeChanged", "CursorHold" }, {
+create_autocmd({ "CursorMoved", "ModeChanged", "CursorHold" }, {
 	group = auto_save,
 	callback = function(buf_info)
 		auto_save_fn(buf_info)
