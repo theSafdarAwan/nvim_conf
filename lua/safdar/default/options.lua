@@ -99,24 +99,12 @@ opt.shortmess:append("cI") -- turn of completion messages and starting intro scr
 opt.list = true -- show hidden {space,tab} chars
 -- set list chars
 local list_chars_symbols = {
-	-- ["eol"] = "↲",
 	["eol"] = " ",
-	-- ["eol"] = "↴",
-	-- ["tab"] = "→ ",
-	-- ["tab"] = "» ",
 	["tab"] = "▸ ",
-	-- ["space"] = "␣",
-	-- ["trail"] = "-",
 	["trail"] = "·",
-	-- ["extends"] = "☛",
-	-- ["precedes"] = "☚",
-	-- ["extends"] = "»",
-	-- ["precedes"] = "«",
 	["extends"] = "❯",
 	["precedes"] = "❮",
 	["conceal"] = "┊",
-	-- ["nbsp"] = "☠",
-	-- ["nbsp"] = "⣿",
 	["nbsp"] = "␣",
 }
 for k, v in pairs(list_chars_symbols) do
