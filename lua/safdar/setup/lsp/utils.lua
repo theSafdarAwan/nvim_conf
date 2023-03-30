@@ -31,7 +31,7 @@ M.on_attach = function(client, bufnr)
 		local cur_bufnr = api.nvim_get_current_buf()
 		api.nvim_create_autocmd("CursorMoved", {
 			callback = function()
-				if api.nvim_buf_is_valid(cur_bufnr) then
+				if api.nvim_buf_is_valid(cur_bufnr) and api.nvim_get_current_buf() == cur_bufnr then
 					-- ignore adding navic in these file types
 					local navic_ignore = { "sh" }
 					local navic_is_ok = true
