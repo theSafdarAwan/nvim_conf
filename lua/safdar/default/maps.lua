@@ -131,6 +131,9 @@ set_map("n", "gX", ":close!<cr>")
 set_map("n", "<C-x>", ":tabclose<cr>")
 set_map("n", "<C-n>", ":tabnew<cr>")
 
+set_map("n", "gtn", ":tabnext<cr>")
+set_map("n", "gtp", ":tabprevious<cr>")
+
 -- screen movement by 10 lines
 set_map("n", "zy", "10<C-y>")
 set_map("n", "ze", "10<C-e>")

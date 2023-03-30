@@ -100,7 +100,8 @@ opt.list = true -- show hidden {space,tab} chars
 -- set list chars
 local list_chars_symbols = {
 	-- ["eol"] = "↲",
-	["eol"] = "↴",
+	["eol"] = " ",
+	-- ["eol"] = "↴",
 	-- ["tab"] = "→ ",
 	-- ["tab"] = "» ",
 	["tab"] = "▸ ",
