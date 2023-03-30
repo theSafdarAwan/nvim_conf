@@ -161,7 +161,17 @@ local config = function()
 		diff_changed = {
 			provider = "git_diff_changed",
 			hl = { fg = colors.cyan, bg = colors.dark2 },
-			icon = icons.git.FileModifiedRound .. " ",
+			icon = function()
+				local str = icons.git.FileModifiedRound .. " "
+				local diff_removed, _ = git_provider.git_diff_removed()
+				diff_removed = string.find(diff_removed, "[%d]")
+				local diff_added, _ = git_provider.git_diff_added()
+				diff_added = string.find(diff_added, "[%d]")
+				if not diff_added and not diff_removed then
+					str = " " .. str
+				end
+				return str
+			end,
 		},
 	}
 	local git_sep = {
