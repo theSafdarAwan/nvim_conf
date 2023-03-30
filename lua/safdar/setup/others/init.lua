@@ -8,6 +8,7 @@
 ---@field todo_comments_nvim Plugin adds highlights for todo comments.
 ---@field nvim_comment_frame Plugin adds comment frame's when commenting very useful when
 --- separating code in large files.
+---@field figlet_nvim Plugin is a plugin to generate ASCII text in nvim.
 ---@field vim_be_good Plugin ThePrimeagen Plugin for improving movement in nvim.
 ---@field nvim_spectre Plugin replacing text utility plugin like vscode replace option.
 ---@field refactoring_nvim Plugin ThePrimeagen plugin for refactoring code.
@@ -41,6 +42,7 @@ local plugins = function(install)
 		"Comment-nvim",
 		"todo-comments-nvim",
 		"nvim-comment-frame",
+		"figlet-nvim",
 		----------------------------------------------------------------------
 		--                        Window Management                         --
 		----------------------------------------------------------------------
