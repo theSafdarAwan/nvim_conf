@@ -24,27 +24,44 @@ local autocmds = {
 	line_number_helper = {
 		events = { "CursorMoved" },
 		callback = function()
-			local ignore_list = {
+			local add_number_list = {
 				buf = { "prompt", "nofile", "terminal" },
-				ft = { "norg", "noice" },
+				ft = { "norg" },
 			}
-			local safe = true
-			for _, opt_type in pairs(ignore_list) do
-				for _, type in pairs(opt_type) do
+			local safe = false
+			for _, type_tbl in pairs(add_number_list) do
+				for _, type in pairs(type_tbl) do
 					if type == bo.filetype or type == bo.buftype then
-						safe = false
+						safe = true
 						break
 					end
-					if not safe then
+					if safe then
+						break
+					end
+				end
+			end
+			if not safe then
+				optl.relativenumber = true
+				optl.number = true
+				optl.signcolumn = "yes"
+			end
+			safe = false
+			local remove_number_list = {
+				buf = {},
+				ft = { "noice" },
+			}
+			for _, type_tbl in pairs(remove_number_list) do
+				for _, type in pairs(type_tbl) do
+					if type == bo.filetype or type == bo.buftype then
+						safe = true
+						break
+					end
+					if safe then
 						break
 					end
 				end
 			end
 			if safe then
-				optl.relativenumber = true
-				optl.number = true
-				optl.signcolumn = "yes"
-			else
 				optl.relativenumber = false
 				optl.number = false
 				optl.signcolumn = "no"
