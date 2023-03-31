@@ -90,7 +90,7 @@ local function auto_save_fn(buf_info)
 		end
 
 		if bo.modifiable and status then
-			cmd("silent write")
+			cmd("silent update")
 			-- print("saved at " .. vim.fn.strftime("%I:%M:%S"))
 			api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
 			-- fn.timer_start(1500, function()
