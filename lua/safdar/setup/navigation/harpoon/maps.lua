@@ -105,15 +105,15 @@ M.c_lang = function()
 	-- set_buf_map(0, "n", "<leader>ts", ":lua require('harpoon.tmux').sendCommand(1, './compile')<CR>", opts)
 end
 
-M.common_lisp = function()
-	local map_opts = utils.map_options
-	set_map("n", "<leader>ts", function()
-		local file_name = fn.expand("%:tr")
-		if string.find(file_name, ".lisp", 1, true) then
-			require("harpoon.term").sendCommand(1, "clisp " .. file_name)
-		end
-	end, map_opts:new():silent():noremap():buffer(0))
-end
+-- M.common_lisp = function()
+-- 	local map_opts = utils.map_options
+-- 	set_map("n", "<leader>ts", function()
+-- 		local file_name = fn.expand("%:tr")
+-- 		if string.find(file_name, ".lisp", 1, true) then
+-- 			require("harpoon.term").sendCommand(1, "clisp " .. file_name)
+-- 		end
+-- 	end, map_opts:new():silent():noremap():buffer(0))
+-- end
 
 M.keys = {
 	"<leader>aa",
