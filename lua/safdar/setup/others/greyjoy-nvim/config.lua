@@ -1,7 +1,10 @@
 local function config()
 	local greyjoy = require("greyjoy")
+	local ui = vim.api.nvim_list_uis()[1]
 	greyjoy.setup({
 		output_results = "buffer",
+		width = math.floor(ui.width - (ui.width / 6)),
+		height = math.floor(ui.height / 1.5),
 		last_first = true,
 		extensions = {
 			generic = {
