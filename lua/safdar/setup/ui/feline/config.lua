@@ -231,6 +231,8 @@ local config = function()
 			local provider_content = file_name_lenght(30)
 			if #provider_content > 1 then
 				provider_content = " " .. provider_content .. " "
+			else
+				provider_content = provider_content .. " "
 			end
 
 			if string.find(file_name_no_ext, "[%d?%a]") then
@@ -239,7 +241,7 @@ local config = function()
 				local ft_icon = require("nvim-web-devicons").get_icon(file_name_with_ext, file_ext)
 				local _, fg = require("nvim-web-devicons").get_icon_color(file_name_with_ext, file_ext)
 				if not ft_icon then
-					ft_icon = icons.kind.Event
+					ft_icon = icons.kind.Event .. " "
 				end
 				self.left_sep.str = " " .. ft_icon
 				self.left_sep.hl.fg = fg or colors.red
