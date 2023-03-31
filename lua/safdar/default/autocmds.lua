@@ -1,89 +1,91 @@
-local api = vim.api
-local opt = vim.opt
-local optl = vim.opt_local
-local cmd = vim.cmd
-local bo = vim.bo
-local create_autocmd = api.nvim_create_autocmd
+local opt, optl, bo = vim.opt, vim.opt_local, vim.bo
+local cmd, api = vim.cmd, vim.api
 
-local autocmds_augroup = api.nvim_create_augroup("autocmds.lua", { clear = true })
+local autocmds = {
+	highlight_on_yank = {
+		events = { "TextYankPost" },
+		callback = function()
+			require("vim.highlight").on_yank({
+				timeout = 40,
+				higroup = "MatchParen",
+			})
+		end,
+	},
 
--- Highlight The yanked text
-local function highlight_on_yank()
-	require("vim.highlight").on_yank({
-		timeout = 40,
-		higroup = "MatchParen",
-	})
+	help_ft = {
+		events = { "BufWinEnter" },
+		callback = function()
+			if bo.filetype == "help" then
+				optl.conceallevel = 0
+				optl.statusline = " "
+			end
+		end,
+	},
+
+	line_number_helper = {
+		events = { "CursorMoved" },
+		callback = function()
+			local ignore_list = {
+				buf = { "prompt", "nofile", "terminal" },
+				ft = { "norg", "noice" },
+			}
+			local safe = true
+			for _, opt_type in pairs(ignore_list) do
+				for _, type in pairs(opt_type) do
+					if type == bo.filetype or type == bo.buftype then
+						safe = false
+						break
+					end
+					if not safe then
+						break
+					end
+				end
+			end
+			if safe then
+				optl.relativenumber = true
+				optl.number = true
+				optl.signcolumn = "yes"
+			else
+				optl.relativenumber = false
+				optl.number = false
+				optl.signcolumn = "no"
+			end
+		end,
+	},
+	terminal_mode = {
+		events = { "TermOpen" },
+		callback = function()
+			optl.number = false
+			optl.relativenumber = false
+			opt.filetype = "terminal"
+			optl.spell = false
+		end,
+	},
+	qf_list = {
+		events = { "FileType" },
+		pattern = "qf",
+		callback = function()
+			optl.buflisted = false
+		end,
+	},
+	-- q_file = {
+	-- 	events = { "FileType" },
+	-- 	pattern = { "help", "man", "lspinfo", "qf" },
+	-- 	callback = function()
+	-- 		vim.keymap.set({ "n", "v" }, "q", function()
+	-- 			cmd("close")
+	-- 		end, { noremap = true, silent = true })
+	-- 	end,
+	-- },
+}
+
+for _, au in pairs(autocmds) do
+	local events = vim.deepcopy(au.events)
+	au.events = nil
+	au.group = au.group or api.nvim_create_augroup("autocmds.lua", { clear = true })
+	vim.api.nvim_create_autocmd(events, au)
 end
 
-create_autocmd({ "TextYankPost" }, {
-	group = autocmds_augroup,
-	callback = highlight_on_yank,
-})
-
--- setting for the help file type buffer
-local function help_ft()
-	if bo.filetype == "help" then
-		optl.conceallevel = 0
-		optl.statusline = " "
-	end
-end
-
--- set a bunch of options for the help filetype
-create_autocmd({ "BufWinEnter" }, {
-	group = autocmds_augroup,
-	callback = help_ft,
-})
-
--- set line number for every buffer except a prompt, nofile and terminal
-local function line_numers()
-	if bo.buftype ~= "prompt" and bo.buftype ~= "nofile" and bo.buftype ~= "terminal" and bo.filetype ~= "norg" then
-		optl.relativenumber = true
-		optl.number = true
-		optl.signcolumn = "yes"
-	end
-end
-
-create_autocmd({ "CursorMoved" }, {
-	group = autocmds_augroup,
-	callback = line_numers,
-})
-
--- Don't show the line numbers in terminal mode
-local function terminal_mode()
-	optl.number = false
-	optl.relativenumber = false
-	opt.filetype = "terminal"
-	optl.spell = false
-end
-
-create_autocmd({ "TermOpen" }, {
-	group = autocmds_augroup,
-	callback = terminal_mode,
-})
-
--- dont list quickfix buffers
-create_autocmd("FileType", {
-	group = autocmds_augroup,
-	pattern = "qf",
-	callback = function()
-		optl.buflisted = false
-	end,
-})
-
--- instead use gx map
---[[ -- mapping q to close the windows in help, packer and some other file types
-  local function quitter()
-    map({ "n", "v" }, "q", function()
-      utils.command("close")
-    end, opts)
-  end
-  create_autocmd({ "FileType" }, {
-    pattern = { "help", "man", "lspinfo", "qf" },
-    group = autocmds_augroup,
-    callback = quitter,
-  }) ]]
-
--- don't give exit code when exiting the terminal
-cmd([[
-    autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
+vim.cmd([[
+	autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | elseif !v:shell_error | exe 'bdelete! '..expand('<abuf>') | endif
 ]])
