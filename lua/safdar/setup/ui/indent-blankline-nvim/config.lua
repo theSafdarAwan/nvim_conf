@@ -8,7 +8,7 @@ local function config()
 		show_trailing_blankline_indent = false,
 		show_first_indent_level = false,
 		use_treesitter = true,
-		indent_level = 4,
+		indent_level = 8,
 		show_current_context = true,
 		space_char_blankline = " ",
 		show_current_context_start = false,
