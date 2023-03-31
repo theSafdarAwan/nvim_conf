@@ -5,16 +5,25 @@ local function plugin(install)
 			require("safdar.setup.git.gitsigns-nvim.config").config()
 		end,
 		init = function()
+			local group = vim.api.nvim_create_augroup("lazy load gitsigns", { clear = true })
+			local git_cmd = "git -C " .. vim.fn.expand("%:p:h") .. " rev-parse"
 			vim.api.nvim_create_autocmd("BufRead", {
-				group = vim.api.nvim_create_augroup("lazy load gitsigns", { clear = true }),
+				group = group,
 				callback = function()
-					vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse")
-					if vim.v.shell_error == 0 then
-						vim.api.nvim_del_augroup_by_name("lazy load gitsigns")
-						vim.schedule(function()
-							require("lazy").load({ plugins = { "gitsigns.nvim" } })
-						end)
-					end
+					vim.api.nvim_create_autocmd("CursorMoved", {
+						group = group,
+						callback = function()
+							vim.fn.system(git_cmd)
+							if vim.v.shell_error == 0 then
+								vim.api.nvim_del_augroup_by_id(group)
+								vim.schedule(function()
+									require("lazy").load({
+										plugins = { "gitsigns.nvim" },
+									})
+								end)
+							end
+						end,
+					})
 				end,
 			})
 		end,
