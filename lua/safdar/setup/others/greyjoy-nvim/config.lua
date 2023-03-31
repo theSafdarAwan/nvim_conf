@@ -3,9 +3,11 @@ local function config()
 	local ui = vim.api.nvim_list_uis()[1]
 	greyjoy.setup({
 		output_results = "buffer",
-		buffer = {
-			width = math.floor(ui.width - (ui.width / 6)),
-			height = math.floor(ui.height / 1.5),
+		ui = {
+			buffer = {
+				width = math.floor(ui.width - (ui.width / 6)),
+				height = math.floor(ui.height / 1.5),
+			},
 		},
 		last_first = true,
 		extensions = {
