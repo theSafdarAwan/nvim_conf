@@ -241,7 +241,10 @@ local config = function()
 				local ft_icon = require("nvim-web-devicons").get_icon(file_name_with_ext, file_ext)
 				local _, fg = require("nvim-web-devicons").get_icon_color(file_name_with_ext, file_ext)
 				if not ft_icon then
-					ft_icon = icons.kind.Event .. " "
+					ft_icon = icons.kind.Event
+					if tonumber(provider_content) then
+						provider_content = " " .. provider_content
+					end
 				end
 				self.left_sep.str = " " .. ft_icon
 				self.left_sep.hl.fg = fg or colors.red

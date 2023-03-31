@@ -6,12 +6,12 @@ local function config()
 		extensions = {
 			generic = {
 				commands = {
-					["gcc main.c"] = {
+					["compile main.c"] = {
 						command = { "gcc", "main.c" },
 						filetype = "c",
 						filename = "main.c",
 					},
-					["run {filename}"] = {
+					["run python"] = {
 						command = { "python3", "{filename}" },
 						filetype = "python",
 					},
@@ -24,6 +24,10 @@ local function config()
 						command = { "go", "build", "main.go" },
 						filetype = "go",
 						filename = "main.go",
+					},
+					["run lisp"] = {
+						command = { "clisp", "{filename}" },
+						filetype = "lisp",
 					},
 				},
 			},
