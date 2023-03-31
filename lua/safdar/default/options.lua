@@ -74,7 +74,7 @@ opt.pumheight = 16 -- completion menu height
 opt.pumblend = 0 -- completion menu blending option
 opt.winblend = 0 -- floating windows blending option
 
-local indent = 4
+local indent = 2
 opt.shiftwidth = indent
 opt.tabstop = indent
 opt.softtabstop = indent

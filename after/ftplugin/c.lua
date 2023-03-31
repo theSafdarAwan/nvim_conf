@@ -49,3 +49,9 @@ api.nvim_create_autocmd({ "BufWinEnter" }, {
 		harpoon(bufInfo)
 	end,
 })
+
+local opt = vim.opt_local
+local indent = 4
+opt.shiftwidth = indent
+opt.tabstop = indent
+opt.softtabstop = indent
