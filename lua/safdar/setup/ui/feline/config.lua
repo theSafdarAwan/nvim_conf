@@ -229,11 +229,7 @@ local config = function()
 			end
 			-- get the file name for provider
 			local provider_content = file_name_lenght(30)
-			if #provider_content > 1 then
-				provider_content = " " .. provider_content .. " "
-			else
-				provider_content = provider_content .. " "
-			end
+			provider_content = " " .. provider_content .. " "
 
 			if string.find(file_name_no_ext, "[%d?%a]") then
 				local file_name_with_ext = vim.fn.expand("%:t")
@@ -242,9 +238,6 @@ local config = function()
 				local _, fg = require("nvim-web-devicons").get_icon_color(file_name_with_ext, file_ext)
 				if not ft_icon then
 					ft_icon = icons.kind.Event
-					if tonumber(provider_content) then
-						provider_content = " " .. provider_content
-					end
 				end
 				self.left_sep.str = " " .. ft_icon
 				self.left_sep.hl.fg = fg or colors.red
