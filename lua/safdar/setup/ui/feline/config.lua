@@ -43,7 +43,6 @@ local config = function()
 	--                             modules                              --
 	----------------------------------------------------------------------
 	local lsp_provider = require("feline.providers.lsp")
-	local lsp_severity = vim.diagnostic.severity
 	local git_provider = require("feline.providers.git")
 
 	----------------------------------------------------------------------
@@ -51,6 +50,12 @@ local config = function()
 	----------------------------------------------------------------------
 	local enable_in_full_win = function()
 		return vim.api.nvim_win_get_width(0) > 40
+	end
+
+	local function enable_diagnostics(diagnostic_str)
+		if lsp_provider.diagnostics_exist(vim.diagnostic.severity[diagnostic_str]) then
+			return true
+		end
 	end
 
 	----------------------------------------------------------------------
@@ -382,7 +387,7 @@ local config = function()
 		ERROR = {
 			provider = "diagnostic_errors",
 			enabled = function()
-				return lsp_provider.diagnostics_exist(lsp_severity.ERROR)
+				return enable_diagnostics("ERROR")
 			end,
 			hl = { fg = colors.red_error, bg = colors.dark2 },
 			icon = icons.diagnostics.BoldError .. " ",
@@ -391,13 +396,13 @@ local config = function()
 		WARN = {
 			provider = "diagnostic_warnings",
 			enabled = function()
-				return lsp_provider.diagnostics_exist(lsp_severity.WARN)
+				return enable_diagnostics("WARN")
 			end,
 			hl = { fg = colors.yellow, bg = colors.dark2 },
 			icon = icons.diagnostics.BoldWarning .. " ",
 			right_sep = {
 				str = function()
-					if not lsp_provider.diagnostics_exist(lsp_severity.ERROR) then
+					if not enable_diagnostics("ERROR") then
 						return " "
 					else
 						return ""
@@ -409,16 +414,13 @@ local config = function()
 		HINT = {
 			provider = "diagnostic_hints",
 			enabled = function()
-				return lsp_provider.diagnostics_exist(lsp_severity.HINT)
+				return enable_diagnostics("HINT")
 			end,
 			hl = { fg = colors.cyan, bg = colors.dark2 },
 			icon = icons.diagnostics.BoldHint .. " ",
 			right_sep = {
 				str = function()
-					if
-						not lsp_provider.diagnostics_exist(lsp_severity.ERROR)
-						and not lsp_provider.diagnostics_exist(lsp_severity.WARN)
-					then
+					if not enable_diagnostics("ERROR") and not enable_diagnostics("WARN") then
 						return " "
 					else
 						return ""
@@ -430,20 +432,31 @@ local config = function()
 		INFO = {
 			provider = "diagnostic_info",
 			enabled = function()
-				return lsp_provider.diagnostics_exist(lsp_severity.INFO)
+				return enable_diagnostics("INFO")
 			end,
 			hl = { fg = colors.teal, bg = colors.dark2 },
 			icon = icons.diagnostics.BoldInformation .. " ",
+			right_sep = {
+				str = function()
+					if
+						not enable_diagnostics("ERROR")
+						and not enable_diagnostics("WARN")
+						and not enable_diagnostics("HINT")
+					then
+						return " "
+					else
+						return ""
+					end
+				end,
+				hl = { fg = colors.dark2, bg = colors.dark2 },
+			},
 		},
 	}
 	local diagnostics_sep = {
 		WARN = vim.tbl_deep_extend("force", {
 			provider = function(self)
 				self.rigth_sep = nil
-				if
-					lsp_provider.diagnostics_exist(lsp_severity.ERROR)
-					and lsp_provider.diagnostics_exist(lsp_severity.WARN)
-				then
+				if enable_diagnostics("ERROR") and enable_diagnostics("WARN") then
 					return icons.misc.ColumnBarThin
 				end
 				return ""
@@ -452,11 +465,8 @@ local config = function()
 		HINT = vim.tbl_deep_extend("force", {
 			provider = function(self)
 				self.rigth_sep = nil
-				if lsp_provider.diagnostics_exist(lsp_severity.HINT) then
-					if
-						lsp_provider.diagnostics_exist(lsp_severity.ERROR)
-						or lsp_provider.diagnostics_exist(lsp_severity.WARN)
-					then
+				if enable_diagnostics("HINT") then
+					if enable_diagnostics("ERROR") or enable_diagnostics("WARN") then
 						return icons.misc.ColumnBarThin
 					end
 				end
@@ -466,12 +476,8 @@ local config = function()
 		INFO = vim.tbl_deep_extend("force", {
 			provider = function(self)
 				self.rigth_sep = nil
-				if lsp_provider.diagnostics_exist(lsp_severity.INFO) then
-					if
-						lsp_provider.diagnostics_exist(lsp_severity.ERROR)
-						or lsp_provider.diagnostics_exist(lsp_severity.WARN)
-						or lsp_provider.diagnostics_exist(lsp_severity.HINT)
-					then
+				if enable_diagnostics("INFO") then
+					if enable_diagnostics("ERROR") or enable_diagnostics("WARN") or enable_diagnostics("HINT") then
 						return icons.misc.ColumnBarThin
 					end
 				end
