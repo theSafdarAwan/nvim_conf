@@ -2,10 +2,12 @@ local function plugin(install)
 	install({
 		"folke/noice.nvim",
 		lazy = false,
+		init = function()
+			require("fused").load_plugin("noice.nvim")
+		end,
 		config = function()
 			require("safdar.setup.ui.noice-nvim.config").config()
 			require("safdar.setup.ui.noice-nvim.maps")
-			require("fused").load_plugin("noice.nvim")
 		end,
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries

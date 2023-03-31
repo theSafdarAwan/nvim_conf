@@ -21,7 +21,6 @@ local autocmds = {
 			end
 		end,
 	},
-
 	line_number_helper = {
 		events = { "CursorMoved" },
 		callback = function()
@@ -83,7 +82,9 @@ for _, au in pairs(autocmds) do
 	local events = vim.deepcopy(au.events)
 	au.events = nil
 	au.group = au.group or api.nvim_create_augroup("autocmds.lua", { clear = true })
-	vim.api.nvim_create_autocmd(events, au)
+	vim.defer_fn(function()
+		vim.api.nvim_create_autocmd(events, au)
+	end, 0)
 end
 
 vim.cmd([[
