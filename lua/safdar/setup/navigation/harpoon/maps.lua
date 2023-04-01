@@ -70,15 +70,14 @@ function M.maps()
 		require("harpoon.cmd-ui").toggle_quick_menu()
 	end)
 
-	---@diagnostic disable-next-line: lowercase-global
-	function nav_file(file_nr)
+	local function nav_file(file_nr)
 		close_poup()
 		require("harpoon.ui").nav_file(file_nr)
 	end
 
-	set_map("n", "<leader>aj", ":lua nav_file(1)<CR>")
-	set_map("n", "<leader>ak", ":lua nav_file(2)<CR>")
-	set_map("n", "<leader>al", ":lua nav_file(3)<CR>")
+	set_map("n", "<leader>aj", function() nav_file(1) end)
+	set_map("n", "<leader>ak", function() nav_file(2) end)
+	set_map("n", "<leader>al", function() nav_file(3) end)
 
 	-- Terminal's
 	set_map("n", "<leader>tj", function()
