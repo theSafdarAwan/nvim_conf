@@ -1,10 +1,7 @@
-local ts = vim.treesitter
-local api = vim.api
-
-function Parse()
-	local bufnr = api.nvim_get_current_buf()
-	local lang = vim.bo.filetype
-	local parser = ts.get_parser(bufnr, lang)
-	local tree = parser:parse()
-	print(vim.inspect(tree[1]:root()))
-end
+-- local api, fn = vim.api, vim.fn
+--
+-- local ns = api.nvim_create_namespace("foo")
+-- local pos = fn.getpos(".")
+-- local extmark = api.nvim_buf_set_extmark(0, ns, pos[2] - 1, pos[3] - 1, {})
+-- local extmarks = api.nvim_buf_get_extmarks(0, ns, 0, -1, {})
+-- api.nvim_buf_add_highlight(0, ns, "Search", pos[2] - 1, 0, -1)

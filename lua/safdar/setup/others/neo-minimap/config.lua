@@ -5,7 +5,16 @@ local function config()
 	nm.setup_defaults({
 		width = winwidth,
 		height_toggle = { 12, 36, 48 },
-		hl_group = "DiagnosticWarn",
+		hl_group = "LineNr",
+		open_win_opts = { border = "single" },
+		disable_indentation = true,
+		win_opts = {
+			winhl = "NormalFloat:NormalFloat",
+			scrolloff = 2,
+			conceallevel = 0,
+			concealcursor = "n",
+			cursorline = true,
+		},
 	})
 	----------------------------------------------------------------------
 	--                               HTML                               --
@@ -93,12 +102,6 @@ local function config()
 			{ "keymap", "<A-j>", true },
 			{ "keymap", "<A-k>", false },
 		},
-
-		-- auto_jump = false,
-		-- open_win_opts = { border = "double" },
-		win_opts = { scrolloff = 1 },
-
-		-- disable_indentation = true
 	})
 
 	----------------------------------------------------------------------
@@ -131,12 +134,6 @@ local function config()
 			{ "void", "<C-k>", false },
 			-- {"keymap", "<A-j>", true}, {"keymap", "<A-k>", false}
 		},
-
-		-- auto_jump = false,
-		-- open_win_opts = { border = "double" },
-		win_opts = { scrolloff = 1 },
-
-		disable_indentation = true,
 	})
 
 	----------------------------------------------------------------------
@@ -169,12 +166,6 @@ local function config()
 			{ "func", "<C-j>", true },
 			{ "func", "<C-k>", false },
 		},
-
-		-- auto_jump = false,
-		-- open_win_opts = { border = "double" },
-		win_opts = { scrolloff = 1 },
-
-		-- disable_indentation = true
 	})
 
 	----------------------------------------------------------------------
@@ -198,8 +189,6 @@ local function config()
 		},
 
 		-- auto_jump = false,
-		-- open_win_opts = { border = "double" },
-		win_opts = { scrolloff = 1 },
 
 		-- disable_indentation = true
 	})
@@ -239,8 +228,6 @@ local function config()
 		},
 
 		-- auto_jump = false,
-		-- open_win_opts = { border = "double" },
-		win_opts = { scrolloff = 1 },
 
 		disable_indentation = true,
 	})
@@ -262,8 +249,6 @@ local function config()
 		},
 
 		-- auto_jump = false,
-		-- open_win_opts = { border = "double" },
-		win_opts = { scrolloff = 1 },
 
 		disable_indentation = true,
 	})
@@ -290,12 +275,6 @@ local function config()
 				(call function: (identifier) @cap)
 			]],
 		},
-
-		-- auto_jump = false,
-		-- open_win_opts = { border = "double" },
-		win_opts = { scrolloff = 1 },
-
-		disable_indentation = true,
 	})
 
 	----------------------------------------------------------------------
@@ -317,12 +296,6 @@ local function config()
 			{ "fn", "<C-j>", true },
 			{ "fn", "<C-k>", false },
 		},
-
-		-- auto_jump = false,
-		-- open_win_opts = { border = "double" },
-		win_opts = { scrolloff = 1 },
-
-		-- disable_indentation = true
 	})
 end
 
