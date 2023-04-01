@@ -60,7 +60,7 @@ local autocmds = {
 				for option, val in pairs(types.ft[vim.bo.filetype]) do
 					optl[option] = val
 				end
-			else
+			elseif #bo.buftype < 1 then
 				for option, val in pairs(common_opts[1]) do
 					optl[option] = val
 				end
