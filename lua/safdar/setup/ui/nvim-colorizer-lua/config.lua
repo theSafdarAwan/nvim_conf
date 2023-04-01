@@ -14,11 +14,17 @@ local function config()
 				-- rgb_fn = true, -- CSS rgb(1,3,101) and rgba() functions
 				-- hsl_fn = true, -- CSS hsl() and hsla() functions
 				-- css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-			}, -- Enable parsing rgb(...) functions in css.
-			html = { names = false }, -- Disable parsing "names" like Blue or Gray
+				names = true, -- "Name" codes like Blue or blue
+			},
 			cmp_docs = { always_update = true },
 			"!prompt",
 			"!popup",
+		},
+		user_default_options = {
+			names = false, -- "Name" codes like Blue or blue
+			-- Available methods are false / true / "normal" / "lsp" / "both"
+			-- True is same as normal
+			tailwind = true, -- Enable tailwind colors
 		},
 	})
 end
