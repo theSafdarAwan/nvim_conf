@@ -585,16 +585,19 @@ local config = function()
 		components = components,
 		force_inactive = {
 			filetypes = {
-				"^NvimTree$",
-				"^Outline$",
-				"DiffviewFileHistory",
-				"DiffviewFiles",
-				"Trouble",
-				"alpha",
+				-- "^NvimTree$",
+				-- "^Outline$",
+				-- "DiffviewFileHistory",
+				-- "DiffviewFiles",
+				-- "Trouble",
+				-- "alpha",
+				-- "startuptime",
+				-- "notify"
 			},
 			buftypes = {
 				"^terminal$",
 				"prompt",
+				"nofile",
 			},
 			bufnames = {
 				"neorg://norg/Projects.norg",

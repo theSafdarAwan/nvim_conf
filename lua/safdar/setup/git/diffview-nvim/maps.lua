@@ -8,6 +8,7 @@ M.maps = function()
 	set_map("n", "ygd", "<cmd>DiffviewOpen<CR>")
 	set_map("n", "ygD", "<cmd>DiffviewFileHistory<CR>")
 	set_map("n", "ygx", "<cmd>DiffviewClose<CR>")
+	print("hi")
 end
 
 M.keymaps = {}

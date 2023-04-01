@@ -49,6 +49,12 @@ local create_popup = function()
 		relative = "editor",
 	})
 	api.nvim_win_set_var(win, "_is_popup", true)
+	api.nvim_win_set_option(
+		0,
+		"winhl",
+		"NormalFloat:SlimNormalFloat"
+	)
+
 	-- start insert mode after creating popup window
 	api.nvim_feedkeys("i", "n", false)
 end
@@ -69,9 +75,15 @@ function M.maps()
 		require("harpoon.ui").nav_file(file_nr)
 	end
 
-	set_map("n", "<leader>aj", function() nav_file(1) end)
-	set_map("n", "<leader>ak", function() nav_file(2) end)
-	set_map("n", "<leader>al", function() nav_file(3) end)
+	set_map("n", "<leader>aj", function()
+		nav_file(1)
+	end)
+	set_map("n", "<leader>ak", function()
+		nav_file(2)
+	end)
+	set_map("n", "<leader>al", function()
+		nav_file(3)
+	end)
 
 	-- Terminal's
 	set_map("n", "<leader>tj", function()

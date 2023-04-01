@@ -43,6 +43,7 @@ local autocmds = {
 					["terminal"] = common_opts[2],
 				},
 				ft = {
+					["startuptime"] = common_opts[2],
 					["noice"] = common_opts[2],
 					["help"] = vim.tbl_extend("force", common_opts[1], { signcolumn = "no" }),
 					["harpoon"] = {
@@ -55,9 +56,12 @@ local autocmds = {
 				for option, val in pairs(types.buf[vim.bo.buftype]) do
 					optl[option] = val
 				end
-			end
-			if types.ft[vim.bo.filetype] then
+			elseif types.ft[vim.bo.filetype] then
 				for option, val in pairs(types.ft[vim.bo.filetype]) do
+					optl[option] = val
+				end
+			else
+				for option, val in pairs(common_opts[1]) do
 					optl[option] = val
 				end
 			end
