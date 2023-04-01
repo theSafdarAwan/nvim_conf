@@ -71,7 +71,6 @@ autocmd({ "BufWinLeave" }, {
 		autocmd({ "BufWinEnter" }, {
 			group = augroup,
 			callback = function()
-				print(vim.inspect(current_buf))
 				local previous_buf = current_buf
 				-- need to make sure that the first and the second files are not the same
 				if previous_buf.file_name == fn.expand("%:p") then
