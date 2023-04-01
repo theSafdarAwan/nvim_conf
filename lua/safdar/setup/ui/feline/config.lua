@@ -95,14 +95,14 @@ local config = function()
 
 	local mode = {
 		provider = function()
-			local icon = icons.misc.NormalMode
+			local icon = icons.misc.CircleWithDot
 			local cur_mode = vim.fn.mode()
 			if cur_mode == "R" then
-				icon = icons.kind.TabNine
+				icon = icons.ui.Fire
 			elseif cur_mode == "i" then
-				icon = icons.git.FileModifiedRound
+				icon = icons.misc.Pen
 			elseif cur_mode == "v" or cur_mode == "V" or cur_mode == "" then
-				icon = icons.kind.Null
+				icon = icons.misc.Cod
 			end
 			return " " .. icon .. " "
 		end,
@@ -477,7 +477,11 @@ local config = function()
 			provider = function(self)
 				self.rigth_sep = nil
 				if enable_diagnostics("INFO") then
-					if enable_diagnostics("ERROR") or enable_diagnostics("WARN") or enable_diagnostics("HINT") then
+					if
+						enable_diagnostics("ERROR")
+						or enable_diagnostics("WARN")
+						or enable_diagnostics("HINT")
+					then
 						return icons.misc.ColumnBarThin
 					end
 				end
@@ -503,7 +507,13 @@ local config = function()
 			return " " .. result .. "%% "
 		end,
 		left_sep = {
-			str = " " .. icons.misc.Position .. " ",
+			str = function()
+				local str = icons.misc.Position
+				if not vim.bo.modifiable or vim.bo.readonly then
+					str = icons.misc.Shield
+				end
+				return " " .. str .. " "
+			end,
 			hl = function()
 				--- mode colors
 				local color = mode_colors[vim.fn.mode()].color
