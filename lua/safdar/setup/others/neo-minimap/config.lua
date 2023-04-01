@@ -5,7 +5,7 @@ local function config()
 	nm.setup_defaults({
 		width = winwidth,
 		height_toggle = { 12, 36, 48 },
-		hl_group = "LineNr",
+		-- hl_group = "LineNr",
 		open_win_opts = { border = "single" },
 		disable_indentation = true,
 		win_opts = {
