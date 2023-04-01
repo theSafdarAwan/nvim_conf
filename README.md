@@ -40,4 +40,4 @@ This is my PDE(Personal Development Environment). It includes support for up to
 - stylelint
 - chktex
 
-Includes 80+ plugins. And has startup time under 40ms.
+Includes 85+ plugins.
