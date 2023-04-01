@@ -21,7 +21,7 @@ local autocmds = {
 			end
 		end,
 	},
-	line_number_helper = {
+	set_common_opts = {
 		events = { "CursorMoved" },
 		callback = function()
 			local common_opts = {
