@@ -22,7 +22,7 @@ local autocmds = {
 		end,
 	},
 	set_common_opts = {
-		events = { "BufRead" },
+		events = { "BufRead", "BufWinEnter" },
 		callback = function()
 			local common_opts = {
 				{
