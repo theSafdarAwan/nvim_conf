@@ -43,7 +43,6 @@ local autocmds = {
 					["terminal"] = common_opts[2],
 				},
 				ft = {
-					["norg"] = common_opts[2],
 					["noice"] = common_opts[2],
 					["help"] = vim.tbl_extend("force", common_opts[1], { signcolumn = "no" }),
 					["harpoon"] = {
