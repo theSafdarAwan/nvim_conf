@@ -51,6 +51,7 @@ local autocmd = api.nvim_create_autocmd
 -- the alternate_bufs so that we can move even after exiting the neovim
 local alternate_bufs = {}
 
+-- FIXME: fix the bug when switching from a ft > noft > notf makes the list go nuts.
 local augroup = api.nvim_create_augroup("alternate file movment", { clear = true })
 autocmd({ "BufWinLeave" }, {
 	group = augroup,
@@ -70,6 +71,7 @@ autocmd({ "BufWinLeave" }, {
 		autocmd({ "BufWinEnter" }, {
 			group = augroup,
 			callback = function()
+				print(vim.inspect(current_buf))
 				local previous_buf = current_buf
 				-- need to make sure that the first and the second files are not the same
 				if previous_buf.file_name == fn.expand("%:p") then
@@ -82,7 +84,7 @@ autocmd({ "BufWinLeave" }, {
 	end,
 })
 
-set_map("n", "<C-z>", function()
+set_map("n", "gz", function()
 	if not alternate_bufs[1] then
 		return
 	end
