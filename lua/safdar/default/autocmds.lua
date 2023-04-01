@@ -22,7 +22,7 @@ local autocmds = {
 		end,
 	},
 	set_common_opts = {
-		events = { "CursorMoved" },
+		events = { "BufRead" },
 		callback = function()
 			local common_opts = {
 				{
