@@ -60,7 +60,7 @@ local function spell_checker()
 	end
 
 	local mode = api.nvim_get_mode().mode
-	if mode == "i" and bo.buftype ~= "prompt" then
+	if mode == "i" and bo.buftype ~= "prompt" and #vim.fn.expand("%") > 0 then
 		optl.spell = true
 		-- set the spell false as we leave the insert mode
 		local set_spell_off = api.nvim_create_augroup("set spell to false on InsertLeave", { clear = true })

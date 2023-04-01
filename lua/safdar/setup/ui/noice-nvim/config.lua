@@ -199,7 +199,7 @@ local config = function()
 			cmdline = {
 				filter_options = {},
 				win_options = {
-					winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+					winhighlight = "NormalFloat:Normal,FloatBorder:FloatBorder",
 				},
 			},
 		}, ---@see section on views
@@ -228,7 +228,7 @@ local config = function()
 						{ find = "No information available" }, -- lsp no more information messages
 						{ find = "Special characters must be escaped " }, -- show the ale linting errors
 						{ find = "No code actions available" }, -- skip no code actions notifications
-						{ find = "Pick window:" } -- ignore this message from nvim-window-picker
+						{ find = "Pick window:" }, -- ignore this message from nvim-window-picker
 					},
 				},
 				opts = { skip = true },
