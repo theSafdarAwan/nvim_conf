@@ -4,6 +4,7 @@ local function plugin(install)
 		ft = { "html", "css", "javascript", "go", "lua", "python", "c", "markdown", "rust" },
 		config = function()
 			require("safdar.setup.others.neo-minimap.config").config()
+			require("fused").load_plugin("neo-minimap")
 		end,
 	})
 end

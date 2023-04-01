@@ -9,7 +9,7 @@ local function config()
 		open_win_opts = { border = "single" },
 		disable_indentation = true,
 		win_opts = {
-			winhl = "NormalFloat:NormalFloat",
+			-- winhl = "FloatBorder:FloatBorder,Normal:FloatBorder,CursorLine:NeoMinimapCursorLine",
 			scrolloff = 2,
 			conceallevel = 0,
 			concealcursor = "n",
