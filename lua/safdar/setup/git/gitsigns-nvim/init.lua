@@ -15,7 +15,7 @@ local function plugin(install)
 						callback = function()
 							vim.fn.system(git_cmd)
 							if vim.v.shell_error == 0 then
-								vim.api.nvim_del_augroup_by_id(group)
+								pcall(vim.api.nvim_del_augroup_by_id, group)
 								vim.schedule(function()
 									require("lazy").load({
 										plugins = { "gitsigns.nvim" },
