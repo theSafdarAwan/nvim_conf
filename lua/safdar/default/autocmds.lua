@@ -67,6 +67,7 @@ local autocmds = {
 		events = { "TermOpen" },
 		callback = function()
 			optl.number = false
+			optl.signcolumn = "no"
 			optl.relativenumber = false
 			opt.filetype = "terminal"
 			optl.spell = false

@@ -22,12 +22,6 @@ local function close_poup()
 end
 
 local group = api.nvim_create_augroup("harpoon float terminal", { clear = true })
--- set no signcolumn for terminal file types
-api.nvim_create_autocmd("FileType", {
-	pattern = "terminal",
-	group = group,
-	command = "lua vim.opt_local.signcolumn = 'no'",
-})
 -- close poup window before leaving to another window
 api.nvim_create_autocmd("WinLeave", {
 	group = group,
