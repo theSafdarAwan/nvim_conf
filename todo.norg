@@ -1,15 +1,12 @@
 * TODO's 
-** Source Code Reading List
-   - [ ] read the source code for the octo.nvim
-   - [ ] check out how the leap-vim does the color highlight for the text only
-     once and then to none
+  - [ ] vim.lsp.util.{markdown}* checkout.
+  - [ ] read the source code for the octo.nvim
+  - [ ] check out how the leap-vim does the color highlight for the text only
+    once and then to none
 *** Docs Reading List
     - [ ] read the autopairs docs
 
-** config Related
-   - [ ] Create a snippet for the lua to wrap a selection inside a function
-
-** Personal Plugin Ideas
+** Personal script Ideas
    - [ ] write a plugin that lets you move backward and forward to the next node
      with same type as the current node under the cursor
    - [ ] write a time tracker plugin that tracks how much time you spent on coding

@@ -24,47 +24,42 @@ local autocmds = {
 	line_number_helper = {
 		events = { "CursorMoved" },
 		callback = function()
-			local add_number_list = {
-				buf = { "prompt", "nofile", "terminal" },
-				ft = { "norg" },
+			local common_opts = {
+				{
+					relativenumber = true,
+					number = true,
+					signcolumn = "yes",
+				},
+				{
+					relativenumber = false,
+					number = false,
+					signcolumn = "no",
+				},
 			}
-			local safe = false
-			for _, type_tbl in pairs(add_number_list) do
-				for _, type in pairs(type_tbl) do
-					if type == bo.filetype or type == bo.buftype then
-						safe = true
-						break
-					end
-					if safe then
-						break
-					end
+			local types = {
+				buf = {
+					["prompt"] = common_opts[2],
+					["nofile"] = common_opts[2],
+					["terminal"] = common_opts[2],
+				},
+				ft = {
+					["norg"] = common_opts[2],
+					["noice"] = common_opts[2],
+					["harpoon"] = {
+						signcolumn = "no",
+						relativenumber = false,
+					},
+				},
+			}
+			if types.buf[vim.bo.buftype] then
+				for option, val in pairs(types.buf[vim.bo.buftype]) do
+					optl[option] = val
 				end
 			end
-			if not safe then
-				optl.relativenumber = true
-				optl.number = true
-				optl.signcolumn = "yes"
-			end
-			safe = false
-			local remove_number_list = {
-				buf = {},
-				ft = { "noice" },
-			}
-			for _, type_tbl in pairs(remove_number_list) do
-				for _, type in pairs(type_tbl) do
-					if type == bo.filetype or type == bo.buftype then
-						safe = true
-						break
-					end
-					if safe then
-						break
-					end
+			if types.ft[vim.bo.filetype] then
+				for option, val in pairs(types.ft[vim.bo.filetype]) do
+					optl[option] = val
 				end
-			end
-			if safe then
-				optl.relativenumber = false
-				optl.number = false
-				optl.signcolumn = "no"
 			end
 		end,
 	},

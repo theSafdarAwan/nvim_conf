@@ -17,6 +17,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 		"additionalTextEdits",
 	},
 }
+-- -- override the default lsp markdown formatter with Noice
+-- vim.lsp.util.convert_input_to_markdown_lines = true
+-- -- override the lsp markdown formatter with Noice
+-- vim.lsp.util.stylize_markdown = true
 
 M.capabilities = capabilities
 
