@@ -24,6 +24,19 @@ local function plugin(install)
 		"hrsh7th/cmp-emoji",
 		keys = { mode = "i", ":" },
 	})
+	install({
+		"roobert/tailwindcss-colorizer-cmp.nvim",
+		ft = { "css", "html" },
+		-- optionally, override the default options:
+		config = function()
+			require("tailwindcss-colorizer-cmp").setup({
+				color_square_width = 2,
+			})
+			require("cmp").config.formatting = {
+				format = require("tailwindcss-colorizer-cmp").formatter,
+			}
+		end,
+	})
 end
 
 return { install = plugin }
