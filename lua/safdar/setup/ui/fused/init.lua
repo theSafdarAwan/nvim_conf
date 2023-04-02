@@ -14,16 +14,13 @@ local fused = function(install)
 		}
 
 		require("fused").setup({
-			override = function()
-				return {
-					["catppuccin-mocha"] = {
-						builtin = {},
-					},
+			custom = function(cp)
+				local colors = {
+					DamianConway = { bg = cp.base03 },
+					SlimNormalFloat = { bg = cp.base24 },
 				}
+				return colors
 			end,
-			custom = {
-				-- DamianConway = { bg = colors.bg_windows2, styles = "bold,noitalic" },
-			},
 		})
 		require("fused").add_hooks(hooks)
 	end
