@@ -17,7 +17,7 @@ local function colorcolumn()
 	-- add line column according to the textwidth
 	local max_col = vim.opt.textwidth._value
 	max_col = max_col - 1
-	local ns_id = api.nvim_create_namespace("colorcolumn higlight")
+	local ns_id = api.nvim_create_namespace("colorcolumn highlight")
 	local pos = fn.getpos(".")
 	local cur_line = pos[2] - 1
 	api.nvim_buf_clear_namespace(0, ns_id, 1, -1)
