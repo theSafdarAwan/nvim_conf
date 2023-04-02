@@ -6,7 +6,7 @@ local scripts = {
 	"quick-movement",
 	"spell-checker",
 	"undo-breakpoints",
-	"custom-colorcolumn",
+	"colorcolumn",
 }
 
 for _, script in ipairs(scripts) do
