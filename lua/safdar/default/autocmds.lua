@@ -25,12 +25,12 @@ local autocmds = {
 		events = { "BufRead", "BufWinEnter" },
 		callback = function()
 			local common_opts = {
-				{
+				set = {
 					relativenumber = true,
 					number = true,
 					signcolumn = "yes",
 				},
-				{
+				unset = {
 					relativenumber = false,
 					number = false,
 					signcolumn = "no",
@@ -38,18 +38,15 @@ local autocmds = {
 			}
 			local types = {
 				buf = {
-					["prompt"] = common_opts[2],
-					["nofile"] = common_opts[2],
-					["terminal"] = common_opts[2],
+					["prompt"] = common_opts.unset,
+					["nofile"] = common_opts.unset,
+					["terminal"] = common_opts.unset,
 				},
 				ft = {
-					["startuptime"] = common_opts[2],
-					["noice"] = common_opts[2],
-					["help"] = vim.tbl_extend("force", common_opts[1], { signcolumn = "no" }),
-					["harpoon"] = {
-						signcolumn = "no",
-						relativenumber = false,
-					},
+					["startuptime"] = common_opts.unset,
+					["noice"] = common_opts.unset,
+					["help"] = vim.tbl_extend("force", common_opts.unset, { signcolumn = "no" }),
+					["harpoon"] = vim.tbl_extend("force", common_opts.unset, { number = nil }),
 				},
 			}
 			if types.buf[vim.bo.buftype] then
@@ -61,7 +58,7 @@ local autocmds = {
 					optl[option] = val
 				end
 			elseif #bo.buftype < 1 then
-				for option, val in pairs(common_opts[1]) do
+				for option, val in pairs(common_opts.set) do
 					optl[option] = val
 				end
 			end
