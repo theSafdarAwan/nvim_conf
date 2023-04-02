@@ -16,7 +16,7 @@ local fused = function(install)
 		require("fused").setup({
 			custom = function(cp)
 				local colors = {
-					DamianConway = { bg = cp.base03 },
+					CustomColorColumn = { bg = cp.base03 },
 					SlimNormalFloat = { bg = cp.base24 },
 				}
 				return colors

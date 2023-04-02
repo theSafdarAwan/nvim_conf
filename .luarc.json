@@ -1,8 +1,10 @@
 {
     "diagnostics.disable": [
         "doc-field-no-class",
+        "unused-local",
     ],
     "diagnostics.globals": [
         "vim",
+        "matchadd_ignore_ft",
     ]
 }

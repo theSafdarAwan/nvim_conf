@@ -16,7 +16,10 @@ local function config()
 				-- css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
 				names = true, -- "Name" codes like Blue or blue
 			},
-			cmp_docs = { always_update = true },
+			cmp_docs = {
+				always_update = true,
+				names = true,
+			},
 			"!prompt",
 			"!popup",
 		},

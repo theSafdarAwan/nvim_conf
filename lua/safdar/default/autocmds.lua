@@ -12,15 +12,6 @@ local autocmds = {
 		end,
 	},
 
-	help_ft = {
-		events = { "BufWinEnter" },
-		callback = function()
-			if bo.filetype == "help" then
-				optl.conceallevel = 0
-				optl.statusline = " "
-			end
-		end,
-	},
 	set_common_opts = {
 		events = { "BufRead", "BufWinEnter" },
 		callback = function()
@@ -45,7 +36,11 @@ local autocmds = {
 				ft = {
 					["startuptime"] = common_opts.unset,
 					["noice"] = common_opts.unset,
-					["help"] = vim.tbl_extend("force", common_opts.unset, { signcolumn = "no" }),
+					["help"] = vim.tbl_extend(
+						"force",
+						common_opts.set,
+						{ signcolumn = "no", conceallevel = 0, statusline = " " }
+					),
 					["harpoon"] = vim.tbl_extend("force", common_opts.unset, { number = nil }),
 				},
 			}
