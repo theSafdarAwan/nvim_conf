@@ -11,10 +11,14 @@ local autocmds = {
 			})
 		end,
 	},
-
 	set_common_opts = {
-		events = { "BufNew", "BufRead" },
+		events = { "BufRead", "BufNew", "BufWinEnter", "CursorMoved" },
 		callback = function()
+			if pcall(api.nvim_win_get_var, 0, "_common_opts") then
+				return
+			else
+				api.nvim_win_set_var(0, "_common_opts", {})
+			end
 			local common_opts = {
 				set = {
 					relativenumber = true,
@@ -31,7 +35,6 @@ local autocmds = {
 				buf = {
 					["prompt"] = common_opts.unset,
 					["nofile"] = common_opts.unset,
-					["acwrite"] = common_opts.unset,
 					["terminal"] = common_opts.unset,
 				},
 				ft = {
@@ -41,22 +44,24 @@ local autocmds = {
 						common_opts.set,
 						{ signcolumn = "no", conceallevel = 0, statusline = " " }
 					),
-					["harpoon"] = common_opts.unset,
+					["harpoon"] = vim.tbl_extend("force", common_opts.unset, { number = true }),
 				},
 			}
-			if types.buf[vim.bo.buftype] then
-				for option, val in pairs(types.buf[vim.bo.buftype]) do
-					optl[option] = val
+			vim.defer_fn(function()
+				if types.ft[vim.bo.filetype] then
+					for option, val in pairs(types.ft[vim.bo.filetype]) do
+						optl[option] = val
+					end
+				elseif types.buf[vim.bo.buftype] then
+					for option, val in pairs(types.buf[vim.bo.buftype]) do
+						optl[option] = val
+					end
+				elseif #bo.buftype < 1 then
+					for option, val in pairs(common_opts.set) do
+						optl[option] = val
+					end
 				end
-			elseif types.ft[vim.bo.filetype] then
-				for option, val in pairs(types.ft[vim.bo.filetype]) do
-					optl[option] = val
-				end
-			elseif #bo.buftype < 1 then
-				for option, val in pairs(common_opts.set) do
-					optl[option] = val
-				end
-			end
+			end, 0)
 		end,
 	},
 	terminal_mode = {
