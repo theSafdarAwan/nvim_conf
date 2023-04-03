@@ -30,12 +30,12 @@ local autocmds = {
 				})
 			end
 			local common_opts = {
-				set = {
+				add = {
 					relativenumber = true,
 					number = true,
 					signcolumn = "yes",
 				},
-				unset = {
+				remove = {
 					relativenumber = false,
 					number = false,
 					signcolumn = "no",
@@ -43,19 +43,19 @@ local autocmds = {
 			}
 			local types = {
 				buf = {
-					["prompt"] = common_opts.unset,
-					["nofile"] = common_opts.unset,
-					["terminal"] = common_opts.unset,
+					["prompt"] = common_opts.remove,
+					["nofile"] = common_opts.remove,
+					["terminal"] = common_opts.remove,
 				},
 				ft = {
 					["qf"] = { buflisted = false },
-					["noice"] = common_opts.unset,
+					["noice"] = common_opts.remove,
 					["help"] = vim.tbl_extend(
 						"force",
-						common_opts.set,
+						common_opts.add,
 						{ signcolumn = "no", conceallevel = 0, statusline = " " }
 					),
-					["harpoon"] = vim.tbl_extend("force", common_opts.unset, { number = true }),
+					["harpoon"] = vim.tbl_extend("force", common_opts.remove, { number = true }),
 				},
 			}
 			vim.defer_fn(function()
@@ -68,7 +68,7 @@ local autocmds = {
 						optl[option] = val
 					end
 				elseif #bo.buftype < 1 then
-					for option, val in pairs(common_opts.set) do
+					for option, val in pairs(common_opts.add) do
 						optl[option] = val
 					end
 				end
