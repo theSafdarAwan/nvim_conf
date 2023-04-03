@@ -9,8 +9,10 @@ local function config()
 		excluded_filetypes = { "toggleterm", "NvimTree", "Outline" },
 		excluded_buftypes = { "nofile", "prompt", "popup" },
 		cursorline = false,
+		signcolumn = false,
+		number = false,
+		relativenumber = false,
 		height_quickfix = 20,
-		tmux = true,
 	})
 	require("safdar.setup.others.focus-nvim.maps")
 end
