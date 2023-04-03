@@ -13,7 +13,7 @@ local autocmds = {
 	},
 
 	set_common_opts = {
-		events = { "BufNew" },
+		events = { "BufNew", "BufRead" },
 		callback = function()
 			local common_opts = {
 				set = {
