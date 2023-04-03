@@ -8,7 +8,7 @@ local utils = require("safdar.utils")
 
 local function feed(keys)
 	keys = api.nvim_replace_termcodes(keys, true, true, true)
-	api.nvim_feedkeys(keys, "i", false)
+	api.nvim_feedkeys(keys, "n", false)
 end
 
 api.nvim_create_autocmd("InsertCharPre", {
