@@ -12,12 +12,22 @@ local autocmds = {
 		end,
 	},
 	set_common_opts = {
-		events = { "BufRead", "BufNew", "BufWinEnter", "CursorMoved" },
+		events = { "BufRead", "CursorMoved", "BufAdd" },
 		callback = function()
-			if pcall(api.nvim_win_get_var, 0, "_common_opts") then
+			local win_nr = api.nvim_get_current_win()
+			if pcall(api.nvim_win_get_var, win_nr, "_common_opts") then
 				return
 			else
-				api.nvim_win_set_var(0, "_common_opts", {})
+				api.nvim_win_set_var(win_nr, "_common_opts", {})
+				-- need to delete the var as soon as we leave, it will become problem
+				-- when we are navigation file link help files and we are jumping on
+				-- links.
+				vim.api.nvim_create_autocmd("BufWinLeave,", {
+					once = true,
+					callback = function()
+						api.nvim_win_del_var(win_nr, "_common_opts")
+					end,
+				})
 			end
 			local common_opts = {
 				set = {
@@ -38,6 +48,7 @@ local autocmds = {
 					["terminal"] = common_opts.unset,
 				},
 				ft = {
+					["qf"] = { buflisted = false },
 					["noice"] = common_opts.unset,
 					["help"] = vim.tbl_extend(
 						"force",
@@ -72,13 +83,6 @@ local autocmds = {
 			optl.relativenumber = false
 			opt.filetype = "terminal"
 			optl.spell = false
-		end,
-	},
-	qf_list = {
-		events = { "FileType" },
-		pattern = "qf",
-		callback = function()
-			optl.buflisted = false
 		end,
 	},
 	-- q_file = {
