@@ -38,7 +38,7 @@ local config = function()
 				border = border,
 				max_width = 80,
 				max_hight = 30,
-				winhighlight = "NormalFloat:NormalFloat,NonText:NonText,Special:Constant",
+				winhighlight = "NormalFloat:SlimNormalFloat,NonText:NonText,Special:Constant",
 			},
 			completion = {
 				border = border,

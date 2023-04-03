@@ -13,8 +13,14 @@ local autocmds = {
 	},
 
 	set_common_opts = {
-		events = { "BufRead", "BufWinEnter" },
+		events = { "CursorMoved" },
 		callback = function()
+			local buf = api.nvim_get_current_buf()
+			if pcall(api.nvim_buf_get_var, buf, "_common_opts") then
+				return
+			else
+				api.nvim_buf_set_var(buf, "_common_opts", true)
+			end
 			local common_opts = {
 				set = {
 					relativenumber = true,
@@ -34,7 +40,6 @@ local autocmds = {
 					["terminal"] = common_opts.unset,
 				},
 				ft = {
-					["startuptime"] = common_opts.unset,
 					["noice"] = common_opts.unset,
 					["help"] = vim.tbl_extend(
 						"force",
@@ -97,5 +102,12 @@ for _, au in pairs(autocmds) do
 end
 
 vim.cmd([[
-	autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | elseif !v:shell_error | exe 'bdelete! '..expand('<abuf>') | endif
+	func NoExitCode()
+		if !v:event.status 
+			exe 'bdelete! '..expand('<abuf>')
+		elseif !v:shell_error 
+			exe 'bdelete! '..expand('<abuf>')
+		endif
+	endfunc
+	autocmd TermClose * call NoExitCode()
 ]])

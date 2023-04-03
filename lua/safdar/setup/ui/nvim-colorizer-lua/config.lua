@@ -4,9 +4,7 @@ local function config()
 	-- setup configuration.
 	require("colorizer").setup({
 		filetypes = {
-			["*"] = {
-				names = false, -- "Name" codes like Blue or blue
-			}, -- Highlight all files, but customize some others.
+			"*", -- Highlight all files, but customize some others.
 			css = {
 				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
 				-- RGB = true, -- #000 hex codes
@@ -26,6 +24,7 @@ local function config()
 			"!popup",
 		},
 		user_default_options = {
+			names = false,
 			-- Available methods are false / true / "normal" / "lsp" / "both"
 			-- True is same as normal
 			tailwind = true, -- Enable tailwind colors
