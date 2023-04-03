@@ -1,19 +1,22 @@
+--[[
+        Description:-
+				This script will add undo breakpoints for A-Z capital alphabets and punctuations.
+--]]
+local api, fn = vim.api, vim.fn
 -- undo break points in insert mode
 local utils = require("safdar.utils")
-local set_map = utils.set_map
 
-local function add_break_points(symbol)
-	set_map("i", symbol, symbol .. "<C-g>u")
+local function feed(keys)
+	keys = api.nvim_replace_termcodes(keys, true, true, true)
+	api.nvim_feedkeys(keys, "i", false)
 end
 
-local symbols = {
-	"!",
-	"`",
-	".",
-	",",
-	"=",
-}
-
-for _, symbol in ipairs(symbols) do
-	add_break_points(symbol)
-end
+api.nvim_create_autocmd("InsertCharPre", {
+	group = api.nvim_create_augroup("undo-breakpoints", { clear = true }),
+	callback = function()
+		local char = vim.v.char
+		if string.find(char, "[A-Z%p]") then
+			feed("<C-g>u")
+		end
+	end,
+})
