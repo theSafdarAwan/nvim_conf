@@ -3,8 +3,6 @@
 				This script will add undo breakpoints for A-Z capital alphabets and punctuations.
 --]]
 local api, fn = vim.api, vim.fn
--- undo break points in insert mode
-local utils = require("safdar.utils")
 
 local function feed(keys)
 	keys = api.nvim_replace_termcodes(keys, true, true, true)
