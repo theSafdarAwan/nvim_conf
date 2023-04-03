@@ -10,8 +10,6 @@ end
 --- load's PDE(Personal Development Environment).
 M.setup = function()
 	require("safdar.setup")
-	-- load the personal scripts after the plugins are loaded
-	require("safdar.personal")
 end
 
 return M

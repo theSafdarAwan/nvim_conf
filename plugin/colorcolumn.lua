@@ -24,9 +24,12 @@ local function colorcolumn()
 	api.nvim_buf_add_highlight(0, ns_id, "CustomColorColumn", cur_line, max_col, max_col + 1)
 end
 
-create_autocmd({ "CursorMoved", "TextChanged", "TextChangedI" }, {
-	group = group,
-	callback = function()
-		colorcolumn()
-	end,
-})
+-- TODO: add colorcolumn to every line when BufRead and after that update it when
+-- TextChanged, TextChangedI, etc.
+
+-- create_autocmd({ "CursorMoved", "TextChanged", "TextChangedI" }, {
+-- 	group = group,
+-- 	callback = function()
+-- 		colorcolumn()
+-- 	end,
+-- })
