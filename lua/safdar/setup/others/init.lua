@@ -43,6 +43,7 @@ local plugins = function(install)
 		"todo-comments-nvim",
 		"nvim-comment-frame",
 		"figlet-nvim",
+		"printer-nvim",
 		----------------------------------------------------------------------
 		--                        Window Management                         --
 		----------------------------------------------------------------------
