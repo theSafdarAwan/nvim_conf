@@ -25,7 +25,7 @@ local autocmds = {
 				vim.api.nvim_create_autocmd("BufWinLeave,", {
 					once = true,
 					callback = function()
-						api.nvim_win_del_var(win_nr, "_common_opts")
+						pcall(api.nvim_win_del_var, win_nr, "_common_opts")
 					end,
 				})
 			end

@@ -6,5 +6,6 @@
     "diagnostics.globals": [
         "vim",
         "matchadd_ignore_ft",
+        "langs",
     ]
 }
