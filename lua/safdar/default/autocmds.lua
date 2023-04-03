@@ -13,14 +13,8 @@ local autocmds = {
 	},
 
 	set_common_opts = {
-		events = { "CursorMoved" },
+		events = { "BufNew" },
 		callback = function()
-			local buf = api.nvim_get_current_buf()
-			if pcall(api.nvim_buf_get_var, buf, "_common_opts") then
-				return
-			else
-				api.nvim_buf_set_var(buf, "_common_opts", true)
-			end
 			local common_opts = {
 				set = {
 					relativenumber = true,
@@ -37,6 +31,7 @@ local autocmds = {
 				buf = {
 					["prompt"] = common_opts.unset,
 					["nofile"] = common_opts.unset,
+					["acwrite"] = common_opts.unset,
 					["terminal"] = common_opts.unset,
 				},
 				ft = {
@@ -46,7 +41,7 @@ local autocmds = {
 						common_opts.set,
 						{ signcolumn = "no", conceallevel = 0, statusline = " " }
 					),
-					["harpoon"] = vim.tbl_extend("force", common_opts.unset, { number = nil }),
+					["harpoon"] = common_opts.unset,
 				},
 			}
 			if types.buf[vim.bo.buftype] then
