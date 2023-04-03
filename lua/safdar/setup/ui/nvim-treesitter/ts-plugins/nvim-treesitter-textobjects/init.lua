@@ -3,7 +3,7 @@ local function plugins(install)
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		event = "CursorMoved",
 		config = function()
-			require("safdar.setup.ui.nvim-treesitter.text-objects.config").config()
+			require("safdar.setup.ui.nvim-treesitter.ts-plugins.nvim-treesitter-textobjects.config").config()
 		end,
 	})
 end

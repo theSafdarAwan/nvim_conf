@@ -25,73 +25,8 @@ local function plugin(install)
 			require("safdar.setup.ui.nvim-treesitter.config").config()
 		end,
 	})
-	-- Other Plugins
-	install({
-		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end,
-		ft = "html",
-	})
-	install({
-		"HiPhish/nvim-ts-rainbow2",
-		event = "BufRead",
-		init = function()
-			require("fused").load_plugin("nvim-ts-rainbow2")
-		end,
-	})
-	install({
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		keys = "gc",
-		config = function()
-			-- TODO: work on this type of nodes injected in js
 
-			--[[
-			    <div class='${data.className}'>
-				    Your favorite color is now ${data.color}
-				</div>
-			`; ]]
-
-			require("nvim-treesitter.configs").setup({
-				context_commentstring = {
-					enable = true,
-					enable_autocmd = false,
-				},
-			})
-		end,
-	})
-	install({
-		"mizlan/iswap.nvim",
-		keys = "gsi",
-		config = function()
-			require("iswap").setup({
-				-- Automatically swap with only two arguments
-				-- default nil
-				autoswap = true,
-				-- Highlight group for the greyed background
-				-- default 'Comment'
-				hl_grey = "",
-			})
-			vim.keymap.set("n", "gsi", ":ISwapWith<CR>", { silent = true, noremap = true })
-		end,
-	})
-
-	install({
-		"Wansmer/treesj",
-		keys = { "gts", "gtj", "gtt" },
-		config = function()
-			require("treesj").setup({ -- Use default keymaps
-				use_default_keymaps = false,
-				-- langs = langs,
-			})
-			local set_map = require("safdar.utils").set_map
-			set_map("n", "gts", ":TSJSplit<CR>")
-			set_map("n", "gtj", ":TSJJoin<CR>")
-			set_map("n", "gtt", ":TSJToggle<CR>")
-		end,
-	})
-
-	require("safdar.setup.ui.nvim-treesitter.text-objects").install(install)
+	require("safdar.setup.ui.nvim-treesitter.ts-plugins").install(install)
 end
 
 return { install = plugin }
