@@ -7,9 +7,10 @@ local function config()
 
 	focus.setup({
 		excluded_filetypes = { "toggleterm", "NvimTree", "Outline" },
-		compatible_filetrees = { "filetree", "nvimtree", "nerdtree", "chadtree", "fern", "Outline" },
+		excluded_buftypes = { "nofile", "prompt", "popup" },
 		cursorline = false,
-		signcolumn = false,
+		height_quickfix = 20,
+		tmux = true,
 	})
 	require("safdar.setup.others.focus-nvim.maps")
 end
