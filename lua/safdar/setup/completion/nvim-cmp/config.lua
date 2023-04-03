@@ -44,7 +44,7 @@ local config = function()
 				border = border,
 				col_offset = 30,
 				side_padding = 0,
-				winhighlight = "NormalFloat:NormalFloat",
+				winhighlight = "NormalFloat:SlimNormalFloat",
 			},
 		},
 		experimental = { ghost_text = true },
