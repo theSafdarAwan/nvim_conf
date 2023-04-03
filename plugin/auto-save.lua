@@ -69,7 +69,7 @@ local function auto_save_fn(buf_info)
 		return
 	end
 
-	if #api.nvim_buf_get_name(0) < 1 then
+	if #api.nvim_buf_get_name(0) < 1 or not bo.modified then
 		return
 	end
 
@@ -122,7 +122,7 @@ local function auto_save_fn(buf_info)
 end
 
 -- save changes on these events
-create_autocmd({ "TextChanged", "ModeChanged", "CursorHold" }, {
+create_autocmd({ "TextChanged", "ModeChanged", "CursorHold", "CursorMoved" }, {
 	group = auto_save,
 	callback = function(buf_info)
 		auto_save_fn(buf_info)
