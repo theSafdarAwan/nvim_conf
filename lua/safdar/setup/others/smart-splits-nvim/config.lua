@@ -25,7 +25,7 @@ local function config()
 		-- buffers by default; it can also be controlled by passing
 		-- `{ move_cursor = true }` or `{ move_cursor = false }`
 		-- when calling the Lua function.
-		cursor_follows_swapped_bufs = false,
+		cursor_follows_swapped_bufs = true,
 		-- resize mode options
 		resize_mode = {
 			-- key to exit persistent resize mode
@@ -69,7 +69,7 @@ local function config()
 		-- not having a way to check if a pane is zoomed
 		disable_multiplexer_nav_when_zoomed = true,
 	})
-	local map = require("safdar.utils").set_map
+	local set_map = require("safdar.utils").set_map
 	local function resize(direction)
 		return function()
 			local count = vim.v.count ~= 0 and vim.v.count or 3
@@ -77,10 +77,17 @@ local function config()
 		end
 	end
 
-	map("n", "gsh", resize("left"))
-	map("n", "gsj", resize("down"))
-	map("n", "gsk", resize("up"))
-	map("n", "gsl", resize("right"))
-	map("n", "gss", smart_splits.start_resize_mode)
+	-- window resizing
+	set_map("n", "gsh", resize("left"))
+	set_map("n", "gsj", resize("down"))
+	set_map("n", "gsk", resize("up"))
+	set_map("n", "gsl", resize("right"))
+	set_map("n", "gss", smart_splits.start_resize_mode)
+
+	-- buffer swaping
+	set_map("n", "gsH", require("smart-splits").swap_buf_left)
+	set_map("n", "gsJ", require("smart-splits").swap_buf_down)
+	set_map("n", "gsK", require("smart-splits").swap_buf_up)
+	set_map("n", "gsL", require("smart-splits").swap_buf_right)
 end
 return { config = config }
