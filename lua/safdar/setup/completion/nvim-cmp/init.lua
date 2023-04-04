@@ -22,7 +22,7 @@ local function plugin(install)
 	})
 	install({
 		"hrsh7th/cmp-emoji",
-		keys = { mode = "i", ":" },
+		keys = { { mode = "i", ":" } },
 	})
 	install({
 		"roobert/tailwindcss-colorizer-cmp.nvim",

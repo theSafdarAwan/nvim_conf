@@ -47,6 +47,7 @@ local plugins = function(install)
 		----------------------------------------------------------------------
 		--                        Window Management                         --
 		----------------------------------------------------------------------
+		"smart-splits-nvim",
 		"nvim-window-picker",
 		"winshift-nvim",
 		"focus-nvim",
