@@ -110,8 +110,29 @@ set_map("n", "<leader>I", "mzggVG=`z<c-l>")
 set_map("n", "<Tab>", ":bnext<cr>")
 set_map("n", "<S-Tab>", ":bprevious<cr>")
 set_map("n", "<leader>x", function()
-	local force = vim.api.nvim_buf_get_option(0, "buftype") == "terminal"
-	pcall(vim.api.nvim_buf_delete, 0, { force = force })
+	-- don't close tab if its the last buffer in a tab
+	local api = vim.api
+	local tabs = api.nvim_list_tabpages()
+	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
+	if #tabs > 1 and not is_terminal then
+		local cur_tab = api.nvim_win_get_tabpage(0)
+		local cur_buf = api.nvim_get_current_buf()
+		local tab_info = api.nvim_tabpage_list_wins(cur_tab)
+		local valid_bufs = {}
+		for _, win in ipairs(tab_info) do
+			if api.nvim_buf_is_valid(win) and win ~= cur_buf then
+				table.insert(valid_bufs, win)
+			end
+		end
+		if #valid_bufs < 1 then
+			local new_buf = api.nvim_create_buf(true, false)
+			table.insert(valid_bufs, new_buf)
+		end
+		api.nvim_set_current_buf(valid_bufs[1])
+		pcall(api.nvim_buf_delete, cur_buf, { force = is_terminal })
+	else
+		pcall(api.nvim_buf_delete, 0, { force = is_terminal })
+	end
 end)
 set_map("n", "<leader>X", function()
 	pcall(vim.api.nvim_buf_delete, 0, { force = true })
