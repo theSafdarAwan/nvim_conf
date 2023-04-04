@@ -44,6 +44,7 @@ local plugins = function(install)
 		"nvim-comment-frame",
 		"figlet-nvim",
 		"printer-nvim",
+		"vim-peekaboo",
 		----------------------------------------------------------------------
 		--                        Window Management                         --
 		----------------------------------------------------------------------
