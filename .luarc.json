@@ -2,6 +2,7 @@
     "diagnostics.disable": [
         "doc-field-no-class",
         "unused-local",
+        "duplicate-index",
     ],
     "diagnostics.globals": [
         "vim",

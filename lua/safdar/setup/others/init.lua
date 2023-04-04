@@ -35,7 +35,9 @@ local plugins = function(install)
 		"nvim-spectre",
 		"refactoring-nvim",
 		"neo-minimap",
+		"nvim-scrollbar",
 		"greyjoy-nvim",
+		"vim-peekaboo",
 		----------------------------------------------------------------------
 		--                        commeting Plugins                         --
 		----------------------------------------------------------------------
@@ -44,7 +46,6 @@ local plugins = function(install)
 		"nvim-comment-frame",
 		"figlet-nvim",
 		"printer-nvim",
-		"vim-peekaboo",
 		----------------------------------------------------------------------
 		--                        Window Management                         --
 		----------------------------------------------------------------------
