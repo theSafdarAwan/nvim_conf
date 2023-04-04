@@ -1,6 +1,7 @@
 local utils = require("safdar.utils")
 local set_map = utils.set_map
 local map_opts = require("safdar.utils").map_options:new()
+local api = vim.api
 
 -- ~> Remove mappings
 local removed_maps = {
@@ -109,20 +110,13 @@ set_map("n", "<leader>I", "mzggVG=`z<c-l>")
 -- buffers mappings
 set_map("n", "<Tab>", ":bnext<cr>")
 set_map("n", "<S-Tab>", ":bprevious<cr>")
-local function del_win_or_buf(args)
+local function del_buf(args)
 	-- don't close tab if has only one buffer in it
-	local api = vim.api
-	local cmd = nil
-	if args.type == "buf" then
-		cmd = api.nvim_buf_delete
-	elseif args.type == "win" then
-		cmd = api.nvim_win_close
-	end
 	local tabs = api.nvim_list_tabpages()
 	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
 	local cur_buf = api.nvim_get_current_buf()
 	if #tabs > 1 and not is_terminal then
-		local cur_tab = api.nvim_win_get_tabpage(0)
+		local cur_tab = api.nvim_get_current_tabpage()
 		local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
 		local valid_bufs = {}
 		for _, win in ipairs(tab_wins) do
@@ -130,21 +124,20 @@ local function del_win_or_buf(args)
 				table.insert(valid_bufs, win)
 			end
 		end
+		-- if no valid bufs then create one
 		if #valid_bufs < 1 then
 			local new_buf = api.nvim_create_buf(true, false)
 			table.insert(valid_bufs, new_buf)
 		end
 		api.nvim_set_current_buf(valid_bufs[1])
-		pcall(cmd, cur_buf, { force = is_terminal or args.force })
-	else
-		pcall(cmd, cur_buf, { force = is_terminal or args.force })
 	end
+	pcall(api.nvim_buf_delete, cur_buf, { force = is_terminal or args.force })
 end
 set_map("n", "<leader>x", function()
-	del_win_or_buf({ type = "buf" })
+	del_buf({})
 end)
 set_map("n", "<leader>X", function()
-	del_win_or_buf({ type = "buf", force = true })
+	del_buf({ force = true })
 end)
 set_map("n", "[b", ":bp<cr>")
 set_map("n", "]b", ":bn<cr>")
@@ -155,11 +148,30 @@ set_map("n", "<A-b>", ":buffers<cr>")
 -- set_map("n", "<leader>ap", ":buffer #<cr>")
 
 -- window mappings
+local function close_win(args)
+	-- don't close tab if has only one buffer in it
+	local tabs = api.nvim_list_tabpages()
+	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
+	local cur_win = api.nvim_get_current_win()
+	-- TODO: get info about every window then add do the thing??????
+	if #tabs > 1 and not is_terminal then
+		local cur_tab = api.nvim_get_current_tabpage()
+		local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
+		-- if no valid bufs then create one
+		if #tab_wins < 3 and #tab_wins > 1 then
+			api.nvim_set_current_buf(api.nvim_create_buf(true, false))
+		else
+			pcall(api.nvim_win_close, cur_win, { force = is_terminal or args.force })
+		end
+	else
+		pcall(api.nvim_win_close, cur_win, { force = is_terminal or args.force })
+	end
+end
 set_map("n", "gx", function()
-	del_win_or_buf({ type = "win" })
+	close_win({})
 end)
 set_map("n", "gX", function()
-	del_win_or_buf({ type = "win", force = true })
+	close_win({ force = true })
 end)
 
 set_map("n", "gtx", ":tabclose<cr>")
