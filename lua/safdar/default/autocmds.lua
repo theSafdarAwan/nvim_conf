@@ -1,100 +1,100 @@
 local opt, optl, bo = vim.opt, vim.opt_local, vim.bo
 local cmd, api = vim.cmd, vim.api
 
-local autocmds = {
-	highlight_on_yank = {
-		events = { "TextYankPost" },
-		callback = function()
-			require("vim.highlight").on_yank({
-				timeout = 40,
-				higroup = "MatchParen",
-			})
-		end,
-	},
-	set_common_opts = {
-		events = { "BufRead", "CursorMoved", "BufAdd" },
-		callback = function()
-			local win_nr = api.nvim_get_current_win()
-			if pcall(api.nvim_win_get_var, win_nr, "_common_opts") then
-				return
-			else
-				api.nvim_win_set_var(win_nr, "_common_opts", {})
-				-- need to delete the var as soon as we leave, it will become problem
-				-- when we are navigation file link help files and we are jumping on
-				-- links.
-				vim.api.nvim_create_autocmd("BufWinLeave,", {
-					once = true,
-					callback = function()
-						pcall(api.nvim_win_del_var, win_nr, "_common_opts")
-					end,
-				})
-			end
-			local common_opts = {
-				add = {
-					relativenumber = true,
-					number = true,
-					signcolumn = "yes",
-				},
-				remove = {
-					relativenumber = false,
-					number = false,
-					signcolumn = "no",
-				},
-			}
-			local types = {
-				buf = {
-					["prompt"] = common_opts.remove,
-					["nofile"] = common_opts.remove,
-					["terminal"] = common_opts.remove,
-				},
-				ft = {
-					["qf"] = { buflisted = false },
-					["noice"] = common_opts.remove,
-					["help"] = vim.tbl_extend(
-						"force",
-						common_opts.add,
-						{ signcolumn = "no", conceallevel = 0, statusline = " " }
-					),
-					["harpoon"] = vim.tbl_extend("force", common_opts.remove, { number = true }),
-				},
-			}
-			vim.defer_fn(function()
-				if types.ft[vim.bo.filetype] then
-					for option, val in pairs(types.ft[vim.bo.filetype]) do
-						optl[option] = val
-					end
-				elseif types.buf[vim.bo.buftype] then
-					for option, val in pairs(types.buf[vim.bo.buftype]) do
-						optl[option] = val
-					end
-				elseif #bo.buftype < 1 then
-					for option, val in pairs(common_opts.add) do
-						optl[option] = val
-					end
-				end
-			end, 0)
-		end,
-	},
-	terminal_mode = {
-		events = { "TermOpen" },
-		callback = function()
-			optl.number = false
-			optl.signcolumn = "no"
-			optl.relativenumber = false
-			opt.filetype = "terminal"
-			optl.spell = false
-		end,
-	},
-	-- q_file = {
-	-- 	events = { "FileType" },
-	-- 	pattern = { "help", "man", "lspinfo", "qf" },
-	-- 	callback = function()
-	-- 		vim.keymap.set({ "n", "v" }, "q", function()
-	-- 			cmd("close")
-	-- 		end, { noremap = true, silent = true })
-	-- 	end,
-	-- },
+local autocmds = {}
+autocmds.highlight_on_yank = {
+	events = { "TextYankPost" },
+	callback = function()
+		require("vim.highlight").on_yank({
+			timeout = 40,
+			higroup = "MatchParen",
+		})
+	end,
 }
+autocmds.set_common_opts = {
+	events = { "BufRead", "CursorMoved", "BufAdd" },
+	callback = function()
+		local win_nr = api.nvim_get_current_win()
+		if pcall(api.nvim_win_get_var, win_nr, "_common_opts") then
+			return
+		else
+			api.nvim_win_set_var(win_nr, "_common_opts", {})
+			-- need to delete the var as soon as we leave, it will become problem
+			-- when we are navigation file link help files and we are jumping on
+			-- links.
+			vim.api.nvim_create_autocmd("BufWinLeave,", {
+				once = true,
+				callback = function()
+					pcall(api.nvim_win_del_var, win_nr, "_common_opts")
+				end,
+			})
+		end
+		local common_opts = {
+			add = {
+				relativenumber = true,
+				number = true,
+				signcolumn = "yes",
+			},
+			remove = {
+				relativenumber = false,
+				number = false,
+				signcolumn = "no",
+			},
+		}
+		local types = {
+			buf = {
+				["prompt"] = common_opts.remove,
+				["nofile"] = common_opts.remove,
+				["terminal"] = common_opts.remove,
+			},
+			ft = {
+				["qf"] = { buflisted = false },
+				["noice"] = common_opts.remove,
+				["help"] = vim.tbl_extend(
+					"force",
+					common_opts.add,
+					{ signcolumn = "no", conceallevel = 0, statusline = " " }
+				),
+				["harpoon"] = vim.tbl_extend("force", common_opts.remove, { number = true }),
+			},
+		}
+		vim.defer_fn(function()
+			if types.ft[vim.bo.filetype] then
+				for option, val in pairs(types.ft[vim.bo.filetype]) do
+					optl[option] = val
+				end
+			elseif types.buf[vim.bo.buftype] then
+				for option, val in pairs(types.buf[vim.bo.buftype]) do
+					optl[option] = val
+				end
+			elseif #bo.buftype < 1 then
+				for option, val in pairs(common_opts.add) do
+					optl[option] = val
+				end
+			end
+		end, 0)
+	end,
+}
+autocmds.terminal_mode = {
+	events = { "TermOpen" },
+	callback = function()
+		optl.number = false
+		optl.signcolumn = "no"
+		optl.relativenumber = false
+		opt.filetype = "terminal"
+		optl.spell = false
+	end,
+}
+
+-- autocmds.q_file = {
+-- 	events = { "FileType" },
+-- 	pattern = { "help", "man", "lspinfo", "qf" },
+-- 	callback = function()
+-- 		vim.keymap.set({ "n", "v" }, "q", function()
+-- 			cmd("close")
+-- 		end, { noremap = true, silent = true })
+-- 	end,
+-- },
 
 for _, au in pairs(autocmds) do
 	local events = vim.deepcopy(au.events)
