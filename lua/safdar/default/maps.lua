@@ -117,9 +117,9 @@ set_map("n", "<leader>x", function()
 	if #tabs > 1 and not is_terminal then
 		local cur_tab = api.nvim_win_get_tabpage(0)
 		local cur_buf = api.nvim_get_current_buf()
-		local tab_info = api.nvim_tabpage_list_wins(cur_tab)
+		local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
 		local valid_bufs = {}
-		for _, win in ipairs(tab_info) do
+		for _, win in ipairs(tab_wins) do
 			if api.nvim_buf_is_valid(win) and win ~= cur_buf then
 				table.insert(valid_bufs, win)
 			end
