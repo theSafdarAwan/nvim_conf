@@ -7,6 +7,10 @@ local function plugin(install)
 			"gsk",
 			"gsl",
 			"gss",
+			"gsH",
+			"gsJ",
+			"gsK",
+			"gsL",
 		},
 		config = function()
 			require("safdar.setup.others.smart-splits-nvim.config").config()
