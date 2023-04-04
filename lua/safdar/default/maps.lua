@@ -153,12 +153,18 @@ local function close_win(args)
 	local tabs = api.nvim_list_tabpages()
 	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
 	local cur_win = api.nvim_get_current_win()
-	-- TODO: get info about every window then add do the thing??????
+	local cur_tab = api.nvim_get_current_tabpage()
+	local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
 	if #tabs > 1 and not is_terminal then
-		local cur_tab = api.nvim_get_current_tabpage()
-		local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
+		-- windows which have number set which are normal file windows
+		local normal_wins = {}
+		for _, win in ipairs(tab_wins) do
+			if api.nvim_win_get_option(win, "number") then
+				table.insert(normal_wins, win)
+			end
+		end
 		-- if no valid bufs then create one
-		if #tab_wins < 3 and #tab_wins > 1 then
+		if #normal_wins < 2 then
 			api.nvim_set_current_buf(api.nvim_create_buf(true, false))
 		else
 			pcall(api.nvim_win_close, cur_win, { force = is_terminal or args.force })
