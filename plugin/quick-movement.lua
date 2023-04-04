@@ -33,35 +33,37 @@ set_map({ "n", "v" }, "gm", function()
 end)
 
 --[[
-        authord: @theSafdarAwan
-        date: 02/01/23 - 05:59 AM
-        last modifiction date: 02/02/23 - 09:37
+	authord: @theSafdarAwan
+	date: 02/01/23 - 05:59 AM
+	last modifiction date: 04/04/23 - 06:42
 
-        Description:-
-        This is a small script for moving between last two files.
+	Description:- This is a small script for moving between last two files.
 
-        NOTE: this script is different from the command :buffer # or the Ctrl-^ these don't
-		work when we delete a buffer using the vim.api.nvim_buf_delete and i delete buffers
-		from telescope buffers which uses this api.
+	NOTE> this script is different from the command :buffer # or the Ctrl-^ these don't
+	work when we delete a buffer using the vim.api.nvim_buf_delete and i delete buffers
+	from telescope buffers which uses this api.
 --]]
 
 local autocmd = api.nvim_create_autocmd
 
--- TODO: create a database dir that keeps track of the current directory and
--- the alternate_bufs so that we can move even after exiting the neovim
 local alternate_bufs = {}
 
--- FIXME: fix the bug when switching from a ft > noft > notf makes the list go nuts.
 local augroup = api.nvim_create_augroup("alternate file movment", { clear = true })
 autocmd({ "BufWinLeave" }, {
 	group = augroup,
 	callback = function()
-		-- need to check so we don't accidentally add the buffer like nvim-tree
-		-- or buffer with empty file_name string
-		if not api.nvim_buf_get_option(0, "buflisted") or #vim.bo.buftype > 1 or #fn.expand("%:p") < 1 then
+		local function valid_buf()
+			if
+				api.nvim_buf_get_option(0, "buflisted")
+				and #vim.bo.buftype < 1
+				and #fn.expand("%:p") > 1
+			then
+				return true
+			end
+		end
+		if not valid_buf() then
 			return
 		end
-
 		local current_buf = {}
 		current_buf.file_name = fn.expand("%:p")
 		current_buf.cursor_position = api.nvim_win_get_cursor(0)
@@ -69,8 +71,11 @@ autocmd({ "BufWinLeave" }, {
 
 		-- need to check the next buffer before adding the previous
 		autocmd({ "BufWinEnter" }, {
-			group = augroup,
+			once = true,
 			callback = function()
+				if not valid_buf() then
+					return
+				end
 				local previous_buf = current_buf
 				-- need to make sure that the first and the second files are not the same
 				if previous_buf.file_name == fn.expand("%:p") then
