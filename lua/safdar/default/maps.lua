@@ -162,7 +162,7 @@ local function close_win(args)
 				table.insert(normal_wins, win)
 			end
 		end
-		-- if no valid bufs then create one
+		-- if no valid win in the tab then create one
 		if #normal_wins < 2 then
 			api.nvim_set_current_buf(api.nvim_create_buf(true, false))
 		else
