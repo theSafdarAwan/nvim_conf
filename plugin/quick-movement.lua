@@ -44,61 +44,60 @@ end)
 	from telescope buffers which uses this api.
 --]]
 
-local autocmd = api.nvim_create_autocmd
+local create_autocmd = api.nvim_create_autocmd
 
-local alternate_bufs = {}
+local alternate_buf_list = {}
 
-local augroup = api.nvim_create_augroup("alternate file movment", { clear = true })
-autocmd({ "BufWinLeave" }, {
-	group = augroup,
+local function valid_buf()
+	if api.nvim_buf_get_option(0, "buflisted") and #vim.bo.buftype < 1 and #fn.expand("%:p") > 1 then
+		return true
+	end
+end
+local function get_current_buf()
+	local buf = {}
+	buf.file_name = fn.expand("%:p")
+	buf.cursor_position = api.nvim_win_get_cursor(0)
+	buf.buf_nr = api.nvim_get_current_buf()
+	return buf
+end
+create_autocmd({ "BufWinLeave" }, {
+	group = api.nvim_create_augroup("alternate file", { clear = true }),
 	callback = function()
-		local function valid_buf()
-			if
-				api.nvim_buf_get_option(0, "buflisted")
-				and #vim.bo.buftype < 1
-				and #fn.expand("%:p") > 1
-			then
-				return true
-			end
-		end
 		if not valid_buf() then
 			return
 		end
-		local current_buf = {}
-		current_buf.file_name = fn.expand("%:p")
-		current_buf.cursor_position = api.nvim_win_get_cursor(0)
-		current_buf.buf_number = fn.bufnr()
-
-		-- need to check the next buffer before adding the previous
-		autocmd({ "BufWinEnter" }, {
+		local current_buf = get_current_buf()
+		create_autocmd({ "BufWinEnter", "BufNew" }, {
 			once = true,
 			callback = function()
 				if not valid_buf() then
 					return
 				end
 				local previous_buf = current_buf
-				-- need to make sure that the first and the second files are not the same
-				if previous_buf.file_name == fn.expand("%:p") then
+				current_buf = get_current_buf()
+				if previous_buf.buf_nr == current_buf.buf_nr then
 					return
+				else
+					alternate_buf_list.current = current_buf
+					alternate_buf_list.previous = previous_buf
 				end
-				-- moving the current buf to the last index
-				alternate_bufs[2], alternate_bufs[1] = alternate_bufs[1], previous_buf
 			end,
 		})
 	end,
 })
 
 set_map("n", "gz", function()
-	if not alternate_bufs[1] then
+	if not alternate_buf_list.previous then
 		return
 	end
 
-	local previous_buf = alternate_bufs[1]
-	if api.nvim_buf_is_valid(previous_buf.buf_number) then
-		api.nvim_set_current_buf(previous_buf.buf_number)
+	local previous_buf = alternate_buf_list.previous
+	if api.nvim_buf_is_valid(previous_buf.buf_nr) then
+		api.nvim_set_current_buf(previous_buf.buf_nr)
 	else
-		previous_buf.buf_number = api.nvim_create_buf(true, false)
-		api.nvim_set_current_buf(previous_buf.buf_number)
+		-- create buf and update the buf_nr
+		previous_buf.buf_nr = api.nvim_create_buf(true, false)
+		api.nvim_set_current_buf(previous_buf.buf_nr)
 		vim.cmd("edit " .. previous_buf.file_name)
 		api.nvim_win_set_cursor(0, previous_buf.cursor_position)
 	end

@@ -149,7 +149,7 @@ set_map("n", "<A-b>", ":buffers<cr>")
 set_map("n", "gx", ":close<cr>")
 set_map("n", "gX", ":close!<cr>")
 
-set_map("n", "<C-x>", ":tabclose<cr>")
+set_map("n", "gtx", ":tabclose<cr>")
 set_map("n", "<C-n>", ":tabnew<cr>")
 
 set_map("n", "gtn", ":tabnext<cr>")
