@@ -98,10 +98,10 @@ set_map("v", ">", ">gv")
 -- delete into the void in visual mode
 set_map("v", "D", "\"_d")
 
--- Resize the buffer window
-set_map("n", "<leader>=", ":vertical resize +5<cr>")
-set_map("n", "<leader>-", ":vertical resize -5<cr>")
-set_map("n", "<leader>rp", ":resize 100<cr><c-l>")
+-- -- Resize the buffer window
+-- set_map("n", "<leader>=", ":vertical resize +5<cr>")
+-- set_map("n", "<leader>-", ":vertical resize -5<cr>")
+-- set_map("n", "<leader>rp", ":resize 100<cr><c-l>")
 
 -- indent the whole document
 set_map("n", "<leader>I", "mzggVG=`z<c-l>")
@@ -109,14 +109,20 @@ set_map("n", "<leader>I", "mzggVG=`z<c-l>")
 -- buffers mappings
 set_map("n", "<Tab>", ":bnext<cr>")
 set_map("n", "<S-Tab>", ":bprevious<cr>")
-set_map("n", "<leader>x", function()
+local function del_win_or_buf(args)
 	-- don't close tab if has only one buffer in it
 	local api = vim.api
+	local cmd = nil
+	if args.type == "buf" then
+		cmd = api.nvim_buf_delete
+	elseif args.type == "win" then
+		cmd = api.nvim_win_close
+	end
 	local tabs = api.nvim_list_tabpages()
 	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
+	local cur_buf = api.nvim_get_current_buf()
 	if #tabs > 1 and not is_terminal then
 		local cur_tab = api.nvim_win_get_tabpage(0)
-		local cur_buf = api.nvim_get_current_buf()
 		local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
 		local valid_bufs = {}
 		for _, win in ipairs(tab_wins) do
@@ -129,13 +135,16 @@ set_map("n", "<leader>x", function()
 			table.insert(valid_bufs, new_buf)
 		end
 		api.nvim_set_current_buf(valid_bufs[1])
-		pcall(api.nvim_buf_delete, cur_buf, { force = is_terminal })
+		pcall(cmd, cur_buf, { force = is_terminal or args.force })
 	else
-		pcall(api.nvim_buf_delete, 0, { force = is_terminal })
+		pcall(cmd, cur_buf, { force = is_terminal or args.force })
 	end
+end
+set_map("n", "<leader>x", function()
+	del_win_or_buf({ type = "buf" })
 end)
 set_map("n", "<leader>X", function()
-	pcall(vim.api.nvim_buf_delete, 0, { force = true })
+	del_win_or_buf({ type = "buf", force = true })
 end)
 set_map("n", "[b", ":bp<cr>")
 set_map("n", "]b", ":bn<cr>")
@@ -146,8 +155,12 @@ set_map("n", "<A-b>", ":buffers<cr>")
 -- set_map("n", "<leader>ap", ":buffer #<cr>")
 
 -- window mappings
-set_map("n", "gx", ":close<cr>")
-set_map("n", "gX", ":close!<cr>")
+set_map("n", "gx", function()
+	del_win_or_buf({ type = "win" })
+end)
+set_map("n", "gX", function()
+	del_win_or_buf({ type = "win", force = true })
+end)
 
 set_map("n", "gtx", ":tabclose<cr>")
 set_map("n", "<C-n>", ":tabnew<cr>")
