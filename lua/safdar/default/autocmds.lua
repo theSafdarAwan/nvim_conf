@@ -85,6 +85,38 @@ autocmds.terminal_mode = {
 		optl.spell = false
 	end,
 }
+-- open help in full window if its only the valid win.
+autocmds.open_help_in_tab = {
+	events = { "BufRead", "BufNew" },
+	callback = function()
+		vim.defer_fn(function()
+			local ignore_filetypes = {
+				"prompt",
+				"popup",
+				"",
+			}
+			for _, ft in ipairs(ignore_filetypes) do
+				if vim.bo.buftype == ft then
+					return
+				end
+			end
+			local cur_tab = api.nvim_get_current_tabpage()
+			local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
+			local normal_wins = {}
+			for _, win in ipairs(tab_wins) do
+				if api.nvim_win_get_option(win, "number") then
+					table.insert(normal_wins, win)
+				end
+			end
+			for _, win in ipairs(normal_wins) do
+				local buf_nr = api.nvim_win_get_buf(win)
+				if #api.nvim_buf_get_option(buf_nr, "filetype") < 1 then
+					pcall(api.nvim_win_close, win, { force = true })
+				end
+			end
+		end, 0)
+	end,
+}
 
 -- autocmds.q_file = {
 -- 	events = { "FileType" },
