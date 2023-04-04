@@ -16,6 +16,7 @@ local function plugin(install)
 					"TelescopePrompt",
 					"noice",
 					"DressingInput",
+					"NvimTree",
 				},
 				handle = {
 					highlight = "PmenuSbar",

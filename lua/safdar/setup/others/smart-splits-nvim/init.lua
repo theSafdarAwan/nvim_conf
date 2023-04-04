@@ -6,7 +6,7 @@ local function plugin(install)
 			"gsj",
 			"gsk",
 			"gsl",
-			"gss",
+			"gsr",
 			"gsH",
 			"gsJ",
 			"gsK",

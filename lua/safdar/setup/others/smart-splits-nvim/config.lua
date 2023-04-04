@@ -82,7 +82,7 @@ local function config()
 	set_map("n", "gsj", resize("down"))
 	set_map("n", "gsk", resize("up"))
 	set_map("n", "gsl", resize("right"))
-	set_map("n", "gss", smart_splits.start_resize_mode)
+	set_map("n", "gsr", smart_splits.start_resize_mode)
 
 	-- buffer swaping
 	set_map("n", "gsH", require("smart-splits").swap_buf_left)
