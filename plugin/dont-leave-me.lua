@@ -1,6 +1,5 @@
 ----------------------------------------------------------------------
---         A script that doesn't looses the position where          --
---                     you started yanking text                     --
+--        Script that doesn't leve the position when yanking        --
 ----------------------------------------------------------------------
 local api = vim.api
 local fn = vim.fn
