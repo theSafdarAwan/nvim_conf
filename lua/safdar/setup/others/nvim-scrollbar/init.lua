@@ -17,6 +17,8 @@ local function plugin(install)
 					"noice",
 					"DressingInput",
 					"NvimTree",
+					"lazy",
+					"cmp_docs",
 				},
 				handle = {
 					highlight = "PmenuSbar",
