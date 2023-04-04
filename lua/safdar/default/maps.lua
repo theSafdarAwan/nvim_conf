@@ -110,7 +110,7 @@ set_map("n", "<leader>I", "mzggVG=`z<c-l>")
 set_map("n", "<Tab>", ":bnext<cr>")
 set_map("n", "<S-Tab>", ":bprevious<cr>")
 set_map("n", "<leader>x", function()
-	-- don't close tab if its the last buffer in a tab
+	-- don't close tab if has only one buffer in it
 	local api = vim.api
 	local tabs = api.nvim_list_tabpages()
 	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
