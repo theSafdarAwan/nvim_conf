@@ -76,9 +76,8 @@ set_map("n", "<A-h>", "zh")
 -- show messages
 -- set_map("n", "<C-m>", ":messages<CR>") -- i am using noice.nvim
 
--- Paster From the system clipboard
+-- Paste From the system clipboard
 set_map("n", "<leader>p", "\"+p")
---
 -- Paste onto the selection and don't copy the selection to the reg
 set_map("v", "<leader>p", "_dP")
 
@@ -124,7 +123,7 @@ local function del_buf(args)
 				table.insert(valid_bufs, win)
 			end
 		end
-		-- if no valid bufs then create one
+		-- if no valid buf in the tab then create one
 		if #valid_bufs < 1 then
 			local new_buf = api.nvim_create_buf(true, false)
 			table.insert(valid_bufs, new_buf)
