@@ -1,3 +1,8 @@
+--[[
+	authord: @theSafdarAwan
+	Description:- This script auto saves file.
+--]]
+
 local api = vim.api
 local bo = vim.bo
 local create_autocmd = api.nvim_create_autocmd
@@ -42,7 +47,6 @@ local function validater(opts)
 			end
 		end
 	end
-
 	if opts.type.buf then
 		for _, value in ipairs(opts.data) do
 			if bo.buftype == value then
@@ -50,7 +54,6 @@ local function validater(opts)
 			end
 		end
 	end
-
 	if opts.type.ft then
 		for _, value in ipairs(opts.data) do
 			if bo.filetype == value then
@@ -58,7 +61,6 @@ local function validater(opts)
 			end
 		end
 	end
-
 	return status
 end
 
@@ -68,18 +70,15 @@ local function auto_save_fn(buf_info)
 	if not ok then
 		return
 	end
-
 	if #api.nvim_buf_get_name(0) < 1 or not bo.modified then
 		return
 	end
-
 	if not queued then
 		local excluded = {
 			dir = { "wezterm", "alacritty" },
 			ft = { "TelescopePrompt", "harpoon" },
 			buf = { "prompt" },
 		}
-
 		local status = true
 		for k, v in pairs(excluded) do
 			local valid = validater({ type = { [k] = true }, data = v })
@@ -88,7 +87,6 @@ local function auto_save_fn(buf_info)
 				break
 			end
 		end
-
 		if bo.modifiable and status then
 			cmd("silent update")
 			-- print("saved at " .. vim.fn.strftime("%I:%M:%S"))
@@ -97,13 +95,11 @@ local function auto_save_fn(buf_info)
 			-- 	cmd("echon ''")
 			-- end)
 		end
-
 		local function defer_fn()
 			if api.nvim_buf_is_valid(buf_info.buf) then
 				api.nvim_buf_set_var(buf_info.buf, auto_save_queued, false)
 			end
 		end
-
 		vim.defer_fn(defer_fn, delay_auto_save)
 		local block = api.nvim_buf_get_var(buf_info.buf, auto_save_block)
 		if not block then
@@ -115,7 +111,6 @@ local function auto_save_fn(buf_info)
 					api.nvim_buf_set_var(buf_info.buf, auto_save_block, false)
 				end
 			end
-
 			vim.defer_fn(defer_block_fn, delay_auto_save)
 		end
 	end

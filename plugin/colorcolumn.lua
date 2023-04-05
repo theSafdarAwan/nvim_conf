@@ -1,9 +1,12 @@
 --[[
-        Description:-
-        I got this idea from the Damian Conway from his vim talk (https://youtu.be/aHm36-na4-4?t=245)
-        to highlight line like the `:h colorcolumn` but it only highlights it if it
-        exceeds the certain character limit and only highlights the current line.
+		authord: @theSafdarAwan
+		last modifiction date: 04/04/23 - 10:48
+		Description:-
+		I got this idea from the Damian Conway from his vim talk (https://youtu.be/aHm36-na4-4?t=245)
+		to highlight line like the `:h colorcolumn` but it only highlights it if it
+		exceeds the certain character limit and only highlights the current line.
 --]]
+
 local api, fn, cmd = vim.api, vim.fn, vim.api.nvim_command
 local create_autocmd = api.nvim_create_autocmd
 

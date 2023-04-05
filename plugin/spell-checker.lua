@@ -1,10 +1,10 @@
 --[[
-        authord: @theSafdarAwan
-        date: 11/17/22 - 00:52 AM
-        last modifiction date: 03/21/23 - 07:57
+	authord: @theSafdarAwan
+	date: 11/17/22 - 00:52 AM
+	last modifiction date: 03/21/23 - 07:57
 
-        Description:-
-        This is a small plugin for enabaling spell checking in insert mode.
+	Description:-
+	This is a small plugin for enabaling spell checking in insert mode.
 --]]
 
 local api = vim.api

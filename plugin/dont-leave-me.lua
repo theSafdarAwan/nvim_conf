@@ -1,6 +1,9 @@
-----------------------------------------------------------------------
---        Script that doesn't leve the position when yanking        --
-----------------------------------------------------------------------
+--[[
+		authord: @theSafdarAwan
+		last modifiction date: 04/04/23 - 10:48
+		Description:- Script that doesn't leve the position when yanking
+--]]
+
 local api = vim.api
 local fn = vim.fn
 local map_opts = { noremap = true, silent = true }

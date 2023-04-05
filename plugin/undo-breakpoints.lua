@@ -1,6 +1,6 @@
 --[[
-        Description:-
-				This script will add undo breakpoints for A-Z capital alphabets and punctuations.
+	Description:-
+	This script will add undo breakpoints for A-Z capital alphabets and punctuations.
 --]]
 local api, fn = vim.api, vim.fn
 
