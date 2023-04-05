@@ -69,7 +69,7 @@ local function config()
 
 		-- all the windows except the curren window will be highlighted using this
 		-- color
-		other_win_hl_color = cp.base02,
+		other_win_hl_color = cp.popup_bg,
 
 		-- You can change the display string in status bar.
 		-- It supports '%' printf style. Such as `return char .. ': %f'` to display
