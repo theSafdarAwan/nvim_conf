@@ -14,13 +14,15 @@ local fused = function(install)
 		}
 
 		require("fused").setup({
-			custom = function(cp)
-				local colors = {
-					CustomColorColumn = { bg = cp.base03 },
-					SlimNormalFloat = { bg = cp.base24 },
-				}
-				return colors
-			end,
+			settings = {
+				custom_hl = function(cp)
+					local colors = {
+						CustomColorColumn = { bg = cp.base01 },
+						SlimNormalFloat = { bg = cp.base19 },
+					}
+					return colors
+				end,
+			},
 		})
 		require("fused").add_hooks(hooks)
 	end
