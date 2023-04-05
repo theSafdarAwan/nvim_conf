@@ -49,6 +49,7 @@ autocmds.set_common_opts = {
 			},
 			ft = {
 				["qf"] = { buflisted = false },
+				["peekaboo"] = common_opts.remove,
 				["noice"] = common_opts.remove,
 				["help"] = vim.tbl_extend(
 					"force",

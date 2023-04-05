@@ -1,13 +1,6 @@
 --- This Plugins module includes plugins related to editor core which includes
 --- libraries and some utility plugin for improving nvim experience.
 local function plugins(install)
-	-- make sure impatient is loaded before any plugin
-	local _, impatient = pcall(require, "impatient")
-	pcall(impatient.enable_profile)
-	install({
-		lazy = false,
-		"lewis6991/impatient.nvim",
-	})
 	install({
 		lazy = false,
 		"antoinemadec/FixCursorHold.nvim",
