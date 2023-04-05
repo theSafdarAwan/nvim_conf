@@ -22,19 +22,19 @@ local config = function()
 	----------------------------------------------------------------------
 	local fused_colors = require("fused.utils").colors
 	local colors = {
-		white = fused_colors.base07,
-		grey_white = fused_colors.base06,
+		white = fused_colors.base05,
+		grey_white = fused_colors.base04,
 		dark1 = fused_colors.bg,
 		dark2 = fused_colors.popup_bg,
-		yellow = fused_colors.base09,
-		pink = fused_colors.base12,
-		cyan = fused_colors.base10,
-		teal = fused_colors.base13,
-		green = fused_colors.base15,
-		magenta = fused_colors.base14,
-		blue = fused_colors.base17,
-		red = fused_colors.base11,
-		red_error = fused_colors.base08,
+		yellow = fused_colors.base07,
+		pink = fused_colors.base10,
+		cyan = fused_colors.base08,
+		teal = fused_colors.base01,
+		green = fused_colors.base13,
+		magenta = fused_colors.base12,
+		blue = fused_colors.base15,
+		red = fused_colors.base09,
+		red_error = fused_colors.base06,
 	}
 
 	local icons = require("safdar.setup.ui.icons")
