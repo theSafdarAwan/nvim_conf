@@ -38,6 +38,8 @@ local plugins = function(install)
 		"nvim-scrollbar",
 		"greyjoy-nvim",
 		"vim-peekaboo",
+		"nvim-luaref",
+		"nvim-lastplace",
 		----------------------------------------------------------------------
 		--                        commeting Plugins                         --
 		----------------------------------------------------------------------
