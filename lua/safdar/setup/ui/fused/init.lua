@@ -19,7 +19,7 @@ local fused = function(install)
 				global = {
 					---@type string|table global style for all flavours. Has less precedence
 					--- then the {flavour}.style
-					style = "bordered",
+					style = "slim",
 					---@type boolean enable italics for theme.
 					italics = true,
 					---@type boolean set background to transparent
@@ -31,13 +31,7 @@ local fused = function(install)
 				["tokyonight-storm"] = {
 					---@type string|table style string for flavour or table with
 					--- individual plugin style.
-					style = {
-						editor = "bordered",
-						["nvim-notify"] = "bordered",
-						["noice.nvim"] = "slim",
-						["telescope.nvim"] = "slim",
-						["harpoon"] = "bordered",
-					},
+					style = {},
 					---@type function|table override the default highlights if function should
 					--- return a table
 					---@param colors table|function colors table for the flavour
@@ -51,29 +45,13 @@ local fused = function(install)
 					end,
 					override_style = function(colors)
 						return {
-							bordered = {
-								["telescope.nvim"] = {
-									TelescopeBorder = {
-										fg = colors.base07,
-										bg = colors.base19,
-									},
-								},
-							},
-							slim = {
-								["telescope.nvim"] = {
-									TelescopeBorder = {
-										fg = colors.base02,
-										bg = colors.base19,
-									},
-								},
-							},
+							slim = {},
 						}
 					end,
 				},
 				custom_hl = function(cp)
 					local colors = {
 						CustomColorColumn = { bg = cp.base01 },
-						SlimNormalFloat = { bg = cp.base19 },
 					}
 					return colors
 				end,
@@ -85,7 +63,7 @@ local fused = function(install)
 	install({
 		"TheSafdarAwan/fused.nvim",
 		lazy = false,
-		branch = "improving/plugins",
+		branch = "tokyonight-storm",
 		config = config,
 	})
 end
