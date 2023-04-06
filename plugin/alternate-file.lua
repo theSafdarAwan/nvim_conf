@@ -39,16 +39,16 @@ create_autocmd({ "BufWinLeave" }, {
 		create_autocmd({ "BufWinEnter", "BufNew" }, {
 			once = true,
 			callback = function()
+				local previous_buf = current_buf
+				alternate_buf_list.previous = previous_buf
 				if not valid_buf() then
 					return
 				end
-				local previous_buf = current_buf
 				current_buf = get_current_buf()
 				if previous_buf.buf_nr == current_buf.buf_nr then
 					return
 				else
 					alternate_buf_list.current = current_buf
-					alternate_buf_list.previous = previous_buf
 				end
 			end,
 		})
