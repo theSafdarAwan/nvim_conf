@@ -3,6 +3,7 @@ local function plugin(install)
 		"petertriho/nvim-scrollbar",
 		lazy = false,
 		config = function()
+			require("fused").load_plugin("nvim-scrollbar")
 			local defaults = {}
 			local diagnostics = {
 				text = { "─", "═" },
