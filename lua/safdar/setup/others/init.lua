@@ -35,7 +35,6 @@ local plugins = function(install)
 		"nvim-spectre",
 		"refactoring-nvim",
 		"neo-minimap",
-		"nvim-scrollbar",
 		"greyjoy-nvim",
 		"vim-peekaboo",
 		"nvim-luaref",
