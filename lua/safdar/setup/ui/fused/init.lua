@@ -15,10 +15,13 @@ local fused = function(install)
 
 		require("fused").setup({
 			settings = {
-				---@type table there are four options available for setting globally.
+				---@type table|function if function then should return a table
+				custom_highlights = function(colors)
+					return {}
+				end,
+				---@type table
 				global = {
-					---@type string|table global style for all flavours. Has less precedence
-					--- then the {flavour}.style
+					---@type string global style for all flavours. Has less precedence then the {flavour}.style
 					style = "slim",
 					---@type boolean enable italics for theme.
 					italics = true,
@@ -33,12 +36,10 @@ local fused = function(install)
 					--- individual plugin style.
 					style = "slim",
 					style_groups = {
-						["nvim-notify"] = "bordered",
+						["nvim-notify"] = "slim",
 					},
-					---@type function|table override the default highlights if function should
-					--- return a table
-					---@param colors table|function colors table for the flavour
-					override_hl = function(colors)
+					---@type table|function override the default highlights if function should return a table
+					override_group_highlights = function(colors)
 						return {
 							["telescope.nvim"] = {},
 							syntax = {},
@@ -46,13 +47,13 @@ local fused = function(install)
 							lsp = {},
 						}
 					end,
-					override_style = function(colors)
+					override_style_highlights = function(colors)
 						return {
 							slim = {},
 						}
 					end,
 				},
-				custom_hl = function(cp)
+				custom_highlights = function(cp)
 					local colors = {
 						CustomColorColumn = { bg = cp.base01 },
 					}
