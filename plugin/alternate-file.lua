@@ -36,7 +36,7 @@ create_autocmd({ "BufWinLeave" }, {
 			return
 		end
 		local current_buf = get_current_buf()
-		create_autocmd({ "BufWinEnter", "BufNew" }, {
+		create_autocmd({ "BufWinEnter" }, {
 			once = true,
 			callback = function()
 				local previous_buf = current_buf

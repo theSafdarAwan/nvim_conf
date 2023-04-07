@@ -31,7 +31,10 @@ local fused = function(install)
 				["tokyonight-storm"] = {
 					---@type string|table style string for flavour or table with
 					--- individual plugin style.
-					style = {},
+					style = "slim",
+					style_groups = {
+						["nvim-notify"] = "bordered",
+					},
 					---@type function|table override the default highlights if function should
 					--- return a table
 					---@param colors table|function colors table for the flavour
