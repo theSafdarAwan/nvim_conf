@@ -1,3 +1,4 @@
+-- Telescope lsp_document_symbols ignore_symbols=variable
 * TODO's 
   - [ ] add the highlight feature to find-extender.nvim like leap, etc but do it
     only if there are multiple finding locations and then user can use number to go

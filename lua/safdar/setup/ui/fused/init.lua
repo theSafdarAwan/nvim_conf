@@ -35,9 +35,7 @@ local fused = function(install)
 					---@type string|table style string for flavour or table with
 					--- individual plugin style.
 					style = "slim",
-					style_groups = {
-						["nvim-notify"] = "slim",
-					},
+					style_groups = {},
 					---@type table|function override the default highlights if function should return a table
 					override_group_highlights = function(colors)
 						return {

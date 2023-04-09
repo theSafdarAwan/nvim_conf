@@ -1,7 +1,0 @@
--- local api, fn = vim.api, vim.fn
---
--- local ns = api.nvim_create_namespace("foo")
--- local pos = fn.getpos(".")
--- local extmark = api.nvim_buf_set_extmark(0, ns, pos[2] - 1, pos[3] - 1, {})
--- local extmarks = api.nvim_buf_get_extmarks(0, ns, 0, -1, {})
--- api.nvim_buf_add_highlight(0, ns, "Search", pos[2] - 1, 0, -1)
