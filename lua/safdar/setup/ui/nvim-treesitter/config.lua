@@ -14,7 +14,7 @@ local config = function()
 		ensure_installed = {
 			"lua",
 			"vim",
-			"help",
+			"vimdoc",
 			"python",
 			"bash",
 			"norg",

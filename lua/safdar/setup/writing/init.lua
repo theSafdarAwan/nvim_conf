@@ -12,6 +12,8 @@ local function plugins(install)
 		"neorg",
 		"markdown-preview",
 		"neogen",
+		-- TODO: write treesitter queries to conceal stuff rather then this
+		"tex-conceal-vim",
 	}
 
 	for _, plugin in pairs(Plugins) do
