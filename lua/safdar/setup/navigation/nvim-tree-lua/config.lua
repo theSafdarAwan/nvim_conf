@@ -28,7 +28,6 @@ local function config()
 			adaptive_size = false,
 			centralize_selection = false, -- dont turn this to true it gives error if you open file using other options rather then nvim-tree on startup like by using `nvim .` to open in the current directory
 			width = 20,
-			hide_root_folder = true,
 			side = "right",
 			preserve_window_proportions = false,
 			number = false,
@@ -43,6 +42,7 @@ local function config()
 			threshold = vim.log.levels.WARN,
 		},
 		renderer = {
+			root_folder_label = false,
 			add_trailing = false,
 			group_empty = false,
 			highlight_git = false,
