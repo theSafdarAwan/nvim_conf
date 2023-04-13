@@ -4,11 +4,10 @@ local config = function()
 	--                      null-ls
 	--=======================================================
 	local null_ls = require("null-ls")
+	local utils = require("null-ls.utils")
 	local builtins = null_ls.builtins
 	local sources = {
-		builtins.formatting.stylua.with({
-			extra_args = { "--config-path", vim.fn.expand("~/.config/stylua.toml") },
-		}),
+		builtins.formatting.stylua.with(),
 		builtins.diagnostics.luacheck.with({
 			args = {
 				"--formatter",
