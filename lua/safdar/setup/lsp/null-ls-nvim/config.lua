@@ -7,7 +7,7 @@ local config = function()
 	local utils = require("null-ls.utils")
 	local builtins = null_ls.builtins
 	local sources = {
-		builtins.formatting.stylua.with(),
+		builtins.formatting.stylua.with({}),
 		builtins.diagnostics.luacheck.with({
 			args = {
 				"--formatter",
