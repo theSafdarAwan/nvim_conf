@@ -54,6 +54,7 @@ local fused = function(install)
 				custom_highlights = function(cp)
 					local colors = {
 						CustomColorColumn = { bg = cp.base01 },
+						FEVirtualText = { fg = cp.base05, bg = cp.base01 },
 					}
 					return colors
 				end,
