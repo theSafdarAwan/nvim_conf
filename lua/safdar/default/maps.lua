@@ -119,7 +119,11 @@ local function del_buf(args)
 		local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
 		local valid_bufs = {}
 		for _, win in ipairs(tab_wins) do
-			if api.nvim_buf_is_valid(win) and win ~= cur_buf then
+			if
+				api.nvim_buf_is_valid(win)
+				and win ~= cur_buf
+				and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "modifiable")
+			then
 				table.insert(valid_bufs, win)
 			end
 		end
@@ -158,7 +162,10 @@ local function close_win(args)
 		-- windows which have number set which are normal file windows
 		local normal_wins = {}
 		for _, win in ipairs(tab_wins) do
-			if api.nvim_win_get_option(win, "number") then
+			if
+				api.nvim_win_get_option(win, "number")
+				and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "modifiable")
+			then
 				table.insert(normal_wins, win)
 			end
 		end
