@@ -1,12 +1,3 @@
---- This Plugins Module includes plugins related to completion and snippets.
-
----@table Plugins
----@field nvim_cmp Plugin completion engine.
----@field luasnip Plugin snippets generator.
----@field cmp_tabnine Plugin tabnine AI code completion.
----@field nvim_cmp_dictionary Plugin dictionary plugin for cmp.
----@field nvim_autopairs Plugin autopair {['" and other punctuations.
-
 local function plugins(install)
 	local Plugins = {
 		"nvim-cmp",

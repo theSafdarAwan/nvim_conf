@@ -1,5 +1,3 @@
----@alias Plugin string
-
 --- noice.nvim
 ---@alias NoiceViewOptions table|string
 ---@alias NoicePopupmenuItemKind table|string

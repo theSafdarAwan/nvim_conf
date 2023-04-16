@@ -1,10 +1,3 @@
---- This Plugins module includes plugins related to debugging.
-
----@table Plugins
----@field nvim_dap Plugin adds debugging capability for neovim.
----@field nvim_dap_ui Plugin Adds beautiful UI to the dap.nvim.
----@field nvim_dap_virtual_text Plugin adds virtual text for nvim.dap.
-
 local function get_plugins(install)
 	local Plugins = {
 		"nvim-dap",

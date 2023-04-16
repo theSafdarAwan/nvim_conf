@@ -1,11 +1,3 @@
---- This modules includes plugins related to writing.
-
---- Plugins included in this module
----@table Plugins
----@field neorg Plugin neorg plugin for taking notes.
----@field markdown_preview Plugin plugin for previewing markdown.
----@field neogen Plugin is annotation toolkit for generating annotations quickly.
-
 ---@param install function
 local function plugins(install)
 	local Plugins = {

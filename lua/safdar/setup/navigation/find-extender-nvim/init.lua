@@ -5,9 +5,9 @@ local plugin = function(install)
 		branch = "alpha",
 		config = function()
 			require("find-extender").setup({
-				-- movments = {
-				-- 	lh = true,
-				-- },
+				movments = {
+					lh = { use = true },
+				},
 			})
 		end,
 	})
