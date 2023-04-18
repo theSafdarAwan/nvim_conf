@@ -28,12 +28,7 @@ local function plugin(install)
 				},
 				-- function which modifies the text inside string in the print statement, by default it adds the path and line number
 				add_to_inside = function(text)
-					return string.format(
-						"[%s:%s] %s",
-						trim_path(vim.fn.expand("%")),
-						vim.fn.line("."),
-						text
-					)
+					return string.format("[%s:%s] %s", trim_path(vim.fn.expand("%")), vim.fn.line("."), text)
 				end,
 			})
 			vim.keymap.set({ "n" }, "gP", "<Plug>(printer_print)iw", { silent = true, noremap = true })

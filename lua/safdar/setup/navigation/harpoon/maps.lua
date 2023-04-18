@@ -49,11 +49,7 @@ local create_popup = function()
 		relative = "editor",
 	})
 	api.nvim_win_set_var(win, "_is_popup", true)
-	api.nvim_win_set_option(
-		0,
-		"winhl",
-		"NormalFloat:NormalFloat"
-	)
+	api.nvim_win_set_option(0, "winhl", "NormalFloat:NormalFloat")
 
 	-- start insert mode after creating popup window
 	api.nvim_feedkeys("i", "n", false)

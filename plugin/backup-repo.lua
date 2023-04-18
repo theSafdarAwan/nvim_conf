@@ -5,10 +5,8 @@ local function start_backup()
 	local dir_name = fn.expand("%")
 	fn.jobstart({ "mv ~/" }, {
 		stdout_buffered = true,
-		on_stdout = function(_, data)
-		end,
-		on_stderr = function(_, data)
-		end,
+		on_stdout = function(_, data) end,
+		on_stderr = function(_, data) end,
 	})
 end
 

@@ -19,7 +19,7 @@ local function config()
 			lua = {
 				css = true,
 				names = false,
-			}
+			},
 		},
 		user_default_options = {
 			css = false,

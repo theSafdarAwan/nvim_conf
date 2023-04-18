@@ -4,6 +4,7 @@ local function plugins(install)
 		"neorg",
 		"markdown-preview",
 		"neogen",
+		"obsidian-nvim",
 		-- TODO: write treesitter queries to conceal stuff rather then this
 		"tex-conceal-vim",
 	}

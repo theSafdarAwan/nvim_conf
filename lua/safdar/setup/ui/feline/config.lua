@@ -353,21 +353,9 @@ local config = function()
 					local ms = vim.loop.hrtime() / 1000000
 					local frame = math.floor(ms / 120) % #spinners
 					if percentage >= 90 then
-						return string.format(
-							" %%<%s %s %s (%s%%%%) ",
-							success_icon[frame + 1],
-							title,
-							msg,
-							percentage
-						)
+						return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
 					else
-						return string.format(
-							" %%<%s %s %s (%s%%%%) ",
-							spinners[frame + 1],
-							title,
-							msg,
-							percentage
-						)
+						return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
 					end
 				else
 					return ""
@@ -477,11 +465,7 @@ local config = function()
 			provider = function(self)
 				self.rigth_sep = nil
 				if enable_diagnostics("INFO") then
-					if
-						enable_diagnostics("ERROR")
-						or enable_diagnostics("WARN")
-						or enable_diagnostics("HINT")
-					then
+					if enable_diagnostics("ERROR") or enable_diagnostics("WARN") or enable_diagnostics("HINT") then
 						return icons.misc.ColumnBarThin
 					end
 				end

@@ -59,7 +59,7 @@ local luaSnips = {
 		})
 	),
 	-- require("")
-	parse("req", 'require("$0")'),
+	parse("req", "require(\"$0\")"),
 	-- global function
 	parse("gfn", "function $1($2)\n\t$0\nend"),
 	-- local function
