@@ -25,6 +25,7 @@ local config = function()
 			"c",
 			"typescript",
 			"yaml",
+			"kdl",
 			"toml",
 			"javascript",
 			"css",
