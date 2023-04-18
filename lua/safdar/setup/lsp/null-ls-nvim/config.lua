@@ -34,8 +34,24 @@ local config = function()
 		builtins.diagnostics.chktex,
 		-- builtins.code_actions.gitsigns,
 		builtins.formatting.prettierd.with({
-			-- { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
-			filetypes = { "html", "json", "yaml", "markdown" },
+			filetypes = {
+				"html",
+				"json",
+				"yaml",
+				"markdown",
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+				"vue",
+				"css",
+				"scss",
+				"less",
+				"jsonc",
+				"markdown.mdx",
+				"graphql",
+				"handlebars",
+			},
 		}),
 	}
 	null_ls.setup({
