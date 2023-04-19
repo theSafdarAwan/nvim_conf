@@ -1,6 +1,7 @@
 local function Plugin(install)
 	install({
 		"epwalsh/obsidian.nvim",
+		ft = "markdown",
 		config = function()
 			require("obsidian").setup({
 				dir = "~/safdar-local/NOTES/Obsidian/",

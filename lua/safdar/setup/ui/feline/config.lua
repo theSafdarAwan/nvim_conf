@@ -58,6 +58,12 @@ local config = function()
 		end
 	end
 
+	local noice_is_active = function()
+		if not require("noice").api.statusline.mode.get() then
+			return true
+		end
+	end
+
 	----------------------------------------------------------------------
 	--                            separator                             --
 	----------------------------------------------------------------------
@@ -213,7 +219,7 @@ local config = function()
 	}
 
 	----------------------------------------------------------------------
-	--                            file name                             --
+	--                               file                               --
 	----------------------------------------------------------------------
 	local filename = {
 		provider = function(self)
@@ -282,16 +288,23 @@ local config = function()
 			return ""
 		end,
 	}, separator)
+	local file_modification_status = {
+		provider = function()
+			if vim.bo.modified then
+				return icons.misc.Robot .. " file not saved."
+			else
+				return " "
+			end
+		end,
+		enabled = function ()
+			return noice_is_active()
+		end,
+		hl = { style = "bold", fg = colors.blue, bg = colors.dark2 },
+	}
 
 	----------------------------------------------------------------------
 	--                               Lsp                                --
 	----------------------------------------------------------------------
-	local noice_is_active = function()
-		if require("noice").api.statusline.mode.get() then
-			return true
-		end
-	end
-
 	local lsp = {
 		clients = {
 			provider = function()
@@ -319,7 +332,7 @@ local config = function()
 				-- 	Lsp_progress = true
 				-- end
 				-- return not noice_is_active() and not lsp_progress
-				return not noice_is_active()
+				return noice_is_active() and not vim.bo.modified
 			end,
 			hl = { fg = colors.blue, bg = colors.dark2 },
 		},
@@ -362,7 +375,7 @@ local config = function()
 				end
 			end,
 			enabled = function()
-				return not noice_is_active()
+				return noice_is_active()
 			end,
 			hl = { fg = colors.pink, bg = colors.dark2, style = "italic" },
 		},
@@ -546,6 +559,7 @@ local config = function()
 				-- lsp_progress,
 				lsp.clients,
 				noice_macro_recording,
+				file_modification_status,
 			},
 			{
 				diagnostics.INFO,
