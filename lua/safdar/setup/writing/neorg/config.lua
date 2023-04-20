@@ -7,13 +7,13 @@ local function config()
 	neorg.setup({
 		load = {
 			["core.defaults"] = {},
-			["core.norg.esupports.metagen"] = {
+			["core.esupports.metagen"] = {
 				config = {
 					type = "none", -- "none", "auto" or "empty"
 					update_date = true,
 				},
 			},
-			["core.norg.concealer"] = {
+			["core.concealer"] = {
 				config = {
 					icon_preset = "basic", -- diamond, varied
 					-- if you want to dim code blocks
@@ -57,11 +57,11 @@ local function config()
 						keybinds.map_event_to_mode("norg", {
 							n = {
 								-- Hop to the destination of the link under the cursor
-								{ "gd", "core.norg.esupports.hop.hop-link" },
+								{ "gd", "core.esupports.hop.hop-link" },
 								-- Same as `<CR>`, except opens the destination in a vertical split
 								{
 									"g<CR>",
-									"core.norg.esupports.hop.hop-link",
+									"core.esupports.hop.hop-link",
 									"vsplit",
 								},
 							},
@@ -90,10 +90,10 @@ local function config()
 						keybinds.map_event_to_mode("toc-split", {
 							n = {
 								-- Hop to the target of the TOC link
-								{ "gd", "core.norg.qol.toc.hop-toc-link" },
+								{ "gd", "core.qol.toc.hop-toc-link" },
 								-- Closes the TOC split
 								-- ^Quit
-								{ "q", "core.norg.qol.toc.close" },
+								{ "q", "core.qol.toc.close" },
 							},
 						}, {
 							silent = true,
@@ -131,20 +131,20 @@ local function config()
 					end,
 				},
 			},
-			["core.norg.qol.toc"] = {
+			["core.qol.toc"] = {
 				config = {
 					close_split_on_jump = true,
 					toc_split_placement = "right",
 				},
 			},
-			["core.norg.journal"] = {
+			["core.journal"] = {
 				config = {
 					workspace = "PM",
 					journal_folder = "Personal-Journal",
 					strategy = "nested", -- flat or nested
 				},
 			},
-			["core.norg.dirman"] = {
+			["core.dirman"] = {
 				config = {
 					workspaces = {
 						PM = "~/safdar-local/NOTES/Personal\\-Management/",
@@ -168,7 +168,7 @@ local function config()
 			-- 		custom_tag_completion = true,
 			-- 	},
 			-- },
-			["core.norg.manoeuvre"] = {},
+			["core.manoeuvre"] = {},
 			["core.integrations.telescope"] = {},
 		},
 	})
