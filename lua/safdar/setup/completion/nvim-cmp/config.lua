@@ -123,9 +123,9 @@ local config = function()
 				name = "nvim_lua",
 				keyword_length = 2,
 			},
-			-- {
-			-- 	name = "obsidian",
-			-- },
+			{
+				name = "obsidian",
+			},
 			{
 				name = "emoji",
 			},
