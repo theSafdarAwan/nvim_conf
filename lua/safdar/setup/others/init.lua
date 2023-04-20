@@ -10,6 +10,7 @@ local plugins = function(install)
 		--                              Utils                               --
 		----------------------------------------------------------------------
 		"undotree",
+		"vim-repeat",
 		"vim-be-good",
 		"nvim-spectre",
 		"refactoring-nvim",
