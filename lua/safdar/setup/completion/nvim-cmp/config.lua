@@ -127,6 +127,9 @@ local config = function()
 				name = "obsidian",
 			},
 			{
+				name = "obsidian_new",
+			},
+			{
 				name = "emoji",
 			},
 			{
