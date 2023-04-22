@@ -33,7 +33,7 @@ M.on_attach = function(_, buf_nr) -- will give client and bufnr
 	set_map("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>")
 	set_map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts:silent():noremap():buffer(buf_nr))
 	-- set_map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts:silent():noremap():buffer(bufnr))
-	set_map("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts:silent():noremap():buffer(buf_nr))
+	set_map("n", "<C-a>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts:silent():noremap():buffer(buf_nr))
 	-- set_map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts:silent():noremap():buffer(bufnr)) -- instead use the trouble
 	-- set_map("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts:silent():noremap():buffer(bufnr))
 	-- set_map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts:silent():noremap():buffer(bufnr))

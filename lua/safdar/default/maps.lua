@@ -180,7 +180,7 @@ set_map("n", "<A-b>", ":buffers<cr>")
 
 -- window mappings
 local function close_win(args)
-	-- don't close tab if has only one buffer in it
+	-- don't close tab if has only one buffer in it and its a valid file else close the tab
 	local tabs = api.nvim_list_tabpages()
 	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
 	local cur_win = api.nvim_get_current_win()
@@ -197,8 +197,8 @@ local function close_win(args)
 				table.insert(normal_wins, win)
 			end
 		end
-		-- if no valid win in the tab then create one
-		if #normal_wins < 2 then
+		-- if no valid win is in the tab other then the current one then create a new buf
+		if #normal_wins <= 1 and #vim.bo.filetype > 0 then
 			api.nvim_set_current_buf(api.nvim_create_buf(true, false))
 		else
 			pcall(api.nvim_win_close, cur_win, { force = is_terminal or args.force })
