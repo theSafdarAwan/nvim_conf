@@ -157,8 +157,7 @@ local function del_buf(args)
 		end
 		-- if no valid buf in the tab then create one
 		if #valid_bufs < 1 then
-			local new_buf = api.nvim_create_buf(true, false)
-			table.insert(valid_bufs, new_buf)
+			table.insert(valid_bufs, api.nvim_create_buf(true, false))
 		end
 		api.nvim_set_current_buf(valid_bufs[1])
 	end
@@ -179,39 +178,54 @@ set_map("n", "<A-b>", ":buffers<cr>")
 -- set_map("n", "<leader>ap", ":buffer #<cr>")
 
 -- window mappings
-local function close_win(args)
+local function close_win_map_callback(args)
+	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
+	-- helper function to close win
+	local function close_win_helper(win_args)
+		pcall(api.nvim_win_close, win_args.win_nr, { force = is_terminal or args.force })
+	end
 	-- don't close tab if has only one buffer in it and its a valid file else close the tab
 	local tabs = api.nvim_list_tabpages()
-	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
-	local cur_win = api.nvim_get_current_win()
+	local cur_win_nr = api.nvim_get_current_win()
 	local cur_tab = api.nvim_get_current_tabpage()
 	local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
+	local close_cur_win = true
 	if #tabs > 1 and not is_terminal then
-		-- windows which have number set which are normal file windows
-		local normal_wins = {}
+		-- get all valid wins in the current tab
+		-- 1) (files which are modifiable) and (have no buftype set -> "")
+		-- 2) help files
+		local valid_wins = {}
 		for _, win in ipairs(tab_wins) do
-			if
-				api.nvim_win_get_option(win, "number")
-				and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "modifiable")
-			then
-				table.insert(normal_wins, win)
+			local buftype = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "buftype")
+			local modifiable = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "modifiable")
+			if modifiable and buftype == "" or buftype == "help" then
+				table.insert(valid_wins, win)
 			end
 		end
-		-- if no valid win is in the tab other then the current one then create a new buf
-		if #normal_wins <= 1 and #vim.bo.filetype > 0 then
-			api.nvim_set_current_buf(api.nvim_create_buf(true, false))
-		else
-			pcall(api.nvim_win_close, cur_win, { force = is_terminal or args.force })
+		-- here we will set the close_cur_win to false only if the current win is
+		-- valid(see the `valid_wins` comment)
+		if #valid_wins <= 1 then
+			for _, win in ipairs(valid_wins) do
+				local buftype = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "buftype")
+				local modifiable = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "modifiable")
+				if buftype == "" and modifiable and cur_win_nr == win or buftype == "help" and cur_win_nr == win then
+					close_cur_win = false
+					-- create a new buf
+					api.nvim_set_current_buf(api.nvim_create_buf(true, false))
+					break
+				end
+			end
 		end
-	else
-		pcall(api.nvim_win_close, cur_win, { force = is_terminal or args.force })
+	end
+	if close_cur_win then
+		close_win_helper({ win_nr = cur_win_nr })
 	end
 end
 set_map("n", "gx", function()
-	close_win({})
+	close_win_map_callback({})
 end)
 set_map("n", "gX", function()
-	close_win({ force = true })
+	close_win_map_callback({ force = true })
 end)
 
 set_map("n", "gtx", ":tabclose<cr>")
