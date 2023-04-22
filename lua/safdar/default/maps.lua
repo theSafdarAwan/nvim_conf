@@ -137,7 +137,7 @@ set_map("n", "<leader>I", "mzggVG=`z<c-l>")
 -- buffers mappings
 set_map("n", "<Tab>", ":bnext<cr>")
 set_map("n", "<S-Tab>", ":bprevious<cr>")
-local function del_buf(args)
+local function del_buf_map_callback(args)
 	-- don't close tab if has only one buffer in it
 	local tabs = api.nvim_list_tabpages()
 	local is_terminal = api.nvim_buf_get_option(0, "buftype") == "terminal"
@@ -145,29 +145,17 @@ local function del_buf(args)
 	if #tabs > 1 and not is_terminal then
 		local cur_tab = api.nvim_get_current_tabpage()
 		local tab_wins = api.nvim_tabpage_list_wins(cur_tab)
-		local valid_bufs = {}
-		for _, win in ipairs(tab_wins) do
-			if
-				api.nvim_buf_is_valid(win)
-				and win ~= cur_buf
-				and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), "modifiable")
-			then
-				table.insert(valid_bufs, win)
-			end
+		if #tab_wins <= 1 then
+			api.nvim_set_current_buf(api.nvim_create_buf(true, false))
 		end
-		-- if no valid buf in the tab then create one
-		if #valid_bufs < 1 then
-			table.insert(valid_bufs, api.nvim_create_buf(true, false))
-		end
-		api.nvim_set_current_buf(valid_bufs[1])
 	end
 	pcall(api.nvim_buf_delete, cur_buf, { force = is_terminal or args.force })
 end
 set_map("n", "<leader>x", function()
-	del_buf({})
+	del_buf_map_callback({})
 end)
 set_map("n", "<leader>X", function()
-	del_buf({ force = true })
+	del_buf_map_callback({ force = true })
 end)
 set_map("n", "[b", ":bp<cr>")
 set_map("n", "]b", ":bn<cr>")
