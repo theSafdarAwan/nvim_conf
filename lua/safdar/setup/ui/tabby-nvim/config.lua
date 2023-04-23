@@ -58,14 +58,17 @@ local function config()
 						break
 					end
 				end
-				table.insert(tbl, 1, {
-					line.sep(icons.misc.ColumnBarThin, theme.fill, theme.win),
-					"",
-					icons.ui.Plus .. " " .. #wins - max_wins,
-					line.sep(icons.misc.ColumnBarThin, theme.fill, theme.win),
-					hl = theme.win,
-					margin = " ",
-				})
+				local remaining_wins_nr = #wins - max_wins
+				if remaining_wins_nr > 0 then
+					table.insert(tbl, 1, {
+						line.sep(icons.misc.ColumnBarThin, theme.fill, theme.win),
+						"",
+						icons.ui.Plus .. " " .. remaining_wins_nr,
+						line.sep(icons.misc.ColumnBarThin, theme.fill, theme.win),
+						hl = theme.win,
+						margin = " ",
+					})
+				end
 				wins = tbl
 			end
 			return wins
