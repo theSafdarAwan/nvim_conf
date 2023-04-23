@@ -1,6 +1,7 @@
 local function config()
 	local color_settings = {
 		filetypes = {
+			"*",
 			css = {
 				-- css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
 				-- RGB = true, -- #000 hex codes
@@ -27,6 +28,10 @@ local function config()
 	-- `foreground` for every mode. This is the inverse of the previous
 	-- setup configuration.
 	require("colorizer").setup(color_settings)
+	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufNew", "BufRead" }, {
+		group = vim.api.nvim_create_augroup("attaching nvim-colorizer.lua", { clear = true }),
+		command = "ColorizerAttachToBuffer",
+	})
 end
 
 return { config = config }
