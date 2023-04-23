@@ -66,6 +66,9 @@ end
 
 -- autosave function
 local function auto_save_fn(buf_info)
+	if not bo.modifiable or vim.bo.readonly then
+		return
+	end
 	local ok, queued = pcall(api.nvim_buf_get_var, buf_info.buf, auto_save_queued)
 	if not ok then
 		return
@@ -87,7 +90,7 @@ local function auto_save_fn(buf_info)
 				break
 			end
 		end
-		if bo.modifiable and status then
+		if status then
 			cmd("silent update")
 			-- print("saved at " .. vim.fn.strftime("%I:%M:%S"))
 			api.nvim_buf_set_var(buf_info.buf, auto_save_queued, true)
