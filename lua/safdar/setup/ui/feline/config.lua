@@ -101,7 +101,7 @@ local config = function()
 
 	local mode = {
 		provider = function()
-			local icon = icons.misc.CircleWithDot
+			local icon = icons.misc.ModifiedCircle
 			local cur_mode = vim.fn.mode()
 			if cur_mode == "R" then
 				icon = icons.ui.Fire

@@ -294,6 +294,7 @@ M.diagnostics = {
 	Trace = "✎",
 }
 M.misc = {
+	Vim = "",
 	Robot = "ﮧ",
 	Squirrel = "",
 	Tag = "",
@@ -302,7 +303,7 @@ M.misc = {
 	Package = "",
 	CircuitBoard = "",
 	Tux = "",
-	CircleWithDot = "",
+	ModifiedCircle = "",
 	Pen = "",
 	Pentagon = "",
 	Position = "",
@@ -318,6 +319,8 @@ M.misc = {
 	ColumnBarThin = "▎",
 	BackSlash = "",
 	ForwardSlash = "",
+	HallowCircle = "",
+	CircleWithDot = ""
 }
 
 M.animation = {

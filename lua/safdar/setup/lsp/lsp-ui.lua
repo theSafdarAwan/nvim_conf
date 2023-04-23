@@ -5,7 +5,7 @@ local signs = {
 	Warn = icons.diagnostics.BoldWarning,
 	Hint = icons.diagnostics.BoldHint,
 	Info = icons.diagnostics.BoldInformation,
-	other = icons.misc.CircleWithDot,
+	other = icons.misc.ModifiedCircle,
 }
 
 for sign, icon in pairs(signs) do
