@@ -4,15 +4,16 @@ local function config()
 		fill = "Normal",
 		-- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
 		head = "TabLine",
-		current_tab = "TabLineSel",
+		group_icon_hl = { fg = "#21273a", bg = "#7aa2f7" },
+		current_tab = { fg = "#7aa2f7", bg = "#21273a" },
 		tab = "TabLine",
 		win = "TabLine",
 		tail = "TabLine",
 	}
 	require("tabby.tabline").set(function(line)
 		local vim_icon = {
-			{ " " .. icons.misc.Vim .. " ", hl = theme.head },
-			line.sep(icons.status_line.triangle.acute.left, theme.head, theme.fill),
+			{ " " .. icons.misc.Vim .. " ", hl = theme.group_icon_hl },
+			line.sep(icons.misc.ColumnBarThin, theme.fill, theme.head),
 		}
 		local tabs_style = line.tabs().foreach(function(tab)
 			local hl = tab.is_current() and theme.current_tab or theme.tab
@@ -23,12 +24,12 @@ local function config()
 				name = string.sub(name, 1, last_idx - 1)
 			end
 			return {
-				line.sep(icons.status_line.triangle.acute.right, hl, theme.fill),
-				tab.is_current() and "" or "",
+				line.sep(icons.misc.ColumnBarThin, theme.fill, hl),
+				tab.is_current() and icons.misc.CircleWithDot or icons.misc.Pentagon,
 				tab.number(),
 				name,
 				-- tab.close_btn(""),
-				line.sep(icons.status_line.triangle.acute.left, hl, theme.fill),
+				line.sep("", theme.fill, hl),
 				hl = hl,
 				margin = " ",
 			}
@@ -36,17 +37,17 @@ local function config()
 		local empty_space_after_tabs = line.spacer()
 		local list_cur_tab_wins = line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
 			return {
-				line.sep(icons.status_line.triangle.acute.right, theme.win, theme.fill),
+				line.sep(icons.misc.ColumnBarThin, theme.fill, theme.win),
 				win.is_current() and icons.misc.CircleWithDot or icons.misc.HallowCircle,
 				win.buf_name(),
-				line.sep(icons.status_line.triangle.acute.left, theme.win, theme.fill),
+				line.sep(icons.misc.ColumnBarThin, theme.fill, theme.win),
 				hl = theme.win,
 				margin = " ",
 			}
 		end)
 		local wins_icon = {
-			line.sep(icons.status_line.triangle.acute.right, theme.tail, theme.fill),
-			{ "  ", hl = theme.tail },
+			line.sep("", theme.fill, theme.tail),
+			{ " " .. icons.ui.Files .. " ", hl = theme.group_icon_hl },
 		}
 
 		return {

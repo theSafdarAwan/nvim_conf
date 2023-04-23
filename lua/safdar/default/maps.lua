@@ -219,9 +219,34 @@ end)
 set_map("n", "gtx", ":tabclose<cr>")
 set_map("n", "<C-n>", ":tabnew<cr>")
 
--- tab movement
+-- tab movement i use this in combination with the `tabby.nvim` to pick tab number
 set_map("n", "gt", function()
+	-- add dummy cursor because when cursor will be in the command line when
+	-- getting input
+	local buf_nr = api.nvim_get_current_buf()
+	local ns_id = api.nvim_create_namespace("")
+	local pos = vim.fn.getpos(".")
+	local line_num = pos[2] - 1
+	local col_num = pos[3] - 1
+
+	local event = vim.v.event
+	vim.wait(3000, function()
+		vim.highlight.range(
+			buf_nr,
+			ns_id,
+			"Cursor",
+			{ line_num, col_num },
+			{ line_num, col_num + 1 },
+			{ regtype = event.regtype, inclusive = event.inclusive, priority = 200 }
+		)
+		return true
+	end, 1, false)
+	vim.cmd("redraw")
 	local input = (vim.fn.getcharstr())
+	-- clear the dummy cursor highlight
+	if api.nvim_buf_is_valid(buf_nr) then
+		api.nvim_buf_clear_namespace(buf_nr, ns_id, 0, -1)
+	end
 	local tab_command = nil
 	if tonumber(input) then
 		tab_command = "tabnext" .. input
@@ -230,9 +255,12 @@ set_map("n", "gt", function()
 			tab_command = "tabnext"
 		elseif input == "h" then
 			tab_command = "tabprevious"
+		else
+			vim.notify("gt" .. input .. ": command not found")
+			return
 		end
 	end
-	vim.cmd(tab_command)
+	pcall(vim.cmd, tab_command)
 end)
 
 -- screen movement by 10 lines

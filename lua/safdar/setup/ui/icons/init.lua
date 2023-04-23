@@ -304,6 +304,7 @@ M.misc = {
 	CircuitBoard = "",
 	Tux = "",
 	ModifiedCircle = "",
+	TargetScope = "",
 	Pen = "",
 	Pentagon = "",
 	Position = "",
@@ -320,7 +321,7 @@ M.misc = {
 	BackSlash = "",
 	ForwardSlash = "",
 	HallowCircle = "",
-	CircleWithDot = ""
+	CircleWithDot = "",
 }
 
 M.animation = {
