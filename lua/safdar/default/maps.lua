@@ -219,6 +219,22 @@ end)
 set_map("n", "gtx", ":tabclose<cr>")
 set_map("n", "<C-n>", ":tabnew<cr>")
 
+-- tab movement
+set_map("n", "gt", function()
+	local input = (vim.fn.getcharstr())
+	local tab_command = nil
+	if tonumber(input) then
+		tab_command = "tabnext" .. input
+	else
+		if input == "l" then
+			tab_command = "tabnext"
+		elseif input == "h" then
+			tab_command = "tabprevious"
+		end
+	end
+	vim.cmd(tab_command)
+end)
+
 -- screen movement by 10 lines
 set_map("n", "zy", "10<C-y>")
 set_map("n", "ze", "10<C-e>")

@@ -16,8 +16,8 @@ local function config()
 		}
 		local tabs_style = line.tabs().foreach(function(tab)
 			local hl = tab.is_current() and theme.current_tab or theme.tab
-			-- remove the windows number info from the name
 			local name = tab.name()
+			-- remove the windows number info from the name
 			local last_idx = string.find(name, "%[")
 			if last_idx and last_idx > 1 then
 				name = string.sub(name, 1, last_idx - 1)
