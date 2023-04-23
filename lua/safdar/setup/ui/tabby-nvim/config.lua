@@ -25,7 +25,7 @@ local function config()
 			end
 			return {
 				line.sep(icons.misc.ColumnBarThin, theme.fill, hl),
-				tab.is_current() and icons.misc.CircleWithDot or icons.misc.Pentagon,
+				tab.is_current() and icons.misc.Tab or icons.misc.TabDotted,
 				tab.number(),
 				name,
 				-- tab.close_btn(""),

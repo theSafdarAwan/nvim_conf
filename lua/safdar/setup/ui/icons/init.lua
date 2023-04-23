@@ -294,6 +294,8 @@ M.diagnostics = {
 	Trace = "✎",
 }
 M.misc = {
+	TabDotted = "󰓪",
+	Tab = "󰓩",
 	Vim = "",
 	Robot = "ﮧ",
 	Squirrel = "",
