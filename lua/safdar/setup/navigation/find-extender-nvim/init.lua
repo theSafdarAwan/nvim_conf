@@ -7,7 +7,7 @@ local plugin = function(install)
 			require("find-extender").setup({
 				prefix = "g",
 				movments = {
-					lh = { use = false },
+					lh = { enable = true },
 				},
 			})
 		end,
