@@ -32,7 +32,7 @@ option.showcmd = true -- show's commands in the cmd line
 
 opt.wrap = false
 opt.scrolloff = 2 -- minimal screen lines to keep above and below the cursor
-opt.sidescroll = 50 -- when nowrap is set and line is longer then window scrolls to the left with using `zl` command
+opt.sidescroll = 10 -- when nowrap is set and line is longer then window scrolls to the left with using `zl` command
 
 opt.showmode = false -- We don't need to see things like -- INSERT -- anymore
 opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr-o:block" -- change the shape of the cursor

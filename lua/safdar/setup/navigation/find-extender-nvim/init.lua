@@ -5,9 +5,27 @@ local plugin = function(install)
 		branch = "alpha",
 		config = function()
 			require("find-extender").setup({
-				prefix = "g",
-				movments = {
+				movements = {
 					lh = { enable = true },
+				},
+				no_wait = {
+					"}",
+					"{",
+					"[",
+					"]",
+					"(",
+					")",
+					",",
+					"\"",
+					":",
+					";",
+					"_",
+					"'",
+					"`",
+					".",
+					"+",
+					"-",
+					"*",
 				},
 			})
 		end,
