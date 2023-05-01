@@ -6,9 +6,16 @@ local plugin = function(install)
 		config = function()
 			require("find-extender").setup({
 				prefix = { enable = false },
+				input_length = 2,
 				movements = {
 					min_matches = 1,
-					lh = { enable = true },
+					leap = {
+						enable = false,
+					},
+					lh = {
+						enable = true,
+						go_to_first_match = false,
+					},
 				},
 				no_wait = {
 					"}",

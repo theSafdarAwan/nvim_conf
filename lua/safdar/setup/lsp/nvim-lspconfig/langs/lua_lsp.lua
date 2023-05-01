@@ -28,19 +28,30 @@ nvim_lsp.lua_ls.setup({
 		-- 	virtual_text = false,
 		-- }), -- this is handled in lsp-ui
 	},
+	-- You will have to adjust your values according to your system
 	settings = {
 		Lua = {
 			diagnostics = {
 				globals = { "vim" },
+			},
+			runtime = {
+				path = {
+					"?.lua",
+					"?/init.lua",
+					vim.fn.expand("~/.luarocks/share/lua/5.3/?.lua"),
+					vim.fn.expand("~/.luarocks/share/lua/5.3/?/init.lua"),
+					"/usr/share/5.3/?.lua",
+					"/usr/share/lua/5.3/?/init.lua",
+				},
 			},
 			workspace = {
 				checkThirdParty = false,
 				library = {
 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+					vim.fn.expand("~/.luarocks/share/lua/5.3"),
+					"/usr/share/lua/5.3",
 				},
-				maxPreload = 100000,
-				preloadFileSize = 10000,
 			},
 		},
 	},

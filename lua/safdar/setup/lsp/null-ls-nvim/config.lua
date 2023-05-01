@@ -12,7 +12,7 @@ local config = function()
 			args = {
 				"--formatter",
 				"plain",
-				"globals vim",
+				"--globals vim",
 				"--codes",
 				"--ranges",
 				"--filename",
