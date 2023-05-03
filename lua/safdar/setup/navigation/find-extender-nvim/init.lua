@@ -5,7 +5,11 @@ local plugin = function(install)
 		branch = "alpha",
 		config = function()
 			require("find-extender").setup({
-				prefix = { enable = false },
+				prefix = {
+					key = "g",
+					enable = false,
+				},
+				ignore_case = false,
 				input_length = 2,
 				movements = {
 					min_matches = 1,

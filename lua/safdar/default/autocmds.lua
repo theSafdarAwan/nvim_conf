@@ -90,6 +90,8 @@ autocmds.terminal_mode = {
 autocmds.open_help_in_tab = {
 	events = { "BufRead", "BufNew" },
 	callback = function()
+		-- TODO: check for tab available windows and if only 1 window then do this
+		-- else don't just like buf delete or window close maps
 		vim.defer_fn(function()
 			local ignore_filetypes = {
 				"prompt",
