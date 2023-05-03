@@ -3,7 +3,7 @@ local utils = require("safdar.utils")
 local set_buf_opt = utils.set_buf_opt
 local set_map = utils.set_map
 
-vim.StopAndStartLspServer = function()
+StopAndStartLspServer = function()
 	vim.cmd("LspStop")
 	vim.cmd("LspStart")
 end
@@ -45,7 +45,7 @@ M.on_attach = function(_, buf_nr) -- will give client and bufnr
 		"<cmd>lua vim.lsp.buf.format({async = true, timeout_ms = 2000 })<CR>",
 		opts:silent():noremap():buffer(buf_nr)
 	)
-	set_map("n", "<leader>lR", ":lua vim.StopAndStartLspServer()<CR>", opts:silent():noremap():buffer(buf_nr))
+	set_map("n", "<leader>lR", ":lua StopAndStartLspServer()<CR>", opts:silent():noremap():buffer(buf_nr))
 	set_map("n", "<leader>lr", ":LspRestart<cr>", opts:silent():noremap():buffer(buf_nr))
 	set_map("n", "<leader>li", ":LspInfo<cr>", opts:silent():noremap():buffer(buf_nr))
 end
