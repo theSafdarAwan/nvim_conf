@@ -5,7 +5,7 @@ local function Plugin(install)
 		dependencies = "hrsh7th/nvim-cmp",
 		config = function()
 			require("obsidian").setup({
-				dir = "~/safdar-local/NOTES/Obsidian/",
+				dir = "~/Obsidian Vaults",
 				completion = {
 					nvim_cmp = true, -- if using nvim-cmp, otherwise set to false
 				},

@@ -12,12 +12,12 @@ local delay_auto_save = 10
 
 -- create the autosave augroup and Initialization of the autosave_queued and
 -- autosave_block variables
-local auto_save = api.nvim_create_augroup("autosave", { clear = true })
+local auto_save_group = api.nvim_create_augroup("autosave", { clear = true })
 local auto_save_queued = "autosave_queued"
 local auto_save_block = "autosave_block"
 
 api.nvim_create_autocmd("BufReadPre", {
-	group = auto_save,
+	group = auto_save_group,
 	callback = function(buf_info)
 		api.nvim_buf_set_var(buf_info.buf, auto_save_queued, false)
 		api.nvim_buf_set_var(buf_info.buf, auto_save_block, false)
@@ -119,10 +119,22 @@ local function auto_save_fn(buf_info)
 	end
 end
 
+local auto_save = true
+
 -- save changes on these events
 create_autocmd({ "TextChanged", "ModeChanged", "CursorHold", "CursorMoved" }, {
-	group = auto_save,
+	group = auto_save_group,
 	callback = function(buf_info)
-		auto_save_fn(buf_info)
+		if auto_save then
+			auto_save_fn(buf_info)
+		end
 	end,
 })
+
+api.nvim_create_user_command("ToggleAutoSave", function()
+	if auto_save then
+		auto_save = false
+	else
+		auto_save = true
+	end
+end, {})
