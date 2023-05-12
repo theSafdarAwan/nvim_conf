@@ -1,5 +1,5 @@
 --[[
-	authord: @theSafdarAwan
+	author: @theSafdarAwan
 	Description:- This script auto saves file.
 --]]
 

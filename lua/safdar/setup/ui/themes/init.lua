@@ -34,6 +34,10 @@ local function themes(install)
 	install({
 		"shaunsingh/nord.nvim",
 	})
+	install({
+		"Everblush/nvim",
+		name = "everblush",
+	})
 end
 
 return { install = themes }
