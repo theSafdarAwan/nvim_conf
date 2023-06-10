@@ -119,7 +119,7 @@ local function auto_save_fn(buf_info)
 	end
 end
 
-local auto_save = true
+local auto_save = false
 
 -- save changes on these events
 create_autocmd({ "TextChanged", "ModeChanged", "CursorHold", "CursorMoved" }, {

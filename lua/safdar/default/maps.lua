@@ -41,9 +41,10 @@ set_map("n", "Y", "y$")
 set_map("v", "Y", "m`$y``")
 
 -- WARN: this map deletes the current file from the file system, it asks the user
--- to for input using `vim.ui.select`
--- but it won't delete the buffer so if you accidentally deleted a file you can
+-- for input using `vim.ui.select`
+-- But it won't delete the buffer so if you accidentally deleted a file you can
 -- recover the buffer by doing :w
+-- ^Notice, i said it didn't delete the buffer, not the file.
 set_map("n", "<leader>dd", function()
 	local file_location = vim.fn.expand("%:p")
 	local file_name = vim.fn.expand("%:t")
@@ -209,6 +210,11 @@ local function close_win_map_callback(args)
 		close_win_helper({ win_nr = cur_win_nr })
 	end
 end
+
+-- :NOTE: need to use the `close_win_map_callback` because, there is no other way
+-- of dealing with windows before deleting them, this acts like a hook, before 
+-- window deletion.
+
 set_map("n", "gx", function()
 	close_win_map_callback({})
 end)
@@ -251,3 +257,9 @@ set_map("n", "<leader>s?", "z=")
 
 -- Terminal"
 set_map("t", "<c-[>", "<C-\\><C-n>")
+
+-- get c-g to act like in emacs
+set_map("c", "<C-g>", "<ESC>")
+
+-- Save like emacs, i use auto-save script but need this because of my habit
+set_map({"n", "i"}, "<C-x><C-s>", "<cmd>w<CR>")
