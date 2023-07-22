@@ -47,7 +47,6 @@ nvim_lsp.lua_ls.setup({
 			workspace = {
 				checkThirdParty = false,
 				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 					vim.fn.expand("~/.luarocks/share/lua/5.3"),
 					"/usr/share/lua/5.3",
 				},
