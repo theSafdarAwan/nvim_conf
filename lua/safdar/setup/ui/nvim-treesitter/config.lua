@@ -74,12 +74,12 @@ local config = function()
 			enable = true,
 			keymaps = ts_maps,
 		},
-		rainbow = {
-			enable = true,
-			disable = { "html", "md", "norg" },
-			query = "rainbow-parens",
-			strategy = require("ts-rainbow.strategy.global"),
-		},
+		-- rainbow = {
+		-- 	enable = true,
+		-- 	disable = { "html", "md", "norg" },
+		-- 	query = "rainbow-parens",
+		-- 	strategy = require("ts-rainbow.strategy.global"),
+		-- },
 	})
 	-- local _ = require("nvim-treesitter.configs").setup {
 	--   ensure_installed = {

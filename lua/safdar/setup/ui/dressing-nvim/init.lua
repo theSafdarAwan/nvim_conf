@@ -18,7 +18,7 @@ local function plugin(install)
 					insert_only = false,
 
 					-- These are passed to nvim_open_win
-					anchor = "SW",
+					-- anchor = "SW",
 					border = "rounded",
 					-- 'editor' and 'win' will default to being centered
 					relative = "cursor",

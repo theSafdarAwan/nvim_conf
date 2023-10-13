@@ -13,6 +13,7 @@ local function config()
 	local maps = require("safdar.setup.navigation.nvim-tree-lua.maps")
 
 	nvimtree.setup({
+		on_attach = maps.on_attach,
 		auto_reload_on_write = true,
 		create_in_closed_folder = false,
 		disable_netrw = false,
@@ -33,10 +34,6 @@ local function config()
 			number = false,
 			relativenumber = false,
 			signcolumn = "no",
-			mappings = {
-				custom_only = true,
-				list = maps.nvim_tree_core_maps,
-			},
 		},
 		notify = {
 			threshold = vim.log.levels.WARN,

@@ -22,7 +22,7 @@ local function plugin(install)
 		end,
 		build = ":TSUpdate",
 		config = function()
-			require("safdar.setup.ui.nvim-treesitter.config").config()
+			   require("safdar.setup.ui.nvim-treesitter.config").config()
 		end,
 	})
 

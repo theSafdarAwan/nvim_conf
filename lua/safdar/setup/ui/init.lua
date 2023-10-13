@@ -1,16 +1,16 @@
 local function plugins(install)
 	local Plugins = {
 		"fused",
-		"tabby-nvim",
-		"feline",
-		"nvim-web-devicons",
-		"nvim-treesitter",
-		"playground",
-		"nvim-colorizer-lua",
-		"vim-illuminate",
-		"indent-blankline-nvim",
-		"noice-nvim",
-		"dressing-nvim",
+	  	"tabby-nvim",
+	  	"feline",
+	  	"nvim-web-devicons",
+	  	"nvim-treesitter",
+	  	"playground",
+	  	"nvim-colorizer-lua",
+	  	"vim-illuminate",
+	  	"indent-blankline-nvim",
+	  	"noice-nvim",
+	  	"dressing-nvim",
 	}
 
 	local temp_plugins = {

@@ -59,9 +59,9 @@ local config = function()
 	end
 
 	local noice_is_active = function()
-		if not require("noice").api.statusline.mode.get() then
-			return true
-		end
+	--	if not require("noice").api.statusline.mode.get() then
+	--		return true
+	--	end
 	end
 
 	----------------------------------------------------------------------
@@ -297,7 +297,7 @@ local config = function()
 			end
 		end,
 		enabled = function ()
-			return noice_is_active()
+			-- return noice_is_active()
 		end,
 		hl = { style = "bold", fg = colors.blue, bg = colors.dark2 },
 	}
@@ -534,9 +534,9 @@ local config = function()
 	----------------------------------------------------------------------
 	local noice_macro_recording = {
 		provider = function()
-			if require("noice").api.statusline.mode.get() then
-				return icons.misc.Watch .. " " .. require("noice").api.statusline.mode.get()
-			end
+		--	if require("noice").api.statusline.mode.get() then
+		--		return icons.misc.Watch .. " " .. require("noice").api.statusline.mode.get()
+		--	end
 			return " "
 		end,
 		hl = { style = "bold", fg = colors.pink, bg = colors.dark2 },

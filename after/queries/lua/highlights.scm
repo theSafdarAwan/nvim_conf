@@ -16,7 +16,7 @@
 (("then"     @keyword) (#set! conceal "↙"))
 (("do"       @keyword) (#set! conceal ""))
 
-(("comment_start"    @comment) (#set! conceal ""))
+;; (("comment_start"    @comment) (#set! conceal ""))
 
 ;; Function names
 ((function_call name: (identifier) @TSFuncMacro (#eq? @TSFuncMacro "require")) (#set! conceal ""))

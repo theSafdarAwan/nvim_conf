@@ -56,7 +56,7 @@ local config = function()
 	-- names of the files should be the name of the servers and the append _lsp at
 	-- the end even if the lsp names exits with the server name
 	local langs_conf_files = {
-		"lua_lsp",
+    "lua_lsp",
 		"jsonls_lsp",
 		"ltex_lsp",
 		"clangd_lsp",

@@ -22,12 +22,12 @@ autocmds.set_common_opts = {
 			-- need to delete the var as soon as we leave, it will become problem
 			-- when we are navigation file link help files and we are jumping on
 			-- links.
-			vim.api.nvim_create_autocmd("BufWinLeave,", {
-				once = true,
-				callback = function()
-					pcall(api.nvim_win_del_var, win_nr, "_common_opts")
-				end,
-			})
+			-- vim.api.nvim_create_autocmd("BufWinLeave,", {
+			-- 	once = true,
+			-- 	callback = function()
+			-- 		pcall(api.nvim_win_del_var, win_nr, "_common_opts")
+			-- 	end,
+			-- })
 		end
 		local common_opts = {
 			add = {
