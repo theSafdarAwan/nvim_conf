@@ -4,27 +4,40 @@ local function config()
 		require("safdar.utils").notify("indent-blankline.nvim not installed")
 		return
 	end
-	ib.setup({
-		-- show_trailing_blankline_indent = false,
-		-- show_first_indent_level = false,
-		-- use_treesitter = true,
-		-- indent_level = 8,
-		-- show_current_context = true,
-		-- space_char_blankline = " ",
-		-- show_current_context_start = false,
-		-- char = "│",
-		-- char = "▏",
-		-- char = "┃",
-		-- buftype_exclude = { "terminal", "nofile", "nofile" },
-		-- filetype_exclude = {
-		-- 	"help",
-		-- 	"startify",
-		-- 	"dashboard",
-		-- 	"packer",
-		-- 	"neogitstatus",
-		-- 	"NvimTree",
-		-- 	"Trouble",
-		-- },
+
+	local highlight = {
+		"@function",
+		"@property",
+		"@boolean",
+		"@character",
+	}
+
+	require("ibl").setup({
+		scope = {
+			highlight = highlight,
+			include = {
+				-- node_type = { ["*"] = { "*" } },
+			},
+		},
+		viewport_buffer = { min = 20, max = 100 },
+		indent = {
+			char = "▏",
+		},
+		exclude = {
+			filetypes = {
+				"help",
+				"startify",
+				"dashboard",
+				"packer",
+				"neogitstatus",
+				"NvimTree",
+				"Trouble",
+			},
+			buftypes = {
+				"terminal",
+				"nofile",
+			},
+		},
 	})
 end
 

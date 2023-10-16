@@ -97,7 +97,7 @@ opt.shortmess:append("cI") -- turn of completion messages and starting intro scr
 -- set foldexpr=nvim_treesitter#foldexpr()
 -- ]])
 
-opt.list = true -- show hidden {space,tab} chars
+-- opt.list = true -- show hidden {space,tab} chars
 -- set list chars
 local list_chars_symbols = {
 	["eol"] = " ",

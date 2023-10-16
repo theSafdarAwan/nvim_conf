@@ -6,7 +6,7 @@ set_map("n", "[l", ":Lspsaga show_line_diagnostics<CR>")
 set_map("n", "[[", ":Lspsaga diagnostic_jump_prev<CR>")
 set_map("n", "]]", ":Lspsaga diagnostic_jump_next<CR>")
 -- cursor word definition and reference
-set_map("n", "gd", ":Lspsaga lsp_finder<CR>")
+set_map("n", "gd", ":Lspsaga finder<CR>")
 -- rename
 -- set_map("n", "yr", ":Lspsaga rename<CR>")
 -- set_map("n", "<leader>la", ":Lspsaga code_action<CR>")
