@@ -1,7 +1,7 @@
 --[[
 		authord: @theSafdarAwan
 		last modifiction date: 04/04/23 - 10:48
-		Description:- Script that doesn't leve the position when yanking
+		Description:- go to the center of the line, rather then half of the screen
 --]]
 local set_map = require("safdar.utils").set_map
 
