@@ -19,7 +19,7 @@ local function config()
 	local optl = vim.opt_local
 	local function navic_navbar()
 		local attach_winbar = false
-		local current_buf_clients = vim.lsp.buf_get_clients()
+		local current_buf_clients = vim.lsp.get_clients()
 		for _, client in pairs(current_buf_clients) do
 			if client.server_capabilities.documentSymbolProvider then
 				attach_winbar = true

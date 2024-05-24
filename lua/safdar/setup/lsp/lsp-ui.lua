@@ -3,25 +3,47 @@ local icons = require("safdar.setup.ui.icons")
 local signs = {
 	Error = icons.diagnostics.BoldError,
 	Warn = icons.diagnostics.BoldWarning,
-	Hint = icons.diagnostics.BoldHint,
 	Info = icons.diagnostics.BoldInformation,
-	other = icons.misc.ModifiedCircle,
+	Hint = icons.diagnostics.BoldHint,
 }
 
-for sign, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. sign
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = {
-		prefix = "",
-		spacing = 0,
+local sign_config_tbl = {
+	text = {
+		[1] = signs.Error,
+		[2] = signs.Warn,
+		[3] = signs.Info,
+		[4] = signs.Hint,
 	},
-	signs = true,
-	underline = true,
-	update_in_insert = true, -- update diagnostics insert mode
-})
+	texthl = {
+		[1] = "DiagnosticError",
+		[2] = "DiagnosticWarn",
+		[3] = "DiagnosticInfo",
+		[4] = "DiagnosticHint",
+	},
+	...,
+}
+vim.diagnostic.config({ signs = sign_config_tbl })
+
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+-- 	virtual_text = {
+-- 		prefix = "",
+-- 		spacing = 0,
+-- 	},
+-- 	signs = true,
+-- 	underline = true,
+-- 	update_in_insert = true, -- update diagnostics insert mode
+-- })
+
+-- vim.diagnostic.config({
+-- 	virtual_text = {
+-- 		-- source = "always",  -- Or "if_many"
+-- 		prefix = "●", -- Could be '■', '▎', 'x'
+-- 	},
+-- 	severity_sort = true,
+-- 	float = {
+-- 		source = "always", -- Or "if_many"
+-- 	},
+-- })
 
 --     ["bold"] = {
 --       {"┏", "FloatBorder"},

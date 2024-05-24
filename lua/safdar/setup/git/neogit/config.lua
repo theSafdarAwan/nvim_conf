@@ -43,30 +43,25 @@ local function config()
 		integrations = {
 			diffview = true,
 		},
-		-- Setting any section to `false` will make the section not render at all
 		sections = {
-			untracked = {
-				folded = false,
-			},
 			unstaged = {
 				folded = false,
+				hidden = false,
 			},
 			staged = {
 				folded = true,
+				hidden = false,
 			},
 			stashes = {
 				folded = true,
-			},
-			unpulled = {
-				folded = true,
-			},
-			unmerged = {
-				folded = false,
+				hidden = false,
 			},
 			recent = {
 				folded = true,
+				hidden = false,
 			},
 		},
+		use_default_keymaps = true,
 		-- override/add mappings
 		mappings = {
 			status = maps.status,

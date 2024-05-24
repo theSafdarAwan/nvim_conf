@@ -308,7 +308,7 @@ local config = function()
 	local lsp = {
 		clients = {
 			provider = function()
-				local cur_buf_clients = vim.lsp.buf_get_clients()
+				local cur_buf_clients = vim.lsp.get_clients()
 				local clients_str = ""
 				for _, server in pairs(cur_buf_clients) do
 					for _, ft in ipairs(server.config.filetypes) do

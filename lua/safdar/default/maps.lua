@@ -44,7 +44,7 @@ set_map("v", "Y", "m`$y``")
 -- for input using `vim.ui.select`
 -- But it won't delete the buffer so if you accidentally deleted a file you can
 -- recover the buffer by doing :w
--- ^Notice, i said it didn't delete the buffer, not the file.
+-- ^Notice, i said it doesn't delete the buffer, not the file.
 set_map("n", "<leader>dd", function()
 	local file_location = vim.fn.expand("%:p")
 	local file_name = vim.fn.expand("%:t")

@@ -11,12 +11,15 @@ local function plugin(install)
 				</div>
 			`; ]]
 
-			require("nvim-treesitter.configs").setup({
-				context_commentstring = {
-					enable = true,
-					enable_autocmd = false,
-				},
-			})
+			require("nvim-treesitter.configs").setup(
+			{
+			--- this gets done automagically now
+			-- 	context_commentstring = {
+			-- 		enable = true,
+			-- 		enable_autocmd = false,
+			-- 	},
+			}
+			)
 		end,
 	})
 end
