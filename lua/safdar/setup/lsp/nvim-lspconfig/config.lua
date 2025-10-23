@@ -13,30 +13,6 @@ local config = function()
 			".gitignore",
 			".git",
 		},
-		settings = {
-        Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-					runtime = {
-						path = {
-							"?.lua",
-							"?/init.lua",
-							vim.fn.expand("~/.luarocks/share/lua/5.3/?.lua"),
-							vim.fn.expand("~/.luarocks/share/lua/5.3/?/init.lua"),
-							"/usr/share/5.3/?.lua",
-							"/usr/share/lua/5.3/?/init.lua",
-						},
-					},
-					workspace = {
-						checkThirdParty = false,
-						library = {
-							vim.fn.expand("~/.luarocks/share/lua/5.3"),
-							"/usr/share/lua/5.3",
-						},
-					},
-		}
-  }
 	}
 	vim.lsp.config("lua_lsp", conf)
 end
