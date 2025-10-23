@@ -20,7 +20,7 @@ local plugin = function(install)
 			"<leader>g",
 		},
 		dependencies = {
-			"telescope-fzf-native.nvim",
+			-- "telescope-fzf-native.nvim",
 			"telescope-tabs",
 		},
 	})

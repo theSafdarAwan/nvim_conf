@@ -13,9 +13,9 @@ local function setup()
 		"navigation",
 		"git",
 		"lsp",
-		"completion",
+		-- "completion",
 		"others",
-		"debugging",
+		-- "debugging",
 		"writing",
 	}
 	for _, module in pairs(modules) do

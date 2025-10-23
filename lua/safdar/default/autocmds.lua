@@ -5,10 +5,10 @@ local autocmds = {}
 autocmds.highlight_on_yank = {
 	events = { "TextYankPost" },
 	callback = function()
-		require("vim.highlight").on_yank({
-			timeout = 40,
-			higroup = "MatchParen",
-		})
+		-- require("vim.highlight").on_yank({
+		-- 	timeout = 40,
+		-- 	higroup = "MatchParen",
+		-- })
 	end,
 }
 autocmds.set_common_opts = {

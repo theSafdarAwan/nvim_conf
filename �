@@ -16,8 +16,8 @@
 
 require("safdar.default.deprecation_issues").override()
 
-if vim.version().minor < 10 then
-	vim.notify_once("[Config] Neovim 10 or higher is required.", vim.log.levels.WARNING)
+if vim.version().minor < 8 then
+	vim.notify_once("[Config] Neovim 0.8 or higher is required.", vim.log.levels.WARNING)
 	return
 end
 

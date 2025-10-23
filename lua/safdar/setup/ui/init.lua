@@ -2,7 +2,7 @@ local function plugins(install)
 	local Plugins = {
 		"fused",
 	  	"tabby-nvim",
-	  	"feline",
+	  	-- "feline",
 	  	"nvim-web-devicons",
 	  	"nvim-treesitter",
 	  	"playground",

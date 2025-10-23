@@ -7,52 +7,52 @@ local config = function()
 	local utils = require("null-ls.utils")
 	local builtins = null_ls.builtins
 	local sources = {
-		builtins.formatting.stylua.with({}),
-		builtins.diagnostics.luacheck.with({
-			args = {
-				"--formatter",
-				"plain",
-				"--globals vim",
-				"--codes",
-				"--ranges",
-				"--filename",
-				"$FILENAME",
-				"-",
-			},
-		}),
-		builtins.formatting.black.with({ extra_args = { "--fast" } }),
-		builtins.diagnostics.flake8,
-		builtins.diagnostics.eslint_d.with({
-			condition = function(utls)
-				return utls.root_has_file(".eslintrc.json")
-			end,
-		}),
-		builtins.formatting.eslint_d,
-		builtins.formatting.stylelint,
+		-- builtins.formatting.stylua.with({}),
+		-- builtins.diagnostics.luacheck.with({
+		-- 	args = {
+		-- 		"--formatter",
+		-- 		"plain",
+		-- 		"--globals vim",
+		-- 		"--codes",
+		-- 		"--ranges",
+		-- 		"--filename",
+		-- 		"$FILENAME",
+		-- 		"-",
+		-- 	},
+		-- }),
+		-- builtins.formatting.black.with({ extra_args = { "--fast" } }),
+		-- builtins.diagnostics.flake8,
+		-- builtins.diagnostics.eslint_d.with({
+		-- 	condition = function(utls)
+		-- 		return utls.root_has_file(".eslintrc.json")
+		-- 	end,
+		-- }),
+		-- builtins.formatting.eslint_d,
+		-- builtins.formatting.stylelint,
 		-- builtins.diagnostics.stylelint, -- don't use this using stylelint-lsp server for diagnostics
-		builtins.formatting.clang_format,
-		builtins.diagnostics.chktex,
+		-- builtins.formatting.clang_format,
+		-- builtins.diagnostics.chktex,
 		-- builtins.code_actions.gitsigns,
-		builtins.formatting.prettierd.with({
-			filetypes = {
-				"html",
-				"json",
-				"yaml",
-				"markdown",
-				"javascript",
-				"javascriptreact",
-				"typescript",
-				"typescriptreact",
-				"vue",
-				"css",
-				"scss",
-				"less",
-				"jsonc",
-				"markdown.mdx",
-				"graphql",
-				"handlebars",
-			},
-		}),
+		-- builtins.formatting.prettierd.with({
+		-- 	filetypes = {
+		-- 		-- "html",
+		-- 		-- "json",
+		-- 		-- "yaml",
+		-- 		-- "markdown",
+		-- 		-- "javascript",
+		-- 		-- "javascriptreact",
+		-- 		-- "typescript",
+		-- 		-- "typescriptreact",
+		-- 		-- "vue",
+		-- 		-- "css",
+		-- 		-- "scss",
+		-- 		-- "less",
+		-- 		-- "jsonc",
+		-- 		-- "markdown.mdx",
+		-- 		-- "graphql",
+		-- 		-- "handlebars",
+		-- 	},
+		-- }),
 	}
 	null_ls.setup({
 		debug = true,

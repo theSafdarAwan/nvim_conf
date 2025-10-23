@@ -18,7 +18,7 @@ opt.swapfile = false -- No swap File
 opt.backup = false -- Don't use swap or Backup
 opt.writebackup = false -- don't write backup
 
-vim.lsp.set_log_level("OFF") -- DEBUG
+vim.lsp.log.set_level("OFF") -- DEBUG
 
 opt.spelllang = "en,cjk"
 opt.spelloptions:append("noplainbuffer,camel")
