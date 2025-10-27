@@ -13,7 +13,7 @@ local function setup()
 		"navigation",
 		"git",
 		"lsp",
-		-- "completion",
+		"completion",
 		"others",
 		-- "debugging",
 		"writing",

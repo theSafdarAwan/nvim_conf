@@ -2,7 +2,7 @@ local function plugins(install)
 	local Plugins = {
 		"nvim-cmp",
 		"luasnip",
-		"cmp-tabnine",
+		-- "cmp-tabnine",
 		"nvim-cmp-dictionary",
 		"nvim-autopairs",
 	}
