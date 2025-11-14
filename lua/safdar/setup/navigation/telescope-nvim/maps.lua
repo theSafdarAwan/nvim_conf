@@ -23,9 +23,9 @@ M.maps = function()
 		require("safdar.setup.navigation.telescope-nvim.custom-pickers").search_nvim_dotfiles()
 	end, { noremap = true, silent = true })
 
-	set_map("n", "<leader>gtd", function()
-		require("safdar.setup.navigation.telescope-nvim.custom-pickers").gtd_neorg_files()
-	end, { noremap = true, silent = true })
+	-- set_map("n", "<leader>gtd", function()
+	-- 	require("safdar.setup.navigation.telescope-nvim.custom-pickers").gtd_neorg_files()
+	-- end, { noremap = true, silent = true })
 
 	set_map("n", "<leader>f;", function()
 		require("safdar.setup.navigation.telescope-nvim.custom-pickers").ivy_find_files_with_preview()

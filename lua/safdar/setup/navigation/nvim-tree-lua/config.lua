@@ -5,6 +5,7 @@ local function config()
 	end
 
 	local _, nvimtree = pcall(require, "nvim-tree")
+	-- What the hack why i am using ok here its for the fused not nvim-tree
 	if not ok then
 		require("safdar.utils").notify("nvim-tree not installed")
 		return
